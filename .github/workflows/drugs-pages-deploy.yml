@@ -42,8 +42,12 @@ jobs:
           grep -Fq '#map .leaflet-interactive' css/map.css
           grep -Fq '#drug-map .leaflet-interactive' topics/drugs/topic.css
           grep -Fq 'svg-outline-fix-v3' index.html
-          grep -Fq 'svg-outline-fix-v3' topics/drugs/index.html
+          grep -Fq 'region-context-v1' topics/drugs/index.html
           node --check topics/drugs/wastewater.js
+          node --check topics/drugs/news.js
+          grep -Fq 'id="region-change"' topics/drugs/index.html
+          grep -Fq 'id="region-news-list"' topics/drugs/index.html
+          if grep -q 'id="state-panel"' topics/drugs/index.html; then echo 'Duplicated region popup detected'; exit 1; fi
           python topics/drugs/scripts/validate_drugs.py
           python - <<'PY'
           import json
