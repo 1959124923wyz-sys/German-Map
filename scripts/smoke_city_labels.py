@@ -84,7 +84,8 @@ def main():
             label_assertions(page,'#drug-map','drug')
             assert_no_svg_focus_rectangle(page, '#drug-map')
             map_click(page,'#drug-map','drug',48.85,11.2)
-            page.locator('#state-panel').wait_for(state='visible')
+            page.locator('#region-navigator').wait_for(state='visible')
+            assert page.locator('#state-panel').count()==0
             assert page.locator('#drug-map path[stroke="#ffffff"]').count()>=1
             page.screenshot(path='/tmp/shared-city-labels.png',full_page=True)
             assert not errors,errors
