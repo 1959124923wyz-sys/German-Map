@@ -1,0 +1,51 @@
+name: Verify live drug topic on Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/drugs-live-probe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-pages-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Verify public HTML and data via published Pages URL
+        run: |
+          set -euo pipefail
+          SITE='https://1959124923wyz-sys.github.io/German-Map'
+          mkdir -p /tmp/drugs-preview
+          for n in $(seq 1 12); do
+            ok=true
+            for path in index.html topics/drugs/index.html topics/drugs/topic.js topics/drugs/topic.css topics/drugs/data/pks_drugs_2025.json data/germany-counties-display.geojson data/germany-states.geojson; do
+              if ! curl -fLsS --max-time 20 "$SITE/$path" -o "/tmp/drugs-preview/$(basename $path)"; then
+                echo "Attempt $n: failed $path"
+                ok=false
+                break
+              fi
+            done
+            if [ "$ok" = true ] && grep -q 'id="modeDrugs"' /tmp/drugs-preview/index.html && grep -q 'id="drug-map"' /tmp/drugs-preview/index.html >/dev/null 2>&1; then
+              echo 'PUBLIC ROUTE STATIC RESOURCES OK'
+              break
+            fi
+            # Both entry points may have basename index.html; use explicit checks below.
+            sleep 10
+          done
+          test -s /tmp/drugs-preview/pks_drugs_2025.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/drugs-preview/pks_drugs_2025.json'))
+          assert len(d['records'])==400 and d['meta']['matched_geometry']==402
+          print('PASS live topic data: 400 records, 402 region joins')
+          PY
+          curl -fLsS --max-time 20 "$SITE/index.html" -o /tmp/drugs-preview/main.html
+          curl -fLsS --max-time 20 "$SITE/topics/drugs/index.html" -o /tmp/drugs-preview/drugs.html
+          grep -q 'id="modeDrugs"' /tmp/drugs-preview/main.html
+          grep -q 'id="drug-map"' /tmp/drugs-preview/drugs.html
+          grep -q 'href="../../index.html?mode=property"' /tmp/drugs-preview/drugs.html
+          echo 'PASS official GitHub Pages navigation and static data'
