@@ -115,7 +115,7 @@ def main():
                 ('Hamburg', ['3,298','1,995','982','1,918','1,230']),
                 ('Thüringen', ['77','50']),
                 ('Sachsen-Anhalt', ['61','48']),
-                ('Mecklenburg-Vorpommern', ['486','421','133','94'])
+                ('Mecklenburg-Vorpommern', ['24','15','486','421','133','94'])
             ]:
                 page.locator('#state-index-list').get_by_text(state, exact=True).click()
                 page.wait_for_function(
@@ -126,6 +126,10 @@ def main():
                 for value in expected:
                     assert value in content,(state,value,content)
                 assert page.locator('#region-evidence-body a[href^="https://"]').count()>=1
+                if state == 'Mecklenburg-Vorpommern':
+                    assert '媒体或专业机构' in content
+                    assert '州级' in page.locator('#region-evidence-head').inner_text()
+                    assert 'NaN' not in content
                 page.locator('#region-home').click()
             # Visual regression: site dark shell and ascending low-to-high green palette.
             palette = page.locator('#legend-data .legend-gradient span')
