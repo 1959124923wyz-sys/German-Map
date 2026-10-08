@@ -89,3 +89,19 @@ GermanMapTopics.drugs.deactivate();
 - 下萨克森州（Niedersachsen）分类记录取自其州刑警局 **2025 T01 第48-55页**：[原始PDF](https://www.lka.polizei-nds.de/download/77720/Tab.01_2025_NI.pdf.pdf)。列出§29 BtMG 一般违法 / 贩卖走私及 §34 KCanG 对应罪名（大麻753 / 1677；可卡因及快克3618 / 977；冰毒83 / 25；海洛因329 / 71）；**每列只表示选定罪名，不能跨列相加后宣称为“该毒品全部案件”。** 特别是严重数量罪名可落在其他代码。
 - 石勒苏益格—荷尔斯泰因州（Schleswig-Holstein）2025年的Crystal冰毒**一般违法45起、贩卖2起**，取自[州刑警局短报第19页](https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/POLIZEI/DasSindWir/LKA/Ermittlungen_Auswertung/kriminalstatistik/_downloads/PKS2025_Kurzfassung.pdf?__blob=publicationFile&v=4)，不代表所有冰毒相关违法案件。
 - BKA的16州PKS T01全国联合文件于2026年9月22日发布（[GovData入口](https://data.gov.de/suche/daten/2025-polizeiliche-kriminalstatistik-t01-grundtabelle-bundeslaender)），但BKA xlsx直接下载在部署环境中仍可能返回403。未核验的州及物质全部保持空缺，不用全国分布推算。
+
+## 2026-10-08 增量核验：缺什么补什么
+
+最新覆盖：**12/16州2025年毒品相关死亡统计**、**5/16州2025年按物质统计的官方犯罪分项**、**1州有经出处标明的2025年大麻相关医院诊断记录**。原本9州和2州的统计见前节，保留先前源和代码定义。
+
+本次新增：
+
+- **Brandenburg 勃兰登堡：** 死亡2025年19人（2024年17人），[州内政部公告](https://mik.brandenburg.de/mik/de/service/presse/pressemitteilungen/detail-pm-und-meldungen/~23-03-2026-erneut-weniger-straftaten-in-brandenburg)；[PKS2025州原始报告第39—41页](https://mik.brandenburg.de/sixcms/media.php/9/PKS_Bericht_2025_web.pdf)提供KCanG §34一般违法219、非法交易171、全部罪名701，以及“含特定严重罪名”的按物质汇总：可卡因/快克404、冰毒248、海洛因27、苯丙胺类1,230。**701与219/171有包含关系，不能相加**；表33药物种类口径较§29简单罪名宽，勿横向误比。
+- **Rheinland-Pfalz 莱茵兰—普法尔茨：** [州刑警局PKS2025年度报告第48—49页表15](https://www.polizei.rlp.de/fileadmin/polizei.rlp.de/Service/Dokumente/Statistiken/_PKS_Landesweit/2025/PKS_Jahresbericht_2025.pdf)：KCanG一般违法515、非法大麻交易858；可卡因一般违法1,043（报告文字中另提到1,048，**按表15直接数字采用1,043**），海洛因一般违法152，苯丙胺及衍生物一般违法3,202（包括MDMA等，**不可称纯冰毒**），大麻相关总登记2,321。不同法律条款的层次不同，不能相加。
+- **Hessen 黑森：** [州内政部2025 PKS公告](https://hessen.de/presse/straftaten-gehen-2025-weiter-zurueck)直接披露可卡因一般违法2,406起（2024年2,300）以及快克一般违法543起（2024年578），两者分别展示，不以“可卡因全部案件”命名。
+- **Thüringen 图林根：** 死亡2025年77人（2024年50），[dpa转引州警方年度报告](https://www.zeit.de/news/2026-04/04/zahl-der-drogentoten-in-thueringen-erneut-gestiegen)。未拿到州警方死亡原表前，前端标为间接核验。
+- **Sachsen-Anhalt 萨克森—安哈尔特：** 死亡2025年61人（2024年48），[dpa转引州内政部](https://www.sueddeutsche.de/panorama/traurige-statistik-zahl-der-drogentoten-in-sachsen-anhalt-auf-hoechststand-dpa.urn-newsml-dpa-com-20090101-260227-930-743602)。前端标为间接核验。
+- **Mecklenburg-Vorpommern 梅克伦堡—前波美拉尼亚：** [2026年9月dpa刊载于州议会网站](https://www.landtag-mv.de/dpa-ticker/dpa-mitteilung?cHash=a8814c06e6023b635157e30ad837a8ef&tx_w3dpa_dpalist%5Baction%5D=detail&tx_w3dpa_dpalist%5Bcontroller%5D=Dpa&tx_w3dpa_dpalist%5Buid%5D=7381)，引州政府议会答复：2025年大麻相关医院诊断记录486例（2024年421），其中精神病性障碍相关诊断133例（2024年94）。**不是486个独立吸毒者，更不能据此单独判断大麻法律调整造成病例变化**。尚待取得议会原始答复PDF。
+- **Bayern 巴伐利亚复核注记：** 2026年3月[州内政部PKS发布会](https://www.stmi.bayern.de/media/presse-und-medien/news/2026/03_2026/260316-kriminalstatistik-2025-ppp.pdf)报247人，而[州警2026年6月上普法尔茨公告](https://www.polizei.bayern.de/aktuelles/pressemitteilungen/104900/index.html)报246人。前端保留先前版本对应的247并附上口径/统计时点差异；不可擅自把两个版本当作彼此毫无冲突。
+
+技术处理：州分项数据允许 `groups`（一般违法/交易）或 `additional_metrics`（单一、明确罪名范围）分开并列，不允许跨列相加。只有真值和有来源的数字显示；缺失永远不替换为0。证据 UI 仍在 `topics/drugs/state-evidence.js` 的可折叠区域，绝不另开一级专题。
