@@ -1,0 +1,61 @@
+name: Drug topic data build and smoke
+
+on:
+  push:
+    branches: [feature/drugs-topic]
+    paths:
+      - 'topics/drugs/**'
+      - '.github/workflows/drugs-topic-build.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drugs-topic-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - name: Checkout drug branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Python runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install fetch and browser dependencies
+        run: |
+          pip install requests beautifulsoup4 playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Build verified 2025 county drug dataset
+        run: python topics/drugs/scripts/build_pks_drugs.py
+
+      - name: Validate data coverage and JS syntax
+        run: |
+          python topics/drugs/scripts/validate_drugs.py
+          python -m py_compile topics/drugs/scripts/build_pks_drugs.py topics/drugs/scripts/validate_drugs.py topics/drugs/tests/smoke_drugs.py
+          node --check topics/drugs/topic.js
+
+      - name: Test real clicks in Chromium
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/drugs-http.log 2>&1 &
+          sleep 2
+          python topics/drugs/tests/smoke_drugs.py
+
+      - name: Commit generated topic data (never main)
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/drugs/data/pks_drugs_2025.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data(drugs): refresh verified 2025 county PKS dataset'
+            git push origin HEAD:feature/drugs-topic
+          fi

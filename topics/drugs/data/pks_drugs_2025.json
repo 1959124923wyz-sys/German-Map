@@ -1,0 +1,4535 @@
+{
+  "meta": {
+    "year": 2025,
+    "metric": "Rauschgiftdelikte",
+    "metric_zh": "警方登记毒品违法案件（县级T01指标）",
+    "unit": "cases per 100,000 residents",
+    "source": "Bundeskriminalamt (BKA), PKS 2025 Kreistabelle T01, via attributed public mirror",
+    "official_source_url": "https://data.gov.de/suche/daten/2025-polizeiliche-kriminalstatistik-t01-grundtabelle-kreise-ausgewahlte-straftaten-gruppen",
+    "mirror_index_url": "https://kriminalitaets-karte.de/kriminalitaet/",
+    "download_method": "BKA-attributed HTML county mirror; not direct official download",
+    "scope_note": "Mirror label Rauschgiftdelikte, not necessarily interchangeable with nationwide Rauschgiftkriminalitaet summary",
+    "legal_break_note": "Cannabis partial legalization from 2024-04-01 changes recorded offence definitions",
+    "dark_figure_note": "Police-recorded cases depend on controls and do not measure population drug consumption",
+    "county_count": 400,
+    "matched_geometry": 402,
+    "geometry_count": 402,
+    "geometry_aliases": {
+      "16056": "16063",
+      "03152": "03159",
+      "03156": "03159"
+    },
+    "national_BKA_rauschgiftkriminalitaet_2025": 164991,
+    "national_BKA_scope": "separate BKA nationwide summary; do not sum/compare directly to county mirror metric"
+  },
+  "records": {
+    "01001": {
+      "ags": "01001",
+      "name": "Flensburg",
+      "drug_crime": {
+        "cases": 386,
+        "rate": 401.0,
+        "change": "-19 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/flensburg-01001.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01002": {
+      "ags": "01002",
+      "name": "Kiel",
+      "drug_crime": {
+        "cases": 664,
+        "rate": 263.0,
+        "change": "-23 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kiel-01002.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01003": {
+      "ags": "01003",
+      "name": "Lübeck",
+      "drug_crime": {
+        "cases": 995,
+        "rate": 459.0,
+        "change": "-16 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/luebeck-01003.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01004": {
+      "ags": "01004",
+      "name": "Neumünster",
+      "drug_crime": {
+        "cases": 389,
+        "rate": 487.0,
+        "change": "-47 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/neumuenster-01004.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01051": {
+      "ags": "01051",
+      "name": "Dithmarschen",
+      "drug_crime": {
+        "cases": 135,
+        "rate": 101.0,
+        "change": "-45 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/dithmarschen-01051.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01053": {
+      "ags": "01053",
+      "name": "Herzogtum Lauenburg",
+      "drug_crime": {
+        "cases": 277,
+        "rate": 134.0,
+        "change": "+23 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/herzogtum-lauenburg-01053.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01054": {
+      "ags": "01054",
+      "name": "Nordfriesland",
+      "drug_crime": {
+        "cases": 203,
+        "rate": 119.0,
+        "change": "-22 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/nordfriesland-01054.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01055": {
+      "ags": "01055",
+      "name": "Ostholstein",
+      "drug_crime": {
+        "cases": 367,
+        "rate": 182.0,
+        "change": "-47 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ostholstein-01055.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01056": {
+      "ags": "01056",
+      "name": "Pinneberg",
+      "drug_crime": {
+        "cases": 433,
+        "rate": 133.0,
+        "change": "-53 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/pinneberg-01056.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01057": {
+      "ags": "01057",
+      "name": "Plön",
+      "drug_crime": {
+        "cases": 95,
+        "rate": 73.0,
+        "change": "-11 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ploen-01057.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01058": {
+      "ags": "01058",
+      "name": "Rendsburg-Eckernförde",
+      "drug_crime": {
+        "cases": 164,
+        "rate": 59.0,
+        "change": "-45 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rendsburg-eckernfoerde-01058.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01059": {
+      "ags": "01059",
+      "name": "Schleswig-Flensburg",
+      "drug_crime": {
+        "cases": 217,
+        "rate": 106.0,
+        "change": "-13 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/schleswig-flensburg-01059.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01060": {
+      "ags": "01060",
+      "name": "Segeberg",
+      "drug_crime": {
+        "cases": 306,
+        "rate": 108.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/segeberg-01060.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01061": {
+      "ags": "01061",
+      "name": "Steinburg",
+      "drug_crime": {
+        "cases": 123,
+        "rate": 93.0,
+        "change": "-48 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/steinburg-01061.html",
+      "state": "Schleswig-Holstein"
+    },
+    "01062": {
+      "ags": "01062",
+      "name": "Stormarn",
+      "drug_crime": {
+        "cases": 229,
+        "rate": 93.0,
+        "change": "-49 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/stormarn-01062.html",
+      "state": "Schleswig-Holstein"
+    },
+    "02000": {
+      "ags": "02000",
+      "name": "Hamburg",
+      "drug_crime": {
+        "cases": 9332,
+        "rate": 501.0,
+        "change": "-18 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hamburg-02000.html",
+      "state": "Hamburg"
+    },
+    "03101": {
+      "ags": "03101",
+      "name": "Braunschweig",
+      "drug_crime": {
+        "cases": 987,
+        "rate": 390.0,
+        "change": "-2 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/braunschweig-03101.html",
+      "state": "Niedersachsen"
+    },
+    "03102": {
+      "ags": "03102",
+      "name": "Salzgitter",
+      "drug_crime": {
+        "cases": 171,
+        "rate": 163.0,
+        "change": "-16 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/salzgitter-03102.html",
+      "state": "Niedersachsen"
+    },
+    "03103": {
+      "ags": "03103",
+      "name": "Wolfsburg",
+      "drug_crime": {
+        "cases": 112,
+        "rate": 86.0,
+        "change": "-56 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wolfsburg-03103.html",
+      "state": "Niedersachsen"
+    },
+    "03151": {
+      "ags": "03151",
+      "name": "Gifhorn",
+      "drug_crime": {
+        "cases": 224,
+        "rate": 127.0,
+        "change": "-18 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/gifhorn-03151.html",
+      "state": "Niedersachsen"
+    },
+    "03153": {
+      "ags": "03153",
+      "name": "Goslar",
+      "drug_crime": {
+        "cases": 322,
+        "rate": 254.0,
+        "change": "-21 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/goslar-03153.html",
+      "state": "Niedersachsen"
+    },
+    "03154": {
+      "ags": "03154",
+      "name": "Helmstedt",
+      "drug_crime": {
+        "cases": 203,
+        "rate": 225.0,
+        "change": "-29 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/helmstedt-03154.html",
+      "state": "Niedersachsen"
+    },
+    "03155": {
+      "ags": "03155",
+      "name": "Northeim",
+      "drug_crime": {
+        "cases": 223,
+        "rate": 178.0,
+        "change": "-41 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/northeim-03155.html",
+      "state": "Niedersachsen"
+    },
+    "03157": {
+      "ags": "03157",
+      "name": "Peine",
+      "drug_crime": {
+        "cases": 105,
+        "rate": 77.0,
+        "change": "-40 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/peine-03157.html",
+      "state": "Niedersachsen"
+    },
+    "03158": {
+      "ags": "03158",
+      "name": "Wolfenbüttel",
+      "drug_crime": {
+        "cases": 163,
+        "rate": 138.0,
+        "change": "-16 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wolfenbuettel-03158.html",
+      "state": "Niedersachsen"
+    },
+    "03159": {
+      "ags": "03159",
+      "name": "Göttingen",
+      "drug_crime": {
+        "cases": 674,
+        "rate": 206.0,
+        "change": "-45 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/goettingen-03159.html",
+      "state": "Niedersachsen"
+    },
+    "03241": {
+      "ags": "03241",
+      "name": "Region Hannover",
+      "drug_crime": {
+        "cases": 3612,
+        "rate": 317.0,
+        "change": "-27 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/region-hannover-03241.html",
+      "state": "Niedersachsen"
+    },
+    "03251": {
+      "ags": "03251",
+      "name": "Diepholz",
+      "drug_crime": {
+        "cases": 193,
+        "rate": 87.0,
+        "change": "-53 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/diepholz-03251.html",
+      "state": "Niedersachsen"
+    },
+    "03252": {
+      "ags": "03252",
+      "name": "Hameln-Pyrmont",
+      "drug_crime": {
+        "cases": 251,
+        "rate": 167.0,
+        "change": "-37 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hameln-pyrmont-03252.html",
+      "state": "Niedersachsen"
+    },
+    "03254": {
+      "ags": "03254",
+      "name": "Hildesheim",
+      "drug_crime": {
+        "cases": 426,
+        "rate": 159.0,
+        "change": "-25 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hildesheim-03254.html",
+      "state": "Niedersachsen"
+    },
+    "03255": {
+      "ags": "03255",
+      "name": "Holzminden",
+      "drug_crime": {
+        "cases": 118,
+        "rate": 180.0,
+        "change": "-29 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/holzminden-03255.html",
+      "state": "Niedersachsen"
+    },
+    "03256": {
+      "ags": "03256",
+      "name": "Nienburg (Weser)",
+      "drug_crime": {
+        "cases": 118,
+        "rate": 97.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/nienburg-weser-03256.html",
+      "state": "Niedersachsen"
+    },
+    "03257": {
+      "ags": "03257",
+      "name": "Schaumburg",
+      "drug_crime": {
+        "cases": 202,
+        "rate": 129.0,
+        "change": "-38 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/schaumburg-03257.html",
+      "state": "Niedersachsen"
+    },
+    "03351": {
+      "ags": "03351",
+      "name": "Celle",
+      "drug_crime": {
+        "cases": 225,
+        "rate": 130.0,
+        "change": "-55 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/celle-03351.html",
+      "state": "Niedersachsen"
+    },
+    "03352": {
+      "ags": "03352",
+      "name": "Cuxhaven",
+      "drug_crime": {
+        "cases": 212,
+        "rate": 107.0,
+        "change": "-28 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/cuxhaven-03352.html",
+      "state": "Niedersachsen"
+    },
+    "03353": {
+      "ags": "03353",
+      "name": "Harburg",
+      "drug_crime": {
+        "cases": 215,
+        "rate": 81.0,
+        "change": "-66 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/harburg-03353.html",
+      "state": "Niedersachsen"
+    },
+    "03354": {
+      "ags": "03354",
+      "name": "Lüchow-Dannenberg",
+      "drug_crime": {
+        "cases": 99,
+        "rate": 213.0,
+        "change": "-56 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/luechow-dannenberg-03354.html",
+      "state": "Niedersachsen"
+    },
+    "03355": {
+      "ags": "03355",
+      "name": "Lüneburg",
+      "drug_crime": {
+        "cases": 396,
+        "rate": 221.0,
+        "change": "-8 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/lueneburg-03355.html",
+      "state": "Niedersachsen"
+    },
+    "03356": {
+      "ags": "03356",
+      "name": "Osterholz",
+      "drug_crime": {
+        "cases": 98,
+        "rate": 86.0,
+        "change": "-39 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/osterholz-03356.html",
+      "state": "Niedersachsen"
+    },
+    "03357": {
+      "ags": "03357",
+      "name": "Rotenburg (Wümme)",
+      "drug_crime": {
+        "cases": 272,
+        "rate": 164.0,
+        "change": "-29 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rotenburg-wuemme-03357.html",
+      "state": "Niedersachsen"
+    },
+    "03358": {
+      "ags": "03358",
+      "name": "Heidekreis",
+      "drug_crime": {
+        "cases": 337,
+        "rate": 238.0,
+        "change": "-32 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/heidekreis-03358.html",
+      "state": "Niedersachsen"
+    },
+    "03359": {
+      "ags": "03359",
+      "name": "Stade",
+      "drug_crime": {
+        "cases": 196,
+        "rate": 94.0,
+        "change": "-38 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/stade-03359.html",
+      "state": "Niedersachsen"
+    },
+    "03360": {
+      "ags": "03360",
+      "name": "Uelzen",
+      "drug_crime": {
+        "cases": 121,
+        "rate": 132.0,
+        "change": "-50 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/uelzen-03360.html",
+      "state": "Niedersachsen"
+    },
+    "03361": {
+      "ags": "03361",
+      "name": "Verden",
+      "drug_crime": {
+        "cases": 158,
+        "rate": 114.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/verden-03361.html",
+      "state": "Niedersachsen"
+    },
+    "03401": {
+      "ags": "03401",
+      "name": "Delmenhorst",
+      "drug_crime": {
+        "cases": 121,
+        "rate": 149.0,
+        "change": "-32 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/delmenhorst-03401.html",
+      "state": "Niedersachsen"
+    },
+    "03402": {
+      "ags": "03402",
+      "name": "Emden",
+      "drug_crime": {
+        "cases": 74,
+        "rate": 150.0,
+        "change": "-40 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/emden-03402.html",
+      "state": "Niedersachsen"
+    },
+    "03403": {
+      "ags": "03403",
+      "name": "Oldenburg (Oldenburg)",
+      "drug_crime": {
+        "cases": 349,
+        "rate": 198.0,
+        "change": "-29 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/oldenburg-oldenburg-03403.html",
+      "state": "Niedersachsen"
+    },
+    "03404": {
+      "ags": "03404",
+      "name": "Osnabrück",
+      "drug_crime": {
+        "cases": 525,
+        "rate": 316.0,
+        "change": "-28 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/osnabrueck-03404.html",
+      "state": "Niedersachsen"
+    },
+    "03405": {
+      "ags": "03405",
+      "name": "Wilhelmshaven",
+      "drug_crime": {
+        "cases": 253,
+        "rate": 334.0,
+        "change": "-29 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wilhelmshaven-03405.html",
+      "state": "Niedersachsen"
+    },
+    "03451": {
+      "ags": "03451",
+      "name": "Ammerland",
+      "drug_crime": {
+        "cases": 74,
+        "rate": 58.0,
+        "change": "-22 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ammerland-03451.html",
+      "state": "Niedersachsen"
+    },
+    "03452": {
+      "ags": "03452",
+      "name": "Aurich",
+      "drug_crime": {
+        "cases": 271,
+        "rate": 144.0,
+        "change": "-12 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/aurich-03452.html",
+      "state": "Niedersachsen"
+    },
+    "03453": {
+      "ags": "03453",
+      "name": "Cloppenburg",
+      "drug_crime": {
+        "cases": 113,
+        "rate": 64.0,
+        "change": "-41 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/cloppenburg-03453.html",
+      "state": "Niedersachsen"
+    },
+    "03454": {
+      "ags": "03454",
+      "name": "Emsland",
+      "drug_crime": {
+        "cases": 884,
+        "rate": 264.0,
+        "change": "-14 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/emsland-03454.html",
+      "state": "Niedersachsen"
+    },
+    "03455": {
+      "ags": "03455",
+      "name": "Friesland",
+      "drug_crime": {
+        "cases": 154,
+        "rate": 153.0,
+        "change": "-31 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/friesland-03455.html",
+      "state": "Niedersachsen"
+    },
+    "03456": {
+      "ags": "03456",
+      "name": "Grafschaft Bentheim",
+      "drug_crime": {
+        "cases": 948,
+        "rate": 656.0,
+        "change": "-3 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/grafschaft-bentheim-03456.html",
+      "state": "Niedersachsen"
+    },
+    "03457": {
+      "ags": "03457",
+      "name": "Leer",
+      "drug_crime": {
+        "cases": 805,
+        "rate": 476.0,
+        "change": "0 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/leer-03457.html",
+      "state": "Niedersachsen"
+    },
+    "03458": {
+      "ags": "03458",
+      "name": "Oldenburg",
+      "drug_crime": {
+        "cases": 85,
+        "rate": 64.0,
+        "change": "-41 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/oldenburg-03458.html",
+      "state": "Niedersachsen"
+    },
+    "03459": {
+      "ags": "03459",
+      "name": "Osnabrück",
+      "drug_crime": {
+        "cases": 315,
+        "rate": 89.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/osnabrueck-03459.html",
+      "state": "Niedersachsen"
+    },
+    "03460": {
+      "ags": "03460",
+      "name": "Vechta",
+      "drug_crime": {
+        "cases": 177,
+        "rate": 121.0,
+        "change": "-14 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/vechta-03460.html",
+      "state": "Niedersachsen"
+    },
+    "03461": {
+      "ags": "03461",
+      "name": "Wesermarsch",
+      "drug_crime": {
+        "cases": 114,
+        "rate": 128.0,
+        "change": "-51 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wesermarsch-03461.html",
+      "state": "Niedersachsen"
+    },
+    "03462": {
+      "ags": "03462",
+      "name": "Wittmund",
+      "drug_crime": {
+        "cases": 41,
+        "rate": 73.0,
+        "change": "-49 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wittmund-03462.html",
+      "state": "Niedersachsen"
+    },
+    "04011": {
+      "ags": "04011",
+      "name": "Bremen",
+      "drug_crime": {
+        "cases": 2351,
+        "rate": 401.0,
+        "change": "-11 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bremen-04011.html",
+      "state": "Bremen"
+    },
+    "04012": {
+      "ags": "04012",
+      "name": "Bremerhaven",
+      "drug_crime": {
+        "cases": 186,
+        "rate": 157.0,
+        "change": "-84 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bremerhaven-04012.html",
+      "state": "Bremen"
+    },
+    "05111": {
+      "ags": "05111",
+      "name": "Düsseldorf",
+      "drug_crime": {
+        "cases": 2113,
+        "rate": 342.0,
+        "change": "-19 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/duesseldorf-05111.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05112": {
+      "ags": "05112",
+      "name": "Duisburg",
+      "drug_crime": {
+        "cases": 991,
+        "rate": 197.0,
+        "change": "-40 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/duisburg-05112.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05113": {
+      "ags": "05113",
+      "name": "Essen",
+      "drug_crime": {
+        "cases": 1178,
+        "rate": 205.0,
+        "change": "-35 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/essen-05113.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05114": {
+      "ags": "05114",
+      "name": "Krefeld",
+      "drug_crime": {
+        "cases": 357,
+        "rate": 154.0,
+        "change": "-30 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/krefeld-05114.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05116": {
+      "ags": "05116",
+      "name": "Mönchengladbach",
+      "drug_crime": {
+        "cases": 523,
+        "rate": 196.0,
+        "change": "-43 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/moenchengladbach-05116.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05117": {
+      "ags": "05117",
+      "name": "Mülheim an der Ruhr",
+      "drug_crime": {
+        "cases": 328,
+        "rate": 190.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/muelheim-an-der-ruhr-05117.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05119": {
+      "ags": "05119",
+      "name": "Oberhausen",
+      "drug_crime": {
+        "cases": 878,
+        "rate": 411.0,
+        "change": "+41 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/oberhausen-05119.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05120": {
+      "ags": "05120",
+      "name": "Remscheid",
+      "drug_crime": {
+        "cases": 168,
+        "rate": 148.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/remscheid-05120.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05122": {
+      "ags": "05122",
+      "name": "Solingen",
+      "drug_crime": {
+        "cases": 216,
+        "rate": 130.0,
+        "change": "-39 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/solingen-05122.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05124": {
+      "ags": "05124",
+      "name": "Wuppertal",
+      "drug_crime": {
+        "cases": 662,
+        "rate": 185.0,
+        "change": "-17 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wuppertal-05124.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05154": {
+      "ags": "05154",
+      "name": "Kleve",
+      "drug_crime": {
+        "cases": 1054,
+        "rate": 327.0,
+        "change": "-61 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kleve-05154.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05158": {
+      "ags": "05158",
+      "name": "Mettmann",
+      "drug_crime": {
+        "cases": 493,
+        "rate": 100.0,
+        "change": "-41 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/mettmann-05158.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05162": {
+      "ags": "05162",
+      "name": "Rhein-Kreis Neuss",
+      "drug_crime": {
+        "cases": 870,
+        "rate": 190.0,
+        "change": "-11 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rhein-kreis-neuss-05162.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05166": {
+      "ags": "05166",
+      "name": "Viersen",
+      "drug_crime": {
+        "cases": 593,
+        "rate": 199.0,
+        "change": "-58 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/viersen-05166.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05170": {
+      "ags": "05170",
+      "name": "Wesel",
+      "drug_crime": {
+        "cases": 442,
+        "rate": 96.0,
+        "change": "-42 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wesel-05170.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05314": {
+      "ags": "05314",
+      "name": "Bonn",
+      "drug_crime": {
+        "cases": 605,
+        "rate": 187.0,
+        "change": "-37 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bonn-05314.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05315": {
+      "ags": "05315",
+      "name": "Köln",
+      "drug_crime": {
+        "cases": 3786,
+        "rate": 370.0,
+        "change": "-24 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/koeln-05315.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05316": {
+      "ags": "05316",
+      "name": "Leverkusen",
+      "drug_crime": {
+        "cases": 123,
+        "rate": 73.0,
+        "change": "-46 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/leverkusen-05316.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05334": {
+      "ags": "05334",
+      "name": "Aachen",
+      "drug_crime": {
+        "cases": 807,
+        "rate": 139.0,
+        "change": "-22 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/aachen-05334.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05358": {
+      "ags": "05358",
+      "name": "Düren",
+      "drug_crime": {
+        "cases": 300,
+        "rate": 107.0,
+        "change": "-19 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/dueren-05358.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05362": {
+      "ags": "05362",
+      "name": "Rhein-Erft-Kreis",
+      "drug_crime": {
+        "cases": 489,
+        "rate": 102.0,
+        "change": "-45 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rhein-erft-kreis-05362.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05366": {
+      "ags": "05366",
+      "name": "Euskirchen",
+      "drug_crime": {
+        "cases": 184,
+        "rate": 91.0,
+        "change": "-35 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/euskirchen-05366.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05370": {
+      "ags": "05370",
+      "name": "Heinsberg",
+      "drug_crime": {
+        "cases": 437,
+        "rate": 166.0,
+        "change": "-22 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/heinsberg-05370.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05374": {
+      "ags": "05374",
+      "name": "Oberbergischer Kreis",
+      "drug_crime": {
+        "cases": 236,
+        "rate": 86.0,
+        "change": "-38 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/oberbergischer-kreis-05374.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05378": {
+      "ags": "05378",
+      "name": "Rheinisch-Bergischer Kreis",
+      "drug_crime": {
+        "cases": 172,
+        "rate": 60.0,
+        "change": "-28 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rheinisch-bergischer-kreis-05378.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05382": {
+      "ags": "05382",
+      "name": "Rhein-Sieg-Kreis",
+      "drug_crime": {
+        "cases": 531,
+        "rate": 88.0,
+        "change": "-25 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rhein-sieg-kreis-05382.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05512": {
+      "ags": "05512",
+      "name": "Bottrop",
+      "drug_crime": {
+        "cases": 122,
+        "rate": 103.0,
+        "change": "-7 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bottrop-05512.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05513": {
+      "ags": "05513",
+      "name": "Gelsenkirchen",
+      "drug_crime": {
+        "cases": 650,
+        "rate": 243.0,
+        "change": "-3 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/gelsenkirchen-05513.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05515": {
+      "ags": "05515",
+      "name": "Münster",
+      "drug_crime": {
+        "cases": 722,
+        "rate": 234.0,
+        "change": "-39 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/muenster-05515.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05554": {
+      "ags": "05554",
+      "name": "Borken",
+      "drug_crime": {
+        "cases": 1364,
+        "rate": 358.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/borken-05554.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05558": {
+      "ags": "05558",
+      "name": "Coesfeld",
+      "drug_crime": {
+        "cases": 184,
+        "rate": 81.0,
+        "change": "-29 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/coesfeld-05558.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05562": {
+      "ags": "05562",
+      "name": "Recklinghausen",
+      "drug_crime": {
+        "cases": 816,
+        "rate": 131.0,
+        "change": "-22 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/recklinghausen-05562.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05566": {
+      "ags": "05566",
+      "name": "Steinfurt",
+      "drug_crime": {
+        "cases": 452,
+        "rate": 100.0,
+        "change": "-30 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/steinfurt-05566.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05570": {
+      "ags": "05570",
+      "name": "Warendorf",
+      "drug_crime": {
+        "cases": 251,
+        "rate": 89.0,
+        "change": "-36 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/warendorf-05570.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05711": {
+      "ags": "05711",
+      "name": "Bielefeld",
+      "drug_crime": {
+        "cases": 792,
+        "rate": 239.0,
+        "change": "-8 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bielefeld-05711.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05754": {
+      "ags": "05754",
+      "name": "Gütersloh",
+      "drug_crime": {
+        "cases": 345,
+        "rate": 95.0,
+        "change": "-24 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/guetersloh-05754.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05758": {
+      "ags": "05758",
+      "name": "Herford",
+      "drug_crime": {
+        "cases": 154,
+        "rate": 60.0,
+        "change": "-40 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/herford-05758.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05762": {
+      "ags": "05762",
+      "name": "Höxter",
+      "drug_crime": {
+        "cases": 180,
+        "rate": 129.0,
+        "change": "-38 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hoexter-05762.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05766": {
+      "ags": "05766",
+      "name": "Lippe",
+      "drug_crime": {
+        "cases": 277,
+        "rate": 80.0,
+        "change": "-27 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/lippe-05766.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05770": {
+      "ags": "05770",
+      "name": "Minden-Lübbecke",
+      "drug_crime": {
+        "cases": 289,
+        "rate": 90.0,
+        "change": "-60 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/minden-luebbecke-05770.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05774": {
+      "ags": "05774",
+      "name": "Paderborn",
+      "drug_crime": {
+        "cases": 469,
+        "rate": 148.0,
+        "change": "-23 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/paderborn-05774.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05911": {
+      "ags": "05911",
+      "name": "Bochum",
+      "drug_crime": {
+        "cases": 663,
+        "rate": 185.0,
+        "change": "-8 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bochum-05911.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05913": {
+      "ags": "05913",
+      "name": "Dortmund",
+      "drug_crime": {
+        "cases": 2101,
+        "rate": 348.0,
+        "change": "-12 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/dortmund-05913.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05914": {
+      "ags": "05914",
+      "name": "Hagen",
+      "drug_crime": {
+        "cases": 537,
+        "rate": 282.0,
+        "change": "-8 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hagen-05914.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05915": {
+      "ags": "05915",
+      "name": "Hamm",
+      "drug_crime": {
+        "cases": 453,
+        "rate": 252.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hamm-05915.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05916": {
+      "ags": "05916",
+      "name": "Herne",
+      "drug_crime": {
+        "cases": 278,
+        "rate": 178.0,
+        "change": "-26 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/herne-05916.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05954": {
+      "ags": "05954",
+      "name": "Ennepe-Ruhr-Kreis",
+      "drug_crime": {
+        "cases": 354,
+        "rate": 113.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ennepe-ruhr-kreis-05954.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05958": {
+      "ags": "05958",
+      "name": "Hochsauerlandkreis",
+      "drug_crime": {
+        "cases": 812,
+        "rate": 311.0,
+        "change": "-29 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hochsauerlandkreis-05958.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05962": {
+      "ags": "05962",
+      "name": "Märkischer Kreis",
+      "drug_crime": {
+        "cases": 571,
+        "rate": 140.0,
+        "change": "-23 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/maerkischer-kreis-05962.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05966": {
+      "ags": "05966",
+      "name": "Olpe",
+      "drug_crime": {
+        "cases": 140,
+        "rate": 106.0,
+        "change": "-42 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/olpe-05966.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05970": {
+      "ags": "05970",
+      "name": "Siegen-Wittgenstein",
+      "drug_crime": {
+        "cases": 551,
+        "rate": 201.0,
+        "change": "-30 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/siegen-wittgenstein-05970.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05974": {
+      "ags": "05974",
+      "name": "Soest",
+      "drug_crime": {
+        "cases": 938,
+        "rate": 312.0,
+        "change": "-26 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/soest-05974.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "05978": {
+      "ags": "05978",
+      "name": "Unna",
+      "drug_crime": {
+        "cases": 328,
+        "rate": 83.0,
+        "change": "-45 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/unna-05978.html",
+      "state": "Nordrhein-Westfalen"
+    },
+    "06411": {
+      "ags": "06411",
+      "name": "Darmstadt",
+      "drug_crime": {
+        "cases": 337,
+        "rate": 202.0,
+        "change": "-36 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/darmstadt-06411.html",
+      "state": "Hessen"
+    },
+    "06412": {
+      "ags": "06412",
+      "name": "Frankfurt am Main",
+      "drug_crime": {
+        "cases": 4152,
+        "rate": 549.0,
+        "change": "-26 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/frankfurt-am-main-06412.html",
+      "state": "Hessen"
+    },
+    "06413": {
+      "ags": "06413",
+      "name": "Offenbach am Main",
+      "drug_crime": {
+        "cases": 453,
+        "rate": 341.0,
+        "change": "-24 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/offenbach-am-main-06413.html",
+      "state": "Hessen"
+    },
+    "06414": {
+      "ags": "06414",
+      "name": "Wiesbaden",
+      "drug_crime": {
+        "cases": 514,
+        "rate": 178.0,
+        "change": "-37 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wiesbaden-06414.html",
+      "state": "Hessen"
+    },
+    "06431": {
+      "ags": "06431",
+      "name": "Bergstraße",
+      "drug_crime": {
+        "cases": 148,
+        "rate": 54.0,
+        "change": "-36 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bergstrasse-06431.html",
+      "state": "Hessen"
+    },
+    "06432": {
+      "ags": "06432",
+      "name": "Darmstadt-Dieburg",
+      "drug_crime": {
+        "cases": 182,
+        "rate": 60.0,
+        "change": "-14 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/darmstadt-dieburg-06432.html",
+      "state": "Hessen"
+    },
+    "06433": {
+      "ags": "06433",
+      "name": "Groß-Gerau",
+      "drug_crime": {
+        "cases": 304,
+        "rate": 113.0,
+        "change": "-31 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/gross-gerau-06433.html",
+      "state": "Hessen"
+    },
+    "06434": {
+      "ags": "06434",
+      "name": "Hochtaunuskreis",
+      "drug_crime": {
+        "cases": 176,
+        "rate": 73.0,
+        "change": "-42 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hochtaunuskreis-06434.html",
+      "state": "Hessen"
+    },
+    "06435": {
+      "ags": "06435",
+      "name": "Main-Kinzig-Kreis",
+      "drug_crime": {
+        "cases": 381,
+        "rate": 90.0,
+        "change": "-40 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/main-kinzig-kreis-06435.html",
+      "state": "Hessen"
+    },
+    "06436": {
+      "ags": "06436",
+      "name": "Main-Taunus-Kreis",
+      "drug_crime": {
+        "cases": 212,
+        "rate": 89.0,
+        "change": "-42 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/main-taunus-kreis-06436.html",
+      "state": "Hessen"
+    },
+    "06437": {
+      "ags": "06437",
+      "name": "Odenwaldkreis",
+      "drug_crime": {
+        "cases": 150,
+        "rate": 160.0,
+        "change": "+45 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/odenwaldkreis-06437.html",
+      "state": "Hessen"
+    },
+    "06438": {
+      "ags": "06438",
+      "name": "Offenbach",
+      "drug_crime": {
+        "cases": 401,
+        "rate": 112.0,
+        "change": "-36 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/offenbach-06438.html",
+      "state": "Hessen"
+    },
+    "06439": {
+      "ags": "06439",
+      "name": "Rheingau-Taunus-Kreis",
+      "drug_crime": {
+        "cases": 131,
+        "rate": 71.0,
+        "change": "-43 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rheingau-taunus-kreis-06439.html",
+      "state": "Hessen"
+    },
+    "06440": {
+      "ags": "06440",
+      "name": "Wetteraukreis",
+      "drug_crime": {
+        "cases": 266,
+        "rate": 85.0,
+        "change": "-40 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wetteraukreis-06440.html",
+      "state": "Hessen"
+    },
+    "06531": {
+      "ags": "06531",
+      "name": "Gießen",
+      "drug_crime": {
+        "cases": 496,
+        "rate": 185.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/giessen-06531.html",
+      "state": "Hessen"
+    },
+    "06532": {
+      "ags": "06532",
+      "name": "Lahn-Dill-Kreis",
+      "drug_crime": {
+        "cases": 255,
+        "rate": 100.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/lahn-dill-kreis-06532.html",
+      "state": "Hessen"
+    },
+    "06533": {
+      "ags": "06533",
+      "name": "Limburg-Weilburg",
+      "drug_crime": {
+        "cases": 218,
+        "rate": 125.0,
+        "change": "-12 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/limburg-weilburg-06533.html",
+      "state": "Hessen"
+    },
+    "06534": {
+      "ags": "06534",
+      "name": "Marburg-Biedenkopf",
+      "drug_crime": {
+        "cases": 457,
+        "rate": 188.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/marburg-biedenkopf-06534.html",
+      "state": "Hessen"
+    },
+    "06535": {
+      "ags": "06535",
+      "name": "Vogelsbergkreis",
+      "drug_crime": {
+        "cases": 160,
+        "rate": 158.0,
+        "change": "-21 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/vogelsbergkreis-06535.html",
+      "state": "Hessen"
+    },
+    "06611": {
+      "ags": "06611",
+      "name": "Kassel",
+      "drug_crime": {
+        "cases": 1095,
+        "rate": 555.0,
+        "change": "+1 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kassel-06611.html",
+      "state": "Hessen"
+    },
+    "06631": {
+      "ags": "06631",
+      "name": "Fulda",
+      "drug_crime": {
+        "cases": 425,
+        "rate": 191.0,
+        "change": "-18 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/fulda-06631.html",
+      "state": "Hessen"
+    },
+    "06632": {
+      "ags": "06632",
+      "name": "Hersfeld-Rotenburg",
+      "drug_crime": {
+        "cases": 250,
+        "rate": 213.0,
+        "change": "-53 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hersfeld-rotenburg-06632.html",
+      "state": "Hessen"
+    },
+    "06633": {
+      "ags": "06633",
+      "name": "Kassel",
+      "drug_crime": {
+        "cases": 129,
+        "rate": 56.0,
+        "change": "-52 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kassel-06633.html",
+      "state": "Hessen"
+    },
+    "06634": {
+      "ags": "06634",
+      "name": "Schwalm-Eder-Kreis",
+      "drug_crime": {
+        "cases": 211,
+        "rate": 117.0,
+        "change": "-28 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/schwalm-eder-kreis-06634.html",
+      "state": "Hessen"
+    },
+    "06635": {
+      "ags": "06635",
+      "name": "Waldeck-Frankenberg",
+      "drug_crime": {
+        "cases": 153,
+        "rate": 99.0,
+        "change": "-25 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/waldeck-frankenberg-06635.html",
+      "state": "Hessen"
+    },
+    "06636": {
+      "ags": "06636",
+      "name": "Werra-Meißner-Kreis",
+      "drug_crime": {
+        "cases": 155,
+        "rate": 159.0,
+        "change": "-22 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/werra-meissner-kreis-06636.html",
+      "state": "Hessen"
+    },
+    "07111": {
+      "ags": "07111",
+      "name": "Koblenz",
+      "drug_crime": {
+        "cases": 665,
+        "rate": 586.0,
+        "change": "-17 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/koblenz-07111.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07131": {
+      "ags": "07131",
+      "name": "Ahrweiler",
+      "drug_crime": {
+        "cases": 304,
+        "rate": 235.0,
+        "change": "-32 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ahrweiler-07131.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07132": {
+      "ags": "07132",
+      "name": "Altenkirchen (Westerwald)",
+      "drug_crime": {
+        "cases": 295,
+        "rate": 223.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/altenkirchen-westerwald-07132.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07133": {
+      "ags": "07133",
+      "name": "Bad Kreuznach",
+      "drug_crime": {
+        "cases": 263,
+        "rate": 160.0,
+        "change": "-48 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bad-kreuznach-07133.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07134": {
+      "ags": "07134",
+      "name": "Birkenfeld",
+      "drug_crime": {
+        "cases": 157,
+        "rate": 190.0,
+        "change": "-10 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/birkenfeld-07134.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07135": {
+      "ags": "07135",
+      "name": "Cochem-Zell",
+      "drug_crime": {
+        "cases": 111,
+        "rate": 180.0,
+        "change": "-6 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/cochem-zell-07135.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07137": {
+      "ags": "07137",
+      "name": "Mayen-Koblenz",
+      "drug_crime": {
+        "cases": 582,
+        "rate": 268.0,
+        "change": "-38 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/mayen-koblenz-07137.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07138": {
+      "ags": "07138",
+      "name": "Neuwied",
+      "drug_crime": {
+        "cases": 442,
+        "rate": 234.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/neuwied-07138.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07140": {
+      "ags": "07140",
+      "name": "Rhein-Hunsrück-Kreis",
+      "drug_crime": {
+        "cases": 300,
+        "rate": 281.0,
+        "change": "-37 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rhein-hunsrueck-kreis-07140.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07141": {
+      "ags": "07141",
+      "name": "Rhein-Lahn-Kreis",
+      "drug_crime": {
+        "cases": 433,
+        "rate": 345.0,
+        "change": "-19 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rhein-lahn-kreis-07141.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07143": {
+      "ags": "07143",
+      "name": "Westerwaldkreis",
+      "drug_crime": {
+        "cases": 353,
+        "rate": 170.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/westerwaldkreis-07143.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07211": {
+      "ags": "07211",
+      "name": "Trier",
+      "drug_crime": {
+        "cases": 330,
+        "rate": 316.0,
+        "change": "-43 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/trier-07211.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07231": {
+      "ags": "07231",
+      "name": "Bernkastel-Wittlich",
+      "drug_crime": {
+        "cases": 310,
+        "rate": 274.0,
+        "change": "-22 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bernkastel-wittlich-07231.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07232": {
+      "ags": "07232",
+      "name": "Eifelkreis Bitburg-Prüm",
+      "drug_crime": {
+        "cases": 489,
+        "rate": 490.0,
+        "change": "-11 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/eifelkreis-bitburg-pruem-07232.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07233": {
+      "ags": "07233",
+      "name": "Vulkaneifel",
+      "drug_crime": {
+        "cases": 92,
+        "rate": 155.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/vulkaneifel-07233.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07235": {
+      "ags": "07235",
+      "name": "Trier-Saarburg",
+      "drug_crime": {
+        "cases": 202,
+        "rate": 136.0,
+        "change": "+4 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/trier-saarburg-07235.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07311": {
+      "ags": "07311",
+      "name": "Frankenthal (Pfalz)",
+      "drug_crime": {
+        "cases": 159,
+        "rate": 330.0,
+        "change": "-36 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/frankenthal-pfalz-07311.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07312": {
+      "ags": "07312",
+      "name": "Kaiserslautern",
+      "drug_crime": {
+        "cases": 546,
+        "rate": 544.0,
+        "change": "+1 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kaiserslautern-07312.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07313": {
+      "ags": "07313",
+      "name": "Landau in der Pfalz",
+      "drug_crime": {
+        "cases": 90,
+        "rate": 187.0,
+        "change": "-40 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/landau-in-der-pfalz-07313.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07314": {
+      "ags": "07314",
+      "name": "Ludwigshafen am Rhein",
+      "drug_crime": {
+        "cases": 514,
+        "rate": 290.0,
+        "change": "-23 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ludwigshafen-am-rhein-07314.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07315": {
+      "ags": "07315",
+      "name": "Mainz",
+      "drug_crime": {
+        "cases": 571,
+        "rate": 254.0,
+        "change": "-23 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/mainz-07315.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07316": {
+      "ags": "07316",
+      "name": "Neustadt an der Weinstraße",
+      "drug_crime": {
+        "cases": 98,
+        "rate": 185.0,
+        "change": "-35 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/neustadt-an-der-weinstrasse-07316.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07317": {
+      "ags": "07317",
+      "name": "Pirmasens",
+      "drug_crime": {
+        "cases": 225,
+        "rate": 566.0,
+        "change": "-23 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/pirmasens-07317.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07318": {
+      "ags": "07318",
+      "name": "Speyer",
+      "drug_crime": {
+        "cases": 224,
+        "rate": 452.0,
+        "change": "+20 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/speyer-07318.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07319": {
+      "ags": "07319",
+      "name": "Worms",
+      "drug_crime": {
+        "cases": 293,
+        "rate": 338.0,
+        "change": "-21 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/worms-07319.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07320": {
+      "ags": "07320",
+      "name": "Zweibrücken",
+      "drug_crime": {
+        "cases": 286,
+        "rate": 858.0,
+        "change": "-25 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/zweibruecken-07320.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07331": {
+      "ags": "07331",
+      "name": "Alzey-Worms",
+      "drug_crime": {
+        "cases": 130,
+        "rate": 99.0,
+        "change": "-30 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/alzey-worms-07331.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07332": {
+      "ags": "07332",
+      "name": "Bad Dürkheim",
+      "drug_crime": {
+        "cases": 200,
+        "rate": 149.0,
+        "change": "-16 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bad-duerkheim-07332.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07333": {
+      "ags": "07333",
+      "name": "Donnersbergkreis",
+      "drug_crime": {
+        "cases": 155,
+        "rate": 207.0,
+        "change": "-28 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/donnersbergkreis-07333.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07334": {
+      "ags": "07334",
+      "name": "Germersheim",
+      "drug_crime": {
+        "cases": 204,
+        "rate": 155.0,
+        "change": "-38 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/germersheim-07334.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07335": {
+      "ags": "07335",
+      "name": "Kaiserslautern",
+      "drug_crime": {
+        "cases": 129,
+        "rate": 121.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kaiserslautern-07335.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07336": {
+      "ags": "07336",
+      "name": "Kusel",
+      "drug_crime": {
+        "cases": 87,
+        "rate": 126.0,
+        "change": "-43 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kusel-07336.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07337": {
+      "ags": "07337",
+      "name": "Südliche Weinstraße",
+      "drug_crime": {
+        "cases": 140,
+        "rate": 124.0,
+        "change": "-8 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/suedliche-weinstrasse-07337.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07338": {
+      "ags": "07338",
+      "name": "Rhein-Pfalz-Kreis",
+      "drug_crime": {
+        "cases": 133,
+        "rate": 85.0,
+        "change": "-29 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rhein-pfalz-kreis-07338.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07339": {
+      "ags": "07339",
+      "name": "Mainz-Bingen",
+      "drug_crime": {
+        "cases": 207,
+        "rate": 100.0,
+        "change": "-42 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/mainz-bingen-07339.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "07340": {
+      "ags": "07340",
+      "name": "Südwestpfalz",
+      "drug_crime": {
+        "cases": 92,
+        "rate": 102.0,
+        "change": "-35 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/suedwestpfalz-07340.html",
+      "state": "Rheinland-Pfalz"
+    },
+    "08111": {
+      "ags": "08111",
+      "name": "Stuttgart",
+      "drug_crime": {
+        "cases": 2061,
+        "rate": 336.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/stuttgart-08111.html",
+      "state": "Baden-Württemberg"
+    },
+    "08115": {
+      "ags": "08115",
+      "name": "Böblingen",
+      "drug_crime": {
+        "cases": 302,
+        "rate": 76.0,
+        "change": "-47 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/boeblingen-08115.html",
+      "state": "Baden-Württemberg"
+    },
+    "08116": {
+      "ags": "08116",
+      "name": "Esslingen",
+      "drug_crime": {
+        "cases": 374,
+        "rate": 70.0,
+        "change": "-39 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/esslingen-08116.html",
+      "state": "Baden-Württemberg"
+    },
+    "08117": {
+      "ags": "08117",
+      "name": "Göppingen",
+      "drug_crime": {
+        "cases": 248,
+        "rate": 96.0,
+        "change": "-8 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/goeppingen-08117.html",
+      "state": "Baden-Württemberg"
+    },
+    "08118": {
+      "ags": "08118",
+      "name": "Ludwigsburg",
+      "drug_crime": {
+        "cases": 395,
+        "rate": 74.0,
+        "change": "-44 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ludwigsburg-08118.html",
+      "state": "Baden-Württemberg"
+    },
+    "08119": {
+      "ags": "08119",
+      "name": "Rems-Murr-Kreis",
+      "drug_crime": {
+        "cases": 286,
+        "rate": 65.0,
+        "change": "-40 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rems-murr-kreis-08119.html",
+      "state": "Baden-Württemberg"
+    },
+    "08121": {
+      "ags": "08121",
+      "name": "Heilbronn",
+      "drug_crime": {
+        "cases": 638,
+        "rate": 483.0,
+        "change": "-13 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/heilbronn-08121.html",
+      "state": "Baden-Württemberg"
+    },
+    "08125": {
+      "ags": "08125",
+      "name": "Heilbronn",
+      "drug_crime": {
+        "cases": 251,
+        "rate": 71.0,
+        "change": "-12 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/heilbronn-08125.html",
+      "state": "Baden-Württemberg"
+    },
+    "08126": {
+      "ags": "08126",
+      "name": "Hohenlohekreis",
+      "drug_crime": {
+        "cases": 108,
+        "rate": 93.0,
+        "change": "+18 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hohenlohekreis-08126.html",
+      "state": "Baden-Württemberg"
+    },
+    "08127": {
+      "ags": "08127",
+      "name": "Schwäbisch Hall",
+      "drug_crime": {
+        "cases": 162,
+        "rate": 81.0,
+        "change": "-46 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/schwaebisch-hall-08127.html",
+      "state": "Baden-Württemberg"
+    },
+    "08128": {
+      "ags": "08128",
+      "name": "Main-Tauber-Kreis",
+      "drug_crime": {
+        "cases": 143,
+        "rate": 107.0,
+        "change": "-26 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/main-tauber-kreis-08128.html",
+      "state": "Baden-Württemberg"
+    },
+    "08135": {
+      "ags": "08135",
+      "name": "Heidenheim",
+      "drug_crime": {
+        "cases": 194,
+        "rate": 144.0,
+        "change": "+67 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/heidenheim-08135.html",
+      "state": "Baden-Württemberg"
+    },
+    "08136": {
+      "ags": "08136",
+      "name": "Ostalbkreis",
+      "drug_crime": {
+        "cases": 299,
+        "rate": 94.0,
+        "change": "-24 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ostalbkreis-08136.html",
+      "state": "Baden-Württemberg"
+    },
+    "08211": {
+      "ags": "08211",
+      "name": "Baden-Baden",
+      "drug_crime": {
+        "cases": 81,
+        "rate": 142.0,
+        "change": "-12 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/baden-baden-08211.html",
+      "state": "Baden-Württemberg"
+    },
+    "08212": {
+      "ags": "08212",
+      "name": "Karlsruhe",
+      "drug_crime": {
+        "cases": 717,
+        "rate": 232.0,
+        "change": "-7 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/karlsruhe-08212.html",
+      "state": "Baden-Württemberg"
+    },
+    "08215": {
+      "ags": "08215",
+      "name": "Karlsruhe",
+      "drug_crime": {
+        "cases": 378,
+        "rate": 83.0,
+        "change": "-24 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/karlsruhe-08215.html",
+      "state": "Baden-Württemberg"
+    },
+    "08216": {
+      "ags": "08216",
+      "name": "Rastatt",
+      "drug_crime": {
+        "cases": 153,
+        "rate": 66.0,
+        "change": "-23 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rastatt-08216.html",
+      "state": "Baden-Württemberg"
+    },
+    "08221": {
+      "ags": "08221",
+      "name": "Heidelberg",
+      "drug_crime": {
+        "cases": 291,
+        "rate": 187.0,
+        "change": "-18 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/heidelberg-08221.html",
+      "state": "Baden-Württemberg"
+    },
+    "08222": {
+      "ags": "08222",
+      "name": "Mannheim",
+      "drug_crime": {
+        "cases": 1297,
+        "rate": 408.0,
+        "change": "-17 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/mannheim-08222.html",
+      "state": "Baden-Württemberg"
+    },
+    "08225": {
+      "ags": "08225",
+      "name": "Neckar-Odenwald-Kreis",
+      "drug_crime": {
+        "cases": 201,
+        "rate": 138.0,
+        "change": "-21 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/neckar-odenwald-kreis-08225.html",
+      "state": "Baden-Württemberg"
+    },
+    "08226": {
+      "ags": "08226",
+      "name": "Rhein-Neckar-Kreis",
+      "drug_crime": {
+        "cases": 454,
+        "rate": 81.0,
+        "change": "-36 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rhein-neckar-kreis-08226.html",
+      "state": "Baden-Württemberg"
+    },
+    "08231": {
+      "ags": "08231",
+      "name": "Pforzheim",
+      "drug_crime": {
+        "cases": 206,
+        "rate": 153.0,
+        "change": "-8 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/pforzheim-08231.html",
+      "state": "Baden-Württemberg"
+    },
+    "08235": {
+      "ags": "08235",
+      "name": "Calw",
+      "drug_crime": {
+        "cases": 85,
+        "rate": 53.0,
+        "change": "-30 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/calw-08235.html",
+      "state": "Baden-Württemberg"
+    },
+    "08236": {
+      "ags": "08236",
+      "name": "Enzkreis",
+      "drug_crime": {
+        "cases": 116,
+        "rate": 58.0,
+        "change": "-18 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/enzkreis-08236.html",
+      "state": "Baden-Württemberg"
+    },
+    "08237": {
+      "ags": "08237",
+      "name": "Freudenstadt",
+      "drug_crime": {
+        "cases": 125,
+        "rate": 102.0,
+        "change": "-2 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/freudenstadt-08237.html",
+      "state": "Baden-Württemberg"
+    },
+    "08311": {
+      "ags": "08311",
+      "name": "Freiburg im Breisgau",
+      "drug_crime": {
+        "cases": 580,
+        "rate": 244.0,
+        "change": "-38 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/freiburg-im-breisgau-08311.html",
+      "state": "Baden-Württemberg"
+    },
+    "08315": {
+      "ags": "08315",
+      "name": "Breisgau-Hochschwarzwald",
+      "drug_crime": {
+        "cases": 218,
+        "rate": 80.0,
+        "change": "-44 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/breisgau-hochschwarzwald-08315.html",
+      "state": "Baden-Württemberg"
+    },
+    "08316": {
+      "ags": "08316",
+      "name": "Emmendingen",
+      "drug_crime": {
+        "cases": 116,
+        "rate": 68.0,
+        "change": "-37 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/emmendingen-08316.html",
+      "state": "Baden-Württemberg"
+    },
+    "08317": {
+      "ags": "08317",
+      "name": "Ortenaukreis",
+      "drug_crime": {
+        "cases": 857,
+        "rate": 193.0,
+        "change": "-5 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ortenaukreis-08317.html",
+      "state": "Baden-Württemberg"
+    },
+    "08325": {
+      "ags": "08325",
+      "name": "Rottweil",
+      "drug_crime": {
+        "cases": 120,
+        "rate": 86.0,
+        "change": "-44 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rottweil-08325.html",
+      "state": "Baden-Württemberg"
+    },
+    "08326": {
+      "ags": "08326",
+      "name": "Schwarzwald-Baar-Kreis",
+      "drug_crime": {
+        "cases": 200,
+        "rate": 93.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/schwarzwald-baar-kreis-08326.html",
+      "state": "Baden-Württemberg"
+    },
+    "08327": {
+      "ags": "08327",
+      "name": "Tuttlingen",
+      "drug_crime": {
+        "cases": 121,
+        "rate": 83.0,
+        "change": "-37 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/tuttlingen-08327.html",
+      "state": "Baden-Württemberg"
+    },
+    "08335": {
+      "ags": "08335",
+      "name": "Konstanz",
+      "drug_crime": {
+        "cases": 368,
+        "rate": 126.0,
+        "change": "-54 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/konstanz-08335.html",
+      "state": "Baden-Württemberg"
+    },
+    "08336": {
+      "ags": "08336",
+      "name": "Lörrach",
+      "drug_crime": {
+        "cases": 483,
+        "rate": 203.0,
+        "change": "-39 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/loerrach-08336.html",
+      "state": "Baden-Württemberg"
+    },
+    "08337": {
+      "ags": "08337",
+      "name": "Waldshut",
+      "drug_crime": {
+        "cases": 202,
+        "rate": 118.0,
+        "change": "-49 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/waldshut-08337.html",
+      "state": "Baden-Württemberg"
+    },
+    "08415": {
+      "ags": "08415",
+      "name": "Reutlingen",
+      "drug_crime": {
+        "cases": 369,
+        "rate": 126.0,
+        "change": "-25 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/reutlingen-08415.html",
+      "state": "Baden-Württemberg"
+    },
+    "08416": {
+      "ags": "08416",
+      "name": "Tübingen",
+      "drug_crime": {
+        "cases": 291,
+        "rate": 125.0,
+        "change": "-30 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/tuebingen-08416.html",
+      "state": "Baden-Württemberg"
+    },
+    "08417": {
+      "ags": "08417",
+      "name": "Zollernalbkreis",
+      "drug_crime": {
+        "cases": 150,
+        "rate": 78.0,
+        "change": "-41 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/zollernalbkreis-08417.html",
+      "state": "Baden-Württemberg"
+    },
+    "08421": {
+      "ags": "08421",
+      "name": "Ulm",
+      "drug_crime": {
+        "cases": 413,
+        "rate": 318.0,
+        "change": "-44 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ulm-08421.html",
+      "state": "Baden-Württemberg"
+    },
+    "08425": {
+      "ags": "08425",
+      "name": "Alb-Donau-Kreis",
+      "drug_crime": {
+        "cases": 61,
+        "rate": 30.0,
+        "change": "-50 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/alb-donau-kreis-08425.html",
+      "state": "Baden-Württemberg"
+    },
+    "08426": {
+      "ags": "08426",
+      "name": "Biberach",
+      "drug_crime": {
+        "cases": 150,
+        "rate": 72.0,
+        "change": "-36 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/biberach-08426.html",
+      "state": "Baden-Württemberg"
+    },
+    "08435": {
+      "ags": "08435",
+      "name": "Bodenseekreis",
+      "drug_crime": {
+        "cases": 216,
+        "rate": 98.0,
+        "change": "-32 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bodenseekreis-08435.html",
+      "state": "Baden-Württemberg"
+    },
+    "08436": {
+      "ags": "08436",
+      "name": "Ravensburg",
+      "drug_crime": {
+        "cases": 307,
+        "rate": 106.0,
+        "change": "-29 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ravensburg-08436.html",
+      "state": "Baden-Württemberg"
+    },
+    "08437": {
+      "ags": "08437",
+      "name": "Sigmaringen",
+      "drug_crime": {
+        "cases": 191,
+        "rate": 144.0,
+        "change": "-12 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/sigmaringen-08437.html",
+      "state": "Baden-Württemberg"
+    },
+    "09161": {
+      "ags": "09161",
+      "name": "Ingolstadt",
+      "drug_crime": {
+        "cases": 466,
+        "rate": 330.0,
+        "change": "+9 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ingolstadt-09161.html",
+      "state": "Bayern"
+    },
+    "09162": {
+      "ags": "09162",
+      "name": "München",
+      "drug_crime": {
+        "cases": 3950,
+        "rate": 262.0,
+        "change": "-30 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/muenchen-09162.html",
+      "state": "Bayern"
+    },
+    "09163": {
+      "ags": "09163",
+      "name": "Rosenheim",
+      "drug_crime": {
+        "cases": 180,
+        "rate": 276.0,
+        "change": "-35 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rosenheim-09163.html",
+      "state": "Bayern"
+    },
+    "09171": {
+      "ags": "09171",
+      "name": "Altötting",
+      "drug_crime": {
+        "cases": 119,
+        "rate": 104.0,
+        "change": "-48 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/altoetting-09171.html",
+      "state": "Bayern"
+    },
+    "09172": {
+      "ags": "09172",
+      "name": "Berchtesgadener Land",
+      "drug_crime": {
+        "cases": 442,
+        "rate": 420.0,
+        "change": "-2 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/berchtesgadener-land-09172.html",
+      "state": "Bayern"
+    },
+    "09173": {
+      "ags": "09173",
+      "name": "Bad Tölz-Wolfratshausen",
+      "drug_crime": {
+        "cases": 97,
+        "rate": 74.0,
+        "change": "-48 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bad-toelz-wolfratshausen-09173.html",
+      "state": "Bayern"
+    },
+    "09174": {
+      "ags": "09174",
+      "name": "Dachau",
+      "drug_crime": {
+        "cases": 98,
+        "rate": 64.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/dachau-09174.html",
+      "state": "Bayern"
+    },
+    "09175": {
+      "ags": "09175",
+      "name": "Ebersberg",
+      "drug_crime": {
+        "cases": 139,
+        "rate": 96.0,
+        "change": "-10 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ebersberg-09175.html",
+      "state": "Bayern"
+    },
+    "09176": {
+      "ags": "09176",
+      "name": "Eichstätt",
+      "drug_crime": {
+        "cases": 120,
+        "rate": 88.0,
+        "change": "-9 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/eichstaett-09176.html",
+      "state": "Bayern"
+    },
+    "09177": {
+      "ags": "09177",
+      "name": "Erding",
+      "drug_crime": {
+        "cases": 151,
+        "rate": 108.0,
+        "change": "-27 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/erding-09177.html",
+      "state": "Bayern"
+    },
+    "09178": {
+      "ags": "09178",
+      "name": "Freising",
+      "drug_crime": {
+        "cases": 213,
+        "rate": 115.0,
+        "change": "-43 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/freising-09178.html",
+      "state": "Bayern"
+    },
+    "09179": {
+      "ags": "09179",
+      "name": "Fürstenfeldbruck",
+      "drug_crime": {
+        "cases": 149,
+        "rate": 68.0,
+        "change": "-54 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/fuerstenfeldbruck-09179.html",
+      "state": "Bayern"
+    },
+    "09180": {
+      "ags": "09180",
+      "name": "Garmisch-Partenkirchen",
+      "drug_crime": {
+        "cases": 178,
+        "rate": 199.0,
+        "change": "-22 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/garmisch-partenkirchen-09180.html",
+      "state": "Bayern"
+    },
+    "09181": {
+      "ags": "09181",
+      "name": "Landsberg am Lech",
+      "drug_crime": {
+        "cases": 52,
+        "rate": 43.0,
+        "change": "-60 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/landsberg-am-lech-09181.html",
+      "state": "Bayern"
+    },
+    "09182": {
+      "ags": "09182",
+      "name": "Miesbach",
+      "drug_crime": {
+        "cases": 76,
+        "rate": 78.0,
+        "change": "-54 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/miesbach-09182.html",
+      "state": "Bayern"
+    },
+    "09183": {
+      "ags": "09183",
+      "name": "Mühldorf a.Inn",
+      "drug_crime": {
+        "cases": 113,
+        "rate": 93.0,
+        "change": "-17 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/muehldorf-a-inn-09183.html",
+      "state": "Bayern"
+    },
+    "09184": {
+      "ags": "09184",
+      "name": "München",
+      "drug_crime": {
+        "cases": 168,
+        "rate": 47.0,
+        "change": "-65 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/muenchen-09184.html",
+      "state": "Bayern"
+    },
+    "09185": {
+      "ags": "09185",
+      "name": "Neuburg-Schrobenhausen",
+      "drug_crime": {
+        "cases": 158,
+        "rate": 159.0,
+        "change": "+14 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/neuburg-schrobenhausen-09185.html",
+      "state": "Bayern"
+    },
+    "09186": {
+      "ags": "09186",
+      "name": "Pfaffenhofen a.d.Ilm",
+      "drug_crime": {
+        "cases": 114,
+        "rate": 87.0,
+        "change": "-12 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/pfaffenhofen-a-d-ilm-09186.html",
+      "state": "Bayern"
+    },
+    "09187": {
+      "ags": "09187",
+      "name": "Rosenheim",
+      "drug_crime": {
+        "cases": 400,
+        "rate": 155.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rosenheim-09187.html",
+      "state": "Bayern"
+    },
+    "09188": {
+      "ags": "09188",
+      "name": "Starnberg",
+      "drug_crime": {
+        "cases": 74,
+        "rate": 53.0,
+        "change": "-32 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/starnberg-09188.html",
+      "state": "Bayern"
+    },
+    "09189": {
+      "ags": "09189",
+      "name": "Traunstein",
+      "drug_crime": {
+        "cases": 206,
+        "rate": 118.0,
+        "change": "-26 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/traunstein-09189.html",
+      "state": "Bayern"
+    },
+    "09190": {
+      "ags": "09190",
+      "name": "Weilheim-Schongau",
+      "drug_crime": {
+        "cases": 98,
+        "rate": 70.0,
+        "change": "-41 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/weilheim-schongau-09190.html",
+      "state": "Bayern"
+    },
+    "09261": {
+      "ags": "09261",
+      "name": "Landshut",
+      "drug_crime": {
+        "cases": 197,
+        "rate": 274.0,
+        "change": "-46 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/landshut-09261.html",
+      "state": "Bayern"
+    },
+    "09262": {
+      "ags": "09262",
+      "name": "Passau",
+      "drug_crime": {
+        "cases": 375,
+        "rate": 707.0,
+        "change": "-5 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/passau-09262.html",
+      "state": "Bayern"
+    },
+    "09263": {
+      "ags": "09263",
+      "name": "Straubing",
+      "drug_crime": {
+        "cases": 255,
+        "rate": 520.0,
+        "change": "-19 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/straubing-09263.html",
+      "state": "Bayern"
+    },
+    "09271": {
+      "ags": "09271",
+      "name": "Deggendorf",
+      "drug_crime": {
+        "cases": 152,
+        "rate": 125.0,
+        "change": "-10 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/deggendorf-09271.html",
+      "state": "Bayern"
+    },
+    "09272": {
+      "ags": "09272",
+      "name": "Freyung-Grafenau",
+      "drug_crime": {
+        "cases": 118,
+        "rate": 150.0,
+        "change": "-6 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/freyung-grafenau-09272.html",
+      "state": "Bayern"
+    },
+    "09273": {
+      "ags": "09273",
+      "name": "Kelheim",
+      "drug_crime": {
+        "cases": 51,
+        "rate": 40.0,
+        "change": "-52 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kelheim-09273.html",
+      "state": "Bayern"
+    },
+    "09274": {
+      "ags": "09274",
+      "name": "Landshut",
+      "drug_crime": {
+        "cases": 75,
+        "rate": 46.0,
+        "change": "-48 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/landshut-09274.html",
+      "state": "Bayern"
+    },
+    "09275": {
+      "ags": "09275",
+      "name": "Passau",
+      "drug_crime": {
+        "cases": 302,
+        "rate": 155.0,
+        "change": "-27 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/passau-09275.html",
+      "state": "Bayern"
+    },
+    "09276": {
+      "ags": "09276",
+      "name": "Regen",
+      "drug_crime": {
+        "cases": 92,
+        "rate": 119.0,
+        "change": "-9 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/regen-09276.html",
+      "state": "Bayern"
+    },
+    "09277": {
+      "ags": "09277",
+      "name": "Rottal-Inn",
+      "drug_crime": {
+        "cases": 122,
+        "rate": 101.0,
+        "change": "-35 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rottal-inn-09277.html",
+      "state": "Bayern"
+    },
+    "09278": {
+      "ags": "09278",
+      "name": "Straubing-Bogen",
+      "drug_crime": {
+        "cases": 50,
+        "rate": 48.0,
+        "change": "-48 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/straubing-bogen-09278.html",
+      "state": "Bayern"
+    },
+    "09279": {
+      "ags": "09279",
+      "name": "Dingolfing-Landau",
+      "drug_crime": {
+        "cases": 73,
+        "rate": 72.0,
+        "change": "-44 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/dingolfing-landau-09279.html",
+      "state": "Bayern"
+    },
+    "09361": {
+      "ags": "09361",
+      "name": "Amberg",
+      "drug_crime": {
+        "cases": 187,
+        "rate": 440.0,
+        "change": "-17 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/amberg-09361.html",
+      "state": "Bayern"
+    },
+    "09362": {
+      "ags": "09362",
+      "name": "Regensburg",
+      "drug_crime": {
+        "cases": 597,
+        "rate": 394.0,
+        "change": "-25 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/regensburg-09362.html",
+      "state": "Bayern"
+    },
+    "09363": {
+      "ags": "09363",
+      "name": "Weiden i.d.OPf.",
+      "drug_crime": {
+        "cases": 66,
+        "rate": 156.0,
+        "change": "-57 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/weiden-i-d-opf-09363.html",
+      "state": "Bayern"
+    },
+    "09371": {
+      "ags": "09371",
+      "name": "Amberg-Sulzbach",
+      "drug_crime": {
+        "cases": 68,
+        "rate": 65.0,
+        "change": "-56 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/amberg-sulzbach-09371.html",
+      "state": "Bayern"
+    },
+    "09372": {
+      "ags": "09372",
+      "name": "Cham",
+      "drug_crime": {
+        "cases": 234,
+        "rate": 182.0,
+        "change": "-23 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/cham-09372.html",
+      "state": "Bayern"
+    },
+    "09373": {
+      "ags": "09373",
+      "name": "Neumarkt i.d.OPf.",
+      "drug_crime": {
+        "cases": 95,
+        "rate": 68.0,
+        "change": "-40 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/neumarkt-i-d-opf-09373.html",
+      "state": "Bayern"
+    },
+    "09374": {
+      "ags": "09374",
+      "name": "Neustadt a.d.Waldnaab",
+      "drug_crime": {
+        "cases": 307,
+        "rate": 320.0,
+        "change": "-14 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/neustadt-a-d-waldnaab-09374.html",
+      "state": "Bayern"
+    },
+    "09375": {
+      "ags": "09375",
+      "name": "Regensburg",
+      "drug_crime": {
+        "cases": 108,
+        "rate": 55.0,
+        "change": "-36 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/regensburg-09375.html",
+      "state": "Bayern"
+    },
+    "09376": {
+      "ags": "09376",
+      "name": "Schwandorf",
+      "drug_crime": {
+        "cases": 171,
+        "rate": 114.0,
+        "change": "-36 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/schwandorf-09376.html",
+      "state": "Bayern"
+    },
+    "09377": {
+      "ags": "09377",
+      "name": "Tirschenreuth",
+      "drug_crime": {
+        "cases": 243,
+        "rate": 336.0,
+        "change": "-14 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/tirschenreuth-09377.html",
+      "state": "Bayern"
+    },
+    "09461": {
+      "ags": "09461",
+      "name": "Bamberg",
+      "drug_crime": {
+        "cases": 255,
+        "rate": 330.0,
+        "change": "-48 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bamberg-09461.html",
+      "state": "Bayern"
+    },
+    "09462": {
+      "ags": "09462",
+      "name": "Bayreuth",
+      "drug_crime": {
+        "cases": 285,
+        "rate": 391.0,
+        "change": "-41 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bayreuth-09462.html",
+      "state": "Bayern"
+    },
+    "09463": {
+      "ags": "09463",
+      "name": "Coburg",
+      "drug_crime": {
+        "cases": 87,
+        "rate": 212.0,
+        "change": "-39 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/coburg-09463.html",
+      "state": "Bayern"
+    },
+    "09464": {
+      "ags": "09464",
+      "name": "Hof",
+      "drug_crime": {
+        "cases": 169,
+        "rate": 361.0,
+        "change": "-35 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hof-09464.html",
+      "state": "Bayern"
+    },
+    "09471": {
+      "ags": "09471",
+      "name": "Bamberg",
+      "drug_crime": {
+        "cases": 95,
+        "rate": 64.0,
+        "change": "-39 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bamberg-09471.html",
+      "state": "Bayern"
+    },
+    "09472": {
+      "ags": "09472",
+      "name": "Bayreuth",
+      "drug_crime": {
+        "cases": 104,
+        "rate": 101.0,
+        "change": "-45 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bayreuth-09472.html",
+      "state": "Bayern"
+    },
+    "09473": {
+      "ags": "09473",
+      "name": "Coburg",
+      "drug_crime": {
+        "cases": 54,
+        "rate": 64.0,
+        "change": "-50 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/coburg-09473.html",
+      "state": "Bayern"
+    },
+    "09474": {
+      "ags": "09474",
+      "name": "Forchheim",
+      "drug_crime": {
+        "cases": 101,
+        "rate": 87.0,
+        "change": "-18 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/forchheim-09474.html",
+      "state": "Bayern"
+    },
+    "09475": {
+      "ags": "09475",
+      "name": "Hof",
+      "drug_crime": {
+        "cases": 233,
+        "rate": 253.0,
+        "change": "-50 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hof-09475.html",
+      "state": "Bayern"
+    },
+    "09476": {
+      "ags": "09476",
+      "name": "Kronach",
+      "drug_crime": {
+        "cases": 61,
+        "rate": 94.0,
+        "change": "-41 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kronach-09476.html",
+      "state": "Bayern"
+    },
+    "09477": {
+      "ags": "09477",
+      "name": "Kulmbach",
+      "drug_crime": {
+        "cases": 97,
+        "rate": 136.0,
+        "change": "-43 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kulmbach-09477.html",
+      "state": "Bayern"
+    },
+    "09478": {
+      "ags": "09478",
+      "name": "Lichtenfels",
+      "drug_crime": {
+        "cases": 69,
+        "rate": 102.0,
+        "change": "-48 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/lichtenfels-09478.html",
+      "state": "Bayern"
+    },
+    "09479": {
+      "ags": "09479",
+      "name": "Wunsiedel i.Fichtelgebirge",
+      "drug_crime": {
+        "cases": 329,
+        "rate": 466.0,
+        "change": "+2 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wunsiedel-i-fichtelgebirge-09479.html",
+      "state": "Bayern"
+    },
+    "09561": {
+      "ags": "09561",
+      "name": "Ansbach",
+      "drug_crime": {
+        "cases": 107,
+        "rate": 263.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ansbach-09561.html",
+      "state": "Bayern"
+    },
+    "09562": {
+      "ags": "09562",
+      "name": "Erlangen",
+      "drug_crime": {
+        "cases": 177,
+        "rate": 153.0,
+        "change": "-27 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/erlangen-09562.html",
+      "state": "Bayern"
+    },
+    "09563": {
+      "ags": "09563",
+      "name": "Fürth",
+      "drug_crime": {
+        "cases": 97,
+        "rate": 74.0,
+        "change": "-52 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/fuerth-09563.html",
+      "state": "Bayern"
+    },
+    "09564": {
+      "ags": "09564",
+      "name": "Nürnberg",
+      "drug_crime": {
+        "cases": 2550,
+        "rate": 482.0,
+        "change": "+5 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/nuernberg-09564.html",
+      "state": "Bayern"
+    },
+    "09565": {
+      "ags": "09565",
+      "name": "Schwabach",
+      "drug_crime": {
+        "cases": 31,
+        "rate": 76.0,
+        "change": "-39 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/schwabach-09565.html",
+      "state": "Bayern"
+    },
+    "09571": {
+      "ags": "09571",
+      "name": "Ansbach",
+      "drug_crime": {
+        "cases": 124,
+        "rate": 66.0,
+        "change": "-36 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ansbach-09571.html",
+      "state": "Bayern"
+    },
+    "09572": {
+      "ags": "09572",
+      "name": "Erlangen-Höchstadt",
+      "drug_crime": {
+        "cases": 123,
+        "rate": 89.0,
+        "change": "+3 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/erlangen-hoechstadt-09572.html",
+      "state": "Bayern"
+    },
+    "09573": {
+      "ags": "09573",
+      "name": "Fürth",
+      "drug_crime": {
+        "cases": 41,
+        "rate": 35.0,
+        "change": "-52 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/fuerth-09573.html",
+      "state": "Bayern"
+    },
+    "09574": {
+      "ags": "09574",
+      "name": "Nürnberger Land",
+      "drug_crime": {
+        "cases": 80,
+        "rate": 47.0,
+        "change": "-53 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/nuernberger-land-09574.html",
+      "state": "Bayern"
+    },
+    "09575": {
+      "ags": "09575",
+      "name": "Neustadt a.d.Aisch-Bad Windsheim",
+      "drug_crime": {
+        "cases": 64,
+        "rate": 63.0,
+        "change": "-24 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/neustadt-a-d-aisch-bad-windsheim-09575.html",
+      "state": "Bayern"
+    },
+    "09576": {
+      "ags": "09576",
+      "name": "Roth",
+      "drug_crime": {
+        "cases": 70,
+        "rate": 54.0,
+        "change": "-4 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/roth-09576.html",
+      "state": "Bayern"
+    },
+    "09577": {
+      "ags": "09577",
+      "name": "Weißenburg-Gunzenhausen",
+      "drug_crime": {
+        "cases": 72,
+        "rate": 76.0,
+        "change": "-50 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/weissenburg-gunzenhausen-09577.html",
+      "state": "Bayern"
+    },
+    "09661": {
+      "ags": "09661",
+      "name": "Aschaffenburg",
+      "drug_crime": {
+        "cases": 157,
+        "rate": 215.0,
+        "change": "-31 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/aschaffenburg-09661.html",
+      "state": "Bayern"
+    },
+    "09662": {
+      "ags": "09662",
+      "name": "Schweinfurt",
+      "drug_crime": {
+        "cases": 263,
+        "rate": 483.0,
+        "change": "-38 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/schweinfurt-09662.html",
+      "state": "Bayern"
+    },
+    "09663": {
+      "ags": "09663",
+      "name": "Würzburg",
+      "drug_crime": {
+        "cases": 410,
+        "rate": 308.0,
+        "change": "-22 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wuerzburg-09663.html",
+      "state": "Bayern"
+    },
+    "09671": {
+      "ags": "09671",
+      "name": "Aschaffenburg",
+      "drug_crime": {
+        "cases": 102,
+        "rate": 60.0,
+        "change": "-48 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/aschaffenburg-09671.html",
+      "state": "Bayern"
+    },
+    "09672": {
+      "ags": "09672",
+      "name": "Bad Kissingen",
+      "drug_crime": {
+        "cases": 98,
+        "rate": 95.0,
+        "change": "-34 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bad-kissingen-09672.html",
+      "state": "Bayern"
+    },
+    "09673": {
+      "ags": "09673",
+      "name": "Rhön-Grabfeld",
+      "drug_crime": {
+        "cases": 96,
+        "rate": 121.0,
+        "change": "-44 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rhoen-grabfeld-09673.html",
+      "state": "Bayern"
+    },
+    "09674": {
+      "ags": "09674",
+      "name": "Haßberge",
+      "drug_crime": {
+        "cases": 86,
+        "rate": 102.0,
+        "change": "-27 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hassberge-09674.html",
+      "state": "Bayern"
+    },
+    "09675": {
+      "ags": "09675",
+      "name": "Kitzingen",
+      "drug_crime": {
+        "cases": 150,
+        "rate": 164.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kitzingen-09675.html",
+      "state": "Bayern"
+    },
+    "09676": {
+      "ags": "09676",
+      "name": "Miltenberg",
+      "drug_crime": {
+        "cases": 76,
+        "rate": 60.0,
+        "change": "-57 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/miltenberg-09676.html",
+      "state": "Bayern"
+    },
+    "09677": {
+      "ags": "09677",
+      "name": "Main-Spessart",
+      "drug_crime": {
+        "cases": 108,
+        "rate": 86.0,
+        "change": "-4 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/main-spessart-09677.html",
+      "state": "Bayern"
+    },
+    "09678": {
+      "ags": "09678",
+      "name": "Schweinfurt",
+      "drug_crime": {
+        "cases": 83,
+        "rate": 73.0,
+        "change": "-63 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/schweinfurt-09678.html",
+      "state": "Bayern"
+    },
+    "09679": {
+      "ags": "09679",
+      "name": "Würzburg",
+      "drug_crime": {
+        "cases": 95,
+        "rate": 59.0,
+        "change": "-50 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wuerzburg-09679.html",
+      "state": "Bayern"
+    },
+    "09761": {
+      "ags": "09761",
+      "name": "Augsburg",
+      "drug_crime": {
+        "cases": 633,
+        "rate": 210.0,
+        "change": "-29 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/augsburg-09761.html",
+      "state": "Bayern"
+    },
+    "09762": {
+      "ags": "09762",
+      "name": "Kaufbeuren",
+      "drug_crime": {
+        "cases": 71,
+        "rate": 154.0,
+        "change": "+18 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kaufbeuren-09762.html",
+      "state": "Bayern"
+    },
+    "09763": {
+      "ags": "09763",
+      "name": "Kempten (Allgäu)",
+      "drug_crime": {
+        "cases": 121,
+        "rate": 179.0,
+        "change": "-28 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kempten-allgaeu-09763.html",
+      "state": "Bayern"
+    },
+    "09764": {
+      "ags": "09764",
+      "name": "Memmingen",
+      "drug_crime": {
+        "cases": 116,
+        "rate": 262.0,
+        "change": "-35 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/memmingen-09764.html",
+      "state": "Bayern"
+    },
+    "09771": {
+      "ags": "09771",
+      "name": "Aichach-Friedberg",
+      "drug_crime": {
+        "cases": 51,
+        "rate": 37.0,
+        "change": "-44 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/aichach-friedberg-09771.html",
+      "state": "Bayern"
+    },
+    "09772": {
+      "ags": "09772",
+      "name": "Augsburg",
+      "drug_crime": {
+        "cases": 189,
+        "rate": 72.0,
+        "change": "-25 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/augsburg-09772.html",
+      "state": "Bayern"
+    },
+    "09773": {
+      "ags": "09773",
+      "name": "Dillingen a.d.Donau",
+      "drug_crime": {
+        "cases": 62,
+        "rate": 63.0,
+        "change": "-60 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/dillingen-a-d-donau-09773.html",
+      "state": "Bayern"
+    },
+    "09774": {
+      "ags": "09774",
+      "name": "Günzburg",
+      "drug_crime": {
+        "cases": 152,
+        "rate": 117.0,
+        "change": "-37 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/guenzburg-09774.html",
+      "state": "Bayern"
+    },
+    "09775": {
+      "ags": "09775",
+      "name": "Neu-Ulm",
+      "drug_crime": {
+        "cases": 292,
+        "rate": 159.0,
+        "change": "+0 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/neu-ulm-09775.html",
+      "state": "Bayern"
+    },
+    "09776": {
+      "ags": "09776",
+      "name": "Lindau (Bodensee)",
+      "drug_crime": {
+        "cases": 201,
+        "rate": 244.0,
+        "change": "-20 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/lindau-bodensee-09776.html",
+      "state": "Bayern"
+    },
+    "09777": {
+      "ags": "09777",
+      "name": "Ostallgäu",
+      "drug_crime": {
+        "cases": 176,
+        "rate": 124.0,
+        "change": "-23 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ostallgaeu-09777.html",
+      "state": "Bayern"
+    },
+    "09778": {
+      "ags": "09778",
+      "name": "Unterallgäu",
+      "drug_crime": {
+        "cases": 265,
+        "rate": 180.0,
+        "change": "-27 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/unterallgaeu-09778.html",
+      "state": "Bayern"
+    },
+    "09779": {
+      "ags": "09779",
+      "name": "Donau-Ries",
+      "drug_crime": {
+        "cases": 163,
+        "rate": 121.0,
+        "change": "-21 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/donau-ries-09779.html",
+      "state": "Bayern"
+    },
+    "09780": {
+      "ags": "09780",
+      "name": "Oberallgäu",
+      "drug_crime": {
+        "cases": 153,
+        "rate": 98.0,
+        "change": "-26 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/oberallgaeu-09780.html",
+      "state": "Bayern"
+    },
+    "10041": {
+      "ags": "10041",
+      "name": "Regionalverband Saarbrücken",
+      "drug_crime": {
+        "cases": 783,
+        "rate": 235.0,
+        "change": "-27 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/regionalverband-saarbruecken-10041.html",
+      "state": "Saarland"
+    },
+    "10042": {
+      "ags": "10042",
+      "name": "Merzig-Wadern",
+      "drug_crime": {
+        "cases": 127,
+        "rate": 117.0,
+        "change": "-31 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/merzig-wadern-10042.html",
+      "state": "Saarland"
+    },
+    "10043": {
+      "ags": "10043",
+      "name": "Neunkirchen",
+      "drug_crime": {
+        "cases": 343,
+        "rate": 258.0,
+        "change": "-21 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/neunkirchen-10043.html",
+      "state": "Saarland"
+    },
+    "10044": {
+      "ags": "10044",
+      "name": "Saarlouis",
+      "drug_crime": {
+        "cases": 232,
+        "rate": 113.0,
+        "change": "-32 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/saarlouis-10044.html",
+      "state": "Saarland"
+    },
+    "10045": {
+      "ags": "10045",
+      "name": "Saarpfalz-Kreis",
+      "drug_crime": {
+        "cases": 145,
+        "rate": 101.0,
+        "change": "-18 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/saarpfalz-kreis-10045.html",
+      "state": "Saarland"
+    },
+    "10046": {
+      "ags": "10046",
+      "name": "St. Wendel",
+      "drug_crime": {
+        "cases": 57,
+        "rate": 65.0,
+        "change": "-29 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/st-wendel-10046.html",
+      "state": "Saarland"
+    },
+    "11000": {
+      "ags": "11000",
+      "name": "Berlin",
+      "drug_crime": {
+        "cases": 11465,
+        "rate": 311.0,
+        "change": "-21 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/berlin-11000.html",
+      "state": "Berlin"
+    },
+    "12051": {
+      "ags": "12051",
+      "name": "Brandenburg an der Havel",
+      "drug_crime": {
+        "cases": 179,
+        "rate": 242.0,
+        "change": "-10 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/brandenburg-an-der-havel-12051.html",
+      "state": "Brandenburg"
+    },
+    "12052": {
+      "ags": "12052",
+      "name": "Cottbus",
+      "drug_crime": {
+        "cases": 216,
+        "rate": 227.0,
+        "change": "-32 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/cottbus-12052.html",
+      "state": "Brandenburg"
+    },
+    "12053": {
+      "ags": "12053",
+      "name": "Frankfurt (Oder)",
+      "drug_crime": {
+        "cases": 84,
+        "rate": 147.0,
+        "change": "-66 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/frankfurt-oder-12053.html",
+      "state": "Brandenburg"
+    },
+    "12054": {
+      "ags": "12054",
+      "name": "Potsdam",
+      "drug_crime": {
+        "cases": 210,
+        "rate": 114.0,
+        "change": "-26 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/potsdam-12054.html",
+      "state": "Brandenburg"
+    },
+    "12060": {
+      "ags": "12060",
+      "name": "Barnim",
+      "drug_crime": {
+        "cases": 162,
+        "rate": 83.0,
+        "change": "-51 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/barnim-12060.html",
+      "state": "Brandenburg"
+    },
+    "12061": {
+      "ags": "12061",
+      "name": "Dahme-Spreewald",
+      "drug_crime": {
+        "cases": 182,
+        "rate": 102.0,
+        "change": "-31 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/dahme-spreewald-12061.html",
+      "state": "Brandenburg"
+    },
+    "12062": {
+      "ags": "12062",
+      "name": "Elbe-Elster",
+      "drug_crime": {
+        "cases": 41,
+        "rate": 42.0,
+        "change": "-83 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/elbe-elster-12062.html",
+      "state": "Brandenburg"
+    },
+    "12063": {
+      "ags": "12063",
+      "name": "Havelland",
+      "drug_crime": {
+        "cases": 115,
+        "rate": 67.0,
+        "change": "-40 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/havelland-12063.html",
+      "state": "Brandenburg"
+    },
+    "12064": {
+      "ags": "12064",
+      "name": "Märkisch-Oderland",
+      "drug_crime": {
+        "cases": 215,
+        "rate": 109.0,
+        "change": "-16 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/maerkisch-oderland-12064.html",
+      "state": "Brandenburg"
+    },
+    "12065": {
+      "ags": "12065",
+      "name": "Oberhavel",
+      "drug_crime": {
+        "cases": 317,
+        "rate": 146.0,
+        "change": "-17 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/oberhavel-12065.html",
+      "state": "Brandenburg"
+    },
+    "12066": {
+      "ags": "12066",
+      "name": "Oberspreewald-Lausitz",
+      "drug_crime": {
+        "cases": 89,
+        "rate": 83.0,
+        "change": "-49 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/oberspreewald-lausitz-12066.html",
+      "state": "Brandenburg"
+    },
+    "12067": {
+      "ags": "12067",
+      "name": "Oder-Spree",
+      "drug_crime": {
+        "cases": 107,
+        "rate": 60.0,
+        "change": "-71 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/oder-spree-12067.html",
+      "state": "Brandenburg"
+    },
+    "12068": {
+      "ags": "12068",
+      "name": "Ostprignitz-Ruppin",
+      "drug_crime": {
+        "cases": 180,
+        "rate": 182.0,
+        "change": "-38 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ostprignitz-ruppin-12068.html",
+      "state": "Brandenburg"
+    },
+    "12069": {
+      "ags": "12069",
+      "name": "Potsdam-Mittelmark",
+      "drug_crime": {
+        "cases": 96,
+        "rate": 43.0,
+        "change": "-32 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/potsdam-mittelmark-12069.html",
+      "state": "Brandenburg"
+    },
+    "12070": {
+      "ags": "12070",
+      "name": "Prignitz",
+      "drug_crime": {
+        "cases": 98,
+        "rate": 130.0,
+        "change": "-48 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/prignitz-12070.html",
+      "state": "Brandenburg"
+    },
+    "12071": {
+      "ags": "12071",
+      "name": "Spree-Neiße",
+      "drug_crime": {
+        "cases": 75,
+        "rate": 68.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/spree-neisse-12071.html",
+      "state": "Brandenburg"
+    },
+    "12072": {
+      "ags": "12072",
+      "name": "Teltow-Fläming",
+      "drug_crime": {
+        "cases": 305,
+        "rate": 172.0,
+        "change": "-16 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/teltow-flaeming-12072.html",
+      "state": "Brandenburg"
+    },
+    "12073": {
+      "ags": "12073",
+      "name": "Uckermark",
+      "drug_crime": {
+        "cases": 139,
+        "rate": 118.0,
+        "change": "-56 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/uckermark-12073.html",
+      "state": "Brandenburg"
+    },
+    "13003": {
+      "ags": "13003",
+      "name": "Rostock",
+      "drug_crime": {
+        "cases": 612,
+        "rate": 298.0,
+        "change": "-16 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/rostock-13003.html",
+      "state": "Mecklenburg-Vorpommern"
+    },
+    "13004": {
+      "ags": "13004",
+      "name": "Schwerin",
+      "drug_crime": {
+        "cases": 285,
+        "rate": 290.0,
+        "change": "-45 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/schwerin-13004.html",
+      "state": "Mecklenburg-Vorpommern"
+    },
+    "13071": {
+      "ags": "13071",
+      "name": "Mecklenburgische Seenplatte",
+      "drug_crime": {
+        "cases": 758,
+        "rate": 308.0,
+        "change": "-23 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/mecklenburgische-seenplatte-13071.html",
+      "state": "Mecklenburg-Vorpommern"
+    },
+    "13072": {
+      "ags": "13072",
+      "name": "Landkreis Rostock",
+      "drug_crime": {
+        "cases": 369,
+        "rate": 169.0,
+        "change": "-39 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/landkreis-rostock-13072.html",
+      "state": "Mecklenburg-Vorpommern"
+    },
+    "13073": {
+      "ags": "13073",
+      "name": "Vorpommern-Rügen",
+      "drug_crime": {
+        "cases": 583,
+        "rate": 271.0,
+        "change": "-44 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/vorpommern-ruegen-13073.html",
+      "state": "Mecklenburg-Vorpommern"
+    },
+    "13074": {
+      "ags": "13074",
+      "name": "Nordwestmecklenburg",
+      "drug_crime": {
+        "cases": 271,
+        "rate": 173.0,
+        "change": "-31 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/nordwestmecklenburg-13074.html",
+      "state": "Mecklenburg-Vorpommern"
+    },
+    "13075": {
+      "ags": "13075",
+      "name": "Vorpommern-Greifswald",
+      "drug_crime": {
+        "cases": 336,
+        "rate": 149.0,
+        "change": "-39 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/vorpommern-greifswald-13075.html",
+      "state": "Mecklenburg-Vorpommern"
+    },
+    "13076": {
+      "ags": "13076",
+      "name": "Ludwigslust-Parchim",
+      "drug_crime": {
+        "cases": 314,
+        "rate": 151.0,
+        "change": "-25 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ludwigslust-parchim-13076.html",
+      "state": "Mecklenburg-Vorpommern"
+    },
+    "14511": {
+      "ags": "14511",
+      "name": "Chemnitz",
+      "drug_crime": {
+        "cases": 721,
+        "rate": 294.0,
+        "change": "-36 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/chemnitz-14511.html",
+      "state": "Sachsen"
+    },
+    "14521": {
+      "ags": "14521",
+      "name": "Erzgebirgskreis",
+      "drug_crime": {
+        "cases": 310,
+        "rate": 97.0,
+        "change": "-46 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/erzgebirgskreis-14521.html",
+      "state": "Sachsen"
+    },
+    "14522": {
+      "ags": "14522",
+      "name": "Mittelsachsen",
+      "drug_crime": {
+        "cases": 273,
+        "rate": 92.0,
+        "change": "-37 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/mittelsachsen-14522.html",
+      "state": "Sachsen"
+    },
+    "14523": {
+      "ags": "14523",
+      "name": "Vogtlandkreis",
+      "drug_crime": {
+        "cases": 324,
+        "rate": 148.0,
+        "change": "+1 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/vogtlandkreis-14523.html",
+      "state": "Sachsen"
+    },
+    "14524": {
+      "ags": "14524",
+      "name": "Zwickau",
+      "drug_crime": {
+        "cases": 466,
+        "rate": 152.0,
+        "change": "-4 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/zwickau-14524.html",
+      "state": "Sachsen"
+    },
+    "14612": {
+      "ags": "14612",
+      "name": "Dresden",
+      "drug_crime": {
+        "cases": 937,
+        "rate": 166.0,
+        "change": "-27 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/dresden-14612.html",
+      "state": "Sachsen"
+    },
+    "14625": {
+      "ags": "14625",
+      "name": "Bautzen",
+      "drug_crime": {
+        "cases": 316,
+        "rate": 108.0,
+        "change": "-50 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/bautzen-14625.html",
+      "state": "Sachsen"
+    },
+    "14626": {
+      "ags": "14626",
+      "name": "Görlitz",
+      "drug_crime": {
+        "cases": 619,
+        "rate": 254.0,
+        "change": "+1 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/goerlitz-14626.html",
+      "state": "Sachsen"
+    },
+    "14627": {
+      "ags": "14627",
+      "name": "Meißen",
+      "drug_crime": {
+        "cases": 277,
+        "rate": 116.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/meissen-14627.html",
+      "state": "Sachsen"
+    },
+    "14628": {
+      "ags": "14628",
+      "name": "Sächsische Schweiz-Osterzgebirge",
+      "drug_crime": {
+        "cases": 305,
+        "rate": 125.0,
+        "change": "-15 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/saechsische-schweiz-osterzgebirge-14628.html",
+      "state": "Sachsen"
+    },
+    "14713": {
+      "ags": "14713",
+      "name": "Leipzig",
+      "drug_crime": {
+        "cases": 1663,
+        "rate": 272.0,
+        "change": "-16 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/leipzig-14713.html",
+      "state": "Sachsen"
+    },
+    "14729": {
+      "ags": "14729",
+      "name": "Leipzig",
+      "drug_crime": {
+        "cases": 257,
+        "rate": 99.0,
+        "change": "-28 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/leipzig-14729.html",
+      "state": "Sachsen"
+    },
+    "14730": {
+      "ags": "14730",
+      "name": "Nordsachsen",
+      "drug_crime": {
+        "cases": 578,
+        "rate": 290.0,
+        "change": "-27 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/nordsachsen-14730.html",
+      "state": "Sachsen"
+    },
+    "15001": {
+      "ags": "15001",
+      "name": "Dessau-Roßlau",
+      "drug_crime": {
+        "cases": 151,
+        "rate": 200.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/dessau-rosslau-15001.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "15002": {
+      "ags": "15002",
+      "name": "Halle (Saale)",
+      "drug_crime": {
+        "cases": 931,
+        "rate": 411.0,
+        "change": "-6 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/halle-saale-15002.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "15003": {
+      "ags": "15003",
+      "name": "Magdeburg",
+      "drug_crime": {
+        "cases": 548,
+        "rate": 224.0,
+        "change": "-30 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/magdeburg-15003.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "15081": {
+      "ags": "15081",
+      "name": "Altmarkkreis Salzwedel",
+      "drug_crime": {
+        "cases": 127,
+        "rate": 159.0,
+        "change": "-22 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/altmarkkreis-salzwedel-15081.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "15082": {
+      "ags": "15082",
+      "name": "Anhalt-Bitterfeld",
+      "drug_crime": {
+        "cases": 433,
+        "rate": 283.0,
+        "change": "+36 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/anhalt-bitterfeld-15082.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "15083": {
+      "ags": "15083",
+      "name": "Börde",
+      "drug_crime": {
+        "cases": 224,
+        "rate": 133.0,
+        "change": "-43 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/boerde-15083.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "15084": {
+      "ags": "15084",
+      "name": "Burgenlandkreis",
+      "drug_crime": {
+        "cases": 446,
+        "rate": 257.0,
+        "change": "-18 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/burgenlandkreis-15084.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "15085": {
+      "ags": "15085",
+      "name": "Harz",
+      "drug_crime": {
+        "cases": 278,
+        "rate": 135.0,
+        "change": "-35 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/harz-15085.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "15086": {
+      "ags": "15086",
+      "name": "Jerichower Land",
+      "drug_crime": {
+        "cases": 136,
+        "rate": 154.0,
+        "change": "-22 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/jerichower-land-15086.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "15087": {
+      "ags": "15087",
+      "name": "Mansfeld-Südharz",
+      "drug_crime": {
+        "cases": 199,
+        "rate": 154.0,
+        "change": "-48 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/mansfeld-suedharz-15087.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "15088": {
+      "ags": "15088",
+      "name": "Saalekreis",
+      "drug_crime": {
+        "cases": 320,
+        "rate": 175.0,
+        "change": "-22 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/saalekreis-15088.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "15089": {
+      "ags": "15089",
+      "name": "Salzlandkreis",
+      "drug_crime": {
+        "cases": 405,
+        "rate": 224.0,
+        "change": "-14 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/salzlandkreis-15089.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "15090": {
+      "ags": "15090",
+      "name": "Stendal",
+      "drug_crime": {
+        "cases": 214,
+        "rate": 201.0,
+        "change": "-25 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/stendal-15090.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "15091": {
+      "ags": "15091",
+      "name": "Wittenberg",
+      "drug_crime": {
+        "cases": 112,
+        "rate": 92.0,
+        "change": "-57 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wittenberg-15091.html",
+      "state": "Sachsen-Anhalt"
+    },
+    "16051": {
+      "ags": "16051",
+      "name": "Erfurt",
+      "drug_crime": {
+        "cases": 551,
+        "rate": 252.0,
+        "change": "-45 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/erfurt-16051.html",
+      "state": "Thüringen"
+    },
+    "16052": {
+      "ags": "16052",
+      "name": "Gera",
+      "drug_crime": {
+        "cases": 407,
+        "rate": 426.0,
+        "change": "-38 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/gera-16052.html",
+      "state": "Thüringen"
+    },
+    "16053": {
+      "ags": "16053",
+      "name": "Jena",
+      "drug_crime": {
+        "cases": 160,
+        "rate": 146.0,
+        "change": "-57 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/jena-16053.html",
+      "state": "Thüringen"
+    },
+    "16054": {
+      "ags": "16054",
+      "name": "Suhl",
+      "drug_crime": {
+        "cases": 134,
+        "rate": 386.0,
+        "change": "-35 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/suhl-16054.html",
+      "state": "Thüringen"
+    },
+    "16055": {
+      "ags": "16055",
+      "name": "Weimar",
+      "drug_crime": {
+        "cases": 182,
+        "rate": 276.0,
+        "change": "-27 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/weimar-16055.html",
+      "state": "Thüringen"
+    },
+    "16061": {
+      "ags": "16061",
+      "name": "Eichsfeld",
+      "drug_crime": {
+        "cases": 222,
+        "rate": 214.0,
+        "change": "-54 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/eichsfeld-16061.html",
+      "state": "Thüringen"
+    },
+    "16062": {
+      "ags": "16062",
+      "name": "Nordhausen",
+      "drug_crime": {
+        "cases": 366,
+        "rate": 453.0,
+        "change": "+3 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/nordhausen-16062.html",
+      "state": "Thüringen"
+    },
+    "16063": {
+      "ags": "16063",
+      "name": "Wartburgkreis",
+      "drug_crime": {
+        "cases": 226,
+        "rate": 146.0,
+        "change": "-33 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/wartburgkreis-16063.html",
+      "state": "Thüringen"
+    },
+    "16064": {
+      "ags": "16064",
+      "name": "Unstrut-Hainich-Kreis",
+      "drug_crime": {
+        "cases": 338,
+        "rate": 357.0,
+        "change": "-38 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/unstrut-hainich-kreis-16064.html",
+      "state": "Thüringen"
+    },
+    "16065": {
+      "ags": "16065",
+      "name": "Kyffhäuserkreis",
+      "drug_crime": {
+        "cases": 202,
+        "rate": 282.0,
+        "change": "-29 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/kyffhaeuserkreis-16065.html",
+      "state": "Thüringen"
+    },
+    "16066": {
+      "ags": "16066",
+      "name": "Schmalkalden-Meiningen",
+      "drug_crime": {
+        "cases": 450,
+        "rate": 374.0,
+        "change": "+1 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/schmalkalden-meiningen-16066.html",
+      "state": "Thüringen"
+    },
+    "16067": {
+      "ags": "16067",
+      "name": "Gotha",
+      "drug_crime": {
+        "cases": 270,
+        "rate": 199.0,
+        "change": "-40 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/gotha-16067.html",
+      "state": "Thüringen"
+    },
+    "16068": {
+      "ags": "16068",
+      "name": "Sömmerda",
+      "drug_crime": {
+        "cases": 120,
+        "rate": 177.0,
+        "change": "-23 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/soemmerda-16068.html",
+      "state": "Thüringen"
+    },
+    "16069": {
+      "ags": "16069",
+      "name": "Hildburghausen",
+      "drug_crime": {
+        "cases": 147,
+        "rate": 245.0,
+        "change": "-6 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/hildburghausen-16069.html",
+      "state": "Thüringen"
+    },
+    "16070": {
+      "ags": "16070",
+      "name": "Ilm-Kreis",
+      "drug_crime": {
+        "cases": 202,
+        "rate": 189.0,
+        "change": "-5 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/ilm-kreis-16070.html",
+      "state": "Thüringen"
+    },
+    "16071": {
+      "ags": "16071",
+      "name": "Weimarer Land",
+      "drug_crime": {
+        "cases": 211,
+        "rate": 256.0,
+        "change": "+7 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/weimarer-land-16071.html",
+      "state": "Thüringen"
+    },
+    "16072": {
+      "ags": "16072",
+      "name": "Sonneberg",
+      "drug_crime": {
+        "cases": 86,
+        "rate": 156.0,
+        "change": "-48 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/sonneberg-16072.html",
+      "state": "Thüringen"
+    },
+    "16073": {
+      "ags": "16073",
+      "name": "Saalfeld-Rudolstadt",
+      "drug_crime": {
+        "cases": 176,
+        "rate": 176.0,
+        "change": "-31 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/saalfeld-rudolstadt-16073.html",
+      "state": "Thüringen"
+    },
+    "16074": {
+      "ags": "16074",
+      "name": "Saale-Holzland-Kreis",
+      "drug_crime": {
+        "cases": 168,
+        "rate": 202.0,
+        "change": "-31 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/saale-holzland-kreis-16074.html",
+      "state": "Thüringen"
+    },
+    "16075": {
+      "ags": "16075",
+      "name": "Saale-Orla-Kreis",
+      "drug_crime": {
+        "cases": 246,
+        "rate": 318.0,
+        "change": "-55 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/saale-orla-kreis-16075.html",
+      "state": "Thüringen"
+    },
+    "16076": {
+      "ags": "16076",
+      "name": "Greiz",
+      "drug_crime": {
+        "cases": 234,
+        "rate": 250.0,
+        "change": "-18 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/greiz-16076.html",
+      "state": "Thüringen"
+    },
+    "16077": {
+      "ags": "16077",
+      "name": "Altenburger Land",
+      "drug_crime": {
+        "cases": 425,
+        "rate": 486.0,
+        "change": "-27 %"
+      },
+      "source_url": "https://kriminalitaets-karte.de/kriminalitaet/altenburger-land-16077.html",
+      "state": "Thüringen"
+    }
+  },
+  "top15": [
+    {
+      "ags": "07320",
+      "name": "Zweibrücken",
+      "state": "Rheinland-Pfalz",
+      "cases": 286,
+      "rate": 858.0
+    },
+    {
+      "ags": "09262",
+      "name": "Passau",
+      "state": "Bayern",
+      "cases": 375,
+      "rate": 707.0
+    },
+    {
+      "ags": "03456",
+      "name": "Grafschaft Bentheim",
+      "state": "Niedersachsen",
+      "cases": 948,
+      "rate": 656.0
+    },
+    {
+      "ags": "07111",
+      "name": "Koblenz",
+      "state": "Rheinland-Pfalz",
+      "cases": 665,
+      "rate": 586.0
+    },
+    {
+      "ags": "07317",
+      "name": "Pirmasens",
+      "state": "Rheinland-Pfalz",
+      "cases": 225,
+      "rate": 566.0
+    },
+    {
+      "ags": "06611",
+      "name": "Kassel",
+      "state": "Hessen",
+      "cases": 1095,
+      "rate": 555.0
+    },
+    {
+      "ags": "06412",
+      "name": "Frankfurt am Main",
+      "state": "Hessen",
+      "cases": 4152,
+      "rate": 549.0
+    },
+    {
+      "ags": "07312",
+      "name": "Kaiserslautern",
+      "state": "Rheinland-Pfalz",
+      "cases": 546,
+      "rate": 544.0
+    },
+    {
+      "ags": "09263",
+      "name": "Straubing",
+      "state": "Bayern",
+      "cases": 255,
+      "rate": 520.0
+    },
+    {
+      "ags": "02000",
+      "name": "Hamburg",
+      "state": "Hamburg",
+      "cases": 9332,
+      "rate": 501.0
+    },
+    {
+      "ags": "07232",
+      "name": "Eifelkreis Bitburg-Prüm",
+      "state": "Rheinland-Pfalz",
+      "cases": 489,
+      "rate": 490.0
+    },
+    {
+      "ags": "01004",
+      "name": "Neumünster",
+      "state": "Schleswig-Holstein",
+      "cases": 389,
+      "rate": 487.0
+    },
+    {
+      "ags": "16077",
+      "name": "Altenburger Land",
+      "state": "Thüringen",
+      "cases": 425,
+      "rate": 486.0
+    },
+    {
+      "ags": "08121",
+      "name": "Heilbronn",
+      "state": "Baden-Württemberg",
+      "cases": 638,
+      "rate": 483.0
+    },
+    {
+      "ags": "09662",
+      "name": "Schweinfurt",
+      "state": "Bayern",
+      "cases": 263,
+      "rate": 483.0
+    }
+  ],
+  "errors": []
+}

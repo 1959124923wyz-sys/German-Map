@@ -1,0 +1,66 @@
+name: Drugs standalone public preview probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/drugs-topic]
+    paths:
+      - '.github/workflows/drugs-preview-probe.yml'
+permissions:
+  contents: read
+jobs:
+  verify-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Verify all six public preview assets
+        env:
+          ROOT: https://rawgit.net/1959124923wyz-sys/German-Map/a9feeaba4516bfe4d90076f174f936aa35e1d2f1
+        run: |
+          set -euo pipefail
+          for path in topics/drugs/index.html topics/drugs/topic.css topics/drugs/topic.js topics/drugs/data/pks_drugs_2025.json data/germany-counties-display.geojson data/germany-states.geojson; do
+            echo "CHECK $path"
+            curl -L -fSs --max-time 45 --retry 3 --retry-delay 2 "${ROOT}/${path}" -o /tmp/drugs-asset
+            wc -c /tmp/drugs-asset
+            if [[ "$path" == 'topics/drugs/index.html' ]]; then grep -q 'id="drug-map"' /tmp/drugs-asset; fi
+            if [[ "$path" == 'topics/drugs/data/pks_drugs_2025.json' ]]; then python -c 'import json; d=json.load(open("/tmp/drugs-asset")); assert len(d["records"])==400'; fi
+            if [[ "$path" == 'data/germany-counties-display.geojson' ]]; then python -c 'import json; d=json.load(open("/tmp/drugs-asset")); assert len(d["features"])==402'; fi
+          done
+          echo 'PASS public preview HTML, CSS, JS, stats and geography'
+
+      - name: Setup Python and headless browser
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser tester
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Render external preview after consent notice
+        env:
+          PUBLIC_PREVIEW: https://rawgit.net/1959124923wyz-sys/German-Map/a9feeaba4516bfe4d90076f174f936aa35e1d2f1/topics/drugs/index.html
+        run: |
+          python - <<'PY'
+          import os
+          from playwright.sync_api import sync_playwright
+          with sync_playwright() as pw:
+              browser = pw.chromium.launch(headless=True)
+              context = browser.new_context(viewport={'width': 1400,'height': 900})
+              context.add_cookies([{'name':'__Http-phish','value':'1','url':'https://rawgit.net/','secure':True,'httpOnly':True,'sameSite':'Lax'}])
+              page = context.new_page()
+              page.goto(os.environ['PUBLIC_PREVIEW'], wait_until='domcontentloaded', timeout=60000)
+              print('Navigation URL',page.url,'title',page.title(),flush=True)
+              if not page.locator('#drug-map').count():
+                  print('Consent page preview:',page.locator('body').inner_text()[:1800],flush=True)
+                  print('Consent buttons:',page.locator('button').all_inner_texts(),flush=True)
+                  print('Consent forms:',page.locator('form').count(),flush=True)
+                  button=page.locator('form button')
+                  if button.count():
+                      button.first.click()
+                      page.wait_for_load_state('domcontentloaded')
+                      print('After consent:',page.title(),page.url,flush=True)
+              page.wait_for_function('() => document.getElementById("county-count")?.textContent.includes("/")',timeout=35000)
+              print('Current status',page.locator('#status').inner_text() if page.locator('#status').count() else 'No status widget',flush=True)
+              print('PASS remote browser verified map',page.locator('#county-count').inner_text())
+              browser.close()
+          PY
