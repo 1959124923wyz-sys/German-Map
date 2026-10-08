@@ -41,6 +41,16 @@ def main():
             assert page.locator('#region-navigator').is_visible()
             assert not page.locator('#national-drug-summary').is_visible()
             assert 'Bayern' in page.locator('#region-heading').inner_text()
+            page.wait_for_function(
+                "() => document.getElementById('region-evidence-head')?.textContent.includes('247')",
+                timeout=30000)
+            assert not page.locator('#region-evidence').get_attribute('open')
+            page.locator('#region-evidence-head').click()
+            assert '247' in page.locator('#region-evidence-body').inner_text()
+            assert '214' in page.locator('#region-evidence-body').inner_text()
+            assert page.locator('#region-evidence-body a[href^="https://"]').count() >= 1
+            page.locator('#region-evidence-head').click()
+            page.screenshot(path='/tmp/germany-drugs-evidence-bavaria.png', full_page=True)
             assert page.locator('#drug-map path[stroke="#ffffff"]').count() >= 1, 'Selected state must have a white border'
             assert page.locator('#region-county-list button').count() == 96
             assert '估算州级' in page.locator('#region-rate-label').inner_text()
@@ -64,6 +74,28 @@ def main():
             assert not page.locator('#region-navigator').is_visible()
             assert page.locator('#drug-map path[stroke="#ffffff"]').count() == 0, 'National reset must clear selected border'
             assert page.locator('#state-index-list button').count() == 16
+            # Authentic drug offence codes exist in two states; other states
+            # are explicitly missing, not assigned synthetic values.
+            page.locator('#state-index-list button').filter(has_text='Niedersachsen').click()
+            page.wait_for_function(
+                "() => document.getElementById('region-evidence-head')?.textContent.includes('毒品罪名细分')")
+            page.locator('#region-evidence-head').click()
+            assert '3,618' in page.locator('#region-evidence-body').inner_text()
+            assert '1,677' in page.locator('#region-evidence-body').inner_text()
+            assert page.locator('.evidence-offence-table tbody tr:not(.evidence-code-row)').count() == 4
+            page.locator('#region-home').click()
+            page.locator('#state-index-list button').filter(has_text='Berlin').click()
+            page.wait_for_function(
+                "() => document.getElementById('region-evidence-head')?.textContent.includes('300')")
+            page.locator('#region-evidence-head').click()
+            assert '7.7' in page.locator('#region-evidence-body').inner_text()
+            page.locator('#region-home').click()
+            page.locator('#state-index-list button').filter(has_text='Hessen').click()
+            page.wait_for_function(
+                "() => document.getElementById('region-evidence-head')?.textContent.includes('暂无核实数字')")
+            page.locator('#region-evidence-head').click()
+            assert '不表示死亡人数为零' in page.locator('#region-evidence-body').inner_text()
+            page.locator('#region-home').click()
             # Visual regression: site dark shell and ascending low-to-high green palette.
             palette = page.locator('#legend-data .legend-gradient span')
             assert palette.count() == 7, f'Expected seven green intervals, got {palette.count()}'
