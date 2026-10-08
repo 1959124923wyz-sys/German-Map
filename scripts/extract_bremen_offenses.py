@@ -28,7 +28,7 @@ CODES = {
 ROW_START = re.compile(r"(?m)^[ \t]*(------|100000|210000|220000|435\*00|\*{4}00|730000)[ \t]+")
 # Official PDF prints: key label [2024] [2025] [+/- absolute change] [%].
 NUMBER = r"(?:\d{1,3}(?:\.\d{3})+|\d+)"
-TAIL = re.compile(rf"({NUMBER})\s+({NUMBER})\s+([+-]?{NUMBER}|-)\s+([+-]?\d+(?:,\d+)?|-)(?:\s|$)")
+TAIL = re.compile(rf"({NUMBER}|-)\s+({NUMBER}|-)\s+([+-]?{NUMBER}|-)\s+([+-]?\d+(?:,\d+)?|-)(?:\s|$)")
 
 def integer(value):
     return int(value.replace(".", ""))
@@ -55,11 +55,11 @@ def read_tables(pdf_bytes):
             if found is None:
                 raise RuntimeError(f"PKS Table {table_no} code {code}: cannot parse year counts: {content[:140]!r}")
             y24,y25,reported_change,reported_percent=found.groups()
-            n24,n25=integer(y24),integer(y25)
+            n24,n25=(integer(y24) if y24!='-' else None),(integer(y25) if y25!='-' else None)
             # All observed source rows give numerical annual values.
-            if n24<0 or n25<0:
+            if (n24 is not None and n24<0) or (n25 is not None and n25<0):
                 raise RuntimeError("negative Bremen PKS cases")
-            if reported_change!='-' and n25-n24!=int(reported_change.replace(".","")):
+            if reported_change!='-' and n24 is not None and n25 is not None and n25-n24!=int(reported_change.replace(".","")):
                 raise RuntimeError(f"PKS Table {table_no}/{code}: year delta disagreement {n24} {n25} {reported_change}")
             if code in rows:
                 raise RuntimeError(f"PKS Table {table_no}: duplicated code {code}")
@@ -77,15 +77,17 @@ def read_tables(pdf_bytes):
         m=ent["metrics"]
         for year in ("2024","2025"):
             total=m["all_offenses"][year]
-            if total<=0:raise RuntimeError("zero Bremen district total")
-            if any(m[k][year]>total for k in CODES.values()):
+            if total is None or total<=0:raise RuntimeError("missing/zero Bremen district total")
+            if any(m[k][year] is not None and m[k][year]>total for k in CODES.values()):
                 raise RuntimeError(f"District {ent['table']} metric exceeds all recorded offenses")
-            if m["burglary"][year]>m["theft"][year]:
+            if m["burglary"][year] is not None and m["theft"][year] is not None and m["burglary"][year]>m["theft"][year]:
                 raise RuntimeError(f"District {ent['table']} burglary exceeds all thefts")
     print("[bremen-cases] PASS",json.dumps({
         "districts":len(entries),"metric_categories":len(CODES),"years":[2024,2025],
-        "category_totals":{k:{"2024":sum(e["metrics"][k]["2024"] for e in entries),
-                             "2025":sum(e["metrics"][k]["2025"] for e in entries)}
+        "category_totals":{k:{"2024":sum(e["metrics"][k]["2024"] or 0 for e in entries),
+                             "2025":sum(e["metrics"][k]["2025"] or 0 for e in entries),
+                             "missing_2024":sum(e["metrics"][k]["2024"] is None for e in entries),
+                             "missing_2025":sum(e["metrics"][k]["2025"] is None for e in entries)}
                            for k in CODES.values()},
         "sample_area":entries[9]
     },ensure_ascii=False),flush=True)
