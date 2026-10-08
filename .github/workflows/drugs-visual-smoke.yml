@@ -38,6 +38,7 @@ jobs:
       - name: Validate JS and county data
         run: |
           node --check topics/drugs/topic.js
+          node --check topics/drugs/news.js
           node --check js/layers/city-labels.js
           node --check js/app.js
           python topics/drugs/scripts/validate_drugs.py
@@ -55,5 +56,6 @@ jobs:
           path: |
             /tmp/germany-crime-map-drugs-dark.png
             /tmp/germany-crime-map-drugs-euda.png
+            /tmp/germany-crime-map-drugs-news.png
             /tmp/shared-city-labels.png
           if-no-files-found: warn
