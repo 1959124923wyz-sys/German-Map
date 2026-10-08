@@ -95,7 +95,22 @@ def bremen_polygons():
             except Exception as ex:
                 print("[batch2] bremen geodata try",name,fmt,repr(ex)[:200],flush=True)
         if not success:
-            print("[batch2] bremen geodata BLOCKED for",name,"; cannot join districts yet",flush=True)
+            # Default WFS output is GML; this service may not advertise JSON.
+            import xml.etree.ElementTree as ET
+            try:
+                raw=download_bytes(url,{"SERVICE":"WFS","VERSION":"2.0.0",
+                    "REQUEST":"GetFeature","TYPENAMES":name,"SRSNAME":"EPSG:4326"},timeout=70)
+                root=ET.fromstring(raw)
+                members=[x for x in root.iter() if x.tag.split("}")[-1] in ("member","featureMember")]
+                pos=[x for x in root.iter() if x.tag.split("}")[-1]=="posList"]
+                print("[batch2] bremen GML",json.dumps({
+                    "typename":name,"bytes":len(raw),"count":len(members),
+                    "root":root.tag,"attrs":root.attrib,
+                    "sample":[[y.tag.split("}")[-1] for y in m.iter()][:16] for m in members[:2]],
+                    "sample_posList":pos[0].text[:160] if pos and pos[0].text else None
+                },ensure_ascii=False)[:5200],flush=True)
+            except Exception as ex:
+                print("[batch2] bremen geodata BLOCKED",name,repr(ex)[:400],flush=True)
 
 def main():
     for name,probe in (("stuttgart",stuttgart),("bremen",bremen),("bremen_geo",bremen_geometry),("bremen_polygons",bremen_polygons)):
