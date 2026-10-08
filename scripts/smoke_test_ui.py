@@ -172,16 +172,23 @@ with sync_playwright() as playwright:
             if(l instanceof L.GeoJSON && l.getLayers()?.some(x=>x.feature?.properties?.city==='München')) detail=l;
         });
         const coords=detail?.getBounds();
+        const counties=window.__CRIME_MAP__.getCountyLayer().getLayers();
+        const cityCounty=counties.find(x=>String(x.feature?.id)==='09162');
+        const landkreis=counties.find(x=>String(x.feature?.id)==='09184');
         return {
             count:detail?.getLayers().length||0,
             withinViewport:!!(coords?.isValid() && m.getBounds().intersects(coords)),
             west:coords?.getWest(),east:coords?.getEast(),
             south:coords?.getSouth(),north:coords?.getNorth(),
+            cityFillOpacity:cityCounty?.options?.fillOpacity,
+            surroundingCountyOpacity:landkreis?.options?.fillOpacity,
         };
     }""")
     assert munich["count"]==25 and munich["withinViewport"], munich
     assert 11 < munich["west"] < munich["east"] < 12.1,munich
     assert 47.8 < munich["south"] < munich["north"] < 48.5,munich
+    assert munich["cityFillOpacity"]==0, "München Stadt 09162 must be hidden under detailed districts"
+    assert munich["surroundingCountyOpacity"]>0.25, "Landkreis München 09184 must remain visible"
     page.screenshot(path=str(SCREENSHOT.with_name("germany-crime-map-munich.png")),full_page=True)
 
     assert not errors, errors
