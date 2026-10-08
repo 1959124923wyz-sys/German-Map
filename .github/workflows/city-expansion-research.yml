@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/city-expansion-research.yml'
       - 'scripts/probe_kiel_sources.py'
+      - 'scripts/build_kiel_staging.py'
 
 permissions:
   contents: read
@@ -24,3 +25,5 @@ jobs:
         run: pip install requests pypdf
       - name: Probe official Kiel police statistics and city geodata
         run: python scripts/probe_kiel_sources.py
+      - name: Build and reconcile candidate-only Kiel district data
+        run: python scripts/build_kiel_staging.py
