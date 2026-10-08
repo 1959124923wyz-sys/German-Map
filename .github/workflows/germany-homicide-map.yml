@@ -18,7 +18,8 @@ on:
       - 'index.html'
       - 'css/**'
       - 'js/**'
-      - 'topics/drugs/**'
+      # Drug-topic updates deploy through drugs-pages-deploy.yml;
+      # avoid requiring unrelated city-source rebuilds for minor topic UI changes.
       - 'data/city_layers.json'
       - 'data/city_count_layers.json'
       - 'requirements.txt'
