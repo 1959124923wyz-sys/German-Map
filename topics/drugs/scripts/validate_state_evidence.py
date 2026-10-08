@@ -77,6 +77,13 @@ def validate():
        "Berlin cannabis KCanG subsection is missing or inconsistent")
     ok(named["其中大麻非法交易"]<=named["大麻 · KCanG §34全部罪名"],
        "Berlin cannabis subgroup exceeds overall count")
+    bw=offences.get("Baden-Württemberg")
+    ok(bw is not None,"Baden-Württemberg NPS primary-source metrics missing")
+    metrics={x["name"]:x["cases"] for x in bw.get("additional_metrics",[])}
+    ok(metrics.get("新精神活性物质 · NpSG违法")==156 and
+       metrics.get("新精神活性物质 · BtMG非法交易")==61,
+       "Baden-Württemberg source NPS law categories incorrectly merged")
+    ok(len(offences)==9,"Expected nine states with at least one original PKS substance metric")
     print("PASS verified state evidence:",
           len(deaths),"death states,",len(offences),"PKS drug-substance states,",
           len(health),"health-source states; Berlin PKS 2025 codes and KCanG overlap verified")
