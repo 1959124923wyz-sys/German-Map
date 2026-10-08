@@ -417,3 +417,9 @@ python scripts/build_duesseldorf_additional_stadtteile.py --district 09 --output
 python scripts/validate_duesseldorf_additional_stadtteile.py --district 07
 python scripts/validate_duesseldorf_additional_stadtteile.py --district 09
 ```
+
+## Drug-topic production navigation (October 2026)
+
+The main site now has a third top-level navigation tab, **毒品问题**, linking to `topics/drugs/`. It is a standalone Leaflet route served by the same GitHub Pages deployment, not a third `js/app.js` in-page renderer yet. This keeps the previously tested violence/property state and county pointer behavior untouched. The drug route offers reverse links to violence and `index.html?mode=property`; the main app reads that query parameter for correct return navigation.
+
+Statistical caveats: `topics/drugs/data/pks_drugs_2025.json` is a 2025 county PKS attributed mirror (400 source records for 402 mapping polygons), and the displayed BKA national `Rauschgiftkriminalität` total uses a potentially different definition. Missing records remain missing, no proportional reallocation, no claim that police cases measure consumption, and 2024 cannabis legalization must be marked in historical comparisons. The independent data script and browser smoke live under `topics/drugs/`. Do not overwrite them when integrating future immigration or city layers.
