@@ -1,0 +1,57 @@
+name: Drugs EUDA official wastewater refresh
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'topics/drugs/scripts/build_euda_wastewater.py'
+      - '.github/workflows/drugs-euda-update.yml'
+  schedule:
+    - cron: '42 5 14 * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drug-euda-wastewater-write
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+      - name: Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Download and validate official site-level EUDA wastewater data
+        run: |
+          python topics/drugs/scripts/build_euda_wastewater.py
+          python -m json.tool topics/drugs/data/euda_wastewater_2025.json > /dev/null
+      - name: Commit changed data to main only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/drugs/data/euda_wastewater_2025.json
+          if git diff --cached --quiet; then
+            echo 'Official EUDA data unchanged'
+            exit 0
+          fi
+          git commit -m 'data(drugs): update verified EUDA 2025 wastewater sites'
+          pushed=false
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              pushed=true
+              break
+            fi
+            sleep 3
+          done
+          if [ "$pushed" != true ]; then exit 1; fi
