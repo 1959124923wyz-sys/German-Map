@@ -4,10 +4,10 @@
     "publication_context": "2026年多州警察、卫生机关和公共资料发布",
     "national_drug_deaths": 2150,
     "national_source": "https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/",
-    "mortality_coverage_states": 12,
+    "mortality_coverage_states": 13,
     "drug_specific_offence_coverage_states": 11,
-    "method": "State government/police originals preferred; agency-attributed reports accepted with source type. Each selected offence key/group has its own scope; absence is missing, never zero. Substance totals and PKS general/trade subkeys must never be added across differing scopes. Sachsen and Hamburg added directly from 2025 Land police primary PKS tables; overlapping subcategories are explicitly named.",
-    "mortality_scope": "Recorded drug-related deaths; state data from police/health ministries or organizations and public broadcasters quoting them. Methods and as-of dates may differ; do not add to BKA crime numbers.",
+    "method": "All 16 Länder are tracked; a state counts as covered only if a 2025 state-wide source reports a concrete observation. County/police-presidium figures are never substituted for the Land. Offence general/trade, statutory totals, substance-involved counts, and subgroup figures have separate classifications; categories with known overlap are never summed.",
+    "mortality_scope": "Deaths attributed to drug use in police/health reports. State figures may use different ascertainment dates or methods; media citing police is labeled as secondary, and publication date is not the death date. Missing states and unverified population denominators remain blank.",
     "updated_at": "2026-10-08",
     "health_case_coverage_states": 1
   },
@@ -109,6 +109,14 @@
       "source_title": "dpa（德国新闻社）· 引述萨克森—安哈尔特州内政部（2026-02-27）",
       "source_url": "https://www.sueddeutsche.de/panorama/traurige-statistik-zahl-der-drogentoten-in-sachsen-anhalt-auf-hoechststand-dpa.urn-newsml-dpa-com-20090101-260227-930-743602",
       "note": "dpa引述州内政部2025年61名、2024年48名，创当地统计高值；死亡可能与长期多药物使用有关。"
+    },
+    "Mecklenburg-Vorpommern": {
+      "cases": 24,
+      "previous_2024": 15,
+      "source_type": "regional_newspaper_citing_LKA",
+      "source_title": "Ostsee-Zeitung · 2026-09-30州专题报道，转引梅克伦堡—前波美拉尼亚州刑警局",
+      "source_url": "https://www.ostsee-zeitung.de/mecklenburg-vorpommern/drogenberater-warnt-vor-mischkonsum-in-mv-konsumenten-immer-juenger-6RTS5SJZZRDFNKE7RNYC45YPK4.html",
+      "note": "2025年24人来自2026年9月30日当地报纸，并称州刑警局数据显示过半死亡涉及混合消费，尚待直接取得州刑警局2025原表；2024年15人由2025年3月德国新闻社转引州刑警局记录（https://www.zeit.de/news/2025-03/30/15-drogentote-in-mecklenburg-vorpommern-im-jahr-2024）。不同年度核定时间可能调整。"
     }
   },
   "selected_offence_codes_by_state": {
@@ -188,24 +196,28 @@
           "name": "可卡因／快克 · 一般违法",
           "cases": 1043,
           "code": "BtMG §29",
-          "note": "PKS表15可卡因分项；报告另有跨十年叙述1048，采用表中2025年直接列值1043。"
+          "note": "PKS表15可卡因分项；报告另有跨十年叙述1048，采用表中2025年直接列值1043。",
+          "scope_kind": "general_offence"
         },
         {
           "name": "海洛因 · 一般违法",
           "cases": 152,
-          "code": "BtMG §29"
+          "code": "BtMG §29",
+          "scope_kind": "general_offence"
         },
         {
           "name": "苯丙胺及衍生物（含摇头丸）· 一般违法",
           "cases": 3202,
           "code": "BtMG §29",
-          "note": "含多种苯丙胺相关形式，并非甲基苯丙胺（冰毒）专属。"
+          "note": "含多种苯丙胺相关形式，并非甲基苯丙胺（冰毒）专属。",
+          "scope_kind": "general_offence"
         },
         {
           "name": "大麻相关全部登记案件",
           "cases": 2321,
           "code": "BtMG/KCanG/MedCanG",
-          "note": "报告第48页文字统计，多个法律项目的合计，不可与大麻分项重复相加。"
+          "note": "报告第48页文字统计，多个法律项目的合计，不可与大麻分项重复相加。",
+          "scope_kind": "multi_offence_substance"
         }
       ]
     },
@@ -229,32 +241,37 @@
           "name": "大麻（KCanG §34）· 全部罪名",
           "cases": 701,
           "code": "736000",
-          "note": "包括一般违法、非法交易及其他KCanG罪名，不可与表内219和171再次累加。"
+          "note": "包括一般违法、非法交易及其他KCanG罪名，不可与表内219和171再次累加。",
+          "scope_kind": "statutory_total"
         },
         {
           "name": "可卡因及快克 · 涉毒案件",
           "cases": 404,
           "previous_2024": 399,
-          "code": "表33（多罪名）"
+          "code": "表33（多罪名）",
+          "scope_kind": "multi_offence_substance"
         },
         {
           "name": "冰毒／甲基苯丙胺 · 涉毒案件",
           "cases": 248,
           "previous_2024": 342,
           "code": "表33（多罪名）",
-          "note": "包括粉末、晶体、液体及片剂／胶囊形式；不是仅Crystal。"
+          "note": "包括粉末、晶体、液体及片剂／胶囊形式；不是仅Crystal。",
+          "scope_kind": "multi_offence_substance"
         },
         {
           "name": "海洛因 · 涉毒案件",
           "cases": 27,
           "previous_2024": 42,
-          "code": "表33（多罪名）"
+          "code": "表33（多罪名）",
+          "scope_kind": "multi_offence_substance"
         },
         {
           "name": "苯丙胺及衍生物（含摇头丸）· 涉毒案件",
           "cases": 1230,
           "previous_2024": 1362,
-          "code": "表33（多罪名）"
+          "code": "表33（多罪名）",
+          "scope_kind": "multi_offence_substance"
         }
       ]
     },
@@ -269,13 +286,15 @@
           "name": "可卡因 · 一般违法",
           "cases": 2406,
           "previous_2024": 2300,
-          "code": "州政府发布公告"
+          "code": "州政府发布公告",
+          "scope_kind": "general_offence"
         },
         {
           "name": "快克（Crack）· 一般违法",
           "cases": 543,
           "previous_2024": 578,
-          "code": "州政府发布公告"
+          "code": "州政府发布公告",
+          "scope_kind": "general_offence"
         }
       ]
     },
@@ -316,21 +335,24 @@
           "cases": 2785,
           "previous_2024": 2597,
           "code": "多个PKS代码汇总",
-          "note": "包括一般违法、交易、严重数量等；不是纯一般违法案件。"
+          "note": "包括一般违法、交易、严重数量等；不是纯一般违法案件。",
+          "scope_kind": "multi_offence_substance"
         },
         {
           "name": "大麻 · KCanG §34全部罪名",
           "cases": 1669,
           "previous_2024": 666,
           "code": "736000",
-          "note": "2024年仅4月起施行，年度同比不可直接解释为实际犯罪增加。"
+          "note": "2024年仅4月起施行，年度同比不可直接解释为实际犯罪增加。",
+          "scope_kind": "statutory_total"
         },
         {
           "name": "全部毒品违法案件（BtMG/NpSG/KCanG）",
           "cases": 7219,
           "previous_2024": 9738,
           "code": "730000",
-          "note": "包含各分项，并非独立其他毒品类别；不同于其他州的警务执法强度。"
+          "note": "包含各分项，并非独立其他毒品类别；不同于其他州的警务执法强度。",
+          "scope_kind": "multi_offence_all_drugs"
         }
       ]
     },
@@ -345,39 +367,47 @@
           "name": "海洛因 · 一般违法",
           "cases": 982,
           "previous_2024": 1192,
-          "code": "731100 BtMG §29"
+          "code": "731100 BtMG §29",
+          "scope_kind": "general_offence"
         },
         {
           "name": "可卡因／快克 · 一般违法",
           "cases": 3298,
           "previous_2024": 3614,
-          "code": "731200 BtMG §29"
+          "code": "731200 BtMG §29",
+          "scope_kind": "general_offence"
         },
         {
           "name": "其中快克 · 一般违法（可卡因子集）",
           "cases": 1995,
           "previous_2024": 2212,
           "code": "731201 BtMG §29",
-          "note": "已包含在731200，不得相加"
+          "note": "已包含在731200，不得相加",
+          "scope_kind": "subgroup",
+          "subset_of": "可卡因／快克 · 一般违法"
         },
         {
           "name": "大麻 · KCanG §34全部罪名",
           "cases": 1918,
           "previous_2024": 953,
           "code": "736000",
-          "note": "2024只有4月起合法新分类，跨年不可直接比较"
+          "note": "2024只有4月起合法新分类，跨年不可直接比较",
+          "scope_kind": "statutory_total"
         },
         {
           "name": "其中大麻非法交易/走私",
           "cases": 1230,
           "code": "KCanG §34子项",
-          "note": "包含在1918中，不能再相加"
+          "note": "包含在1918中，不能再相加",
+          "scope_kind": "subgroup",
+          "subset_of": "大麻 · KCanG §34全部罪名"
         },
         {
           "name": "其他毒品非法交易／走私（不含KCanG）",
           "cases": 1331,
           "code": "732000",
-          "note": "BtMG毒品交易类，与大麻法统计分开"
+          "note": "BtMG毒品交易类，与大麻法统计分开",
+          "scope_kind": "trade_or_smuggling"
         }
       ]
     },
@@ -401,13 +431,16 @@
           "name": "大麻 · KCanG §34全部罪名",
           "cases": 2343,
           "code": "§34 KCanG / PKS 736000",
-          "note": "包含下列非法交易子项，不能与1,309起相加"
+          "note": "包含下列非法交易子项，不能与1,309起相加",
+          "scope_kind": "statutory_total"
         },
         {
           "name": "其中大麻非法交易",
           "cases": 1309,
           "code": "§34 KCanG非法交易子项",
-          "note": "已包含在2,343起内"
+          "note": "已包含在2,343起内",
+          "scope_kind": "subgroup",
+          "subset_of": "大麻 · KCanG §34全部罪名"
         }
       ]
     },
@@ -422,13 +455,15 @@
           "name": "新精神活性物质 · NpSG违法",
           "cases": 156,
           "code": "NpSG §4",
-          "note": "2025年州内登记156起，州官方披露较2024年上升62.5%；不从百分比反推前一年整数。"
+          "note": "2025年州内登记156起，州官方披露较2024年上升62.5%；不从百分比反推前一年整数。",
+          "scope_kind": "other_statutory_offence"
         },
         {
           "name": "新精神活性物质 · BtMG非法交易",
           "cases": 61,
           "code": "BtMG §29 NPS贸易",
-          "note": "按BtMG记录的NPS贸易，2025年为61起；与NpSG违法不是可合并的相同罪名。"
+          "note": "按BtMG记录的NPS贸易，2025年为61起；与NpSG违法不是可合并的相同罪名。",
+          "scope_kind": "trade_or_smuggling"
         }
       ]
     },
@@ -444,21 +479,24 @@
           "cases": 7164,
           "previous_2024": 15270,
           "code": "PKS 2025州警方新闻报告，第33页 · Cannabis und Zubereitungen",
-          "note": "大麻法律于2024年4月变更，跨年案件不能直接代表实际使用变化；不是KCanG单一罪名。"
+          "note": "大麻法律于2024年4月变更，跨年案件不能直接代表实际使用变化；不是KCanG单一罪名。",
+          "scope_kind": "multi_offence_substance"
         },
         {
           "name": "可卡因／快克 · 涉BtMG违法案件",
           "cases": 4440,
           "previous_2024": 3972,
           "code": "PKS 2025州警方新闻报告，第33页 · alle BtMG-Verstöße mit Kokain einschl. Crack",
-          "note": "含快克，覆盖多种BtMG犯罪类型，不能与其他州仅一般违法731200同口径比较。"
+          "note": "含快克，覆盖多种BtMG犯罪类型，不能与其他州仅一般违法731200同口径比较。",
+          "scope_kind": "multi_offence_substance"
         },
         {
           "name": "新精神活性物质（NpS）· 违法案件",
           "cases": 1308,
           "previous_2024": 823,
           "code": "PKS 2025州警方新闻报告，第33页 · Neue psychoaktive Stoffe",
-          "note": "2025年州警按NpS涉案类型披露；不能直接等同于NpSG §4单一罪名。"
+          "note": "2025年州警按NpS涉案类型披露；不能直接等同于NpSG §4单一罪名。",
+          "scope_kind": "multi_offence_substance"
         }
       ]
     },
@@ -474,7 +512,8 @@
           "cases": 7507,
           "previous_2024": 6433,
           "code": "PKS 2025州内政部 Handout，第38页 · Delikte mit Kokain einschl. Crack",
-          "note": "州级按涉案物质统计，非仅731200一般违法；2024年6,433来自同期州政府统计图表。"
+          "note": "州级按涉案物质统计，非仅731200一般违法；2024年6,433来自同期州政府统计图表。",
+          "scope_kind": "multi_offence_substance"
         }
       ]
     }
