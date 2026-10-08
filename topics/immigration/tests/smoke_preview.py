@@ -49,18 +49,18 @@ def main() -> None:
             assert page.locator(".immigration-topic").count() == 1
             try:
                 page.wait_for_function(
-                    "() => document.querySelectorAll('.leaflet-immigrationDataPane-pane path').length >= 16",
+                    "() => document.querySelectorAll('.leaflet-immigrationData-pane path').length >= 16",
                     timeout=8000)
             except Exception:
                 diagnostics = page.evaluate("""() => ({
                     status: document.querySelector('#status')?.innerText,
                     svgPaths: document.querySelectorAll('svg path').length,
-                    topicPaths: document.querySelectorAll('.leaflet-immigrationDataPane-pane path').length,
+                    topicPaths: document.querySelectorAll('.leaflet-immigrationData-pane path').length,
                     panes: Array.from(document.querySelectorAll('.leaflet-pane')).map(x => x.className),
                     active: window.GermanMapTopics?.immigration?.getViewState().active
                 })""")
                 raise AssertionError(f"Missing state map polygons: {diagnostics}")
-            assert page.locator(".leaflet-immigrationDataPane-pane").evaluate(
+            assert page.locator(".leaflet-immigrationData-pane").evaluate(
                 "(node) => node.style.pointerEvents") == "none"
             assert page.locator(".im-national-value").inner_text().strip() == "232,067"
 
@@ -94,9 +94,9 @@ def main() -> None:
                 page.get_by_role("button", name="测试退出 / 重新进入").click()
                 assert page.locator(".immigration-topic").count() == 1
                 page.wait_for_function(
-                    "() => document.querySelectorAll('.leaflet-immigrationDataPane-pane path').length >= 16",
+                    "() => document.querySelectorAll('.leaflet-immigrationData-pane path').length >= 16",
                     timeout=8000)
-                assert page.locator(".leaflet-immigrationDataPane-pane").evaluate(
+                assert page.locator(".leaflet-immigrationData-pane").evaluate(
                     "(node) => node.style.pointerEvents") == "none"
                 page.get_by_role("combobox", name="选择德国联邦州").select_option("DE-SN")
                 page.wait_for_function("window.GermanMapTopics.immigration.getViewState().state === 'DE-SN'")
