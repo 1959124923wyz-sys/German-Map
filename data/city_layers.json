@@ -181,7 +181,7 @@
       "builder": "scripts/build_dresden_local_2025.py",
       "county_ags": "14612",
       "coverage": "partial",
-      "coverage_note": "部分外围市域没有街区级犯罪统计，浅色底图仅代表德累斯顿全市年度犯罪率。"
+      "coverage_note": "灰色市域暂无街区级统计；周边县已淡化。颜色不代表这些区域的犯罪水平。"
     },
     {
       "id": "munich",
