@@ -28,6 +28,16 @@ const color=f=>{
 };
 const style=f=>({pane:'supplementaryPane',color:'#554683',opacity:1,weight:.85,fillOpacity:.87,fillColor:color(f)});
 const metricCases=(p,k,y)=>p.metrics[k][y];
+function clearPopupPane(){
+ if(!mapApi)return;
+ mapApi.map.closePopup();
+ const pane=mapApi.map.getPanes().popupPane;
+ // Leaflet popup instances from synthetic clicks / deactivated geometry
+ // can retain stale DOM after a layer is removed. Remove the old popup
+ // containers on the only two transitions where we replace full overlays.
+ // Their popup objects were first closePopup()/remove()'d.
+ if(pane)pane.querySelectorAll('.leaflet-popup').forEach(node=>node.remove());
+}
 function popup(f){
  const p=f.properties,m=p.metrics[metric],diff=m['2025']-m['2024'];
  return '<div class="supp-popup"><strong>'+esc(p.name)+'</strong><div class="supp-big">'+num(m['2025'])+' 起</div>'+
@@ -42,7 +52,7 @@ function hide(){
    layer.eachLayer(l=>{l.closePopup?.();l.getPopup?.()?.remove?.();l.closeTooltip?.();});
    mapApi.map.removeLayer(layer);layer=null;
  }
- mapApi.map.closePopup();
+ clearPopupPane();
  $('legend')?.querySelectorAll('.duesseldorf-bv6-legend').forEach(x=>x.remove());
  panel.hidden=true;
  if(originalPanel)originalPanel.hidden=false;
@@ -144,6 +154,7 @@ async function activate(){
    });
    if(mapApi.map.hasLayer(oldLayer))mapApi.map.removeLayer(oldLayer);
  }
+ clearPopupPane();
  if(originalPanel)originalPanel.hidden=true;
  const oldLegend=$('legend')?.querySelector('.duesseldorf-count-legend');
  if(oldLegend)oldLegend.hidden=true;
