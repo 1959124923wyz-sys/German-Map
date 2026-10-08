@@ -35,6 +35,24 @@
     return Object.values(dataset.records || {}).filter(r => r.state === name && metric(r))
       .sort((a, b) => b.drug_crime.rate - a.drug_crime.rate);
   }
+  // State aggregates are computed from the same 400 county records.
+  // The approximate rate is derived from the (rounded) county denominators,
+  // NOT reported by BKA as an independently validated official state rate.
+  function stateStats(name, data) {
+    const rows = stateRows(name, data);
+    const cases = rows.reduce((sum, row) => sum + row.drug_crime.cases, 0);
+    const populationEstimate = rows.reduce((sum, row) => {
+      const {cases, rate} = row.drug_crime;
+      return sum + (rate > 0 ? cases / rate * 100000 : 0);
+    }, 0);
+    return {name, rows, cases, rateEstimate:populationEstimate ? cases / populationEstimate * 100000 : null};
+  }
+  function safeNode(tag, value, className = '') {
+    const node = document.createElement(tag);
+    node.textContent = String(value);
+    if (className) node.className = className;
+    return node;
+  }
   function text(id, value) { const element = el(id); if (element) element.textContent = value; }
   function linkButton(row, onClick) {
     const li = document.createElement('li');
@@ -98,16 +116,103 @@
     const countyRenderer = L.svg({ pane: 'drugsCountyPane' });
     const stateRenderer = L.svg({ pane: 'drugsStatePane' });
     let counties, states, selectedCounty = null, selectedState = null, stateFeature = null;
+    const stateFeatures = new Map(stateGeo.features.map(f => [f.properties?.name, f]));
+    const stateStatistics = new Map([...stateFeatures.keys()].map(name => [name, stateStats(name, data)]));
+    const totalCountyCases = [...stateStatistics.values()].reduce((sum, v) => sum + v.cases, 0);
     const container = L.layerGroup().addTo(map);
     const isStandalone = Boolean(el('drug-map'));
     const popup = el('state-panel');
 
+    function showRegionBoard(name, county = null) {
+      if (!isStandalone) return;
+      const board = el('region-navigator'), national = el('national-drug-summary');
+      const stats = stateStatistics.get(name);
+      if (!board || !national || !stats) return;
+      board.hidden = false;
+      national.hidden = true;
+      const countyMode = Boolean(county);
+      const stateLink = el('region-state-link');
+      stateLink.hidden = !countyMode;
+      stateLink.textContent = name;
+      el('region-county-separator').hidden = !countyMode;
+      text('region-current', countyMode ? county.name : name);
+      text('region-heading', countyMode ? county.name + ' · 县市详情' : name + ' · 州级汇总');
+      text('region-cases', nf.format(countyMode ? county.drug_crime.cases : stats.cases));
+      text('region-rate', nf.format(countyMode ? county.drug_crime.rate : Math.round(stats.rateEstimate || 0)));
+      text('region-cases-label', countyMode ? '县级登记案件' : '州内县级案件总数（汇总）');
+      text('region-rate-label', countyMode ? '该县/市每10万人登记案件' : '估算州级每10万人案件（参考）');
+      text('region-completeness', countyMode
+        ? '2025年 · ' + name + ' · 该县同比 ' + (county.drug_crime.change || '未公布')
+        : '2025年 · 已收录 ' + stats.rows.length + ' 个县/独立市 · 占全国县级汇总 ' +
+          (totalCountyCases ? (100 * stats.cases / totalCountyCases).toFixed(1) : '—') + '%');
+      text('region-list-heading', countyMode ? '州内其他县市 · 按登记率排序' : '州内全部县市 · 按登记率排序');
+      text('region-subtitle', stats.rows.length + '个地区');
+      text('region-footnote', countyMode
+        ? '该地区数据来自PKS县级指标镜像，警方登记案件不代表实际毒品消费。点击列表可跳转州内其他县市。'
+        : '州案件数由县级记录合计，估算州率由县级四舍五入的登记率反推人口加权得到，并非独立公布的官方州级率；不代表吸毒人数。大麻、可卡因等州级细分类数据尚待官方原表核实。');
+      const focus = el('region-drill');
+      focus.textContent = countyMode ? '定位当前县市' : '查看县市地图';
+      focus.onclick = () => countyMode ? focusCounty(county) : focusState(name);
+      stateLink.onclick = () => selectState(name);
+      const list = el('region-county-list'); list.replaceChildren();
+      stats.rows.forEach(row => {
+        const li = document.createElement('li'), btn = document.createElement('button');
+        btn.type = 'button';
+        if (countyMode && row.ags === county.ags) {
+          btn.classList.add('selected-region');
+          btn.setAttribute('aria-current', 'true');
+        }
+        btn.append(safeNode('span', row.name),safeNode('span',
+          nf.format(row.drug_crime.rate) + ' /10万人'));
+        btn.title = row.name + '：' + nf.format(row.drug_crime.cases) + '起；同比 ' +
+          (row.drug_crime.change || '未公布');
+        btn.onclick = () => focusCounty(row);
+        li.append(btn);list.append(li);
+      });
+    }
+    function focusCounty(rec) {
+      const layer = counties?.getLayers().find(l => l.feature &&
+        recordFor(l.feature,data)?.ags === rec.ags);
+      if (layer?.getBounds) {
+        map.fitBounds(layer.getBounds(), {maxZoom:10,minZoom:8,padding:[55,55],animate:false});
+        if (map.getZoom() < 8) map.setView(layer.getBounds().getCenter(),8,{animate:false});
+      }
+      renderCounty(rec,layer?.feature);
+    }
+    function focusState(name) {
+      const layer = states?.getLayers().find(l => l.feature?.properties?.name === name);
+      const geometry = stateFeatures.get(name);
+      const bounds = layer?.getBounds() || (geometry && L.geoJSON(geometry).getBounds());
+      if (bounds) {
+        map.fitBounds(bounds,{padding:[45,45],maxZoom:8,animate:false});
+        // Deep zoom is explicit, never automatic on first state click.
+        if (map.getZoom() < 8) map.setView(bounds.getCenter(),8,{animate:false});
+      }
+      text('map-guide-title','县市级毒品违法案件');
+      text('map-guide-desc','点击县市查看登记案件、每10万人案件率及同比变化。');
+    }
+    function selectState(name) {
+      const feature = stateFeatures.get(name);
+      if (feature) renderState(feature);
+    }
+    function resetRegion() {
+      selectedCounty = null;
+      selectedState = null;
+      if (popup) popup.hidden = true;
+      const board = el('region-navigator'),national=el('national-drug-summary');
+      if (board) board.hidden=true;
+      if (national) national.hidden=false;
+      text('map-guide-title','警方登记毒品案件 · 2025');
+      text('map-guide-desc','单击州查看汇总；点击“查看县市”或放大地图后，可以点选具体县市。');
+      map.fitBounds(NATION_BOUNDS,{padding:[13,13],animate:false});
+    }
     function showPanel() { if (isStandalone && popup) popup.hidden = false; }
     function closePanel() { if (popup) popup.hidden = true; selectedState = null; selectedCounty = null; }
     function renderCounty(rec, feature) {
       if (!rec || !metric(rec)) return;
       selectedCounty = rec.ags;
-      selectedState = null;
+      selectedState = rec.state;
+      showRegionBoard(rec.state, rec);
       if (typeof context.onSelection === 'function') {
         context.onSelection({kind:'drugs-county',feature,record:rec,metric:rec.drug_crime});
       }
@@ -140,6 +245,7 @@
       selectedState = name;
       selectedCounty = null;
       stateFeature = feature;
+      showRegionBoard(name);
       if (typeof context.onSelection === 'function') {
         context.onSelection({kind:'drugs-state',feature,name,rows,
           summedCases:rows.reduce((a,r)=>a+r.drug_crime.cases,0)});
@@ -150,22 +256,19 @@
       text('state-type', 'BKA PKS 2025 · ' + rows.length + '个已覆盖县/市');
       text('state-cases', nf.format(rows.reduce((a,r) => a+r.drug_crime.cases, 0)));
       text('state-cases-label', '已覆盖县／市案件汇总');
-      const middle = rows.length ? rows[Math.floor(rows.length / 2)].drug_crime.rate : null;
-      text('state-rate', middle == null ? '—' : nf.format(middle));
-      text('state-rate-label', '县市登记率中位值/10万人（非全州率）');
+      const stateAverage = stateStatistics.get(name)?.rateEstimate;
+      text('state-rate', stateAverage == null ? '—' : nf.format(Math.round(stateAverage)));
+      text('state-rate-label', '估算州率/10万人（由县数据推算）');
       text('state-top-title', '州内登记率较高县市');
       const list = el('state-top'); list.replaceChildren();
       rows.slice(0,8).forEach(r => list.append(linkButton(r, () => {
         const layer = counties?.getLayers().find(l => l.feature && recordFor(l.feature,data)?.ags===r.ags);
-        if (layer?.getBounds) map.fitBounds(layer.getBounds(),{maxZoom:9,padding:[35,35]});
+        if (layer?.getBounds) map.fitBounds(layer.getBounds(),{maxZoom:10,padding:[35,35],animate:false});
         renderCounty(r, layer?.feature);
       })));
-      text('state-note', '显示州内已匹配的县级记录。中位值不代表全州人均案件率；警方查处数量亦不能直接反映实际消费规模。');
+      text('state-note', '州案件数来自县级记录合计，估算人均率由已四舍五入的县级率推算，并非BKA官方州率。右侧面板可查看全部县市，点击“查看县市”后可进一步选择。');
       const focus = el('state-focus');
-      if (focus) focus.onclick = () => {
-        const layer = states?.getLayers().find(l => l.feature?.properties?.name === name);
-        if (layer?.getBounds) map.fitBounds(layer.getBounds(),{padding:[28,28],maxZoom:8});
-      };
+      if (focus) focus.onclick = () => focusState(name);
     }
     function countyStyle(f) {
       const rec = recordFor(f, data), datum = metric(rec);
@@ -224,11 +327,7 @@
       const list = el('top-list');
       if (list) {
         list.replaceChildren();
-        ordered.slice(0,12).forEach(r=>list.append(linkButton(r,()=>{
-          const layer = counties?.getLayers().find(l=>l.feature&&recordFor(l.feature,data)?.ags===r.ags);
-          if (layer?.getBounds) map.fitBounds(layer.getBounds(),{maxZoom:9,padding:[32,32]});
-          renderCounty(r,layer?.feature);
-        })));
+        ordered.slice(0,12).forEach(r=>list.append(linkButton(r,()=>focusCounty(r))));
       }
       const legends = el('legend-data');
       if (legends) {
@@ -237,10 +336,25 @@
           '<span>> '+nf.format(Math.round(breaks[5]))+'</span></div>'+
           '<div class="legend-info">按2025年县市分位着色 · 灰色为缺失</div>';
       }
+      const stateIndex = el('state-index-list');
+      if (stateIndex) {
+        stateIndex.replaceChildren();
+        [...stateStatistics.values()].sort((a,b)=>b.cases-a.cases).forEach(entry => {
+          const li=document.createElement('li'),btn=document.createElement('button');
+          btn.type='button';
+          btn.append(safeNode('span',entry.name),
+            safeNode('span',nf.format(entry.cases)+' 起'));
+          btn.title='来自'+entry.rows.length+'个县级统计的案件合计';
+          btn.onclick=()=>selectState(entry.name);
+          li.append(btn);stateIndex.append(li);
+        });
+      }
+      const home = el('region-home');
+      if (home) home.onclick=resetRegion;
       const close = el('close-state');
       if (close) close.onclick = closePanel;
       const reset = el('reset-map');
-      if (reset) reset.onclick = () => {closePanel();map.fitBounds(NATION_BOUNDS,{padding:[13,13]});};
+      if (reset) reset.onclick = resetRegion;
     }
     active = {
       map, container, updateStates,
