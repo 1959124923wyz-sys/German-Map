@@ -52,7 +52,10 @@ def main():
     wrong_duesseldorf=copy.deepcopy(counts)
     next(c for c in wrong_duesseldorf["layers"] if c["id"]=="duesseldorf")["metric"]="violence"
     assert_rejected(intake,live,wrong_duesseldorf,"total city district counts cannot be published as rates")
-    print("[city-expansion] PASS: five rate cities, four independent supplementary case-count layers, six seams preserved")
+    wrong_bv6=copy.deepcopy(counts)
+    next(c for c in wrong_bv6["layers"] if c["id"]=="duesseldorf")["drilldown"]["category_count"]=7
+    assert_rejected(intake,live,wrong_bv6,"unapproved local BV6 drilling scope")
+    print("[city-expansion] PASS: existing city seams, four source-controlled count layers, BV6 4×8 drilldown cannot fake local rates")
 
 
 if __name__=="__main__":main()

@@ -445,13 +445,57 @@ with sync_playwright() as playwright:
     assert '2022年' in page.locator('.leaflet-popup-content').inner_text()
     assert '2025年' in page.locator('.leaflet-popup-content').inner_text()
     page.screenshot(path=str(SCREENSHOT.with_name('germany-crime-map-duesseldorf-offense-2025.png')),full_page=True)
+
+    # BV6 drill-down: four official 2025 Stadtteile, eight crime categories,
+    # year history and back-to-ten-district controls. Never colour other
+    # Düsseldorf districts using BV6-only street crime categories.
+    page.click('#duesseldorfOpenBV6')
+    page.wait_for_function("window.__DUESSELDORF_BV6__?.getActive()===true",timeout=25000)
+    bv6=page.evaluate("""() => {
+        const m=window.__DUESSELDORF_BV6__,layers=m.getLayer().getLayers(),doc=m.getData();
+        const sum=k=>layers.reduce((s,x)=>s+x.feature.properties.metrics[k]['2025'],0);
+        return {count:layers.length,categoryCount:Object.keys(layers[0].feature.properties.metrics).length,
+            street:sum('street_crime'),robbery:sum('street_robbery'),bicycle:sum('bicycle_theft'),
+            injury:sum('street_injury'),all:sum('all_offenses'),
+            names:layers.map(x=>x.feature.properties.name).sort(),
+            verified:layers.every(x=>Object.values(x.feature.properties.metrics).every(v=>
+              v.rate===null && ['2022','2023','2024','2025'].every(y=>Number.isInteger(v[y])))),
+            parentVisible:document.querySelector('#duesseldorfCountPanel')?.hidden === false,
+            subPanel:document.querySelector('#duesseldorfBV6Panel')?.hidden === false,
+            mapHasParent:window.__CRIME_MAP__.map.hasLayer(window.__DUESSELDORF_COUNT_MAP__.getLayer())}
+    }""")
+    assert bv6['count']==4 and bv6['categoryCount']==8,bv6
+    assert bv6['all']==5097 and bv6['street']==1366 and bv6['robbery']==10,bv6
+    assert bv6['bicycle']==126 and bv6['injury']==45,bv6
+    assert bv6['verified'] and not bv6['parentVisible'] and bv6['subPanel'] and not bv6['mapHasParent'],bv6
+    assert bv6['names']==['Lichtenbroich','Mörsenbroich','Rath','Unterrath'],bv6
+    page.locator('#duesseldorfBV6Metric').select_option('bicycle_theft')
+    assert page.evaluate("window.__DUESSELDORF_BV6__.getMetric()")=='bicycle_theft'
+    page.evaluate("""() => {window.__DUESSELDORF_BV6__.getLayer().getLayers()[0].fire('click');return true;}""")
+    assert '2022年' in page.locator('.leaflet-popup-content').inner_text()
+    assert '2025年' in page.locator('.leaflet-popup-content').inner_text()
+    page.screenshot(path=str(SCREENSHOT.with_name('germany-crime-map-duesseldorf-bv6-stadtteile.png')),full_page=True)
+    page.click('#duesseldorfBV6Back')
+    assert page.evaluate("window.__DUESSELDORF_BV6__.getActive()") is False
+    assert page.evaluate("window.__CRIME_MAP__.map.hasLayer(window.__DUESSELDORF_COUNT_MAP__.getLayer())") is True
+    assert page.locator('#duesseldorfCountPanel').is_visible()
+    page.click('#duesseldorfOpenBV6')
+    page.wait_for_function("window.__DUESSELDORF_BV6__?.getActive()===true",timeout=20000)
+    # Close the parent overlay while drilldown is open: must remove all
+    # BV6 surfaces and restore the national/state pointer navigation.
+    page.evaluate("window.__DUESSELDORF_COUNT_MAP__.disable()")
+    assert page.evaluate("window.__DUESSELDORF_BV6__.getActive()") is False
+    assert page.evaluate("window.__DUESSELDORF_COUNT_MAP__.getActive()") is False
+    assert not page.locator('#duesseldorfBV6Panel').is_visible()
+    page.click('#focusDuesseldorfCount')
+    page.wait_for_function("window.__DUESSELDORF_COUNT_MAP__?.getActive()===true",timeout=20000)
     page.click('#duesseldorfCountClose')
     assert page.evaluate("window.__DUESSELDORF_COUNT_MAP__.getActive()") is False
     page.click('#focusStuttgartViolence')
     page.wait_for_function("window.__STUTTGART_PUBLIC_MAP__?.getActive()===true",timeout=20000)
     assert page.evaluate("window.__DUESSELDORF_COUNT_MAP__.getActive()") is False
     page.click('#stuttgartViolenceClose')
-    print("[duesseldorf-count-regression] PASS: 10 polygons, 2022–2025 source counts, residual 1298, real popup, no rates, city switching",flush=True)
+    print("[duesseldorf-count-regression] PASS: 10 polygons, BV6 4-area 8-category drilldown, return/reopen/disable and real popup, no rate confusion",flush=True)
 
     assert not errors, errors
     print(json.dumps({
@@ -467,6 +511,7 @@ with sync_playwright() as playwright:
         "bremen":bremen,
         "stuttgart":stuttgart,
         "duesseldorf":duesseldorf,
+        "duesseldorf_bv6":bv6,
         "page_errors":errors,
     },ensure_ascii=False))
     browser.close()

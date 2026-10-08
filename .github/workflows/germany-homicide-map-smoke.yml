@@ -86,6 +86,7 @@ jobs:
           node --check js/layers/bremen-category-detail.js
           node --check js/layers/stuttgart-public-violence.js
           node --check js/layers/duesseldorf-count-detail.js
+          node --check js/layers/duesseldorf-bv6-detail.js
 
       - name: Test deterministic city builder I/O
         run: python scripts/test_city_build_common.py
