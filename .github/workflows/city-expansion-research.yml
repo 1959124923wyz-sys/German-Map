@@ -9,6 +9,7 @@ on:
       - 'scripts/probe_kiel_sources.py'
       - 'scripts/build_kiel_staging.py'
       - 'scripts/probe_kiel_population.py'
+      - 'scripts/probe_city_batch2_sources.py'
 
 permissions:
   contents: read
@@ -30,3 +31,5 @@ jobs:
         run: python scripts/build_kiel_staging.py
       - name: Inspect official district population data
         run: python scripts/probe_kiel_population.py
+      - name: Probe official Stuttgart and Bremen district statistics
+        run: python scripts/probe_city_batch2_sources.py
