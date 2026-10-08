@@ -25,7 +25,7 @@ KNOWN={
 def source_table(pdf):
     reader=PdfReader(io.BytesIO(pdf))
     if len(reader.pages)<5:raise ValueError("Düsseldorf presentation PDF truncated")
-    text=reader.pages[1].extract_text(extraction_mode="layout") or reader.pages[1].extract_text() or ""
+    text=reader.pages[1].extract_text() or ""
     if "Gesamtkriminalität aller Stadtbezirke" not in text or "BV 10" not in text:
         raise ValueError("Not the Düsseldorf official 10-district total crime table")
     data={}
