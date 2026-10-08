@@ -60,7 +60,8 @@ def municipal_units(feature_type):
         code = props.get(id_field, "")
         if not name or not code or normal(name) in units:
             raise RuntimeError(f"Malformed/duplicate official {unit_kind}: {name!r} / {code!r}")
-        units[normal(name)] = {"kind": unit_kind, "name": name, "code": code}
+        units[normal(name)] = {"kind": unit_kind, "name": name, "code": code,
+                               "parent_stadtteil": props.get("bez_st", "")}
     expected = 87 if unit_kind == "ortsteil" else 19
     if len(units) != expected:
         raise RuntimeError(f"Expected {expected} {feature_type}, got {len(units)}")
@@ -75,9 +76,15 @@ def joining(titles, districts, neighbourhoods):
         # The police deliberately groups these areas in Tables 6 and 22.
         # No numerical split between component polygons is implied.
         if number == 6:
+            if "industriehafen" not in label_norm:
+                problems.append({"table": number, "reason": "police table 6 grouping changed", "label": label})
             target = [("stadtteil", "Gröpelingen"), ("ortsteil", "Industriehäfen")]
         elif number == 22:
-            target = [("stadtteil", "Woltmershausen"), ("ortsteil", "Neustädter Hafen")]
+            if (normal("Neustädter Hafen") not in label_norm or
+                    normal("Hohentorshafen") not in label_norm):
+                problems.append({"table": number, "reason": "police table 22 grouping changed", "label": label})
+            target = [("stadtteil", "Woltmershausen"),
+                      ("ortsteil", "Neustädter Hafen"), ("ortsteil", "Hohentorshafen")]
         elif label_norm.startswith("stadtteil"):
             target = [("stadtteil", re.sub(r"^Stadtteil\s+", "", label, flags=re.I))]
         elif label_norm.startswith("ortsteil"):
@@ -101,8 +108,18 @@ def joining(titles, districts, neighbourhoods):
         })
     if len({(x["kind"], x["code"]) for r in records for x in r["geometry_units"]}) != sum(len(r["geometry_units"]) for r in records):
         problems.append({"reason": "same official polygon reused in two police statistical areas"})
+    used = {(x["kind"], x["code"]) for r in records for x in r["geometry_units"]}
     uncovered_districts = [v["name"] for k, v in districts.items()
-                           if not any(v["code"] == x["code"] for r in records for x in r["geometry_units"])]
+                           if (v["kind"], v["code"]) not in used]
+    if uncovered_districts != ["Häfen"]:
+        problems.append({"reason": "unexpected entirely unrepresented Stadtteil", "names": uncovered_districts})
+    harbor = {v["code"]: v["name"] for v in neighbourhoods.values()
+              if normal(v["parent_stadtteil"]) == normal("Häfen")}
+    assigned_harbor = {x["code"]: x["name"] for r in records for x in r["geometry_units"]
+                       if x["kind"] == "ortsteil" and x["code"] in harbor}
+    if harbor != assigned_harbor or len(harbor) != 3:
+        problems.append({"reason": "Häfen Ortsteile not covered exactly once",
+                         "harbor": harbor, "assigned": assigned_harbor})
     return records, problems, uncovered_districts
 
 
