@@ -5,6 +5,9 @@
     map, getStateGeo, getStatePanel, tooltipHtml, onChange,
   }) {
     let layer = null;
+    // Reuse one renderer across zooms. Creating a new SVG renderer for every
+    // zoomend would leak empty DOM containers and eventually hinder clicks.
+    const stateRenderer = L.svg({pane:'statePane',padding:.2});
 
     function style(feature) {
       const selected = feature?.properties?.name === getStatePanel()?.selectedName;
@@ -26,9 +29,8 @@
       // Leaflet's default preferCanvas renderer missed genuine pointer clicks
       // on nearly transparent state fills. A dedicated SVG renderer gives
       // every state's interior its own browser hit target.
-      const renderer = L.svg({pane:'statePane',padding:.2});
       layer = L.geoJSON(geo,{
-        pane:'statePane',renderer,style,interactive,
+        pane:'statePane',renderer:stateRenderer,style,interactive,
         onEachFeature:(feature,target)=>{
           if (!interactive) return;
           target.bindTooltip(()=>tooltipHtml(feature),{sticky:true,direction:'top',className:'state-tip'});
