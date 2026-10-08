@@ -85,6 +85,16 @@ jobs:
       - name: Build registered city detail layers
         run: python scripts/build_city_layers.py
 
+      - name: Refresh official Dresden complete municipal boundary
+        run: |
+          if ! python scripts/build_dresden_city_boundary.py; then
+            if [ ! -s data/dresden-city-boundary.geojson ]; then
+              echo "No current or last-known-good official Dresden boundary" >&2
+              exit 1
+            fi
+            echo "::warning::Dresden WFS unavailable; retaining last-known-good boundary"
+          fi
+
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py
 

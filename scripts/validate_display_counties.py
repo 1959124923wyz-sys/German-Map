@@ -45,6 +45,30 @@ def main():
             f"{ags} missing {city_gap:.1f} m² of official city detail "
             f"(tolerance {tol_m2:.1f} m²)"
         )
+        if ags=="14612":
+            extra=city.difference(detail).area
+            assert extra<tol_m2, (
+                f"Dresden display city exceeds its official municipal boundary "
+                f"by {extra:.1f} m²"
+            )
+            # The police atlas's 61 Stadtteile do NOT cover all of Dresden.
+            districts=load("data/dresden_local_2025.geojson")
+            local_union=unary_union([
+                transform(to_m,shape(f["geometry"])) for f in districts["features"]
+            ])
+            assert len(districts["features"])==61, "Dresden lost a police-atlas district"
+            spill=local_union.difference(city).area
+            assert spill < local_union.area*.02, (
+                f"Dresden Stadtteile extend {spill/1e6:.2f} km² beyond official city"
+            )
+            uncovered=city.difference(local_union).area
+            assert uncovered>20e6, (
+                "Dresden city must retain its unclassified outer area; "
+                "never stretch local crime rates to fill the municipality"
+            )
+            print(f"[boundary] Dresden partial district detail: "
+                  f"unclassified city area={uncovered/1e6:.2f} km², "
+                  f"district outside official city={spill/1e6:.3f} km²")
         touch=0.0
         for k,feature in idx.items():
             if k==ags:continue

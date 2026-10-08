@@ -191,6 +191,32 @@ with sync_playwright() as playwright:
     assert munich["surroundingCountyOpacity"]>0.25, "Landkreis München 09184 must remain visible"
     page.screenshot(path=str(SCREENSHOT.with_name("germany-crime-map-munich.png")),full_page=True)
 
+    # Dresden's full municipal polygon retains a city-wide fill beneath
+    # the 61 police-atlas neighbourhoods, which are not a complete city border.
+    page.click("#focusCity_dresden")
+    page.wait_for_function("""() => {
+        const m=window.__CRIME_MAP__.map;
+        let n=0;
+        m.eachLayer(l=>{
+            if(l instanceof L.GeoJSON && l.getLayers()?.some(x=>x.feature?.properties?.city==='Dresden'))
+                n=l.getLayers().filter(x=>x.feature?.properties?.city==='Dresden').length;
+        });
+        return m.getZoom()>=8 && n===61;
+    }""",timeout=25000)
+    dresden=page.evaluate("""() => {
+        const county=window.__CRIME_MAP__.getCountyLayer().getLayers()
+            .find(x=>String(x.feature?.id)==='14612');
+        return {
+            cityFillOpacity:county?.options?.fillOpacity,
+            cityBorderWeight:county?.options?.weight,
+            coverageNote:document.querySelector('.generic-city-legend')?.textContent||''
+        }
+    }""")
+    assert .25 < dresden["cityFillOpacity"] < .6, dresden
+    assert dresden["cityBorderWeight"] > 0, dresden
+    assert "外围市域" in dresden["coverageNote"], dresden
+    page.screenshot(path=str(SCREENSHOT.with_name("germany-crime-map-dresden.png")),full_page=True)
+
     assert not errors, errors
     print(json.dumps({
         "result":"PASS",
@@ -200,6 +226,7 @@ with sync_playwright() as playwright:
         "berlin":True,
         "hamburg":True,
         "munich":munich,
+        "dresden":dresden,
         "page_errors":errors,
     },ensure_ascii=False))
     browser.close()

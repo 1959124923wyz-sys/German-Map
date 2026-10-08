@@ -34,9 +34,9 @@ CITY_SOURCES={
   "02000":"data/hamburg_local_2025.geojson",
   "14713":"data/leipzig_local_2025.geojson",
   "14511":"data/chemnitz_local_2025.geojson",
-  # Dresden's two available boundaries differ by >20% in overlap.
-  # Deliberately keep Dresden's existing official county geometry until a
-  # matching high-resolution boundary dataset is confirmed.
+  # Dresden's 61 local Stadtteile cover only part of the municipality.
+  # Use the separately retrieved official complete KUEK5 city outline.
+  "14612":"data/dresden-city-boundary.geojson",
 }
 TO_METRIC=Transformer.from_crs("EPSG:4326","EPSG:3035",always_xy=True).transform
 TO_WGS84=Transformer.from_crs("EPSG:3035","EPSG:4326",always_xy=True).transform
@@ -136,8 +136,15 @@ def main():
                 continue
             assigned[winner].append(gap)
 
-        # Preserve genuine internal holes as part of the urban municipality,
-        # because no district geometry is present in such exceptional spaces.
+        # Dresden's KUEK5 polygon is the complete official city border.
+        # Never merge leftover coarse fringe back into that municipality.
+        if ags=="14612" and unassigned:
+            for gap in unassigned:
+                winner=min((k for k in range(len(county)) if k!=index),
+                           key=lambda k:(county[k].distance(gap),k))
+                assigned[winner].append(gap)
+            unassigned=[]
+        # Other cities can retain genuinely unassigned internal holes.
         if unassigned:
             county[index]=polygons_only(valid(unary_union([county[index],*unassigned])))
             changed.add(index)

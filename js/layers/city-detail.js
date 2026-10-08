@@ -56,7 +56,14 @@ function baseLayerFor(c){
   return cl.getLayers().find(l=>recordForFeature(l.feature,d)?.name===c.name&&l.feature?.properties?.districtType!=='Landkreis')||null
 }
 function restoreBase(c){const cl=api.getCountyLayer?.(),l=baseLayerFor(c);if(cl&&l)cl.resetStyle(l)}
-function hideBase(c){const l=baseLayerFor(c);if(l)l.setStyle({color:'transparent',weight:0,opacity:0,fillOpacity:0})}
+function hideBase(c){
+  const l=baseLayerFor(c);if(!l)return;
+  if(c.coverage==='partial'){
+    // The 61 Dresden Stadtteile cover only part of the municipality.
+    // Retain a subdued city-wide annual PKS color outside those polygons.
+    l.setStyle({color:'#667785',weight:.7,opacity:.7,fillOpacity:.39});
+  }else l.setStyle({color:'transparent',weight:0,opacity:0,fillOpacity:0});
+}
 function areaFor(c,data,f){
   const key=metricKey(),cfg=c.metrics[key],p=f.properties||{},m=p?.[cfg.field]||{},rate=Number(m.rate),cases=Number(m.cases||0),vals=values(data,cfg.field),pc=percentile(rate,vals);
   const recent=(api.getCaseData()?.cases||[]).filter(x=>caseMatches(x,key)&&Number.isFinite(x.lon)&&Number.isFinite(x.lat)&&pointInGeometry(x.lon,x.lat,f.geometry)).length;
@@ -77,7 +84,7 @@ function addLegend(c,data){
   const root=$('legend');if(!root||root.querySelector('.generic-city-legend'))return;
   const cfg=c.metrics[metricKey()],b=quantileBreaks(values(data,cfg.field)),pal=api.getMode()==='property'?COOL:WARM;
   const labs=[...b.map(x=>'≤'+fmt(Math.round(x))), '>'+fmt(Math.round(b[5]||0))];
-  root.insertAdjacentHTML('beforeend','<div class="legend-block generic-city-legend"><div class="legend-title">'+esc(c.name_zh||c.name)+' · 官方城市细分层</div><div>'+esc(cfg.label)+' · 每10万人/年</div><div class="scale">'+pal.map(x=>'<span style="background:'+x+'"></span>').join('')+'</div><div class="legend-labels">'+labs.map(x=>'<span>'+x+'</span>').join('')+'</div></div>')
+  root.insertAdjacentHTML('beforeend','<div class="legend-block generic-city-legend"><div class="legend-title">'+esc(c.name_zh||c.name)+' · 官方城市细分层</div><div>'+esc(cfg.label)+' · 每10万人/年</div><div class="scale">'+pal.map(x=>'<span style="background:'+x+'"></span>').join('')+'</div><div class="legend-labels">'+labs.map(x=>'<span>'+x+'</span>').join('')+'</div>'+(c.coverage_note?'<div class="city-coverage-note">'+esc(c.coverage_note)+'</div>':'')+'</div>')
 }
 async function rebuild(){
   const next=matchingCity(),nextKey=next?next.id+':'+api.getMode()+':'+metricKey():null;

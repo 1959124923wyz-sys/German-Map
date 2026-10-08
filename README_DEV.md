@@ -39,14 +39,18 @@ overlapping colors around municipal borders.
   district IDs, crime statistics, or derived rates to cosmetically hide strips.
 - `scripts/build_display_counties.py` constructs
   `data/germany-counties-display.geojson` as a **display-only** nationwide
-  geometry. The high-resolution city union becomes the canonical outer border,
+  geometry. The high-resolution city union (or Dresden's official full-city polygon) becomes the canonical outer border,
   and the older coarse-county fringe is reallocated to the adjacent county.
 - The map reads `germany-counties-display.geojson`, while the raw county
   source remains available for auditing or rebuilding.
 - Current harmonized cities: **Berlin, München Stadt (AGS 09162), Hamburg,
-  Leipzig, Chemnitz**. Dresden is **deliberately excluded** because the
-  published municipal geometries differ too substantially to safely replace
-  the county boundary.
+  Leipzig, Chemnitz, Dresden**. Dresden's 61 police-atlas Stadtteile cover
+  only part of the city (~267 km²) and must NOT be used as the outer municipal
+  limit. Its full city boundary comes from the Landeshauptstadt Dresden official
+  **KUEK5 Stadtgrenze** cadastral WFS (1:5,000, NodeId 111 / cls:L84);
+  `scripts/build_dresden_city_boundary.py` stores it separately.
+  The uncovered outer territory retains a subdued city-wide annual PKS fill,
+  never a fabricated neighbourhood crime rate.
 - City `county_ags` in `data/city_layers.json` is required for
   unambiguous county suppression. Name matching is unsafe for München Stadt
   versus Landkreis München.

@@ -82,6 +82,14 @@ jobs:
       - name: Rebuild Munich city layer with WGS84 coordinates
         run: python scripts/build_city_layers.py --city munich
 
+      - name: Ensure official Dresden complete municipal boundary
+        run: |
+          if [ ! -s data/dresden-city-boundary.geojson ]; then
+            python scripts/build_dresden_city_boundary.py
+          else
+            echo "Use versioned Dresden boundary for reproducible smoke tests"
+          fi
+
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py
 
