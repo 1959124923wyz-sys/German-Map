@@ -1,0 +1,35 @@
+name: Inspect Dresden municipal boundary WFS
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/dresden-boundary-inspect.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Probe official municipal feature types
+        run: |
+          python - <<'PY'
+          import urllib.request, urllib.parse, xml.etree.ElementTree as ET
+          base='https://kommisdd.dresden.de/net3/public/ogc.ashx'
+          for node in (3,111,700):
+              query=urllib.parse.urlencode(dict(NodeId=node,Service='WFS',Request='GetCapabilities'))
+              try:
+                  req=urllib.request.Request(base+'?'+query,headers={'User-Agent':'GermanMap-source-validation/1.0'})
+                  with urllib.request.urlopen(req,timeout=45) as resp:
+                      data=resp.read(3_000_000)
+                  root=ET.fromstring(data)
+                  types=[]
+                  for item in root.iter():
+                      if item.tag.split('}')[-1]=='FeatureType':
+                          names=[x.text for x in item if x.tag.split('}')[-1] in ('Name','Title')]
+                          types.append(names)
+                  print('WFS Node',node,'root',root.tag,'bytes',len(data),'types',types[:25],flush=True)
+              except Exception as ex:
+                  print('WFS Node',node,'ERROR',repr(ex),flush=True)
+          PY
