@@ -142,10 +142,14 @@ def main():
                 a = projected[i].intersection(projected[j]).area
                 if a > 1:
                     pair_overlap.append((i+1, j+1, round(a, 2)))
-    # Stadtteile omit the standalone rural Ortsteile (Blockland, Borgfeld,
-    # Seehausen, Strom); they are NOT an exhaustive city boundary.
-    # The official 87 Ortsteile are the complete municipality partition.
-    city_from_admin = unary_union([v["geom"] for v in neighbourhoods.values()])
+    # Neither of the two official WFS feature collections is complete alone:
+    # 19 Stadtteile omit independent rural areas and the 87 Ortsteile omit
+    # other Stadtteil-only surfaces. Their UNION is the independent official
+    # coverage baseline; don't invent geometries to fill any remainder.
+    city_from_admin = unary_union(
+        [v["geom"] for v in districts.values()] +
+        [v["geom"] for v in neighbourhoods.values()]
+    )
     drawn = unary_union(shapes)
     official_m = transform(TO_METRIC, city_from_admin)
     drawn_m = transform(TO_METRIC, drawn)
@@ -158,7 +162,7 @@ def main():
         "reporting_areas": len(shapes),
         "official_stadtteile": len(districts),
         "official_ortsteile": len(neighbourhoods),
-        "baseline": "union of all 87 official Bremen Ortsteile (not just 19 Stadtteile)",
+        "baseline": "union of the original 19 Stadtteile and 87 Ortsteile official WFS features",
         "official_area_km2": km2(city_from_admin),
         "mapped_area_km2": km2(drawn),
         "uncovered_km2": round(gap / 1e6, 4),
