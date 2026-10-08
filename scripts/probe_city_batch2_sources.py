@@ -57,8 +57,22 @@ def bremen():
     if len(titles)<20:
         raise RuntimeError("Bremen district statistic table structure not recognized")
 
+
+def bremen_geometry():
+    import xml.etree.ElementTree as ET
+    url="https://geodienste.bremen.de/wfs_verwaltungsgrenzen"
+    raw=download_bytes(url,{"SERVICE":"WFS","REQUEST":"GetCapabilities"},timeout=55)
+    root=ET.fromstring(raw)
+    names=[]
+    for ft in root.iter():
+        if ft.tag.split("}")[-1]=="FeatureType":
+            items=[v.text for v in ft if v.tag.split("}")[-1] in ("Name","Title")]
+            names.append(items)
+    print("[batch2] bremen WFS",json.dumps({
+        "bytes":len(raw),"features":names[:35]},ensure_ascii=False)[:5400],flush=True)
+
 def main():
-    for name,probe in (("stuttgart",stuttgart),("bremen",bremen)):
+    for name,probe in (("stuttgart",stuttgart),("bremen",bremen),("bremen_geo",bremen_geometry)):
         try:probe()
         except Exception as e:
             print("[batch2] "+name+" BLOCKED "+repr(e),flush=True)

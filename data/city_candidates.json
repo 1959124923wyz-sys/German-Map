@@ -98,11 +98,11 @@
       "priority": 3,
       "crime_source": {
         "publisher": "Statistisches Amt Stuttgart / Polizeipräsidium Stuttgart",
-        "year": 2025,
+        "year": 2022,
         "granularity": "Stadtbezirk",
         "measure": "Straßen- und Gewaltkriminalität, offences and suspects",
         "url": "https://opendata.stuttgart.de/dataset/strassen-und-gewaltkriminalitaet-straftaten-und-tatverdaechtige",
-        "evidence": "Official Stuttgart OpenData CKAN dataset updated 2026-09-16; specifically states spatial granularity Stadtbezirk and describes police street/violent offences since 2008; CSV offered with CC BY 4.0."
+        "evidence": "Verified via official CKAN CSV in GitHub Actions 2026-10-08: 361 rows covering 2008–2022, 23 official Stadtbezirke plus 'unbekannt'; columns street crime and Gewaltkriminalität recorded cases. Dataset webpage metadata appears newer than the ACTUAL CSV; no 2023–2025 rows. CC BY 4.0."
       },
       "geometry_source": {
         "publisher": "Stadt Stuttgart",
@@ -113,9 +113,9 @@
       },
       "metric_alignment": "unverified",
       "blocking_issues": [
-        "Download original CSV, inspect district IDs, category schema and 2025 rows.",
-        "Find full official Stadtbezirk geometry and 2025 district population before crime-rate rendering.",
-        "Confirm exact Gewaltkriminalität definition vs BKA or label documented local proxy."
+        "Locate genuinely current 2025 district-level crime rows; existing CSV only contains 2008–2022, despite modern webpage update date.",
+        "Confirm official 23 Stadtbezirk geographic boundaries and suitable contemporary population.",
+        "For historic map expansion, build 2008–2022 layer labelled explicitly historical, never present it as 2025."
       ]
     },
     {
@@ -159,21 +159,22 @@
         "year": 2025,
         "granularity": "22 Stadtteil/Beiratsbereiche (incl. specific Ortsteile)",
         "measure": "total offenses, sex, robbery, injury, burglary, theft and drugs (2024–2025)",
-        "url": "https://www.rathaus.bremen.de/sixcms/media.php/13/20260623_top_28_Kriminalitaet_in_den_Stadtteilen_Bremens.pdf",
-        "evidence": "Official 23 June 2026 Senat reply: tables 1–22 give 2024 and 2025 local offenses, robbery 210000, injury 220000, theft ****00, burglary 435*00, sexual 100000. Caveat: city aggregate exceeds local sum because some cases lack sub-city assignment."
+        "url": "https://www.bremische-buergerschaft.de/dokumente/wp21/land/drucksache/D21L1866.pdf",
+        "evidence": "Verified 2026-10-08 in GitHub Actions: the parliamentary Drucksache 21/1866 PDF downloads successfully (15 pages), with 22 titled tables for official 2024–2025 Stadtteil/Ortsteil PKS offense counts, including sex, robbery, injury, theft and burglary. The Rathaus Bremen host returns 403 to GitHub runners."
       },
       "geometry_source": {
-        "publisher": "Statistisches Landesamt Bremen",
-        "year": 2025,
-        "format": "Ortsteile tables",
-        "url": "https://www.statistik.bremen.de/datenangebote/stadtteil-und-ortsteiltabellen-4529",
-        "evidence": "Public district-level socioeconomic/population tables; not by itself a crime dataset."
+        "publisher": "Landesamt GeoInformation Bremen",
+        "year": 2024,
+        "format": "Official ATKIS WFS Verwaltungsgrenzen Stadtteile + Ortsteile",
+        "url": "https://geodienste.bremen.de/wfs_verwaltungsgrenzen?SERVICE=WFS&REQUEST=GetCapabilities",
+        "evidence": "Official WFS administrative districts includes Stadtteile and Ortsteile for Bremen and Bremerhaven; licensed CC BY 4.0, attribution GeoInformation Bremen. Need inspect feature names and join multi-area police units."
       },
       "metric_alignment": "unverified",
       "blocking_issues": [
-        "Identify official 22 Stadtteil/Beiratsbereiche exact geographic polygon joins, including special grouped areas (e.g. Gröpelingen + Industriehäfen).",
-        "Obtain official 2025 district population for meaningful rates; preserve unallocated city-wide crime counts.",
-        "Confirm source license/reuse (Transparency Portal metadata labels document CC BY-NC-ND) and exact offense category definitions before publication."
+        "Verify official WFS feature types and complete matching Bremen's 22 2025 police reporting units; combine only explicitly documented joined Stadtteile/Ortsteile.",
+        "Match 2025 population by reporting unit before creating per-100k rates, otherwise use clearly labelled counts.",
+        "Document police data citywide vs area sum discrepancies and preserve unassigned incidents.",
+        "Review legal reuse notice for the parliamentary document (Transparency Portal shows CC BY-NC-ND for the PDF): extract only objective aggregate figures with attribution, don't redistribute or alter PDF."
       ]
     },
     {
