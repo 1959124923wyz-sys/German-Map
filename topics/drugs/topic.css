@@ -57,3 +57,6 @@ button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:
 #status{font-size:11px;color:#66777e}
 @media(max-width:940px){.workspace{display:block}.map-area,#drug-map{min-height:490px;height:59vh}.sidebar{max-height:none;border-left:0;border-top:1px solid var(--line)}.topbar{padding:13px}.state-flyout{right:9px;top:9px}.legend{bottom:11px;left:9px}.map-shade{left:9px;top:9px}}
 @media(max-width:560px){.map-shade{max-width:205px;padding:9px}.map-shade small{display:none}.legend{max-width:175px;min-width:175px;padding:9px}.toplinks{gap:8px}.brand{font-size:17px}}
+
+/* Match the three first-level navigation choices across map pages. */
+.toplinks{gap:6px;flex-wrap:wrap}.toplinks .modebtn{display:inline-flex;align-items:center;justify-content:center;border:1px solid #d1dade;background:#f3f6f7;color:#38505c;border-radius:999px;padding:7px 12px;font-size:12px;white-space:nowrap;text-decoration:none}.toplinks .modebtn:hover{background:#e6edf0}.toplinks .modebtn.active{background:#965a40;border-color:#965a40;color:#fff;font-weight:700}
