@@ -61,7 +61,7 @@ def police_rows(data):
             # label (e.g. "Stuttgart Nord Gewaltkriminalität 36").
             context=t[match[ix-1].end():m.end()]
             if norm(name) not in norm(context):
-                raise ValueError(f"Landtag district table order/name mismatch at {ix}: expected {name}")
+                raise ValueError(f"Landtag district table order/name mismatch at {ix}: expected {name}; row={m.group(0)!r}; context_tail={context[-800:]!r}")
             result.append({"name":name,"metrics":values})
         else:
             if values!={"public_violence":1636,"public_robbery":358,"public_serious_injury":1243}:
