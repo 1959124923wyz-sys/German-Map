@@ -58,14 +58,20 @@ jobs:
           assert all(len(s['observations'])==6 for s in data['sites'])
           evidence=json.load(open('topics/drugs/data/state_health_offences_2025.json'))
           assert evidence['meta']['year']==2025
-          assert len(evidence['mortality_by_state'])>=9
-          assert len(evidence['selected_offence_codes_by_state'])>=2
+          assert len(evidence['mortality_by_state'])==12
+          assert len(evidence['selected_offence_codes_by_state'])==5
+          assert len(evidence['other_health_indicators_by_state'])==1
           for state,x in evidence['mortality_by_state'].items():
               assert x['cases']>=0 and x['source_url'].startswith('https://')
           for state,x in evidence['selected_offence_codes_by_state'].items():
-              assert x['source_url'].startswith('https://') and x['groups']
+              assert x['source_url'].startswith('https://')
+              assert x['groups'] or x.get('additional_metrics')
               assert all(row['general']>=0 and row['trade']>=0 for row in x['groups'])
-          print('PASS 2025 state deaths and verified offence codes',len(evidence['mortality_by_state']))
+              assert all(row['cases']>=0 for row in x.get('additional_metrics', []))
+          for state,x in evidence['other_health_indicators_by_state'].items():
+              assert x['source_url'].startswith('https://')
+              assert all(row['cases']>=0 and row['previous_2024']>=0 for row in x['metrics'])
+          print('PASS 2025 evidence: 12 state deaths, 5 state offence groups, 1 state health source')
           print('PASS EUDA wastewater 13 German sites, six substances')
           PY
       - name: Configure Pages
