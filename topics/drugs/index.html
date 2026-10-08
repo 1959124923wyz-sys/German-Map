@@ -50,7 +50,7 @@
     <div class="tabset" role="group" aria-label="专题数据类别">
       <button type="button" class="selected" id="drugs-tab-crime" aria-current="true">违法案件</button>
       <button type="button" id="drugs-tab-wastewater" aria-current="false">消费检测</button>
-      <button type="button" disabled title="等待按地区可用的卫生统计">健康危害（待接入）</button>
+      <button type="button" id="drugs-tab-news" aria-current="false">近期通报</button>
     </div>
     <div id="drugs-crime-content">
     <div class="region-navigator" id="region-navigator" hidden aria-live="polite">
@@ -148,11 +148,45 @@
       <p class="note">2025年实测点，2026年发布。站点坐标来自EUDA污水处理设施信息表，部分点是多处理厂的汇总。此数据未根据代谢排泄系数换算为实际消费量、吸毒人数或使用比例。海洛因因缺乏稳定特异性指标暂不设此图层。</p>
       <div class="source-links"><a href="https://www.euda.europa.eu/publications/pods/waste-water-analysis_de" target="_blank" rel="noopener noreferrer">EUDA原始数据与方法 ↗</a></div>
     </div>
+    <section id="drugs-news-content" hidden aria-label="德国近期毒品事件通报">
+      <div class="row"><h3 class="section-title">近期毒品相关通报</h3><span class="subtle-note" id="drug-news-updated">近90天</span></div>
+      <p class="intro">警方公开通报的贩毒、查获、非法生产与部分毒品中毒事件；另列全国死亡统计公告。不是所有实际发生的案件。</p>
+      <div class="statgrid">
+        <div class="metricbox"><div class="metricvalue" id="drug-news-count">—</div><div class="metriclabel">当前筛选的公开通报</div></div>
+        <div class="metricbox"><div class="metricvalue" id="drug-news-mapped">—</div><div class="metriclabel">可定位到城市的通报</div></div>
+      </div>
+      <div class="news-filters">
+        <label for="drug-news-type">事件类别</label>
+        <select id="drug-news-type">
+          <option value="all">全部事件</option>
+          <option value="trade">贩卖／走私</option>
+          <option value="seizure">查获／搜查</option>
+          <option value="production">非法生产／种植</option>
+          <option value="death">吸毒死亡／中毒急救</option>
+          <option value="health">公共卫生／政策公告</option>
+        </select>
+        <label for="drug-news-state">所在地区</label>
+        <select id="drug-news-state"><option value="all">德国全国</option></select>
+      </div>
+      <div class="row news-headline-row">
+        <span class="subtle-note" id="drug-news-status">正在载入来源…</span>
+        <button type="button" class="secondary-button" id="drug-news-fit">查看新闻点位</button>
+      </div>
+      <ol id="drug-news-list" class="drug-news-list" aria-live="polite"></ol>
+      <button type="button" class="secondary-button drug-news-more" id="drug-news-more" hidden>显示更多通报</button>
+      <div class="barline"></div>
+      <p class="note">地图圆点为**城市级大致位置**，不是案发街道或毒品消费地点；全国年度死亡统计不绘制为点。日期为**报道发布日期**，可能晚于案件发生时间。点击条目可定位并打开来源，死亡等数据应按原文具体口径理解。</p>
+      <div class="source-links">
+        <a target="_blank" rel="noopener noreferrer" href="https://www.presseportal.de/blaulicht/st/Drogenhandel">Presseportal · 警方毒品通报 ↗</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/">德国官方毒品死亡统计 ↗</a>
+      </div>
+    </section>
   </aside>
 </main>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="../../js/layers/city-labels.js?v=20261008-shared-v2"></script>
 <script src="wastewater.js?v=20261008-euda-v1"></script>
-<script src="topic.js?v=20261008-city-labels-v2"></script>
+<script src="news.js?v=20261008-drugnews-v1"></script>
+<script src="topic.js?v=20261008-drugnews-v1"></script>
 </body>
 </html>
