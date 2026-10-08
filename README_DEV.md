@@ -29,6 +29,38 @@ scripts/*.py                    source adapters, updaters and validators
 
 The public page should not contain large inline CSS or JavaScript blocks. New city detail layers should normally be added through `data/city_layers.json` and a generated GeoJSON file, not by adding city-specific branches to `index.html`.
 
+## City/county seam topology (October 2026)
+
+Annual city and county boundaries are both official, but they use different
+cartographic scales. Overlaying them directly produces visible slivers and
+overlapping colors around municipal borders.
+
+- **Do not modify** `data/germany-counties.geojson`, official city GeoJSON,
+  district IDs, crime statistics, or derived rates to cosmetically hide strips.
+- `scripts/build_display_counties.py` constructs
+  `data/germany-counties-display.geojson` as a **display-only** nationwide
+  geometry. The high-resolution city union becomes the canonical outer border,
+  and the older coarse-county fringe is reallocated to the adjacent county.
+- The map reads `germany-counties-display.geojson`, while the raw county
+  source remains available for auditing or rebuilding.
+- Current harmonized cities: **Berlin, München Stadt (AGS 09162), Hamburg,
+  Leipzig, Chemnitz**. Dresden is **deliberately excluded** because the
+  published municipal geometries differ too substantially to safely replace
+  the county boundary.
+- City `county_ags` in `data/city_layers.json` is required for
+  unambiguous county suppression. Name matching is unsafe for München Stadt
+  versus Landkreis München.
+- `scripts/validate_display_counties.py` checks that all 402 county IDs
+  and properties remain unchanged, and the fine city geometry has no visible
+  gaps/overlaps with neighbouring display counties. EPSG transformation and
+  GeoJSON serialization allow only a very small area-relative tolerance.
+- Build order: build/refresh official city data -> build display county
+  geometry -> validate both layers -> run browser smoke -> deploy. Do not
+  silently replace unsupported city boundaries in production.
+
+This geometric harmonisation is a **cartographic rendering layer**, not a
+change to police administrative districts or reported crime rates.
+
 ## Data-layer hierarchy
 
 The map deliberately separates spatial/data levels:
