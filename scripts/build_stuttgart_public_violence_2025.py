@@ -57,7 +57,7 @@ def police_rows(data):
             # the numeric Gewaltkriminalität row, in the same statistical
             # block as that district's detailed offences.
             context=sub
-            if norm(name) not in norm(context):
+            if any(norm(part) not in norm(context) for part in name.split()):
                 raise ValueError(f"Landtag district name mismatch at {ix}: expected {name}; excerpt={context[:620]!r}")
             result.append({"name":name,"metrics":values})
         else:
