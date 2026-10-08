@@ -49,6 +49,11 @@ def main():
             page.wait_for_function('() => window.__DRUGS_PREVIEW_MAP__.getZoom() >= 8')
             page.locator('#region-county-list button').first.click()
             assert '县市详情' in page.locator('#region-heading').inner_text()
+            assert page.locator('#region-change').inner_text().startswith('较2024年登记案件：')
+            assert '%' in page.locator('#region-change').inner_text()
+            assert page.locator('#region-original-source').is_visible()
+            page.wait_for_function("() => document.querySelectorAll('#region-news-list li').length >= 1")
+            assert page.locator('#region-news-all').is_visible()
             assert page.locator('#drug-map path[stroke="#ffffff"]').count() >= 1, 'County selection requires white border'
             assert '同比' in page.locator('#region-completeness').inner_text()
             assert page.locator('#region-state-link').is_visible()
@@ -72,29 +77,27 @@ def main():
             assert sidebar_bg == 'rgb(19, 26, 34)', sidebar_bg
             assert page.locator('.legend-title').inner_text() == '毒品违法案件 / 每10万人'
             page.screenshot(path='/tmp/germany-crime-map-drugs-dark.png', full_page=True)
-            # Large, non-overlapping southern / central states: real pointer events.
+            # Real clicks after a region change must update the single right
+            # sidebar rather than opening a duplicate map-covering state flyout.
+            assert page.locator('#state-panel').count() == 0
             click_place(page, 48.85, 11.2)
-            page.locator('#state-panel').wait_for(state='visible')
-            first = page.locator('#state-name').inner_text()
-            assert first, first
+            page.locator('#region-navigator').wait_for(state='visible')
+            first = page.locator('#region-current').inner_text()
+            assert first == 'Bayern', first
             click_place(page, 50.72, 9.1)
-            second = page.locator('#state-name').inner_text()
+            second = page.locator('#region-current').inner_text()
             assert first != second, (first, second)
-            page.locator('#close-state').click()
-            assert not page.locator('#state-panel').is_visible()
-            # Mouse focus on an SVG polygon may not produce a large black focus bbox.
-            focused_outline = page.evaluate("() => {let e=document.activeElement;return e && e.closest('#drug-map') ? getComputedStyle(e).outlineStyle : 'none';}")
-            assert focused_outline == 'none', focused_outline
+            page.locator('#region-home').click()
+            assert not page.locator('#region-navigator').is_visible()
             click_place(page, 48.85, 11.2)
-            page.locator('#state-panel').wait_for(state='visible')
-            assert page.locator('#state-name').inner_text() == first
-            # After zoom, state fills must release county hit targets.
+            assert page.locator('#region-current').inner_text() == first
+            # After zoom, passive state borders release county click targets.
             page.evaluate(
                 "()=>window.__DRUGS_PREVIEW_MAP__.setView([50.72,9.1],9,{animate:false})")
             page.wait_for_timeout(300)
             click_place(page, 50.72, 9.1)
-            page.locator('#state-panel').wait_for(state='visible')
-            assert '每10万人登记案件' in page.locator('#state-rate-label').inner_text()
+            assert '县市详情' in page.locator('#region-heading').inner_text()
+            assert page.locator('#region-original-source').is_visible()
             assert not errors, errors
             # EUDA overlay is a separate real data layer with six substances.
             page.locator('#drugs-tab-wastewater').click()
@@ -113,6 +116,15 @@ def main():
             page.locator('#wastewater-rank button').first.click()
             assert page.locator('#wastewater-flyout').is_visible()
             assert page.locator('#wastewater-value').inner_text() not in ['—','0']
+            assert '较2024年：' in page.locator('#wastewater-change').inner_text()
+            # Data coverage differs by substance; cannabis lacks valid prior-year
+            # values and must never show a fabricated percent change.
+            page.locator('#wastewater-substance').select_option('cannabis')
+            page.locator('#wastewater-rank button').first.click()
+            assert '无法计算可比变化' in page.locator('#wastewater-change').inner_text()
+            page.locator('#wastewater-substance').select_option('cocaine')
+            page.locator('#wastewater-rank button').first.click()
+            assert '较2024年：' in page.locator('#wastewater-change').inner_text()
             page.locator('#close-wastewater').click()
             assert not page.locator('#wastewater-flyout').is_visible()
             page.locator('#drugs-tab-crime').click()
@@ -147,6 +159,12 @@ def main():
             page.screenshot(path='/tmp/germany-crime-map-drugs-news.png',full_page=True)
             page.locator('#drugs-tab-crime').click()
             assert not page.locator('#drugs-news-content').is_visible()
+            page.locator('#region-news-all').click()
+            page.wait_for_function('() => document.querySelector("#drugs-tab-news")?.classList.contains("selected")')
+            assert page.locator('#drugs-news-content').is_visible()
+            assert page.locator('#drug-news-state').input_value() != 'all'
+            page.locator('#drugs-tab-crime').click()
+            assert not page.locator('#drugs-news-content').is_visible()
             assert page.locator('#drugs-crime-content').is_visible()
             page.locator('#drugs-tab-wastewater').click()
             page.wait_for_function("() => window.__DRUGS_WASTEWATER_TEST__?.isActive === true")
@@ -155,7 +173,8 @@ def main():
             page.evaluate("() => window.__DRUGS_PREVIEW_MAP__.setView([50.72,9.1],6,{animate:false})")
             page.wait_for_timeout(250)
             click_place(page, 50.72, 9.1)
-            page.locator('#state-panel').wait_for(state='visible')
+            assert page.locator('#region-navigator').is_visible()
+            assert page.locator('#state-panel').count() == 0
             assert not errors, errors
             print('PASS drug map smoke:', count, 'states', first, second,
                   'county click, EUDA 13 stations, 6 drugs, tab switch and return')
