@@ -377,7 +377,7 @@ with sync_playwright() as playwright:
     assert "非每10万人犯罪率" in page.locator('#legend').inner_text()
     assert bremen["missing_robbery"]==4,bremen
     # A real Leaflet polygon click must show documented local categories.
-    page.evaluate("""() => window.__BREMEN_CATEGORY_MAP__.getLayer().getLayers()[9].fire('click')""")
+    page.evaluate("""() => { window.__BREMEN_CATEGORY_MAP__.getLayer().getLayers()[9].fire('click'); return true; }""")
     assert "抢劫" in page.locator(".leaflet-popup-content").inner_text()
     page.screenshot(path=str(SCREENSHOT.with_name("germany-crime-map-bremen-categories.png")),full_page=True)
     page.click('#bremenCategoryClose')
