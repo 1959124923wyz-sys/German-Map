@@ -81,7 +81,10 @@ function showPanel(a,pin=false){
   if(note)note.textContent=(a.note?a.note+' ':c.source_label+' 官方城市细分数据。')+(a.recent?'近90天匹配公开通报 '+fmt(a.recent)+' 起。':'')
 }
 function addLegend(c,data){
-  const root=$('legend');if(!root||root.querySelector('.generic-city-legend'))return;
+  const root=$('legend');if(!root)return;
+  // Each city has its own category/range/coverage note; never retain the
+  // previous city legend after switching Hamburg → Munich → Dresden.
+  root.querySelectorAll('.generic-city-legend').forEach(el=>el.remove());
   const cfg=c.metrics[metricKey()],b=quantileBreaks(values(data,cfg.field)),pal=api.getMode()==='property'?COOL:WARM;
   const labs=[...b.map(x=>'≤'+fmt(Math.round(x))), '>'+fmt(Math.round(b[5]||0))];
   root.insertAdjacentHTML('beforeend','<div class="legend-block generic-city-legend"><div class="legend-title">'+esc(c.name_zh||c.name)+' · 官方城市细分层</div><div>'+esc(cfg.label)+' · 每10万人/年</div><div class="scale">'+pal.map(x=>'<span style="background:'+x+'"></span>').join('')+'</div><div class="legend-labels">'+labs.map(x=>'<span>'+x+'</span>').join('')+'</div>'+(c.coverage_note?'<div class="city-coverage-note">'+esc(c.coverage_note)+'</div>':'')+'</div>')
@@ -92,7 +95,10 @@ async function rebuild(){
   if(layer){api.map.removeLayer(layer);layer=null;selected=null}
   if(active)restoreBase(active);
   active=next;activeKey=nextKey;
-  if(!active)return;
+  if(!active){
+    $('legend')?.querySelectorAll('.generic-city-legend').forEach(el=>el.remove());
+    return;
+  }
   try{
     const data=await cityData(active),cfg=active.metrics[metricKey()],vals=values(data,cfg.field),br=quantileBreaks(vals),pal=api.getMode()==='property'?COOL:WARM;
     if(!validCityGeometry(data,active))throw new Error(active.id+' invalid CRS/geometry: expected longitude/latitude near configured city bounds');
