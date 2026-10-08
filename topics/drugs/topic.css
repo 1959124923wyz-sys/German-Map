@@ -124,3 +124,29 @@ button:disabled{cursor:not-allowed}
 .drug-customs th:first-child{text-align:left;font-weight:500}
 .drug-customs thead th{font-size:10px;color:#9cbea9}
 .drug-customs tbody tr:last-child th,.drug-customs tbody tr:last-child td{border-bottom:0}
+
+
+/* Drill-down: full 16-state index, breadcrumbs, and all counties. */
+#region-navigator[hidden],#national-drug-summary[hidden]{display:none!important}
+.region-navigator{background:#141f27;border:1px solid #395a4a;border-radius:9px;padding:12px;margin:0 0 14px}
+.region-breadcrumb{display:flex;align-items:center;gap:7px;margin:0 0 12px;color:#819da9;font-size:11px;flex-wrap:wrap}
+.region-breadcrumb .crumb{background:transparent;color:#a9dabc;border:0;padding:0;font-size:11px}
+.region-breadcrumb .crumb:hover{text-decoration:underline}
+.region-breadcrumb .crumb[hidden],.region-breadcrumb span[hidden]{display:none!important}
+.region-breadcrumb .crumb-current{font-weight:750;color:#e0f6e8}
+.region-navigator .metricvalue{font-size:19px}
+.region-navigator .metadata{margin:8px 0 11px}
+.region-list-section{margin:13px 0 10px}
+.subtle-note{font-size:10px;color:#8fa2ad;white-space:nowrap}
+.regional-counties{max-height:290px;overflow-y:auto;margin-bottom:10px;scrollbar-width:thin}
+.regional-counties .selected-region{background:#254637;color:#dcfce9;border-radius:5px}
+.regional-counties button:focus-visible{outline-offset:-2px}
+.state-index-list{max-height:240px;overflow-y:auto;scrollbar-width:thin}
+.state-index-list li button span:last-child{color:#a6ddbb}
+/* Chromium otherwise draws a black bounding RECTANGLE around clicked SVG state shapes.
+   Keep visible selection on the map via Leaflet styles instead of SVG's bbox focus outline. */
+#drug-map .leaflet-interactive:focus{outline:none!important}
+#drug-map .leaflet-interactive:focus-visible{stroke:#c7f8d9!important;stroke-width:2.3px}
+/* On high zoom, inactive state outlines must not intercept county pointer events. */
+#drug-map .leaflet-pane.drugs-state-passive{pointer-events:none}
+@media(max-width:940px){.regional-counties{max-height:210px}.region-navigator{padding:10px}}
