@@ -106,3 +106,11 @@ button:disabled{cursor:not-allowed}
   .toplinks .modebtn{padding:5px 8px}
   .state-flyout{max-height:67%}
 }
+
+/* EUDA/SCORE point-overlay controls, aligned with dark crime-map UI. */
+.wastewater-label{display:block;margin:10px 0 6px;font-weight:700;font-size:11px;color:#b1c4cf}
+.wastewater-select{display:block;width:100%;border:1px solid #456556;background:#14231e;border-radius:7px;padding:9px 10px;color:#e7f8ef;font:inherit;font-size:12px;appearance:auto}
+.wastewater-select:focus-visible{outline:2px solid #85d9a7;outline-offset:2px}
+#drugs-crime-content[hidden],#drugs-wastewater-content[hidden]{display:none!important}
+#drugs-wastewater-content .section-title{margin:1px 0 7px}
+#drugs-wastewater-content .intro{margin-bottom:10px}
