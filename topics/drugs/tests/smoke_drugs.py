@@ -90,12 +90,31 @@ def main():
             page.locator('#region-evidence-head').click()
             assert '7.7' in page.locator('#region-evidence-body').inner_text()
             page.locator('#region-home').click()
-            page.locator('#state-index-list button').filter(has_text='Hessen').click()
+            page.locator('#state-index-list button').filter(has_text='Saarland').click()
             page.wait_for_function(
                 "() => document.getElementById('region-evidence-head')?.textContent.includes('暂无核实数字')")
             page.locator('#region-evidence-head').click()
             assert '不表示死亡人数为零' in page.locator('#region-evidence-body').inner_text()
             page.locator('#region-home').click()
+            # New primary-source state metrics remain explicitly scope-labeled.
+            for state,expected in [
+                ('Brandenburg', ['701','404','248','27','19']),
+                ('Rheinland-Pfalz', ['515','858','1,043','152','3,202']),
+                ('Hessen', ['2,406','543']),
+                ('Thüringen', ['77','50']),
+                ('Sachsen-Anhalt', ['61','48']),
+                ('Mecklenburg-Vorpommern', ['486','421','133','94'])
+            ]:
+                page.locator('#state-index-list button').filter(has_text=state).click()
+                page.wait_for_function(
+                    "() => document.getElementById('region-evidence-head')?.textContent !== '州级补充资料 · 加载中'",
+                    timeout=30000)
+                page.locator('#region-evidence-head').click()
+                content=page.locator('#region-evidence-body').inner_text()
+                for value in expected:
+                    assert value in content,(state,value,content)
+                assert page.locator('#region-evidence-body a[href^="https://"]').count()>=1
+                page.locator('#region-home').click()
             # Visual regression: site dark shell and ascending low-to-high green palette.
             palette = page.locator('#legend-data .legend-gradient span')
             assert palette.count() == 7, f'Expected seven green intervals, got {palette.count()}'
