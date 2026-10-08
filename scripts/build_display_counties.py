@@ -34,7 +34,9 @@ CITY_SOURCES={
   "02000":"data/hamburg_local_2025.geojson",
   "14713":"data/leipzig_local_2025.geojson",
   "14511":"data/chemnitz_local_2025.geojson",
-  "14612":"data/dresden_local_2025.geojson",
+  # Dresden's two available boundaries differ by >20% in overlap.
+  # Deliberately keep Dresden's existing official county geometry until a
+  # matching high-resolution boundary dataset is confirmed.
 }
 TO_METRIC=Transformer.from_crs("EPSG:4326","EPSG:3035",always_xy=True).transform
 TO_WGS84=Transformer.from_crs("EPSG:3035","EPSG:4326",always_xy=True).transform
