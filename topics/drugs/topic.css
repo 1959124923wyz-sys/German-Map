@@ -114,3 +114,13 @@ button:disabled{cursor:not-allowed}
 #drugs-crime-content[hidden],#drugs-wastewater-content[hidden]{display:none!important}
 #drugs-wastewater-content .section-title{margin:1px 0 7px}
 #drugs-wastewater-content .intro{margin-bottom:10px}
+
+/* German Customs national seizure comparison: intentionally not a county choropleth. */
+.drug-customs{border:1px solid #344840;border-radius:8px;background:#16241f;padding:10px 12px}
+.drug-customs summary{cursor:pointer;font-size:12px;font-weight:700;color:#bbeed0;line-height:1.5}
+.drug-customs summary:hover{color:#e3faeb}
+.drug-customs table{border-collapse:collapse;width:100%;margin-top:9px;font-size:10.5px;font-variant-numeric:tabular-nums}
+.drug-customs th,.drug-customs td{border-bottom:1px solid #2f423b;padding:6px 4px;text-align:right}
+.drug-customs th:first-child{text-align:left;font-weight:500}
+.drug-customs thead th{font-size:10px;color:#9cbea9}
+.drug-customs tbody tr:last-child th,.drug-customs tbody tr:last-child td{border-bottom:0}
