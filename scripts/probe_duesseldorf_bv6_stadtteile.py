@@ -11,7 +11,7 @@ def main():
     doc=json.loads(download_bytes(URL,timeout=75).decode("utf-8-sig"))
     fs=doc.get("features",[])
     matching=[{"id":f.get("id"),"properties":f.get("properties"),"type":f.get("geometry",{}).get("type")}
-              for f in fs if any(n.casefold() in json.dumps(f.get("properties",{}),ensure_ascii=False).casefold() for n in NAMES)]
+              for f in fs if f.get("properties",{}).get("Name") in NAMES]
     print("[bv6-geo-probe]",json.dumps({"source":URL,"total_city_stadtteile":len(fs),
         "example":[f.get("properties") for f in fs[:3]],"matched":matching,
         "geom_types":list({f.get("geometry",{}).get("type") for f in fs})},ensure_ascii=False),flush=True)
