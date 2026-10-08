@@ -153,3 +153,20 @@ footer{flex:0 0 34px;border-top:1px solid var(--line);padding:7px 18px;color:var
   user-select:none;pointer-events:none;
 }
 @media(max-width:640px){.crime-city-label{font-size:11px}}
+
+
+/* GIS focus regression (Chromium/Edge): the browser paints a thick BLACK
+   rectangular focus outline around SVG paths' geometric bounding boxes.
+   Neither selection nor hover should ever use this box as a visual border.
+   Leaflet's path stroke remains the real state/county border (white when
+   selected), while keyboard focus gets a white border on the SHAPE itself. */
+#map .leaflet-interactive,
+#map .leaflet-interactive:hover,
+#map .leaflet-interactive:focus,
+#map .leaflet-interactive:focus-visible {
+  outline: none !important;
+}
+#map svg path.leaflet-interactive:focus-visible {
+  stroke: #ffffff !important;
+  stroke-width: 3px !important;
+}
