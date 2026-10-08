@@ -1,0 +1,53 @@
+name: Deploy drug topic changes to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'topics/drugs/**'
+      - '.github/workflows/drugs-pages-deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Same Pages lock as main updater: prevent simultaneous publishers.
+concurrency:
+  group: german-map-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+      - name: Verify EUDA source data and JS syntax
+        run: |
+          node --check topics/drugs/topic.js
+          node --check topics/drugs/wastewater.js
+          python topics/drugs/scripts/validate_drugs.py
+          python - <<'PY'
+          import json
+          data=json.load(open('topics/drugs/data/euda_wastewater_2025.json'))
+          assert data['meta']['study_year']==2025 and len(data['sites'])==13
+          assert all(len(s['observations'])==6 for s in data['sites'])
+          print('PASS EUDA wastewater 13 German sites, six substances')
+          PY
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload complete site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
