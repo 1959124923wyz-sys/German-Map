@@ -172,7 +172,7 @@
       },
       "metric_alignment": "unverified",
       "blocking_issues": [
-        "Parse native official WFS GML to WGS84 GeoJSON and reconcile exactly 22 police areas from 19 Stadtteile plus selected Ortsteile (Blockland, Borgfeld, Seehausen, Strom; Industriehäfen/Neustädter Hafen grouped as the police PDF specifies). Preserve leftover Hafen subdistricts without invented counts.",
+        "Complete polygon topology and full city coverage audit before generating candidate GeoJSON; the 22 police reporting names match official codes, and Hafen's three Ortsteile are grouped in police tables 6 and 22.",
         "Match 2025 population by reporting unit before creating per-100k rates, otherwise use clearly labelled counts.",
         "Document police data citywide vs area sum discrepancies and preserve unassigned incidents.",
         "Review legal reuse notice for the parliamentary document (Transparency Portal shows CC BY-NC-ND for the PDF): extract only objective aggregate figures with attribution, don't redistribute or alter PDF."
@@ -196,7 +196,17 @@
         "qa_geometry_probe": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37724199665",
         "official_city_district_features": 19,
         "official_ortsteil_features": 87,
-        "source_coordinates": "EPSG:4326 longitude latitude"
+        "source_coordinates": "EPSG:4326 longitude latitude",
+        "geometry_name_join_passed": true,
+        "geometry_name_join_run": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37724787850",
+        "matched_police_tables": 22,
+        "total_police_tables": 22,
+        "uncovered_stadtteil_title": "Häfen (its 3 component Ortsteile covered under police tables 6 and 22)",
+        "harbor_subareas": [
+          "Industriehäfen",
+          "Neustädter Hafen",
+          "Hohentorshafen"
+        ]
       }
     },
     {
