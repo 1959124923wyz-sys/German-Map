@@ -113,8 +113,8 @@
       const pane = map.getPane(name);
       pane.style.zIndex = String(z);
     }
-    const countyRenderer = L.svg({ pane: 'drugsCountyPane' });
-    const stateRenderer = L.svg({ pane: 'drugsStatePane' });
+    const countyRenderer = L.svg({ pane: 'drugsCountyPane', padding: .2 });
+    const stateRenderer = L.svg({ pane: 'drugsStatePane', padding: .2 });
     let counties, states, selectedCounty = null, selectedState = null, selectedCountyLayer = null, stateFeature = null;
     const stateFeatures = new Map(stateGeo.features.map(f => [f.properties?.name, f]));
     const stateStatistics = new Map([...stateFeatures.keys()].map(name => [name, stateStats(name, data)]));
@@ -217,7 +217,11 @@
       selectedState = rec.state;
       if (selectedCountyLayer && counties) counties.resetStyle(selectedCountyLayer);
       selectedCountyLayer = counties?.getLayers().find(l => l.feature && recordFor(l.feature,data)?.ags === rec.ags) || null;
-      if (selectedCountyLayer) selectedCountyLayer.setStyle({color:'#d7f7e4',weight:2.5,opacity:1});
+      if (selectedCountyLayer) {
+        selectedCountyLayer.setStyle({color:'#ffffff',weight:3.2,opacity:1,fillOpacity:.94});
+        selectedCountyLayer.bringToFront?.();
+      }
+      refreshStateSelection();
       showRegionBoard(rec.state, rec);
       if (typeof context.onSelection === 'function') {
         context.onSelection({kind:'drugs-county',feature,record:rec,metric:rec.drug_crime});
@@ -307,10 +311,11 @@
       states.eachLayer(layer => {
         if (!layer.feature) return;
         layer.setStyle({
-          color:layer.feature.properties?.name===selectedState ? '#e1f5e5' : '#98c7ae',
-          weight:layer.feature.properties?.name===selectedState ? 2.7 : 1.15,
+          color:layer.feature.properties?.name===selectedState ? '#ffffff' : '#98c7ae',
+          weight:layer.feature.properties?.name===selectedState ? 3.6 : 1.15,
           opacity:layer.feature.properties?.name===selectedState ? 1 : .8
         });
+        if (layer.feature.properties?.name === selectedState) layer.bringToFront?.();
       });
     }
     function updateStates() {
@@ -321,7 +326,7 @@
       states = L.geoJSON(stateGeo, {
         pane:'drugsStatePane', renderer:stateRenderer, interactive,
         style: (feature) => ({pane:'drugsStatePane',renderer:stateRenderer,
-          color:feature?.properties?.name===selectedState?'#e1f5e5':'#98c7ae',weight:feature?.properties?.name===selectedState?2.7:1.15,opacity:.8,
+          color:feature?.properties?.name===selectedState?'#ffffff':'#98c7ae',weight:feature?.properties?.name===selectedState?3.6:1.15,opacity:.8,
           fill:interactive,fillColor:'#fff',fillOpacity:interactive?0.001:0}),
         onEachFeature: (feature, layer) => {
           layer.bindTooltip(esc(feature.properties?.name || ''), {sticky:true});
@@ -412,6 +417,8 @@
     const map = L.map('drug-map',{minZoom:5,maxZoom:15,zoomControl:true,preferCanvas:false});
     map.fitBounds(NATION_BOUNDS, {padding:[15,15]});
     window.__DRUGS_PREVIEW_MAP__ = map;
+    // Shared label placement with violence/property; city labels cannot capture map clicks.
+    window.CrimeCityLabels?.create(map,{paneName:'drugs-city-labels',zIndex:440});
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom:19,opacity:.56,attribution:'© OpenStreetMap contributors'
     }).addTo(map);
