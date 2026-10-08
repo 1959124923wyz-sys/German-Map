@@ -1,0 +1,26 @@
+name: Stuttgart and Duesseldorf district source audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_stuttgart_duesseldorf_2025.py'
+      - '.github/workflows/stuttgart-duesseldorf-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  official-source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install official-source audit requirements
+        run: pip install requests pypdf beautifulsoup4
+      - name: Verify actual 2025 police PDFs and official district polygon data
+        run: python scripts/probe_stuttgart_duesseldorf_2025.py
