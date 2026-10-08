@@ -57,7 +57,9 @@ def police_rows(data):
             # Layout-extracted PDF contains very wide fixed-width columns.
             # Use the complete *current reporting row* after the previous
             # district's value, instead of a fixed 330-character lookback.
-            context=t[match[ix-1].end():m.start()]
+            # The case-row regex consumes the same-line Stadtbezirk
+            # label (e.g. "Stuttgart Nord Gewaltkriminalität 36").
+            context=t[match[ix-1].end():m.end()]
             if norm(name) not in norm(context):
                 raise ValueError(f"Landtag district table order/name mismatch at {ix}: expected {name}")
             result.append({"name":name,"metrics":values})
