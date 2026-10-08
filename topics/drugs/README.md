@@ -78,3 +78,14 @@ GermanMapTopics.drugs.deactivate();
 - 新闻数量和地图圆点不等于犯罪数量、吸毒人数、死亡人数，也不代表样本完整率；不能与BKA 2025年PKS年度统计相加。
 - 浏览器模块为 `topics/drugs/news.js`，专题地图使用独立**SVG renderer**，避免重复之前因Canvas覆盖交互层导致州县无法点击的错误。按“州/分类”筛选后，可点击条目打开原始新闻。
 - 无网络、源站HTML更改、时间窗口无数据时保留上一版可验证源记录，前端应提示新闻不可用，绝不能显示伪造数据。
+
+
+## 2025年州级毒品健康与指定罪名补充资料（2026-10-08）
+
+- 数据文件：`topics/drugs/data/state_health_offences_2025.json`；模块：`state-evidence.js`。只出现在用户选中州后右栏的折叠区，不创建新一级地图或虚构整州分毒品图层。
+- 2025年相关死亡记录覆盖9州：Baden-Württemberg、Bayern、Berlin、Bremen、Hamburg、Niedersachsen、Nordrhein-Westfalen、Sachsen、Schleswig-Holstein；每项保留`source_url`和`source_type`。**其余7州暂缺资料，不等于零。** 全德2025年2,150人是单独的联邦官方死亡统计，切勿把9州记录之和当全德总数。
+- 部分死亡值直接来自州政府、州警方；其余来自**引用州政府/BKA数据的公共媒体、专业组织**，应用上明确标注“待独立官方原表交叉核验”。不同州的调查时点、死亡纳入口径仍可能不同。
+- 2025年各州可比的**每10万人死亡率目前只直接核实柏林7.7**（柏林政府公布，2024年7.6）；其他州虽有死亡绝对数，但暂不依据估算人口反推死亡率。
+- 下萨克森州（Niedersachsen）分类记录取自其州刑警局 **2025 T01 第48-55页**：[原始PDF](https://www.lka.polizei-nds.de/download/77720/Tab.01_2025_NI.pdf.pdf)。列出§29 BtMG 一般违法 / 贩卖走私及 §34 KCanG 对应罪名（大麻753 / 1677；可卡因及快克3618 / 977；冰毒83 / 25；海洛因329 / 71）；**每列只表示选定罪名，不能跨列相加后宣称为“该毒品全部案件”。** 特别是严重数量罪名可落在其他代码。
+- 石勒苏益格—荷尔斯泰因州（Schleswig-Holstein）2025年的Crystal冰毒**一般违法45起、贩卖2起**，取自[州刑警局短报第19页](https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/POLIZEI/DasSindWir/LKA/Ermittlungen_Auswertung/kriminalstatistik/_downloads/PKS2025_Kurzfassung.pdf?__blob=publicationFile&v=4)，不代表所有冰毒相关违法案件。
+- BKA的16州PKS T01全国联合文件于2026年9月22日发布（[GovData入口](https://data.gov.de/suche/daten/2025-polizeiliche-kriminalstatistik-t01-grundtabelle-bundeslaender)），但BKA xlsx直接下载在部署环境中仍可能返回403。未核验的州及物质全部保持空缺，不用全国分布推算。
