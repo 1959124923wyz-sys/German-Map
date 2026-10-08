@@ -44,5 +44,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: drugs-dark-green-preview
-          path: /tmp/germany-crime-map-drugs-dark.png
+          path: |
+            /tmp/germany-crime-map-drugs-dark.png
+            /tmp/germany-crime-map-drugs-euda.png
           if-no-files-found: warn
