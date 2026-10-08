@@ -145,8 +145,15 @@ with sync_playwright() as playwright:
                 drawerOpen:document.querySelector('#stateDrawer').classList.contains('open')};
         }""",[name,lat,lon])
         assert diagnostic["statePresent"] and diagnostic["contains"],diagnostic
+        target=page.evaluate("""([x,y]) => ({
+            foreground:document.elementFromPoint(x,y)?.outerHTML?.slice(0,380),
+            stack:document.elementsFromPoint(x,y).slice(0,6).map(e=>({
+                node:e.tagName,cls:e.getAttribute('class'),pane:e.closest('.leaflet-pane')?.className
+            }))
+        })""",diagnostic["pixel"])
+        print("[state-hit-target]",json.dumps({"name":name,"target":target},ensure_ascii=False),flush=True)
         page.mouse.click(*diagnostic["pixel"])
-        page.wait_for_timeout(150)
+        page.wait_for_timeout(220)
         actual=page.locator("#stateName").inner_text()
         assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')"),diagnostic
         assert actual==name,{"expected":name,"actual":actual,**diagnostic}

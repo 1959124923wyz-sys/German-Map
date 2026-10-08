@@ -11,7 +11,7 @@
       return {
         pane:'statePane',color:selected?'#ffffff':'#20384b',
         weight:selected?3.1:2,opacity:selected?1:.98,
-        fillColor:'#dce7ee',fillOpacity:selected?.045:.006,
+        fillColor:'#dce7ee',fillOpacity:selected?.045:.012,
       };
     }
 
@@ -23,8 +23,12 @@
       // interactive. The old <=7.15 threshold produced dead polygons at
       // zoom 7.15–7.5, especially after fitBounds/close cycles.
       const interactive = true;
+      // Leaflet's default preferCanvas renderer missed genuine pointer clicks
+      // on nearly transparent state fills. A dedicated SVG renderer gives
+      // every state's interior its own browser hit target.
+      const renderer = L.svg({pane:'statePane',padding:.2});
       layer = L.geoJSON(geo,{
-        pane:'statePane',style,interactive,
+        pane:'statePane',renderer,style,interactive,
         onEachFeature:(feature,target)=>{
           if (!interactive) return;
           target.bindTooltip(()=>tooltipHtml(feature),{sticky:true,direction:'top',className:'state-tip'});

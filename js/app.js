@@ -30,7 +30,7 @@
   const berlinBounds=L.latLngBounds([[52.33,13.08],[52.69,13.77]]);
   map.fitBounds(germanyBounds,{padding:[14,14]});map.setMaxBounds([[45.3,3.2],[57.1,18.0]]);
   map.createPane('countyPane');map.getPane('countyPane').style.zIndex=230;
-  map.createPane('statePane');map.getPane('statePane').style.zIndex=245;
+  map.createPane('statePane');map.getPane('statePane').style.zIndex=350;
   map.createPane('berlinPane');map.getPane('berlinPane').style.zIndex=260;
   map.createPane('newsPane');map.getPane('newsPane').style.zIndex=460;
   map.getPane('tilePane').style.filter='saturate(.45) contrast(.86) brightness(1.06)';
