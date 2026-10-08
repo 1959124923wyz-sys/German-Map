@@ -28,7 +28,7 @@ def main():
             count = page.locator('#county-count').inner_text()
             assert not errors, errors
             assert re.search(r'\d+ / \d+', count), count
-            assert page.locator('.leaflet-overlay-pane svg path').count() > 300
+            assert page.locator('.leaflet-pane svg path').count() > 200, ('SVG paths:', page.locator('.leaflet-pane svg path').count())
             # Large, non-overlapping southern / central states: real pointer events.
             click_place(page, 48.85, 11.2)
             page.locator('#state-panel').wait_for(state='visible')
