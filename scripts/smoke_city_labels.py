@@ -33,7 +33,8 @@ def assert_no_svg_focus_rectangle(page, map_selector):
       path.blur();
       return result;
     }""", map_selector)
-    assert outcome['count'] > 20, outcome
+    # On the national view only 16 interactive state paths may be present.
+    assert outcome['count'] >= 12, outcome
     assert outcome['outline'] == 'none', (
         'Black SVG bounding-box outline remains:', map_selector, outcome)
     print('PASS SVG focus style', map_selector, outcome, flush=True)
