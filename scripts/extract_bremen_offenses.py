@@ -28,7 +28,7 @@ CODES = {
 ROW_START = re.compile(r"(?m)^[ \t]*(------|100000|210000|220000|435\*00|\*{4}00|730000)[ \t]+")
 # Official PDF prints: key label [2024] [2025] [+/- absolute change] [%].
 NUMBER = r"(?:\d{1,3}(?:\.\d{3})+|\d+)"
-TAIL = re.compile(rf"({NUMBER}|-)\s+({NUMBER}|-)\s+([+-]?{NUMBER}|-)\s+([+-]?\d+(?:,\d+)?|-)(?:\s|$)")
+TAIL = re.compile(rf"(?m)[ \t]+({NUMBER}|-)[ \t]+({NUMBER}|-)[ \t]+([+-]?{NUMBER}|-)[ \t]+([+-]?\d+(?:,\d+)?|-)[ \t]*(?:\n|$)")
 
 def integer(value):
     return int(value.replace(".", ""))
@@ -55,7 +55,10 @@ def read_tables(pdf_bytes):
             if code not in CODES:
                 continue
             content = section[token.end():codes[j+1].start() if j+1<len(codes) else len(section)]
-            found = TAIL.search(content)
+            # Match only the actual end-of-line four-column numeric record.
+            # Do not mistake the hyphen in "-BtMG-" for a missing year.
+            candidates=list(TAIL.finditer(content))
+            found = candidates[-1] if candidates else None
             if found is None:
                 raise RuntimeError(f"PKS Table {table_no} code {code}: cannot parse year counts: {content[:140]!r}")
             y24,y25,reported_change,reported_percent=found.groups()
