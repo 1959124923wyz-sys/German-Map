@@ -286,3 +286,29 @@ Validation `scripts/validate_bremen_category_layer.py` and browser smoke
 check the count semantics, toggle, category selector, map hover and close.
 The PDF itself is never republished; official facts are independently
 re-expressed, with link to original parliamentary source.
+
+## Stuttgart 2025 public-space violent crime district map
+
+Primary source: Baden-Württemberg Landtag official Interior Ministry
+reply `Drucksache 17/10292` pp.3–5, reporting **Gewaltkriminalität im
+öffentlichen Raum** (not all-settings violent crime) and its robbery /
+dangerous-or-serious injury subcategories, all 23 Stuttgart Stadtbezirke.
+The independently verified official city counts are **1636** public-space
+violence, **358** robbery and **1243** serious injury; exact sum of district
+counts **1577 / 350 / 1194**. City minus district residual
+**59 / 8 / 49** is deliberately NOT drawn on a polygon. No per-capita rate
+is computed and the nationwide violence/property modes are never changed.
+Stuttgart's original municipal Stadtmessungsamt GPKG polygons cover the
+whole 207.403 km² city with zero overlap and the official municipal
+outline. The map credits the city government (CC BY 4.0) and links to
+the Landtag original.
+
+Only this pipeline writes the public feature collection:
+```sh
+python scripts/build_stuttgart_duesseldorf_geometry.py
+python scripts/build_stuttgart_public_violence_2025.py --output data/stuttgart_public_violence_2025.geojson --release-count-only
+python scripts/validate_stuttgart_public_violence.py
+```
+The separate city intake gate and browser smoke test verify scientific
+scope, original district totals, strict null rates, real popup interaction
+and navigation among Stuttgart/Bremen/Kiel without cross-layer collisions.

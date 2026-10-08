@@ -21,6 +21,9 @@ on:
       - 'scripts/build_bremen_geometry_staging.py'
       - 'scripts/build_bremen_category_layer.py'
       - 'scripts/validate_bremen_category_layer.py'
+      - 'scripts/build_stuttgart_duesseldorf_geometry.py'
+      - 'scripts/build_stuttgart_public_violence_2025.py'
+      - 'scripts/validate_stuttgart_public_violence.py'
       - '.github/workflows/germany-homicide-map-smoke.yml'
 
 permissions:
@@ -77,6 +80,7 @@ jobs:
           node --check js/layers/city-detail.js
           node --check js/layers/city-count-detail.js
           node --check js/layers/bremen-category-detail.js
+          node --check js/layers/stuttgart-public-violence.js
 
       - name: Test deterministic city builder I/O
         run: python scripts/test_city_build_common.py
@@ -117,6 +121,15 @@ jobs:
 
       - name: Validate Bremen independent PKS count categories
         run: python scripts/validate_bremen_category_layer.py
+
+      - name: Prepare Stuttgart 23 official urban district polygons
+        run: python scripts/build_stuttgart_duesseldorf_geometry.py
+
+      - name: Build official Stuttgart 2025 public-space violent crime overlay
+        run: python scripts/build_stuttgart_public_violence_2025.py --output data/stuttgart_public_violence_2025.geojson --release-count-only
+
+      - name: Verify strict Stuttgart public-space PKS statistic boundaries
+        run: python scripts/validate_stuttgart_public_violence.py
 
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py

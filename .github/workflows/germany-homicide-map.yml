@@ -70,6 +70,7 @@ jobs:
           node --check js/layers/city-detail.js
           node --check js/layers/city-count-detail.js
           node --check js/layers/bremen-category-detail.js
+          node --check js/layers/stuttgart-public-violence.js
 
       - name: Test deterministic city builder I/O
         run: python scripts/test_city_build_common.py
@@ -129,6 +130,20 @@ jobs:
 
       - name: Validate Bremen independent PKS count categories
         run: python scripts/validate_bremen_category_layer.py
+
+      - name: Refresh official Stuttgart 2025 public-space violence overlay
+        run: |
+          if ! (python scripts/build_stuttgart_duesseldorf_geometry.py &&
+                python scripts/build_stuttgart_public_violence_2025.py --output data/stuttgart_public_violence_2025.geojson --release-count-only); then
+            if [ ! -s data/stuttgart_public_violence_2025.geojson ]; then
+              echo "No last-known-good Stuttgart public-space crime data" >&2
+              exit 1
+            fi
+            echo "::warning::Stuttgart parliamentary source unavailable; preserve last-known-good district data"
+          fi
+
+      - name: Verify Stuttgart public-space crime source and 23 polygons
+        run: python scripts/validate_stuttgart_public_violence.py
 
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py

@@ -388,6 +388,39 @@ with sync_playwright() as playwright:
     page.click('#suppCityClose')
     print("[bremen-category-regression] PASS: 22 regions, 7 2025 official counts, dash-null, popup, selector, close, Kiel switch",flush=True)
 
+    # Stuttgart 2025 Landtag PKS is explicitly PUBLIC SPACE violence cases,
+    # not all-settings violence rates. Test each official district and city.
+    page.click('#focusStuttgartViolence')
+    page.wait_for_function("window.__STUTTGART_PUBLIC_MAP__?.getActive()===true",timeout=25000)
+    stuttgart=page.evaluate("""() => {
+        const s=window.__STUTTGART_PUBLIC_MAP__,ls=s.getLayer().getLayers(),m=s.getData().meta;
+        const sum=k=>ls.reduce((n,f)=>n+f.feature.properties.metrics[k]['2025'],0);
+        return {count:ls.length,publicViolence:sum('public_violence'),
+          robbery:sum('public_robbery'),seriousInjury:sum('public_serious_injury'),
+          city:m.city_totals.public_violence,unallocated:m.unlocated_city_cases.public_violence,
+          noRates:ls.every(f=>Object.values(f.feature.properties.metrics).every(v=>v.rate===null)),
+          publicOnly:ls.every(f=>f.feature.properties.public_space_only===true),
+          panel:!document.querySelector('#stuttgartViolencePanel')?.hidden,
+          focus:document.querySelector('.mapwrap')?.classList.contains('stuttgart-public-focus')}
+    }""")
+    assert stuttgart["count"]==23 and stuttgart["publicViolence"]==1577,stuttgart
+    assert stuttgart["robbery"]==350 and stuttgart["seriousInjury"]==1194,stuttgart
+    assert stuttgart["city"]==1636 and stuttgart["unallocated"]==59,stuttgart
+    assert stuttgart["noRates"] and stuttgart["publicOnly"] and stuttgart["panel"] and stuttgart["focus"],stuttgart
+    page.locator('#stuttgartViolenceMetric').select_option('public_robbery')
+    assert page.evaluate("window.__STUTTGART_PUBLIC_MAP__.getMetric()")=='public_robbery'
+    assert "公共场所" in page.locator('#legend').inner_text()
+    page.evaluate("""() => {window.__STUTTGART_PUBLIC_MAP__.getLayer().getLayers()[0].fire('click');return true;}""")
+    assert "公共场所" in page.locator('.leaflet-popup-content').inner_text()
+    page.screenshot(path=str(SCREENSHOT.with_name("germany-crime-map-stuttgart-public-violence.png")),full_page=True)
+    page.click('#stuttgartViolenceClose')
+    assert page.evaluate("window.__STUTTGART_PUBLIC_MAP__.getActive()") is False
+    page.click('#focusBremenCategory')
+    page.wait_for_function("window.__BREMEN_CATEGORY_MAP__?.getActive()===true",timeout=20000)
+    assert page.evaluate("window.__STUTTGART_PUBLIC_MAP__.getActive()") is False
+    page.click('#bremenCategoryClose')
+    print("[stuttgart-public-regression] PASS: 23 districts, 3 public-space counts, no fake rates, popup/close/Bremen switch",flush=True)
+
     assert not errors, errors
     print(json.dumps({
         "result":"PASS",
@@ -400,6 +433,7 @@ with sync_playwright() as playwright:
         "dresden":dresden,
         "kiel":kiel,
         "bremen":bremen,
+        "stuttgart":stuttgart,
         "page_errors":errors,
     },ensure_ascii=False))
     browser.close()
