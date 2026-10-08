@@ -430,7 +430,7 @@ with sync_playwright() as playwright:
         const sum=y=>ls.reduce((n,l)=>n+l.feature.properties.crime_total[y],0);
         return {n:ls.length,yr2025:sum('2025'),yr2024:sum('2024'),
             city2025:doc.meta.city_by_year['2025'],unlocated2025:doc.meta.undistributed_by_year['2025'],
-            2025label:doc.meta.metric_scope,
+            metricScope:doc.meta.metric_scope,
             ratesNull:ls.every(l=>l.feature.properties.crime_total.rate===null),
             hasFourYears:ls.every(l=>['2022','2023','2024','2025'].every(y=>Number.isInteger(l.feature.properties.crime_total[y]))),
             panel:!document.querySelector('#duesseldorfCountPanel')?.hidden,
