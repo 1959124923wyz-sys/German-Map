@@ -29,12 +29,19 @@ def main():
             assert not errors, errors
             assert re.search(r'\d+ / \d+', count), count
             assert page.locator('.leaflet-pane svg path').count() > 200, ('SVG paths:', page.locator('.leaflet-pane svg path').count())
+            # Shared city labels must show above choropleths without taking clicks.
+            assert page.locator('#drug-map .crime-city-label').count() >= 8
+            assert page.locator('#drug-map .crime-city-label').filter(has_text='Berlin').count() >= 1
+            assert page.locator('#drug-map .crime-city-label').first.evaluate(
+                '(e) => parseFloat(getComputedStyle(e).fontSize)') >= 11
+            assert page.evaluate("() => getComputedStyle(window.__DRUGS_PREVIEW_MAP__.getPane('drugs-city-labels')).pointerEvents") == 'none'
             # All 16 states must have a real county-backed summary and drilldown.
             assert page.locator('#state-index-list button').count() == 16
             page.locator('#state-index-list button').filter(has_text='Bayern').click()
             assert page.locator('#region-navigator').is_visible()
             assert not page.locator('#national-drug-summary').is_visible()
             assert 'Bayern' in page.locator('#region-heading').inner_text()
+            assert page.locator('#drug-map path[stroke="#ffffff"]').count() >= 1, 'Selected state must have a white border'
             assert page.locator('#region-county-list button').count() == 96
             assert '估算州级' in page.locator('#region-rate-label').inner_text()
             assert page.locator('#region-cases').inner_text() not in ['—','0']
@@ -42,6 +49,7 @@ def main():
             page.wait_for_function('() => window.__DRUGS_PREVIEW_MAP__.getZoom() >= 8')
             page.locator('#region-county-list button').first.click()
             assert '县市详情' in page.locator('#region-heading').inner_text()
+            assert page.locator('#drug-map path[stroke="#ffffff"]').count() >= 1, 'County selection requires white border'
             assert '同比' in page.locator('#region-completeness').inner_text()
             assert page.locator('#region-state-link').is_visible()
             page.locator('#region-state-link').click()
@@ -49,6 +57,7 @@ def main():
             page.locator('#region-home').click()
             assert page.locator('#national-drug-summary').is_visible()
             assert not page.locator('#region-navigator').is_visible()
+            assert page.locator('#drug-map path[stroke="#ffffff"]').count() == 0, 'National reset must clear selected border'
             assert page.locator('#state-index-list button').count() == 16
             # Visual regression: site dark shell and ascending low-to-high green palette.
             palette = page.locator('#legend-data .legend-gradient span')
