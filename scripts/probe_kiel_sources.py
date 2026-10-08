@@ -70,6 +70,25 @@ def main():
         except Exception as e:
             checks[variant]={"error":str(e)}
             print("[kiel-probe]",variant,"ERROR",repr(e),flush=True)
+    # Municipal ArcGIS REST MapServer exposes an explicit polygon feature
+    # layer at /38. This is more reliable than the broken WFS GeoJSON example.
+    rest="https://ims.kiel.de/geodatenextern/rest/services/Stadtplan/LHKielWmsWfs/MapServer/38/query"
+    try:
+        raw=download_bytes(rest,{"where":"1=1","outFields":"*","outSR":"4326","f":"geojson"},timeout=70)
+        obj=json.loads(raw.decode("utf-8-sig"))
+        fs=obj.get("features",[])
+        checks["rest-38"]={
+            "bytes":len(raw),"count":len(fs),
+            "names_sample":[(x.get("properties") or {}).get("Name") for x in fs[:15]],
+            "codes_sample":[(x.get("properties") or {}).get("Nummer") for x in fs[:15]],
+            "geometry_type":(fs[0].get("geometry") or {}).get("type") if fs else None,
+            "first_point": (fs[0].get("geometry") or {}).get("coordinates",[None])[0] if fs else None
+        }
+        checks["rest-38"].pop("first_point",None)  # do not dump huge polygon in CI log
+        print("[kiel-probe] ArcGIS REST layer 38",json.dumps(checks["rest-38"],ensure_ascii=False),flush=True)
+    except Exception as e:
+        checks["rest-38"]={"error":str(e)}
+        print("[kiel-probe] ArcGIS REST ERROR",repr(e),flush=True)
     try:
         raw=download_bytes(PKS,timeout=75)
         reader=PdfReader(io.BytesIO(raw))

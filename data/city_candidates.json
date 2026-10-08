@@ -29,14 +29,14 @@
       "geometry_source": {
         "publisher": "Landeshauptstadt Kiel",
         "year": 2026,
-        "format": "WFS GeoJSON",
-        "url": "https://ims.kiel.de/geodatenextern/services/Stadtplan/LHKielWmsWfs/MapServer/WFSServer?outputFormat=geoJSON&request=GetFeature&service=WFS&typeName=Statistische_Stadtteile",
-        "evidence": "GovData Statistische Stadtteile in Kiel / municipal geodata WFS. Endpoint response and labels need machine verification."
+        "format": "ArcGIS REST GeoJSON feature layer",
+        "url": "https://ims.kiel.de/geodatenextern/rest/services/Stadtplan/LHKielWmsWfs/MapServer/38?f=pjson",
+        "evidence": "Official Kiel MapServer layer 38 exposes Statistische Stadtteile, geometryType Polygon, fields Nummer/Name and supports geoJSON. Query result still undergoing CI verification."
       },
       "metric_alignment": "incompatible",
       "blocking_issues": [
         "Annual all-offense counts cannot be displayed as Gewaltkriminalität or Diebstahl under current two-mode UI.",
-        "Verify WFS returns nonempty polygons and join names to police annex.",
+        "Verify ArcGIS REST layer 38 returns nonempty polygons and join Namen/Nummer to police annex.",
         "Resolve official denominator or provide explicitly count-only local view, never mislabel total offenses as violence."
       ],
       "notes": "Best first source-engineering pilot; not yet approved for public thematic rendering."
