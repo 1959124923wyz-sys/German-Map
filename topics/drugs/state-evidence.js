@@ -17,7 +17,13 @@ function validate(d){
  }
  for(const o of Object.values(d.selected_offence_codes_by_state)){
   if(!/^https:\/\//.test(o.source_url)||!Array.isArray(o.groups))throw Error('州案件来源格式错误');
-  for(const row of o.groups)if(!row.name||!Number.isInteger(row.general)||!Number.isInteger(row.trade)||row.general<0||row.trade<0)throw Error('州分类数字异常');
+  for(const row of o.groups)
+   if(!row.name||!Number.isInteger(row.general)||!Number.isInteger(row.trade)||row.general<0||row.trade<0)
+     throw Error('州分类数字异常');
+  for(const row of o.additional_metrics||[])
+   if(!row.name||!Number.isInteger(row.cases)||row.cases<0||!row.code||
+      (row.previous_2024!==undefined&&(!Number.isInteger(row.previous_2024)||row.previous_2024<0)))
+     throw Error('州新增分项缺失或无效');
  }
 }
 async function load(){
@@ -57,20 +63,39 @@ function render(state,d){
  if(off){
   const sect=item('div','','evidence-group');
   sect.append(item('h5','2025年按物质统计的指定警方案件'));
-  const table=document.createElement('table');table.className='evidence-offence-table';
-  const header=document.createElement('thead'),line=document.createElement('tr');
-  for(const t of ['物质','一般违法','贩卖/走私'])line.append(item('th',t));
-  header.append(line);table.append(header);
-  const tbody=document.createElement('tbody');
-  for(const cat of off.groups){
-   const tr=document.createElement('tr');
-   tr.append(item('th',cat.name),item('td',fmt(cat.general)),item('td',fmt(cat.trade)));
-   const codeRow=document.createElement('tr');codeRow.className='evidence-code-row';
-   const td=item('td',cat.law+' · PKS '+(cat.general_code||'州局报告')+' / '+(cat.trade_code||'州局报告'));
-   td.colSpan=3;codeRow.append(td);tbody.append(tr,codeRow);
+  if(off.groups.length) {
+   const table=document.createElement('table');table.className='evidence-offence-table';
+   const header=document.createElement('thead'),line=document.createElement('tr');
+   for(const t of ['物质','一般违法','贩卖/走私'])line.append(item('th',t));
+   header.append(line);table.append(header);
+   const tbody=document.createElement('tbody');
+   for(const cat of off.groups){
+    const tr=document.createElement('tr');
+    tr.append(item('th',cat.name),item('td',fmt(cat.general)),item('td',fmt(cat.trade)));
+    const codeRow=document.createElement('tr');codeRow.className='evidence-code-row';
+    const td=item('td',cat.law+' · PKS '+(cat.general_code||'州局报告')+' / '+(cat.trade_code||'州局报告'));
+    td.colSpan=3;codeRow.append(td);tbody.append(tr,codeRow);
+   }
+   table.append(tbody);
+   sect.append(table);
   }
-  table.append(tbody);
-  sect.append(table,item('p',off.notes,'note'));
+  if(off.additional_metrics?.length){
+   sect.append(item('h5','其他已核实分项 · 口径各异','evidence-subheading'));
+   const table=document.createElement('table');table.className='evidence-offence-table';
+   const tbody=document.createElement('tbody');
+   for(const row of off.additional_metrics){
+     const line=document.createElement('tr');
+     line.append(item('th',row.name),item('td',fmt(row.cases)));
+     tbody.append(line);
+     const note=document.createElement('tr');note.className='evidence-code-row';
+     const td=item('td',row.code+
+       (Number.isInteger(row.previous_2024)?' · 2024年 '+fmt(row.previous_2024)+' 起':'')+
+       (row.note?' · '+row.note:''));
+     td.colSpan=2;note.append(td);tbody.append(note);
+   }
+   table.append(tbody);sect.append(table);
+  }
+  sect.append(item('p',off.notes,'note'));
   const src=item('div','','evidence-source');src.append(sourceLink('警察统计原表：'+off.source_title+' ↗',off.source_url));sect.append(src);
   body.append(sect);
  } else body.append(item('p','本州大麻、可卡因、冰毒、海洛因罪名细分原表尚未核实，不依据全国比例估算。','note'));
