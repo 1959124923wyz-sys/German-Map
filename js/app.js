@@ -40,6 +40,9 @@
   tiles.on('tileload',()=>{if(!tileOk){tileOk=true;el.mapStatus.className='mapstatus ok';el.mapStatus.textContent='OSM街道底图 + 本地统计图层';}});
   tiles.on('tileerror',()=>{tileErrors++;if(tileErrors>=6&&!tileOk){if(map.hasLayer(tiles))map.removeLayer(tiles);el.mapStatus.className='mapstatus fallback';el.mapStatus.textContent='本地统计底图（OSM当前不可用）';}});
   tiles.addTo(map);
+  // Consistent, high-contrast German city names shared with the drug topic.
+  // Separate non-interactive pane: state/county clicks remain available.
+  const cityLabels = window.CrimeCityLabels?.create(map,{paneName:'major-city-labels',zIndex:435});
   setTimeout(()=>{if(!tileOk){if(map.hasLayer(tiles))map.removeLayer(tiles);el.mapStatus.className='mapstatus fallback';el.mapStatus.textContent='本地统计底图（OSM当前不可用）';}},4000);
 
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
