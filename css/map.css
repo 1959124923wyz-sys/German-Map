@@ -57,3 +57,10 @@ footer{flex:0 0 34px;border-top:1px solid var(--line);padding:7px 18px;color:var
   main{display:block;height:auto;overflow:visible}.mapwrap{height:60vh;min-height:430px}aside{height:auto;max-height:none;border-left:0;border-top:1px solid var(--line)}#list{max-height:55vh}
   .area-grid{grid-template-columns:repeat(3,1fr)}.layerinfo{max-width:260px;right:8px;bottom:8px}.legend{left:8px;bottom:8px;max-width:265px}.state-drawer{left:8px;right:8px;top:58px;width:auto;max-height:55vh}footer{height:auto;display:block;white-space:normal;padding:7px 11px}
 }
+
+/* City detail focus: the unclassified Dresden territory is intentionally
+   neutral grey, NOT the city-wide choropleth shining through local polygons. */
+.mapwrap.city-detail-focus .legend-block:not(.generic-city-legend){display:none}
+.mapwrap.city-detail-focus .generic-city-legend{margin:0;padding:0;border:0}
+.city-coverage-note{margin-top:9px;padding-top:8px;border-top:1px solid rgba(255,255,255,.15);font-size:10px;line-height:1.5;color:#c8d5df}
+.city-detail-focus .city-coverage-note:before{content:"";display:inline-block;width:10px;height:10px;background:#e7ecef;border:1px solid #a6b0b8;border-radius:2px;margin-right:7px;vertical-align:-1px}
