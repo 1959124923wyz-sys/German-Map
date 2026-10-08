@@ -244,6 +244,11 @@
     }
     active = {
       map, container, updateStates,
+      setVisible(visible) {
+        if (visible && !map.hasLayer(container)) container.addTo(map);
+        if (!visible && map.hasLayer(container)) map.removeLayer(container);
+        if (!visible) closePanel();
+      },
       deactivate() {
         map.off('zoomend',updateStates);
         map.removeLayer(container);
@@ -254,6 +259,9 @@
         }
       }
     };
+    if (isStandalone && window.GermanMapDrugWastewater?.init) {
+      window.GermanMapDrugWastewater.init({map,crime:active});
+    }
     return active;
   }
   function deactivate() {
