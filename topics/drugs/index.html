@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>德国毒品问题地图｜German-Map</title>
+<meta name="description" content="2025德国县级毒品犯罪登记案件地图。数据来自BKA PKS县级统计的公开镜像，明确区分警方记录与毒品消费。">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="topic.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <div class="brand">德国犯罪态势地图 <span style="color:#935a40">/ 毒品问题</span></div>
+    <div class="subbrand">Drogenkriminalität · BKA PKS 2025 · 研究预览版</div>
+  </div>
+  <nav class="toplinks" aria-label="导航">
+    <span class="flag">独立开发预览</span>
+    <a href="../../index.html">返回犯罪主地图 ↗</a>
+  </nav>
+</header>
+<main class="workspace">
+  <section class="map-area" aria-label="德国毒品犯罪分布交互式地图">
+    <div id="drug-map"></div>
+    <div class="map-shade"><strong>警方登记毒品案件 · 2025</strong><small>县／独立市官方PKS口径，按每10万人登记率着色。缩放后点击县市，可查看具体数值。</small></div>
+    <div class="legend" id="legend"><div class="legend-title">每10万人登记案件</div><div id="legend-data">读取中…</div></div>
+    <section class="state-flyout" id="state-panel" hidden aria-live="polite">
+      <div class="heading"><div><h3 id="state-name">—</h3><div class="label" id="state-type">2025年统计</div></div><button id="close-state" type="button" aria-label="关闭详情">×</button></div>
+      <div class="state-values">
+        <div><b id="state-cases">—</b><small id="state-cases-label">登记案件（县级汇总）</small></div>
+        <div><b id="state-rate">—</b><small id="state-rate-label">每10万人</small></div>
+      </div>
+      <div class="row"><strong class="section-title" id="state-top-title">州内高值县市</strong><button type="button" class="secondary-button" id="state-focus">缩放至区域</button></div>
+      <ol id="state-top" class="district-list"></ol>
+      <p class="note" id="state-note"></p>
+    </section>
+  </section>
+  <aside class="sidebar">
+    <div class="eyebrow">毒品专题 / Research preview</div>
+    <h2>德国毒品犯罪分布</h2>
+    <p class="intro">显示警方记录的毒品违法案件，不将案件数量解释为实际吸毒人口；大麻相关违法行为没有被排除。</p>
+    <div class="tabset" role="group" aria-label="专题数据类别">
+      <button type="button" class="selected" aria-current="true">违法案件</button>
+      <button type="button" disabled title="等待可核验的污水检测城市数据">消费检测（待接入）</button>
+      <button type="button" disabled title="等待按地区可用的卫生统计">健康危害（待接入）</button>
+    </div>
+    <div class="metricbox wide">
+      <div class="metricvalue">164,991</div>
+      <div class="metriclabel">BKA 2025全国 Rauschgiftkriminalität 登记案件（独立全国指标，与下方县级指标不直接等同）</div>
+    </div>
+    <div class="statgrid">
+      <div class="metricbox"><div class="metricvalue" id="county-count">—</div><div class="metriclabel">已匹配县／独立市数</div></div>
+      <div class="metricbox"><div class="metricvalue" id="highest-value">—</div><div class="metriclabel" id="highest-name">县市最高登记率／10万人</div></div>
+    </div>
+    <div class="metadata" id="status" role="status">正在读取专题数据…</div>
+    <div class="row"><h3 class="section-title" id="rank-heading">高登记率县市</h3><button type="button" class="secondary-button" id="reset-map">全国视图</button></div>
+    <ol class="district-list" id="top-list"></ol>
+    <div class="barline"></div>
+    <div class="warning">⚠️ 2024年4月大麻部分合法化改变了警方登记案件的法律定义；不能据2023—2025年登记量下降直接推断吸毒减少。案件数量也受执法强度、检查地点及通报行为影响。</div>
+    <p class="note">全国县级毒品案件使用第三方公开页面转录的BKA PKS 2025县级T01数据，页面保留原始县级来源URL。全国164,991起为BKA独立统计的“Rauschgiftkriminalität”，不可与县级镜像指标简单相加或作精确核对。灰色区域表示数据不可用，不表示没有犯罪。</p>
+    <div class="source-links">
+      <a href="https://data.gov.de/suche/daten/2025-polizeiliche-kriminalstatistik-t01-grundtabelle-kreise-ausgewahlte-straftaten-gruppen" target="_blank" rel="noopener noreferrer">BKA官方县级数据 ↗</a>
+      <a href="https://kriminalitaets-karte.de/kriminalitaet/" target="_blank" rel="noopener noreferrer">县级公开镜像 ↗</a>
+      <a href="https://www.euda.europa.eu/publications/pods/waste-water-analysis_de" target="_blank" rel="noopener noreferrer">EUDA污水检测 ↗</a>
+    </div>
+  </aside>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="topic.js"></script>
+</body>
+</html>
