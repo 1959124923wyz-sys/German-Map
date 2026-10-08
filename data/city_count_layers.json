@@ -31,6 +31,34 @@
       "reported_total": 25158,
       "mapped_total": 24341,
       "unassigned_total": 817
+    },
+    {
+      "id": "bremen",
+      "name": "Bremen",
+      "name_zh": "不来梅",
+      "state": "Bremen",
+      "ags": "04011",
+      "file": "data/bremen_local_counts_2025.geojson",
+      "year": 2025,
+      "compare_year": 2024,
+      "metric": "local_category_cases",
+      "unit": "警方登记案件（起），非每10万人率",
+      "source": "Bremische Bürgerschaft Drucksache 21/1866 (PKS 2024–2025)",
+      "source_url": "https://www.bremische-buergerschaft.de/dokumente/wp21/land/drucksache/D21L1866.pdf",
+      "geometry_credit": "GeoInformation Bremen · official administrative WFS",
+      "geometry_url": "https://geodienste.bremen.de/wfs_verwaltungsgrenzen?SERVICE=WFS&REQUEST=GetCapabilities",
+      "color_measure": "2025年分区官方犯罪类别案件数量，不是人均犯罪风险",
+      "region_count": 22,
+      "categories": [
+        "all_offenses",
+        "theft",
+        "robbery",
+        "bodily_injury",
+        "burglary",
+        "sexual",
+        "drug"
+      ],
+      "note": "The senate report warns area totals omit offenses without district assignment; dashes are null, never zero."
     }
   ]
 }

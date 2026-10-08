@@ -86,3 +86,12 @@ footer{flex:0 0 34px;border-top:1px solid var(--line);padding:7px 18px;color:var
 .supp-history span{display:flex;flex-direction:column;background:#edf2f8;border-radius:4px;padding:3px}
 .supp-history small{color:#677888}.supp-popup>small{color:#657481}
 @media(max-width:920px){.supp-city-info{top:10px;bottom:auto;right:8px;width:235px}.supp-city-numbers b{font-size:14px}}
+
+/* Bremen 22 police reporting areas: independent seven-category COUNT map. */
+.bremen-category-panel .supp-city-head{align-items:flex-start}
+.bremen-select-label{display:block;color:#b2c5d4;font-size:10px;margin:9px 0 4px}
+.bremen-select{display:block;width:100%;min-height:32px;padding:5px 9px;background:#213449;border:1px solid #53738a;border-radius:6px;color:#f2f8fc;font-size:12px}
+.bremen-category-panel .supp-city-numbers{margin-top:8px}
+.bremen-category-panel .supp-city-sub{line-height:1.4}
+.bremen-category-panel{max-height:min(72vh,610px);overflow-y:auto}
+@media(max-width:920px){.bremen-category-panel{max-height:53vh;overflow-y:auto}}
