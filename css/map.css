@@ -132,3 +132,24 @@ footer{flex:0 0 34px;border-top:1px solid var(--line);padding:7px 18px;color:var
 .duesseldorf-more-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
 .duesseldorf-other-panel{max-height:min(74vh,630px);overflow-y:auto}
 @media(max-width:920px){.duesseldorf-other-panel{max-height:53vh}}
+
+
+/* Shared on-map city labels. Kept independent of OSMap tiles and above choropleth.
+   Text has a restrained halo so it stays legible on both light and dark counties.
+   The containing pane receives no pointer events and never blocks polygons. */
+.leaflet-pane.major-city-labels,.crime-city-label-icon{pointer-events:none!important}
+.crime-city-label-icon{background:transparent!important;border:0!important;overflow:visible!important}
+.crime-city-label{
+  display:block;position:absolute;left:0;top:0;
+  transform:translate(-50%,-52%);
+  white-space:nowrap;line-height:1.15;
+  font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  font-size:12px;font-weight:780;letter-spacing:.015em;
+  color:#132a3e;
+  text-shadow:
+    0 1px 2px #f5fbff,0 -1px 2px #f5fbff,
+    1px 0 2px #f5fbff,-1px 0 2px #f5fbff,
+    0 0 5px #f5fbff,0 2px 5px #f5fbff;
+  user-select:none;pointer-events:none;
+}
+@media(max-width:640px){.crime-city-label{font-size:11px}}
