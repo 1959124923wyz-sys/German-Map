@@ -55,7 +55,8 @@
           "label": "车内/车上盗窃"
         }
       },
-      "builder": "scripts/build_hamburg_local_2025.py"
+      "builder": "scripts/build_hamburg_local_2025.py",
+      "county_ags": "02000"
     },
     {
       "id": "leipzig",
@@ -95,7 +96,8 @@
           "label": "盗窃总体"
         }
       },
-      "builder": "scripts/build_leipzig_local_2025.py"
+      "builder": "scripts/build_leipzig_local_2025.py",
+      "county_ags": "14713"
     },
     {
       "id": "chemnitz",
@@ -135,7 +137,8 @@
           "label": "盗窃总体"
         }
       },
-      "builder": "scripts/build_chemnitz_local_2025.py"
+      "builder": "scripts/build_chemnitz_local_2025.py",
+      "county_ags": "14511"
     },
     {
       "id": "dresden",
@@ -175,7 +178,8 @@
           "label": "盗窃总体"
         }
       },
-      "builder": "scripts/build_dresden_local_2025.py"
+      "builder": "scripts/build_dresden_local_2025.py",
+      "county_ags": "14612"
     },
     {
       "id": "munich",
@@ -215,7 +219,8 @@
           "label": "盗窃总体"
         }
       },
-      "builder": "scripts/build_munich_local_2025.py"
+      "builder": "scripts/build_munich_local_2025.py",
+      "county_ags": "09162"
     }
   ]
 }
