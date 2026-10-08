@@ -226,6 +226,7 @@ with sync_playwright() as playwright:
         return m.getZoom()>=8 && n===61;
     }""",timeout=25000)
     dresden=page.evaluate("""() => {
+        const m=window.__CRIME_MAP__.map;
         const county=window.__CRIME_MAP__.getCountyLayer().getLayers()
             .find(x=>String(x.feature?.id)==='14612');
         const municipal=Array.from(m._layers ? Object.values(m._layers) : [])
