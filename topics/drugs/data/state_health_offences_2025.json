@@ -5,7 +5,7 @@
     "national_drug_deaths": 2150,
     "national_source": "https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/",
     "mortality_coverage_states": 12,
-    "drug_specific_offence_coverage_states": 8,
+    "drug_specific_offence_coverage_states": 9,
     "method": "State government/police originals preferred; agency-attributed reports accepted with source type. Each selected offence key/group has its own scope; absence is missing, never zero. Substance totals and PKS general/trade subkeys must never be added across differing scopes. Sachsen and Hamburg added directly from 2025 Land police primary PKS tables; overlapping subcategories are explicitly named.",
     "mortality_scope": "Recorded drug-related deaths; state data from police/health ministries or organizations and public broadcasters quoting them. Methods and as-of dates may differ; do not add to BKA crime numbers.",
     "updated_at": "2026-10-08",
@@ -408,6 +408,27 @@
           "cases": 1309,
           "code": "§34 KCanG非法交易子项",
           "note": "已包含在2,343起内"
+        }
+      ]
+    },
+    "Baden-Württemberg": {
+      "source_url": "https://sicher-bw.de/kriminalitaet/rauschgiftkriminalitaet",
+      "source_title": "巴登—符腾堡州政府 · Sicherheit in Baden-Württemberg 2025 · Rauschgiftkriminalität",
+      "source_type": "state_government",
+      "notes": "仅有新精神活性物质（NPS）的两项精确分项，尚未取得本州其他毒品的2025年具体案件数。NpSG §4违法156与按BtMG登记的NPS非法交易61属于不同法律/统计类别，不能相加或命名为该物质全部案件。州专栏亦披露毒品犯罪总量16,001，但这不是单一物质案件。",
+      "groups": [],
+      "additional_metrics": [
+        {
+          "name": "新精神活性物质 · NpSG违法",
+          "cases": 156,
+          "code": "NpSG §4",
+          "note": "2025年州内登记156起，州官方披露较2024年上升62.5%；不从百分比反推前一年整数。"
+        },
+        {
+          "name": "新精神活性物质 · BtMG非法交易",
+          "cases": 61,
+          "code": "BtMG §29 NPS贸易",
+          "note": "按BtMG记录的NPS贸易，2025年为61起；与NpSG违法不是可合并的相同罪名。"
         }
       ]
     }
