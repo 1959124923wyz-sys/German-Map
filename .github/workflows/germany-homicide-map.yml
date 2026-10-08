@@ -73,6 +73,7 @@ jobs:
           node --check js/layers/stuttgart-public-violence.js
           node --check js/layers/duesseldorf-count-detail.js
           node --check js/layers/duesseldorf-bv6-detail.js
+          node --check js/layers/duesseldorf-other-stadtteile.js
 
       - name: Test deterministic city builder I/O
         run: python scripts/test_city_build_common.py
@@ -174,6 +175,25 @@ jobs:
 
       - name: Audit Düsseldorf BV6 official 8 crime categories and 4 neighborhood polygons
         run: python scripts/validate_duesseldorf_bv6_local.py
+
+      - name: Refresh Düsseldorf BV7 source-backed five-Stadtteil 2025 crime categories
+        run: |
+          if ! (python scripts/build_duesseldorf_additional_stadtteile.py --district 07 --output data/duesseldorf_bv7_local_2025.geojson --release-count-only); then
+            test -s data/duesseldorf_bv7_local_2025.geojson || exit 1
+            echo "::warning::BV7 original source temporarily unavailable; preserving verified last-good 2025 data"
+          fi
+
+      - name: Refresh Düsseldorf BV9 source-backed eight-Stadtteil two crime categories
+        run: |
+          if ! (python scripts/build_duesseldorf_additional_stadtteile.py --district 09 --output data/duesseldorf_bv9_local_2025.geojson --release-count-only); then
+            test -s data/duesseldorf_bv9_local_2025.geojson || exit 1
+            echo "::warning::BV9 original source temporarily unavailable; preserving verified last-good 2025 data"
+          fi
+
+      - name: Enforce Düsseldorf BV7/BV9 police category, polygon and year QA
+        run: |
+          python scripts/validate_duesseldorf_additional_stadtteile.py --district 07
+          python scripts/validate_duesseldorf_additional_stadtteile.py --district 09
 
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py

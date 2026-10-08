@@ -377,3 +377,43 @@ python scripts/build_duesseldorf_bv6_local.py --output data/duesseldorf_bv6_loca
 python scripts/validate_duesseldorf_bv6_local.py
 ```
 Existing nationwide rates and city overlays remain entirely separate.
+
+## Düsseldorf BV7 and BV9 neighborhood drilldowns, official 2025
+
+Added two source-correct police PDF geography joins beyond BV6, both built
+using the **26 March 2025 official 50-Stadtteil GIS** source (DL-DE Zero 2.0).
+Original 2025 city-wide source is versioned locally in
+`data/duesseldorf_official_stadtteile_2025.geojson` once fetched, to avoid
+network outages and repeated downloads; original URL retained for provenance.
+
+* **BV7** official Düsseldorf police source [2026-05-26 BV7 presentation,
+  pages 4–11](https://ris-oparl.itk-rheinland.de/Oparl/bodies/0015/downloadfiles/00588348.pdf):
+  Gerresheim, Grafenberg, Ludenberg, Hubbelrath, Knittkuhl, 8 original
+  police offense categories 2022–2025. 2025 all offenses **2,490** cases,
+  exactly independently matching the 10-Stadtbezirk Düsseldorf annual PKS
+  summary. Street crime **600**, street robbery **7**, street injury **14**,
+  motor-vehicle theft **159**, bicycle theft **84**, pickpocketing **117**,
+  residential burglary **102**. The official municipal geometry covers
+  roughly 27.753 km², zero internal overlap.
+* **BV9** original [2026-07-03 PI Süd Sicherheitslagebild pages 8, 16](https://ris-oparl.itk-rheinland.de/Oparl/bodies/0015/downloadfiles/00592935.pdf),
+  **IGVP / ViVa Eingangsstatistik**: Hassels, Wersten, Holthausen,
+  Benrath, Urdenbach, Reisholz, Himmelgeist and Itter. The original source
+  reports **only street crime and residential burglary by Stadtteil**, not
+  other categories and not all-offense neighborhood totals. 2025 figures
+  **1,659 and 184**. Both metrics have actual local source records for
+  2021–2025. The site must never paint fake BV9 street-level robbery,
+  injuries, total theft or all-offense counts.
+
+Shared `js/layers/duesseldorf-other-stadtteile.js` supports BV7/BV9
+without new location buttons; they open from Düsseldorf's existing 10-area
+panel. City state, per-area click, category options and pointer restoration
+are validated by browser tests. Local crimes are absolute case counts,
+not BKA normalized per-100,000 or resident victimization probability.
+
+```sh
+python scripts/build_stuttgart_duesseldorf_geometry.py
+python scripts/build_duesseldorf_additional_stadtteile.py --district 07 --output data/duesseldorf_bv7_local_2025.geojson --release-count-only
+python scripts/build_duesseldorf_additional_stadtteile.py --district 09 --output data/duesseldorf_bv9_local_2025.geojson --release-count-only
+python scripts/validate_duesseldorf_additional_stadtteile.py --district 07
+python scripts/validate_duesseldorf_additional_stadtteile.py --district 09
+```

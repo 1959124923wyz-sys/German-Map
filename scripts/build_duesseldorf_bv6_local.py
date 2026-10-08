@@ -88,7 +88,17 @@ def build(out,release):
     if release and str(out)!=PUBLIC:raise ValueError("Only approved BV6 public count file may be written")
     if not release and str(out).startswith("data/"):raise ValueError("candidate cannot leak to production data")
     police,city=parse_source(download_bytes(PDF_ORIGINAL,timeout=75))
-    data=json.loads(download_bytes(GEO_URL,timeout=75).decode("utf-8-sig"))
+    # The exact 2025 50-Stadtteil source is immutable: persist it once and
+    # reuse for the BV7/BV9 builders to avoid three simultaneous GIS fetches.
+    cache=Path("data/duesseldorf_official_stadtteile_2025.geojson")
+    if cache.exists():
+        data=json.loads(cache.read_text(encoding="utf-8"))
+    else:
+        data=json.loads(download_bytes(GEO_URL,timeout=75).decode("utf-8-sig"))
+        if len(data.get("features",[]))==50:
+            write_geojson(cache,data)
+    if len(data.get("features",[]))!=50:
+        raise ValueError("Official 2025 Düsseldorf original 50 district GIS is incomplete")
     selected=[f for f in data.get("features",[]) if f.get("properties",{}).get("Name") in NAMES]
     if len(data.get("features",[]))!=50 or len(selected)!=4:
         raise ValueError("Official 2025 Düsseldorf Stadtteil geographic roster changed")

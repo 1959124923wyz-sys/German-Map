@@ -137,7 +137,54 @@
           2025
         ],
         "note": "Only BV6 (Lichtenbroich, Unterrath, Rath, Mörsenbroich) has eight police categories. All other city districts retain ONLY the ten-district total offense metric."
-      }
+      },
+      "neighbourhood_expansions": [
+        {
+          "parent_stadtbezirk": "07",
+          "region_count": 5,
+          "category_count": 8,
+          "metric_scope": "BV7_EIGHT_POLICE_OFFENSE_CLASSES",
+          "history_years": [
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "file": "data/duesseldorf_bv7_local_2025.geojson",
+          "categories": [
+            "all_offenses",
+            "street_crime",
+            "street_robbery",
+            "street_injury",
+            "vehicle_related_theft",
+            "bicycle_theft",
+            "pickpocketing",
+            "residential_burglary"
+          ],
+          "source_url": "https://ris-oparl.itk-rheinland.de/Oparl/bodies/0015/downloadfiles/00588348.pdf",
+          "description": "Police 2025 eight-category 5-Stadtteil district-7 table, independently reconciled with ten-district all-offense source."
+        },
+        {
+          "parent_stadtbezirk": "09",
+          "region_count": 8,
+          "category_count": 2,
+          "metric_scope": "BV9_ONLY_STREET_CRIME_AND_RESIDENTIAL_BURGLARY",
+          "history_years": [
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "file": "data/duesseldorf_bv9_local_2025.geojson",
+          "categories": [
+            "street_crime",
+            "residential_burglary"
+          ],
+          "source_url": "https://ris-oparl.itk-rheinland.de/Oparl/bodies/0015/downloadfiles/00592935.pdf",
+          "description": "PI Süd 2025 IGVP/VIVA Eingangsstatistik: ONLY two street-level categories for 8 named district-9 Stadtteile. Do not fake other six offense classes."
+        }
+      ]
     }
   ]
 }

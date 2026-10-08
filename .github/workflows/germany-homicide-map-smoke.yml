@@ -28,6 +28,8 @@ on:
       - 'scripts/validate_duesseldorf_offenses_2025.py'
       - 'scripts/build_duesseldorf_bv6_local.py'
       - 'scripts/validate_duesseldorf_bv6_local.py'
+      - 'scripts/build_duesseldorf_additional_stadtteile.py'
+      - 'scripts/validate_duesseldorf_additional_stadtteile.py'
       - '.github/workflows/germany-homicide-map-smoke.yml'
 
 permissions:
@@ -87,6 +89,7 @@ jobs:
           node --check js/layers/stuttgart-public-violence.js
           node --check js/layers/duesseldorf-count-detail.js
           node --check js/layers/duesseldorf-bv6-detail.js
+          node --check js/layers/duesseldorf-other-stadtteile.js
 
       - name: Test deterministic city builder I/O
         run: python scripts/test_city_build_common.py
@@ -148,6 +151,17 @@ jobs:
 
       - name: Audit Düsseldorf BV6 official topology and 8 crime categories
         run: python scripts/validate_duesseldorf_bv6_local.py
+
+      - name: Build official Düsseldorf district 7 five-Stadtteil counts
+        run: python scripts/build_duesseldorf_additional_stadtteile.py --district 07 --output data/duesseldorf_bv7_local_2025.geojson --release-count-only
+
+      - name: Build official Düsseldorf district 9 two genuine neighbourhood classes
+        run: python scripts/build_duesseldorf_additional_stadtteile.py --district 09 --output data/duesseldorf_bv9_local_2025.geojson --release-count-only
+
+      - name: Validate Düsseldorf BV7 and BV9 separate 2025 source-defined PKS groups
+        run: |
+          python scripts/validate_duesseldorf_additional_stadtteile.py --district 07
+          python scripts/validate_duesseldorf_additional_stadtteile.py --district 09
 
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py

@@ -106,6 +106,19 @@ def validate(intake:dict,live:dict,supplementary:dict|None=None)->dict:
                         sub.get("category_count")!=8 or sub.get("history_years")!=[2022,2023,2024,2025] or
                         sub.get("file")!="data/duesseldorf_bv6_local_2025.geojson"):
                         raise ValueError(f"{cid}: unapproved local BV6 drilling scope")
+                    additional=item.get("neighbourhood_expansions",[])
+                    if len(additional)!=2 or {t.get("parent_stadtbezirk") for t in additional}!={"07","09"}:
+                        raise ValueError(f"{cid}: Düsseldorf BV7/BV9 locality source whitelist changed")
+                    permit={"07":(5,8,[2022,2023,2024,2025],"BV7_EIGHT_POLICE_OFFENSE_CLASSES"),
+                            "09":(8,2,[2021,2022,2023,2024,2025],"BV9_ONLY_STREET_CRIME_AND_RESIDENTIAL_BURGLARY")}
+                    for sec in additional:
+                        borough=sec["parent_stadtbezirk"]
+                        region_count,category_count,years,scope=permit[borough]
+                        if (sec.get("region_count")!=region_count or sec.get("category_count")!=category_count or
+                            sec.get("history_years")!=years or sec.get("metric_scope")!=scope or
+                            sec.get("file")!=f"data/duesseldorf_bv{int(borough)}_local_2025.geojson" or
+                            len(sec.get("categories",[]))!=category_count):
+                            raise ValueError(f"{cid}: unsupported BV{borough} neighbourhood/local category statistic")
                 else:
                     raise ValueError(f"{cid}: unsupported supplementary publication scope")
             else:
