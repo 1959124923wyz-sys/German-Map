@@ -25,7 +25,7 @@
   <section class="map-area" aria-label="德国毒品犯罪分布交互式地图">
     <div id="drug-map"></div>
     <div class="map-shade"><strong>警方登记毒品案件 · 2025</strong><small>2025年PKS县级登记数据（公开镜像），按每10万人案件率着色。缩放后点击县市，可查看具体数值。</small></div>
-    <div class="legend" id="legend"><div class="legend-title">毒品违法案件 / 每10万人</div><div id="legend-data">读取中…</div></div>
+    <div class="legend" id="legend"><div class="legend-title" id="legend-title">毒品违法案件 / 每10万人</div><div id="legend-data">读取中…</div></div>
     <section class="state-flyout" id="state-panel" hidden aria-live="polite">
       <div class="heading"><div><h3 id="state-name">—</h3><div class="label" id="state-type">2025年统计</div></div><button id="close-state" type="button" aria-label="关闭详情">×</button></div>
       <div class="state-values">
@@ -36,16 +36,23 @@
       <ol id="state-top" class="district-list"></ol>
       <p class="note" id="state-note"></p>
     </section>
+    <section class="state-flyout" id="wastewater-flyout" hidden aria-live="polite">
+      <div class="heading"><div><h3 id="wastewater-city">—</h3><div class="label">EUDA / SCORE · 2025 · 检测站点</div></div><button id="close-wastewater" type="button" aria-label="关闭污水检测详情">×</button></div>
+      <div class="state-values"><div><b id="wastewater-value">—</b><small>mg / 每1000人 / 每天</small></div><div><b id="wastewater-previous">—</b><small>2024年同站点检测值</small></div></div>
+      <p class="note" id="wastewater-note"></p>
+      <div class="source-links"><a href="https://www.euda.europa.eu/publications/pods/waste-water-analysis_de" target="_blank" rel="noopener noreferrer">EUDA原始数据和方法 ↗</a></div>
+    </section>
   </section>
   <aside class="sidebar">
     <div class="eyebrow">毒品专题 / Drogenkriminalität</div>
     <h2>德国毒品犯罪分布</h2>
     <p class="intro">显示警方记录的毒品违法案件，不将案件数量解释为实际吸毒人口；大麻相关违法行为没有被排除。</p>
     <div class="tabset" role="group" aria-label="专题数据类别">
-      <button type="button" class="selected" aria-current="true">违法案件</button>
-      <button type="button" disabled title="等待可核验的污水检测城市数据">消费检测（待接入）</button>
+      <button type="button" class="selected" id="drugs-tab-crime" aria-current="true">违法案件</button>
+      <button type="button" id="drugs-tab-wastewater" aria-current="false">消费检测</button>
       <button type="button" disabled title="等待按地区可用的卫生统计">健康危害（待接入）</button>
     </div>
+    <div id="drugs-crime-content">
     <div class="metricbox wide">
       <div class="metricvalue">164,991</div>
       <div class="metriclabel">BKA 2025全国 Rauschgiftkriminalität 登记案件（独立全国指标，与下方县级指标不直接等同）</div>
@@ -70,9 +77,36 @@
       <a href="https://kriminalitaets-karte.de/kriminalitaet/" target="_blank" rel="noopener noreferrer">县级公开镜像 ↗</a>
       <a href="https://www.euda.europa.eu/publications/pods/waste-water-analysis_de" target="_blank" rel="noopener noreferrer">EUDA污水检测 ↗</a>
     </div>
+    </div>
+    <div id="drugs-wastewater-content" hidden>
+      <h3 class="section-title">2025年城市污水检测 · EUDA/SCORE</h3>
+      <p class="intro">在德国13个参与检测的站点显示污水药物残留。每次切换一种物质；点位不是整座城市的消费量。</p>
+      <label class="wastewater-label" for="wastewater-substance">选择检测物质</label>
+      <select id="wastewater-substance" class="wastewater-select">
+        <option value="cannabis">大麻 · THC-COOH</option>
+        <option value="cocaine">可卡因 · 苯甲酰爱康宁</option>
+        <option value="methamphetamine">冰毒 · 甲基苯丙胺</option>
+        <option value="amphetamine">安非他命</option>
+        <option value="MDMA">摇头丸 · MDMA</option>
+        <option value="ketamine">氯胺酮 · Ketamine</option>
+        <option disabled>海洛因 · 无可靠专属污水标志物</option>
+      </select>
+      <div class="statgrid">
+        <div class="metricbox"><div class="metricvalue" id="wastewater-sites">—</div><div class="metriclabel">本物质有数据的检测站</div></div>
+        <div class="metricbox"><div class="metricvalue" id="wastewater-peak">—</div><div class="metriclabel" id="wastewater-peak-city">本组站点最高检测值</div></div>
+      </div>
+      <div class="metadata" id="wastewater-status" role="status">切换后读取 EUDA 官方数据…</div>
+      <div class="row"><h3 class="section-title">污水检测站点（按本物质排序）</h3><button type="button" id="wastewater-fit" class="secondary-button">显示全部站点</button></div>
+      <ol class="district-list" id="wastewater-rank"></ol>
+      <div class="barline"></div>
+      <div class="warning">⚠️ 这是污水中药物或代谢物的残留负荷，单位为mg/每1000人/每天。零表示低于定量限，缺失不等于零。不同物质之间不能直接比较数值大小。</div>
+      <p class="note">2025年实测点，2026年发布。站点坐标来自EUDA污水处理设施信息表，部分点是多处理厂的汇总。此数据未根据代谢排泄系数换算为实际消费量、吸毒人数或使用比例。海洛因因缺乏稳定特异性指标暂不设此图层。</p>
+      <div class="source-links"><a href="https://www.euda.europa.eu/publications/pods/waste-water-analysis_de" target="_blank" rel="noopener noreferrer">EUDA原始数据与方法 ↗</a></div>
+    </div>
   </aside>
 </main>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="topic.js?v=20261008-dark-green-v1"></script>
+<script src="wastewater.js?v=20261008-euda-v1"></script>
+<script src="topic.js?v=20261008-euda-v1"></script>
 </body>
 </html>
