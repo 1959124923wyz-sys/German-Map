@@ -200,7 +200,7 @@ def main():
     gathered={}
     # Preserve last-known-good reports; downgrade location, not content, when no GIS match.
     for entry in old.get("reports",[]):
-        if CUTOFF<=date.fromisoformat(entry["publication_date"])<=TODAY:
+        if TODAY-timedelta(days=160)<=date.fromisoformat(entry["publication_date"])<=TODAY:
             gathered[entry["source_url"]]=entry
     found_total=0
     for tag in TAGS:
