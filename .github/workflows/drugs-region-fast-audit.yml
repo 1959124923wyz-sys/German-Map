@@ -1,0 +1,41 @@
+name: Drug state-detail fast audit
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/drugs-region-fast-audit.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: JS syntax and 16-state county mapping audit
+        run: |
+          node --check topics/drugs/topic.js
+          node --check topics/drugs/wastewater.js
+          python topics/drugs/scripts/validate_drugs.py
+          python - <<'PY'
+          from pathlib import Path
+          import json,html.parser
+          doc=Path('topics/drugs/index.html').read_text()
+          class Inspector(html.parser.HTMLParser):
+              def __init__(self):super().__init__();self.ids=[]
+              def handle_starttag(self,tag,attrs):
+                  self.ids.extend(value for name,value in attrs if name=='id')
+          inspector=Inspector();inspector.feed(doc)
+          required=['region-navigator','region-home','region-state-link','region-drill','region-cases','region-rate','region-county-list','state-index-list','national-drug-summary']
+          assert all(inspector.ids.count(i)==1 for i in required),[(i,inspector.ids.count(i)) for i in required]
+          data=json.loads(Path('topics/drugs/data/pks_drugs_2025.json').read_text())
+          regions=json.loads(Path('data/germany-states.geojson').read_text())
+          states={f['properties']['name'] for f in regions['features']}
+          seen={state:[] for state in states}
+          for row in data['records'].values():
+              seen[row['state']].append(row)
+          assert len(states)==16 and all(seen.values())
+          assert sum(len(rows) for rows in seen.values())==400
+          assert sum(r['drug_crime']['cases'] for rows in seen.values() for r in rows)==160643
+          print('PASS 16 states, 400 county cases, correct detail control IDs and JS syntax')
+          PY
