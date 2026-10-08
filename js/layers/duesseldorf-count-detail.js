@@ -21,6 +21,7 @@ function popup(f){
   '<small>官方警方公布的统计区案件数。10区合计与全市总数存在差额，不按面积或人口分摊。</small></div>';
 }
 function clear(){
+ window.__DUESSELDORF_BV6__?.disable?.(false);
  if(!api)return;
  if(layer){api.map.removeLayer(layer);layer=null;}
  selected=null;box.hidden=true;api.setCountyFocus?.(null);
@@ -49,9 +50,12 @@ function panel(){
  '<span><b>'+fmt(m.undistributed_by_year['2025'])+'</b><small>全市与分区统计差额</small></span></div>'+
  '<p>官方全市2025年共'+fmt(m.city_by_year['2025'])+'起，10区已统计'+fmt(d)+'起。</p>'+
  '<p>点按地图色块查看该区<b>2022—2025年逐年案件数</b>与2024—2025变化。此处展示的都是原始数量，<b>不是人均犯罪率</b>。</p>'+
+ '<button id="duesseldorfOpenBV6" class="bv6-drilldown" type="button">查看第6区4街区 · 8类犯罪 →</button>'+
  '<div class="supp-city-source"><a href="'+esc(conf.source_url)+'" target="_blank" rel="noopener noreferrer">杜塞尔多夫警方原始统计演示 PDF（第2页）↗</a> · '+
  '<a href="'+esc(conf.geometry_url)+'" target="_blank" rel="noopener noreferrer">2025年官方行政边界↗</a></div>';
  box.hidden=false;$('duesseldorfCountClose').onclick=disable;
+ $('duesseldorfOpenBV6').onclick=()=>window.__DUESSELDORF_BV6__?.activate?.().catch(
+    e=>console.error('BV6 drilldown failed',e));
 }
 const within=()=>active&&geo&&api.map.getZoom()>=8&&bounds.contains(api.map.getCenter());
 function render(){
