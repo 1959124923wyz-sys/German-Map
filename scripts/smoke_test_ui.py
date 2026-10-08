@@ -238,7 +238,7 @@ with sync_playwright() as playwright:
         return {
             cityFillOpacity:county?.options?.fillOpacity,
             municipalityLayers:municipal.length,
-            hasNoDataMask:styles.some(x=>x?.fillOpacity>.9&&x?.fillColor==='#e7ecef'),
+            hasNoDataMask:styles.some(x=>x?.fillOpacity>.25&&x?.fillOpacity<.5&&x?.fillColor==='#e7ecef'),
             hasOuterBorder:styles.some(x=>x?.fill===false&&x?.weight>=1),
             neighbourFillOpacity:neighbour?.options?.fillOpacity,
             focused:document.querySelector('.mapwrap')?.classList.contains('city-detail-focus'),
