@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/audit_bremen_district_joins.py'
+      - 'scripts/build_bremen_geometry_staging.py'
       - '.github/workflows/bremen-district-join-audit.yml'
 
 permissions:
@@ -21,13 +22,18 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install minimal source parsing requirements
-        run: pip install requests pypdf
+        run: pip install requests pypdf shapely pyproj
       - name: Crosswalk police districts to official geographic codes
         run: python scripts/audit_bremen_district_joins.py
+      - name: Build and topologically audit unpublished official polygons
+        run: python scripts/build_bremen_geometry_staging.py
+
       - name: Archive audit with unresolved exceptions
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: bremen-police-geography-crosswalk
-          path: artifacts/bremen_join_audit.json
+          path: |
+            artifacts/bremen_join_audit.json
+            artifacts/bremen_areas_staging.geojson
           if-no-files-found: warn
