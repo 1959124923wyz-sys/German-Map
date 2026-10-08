@@ -89,8 +89,14 @@
       returnView = null;
       onStateChanged?.();
 
-      if (restore && view) {
-        map.setView(view.center, view.zoom, { animate: true });
+      // A state click itself no longer zooms. Only restore if the user
+      // navigated deeper from a county/news row while the drawer was open.
+      // Synchronous restoration avoids racing the zoomend state-layer rebuild.
+      if (restore && view &&
+          (Math.abs(map.getZoom()-view.zoom)>1e-4 ||
+           map.getCenter().distanceTo(view.center)>2)) {
+        map.stop();
+        map.setView(view.center, view.zoom, { animate: false });
       }
     }
 

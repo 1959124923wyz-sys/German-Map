@@ -65,6 +65,16 @@ overlapping colors around municipal borders.
 This geometric harmonisation is a **cartographic rendering layer**, not a
 change to police administrative districts or reported crime rates.
 
+## State overview interaction invariant
+
+Clicking a state at nationwide/state zoom opens its movable overview without
+automatic pan/zoom. As long as state outlines render (below zoom 7.5), they
+are interactive, including fractional zoom levels. Switching to a different
+state must update an already-open drawer in place; closing the drawer must not
+hide state hit targets or trigger animated map restoration when the map has not
+moved. The Playwright smoke test exercises *real pointer clicks* through
+open-switch-close-reopen cycles, not just synthetic Leaflet event dispatch.
+
 ## Data-layer hierarchy
 
 The map deliberately separates spatial/data levels:

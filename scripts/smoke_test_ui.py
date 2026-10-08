@@ -113,6 +113,58 @@ with sync_playwright() as playwright:
     page.click("#stateClose")
     page.wait_for_timeout(900)
 
+    # Real-pointer regression: state drawers must not trap the map.
+    # Previous smoke tests only used Leaflet .fire('click'), bypassing actual
+    # browser pointer hit-testing and the zoom threshold that caused the bug.
+    sequences = [
+        ("Sachsen", 51.05, 13.73),
+        ("Thüringen", 50.98, 11.02),
+        ("Brandenburg", 52.45, 12.65),
+        ("Sachsen", 51.05, 13.73),
+    ]
+    def real_state_click(name, lat, lon):
+        page.evaluate("""([lat,lon]) => {
+            const m=window.__CRIME_MAP__.map;
+            m.stop();
+            m.setView([lat,lon],6,{animate:false});
+        }""",[lat,lon])
+        page.wait_for_timeout(250)
+        diagnostic=page.evaluate("""([name,lat,lon]) => {
+            const m=window.__CRIME_MAP__.map;
+            let obj;
+            m.eachLayer(l=>{
+                if(l instanceof L.GeoJSON && l.options?.pane==='statePane'){
+                    obj=l.getLayers().find(x=>x.feature?.properties?.name===name);
+                }
+            });
+            const p=m.latLngToContainerPoint([lat,lon]),
+                host=document.querySelector('#map').getBoundingClientRect();
+            return {statePresent:!!obj,contains:!!obj&&
+                window.CrimeMapUtils.pointInGeometry(lon,lat,obj.feature.geometry),
+                zoom:m.getZoom(),pixel:[host.left+p.x,host.top+p.y],
+                drawerOpen:document.querySelector('#stateDrawer').classList.contains('open')};
+        }""",[name,lat,lon])
+        assert diagnostic["statePresent"] and diagnostic["contains"],diagnostic
+        page.mouse.click(*diagnostic["pixel"])
+        page.wait_for_timeout(150)
+        actual=page.locator("#stateName").inner_text()
+        assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')"),diagnostic
+        assert actual==name,{"expected":name,"actual":actual,**diagnostic}
+        assert abs(page.evaluate("window.__CRIME_MAP__.map.getZoom()")-6)<.01, (
+            "Opening a state must never change zoom")
+        return diagnostic
+
+    for i,(name,lat,lon) in enumerate(sequences):
+        real_state_click(name,lat,lon)
+        if i==0:
+            # Switching directly from one open state drawer to another
+            # must work without requiring the user to close the panel.
+            real_state_click("Thüringen",50.98,11.02)
+        page.locator("#stateClose").click()
+        assert not page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
+        assert abs(page.evaluate("window.__CRIME_MAP__.map.getZoom()")-6)<.01
+    print("[state-pointer-regression] PASS: repeated real mouse state clicks and close/reopen",flush=True)
+
     # Berlin's official annual violence layer and rolling 90-day property layer.
     page.evaluate("() => { window.__CRIME_MAP__.map.stop(); }")
     page.click("#focusBerlin")

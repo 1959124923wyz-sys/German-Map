@@ -19,7 +19,10 @@
       if (layer) { map.removeLayer(layer); layer = null; }
       const geo = getStateGeo();
       if (!geo || map.getZoom() >= 7.5) return null;
-      const interactive = map.getZoom() <= 7.15;
+      // If the state outlines are visible, state selection must remain
+      // interactive. The old <=7.15 threshold produced dead polygons at
+      // zoom 7.15–7.5, especially after fitBounds/close cycles.
+      const interactive = true;
       layer = L.geoJSON(geo,{
         pane:'statePane',style,interactive,
         onEachFeature:(feature,target)=>{
@@ -35,7 +38,9 @@
             layer.eachLayer(item=>layer.resetStyle(item));
             target.setStyle(style(feature));
             onChange?.(feature);
-            if(target.getBounds)map.fitBounds(target.getBounds(),{padding:[32,32],maxZoom:7.05});
+            // Never auto-zoom on state click: it used to place the map near the
+            // interaction cutoff and trap users after closing the overview.
+            // A state drawer is an overlay, not a map navigation command.
           });
         }
       }).addTo(map);
