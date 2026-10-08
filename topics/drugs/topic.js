@@ -208,6 +208,7 @@
         else original.removeAttribute('href');
       }
       renderRegionNews(name);
+      window.GermanMapDrugEvidence?.show?.(name);
       text('region-list-heading', countyMode ? '州内其他县市 · 按登记率排序' : '州内全部县市 · 按登记率排序');
       text('region-subtitle', stats.rows.length + '个地区');
       text('region-footnote', countyMode
