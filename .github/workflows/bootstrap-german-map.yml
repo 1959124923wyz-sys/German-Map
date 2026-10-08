@@ -1,0 +1,145 @@
+name: Bootstrap German Map repository
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/bootstrap-german-map.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: german-map-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    environment:
+      name: github-pages
+    steps:
+      - name: Check out dedicated repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Download original public project
+        run: |
+          git clone --depth 1 --branch main \
+            https://github.com/1959124923wyz-sys/-1.git \
+            /tmp/german-map-legacy
+          echo "Original commit:"
+          git -C /tmp/german-map-legacy rev-parse HEAD
+
+      - name: Copy site, official datasets and independent workflows
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil
+          import subprocess
+
+          legacy = Path('/tmp/german-map-legacy')
+          source = legacy / 'dao-radar/site/germany-homicide-map'
+          dest = Path.cwd()
+          if not (source / 'index.html').is_file():
+              raise RuntimeError('Legacy German map project missing')
+          if not (source / 'data/munich_local_2025.geojson').is_file():
+              raise RuntimeError('Source dataset incomplete: Munich')
+          shutil.copytree(source, dest, dirs_exist_ok=True)
+
+          workflows = dest / '.github/workflows'
+          workflows.mkdir(parents=True,exist_ok=True)
+          oldwf = legacy / '.github/workflows'
+          for name in (
+              'germany-homicide-map.yml',
+              'germany-homicide-map-smoke.yml',
+              'germany-violent-layers-build.yml',
+              'germany-crime-category-backfill.yml',
+          ):
+              text = (oldwf / name).read_text(encoding='utf-8')
+              text = text.replace('dao-radar/site/germany-homicide-map/', '')
+              text = text.replace('dao-radar/site/germany-homicide-map', '.')
+              text = text.replace('path: dao-radar/site', 'path: .')
+              text = text.replace('cache-dependency-path: dao-radar/site', 'cache-dependency-path: .')
+              text = text.replace('https://github.com/1959124923wyz-sys/-1',
+                                  'https://github.com/1959124923wyz-sys/German-Map')
+              text = text.replace('group: shared-github-pages-deployment',
+                                  'group: german-map-pages')
+              # A historical one-off branch is not recreated during migration.
+              if name == 'germany-crime-category-backfill.yml':
+                  text = text.replace(
+                    "  push:\n    branches: [backfill-all-crime-categories]\n    paths:\n      - 'scripts/update_crime_categories.py'\n      - '.github/workflows/germany-crime-category-backfill.yml'\n",
+                    "")
+              (workflows / name).write_text(text,encoding='utf-8')
+
+          # Update outgoing project contact identifiers, not police/official URLs.
+          for script in (dest/'scripts').glob('*.py'):
+              content = script.read_text(encoding='utf-8')
+              changed = content.replace(
+                  'https://github.com/1959124923wyz-sys/-1',
+                  'https://github.com/1959124923wyz-sys/German-Map')
+              if changed != content:
+                  script.write_text(changed,encoding='utf-8')
+
+          (dest/'README.md').write_text(
+              '# German-Map | 德国犯罪态势地图\n\n'
+              '德国官方 PKS 年度犯罪县市热力图，支持柏林、汉堡、慕尼黑及萨克森部分城市的官方细分层。\n\n'
+              '- [打开地图](https://1959124923wyz-sys.github.io/German-Map/)\n'
+              '- [开发文档](README_DEV.md)\n'
+              '- [数据来源及统计口径](SOURCE_MATRIX.md)\n\n'
+              'GitHub Actions 每天自动更新近90天警方公开通报及柏林开放数据；'
+              '全国县市与城市的2025年度官方基线数据为年度统计快照。\n',
+              encoding='utf-8')
+          (dest/'.nojekyll').touch()
+          oldfiles = [p for p in source.rglob('*') if p.is_file()]
+          newfiles = [p for p in dest.rglob('*')
+                      if p.is_file() and '.git' not in p.parts]
+          print('Copied project files:', len(oldfiles),
+                'source bytes:',sum(p.stat().st_size for p in oldfiles))
+          print('Repository files prepared:',len(newfiles))
+          assert len(oldfiles)>=56
+          PY
+
+      - name: Validate migrated project before publishing
+        run: |
+          python3 -m json.tool data/city_layers.json >/dev/null
+          python3 scripts/validate_city_layers.py
+          for src in js/core/*.js js/layers/*.js js/panels/*.js js/app.js; do
+            node --check "$src"
+          done
+          test -f index.html
+          test -f data/germany-counties.geojson
+          test -f data/pks_violent_2025.json
+          test -f data/pks_property_2025.json
+          test -f data/berlin_violent_2025.geojson
+          test -f data/munich_local_2025.geojson
+          test -f data/hamburg_local_2025.geojson
+          echo 'Map static assets and city geometry checks passed'
+
+      - name: Commit standalone project
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "migrate: standalone Germany crime map and workflows"
+            git push origin HEAD:main
+          else
+            echo 'Standalone project files already imported'
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload standalone website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - name: Deploy standalone GitHub Pages
+        uses: actions/deploy-pages@v4
