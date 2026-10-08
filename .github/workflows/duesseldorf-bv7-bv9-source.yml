@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/probe_duesseldorf_bv7_bv9_2025.py'
+      - 'scripts/build_duesseldorf_additional_stadtteile.py'
       - '.github/workflows/duesseldorf-bv7-bv9-source.yml'
 permissions:
   contents: read
@@ -17,6 +18,16 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - run: pip install requests pypdf
-      - name: Verify district 7 and 9 primary OParl PDFs and 2025 police tables
-        run: python scripts/probe_duesseldorf_bv7_bv9_2025.py
+      - run: pip install requests pypdf shapely pyproj
+      - name: Build official 2025 Düsseldorf Stadtbezirk parent geometry
+        run: python scripts/build_stuttgart_duesseldorf_geometry.py
+      - name: Crosscheck BV7 five Stadtteile and all eight police categories
+        run: python scripts/build_duesseldorf_additional_stadtteile.py --district 07 --output artifacts/duesseldorf_bv7_candidate.geojson
+      - name: Crosscheck BV9 eight Stadtteile and two actually published categories
+        run: python scripts/build_duesseldorf_additional_stadtteile.py --district 09 --output artifacts/duesseldorf_bv9_candidate.geojson
+      - name: Archive source audited candidates
+        uses: actions/upload-artifact@v4
+        with:
+          name: duesseldorf-bv7-bv9-official-2025-local-candidates
+          path: artifacts/duesseldorf_bv*_candidate.geojson
+          if-no-files-found: error
