@@ -5,7 +5,7 @@
     "national_drug_deaths": 2150,
     "national_source": "https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/",
     "mortality_coverage_states": 12,
-    "drug_specific_offence_coverage_states": 9,
+    "drug_specific_offence_coverage_states": 11,
     "method": "State government/police originals preferred; agency-attributed reports accepted with source type. Each selected offence key/group has its own scope; absence is missing, never zero. Substance totals and PKS general/trade subkeys must never be added across differing scopes. Sachsen and Hamburg added directly from 2025 Land police primary PKS tables; overlapping subcategories are explicitly named.",
     "mortality_scope": "Recorded drug-related deaths; state data from police/health ministries or organizations and public broadcasters quoting them. Methods and as-of dates may differ; do not add to BKA crime numbers.",
     "updated_at": "2026-10-08",
@@ -429,6 +429,52 @@
           "cases": 61,
           "code": "BtMG §29 NPS贸易",
           "note": "按BtMG记录的NPS贸易，2025年为61起；与NpSG违法不是可合并的相同罪名。"
+        }
+      ]
+    },
+    "Bayern": {
+      "source_url": "https://www.polizei.bayern.de/mam/kriminalitaet/260316_pks_pressebericht_2025.pdf",
+      "source_title": "巴伐利亚州警方 · Polizeiliche Kriminalstatistik Bayern 2025 新闻报告第33页（PDF第35页）",
+      "source_type": "state_police",
+      "notes": "2025年州全境官方PKS：大麻及其制品7,164起、涉及可卡因（含快克）的BtMG违法4,440起、新精神活性物质（NpS）1,308起；三项属于按涉案物质的专题指标，不是一般违法/交易两列，更不代表消费人口。不同物质及法律统计边界不可直接横向相加。2024年4月大麻法变更，2024/2025大麻同比仅作制度背景，不解读为真实消费降幅。",
+      "groups": [],
+      "additional_metrics": [
+        {
+          "name": "大麻及其制品 · 涉及违法案件",
+          "cases": 7164,
+          "previous_2024": 15270,
+          "code": "PKS 2025州警方新闻报告，第33页 · Cannabis und Zubereitungen",
+          "note": "大麻法律于2024年4月变更，跨年案件不能直接代表实际使用变化；不是KCanG单一罪名。"
+        },
+        {
+          "name": "可卡因／快克 · 涉BtMG违法案件",
+          "cases": 4440,
+          "previous_2024": 3972,
+          "code": "PKS 2025州警方新闻报告，第33页 · alle BtMG-Verstöße mit Kokain einschl. Crack",
+          "note": "含快克，覆盖多种BtMG犯罪类型，不能与其他州仅一般违法731200同口径比较。"
+        },
+        {
+          "name": "新精神活性物质（NpS）· 违法案件",
+          "cases": 1308,
+          "previous_2024": 823,
+          "code": "PKS 2025州警方新闻报告，第33页 · Neue psychoaktive Stoffe",
+          "note": "2025年州警按NpS涉案类型披露；不能直接等同于NpSG §4单一罪名。"
+        }
+      ]
+    },
+    "Nordrhein-Westfalen": {
+      "source_url": "https://www.im.nrw/system/files/media/document/file/pks-nrw-2025-handout.pdf",
+      "source_title": "北莱茵—威斯特法伦州内政部 · PKS 2025 Handout第38页（PDF第43页）",
+      "source_type": "state_government",
+      "notes": "2025年州全境可卡因（包括快克）相关登记违法案件7,507起（2024年6,433起），属于不同罪名范围的物质相关统计；不能等同于BtMG §29一般违法单一代码。州PKS同页的35,517起毒品犯罪总数不是可卡因案件，也不能加至7,507；大麻2024—2025数值受KCanG法律调整影响。",
+      "groups": [],
+      "additional_metrics": [
+        {
+          "name": "可卡因／快克 · 涉及违法案件",
+          "cases": 7507,
+          "previous_2024": 6433,
+          "code": "PKS 2025州内政部 Handout，第38页 · Delikte mit Kokain einschl. Crack",
+          "note": "州级按涉案物质统计，非仅731200一般违法；2024年6,433来自同期州政府统计图表。"
         }
       ]
     }
