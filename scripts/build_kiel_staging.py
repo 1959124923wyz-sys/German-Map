@@ -98,33 +98,50 @@ def main():
                 raise RuntimeError(f"Same name maps to multiple Kiel codes: {name}")
             old["parts"].extend(poly_parts)
     observed=set(grouped)
+    # The official municipal polygon explicitly names both subareas.
+    # Those two police rows may be summed, with no spatial approximation.
+    # Hammer and Kroog have NO corresponding separate polygon in the WFS.
+    # Keep their offenses unassigned rather than guessing another district.
+    geo_to_police={"gaardensüdundkronsburg":("gaardensüd","kronsburg")}
+    unmapped_expected={"hammer","kroog"}
     for norm,group in grouped.items():
-        police=rows.get(norm)
-        if police is None:
+        members=geo_to_police.get(norm,(norm,))
+        if any(member not in rows for member in members):
             continue
-        matched.add(norm)
+        matched.update(members)
         parts=group["parts"]
         geom=({"type":"Polygon","coordinates":parts[0]} if len(parts)==1
               else {"type":"MultiPolygon","coordinates":parts})
-        year_counts=police["counts"]
+        year_counts={str(y):sum(rows[member]["counts"][str(y)] for member in members)
+                     for y in YEARS}
         output.append({"type":"Feature","id":f"kiel-{group['code']:02d}","geometry":geom,
           "properties":{"city":"Kiel","state":"Schleswig-Holstein","name":group["name"],
                         "code":group["code"],"crime_total":{"cases":year_counts["2025"],"rate":None},
-                        "annual_cases":year_counts}})
+                        "annual_cases":year_counts,
+                        "source_reporting_units":[rows[member]["name"] for member in members]}})
     exempt={"stadtkiel","tatortunbekannt"}
-    missing_police=sorted((set(rows)-exempt)-matched)
-    missing_geometry=sorted(observed-matched)
+    missing_police=sorted((set(rows)-exempt-unmapped_expected)-matched)
+    missing_geometry=sorted(n for n in observed
+                            if not set(geo_to_police.get(n,(n,))).issubset(matched))
     city_sum=sum(x["counts"]["2025"] for k,x in rows.items() if k not in exempt)
+    unmapped={rows[name]["name"]:rows[name]["counts"]["2025"] for name in sorted(unmapped_expected)}
+    unassigned=sum(unmapped.values())
+    mapped_sum=sum(f["properties"]["crime_total"]["cases"] for f in output)
     report={"geometry_parts":len(features),"geometry_districts":len(grouped),
             "matched":len(output),"statistic_rows":len(rows)-2,
-            "city_total_2025":total,"unknown_tatort_2025":unknown,"district_sum_2025":city_sum,
+            "city_total_2025":total,"unknown_tatort_2025":unknown,
+            "district_sum_2025":city_sum,"mapped_2025":mapped_sum,
+            "unmapped_official_reporting_units_2025":unmapped,
+            "unassigned_total_2025":unassigned+unknown,
             "unmatched_police":missing_police,"unmatched_geometry":missing_geometry,
             "districts_geom_names":[x["name"] for x in grouped.values()]}
     print("[kiel-staging] QA",json.dumps(report,ensure_ascii=False),flush=True)
     if missing_police or missing_geometry:
         raise RuntimeError("Official Kiel police/geography joins incomplete; do not publish")
     if city_sum+unknown!=total:
-        raise RuntimeError(f"Kiel crime totals do not reconcile: {city_sum}+{unknown}!={total}")
+        raise RuntimeError(f"Kiel police totals do not reconcile: {city_sum}+{unknown}!={total}")
+    if mapped_sum+unassigned+unknown!=total:
+        raise RuntimeError(f"Kiel geography totals do not reconcile: {mapped_sum}+{unassigned}+{unknown}!={total}")
     if len(output)!=len(grouped):
         raise RuntimeError("Kiel incomplete, not safe to stage")
     result={"type":"FeatureCollection",
@@ -132,6 +149,8 @@ def main():
         "metric_scope":"all_offenses_count_only_NOT_violence_or_theft",
         "rate_status":"not_calculated_missing_verified_district_population",
         "unknown_place_cases_excluded_from_mapped_polygons":unknown,
+        "unmapped_official_police_subareas":unmapped,
+        "unassigned_total_2025":unassigned+unknown,
         "crime_source":PKS,"geometry_source":GEOMETRY,
         "note":"Primary sources, NO public UI activation; these are all-offense counts, not violence/theft."},
       "features":sorted(output,key=lambda f:f["id"])}
