@@ -136,6 +136,7 @@ async function load(){
 }
 async function activate(){
  if(active||!parent?.getActive?.())return;
+ window.__DUESSELDORF_OTHER_MAP__?.disable?.(false);
  const t=++ticket;
  if(!geo)await load();
  if(t!==ticket||!parent.getActive())return;
