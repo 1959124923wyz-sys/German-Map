@@ -29,6 +29,19 @@ def main():
             assert not errors, errors
             assert re.search(r'\d+ / \d+', count), count
             assert page.locator('.leaflet-pane svg path').count() > 200, ('SVG paths:', page.locator('.leaflet-pane svg path').count())
+            # Visual regression: site dark shell and ascending low-to-high green palette.
+            palette = page.locator('#legend-data .legend-gradient span')
+            assert palette.count() == 7, f'Expected seven green intervals, got {palette.count()}'
+            first = palette.first.evaluate('(e) => getComputedStyle(e).backgroundColor')
+            last = palette.last.evaluate('(e) => getComputedStyle(e).backgroundColor')
+            assert first == 'rgb(229, 244, 232)', first
+            assert last == 'rgb(14, 81, 57)', last
+            body_bg = page.locator('body').evaluate('(e) => getComputedStyle(e).backgroundColor')
+            sidebar_bg = page.locator('.sidebar').evaluate('(e) => getComputedStyle(e).backgroundColor')
+            assert body_bg == 'rgb(12, 17, 23)', body_bg
+            assert sidebar_bg == 'rgb(19, 26, 34)', sidebar_bg
+            assert page.locator('.legend-title').inner_text() == '毒品违法案件 / 每10万人'
+            page.screenshot(path='/tmp/germany-crime-map-drugs-dark.png', full_page=True)
             # Large, non-overlapping southern / central states: real pointer events.
             click_place(page, 48.85, 11.2)
             page.locator('#state-panel').wait_for(state='visible')
