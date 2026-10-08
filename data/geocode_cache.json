@@ -7819,5 +7819,20 @@
       "country": "Deutschland",
       "country_code": "de"
     }
+  },
+  "Sulinger Straße, Diepholz, Germany": {
+    "lat": 52.6101358,
+    "lon": 8.39741,
+    "address": {
+      "road": "Sulinger Straße",
+      "suburb": "Heede",
+      "town": "Diepholz",
+      "county": "Landkreis Diepholz",
+      "state": "Niedersachsen",
+      "ISO3166-2-lvl4": "DE-NI",
+      "postcode": "49356",
+      "country": "Deutschland",
+      "country_code": "de"
+    }
   }
 }
