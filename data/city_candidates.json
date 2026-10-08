@@ -73,7 +73,7 @@
       "state": "Nordrhein-Westfalen",
       "county_ags": "05111",
       "phase": "research",
-      "priority": 2,
+      "priority": 3,
       "crime_source": {
         "publisher": "Landeshauptstadt Düsseldorf",
         "year": 2025,
@@ -95,7 +95,7 @@
       "state": "Baden-Württemberg",
       "county_ags": "08111",
       "phase": "source_probe",
-      "priority": 3,
+      "priority": 4,
       "crime_source": {
         "publisher": "Statistisches Amt Stuttgart / Polizeipräsidium Stuttgart",
         "year": 2022,
@@ -116,7 +116,8 @@
         "Locate genuinely current 2025 district-level crime rows; existing CSV only contains 2008–2022, despite modern webpage update date.",
         "Confirm official 23 Stadtbezirk geographic boundaries and suitable contemporary population.",
         "For historic map expansion, build 2008–2022 layer labelled explicitly historical, never present it as 2025."
-      ]
+      ],
+      "notes": "Official district CSV is real but only 2008–2022; do NOT present as PKS 2025 even though portal page metadata updated in 2026. Keep investigating a 2025 release."
     },
     {
       "id": "frankfurt",
@@ -125,7 +126,7 @@
       "state": "Hessen",
       "county_ags": "06412",
       "phase": "research",
-      "priority": 4,
+      "priority": 5,
       "crime_source": {
         "publisher": "Polizei Hessen",
         "year": 2025,
@@ -153,7 +154,7 @@
       "state": "Bremen",
       "county_ags": "04011",
       "phase": "source_probe",
-      "priority": 5,
+      "priority": 2,
       "crime_source": {
         "publisher": "Senat Bremen / Polizei Bremen",
         "year": 2025,
@@ -167,7 +168,7 @@
         "year": 2024,
         "format": "Official ATKIS WFS Verwaltungsgrenzen Stadtteile + Ortsteile",
         "url": "https://geodienste.bremen.de/wfs_verwaltungsgrenzen?SERVICE=WFS&REQUEST=GetCapabilities",
-        "evidence": "Official WFS administrative districts includes Stadtteile and Ortsteile for Bremen and Bremerhaven; licensed CC BY 4.0, attribution GeoInformation Bremen. Need inspect feature names and join multi-area police units."
+        "evidence": "Verified 2026-10-08 in GitHub Actions: official WFS GetCapabilities advertises app:Stadtteile_Bremen and app:Ortsteile_Bremen (also Bremerhaven, excluding those from city Bremen). WFS geometries not yet downloaded/matched."
       },
       "metric_alignment": "unverified",
       "blocking_issues": [
@@ -175,7 +176,24 @@
         "Match 2025 population by reporting unit before creating per-100k rates, otherwise use clearly labelled counts.",
         "Document police data citywide vs area sum discrepancies and preserve unassigned incidents.",
         "Review legal reuse notice for the parliamentary document (Transparency Portal shows CC BY-NC-ND for the PDF): extract only objective aggregate figures with attribution, don't redistribute or alter PDF."
-      ]
+      ],
+      "notes": "Next candidate after Kiel: verified 2025 official parliamentary PDF contains 22 local statistical tables; official Bremen WFS advertises Stadtteile_Bremen and Ortsteile_Bremen. Need download geometry, reconcile grouped political reporting areas, confirm non-allocated cases and suitable year-matched denominators. No public Bremen layer yet.",
+      "audit": {
+        "phase": "source_verified",
+        "qa_run": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37723889045",
+        "police_pdf_pages": 15,
+        "police_tables": 22,
+        "years": [
+          2024,
+          2025
+        ],
+        "municipal_wfs_layers": [
+          "app:Stadtteile_Bremen",
+          "app:Ortsteile_Bremen"
+        ],
+        "geometry_joined": false,
+        "published": false
+      }
     },
     {
       "id": "koeln",
