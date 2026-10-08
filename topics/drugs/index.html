@@ -7,7 +7,7 @@
 <title>德国毒品问题地图｜German-Map</title>
 <meta name="description" content="2025德国县级毒品犯罪登记案件地图。数据来自BKA PKS县级统计的公开镜像，明确区分警方记录与毒品消费。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="topic.css?v=20261008-dark-green-v1">
+<link rel="stylesheet" href="topic.css?v=20261008-drugs-region-v2">
 </head>
 <body>
 <header class="topbar">
@@ -24,7 +24,7 @@
 <main class="workspace">
   <section class="map-area" aria-label="德国毒品犯罪分布交互式地图">
     <div id="drug-map"></div>
-    <div class="map-shade"><strong>警方登记毒品案件 · 2025</strong><small>2025年PKS县级登记数据（公开镜像），按每10万人案件率着色。缩放后点击县市，可查看具体数值。</small></div>
+    <div class="map-shade"><strong id="map-guide-title">警方登记毒品案件 · 2025</strong><small id="map-guide-desc">单击州查看汇总；点击“查看县市”或放大地图后，可以点选具体县市。</small></div>
     <div class="legend" id="legend"><div class="legend-title" id="legend-title">毒品违法案件 / 每10万人</div><div id="legend-data">读取中…</div></div>
     <section class="state-flyout" id="state-panel" hidden aria-live="polite">
       <div class="heading"><div><h3 id="state-name">—</h3><div class="label" id="state-type">2025年统计</div></div><button id="close-state" type="button" aria-label="关闭详情">×</button></div>
@@ -32,7 +32,7 @@
         <div><b id="state-cases">—</b><small id="state-cases-label">登记案件（县级汇总）</small></div>
         <div><b id="state-rate">—</b><small id="state-rate-label">每10万人</small></div>
       </div>
-      <div class="row"><strong class="section-title" id="state-top-title">州内高值县市</strong><button type="button" class="secondary-button" id="state-focus">缩放至区域</button></div>
+      <div class="row"><strong class="section-title" id="state-top-title">州内高值县市</strong><button type="button" class="secondary-button" id="state-focus">查看县市地图</button></div>
       <ol id="state-top" class="district-list"></ol>
       <p class="note" id="state-note"></p>
     </section>
@@ -53,6 +53,28 @@
       <button type="button" disabled title="等待按地区可用的卫生统计">健康危害（待接入）</button>
     </div>
     <div id="drugs-crime-content">
+    <div class="region-navigator" id="region-navigator" hidden aria-live="polite">
+      <div class="region-breadcrumb">
+        <button type="button" id="region-home" class="crumb">全国</button>
+        <span aria-hidden="true">›</span>
+        <button type="button" id="region-state-link" class="crumb" hidden>—</button>
+        <span id="region-county-separator" aria-hidden="true" hidden>›</span>
+        <span class="crumb-current" id="region-current">—</span>
+      </div>
+      <div class="row">
+        <h3 id="region-heading" class="section-title">地区详情</h3>
+        <button type="button" id="region-drill" class="secondary-button">查看县市地图</button>
+      </div>
+      <div class="statgrid">
+        <div class="metricbox"><div class="metricvalue" id="region-cases">—</div><div class="metriclabel" id="region-cases-label">县级统计汇总案件数</div></div>
+        <div class="metricbox"><div class="metricvalue" id="region-rate">—</div><div class="metriclabel" id="region-rate-label">登记率（每10万人）</div></div>
+      </div>
+      <div class="metadata" id="region-completeness">—</div>
+      <div class="row"><h4 id="region-list-heading" class="section-title">州内县市</h4><span id="region-subtitle" class="subtle-note"></span></div>
+      <ol class="district-list regional-counties" id="region-county-list"></ol>
+      <p id="region-footnote" class="note"></p>
+    </div>
+    <div id="national-drug-summary">
     <div class="metricbox wide">
       <div class="metricvalue">164,991</div>
       <div class="metriclabel">BKA 2025全国 Rauschgiftkriminalität 登记案件（独立全国指标，与下方县级指标不直接等同）</div>
@@ -66,7 +88,13 @@
       <div class="metricbox"><div class="metricvalue" id="highest-value">—</div><div class="metriclabel" id="highest-name">县市最高登记率／10万人</div></div>
     </div>
     <div class="metadata" id="status" role="status">正在读取专题数据…</div>
-    <div class="row"><h3 class="section-title" id="rank-heading">高登记率县市</h3><button type="button" class="secondary-button" id="reset-map">全国视图</button></div>
+    <div class="row"><h3 class="section-title" id="rank-heading">全国县市高登记率</h3><button type="button" class="secondary-button" id="reset-map">全国视图</button></div>
+    <div class="region-list-section">
+      <div class="row"><h3 class="section-title">16个州 · 毒品案件汇总</h3><span class="subtle-note">按案件总数排序</span></div>
+      <p class="note">依据400条县级记录汇总，不是官方州级按物质分类。选中任意州可查看其下全部县市。</p>
+      <ol class="district-list state-index-list" id="state-index-list"></ol>
+    </div>
+    <div class="barline"></div>
     <ol class="district-list" id="top-list"></ol>
     <div class="barline"></div>
     <details class="drug-customs">
@@ -92,6 +120,7 @@
       <a href="https://data.gov.de/suche/daten/2025-polizeiliche-kriminalstatistik-t01-grundtabelle-kreise-ausgewahlte-straftaten-gruppen" target="_blank" rel="noopener noreferrer">BKA官方县级数据 ↗</a>
       <a href="https://kriminalitaets-karte.de/kriminalitaet/" target="_blank" rel="noopener noreferrer">县级公开镜像 ↗</a>
       <a href="https://www.euda.europa.eu/publications/pods/waste-water-analysis_de" target="_blank" rel="noopener noreferrer">EUDA污水检测 ↗</a>
+    </div>
     </div>
     </div>
     <div id="drugs-wastewater-content" hidden>
@@ -123,6 +152,6 @@
 </main>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="wastewater.js?v=20261008-euda-v1"></script>
-<script src="topic.js?v=20261008-euda-v1"></script>
+<script src="topic.js?v=20261008-drugs-region-v2"></script>
 </body>
 </html>
