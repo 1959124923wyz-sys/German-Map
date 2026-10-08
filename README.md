@@ -2,7 +2,8 @@
 
 德国官方 PKS 年度犯罪县市热力图，支持柏林、汉堡、慕尼黑及萨克森部分城市的官方细分层。
 
-- [打开地图](https://1959124923wyz-sys.github.io/German-Map/)
+- [打开主地图（暴力犯罪／财产犯罪）](https://1959124923wyz-sys.github.io/German-Map/)
+- [打开毒品专题地图（2025年全国县级数据）](https://1959124923wyz-sys.github.io/German-Map/topics/drugs/)
 - [开发文档](README_DEV.md)
 - [数据来源及统计口径](SOURCE_MATRIX.md)
 
