@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/probe_stuttgart_duesseldorf_geometry.py'
+      - 'scripts/build_stuttgart_duesseldorf_geometry.py'
       - '.github/workflows/stuttgart-duesseldorf-geometry.yml'
 
 permissions:
@@ -21,6 +22,15 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install source QA dependencies
-        run: pip install requests
+        run: pip install requests shapely pyproj
       - name: Probe both cities' authoritative boundary files
         run: python scripts/probe_stuttgart_duesseldorf_geometry.py
+      - name: Build and validate geographic candidate GeoJSON only
+        run: python scripts/build_stuttgart_duesseldorf_geometry.py
+      - name: Archive candidate district boundaries
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stuttgart-duesseldorf-official-district-candidates
+          path: artifacts/*_district_boundaries_candidate.geojson
+          if-no-files-found: warn
