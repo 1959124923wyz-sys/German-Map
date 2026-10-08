@@ -59,7 +59,7 @@ jobs:
           assert all(len(s['observations'])==6 for s in data['sites'])
           evidence=json.load(open('topics/drugs/data/state_health_offences_2025.json'))
           assert evidence['meta']['year']==2025
-          assert len(evidence['mortality_by_state'])==12
+          assert len(evidence['mortality_by_state'])==evidence['meta']['mortality_coverage_states']
           assert len(evidence['selected_offence_codes_by_state'])==evidence['meta']['drug_specific_offence_coverage_states']
           assert len(evidence['other_health_indicators_by_state'])==1
           for state,x in evidence['mortality_by_state'].items():
