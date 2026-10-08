@@ -1,0 +1,628 @@
+{
+  "meta": {
+    "source": "European Union Drugs Agency (EUDA) and SCORE 2026 release, observations 2025",
+    "study_year": 2025,
+    "published_year": 2026,
+    "source_url": "https://www.euda.europa.eu/publications/pods/waste-water-analysis_de",
+    "source_data_url": "https://www.euda.europa.eu/sites/default/files/data/data-nodes/33337/versions/5/ww2026-all-data_en.csv",
+    "site_table_url": "https://www.euda.europa.eu/sites/default/files/data/data-nodes/33337/versions/5/ww2026-site-info-table_en.csv",
+    "unit": "mg/1000 inhabitants/day",
+    "measurement": "population-normalised load of uncorrected drug residues in raw sewage",
+    "geography_note": "Each point is a sampled wastewater treatment site, NOT the whole city or county; no interpolation",
+    "zero_note": "EUDA zero means below quantification limit; missing NA is null and NOT zero",
+    "heroin_note": "EUDA does not use a specific stable heroin marker in this study; heroin has no wastewater layer",
+    "source_bytes": {
+      "observations": 517572,
+      "sites": 31042
+    },
+    "substances": [
+      "MDMA",
+      "amphetamine",
+      "cannabis",
+      "cocaine",
+      "ketamine",
+      "methamphetamine"
+    ],
+    "site_count": 13
+  },
+  "sites": [
+    {
+      "id": "DE002",
+      "city": "Berlin (IV)",
+      "location": "Muenchehofe; Ruhleben; Schönerlinde; Wasmannsdorf",
+      "lat": 52.523368,
+      "lon": 13.398001,
+      "population_served_estimate": 3948000,
+      "observations": {
+        "MDMA": {
+          "daily": 66.52,
+          "weekday": 45.18,
+          "weekend": 86.25,
+          "previous_2024": null
+        },
+        "amphetamine": {
+          "daily": 208.78,
+          "weekday": 196.72,
+          "weekend": 219.92,
+          "previous_2024": null
+        },
+        "cannabis": {
+          "daily": 172.67,
+          "weekday": 172.02,
+          "weekend": 173.27,
+          "previous_2024": null
+        },
+        "cocaine": {
+          "daily": 643.88,
+          "weekday": 561.52,
+          "weekend": 719.99,
+          "previous_2024": null
+        },
+        "ketamine": {
+          "daily": 132.23,
+          "weekday": 117.51,
+          "weekend": 145.83,
+          "previous_2024": null
+        },
+        "methamphetamine": {
+          "daily": 37.54,
+          "weekday": 36.53,
+          "weekend": 38.48,
+          "previous_2024": null
+        }
+      }
+    },
+    {
+      "id": "DE013",
+      "city": "Chemnitz",
+      "location": "NA",
+      "lat": 50.827845,
+      "lon": 12.92137,
+      "population_served_estimate": 239402,
+      "observations": {
+        "MDMA": {
+          "daily": 10.94,
+          "weekday": 4.73,
+          "weekend": 15.59,
+          "previous_2024": 11.71
+        },
+        "amphetamine": {
+          "daily": 32.59,
+          "weekday": 28.27,
+          "weekend": 35.84,
+          "previous_2024": 27.43
+        },
+        "cannabis": {
+          "daily": 74.93,
+          "weekday": 64.56,
+          "weekend": 82.7,
+          "previous_2024": null
+        },
+        "cocaine": {
+          "daily": 71.94,
+          "weekday": 58.64,
+          "weekend": 81.91,
+          "previous_2024": 57.48
+        },
+        "ketamine": {
+          "daily": 114.15,
+          "weekday": 124.08,
+          "weekend": 106.71,
+          "previous_2024": 0.0
+        },
+        "methamphetamine": {
+          "daily": 381.6,
+          "weekday": 335.73,
+          "weekend": 416.0,
+          "previous_2024": 362.0
+        }
+      }
+    },
+    {
+      "id": "DE015",
+      "city": "Dresden",
+      "location": "Dresden-Kaditz",
+      "lat": 51.05089,
+      "lon": 13.73832,
+      "population_served_estimate": 671806,
+      "observations": {
+        "MDMA": {
+          "daily": 13.38,
+          "weekday": 7.46,
+          "weekend": 17.82,
+          "previous_2024": 17.11
+        },
+        "amphetamine": {
+          "daily": 50.14,
+          "weekday": 47.72,
+          "weekend": 51.97,
+          "previous_2024": 50.58
+        },
+        "cannabis": {
+          "daily": 114.63,
+          "weekday": 119.86,
+          "weekend": 110.7,
+          "previous_2024": null
+        },
+        "cocaine": {
+          "daily": 106.14,
+          "weekday": 81.97,
+          "weekend": 124.27,
+          "previous_2024": 101.92
+        },
+        "ketamine": {
+          "daily": 27.18,
+          "weekday": 25.6,
+          "weekend": 28.37,
+          "previous_2024": 21.59
+        },
+        "methamphetamine": {
+          "daily": 327.16,
+          "weekday": 313.26,
+          "weekend": 337.59,
+          "previous_2024": 399.64
+        }
+      }
+    },
+    {
+      "id": "DE017",
+      "city": "Erfurt",
+      "location": "NA",
+      "lat": 50.984768,
+      "lon": 11.02988,
+      "population_served_estimate": 215199,
+      "observations": {
+        "MDMA": {
+          "daily": 17.85,
+          "weekday": 16.27,
+          "weekend": 19.03,
+          "previous_2024": 28.6
+        },
+        "amphetamine": {
+          "daily": 97.32,
+          "weekday": 136.37,
+          "weekend": 68.03,
+          "previous_2024": 64.62
+        },
+        "cannabis": {
+          "daily": 178.51,
+          "weekday": 187.5,
+          "weekend": 171.76,
+          "previous_2024": null
+        },
+        "cocaine": {
+          "daily": 140.53,
+          "weekday": 131.99,
+          "weekend": 146.93,
+          "previous_2024": 118.62
+        },
+        "ketamine": {
+          "daily": 19.78,
+          "weekday": 18.82,
+          "weekend": 20.51,
+          "previous_2024": 13.28
+        },
+        "methamphetamine": {
+          "daily": 371.23,
+          "weekday": 372.16,
+          "weekend": 370.52,
+          "previous_2024": 334.94
+        }
+      }
+    },
+    {
+      "id": "DE018",
+      "city": "Frankfurt (3)",
+      "location": "Sindlingen; Griesheim; Niederrad",
+      "lat": 50.110922,
+      "lon": 8.682127,
+      "population_served_estimate": 1157800,
+      "observations": {
+        "MDMA": {
+          "daily": 21.83,
+          "weekday": 15.77,
+          "weekend": 26.37,
+          "previous_2024": null
+        },
+        "amphetamine": {
+          "daily": 82.9,
+          "weekday": 83.32,
+          "weekend": 82.59,
+          "previous_2024": null
+        },
+        "cannabis": {
+          "daily": 150.91,
+          "weekday": 155.8,
+          "weekend": 147.23,
+          "previous_2024": null
+        },
+        "cocaine": {
+          "daily": 723.84,
+          "weekday": 658.3,
+          "weekend": 772.99,
+          "previous_2024": null
+        },
+        "ketamine": {
+          "daily": 25.89,
+          "weekday": 27.43,
+          "weekend": 24.74,
+          "previous_2024": null
+        },
+        "methamphetamine": {
+          "daily": 24.38,
+          "weekday": 26.34,
+          "weekend": 22.91,
+          "previous_2024": null
+        }
+      }
+    },
+    {
+      "id": "DE022",
+      "city": "Hamburg (2)",
+      "location": "Nord; Süd",
+      "lat": 53.551085,
+      "lon": 9.993682,
+      "population_served_estimate": 2050000,
+      "observations": {
+        "MDMA": {
+          "daily": 22.65,
+          "weekday": 14.97,
+          "weekend": 28.41,
+          "previous_2024": null
+        },
+        "amphetamine": {
+          "daily": 75.24,
+          "weekday": 74.54,
+          "weekend": 75.76,
+          "previous_2024": null
+        },
+        "cannabis": {
+          "daily": 167.28,
+          "weekday": 174.72,
+          "weekend": 161.7,
+          "previous_2024": null
+        },
+        "cocaine": {
+          "daily": 707.37,
+          "weekday": 620.68,
+          "weekend": 772.38,
+          "previous_2024": null
+        },
+        "ketamine": {
+          "daily": 36.04,
+          "weekday": 35.85,
+          "weekend": 36.18,
+          "previous_2024": null
+        },
+        "methamphetamine": {
+          "daily": 6.53,
+          "weekday": 6.5,
+          "weekend": 6.55,
+          "previous_2024": null
+        }
+      }
+    },
+    {
+      "id": "DE025",
+      "city": "Hannover (2)",
+      "location": "Gummerwald; Herrenhausen",
+      "lat": 52.375892,
+      "lon": 9.73201,
+      "population_served_estimate": 793400,
+      "observations": {
+        "MDMA": {
+          "daily": 21.05,
+          "weekday": 15.96,
+          "weekend": 24.86,
+          "previous_2024": 26.07
+        },
+        "amphetamine": {
+          "daily": 97.01,
+          "weekday": 96.02,
+          "weekend": 97.75,
+          "previous_2024": 97.34
+        },
+        "cannabis": {
+          "daily": 130.09,
+          "weekday": 137.4,
+          "weekend": 124.6,
+          "previous_2024": null
+        },
+        "cocaine": {
+          "daily": 536.31,
+          "weekday": 477.22,
+          "weekend": 580.62,
+          "previous_2024": 421.51
+        },
+        "ketamine": {
+          "daily": 24.77,
+          "weekday": 25.52,
+          "weekend": 24.21,
+          "previous_2024": 19.13
+        },
+        "methamphetamine": {
+          "daily": 0.55,
+          "weekday": 0.8,
+          "weekend": 0.36,
+          "previous_2024": 5.42
+        }
+      }
+    },
+    {
+      "id": "DE028",
+      "city": "Magdeburg",
+      "location": "NA",
+      "lat": 52.120533,
+      "lon": 11.627624,
+      "population_served_estimate": 281150,
+      "observations": {
+        "MDMA": {
+          "daily": 14.99,
+          "weekday": 10.05,
+          "weekend": 18.69,
+          "previous_2024": 21.33
+        },
+        "amphetamine": {
+          "daily": 182.86,
+          "weekday": 205.85,
+          "weekend": 165.62,
+          "previous_2024": 131.37
+        },
+        "cannabis": {
+          "daily": 131.7,
+          "weekday": 130.08,
+          "weekend": 132.92,
+          "previous_2024": null
+        },
+        "cocaine": {
+          "daily": 300.54,
+          "weekday": 256.1,
+          "weekend": 333.86,
+          "previous_2024": 226.4
+        },
+        "ketamine": {
+          "daily": 14.62,
+          "weekday": 15.58,
+          "weekend": 13.9,
+          "previous_2024": 12.77
+        },
+        "methamphetamine": {
+          "daily": 218.17,
+          "weekday": 220.29,
+          "weekend": 216.58,
+          "previous_2024": 195.41
+        }
+      }
+    },
+    {
+      "id": "DE029",
+      "city": "Mainz",
+      "location": "NA",
+      "lat": 49.992862,
+      "lon": 8.247253,
+      "population_served_estimate": 223000,
+      "observations": {
+        "MDMA": {
+          "daily": 17.73,
+          "weekday": 15.53,
+          "weekend": 19.38,
+          "previous_2024": null
+        },
+        "amphetamine": {
+          "daily": 171.66,
+          "weekday": 150.87,
+          "weekend": 187.26,
+          "previous_2024": null
+        },
+        "cannabis": {
+          "daily": 130.6,
+          "weekday": 127.89,
+          "weekend": 132.64,
+          "previous_2024": null
+        },
+        "cocaine": {
+          "daily": 346.05,
+          "weekday": 271.89,
+          "weekend": 401.67,
+          "previous_2024": null
+        },
+        "ketamine": {
+          "daily": 14.69,
+          "weekday": 12.67,
+          "weekend": 16.21,
+          "previous_2024": null
+        },
+        "methamphetamine": {
+          "daily": 18.07,
+          "weekday": 23.31,
+          "weekend": 14.14,
+          "previous_2024": null
+        }
+      }
+    },
+    {
+      "id": "DE031",
+      "city": "Munich G",
+      "location": "Gut Grosslappen",
+      "lat": 48.137643,
+      "lon": 11.576133,
+      "population_served_estimate": 1171100,
+      "observations": {
+        "MDMA": {
+          "daily": 15.51,
+          "weekday": 7.26,
+          "weekend": 21.7,
+          "previous_2024": 39.37
+        },
+        "amphetamine": {
+          "daily": 29.84,
+          "weekday": 27.03,
+          "weekend": 31.95,
+          "previous_2024": 37.87
+        },
+        "cannabis": {
+          "daily": 114.8,
+          "weekday": 116.9,
+          "weekend": 113.22,
+          "previous_2024": null
+        },
+        "cocaine": {
+          "daily": 382.7,
+          "weekday": 344.67,
+          "weekend": 411.23,
+          "previous_2024": 407.64
+        },
+        "ketamine": {
+          "daily": 15.61,
+          "weekday": 14.51,
+          "weekend": 16.43,
+          "previous_2024": 14.51
+        },
+        "methamphetamine": {
+          "daily": 10.93,
+          "weekday": 11.86,
+          "weekend": 10.24,
+          "previous_2024": 18.86
+        }
+      }
+    },
+    {
+      "id": "DE033",
+      "city": "Nuremberg",
+      "location": "Nürnberg",
+      "lat": 49.450692,
+      "lon": 11.036919,
+      "population_served_estimate": 451472,
+      "observations": {
+        "MDMA": {
+          "daily": 10.59,
+          "weekday": 7.34,
+          "weekend": 13.04,
+          "previous_2024": 15.44
+        },
+        "amphetamine": {
+          "daily": 44.23,
+          "weekday": 40.82,
+          "weekend": 46.79,
+          "previous_2024": 53.19
+        },
+        "cannabis": {
+          "daily": 158.98,
+          "weekday": 157.66,
+          "weekend": 159.97,
+          "previous_2024": null
+        },
+        "cocaine": {
+          "daily": 122.7,
+          "weekday": 96.45,
+          "weekend": 142.39,
+          "previous_2024": 91.62
+        },
+        "ketamine": {
+          "daily": 10.98,
+          "weekday": 10.69,
+          "weekend": 11.19,
+          "previous_2024": 11.96
+        },
+        "methamphetamine": {
+          "daily": 166.51,
+          "weekday": 171.33,
+          "weekend": 162.9,
+          "previous_2024": 175.17
+        }
+      }
+    },
+    {
+      "id": "DE034",
+      "city": "Rostock",
+      "location": "NA",
+      "lat": 54.092441,
+      "lon": 12.099147,
+      "population_served_estimate": 242093,
+      "observations": {
+        "MDMA": {
+          "daily": 16.64,
+          "weekday": 11.61,
+          "weekend": 20.42,
+          "previous_2024": null
+        },
+        "amphetamine": {
+          "daily": 190.18,
+          "weekday": 184.38,
+          "weekend": 194.53,
+          "previous_2024": null
+        },
+        "cannabis": {
+          "daily": 96.57,
+          "weekday": 97.63,
+          "weekend": 95.79,
+          "previous_2024": null
+        },
+        "cocaine": {
+          "daily": 369.56,
+          "weekday": 301.35,
+          "weekend": 420.72,
+          "previous_2024": null
+        },
+        "ketamine": {
+          "daily": 42.72,
+          "weekday": 42.87,
+          "weekend": 42.61,
+          "previous_2024": null
+        },
+        "methamphetamine": {
+          "daily": 3.45,
+          "weekday": 5.19,
+          "weekend": 2.14,
+          "previous_2024": null
+        }
+      }
+    },
+    {
+      "id": "DE038",
+      "city": "Stuttgart",
+      "location": "NA",
+      "lat": 48.775846,
+      "lon": 9.182932,
+      "population_served_estimate": 609000,
+      "observations": {
+        "MDMA": {
+          "daily": 16.22,
+          "weekday": 8.78,
+          "weekend": 21.8,
+          "previous_2024": 22.84
+        },
+        "amphetamine": {
+          "daily": 93.03,
+          "weekday": 88.46,
+          "weekend": 96.46,
+          "previous_2024": 111.13
+        },
+        "cannabis": {
+          "daily": 83.02,
+          "weekday": 80.6,
+          "weekend": 84.85,
+          "previous_2024": null
+        },
+        "cocaine": {
+          "daily": 611.65,
+          "weekday": 538.72,
+          "weekend": 666.35,
+          "previous_2024": 436.81
+        },
+        "ketamine": {
+          "daily": 27.45,
+          "weekday": 30.53,
+          "weekend": 25.14,
+          "previous_2024": 14.74
+        },
+        "methamphetamine": {
+          "daily": 13.21,
+          "weekday": 13.31,
+          "weekend": 13.13,
+          "previous_2024": 14.21
+        }
+      }
+    }
+  ]
+}
