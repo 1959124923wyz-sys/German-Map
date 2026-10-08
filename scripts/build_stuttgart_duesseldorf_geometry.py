@@ -11,6 +11,8 @@ import requests
 from shapely import wkb
 from shapely.geometry import shape,mapping
 from shapely.ops import transform,unary_union
+from shapely.validation import explain_validity
+from shapely import make_valid
 from pyproj import Transformer
 
 STUTTGART="https://www.stuttgart.de/medien/ibs/OpenData-KLGL-Generalsisiert.zip"
@@ -41,8 +43,34 @@ def from_gpkg(blob):
 def save(city,source,features,audit):
     if len(features)!=len({f["id"] for f in features}):
         raise ValueError(city+" duplicate official district codes")
-    valid=[shape(f["geometry"]) for f in features]
-    if any(not g.is_valid for g in valid):raise ValueError(city+" invalid topology")
+    valid=[]
+    repair_audit=[]
+    for f in features:
+        source=shape(f["geometry"])
+        if source.is_empty:raise ValueError(city+": empty official polygon")
+        if not source.is_valid:
+            diagnosis=explain_validity(source)
+            fixed=make_valid(source)
+            # Closed invalid polygons can have stray collapsed lines. Retain
+            # only polygonal components; do NOT smooth, buffer or interpolate.
+            if fixed.geom_type=="GeometryCollection":
+                from shapely.geometry import Polygon,MultiPolygon
+                polygons=[g for g in fixed.geoms if g.geom_type in ("Polygon","MultiPolygon")]
+                fixed=unary_union(polygons)
+            if not fixed.is_valid or fixed.geom_type not in ("Polygon","MultiPolygon"):
+                raise ValueError(f"{city} {f['id']}: cannot safely repair {diagnosis}")
+            old_km2=transform(TO_METRIC,source).area/1e6
+            new_km2=transform(TO_METRIC,fixed).area/1e6
+            delta_m2=abs(new_km2-old_km2)*1e6
+            print("[city-geography] official invalid polygon",json.dumps({
+               "city":city,"feature":f["id"],"reason":diagnosis,
+               "area_change_m2":round(delta_m2,3)},ensure_ascii=False),flush=True)
+            if delta_m2>100:
+                raise ValueError(f"{city} {f['id']} repair exceeded 100m²; manual source review needed")
+            repair_audit.append({"id":f["id"],"diagnosis":diagnosis,"area_change_m2":round(delta_m2,3)})
+            f["geometry"]=mapping(fixed)
+            source=fixed
+        valid.append(source)
     geoms=[transform(TO_METRIC,g) for g in valid]
     overlap=0.
     for i in range(len(geoms)):
@@ -60,6 +88,7 @@ def save(city,source,features,audit):
     out={"type":"FeatureCollection","meta":{
           "city":city,"year":2025,"status":"candidate_geometry_only",
           "source_url":source,"source_name":"Official municipality small-area administrative boundaries",
+          "invalid_source_polygons_safely_repaired":repair_audit,
           "districts":len(features),"area_km2":round(area,4),
           "overlap_m2":round(overlap,3),"unclassified_police_metrics":True,
           "warning":"Administrative polygons alone do not demonstrate local criminal statistics."},
@@ -69,7 +98,7 @@ def save(city,source,features,audit):
         json.dumps(out,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf8")
     print("[city-geography] PASS",json.dumps({"city":city,
         "districts":len(features),"union_km2":round(area,3),
-        "overlap_m2":round(overlap,3),"fields":audit},ensure_ascii=False),flush=True)
+        "overlap_m2":round(overlap,3),"repaired":len(repair_audit),"fields":audit},ensure_ascii=False),flush=True)
 
 def stuttgart():
     raw=download(STUTTGART)
