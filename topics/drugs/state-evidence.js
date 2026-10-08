@@ -10,10 +10,16 @@ function sourceLink(title,url){
  const e=item('a',title);e.href=url;e.target='_blank';e.rel='noopener noreferrer';return e;
 }
 function validate(d){
- if(d?.meta?.year!==2025||!d.mortality_by_state||!d.selected_offence_codes_by_state)throw Error('州级数据缺失');
+ if(d?.meta?.year!==2025||!d.mortality_by_state||!d.selected_offence_codes_by_state||!d.other_health_indicators_by_state)throw Error('州级数据缺失');
  if(Object.keys(d.mortality_by_state).length<9)throw Error('死亡数据覆盖数异常');
  for(const [state,r]of Object.entries(d.mortality_by_state)){
   if(!state||!Number.isInteger(r.cases)||r.cases<0||!/^https:\/\//.test(r.source_url))throw Error('死亡来源校验失败');
+ }
+ for(const record of Object.values(d.other_health_indicators_by_state)){
+  if(!/^https:\/\//.test(record.source_url)||!Array.isArray(record.metrics))throw Error('健康数据来源失效');
+  for(const row of record.metrics)
+   if(!row.name||!Number.isInteger(row.cases)||!Number.isInteger(row.previous_2024)||row.cases<0||row.previous_2024<0)
+    throw Error('医院记录非法');
  }
  for(const o of Object.values(d.selected_offence_codes_by_state)){
   if(!/^https:\/\//.test(o.source_url)||!Array.isArray(o.groups))throw Error('州案件来源格式错误');
@@ -38,10 +44,12 @@ function render(state,d){
  if(selected!==state)return;
  const head=$('region-evidence-head'),body=$('region-evidence-body');
  if(!head||!body)return;
- const death=d.mortality_by_state[state],off=d.selected_offence_codes_by_state[state];
- head.textContent=death||off
-  ?'州级补充：'+(death?'死亡 '+fmt(death.cases)+' 人':'')+(death&&off?' · ':'')+(off?'毒品罪名细分':'')
-  :'州级补充：暂无核实数字';
+ const death=d.mortality_by_state[state],off=d.selected_offence_codes_by_state[state],health=d.other_health_indicators_by_state[state];
+ const tags=[];
+ if(death)tags.push('死亡 '+fmt(death.cases)+' 人');
+ if(off)tags.push('毒品罪名细分');
+ if(health)tags.push('健康诊断数据');
+ head.textContent=tags.length?'州级补充：'+tags.join(' · '):'州级补充：暂无核实数字';
  body.replaceChildren();
  if(death){
   const sect=item('div','','evidence-group');
@@ -99,7 +107,26 @@ function render(state,d){
   const src=item('div','','evidence-source');src.append(sourceLink('警察统计原表：'+off.source_title+' ↗',off.source_url));sect.append(src);
   body.append(sect);
  } else body.append(item('p','本州大麻、可卡因、冰毒、海洛因罪名细分原表尚未核实，不依据全国比例估算。','note'));
- body.append(item('p','不同指标不可相加：死亡记录、警方案件、污水残留并不等于吸毒人口。','evidence-caveat'));
+ if(health){
+  const sect=item('div','','evidence-group');
+  sect.append(item('h5','2025年大麻相关健康诊断 · 全州'));
+  const table=document.createElement('table');table.className='evidence-offence-table';
+  const headRow=document.createElement('tr');
+  for(const v of ['诊断项目','2025','2024'])headRow.append(item('th',v));
+  const thead=document.createElement('thead');thead.append(headRow);table.append(thead);
+  const tbody=document.createElement('tbody');
+  for(const metric of health.metrics){
+    const line=document.createElement('tr');
+    line.append(item('th',metric.name),item('td',fmt(metric.cases)),item('td',fmt(metric.previous_2024)));
+    tbody.append(line);
+  }
+  table.append(tbody);
+  sect.append(table,item('p',health.note,'note'));
+  const src=item('div','','evidence-source');
+  src.append(sourceLink('查看资料来源：'+health.source_title+' ↗',health.source_url));sect.append(src);
+  body.append(sect);
+ }
+ body.append(item('p','不同指标不可相加：死亡记录、警方案件、医院诊断与污水残留不等于吸毒人口。','evidence-caveat'));
 }
 function show(state){
  selected=state;
