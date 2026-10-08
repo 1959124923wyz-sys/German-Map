@@ -184,11 +184,11 @@ The registry is authoritative for Hamburg, Munich and the supported Saxony citie
 
 ## City expansion programme (batch-based)
 
-**Do not put a researched candidate into \`data/city_layers.json\` prematurely.**
-The expansion queue lives in \`data/city_candidates.json\` and is never
-loaded by browser JavaScript. \`scripts/validate_city_intake.py\` guards
+**Do not put a researched candidate into `data/city_layers.json` prematurely.**
+The expansion queue lives in `data/city_candidates.json` and is never
+loaded by browser JavaScript. `scripts/validate_city_intake.py` guards
 against unfinished candidates becoming live layers and checks legal/source
-signoff before new publication. \`scripts/test_city_expansion.py\` tests
+signoff before new publication. `scripts/test_city_expansion.py` tests
 legacy layers and ordering without network access.
 
 City release gates:
@@ -196,39 +196,56 @@ City release gates:
 | Gate | What is required | Output |
 | --- | --- | --- |
 | G0 discovery | official statistical source and official geometry candidate identified | research queue |
-| G1 source proof | reproducible primary URLs, year, statistical unit, source license, endpoint response | \`source_probe\` record |
+| G1 source proof | reproducible primary URLs, year, statistical unit, source license, endpoint response | `source_probe` record |
 | G2 semantics | each proposed metric maps to an *actual* official category, or an explicitly labeled proxy; official cases and appropriate population reference for published per-100,000 rates | documented mapping |
 | G3 geometry | administrative keys/name join; valid WGS84 polygons; non-overlap/coverage; compare against raw municipality, resolve official boundary differences | candidate GeoJSON + QA |
 | G4 validation | no fabricated rates, no unverified missing-as-zero, schema + geometry checks + real browser tests | approved candidate |
-| G5 publication | change candidate phase to \`published\`, record \`qa_passed\` and \`source_license_reviewed\`, add exact builder/metrics to the live registry and choose stable seam priority | city appears on map |
+| G5 publication | change candidate phase to `published`, record `qa_passed` and `source_license_reviewed`, add exact builder/metrics to the live registry and choose stable seam priority | city appears on map |
 | G6 monitoring | keep deterministic build, last-known-good fallback, license/source drift and regular checks | maintenance |
 
 When a new city is approved, mark its live registry entry
-\`seam_enabled: true\` and \`seam_priority: <unique positive integer>\`.
+`seam_enabled: true` and `seam_priority: <unique positive integer>`.
 The county display seam builder reads *only approved live entries* from this
 registry; candidates cannot alter the 402-county display geometry.
 Partial coverage requires a **complete official municipality boundary** in
-\`boundary_file\`; never union incomplete neighbourhoods and pretend it is
-the city border. \`data/germany-counties.geojson\` and official city source
+`boundary_file`; never union incomplete neighbourhoods and pretend it is
+the city border. `data/germany-counties.geojson` and official city source
 geometries remain immutable.
 
-**Kiel first pilot:** Official 2025 PKS annex Table 10 has annual
-neighbourhood counts, with an explicit "Tatort unbekannt" row. Municipal
-GeoJSON WFS is advertised on GovData. The source is initially **not**
-crosswalk-compatible with either violence or theft; overall PKS cases must
-not be rebranded as \`violence\` or \`property_total\`. Before map publishing:
-verify WFS data actually returns, reconcile police Stadtteile against official
-polygon codes/names, and choose a truthful count-only local view or locate
-the appropriate official category-specific data. For read-only diagnostics,
-run **Actions → City expansion source probe**, or locally
-\`python scripts/probe_kiel_sources.py\`.
+**Kiel first pilot — audited 2026-10-08:** The official 2025 PKS
+Annex Table 10 contains all-offense counts by police reporting district.
+The GovData example WFS call returns 0 rows, but the municipal **ArcGIS
+REST MapServer layer 38** returns **31 polygon pieces for 30 distinct
+official Stadtteile**. `scripts/build_kiel_staging.py` performs source
+joins and validates all annual values without adding a live city layer.
+
+2025 police **25,158 cases = 24,341 spatially assigned + 817 unassigned**
+(762 'Tatort unbekannt' + 20 Hammer + 35 Kroog). The official geographic
+district 'Gaarden-Süd und Kronsburg' is explicitly composed of those
+two separately tabulated police reporting units; they are summed only
+because the municipal polygon's own title identifies both subareas.
+Unmapped cases remain outside the choropleth rather than guessed.
+
+**Kiel is NOT published.** Its source class is all offenses, not violence
+or theft. Neither a per-100k rate nor a proxy for the two existing
+top-level crime modes should be invented. Next gate: decide a clearly
+labelled count-only local view or obtain verified category-specific
+district cases, confirm any population denominator, review licensing and
+geographic topology, then complete public UI and regression tests.
+
+Re-run source and candidate-only checks in GitHub's City expansion source
+probe workflow or locally:
+```bash
+python scripts/probe_kiel_sources.py
+python scripts/build_kiel_staging.py
+```
 
 Run acceptance locally:
 
-\`\`\`bash
+```bash
 python scripts/validate_city_intake.py
 python scripts/test_city_expansion.py
 python scripts/build_display_counties.py
 python scripts/validate_display_counties.py
 python scripts/validate_city_layers.py
-\`\`\`
+```
