@@ -1,0 +1,22 @@
+name: Düsseldorf BV6 2025 neighborhood source QA
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_duesseldorf_bv6_stadtteile.py'
+      - '.github/workflows/duesseldorf-bv6-stadtteile.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install requests pypdf
+      - name: Verify 2025 street polygons and police tables 4-11
+        run: python scripts/probe_duesseldorf_bv6_stadtteile.py
