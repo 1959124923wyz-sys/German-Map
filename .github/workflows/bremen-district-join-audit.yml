@@ -8,6 +8,7 @@ on:
       - 'scripts/audit_bremen_district_joins.py'
       - 'scripts/build_bremen_geometry_staging.py'
       - 'scripts/extract_bremen_offenses.py'
+      - 'scripts/build_bremen_category_layer.py'
       - '.github/workflows/bremen-district-join-audit.yml'
 
 permissions:
@@ -32,6 +33,9 @@ jobs:
       - name: Parse and verify 22-by-7 official offense statistics
         run: python scripts/extract_bremen_offenses.py
 
+      - name: Merge official PKS case counts with audited polygons as candidate
+        run: python scripts/build_bremen_category_layer.py
+
       - name: Archive audit with unresolved exceptions
         if: always()
         uses: actions/upload-artifact@v4
@@ -41,4 +45,5 @@ jobs:
             artifacts/bremen_join_audit.json
             artifacts/bremen_areas_staging.geojson
             artifacts/bremen_cases_staging.json
+            artifacts/bremen_offenses_staging.geojson
           if-no-files-found: warn
