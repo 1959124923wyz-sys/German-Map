@@ -54,7 +54,10 @@ def police_rows(data):
         if ix>0:
             name=ORDER[ix-1]
             # Confirm the source actually labels each district in order.
-            context=t[max(0,m.start()-330):m.start()]
+            # Layout-extracted PDF contains very wide fixed-width columns.
+            # Use the complete *current reporting row* after the previous
+            # district's value, instead of a fixed 330-character lookback.
+            context=t[match[ix-1].end():m.start()]
             if norm(name) not in norm(context):
                 raise ValueError(f"Landtag district table order/name mismatch at {ix}: expected {name}")
             result.append({"name":name,"metrics":values})
