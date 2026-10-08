@@ -5,8 +5,8 @@
     "national_drug_deaths": 2150,
     "national_source": "https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/",
     "mortality_coverage_states": 12,
-    "drug_specific_offence_coverage_states": 5,
-    "method": "State government/police originals preferred; agency-attributed reports accepted with source type. Each selected offence key/group has its own scope; absence is missing, never zero. Substance totals and PKS general/trade subkeys must never be added across differing scopes.",
+    "drug_specific_offence_coverage_states": 7,
+    "method": "State government/police originals preferred; agency-attributed reports accepted with source type. Each selected offence key/group has its own scope; absence is missing, never zero. Substance totals and PKS general/trade subkeys must never be added across differing scopes. Sachsen and Hamburg added directly from 2025 Land police primary PKS tables; overlapping subcategories are explicitly named.",
     "mortality_scope": "Recorded drug-related deaths; state data from police/health ministries or organizations and public broadcasters quoting them. Methods and as-of dates may differ; do not add to BKA crime numbers.",
     "updated_at": "2026-10-08",
     "health_case_coverage_states": 1
@@ -276,6 +276,108 @@
           "cases": 543,
           "previous_2024": 578,
           "code": "州政府发布公告"
+        }
+      ]
+    },
+    "Sachsen": {
+      "source_url": "https://www.polizei.sachsen.de/de/download/Landesportal/PKS-Jahresueberblick-2025.pdf",
+      "source_title": "萨克森州刑警局 · PKS2025年度概览第43—45页（PDF页44—46）",
+      "source_type": "state_police",
+      "notes": "州级PKS代码731***仅为一般违法、732***仅为非法交易/走私；另有严重数量及其他罪名。甲基苯丙胺涵盖多种形态；Crystal 2785起是跨多个代码的总计，不能与一般违法及交易重复相加。KCanG 2024年法律调整形成统计断点。",
+      "groups": [
+        {
+          "name": "海洛因",
+          "general": 272,
+          "trade": 35,
+          "general_code": "731100",
+          "trade_code": "732100",
+          "law": "BtMG §29"
+        },
+        {
+          "name": "可卡因／快克",
+          "general": 336,
+          "trade": 175,
+          "general_code": "731200",
+          "trade_code": "732200",
+          "law": "BtMG §29"
+        },
+        {
+          "name": "甲基苯丙胺（含冰毒）",
+          "general": 2418,
+          "trade": 263,
+          "general_code": "731700",
+          "trade_code": "732700",
+          "law": "BtMG §29"
+        }
+      ],
+      "additional_metrics": [
+        {
+          "name": "Crystal冰毒 · 多罪名汇总",
+          "cases": 2785,
+          "previous_2024": 2597,
+          "code": "多个PKS代码汇总",
+          "note": "包括一般违法、交易、严重数量等；不是纯一般违法案件。"
+        },
+        {
+          "name": "大麻 · KCanG §34全部罪名",
+          "cases": 1669,
+          "previous_2024": 666,
+          "code": "736000",
+          "note": "2024年仅4月起施行，年度同比不可直接解释为实际犯罪增加。"
+        },
+        {
+          "name": "全部毒品违法案件（BtMG/NpSG/KCanG）",
+          "cases": 7219,
+          "previous_2024": 9738,
+          "code": "730000",
+          "note": "包含各分项，并非独立其他毒品类别；不同于其他州的警务执法强度。"
+        }
+      ]
+    },
+    "Hamburg": {
+      "source_url": "https://www.polizei.hamburg/resource/blob/1161478/9a8911027a7857989d984ac1114ff28a/pks-2025-do-data.pdf",
+      "source_title": "汉堡州刑警局 · Polizeiliche Kriminalstatistik 2025州级详细表（代码731100/731200/731201等）",
+      "source_type": "state_police",
+      "notes": "下列海洛因、可卡因、快克数为BtMG §29一般违法，快克是可卡因／快克的子集，不能再相加。大麻法KCanG统计来自州刑警局2025年度简报；非法大麻交易属于KCanG总数中的一部分。警方案件数量不反映真实消费率。",
+      "groups": [],
+      "additional_metrics": [
+        {
+          "name": "海洛因 · 一般违法",
+          "cases": 982,
+          "previous_2024": 1192,
+          "code": "731100 BtMG §29"
+        },
+        {
+          "name": "可卡因／快克 · 一般违法",
+          "cases": 3298,
+          "previous_2024": 3614,
+          "code": "731200 BtMG §29"
+        },
+        {
+          "name": "其中快克 · 一般违法（可卡因子集）",
+          "cases": 1995,
+          "previous_2024": 2212,
+          "code": "731201 BtMG §29",
+          "note": "已包含在731200，不得相加"
+        },
+        {
+          "name": "大麻 · KCanG §34全部罪名",
+          "cases": 1918,
+          "previous_2024": 953,
+          "code": "736000",
+          "note": "2024只有4月起合法新分类，跨年不可直接比较"
+        },
+        {
+          "name": "其中大麻非法交易/走私",
+          "cases": 1230,
+          "code": "KCanG §34子项",
+          "note": "包含在1918中，不能再相加"
+        },
+        {
+          "name": "其他毒品非法交易／走私（不含KCanG）",
+          "cases": 1331,
+          "code": "732000",
+          "note": "BtMG毒品交易类，与大麻法统计分开"
         }
       ]
     }
