@@ -189,6 +189,30 @@ jobs:
           SMOKE_SCREENSHOT: /tmp/germany-crime-map-national.png
         run: python scripts/smoke_test_ui.py
 
+      - name: Regression test drug topic and first-level navigation
+        run: |
+          python topics/drugs/scripts/validate_drugs.py
+          node --check topics/drugs/topic.js
+          python topics/drugs/tests/smoke_drugs.py
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          with sync_playwright() as pw:
+              browser = pw.chromium.launch(headless=True)
+              page = browser.new_page(viewport={'width':1440,'height':900})
+              page.goto('http://127.0.0.1:8765/',wait_until='domcontentloaded')
+              assert page.locator('#modeDrugs').count()==1
+              page.locator('#modeDrugs').click()
+              page.wait_for_url('**/topics/drugs/')
+              page.wait_for_function('() => document.querySelector("#county-count")?.textContent.includes("/")',timeout=40000)
+              links=page.locator('nav.toplinks .modebtn')
+              assert links.count()==3
+              links.nth(1).click()
+              page.wait_for_url('**/?mode=property')
+              page.wait_for_function('() => document.querySelector("#modeProperty")?.classList.contains("active")',timeout=40000)
+              print('PASS main → drugs → property navigation')
+              browser.close()
+          PY
+
       - name: Upload rendered screenshot
         if: always()
         uses: actions/upload-artifact@v4
