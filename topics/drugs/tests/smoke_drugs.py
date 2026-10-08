@@ -48,6 +48,10 @@ def main():
             page.locator('#region-evidence-head').click()
             assert '247' in page.locator('#region-evidence-body').inner_text()
             assert '214' in page.locator('#region-evidence-body').inner_text()
+            bavaria_details = page.locator('#region-evidence-body').inner_text()
+            for expected in ('7,164', '4,440', '1,308', '15,270', '3,972', '823'):
+                assert expected in bavaria_details, ('Bayern 2025 PKS', expected, bavaria_details)
+            assert '大麻法' in bavaria_details or '2024年4月' in bavaria_details
             assert page.locator('#region-evidence-body a[href^="https://"]').count() >= 1
             page.locator('#region-evidence-head').click()
             page.screenshot(path='/tmp/germany-drugs-evidence-bavaria.png', full_page=True)
@@ -106,6 +110,7 @@ def main():
                 ('Rheinland-Pfalz', ['515','858','1,043','152','3,202']),
                 ('Hessen', ['2,406','543']),
                 ('Baden-Württemberg', ['156','61','NpSG','BtMG']),
+                ('Nordrhein-Westfalen', ['7,507', '6,433', '可卡因／快克']),
                 ('Sachsen', ['2,418','263','2,785','1,669','272','175']),
                 ('Hamburg', ['3,298','1,995','982','1,918','1,230']),
                 ('Thüringen', ['77','50']),
