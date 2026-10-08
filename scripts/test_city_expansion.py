@@ -28,7 +28,7 @@ def main():
     expected=["11000","09162","02000","14713","14511","14612"]
     assert list(sources)==expected,(list(sources),expected)
     assert sources["14612"]=="data/dresden-city-boundary.geojson"
-    assert result["active_rate"]==5 and result["active_count"]==1 and result["candidates"]>=10
+    assert result["active_rate"]==5 and result["active_count"]==2 and result["candidates"]>=10
     # Kiel is NOT a violence-rate city and can never be inserted twice.
     unauthorized=copy.deepcopy(live)
     unauthorized["cities"].append({"id":"kiel","metrics":{"violence":{"field":"crime_total"}}})
@@ -43,7 +43,10 @@ def main():
     forged_counts=copy.deepcopy(counts)
     forged_counts["layers"][0]["metric"]="violence"
     assert_rejected(intake,live,forged_counts,"not an explicitly count-only")
-    print("[city-expansion] PASS: six seams preserved, 5 rate cities, 1 separately approved count-only city, no mode contamination")
+    forged_bremen=copy.deepcopy(counts)
+    next(x for x in forged_bremen["layers"] if x["id"]=="bremen")["metric"]="violence"
+    assert_rejected(intake,live,forged_bremen,"count categories must not claim a crime rate")
+    print("[city-expansion] PASS: six seams preserved, 5 rate cities, Kiel + Bremen separate count-only, no mode contamination")
 
 
 if __name__=="__main__":main()

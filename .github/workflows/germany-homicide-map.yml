@@ -69,6 +69,7 @@ jobs:
           node --check js/app.js
           node --check js/layers/city-detail.js
           node --check js/layers/city-count-detail.js
+          node --check js/layers/bremen-category-detail.js
 
       - name: Test deterministic city builder I/O
         run: python scripts/test_city_build_common.py
@@ -114,6 +115,20 @@ jobs:
 
       - name: Validate Kiel independent crime count layer
         run: python scripts/validate_kiel_count_layer.py
+
+      - name: Refresh Bremen 22 official PKS regions and category count layer
+        run: |
+          if ! (python scripts/build_bremen_geometry_staging.py --output artifacts/bremen_areas_staging.geojson &&
+                python scripts/build_bremen_category_layer.py --geometry artifacts/bremen_areas_staging.geojson --output data/bremen_local_counts_2025.geojson --release-count-only); then
+            if [ ! -s data/bremen_local_counts_2025.geojson ]; then
+              echo "Bremen 2025 official data unavailable and no last-good result exists" >&2
+              exit 1
+            fi
+            echo "::warning::Bremen official source unavailable; keeping last-good audited map"
+          fi
+
+      - name: Validate Bremen independent PKS count categories
+        run: python scripts/validate_bremen_category_layer.py
 
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py

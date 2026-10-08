@@ -153,7 +153,7 @@
       "name_zh": "不来梅",
       "state": "Bremen",
       "county_ags": "04011",
-      "phase": "source_probe",
+      "phase": "published",
       "priority": 2,
       "crime_source": {
         "publisher": "Senat Bremen / Polizei Bremen",
@@ -170,14 +170,9 @@
         "url": "https://geodienste.bremen.de/wfs_verwaltungsgrenzen?SERVICE=WFS&REQUEST=GetCapabilities",
         "evidence": "Verified 2026-10-08 by downloading native WFS 2.0 GML: 19 official Bremen Stadtteile and 87 Ortsteile with correct (lon,lat) WGS84 coordinates, names (bez_st/bez_ot), administrative codes (sch_st/sch_ot), and polygon MultiSurface. JSON outputFormat is unsupported; use GML parser. Bremerhaven excluded."
       },
-      "metric_alignment": "unverified",
-      "blocking_issues": [
-        "Parse the 22 official 2024/2025 PKS offense-category tables into an audited count-only candidate; match only documented reporting-unit keys.",
-        "Validate source license and attribution for derived aggregate data; never distribute modified PDF.",
-        "If claiming a crime rate, obtain 2025 population denominators by the same 22 reporting areas. Unallocated citywide cases must remain outside any polygon.",
-        "After crime-data reconciliation, perform browser pointer/close/reopen and unchanged nationwide-county regression before approving release."
-      ],
-      "notes": "Official 22-area candidate GeoJSON successfully built in short CI audit (not in public map); topology gap and overlap both zero relative to union of 19+87 official source WFS features. No crime figures attached yet.",
+      "metric_alignment": "independent_count_only",
+      "blocking_issues": [],
+      "notes": "PUBLIC: independent Bremen 22 police-area 2025 category case-count panel, backed by official 2024 and 2025 parliamentary PKS counts. NO per-100k rates or nationwide category substitution. Previously audited 318.454 km2 topology unchanged.",
       "audit": {
         "phase": "source_verified",
         "qa_run": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37723889045",
@@ -192,7 +187,7 @@
           "app:Ortsteile_Bremen"
         ],
         "geometry_joined": true,
-        "published": false,
+        "published": true,
         "qa_geometry_probe": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37724199665",
         "official_city_district_features": 19,
         "official_ortsteil_features": 87,
@@ -215,8 +210,28 @@
         "official_wfs_union_area_sqkm": 318.454,
         "uncovered_sqkm": 0,
         "overlap_sq_m": 0,
-        "source_features_combined": "19 Stadtteile + 87 Ortsteile, official municipal union"
-      }
+        "source_features_combined": "19 Stadtteile + 87 Ortsteile, official municipal union",
+        "category_count": 7,
+        "category_parser_run": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37726275314",
+        "mapped_2025": {
+          "all_offenses": 69710,
+          "theft": 33720,
+          "robbery": 959,
+          "bodily_injury": 7138,
+          "burglary": 1000,
+          "sexual": 960,
+          "drug": 2379
+        }
+      },
+      "public_scope": "supplementary_category_counts_only",
+      "qa_passed": true,
+      "source_license_reviewed": true,
+      "limitations": [
+        "German parliamentary official PDF provides counts only; facts re-expressed with attribution, original PDF not mirrored.",
+        "2025 district population denominators not verified: no crime rates displayed.",
+        "Official hyphen placeholders are null and rendered as missing, never 0.",
+        "Summed district cases do not necessarily equal citywide PKS because some cases cannot be localized."
+      ]
     },
     {
       "id": "koeln",

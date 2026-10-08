@@ -18,6 +18,9 @@ on:
       - 'data/city_count_layers.json'
       - 'scripts/build_kiel_staging.py'
       - 'scripts/validate_kiel_count_layer.py'
+      - 'scripts/build_bremen_geometry_staging.py'
+      - 'scripts/build_bremen_category_layer.py'
+      - 'scripts/validate_bremen_category_layer.py'
       - '.github/workflows/germany-homicide-map-smoke.yml'
 
 permissions:
@@ -73,6 +76,7 @@ jobs:
           node --check js/app.js
           node --check js/layers/city-detail.js
           node --check js/layers/city-count-detail.js
+          node --check js/layers/bremen-category-detail.js
 
       - name: Test deterministic city builder I/O
         run: python scripts/test_city_build_common.py
@@ -104,6 +108,15 @@ jobs:
 
       - name: Validate Kiel independent crime count layer
         run: python scripts/validate_kiel_count_layer.py
+
+      - name: Build Bremen official 22-region geographic candidate
+        run: python scripts/build_bremen_geometry_staging.py --output artifacts/bremen_areas_staging.geojson
+
+      - name: Build Bremen official 2024–2025 category count layer
+        run: python scripts/build_bremen_category_layer.py --geometry artifacts/bremen_areas_staging.geojson --output data/bremen_local_counts_2025.geojson --release-count-only
+
+      - name: Validate Bremen independent PKS count categories
+        run: python scripts/validate_bremen_category_layer.py
 
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py

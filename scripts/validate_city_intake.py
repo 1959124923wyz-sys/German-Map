@@ -70,15 +70,24 @@ def validate(intake:dict,live:dict,supplementary:dict|None=None)->dict:
                     raise ValueError(f"{cid}: invalid published rate metrics")
             elif cid in supplements:
                 item=supplements[cid]
-                if c.get("metric_alignment")!="independent_count_only" or c.get("public_scope")!="supplementary_count_only":
+                if c.get("metric_alignment")!="independent_count_only":
                     raise ValueError(f"{cid}: incompatible metrics cannot publish")
-                if item.get("metric")!="all_offenses_cases" or "非每10万人率" not in str(item.get("unit","")):
-                    raise ValueError(f"{cid}: not an explicitly count-only metric")
                 if item.get("source_url","")!=c["crime_source"]["url"]:
                     raise ValueError(f"{cid}: live count layer source does not match approved police PDF")
-                if not (0<item.get("mapped_total",0)<item.get("reported_total",0) and
-                        item["mapped_total"]+item["unassigned_total"]==item["reported_total"]):
-                    raise ValueError(f"{cid}: count reconciliation invalid")
+                if c.get("public_scope")=="supplementary_count_only":
+                    if item.get("metric")!="all_offenses_cases" or "非每10万人率" not in str(item.get("unit","")):
+                        raise ValueError(f"{cid}: not an explicitly count-only metric")
+                    if not (0<item.get("mapped_total",0)<item.get("reported_total",0) and
+                            item["mapped_total"]+item["unassigned_total"]==item["reported_total"]):
+                        raise ValueError(f"{cid}: count reconciliation invalid")
+                elif c.get("public_scope")=="supplementary_category_counts_only":
+                    expected={"all_offenses","theft","robbery","bodily_injury","burglary","sexual","drug"}
+                    if item.get("metric")!="local_category_cases" or "非每10万人率" not in str(item.get("unit","")):
+                        raise ValueError(f"{cid}: count categories must not claim a crime rate")
+                    if item.get("region_count")!=22 or set(item.get("categories",[]))!=expected:
+                        raise ValueError(f"{cid}: category names or number of official PKS regions drifted")
+                else:
+                    raise ValueError(f"{cid}: unsupported supplementary publication scope")
             else:
                 raise ValueError(f"{cid}: published candidate not in approved public city registry")
         elif cid in active or cid in supplements:

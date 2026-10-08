@@ -353,6 +353,41 @@ with sync_playwright() as playwright:
     assert page.evaluate("window.__KIEL_COUNT_MAP__.getActive()") is False
     print("[kiel-count-regression] PASS: 30 polygons, source totals, count-only legend, close/other city switch",flush=True)
 
+    # Bremen adds seven official police reporting-area categories as counts,
+    # distinct from the national rate map and independent Kiel count pilot.
+    page.click('#focusBremenCategory')
+    page.wait_for_function("""() => window.__BREMEN_CATEGORY_MAP__?.getActive()===true""",timeout=24000)
+    bremen=page.evaluate("""() => {
+        const b=window.__BREMEN_CATEGORY_MAP__,ll=b.getLayer().getLayers();
+        const sum=k=>ll.reduce((n,x)=>n+(x.feature.properties.metrics[k]['2025']||0),0);
+        const rateFree=ll.every(x=>Object.values(x.feature.properties.metrics).every(v=>v.rate===null));
+        return {count:ll.length,metric:b.getMetric(),theft:sum('theft'),all_offenses:sum('all_offenses'),
+          robbery:sum('robbery'),sexual:sum('sexual'),rateFree,
+          missing_robbery:ll.filter(x=>x.feature.properties.metrics.robbery['2025']===null).length,
+          panel:!document.getElementById('bremenCategoryPanel')?.hidden,
+          select:document.getElementById('bremenCategoryMetric')?.value,
+          focus:document.querySelector('.mapwrap')?.classList.contains('bremen-case-focus')}
+    }""")
+    assert bremen["count"]==22 and bremen["theft"]==33720 and bremen["all_offenses"]==69710,bremen
+    assert bremen["robbery"]==959 and bremen["sexual"]==960,bremen
+    assert bremen["rateFree"] and bremen["panel"] and bremen["focus"],bremen
+    page.locator('#bremenCategoryMetric').select_option('robbery')
+    page.wait_for_timeout(100)
+    assert page.evaluate("window.__BREMEN_CATEGORY_MAP__.getMetric()")=='robbery'
+    assert "非每10万人犯罪率" in page.locator('#legend').inner_text()
+    assert bremen["missing_robbery"]==4,bremen
+    # A real Leaflet polygon click must show documented local categories.
+    page.evaluate("""() => window.__BREMEN_CATEGORY_MAP__.getLayer().getLayers()[9].fire('click')""")
+    assert "抢劫" in page.locator(".leaflet-popup-content").inner_text()
+    page.screenshot(path=str(SCREENSHOT.with_name("germany-crime-map-bremen-categories.png")),full_page=True)
+    page.click('#bremenCategoryClose')
+    assert page.evaluate("window.__BREMEN_CATEGORY_MAP__.getActive()") is False
+    page.click('#focusKielCount')
+    page.wait_for_function("window.__KIEL_COUNT_MAP__?.getActive()===true",timeout=20000)
+    assert page.evaluate("window.__BREMEN_CATEGORY_MAP__.getActive()") is False
+    page.click('#suppCityClose')
+    print("[bremen-category-regression] PASS: 22 regions, 7 2025 official counts, dash-null, popup, selector, close, Kiel switch",flush=True)
+
     assert not errors, errors
     print(json.dumps({
         "result":"PASS",
@@ -364,6 +399,7 @@ with sync_playwright() as playwright:
         "munich":munich,
         "dresden":dresden,
         "kiel":kiel,
+        "bremen":bremen,
         "page_errors":errors,
     },ensure_ascii=False))
     browser.close()

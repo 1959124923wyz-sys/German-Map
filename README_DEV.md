@@ -260,3 +260,29 @@ python scripts/build_display_counties.py
 python scripts/validate_display_counties.py
 python scripts/validate_city_layers.py
 ```
+
+## Bremen 2025 official district categories: published as case COUNTS
+
+Bremen Police/Senate 2025 district facts in Bürgerschaft Drucksache 21/1866
+(22 tables, seven PKS offence-category rows each, calendar years 2024–2025).
+Official GeoInformation Bremen WFS GML is joined from **19 Stadtteile and
+87 Ortsteile**. Some PDF reporting areas combine one Stadtteil and multiple
+harbor Ortsteile; preserve their official composite shapes. Source geometry
+union is **318.454 km², no overlap or gaps**. Detailed category counts
+were extracted with 2024→2025 delta verification. Published district
+totals for 2025 include **69,710 recorded all offenses**, **33,720 thefts**,
+**959 robberies**, **7,138 injuries**, **1,000 apartment burglaries**,
+**960 sexual offences** and **2,379 narcotics cases**, with nulls excluded.
+**These are mapped-area case counts, not complete citywide PKS totals or rates.**
+A `-` token in official PDF is represented by null, not 0.
+No demographic denominator is invented; official categories are kept separate
+from BKA national violence/property-rate map.
+
+Public read path: `data/city_count_layers.json` +
+`data/bremen_local_counts_2025.geojson`.
+Builder `scripts/build_bremen_geometry_staging.py` then
+`scripts/build_bremen_category_layer.py --release-count-only`.
+Validation `scripts/validate_bremen_category_layer.py` and browser smoke
+check the count semantics, toggle, category selector, map hover and close.
+The PDF itself is never republished; official facts are independently
+re-expressed, with link to original parliamentary source.
