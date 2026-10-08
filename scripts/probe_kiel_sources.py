@@ -46,6 +46,30 @@ def main():
     except Exception as e:
         checks["geojson"]={"error":str(e)}
         print("[kiel-probe] GeoJSON ERROR",repr(e),flush=True)
+    # The GovData example omits the WFS namespace and returns an empty set.
+    # Query advertised namespaced variants, but never publish without a real
+    # feature count and verified municipality bounds.
+    for variant,params in [
+        ("qualified-1.0",{"service":"WFS","request":"GetFeature","version":"1.0.0",
+                          "typeName":"lhkiel:Statistische_Stadtteile","outputFormat":"geoJSON"}),
+        ("qualified-1.1",{"service":"WFS","request":"GetFeature","version":"1.1.0",
+                          "typeName":"lhkiel:Statistische_Stadtteile","outputFormat":"geoJSON"}),
+        ("qualified-2.0",{"service":"WFS","request":"GetFeature","version":"2.0.0",
+                          "typeNames":"lhkiel:Statistische_Stadtteile","outputFormat":"geoJSON"}),
+    ]:
+        try:
+            raw=download_bytes(GEO,params,timeout=60)
+            obj=json.loads(raw.decode("utf-8-sig"))
+            fs=obj.get("features",[])
+            sample=(fs[0].get("properties") or {}) if fs else {}
+            geom=(fs[0].get("geometry") or {}) if fs else {}
+            vals={"bytes":len(raw),"count":len(fs),"sample_properties":sample,
+                  "sample_geometry_type":geom.get("type")}
+            checks[variant]=vals
+            print("[kiel-probe]",variant,json.dumps(vals,ensure_ascii=False)[:2500],flush=True)
+        except Exception as e:
+            checks[variant]={"error":str(e)}
+            print("[kiel-probe]",variant,"ERROR",repr(e),flush=True)
     try:
         raw=download_bytes(PKS,timeout=75)
         reader=PdfReader(io.BytesIO(raw))
