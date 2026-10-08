@@ -38,7 +38,10 @@ function popup(f){
  '<small>仅代表第6区的真实四个Stadtteile；其他市辖区没有这些指标的街区级数据。分类可能存在包含关系，不能相加。</small></div>';
 }
 function hide(){
- if(layer){mapApi.map.removeLayer(layer);layer=null;}
+ if(layer){
+   layer.eachLayer(l=>{l.closePopup?.();l.getPopup?.()?.remove?.();l.closeTooltip?.();});
+   mapApi.map.removeLayer(layer);layer=null;
+ }
  mapApi.map.closePopup();
  $('legend')?.querySelectorAll('.duesseldorf-bv6-legend').forEach(x=>x.remove());
  panel.hidden=true;
@@ -130,7 +133,17 @@ async function activate(){
  originalPanel=$('duesseldorfCountPanel');
  mapApi.map.closePopup();
  const oldLayer=parent.getLayer();
- if(oldLayer&&mapApi.map.hasLayer(oldLayer))mapApi.map.removeLayer(oldLayer);
+ if(oldLayer){
+   // Explicitly close bound Leaflet popups/tooltips before hiding the
+   // district vector layer. Otherwise a synthetic or ordinary polygon
+   // click can leave the old popup DOM behind the Stadtteil popup.
+   oldLayer.eachLayer(l=>{
+      l.closePopup?.();
+      l.getPopup?.()?.remove?.();
+      l.closeTooltip?.();
+   });
+   if(mapApi.map.hasLayer(oldLayer))mapApi.map.removeLayer(oldLayer);
+ }
  if(originalPanel)originalPanel.hidden=true;
  const oldLegend=$('legend')?.querySelector('.duesseldorf-count-legend');
  if(oldLegend)oldLegend.hidden=true;
