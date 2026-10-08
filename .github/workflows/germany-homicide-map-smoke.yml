@@ -12,6 +12,9 @@ on:
       - 'js/**'
       - 'index.html'
       - 'scripts/smoke_test_ui.py'
+      - 'scripts/build_display_counties.py'
+      - 'scripts/validate_display_counties.py'
+      - 'data/city_layers.json'
       - '.github/workflows/germany-homicide-map-smoke.yml'
 
 permissions:
