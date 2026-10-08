@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/probe_duesseldorf_bv6_stadtteile.py'
+      - 'scripts/build_duesseldorf_bv6_local.py'
       - '.github/workflows/duesseldorf-bv6-stadtteile.yml'
 permissions:
   contents: read
@@ -17,6 +18,14 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - run: pip install requests pypdf
-      - name: Verify 2025 street polygons and police tables 4-11
-        run: python scripts/probe_duesseldorf_bv6_stadtteile.py
+      - run: pip install requests pypdf shapely pyproj
+      - name: Rebuild official Düsseldorf district geometry for independent BV6 coverage
+        run: python scripts/build_stuttgart_duesseldorf_geometry.py
+      - name: Crosscheck four street areas and eight official 2022-2025 crime categories
+        run: python scripts/build_duesseldorf_bv6_local.py
+      - name: Archive official neighbourhoods and source-count QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: duesseldorf-bv6-four-official-stadtteile-candidate
+          path: artifacts/duesseldorf_bv6_local_candidate.geojson
+          if-no-files-found: error
