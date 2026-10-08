@@ -1,0 +1,22 @@
+name: Stuttgart 2025 Landtag PKS source verification
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_stuttgart_landtag_2025.py'
+      - '.github/workflows/stuttgart-landtag-2025.yml'
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install requests pypdf
+      - name: Extract official Stuttgart 23-area 2025 violence counts
+        run: python scripts/probe_stuttgart_landtag_2025.py
