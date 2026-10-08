@@ -44,6 +44,9 @@ def bremen():
         return
     reader=PdfReader(io.BytesIO(b))
     text="\n".join(page.extract_text() or '' for page in reader.pages)
+    for idx in (3,4):
+        snippet=reader.pages[idx].extract_text() or ''
+        print("[batch2] bremen raw-pdf-table",idx+1,repr(snippet[:8000]),flush=True)
     titles=re.findall(r"Tabelle\s+(\d+):\s+PKS-Fallzahlen im (.+?)(?:\n| von 2024)",text)
     metrics={x:len(re.findall(re.escape(x),text)) for x in
             ("Straftaten insgesamt","Wohnungseinbruchdiebstahl","Diebstahl insgesamt",
@@ -103,12 +106,18 @@ def bremen_polygons():
                 root=ET.fromstring(raw)
                 members=[x for x in root.iter() if x.tag.split("}")[-1] in ("member","featureMember")]
                 pos=[x for x in root.iter() if x.tag.split("}")[-1]=="posList"]
+                def props(member):
+                    feat=next(iter(member),None)
+                    return {node.tag.split("}")[-1]:(node.text or "").strip()
+                            for node in list(feat or []) if node.tag.split("}")[-1]!="geom"}
+                samples=[props(member) for member in members]
+                label="bez_ot" if "Ortsteile" in name else "bez_st"
                 print("[batch2] bremen GML",json.dumps({
                     "typename":name,"bytes":len(raw),"count":len(members),
-                    "root":root.tag,"attrs":root.attrib,
-                    "sample":[[y.tag.split("}")[-1] for y in m.iter()][:16] for m in members[:2]],
+                    "root":root.tag,"samples":samples[:4],
+                    "names":[x.get(label) for x in samples],
                     "sample_posList":pos[0].text[:160] if pos and pos[0].text else None
-                },ensure_ascii=False)[:5200],flush=True)
+                },ensure_ascii=False)[:9200],flush=True)
             except Exception as ex:
                 print("[batch2] bremen geodata BLOCKED",name,repr(ex)[:400],flush=True)
 
