@@ -183,3 +183,34 @@ button:disabled{cursor:not-allowed}
   stroke: #ffffff !important;
   stroke-width: 3px !important;
 }
+
+
+/* Sourced drug news: map markers share SVG renderer, never Canvas.
+   The news list scrolls inside the existing panel without blocking county clicks. */
+#drugs-news-content[hidden]{display:none!important}
+.news-filters{display:grid;grid-template-columns:1fr 1fr;gap:5px 9px;margin:12px 0}
+.news-filters label{font-size:10px;color:#a8bac7;font-weight:700}
+.news-filters select{width:100%;min-width:0;padding:7px 5px;background:#13222b;border:1px solid #385045;border-radius:6px;color:#d7f0e4;font-size:11px}
+.news-filters select:focus-visible{outline:2px solid #a4e9be}
+.news-headline-row{border-top:1px solid #293c3d;padding-top:12px;margin-top:4px}
+.drug-news-list{list-style:none;padding:0;margin:10px 0}
+.drug-news-list li{border-bottom:1px solid #293642}
+.drug-news-card{display:block;width:100%;border:0;text-align:left;background:none;color:#e7edf2;padding:10px 4px;cursor:pointer}
+.drug-news-card:hover{background:#1d312e}
+.drug-news-card b{display:block;font-size:11px;font-weight:690;line-height:1.45;margin:5px 0;white-space:normal}
+.drug-news-card small{font-size:10px;display:block;color:#91a7b8;line-height:1.45}
+.drug-news-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:10px;color:#a8bbc4}
+.drug-news-badge{font-size:9px;border:1px solid #547560;color:#bcf0cd;background:#1d3b2d;border-radius:10px;padding:1px 7px}
+.drug-news-badge.trade{border-color:#bc8250;color:#f7c38d;background:#3c2b1d}
+.drug-news-badge.seizure{border-color:#c0b15f;color:#f6edb6;background:#3a341e}
+.drug-news-badge.production{border-color:#9a76be;color:#dbbfee;background:#2b2139}
+.drug-news-badge.death{border-color:#bb6972;color:#ffc3c7;background:#3e2528}
+.drug-news-badge.health{border-color:#5d99b4;color:#b4e0f6;background:#1e3340}
+.drug-news-more{width:100%;margin:6px 0}
+.drug-news-popup{min-width:200px;max-width:300px;font:12px/1.55 system-ui,sans-serif}
+.drug-news-popup b{font-weight:700}
+.drug-news-popup a{color:#386b51}
+.drug-news-popup ul{padding-left:15px;margin:7px 0 3px}
+.drug-news-popup li{margin:4px 0}
+#drug-map .leaflet-pane.drugNewsPane svg{pointer-events:none}
+#drug-map .leaflet-pane.drugNewsPane svg path{pointer-events:visiblePainted}
