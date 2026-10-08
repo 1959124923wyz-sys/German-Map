@@ -1,0 +1,44 @@
+name: Immigration topic ownership guard
+
+on:
+  push:
+    branches:
+      - feature/immigration-topic
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: immigration-guard-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scope-and-tests:
+    if: github.event_name == 'push' || github.head_ref == 'feature/immigration-topic'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout actual immigration branch head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Assert only owned files changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          BASE="$(git merge-base origin/main HEAD)"
+          python topics/immigration/scripts/verify_scope.py --base "$BASE" --head HEAD
+
+      - name: Unit tests
+        run: python -m unittest discover -s topics/immigration/tests -p 'test_*.py' -v
