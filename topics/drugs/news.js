@@ -29,7 +29,7 @@
       }
     }
   }
-  function init({map,crime}) {
+  function init({map,crime,states=[]}) {
     const crimeButton=$('drugs-tab-crime'),waterButton=$('drugs-tab-wastewater'),
       newsButton=$('drugs-tab-news'),newsContent=$('drugs-news-content'),
       crimeContent=$('drugs-crime-content'),waterContent=$('drugs-wastewater-content');
@@ -169,9 +169,9 @@
       try{
         await ensureData();
         if(!enabled)return;
-        const states=[...new Set(dataset.reports.map(r=>r.state).filter(Boolean))].sort();
+        const selectableStates=[...new Set([...states,...dataset.reports.map(r=>r.state)].filter(Boolean))].sort();
         if(region.options.length===1){
-          for(const state of states){
+          for(const state of selectableStates){
             const option=document.createElement('option');option.value=state;option.textContent=state;
             region.append(option);
           }
@@ -214,12 +214,14 @@
       async openForState(state) {
         await showNews();
         if(!enabled || !dataset)return;
-        if([...region.options].some(o=>o.value===state)) {
-          kind.value='all';
-          region.value=state;
-          shown=20;
-          render();
+        if(state && ![...region.options].some(o=>o.value===state)) {
+          const option=document.createElement('option');
+          option.value=state;option.textContent=state;region.append(option);
         }
+        kind.value='all';
+        region.value=state || 'all';
+        shown=20;
+        render();
       },
       hideNews,
     });
