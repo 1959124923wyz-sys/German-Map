@@ -1,0 +1,30 @@
+name: Düsseldorf 2025 municipal police attachment audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_duesseldorf_2025_bv.py'
+      - '.github/workflows/duesseldorf-2025-source-audit.yml'
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 pypdf
+      - name: Inspect 2025 Düsseldorf district police presentation PDFs
+        run: python scripts/probe_duesseldorf_2025_bv.py
+      - name: Archive official-source inspection results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: duesseldorf-2025-original-presentation-research
+          path: artifacts/duesseldorf_2025_attachment_probe.json
+          if-no-files-found: warn
