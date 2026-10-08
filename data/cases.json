@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-08T07:33:20Z",
+    "generated_at": "2026-10-08T07:35:16Z",
     "window_days": 90,
     "scope": "Germany",
     "case_count": 580,
@@ -186,8 +186,8 @@
       "summary": "警方公开通报的Wohnungseinbruch案件：Syke - Wohnungseinbruchdiebstahl; Stuhr - Saunabrand; Bassum - Zwei Personen bei Abbiegeunfall verletzt",
       "source_agency": "Presseportal police release",
       "source_url": "https://www.presseportal.de/blaulicht/pm/68439/6367124",
-      "lat": 52.6101358,
-      "lon": 8.39741,
+      "lat": 52.6114137,
+      "lon": 8.3866613,
       "date_confidence": "high",
       "privacy_protected": false,
       "geocode_precision": "street"
