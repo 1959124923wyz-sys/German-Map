@@ -65,6 +65,20 @@ overlapping colors around municipal borders.
 This geometric harmonisation is a **cartographic rendering layer**, not a
 change to police administrative districts or reported crime rates.
 
+## Leaflet rendering and pointer-event invariant
+
+The app sets `preferCanvas: true` for dense county/heatmap layers. However,
+`newsPane` is stacked above states/counties, and a Canvas renderer in that
+pane leaves a full-viewport pointer target EVEN AFTER markerGroup.clearLayers().
+That canvas swallowed ordinary clicks on all 16 states after the first detail
+drawer interaction. The permanent fix is one reusable `L.svg({pane:'newsPane'})`
+renderer for all report circle markers, and a reusable SVG renderer for state
+selection. Only actual marker SVG paths may intercept pointer events; blank
+space must hit the state polygon below. The browser smoke test asserts the
+topmost real `document.elementsFromPoint()` element is a state path and then
+clicks several states with real mouse events. Do not return the report markers
+to the default full-viewport Canvas renderer.
+
 ## State overview interaction invariant
 
 Clicking a state at nationwide/state zoom opens its movable overview without

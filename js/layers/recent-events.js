@@ -12,6 +12,13 @@
   }) {
     const layer = L.layerGroup().addTo(map);
     const markers = new Map();
+    // This pane sits ABOVE the entire map. Leaflet's Canvas renderer installs
+    // a full-viewport <canvas> that intercepts pointer events even after its
+    // marker layers are cleared. It prevented users from clicking *any* state
+    // after opening/closing the state drawer. SVG paths only capture clicks on
+    // visible markers; empty space passes through to state/county polygons.
+    // Reuse the SVG renderer for all marker refreshes to avoid DOM leaks.
+    const markerRenderer = L.svg({pane,padding:.2});
 
     function markerFor(item) {
       const meta = categories[item.category] || {
@@ -23,6 +30,7 @@
 
       return L.circleMarker([item.lat, item.lon], {
         pane,
+        renderer: markerRenderer,
         radius: item.category === 'homicide' ? 7.5 : item.category === 'property' ? 4.5 : 6.2,
         weight: foundLocation ? 3 : suspected ? 2.2 : 1.5,
         color: foundLocation ? '#fff' : meta.color,

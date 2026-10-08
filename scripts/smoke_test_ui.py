@@ -152,6 +152,10 @@ with sync_playwright() as playwright:
             }))
         })""",diagnostic["pixel"])
         print("[state-hit-target]",json.dumps({"name":name,"target":target},ensure_ascii=False),flush=True)
+        assert target["stack"][0]["pane"]=="leaflet-pane leaflet-state-pane", (
+            "A higher Canvas or overlay is stealing pointer clicks from the state SVG",
+            target,diagnostic
+        )
         page.mouse.click(*diagnostic["pixel"])
         page.wait_for_timeout(220)
         actual=page.locator("#stateName").inner_text()
