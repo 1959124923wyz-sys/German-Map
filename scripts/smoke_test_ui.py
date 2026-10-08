@@ -228,15 +228,27 @@ with sync_playwright() as playwright:
     dresden=page.evaluate("""() => {
         const county=window.__CRIME_MAP__.getCountyLayer().getLayers()
             .find(x=>String(x.feature?.id)==='14612');
+        const municipal=Array.from(m._layers ? Object.values(m._layers) : [])
+            .filter(x=>x instanceof L.GeoJSON && x.options?.pane==='berlinPane'
+              && x.getLayers().some(v=>String(v.feature?.id)==='14612'));
+        const neighbour=window.__CRIME_MAP__.getCountyLayer().getLayers()
+            .find(x=>String(x.feature?.id)==='14625');
+        const styles=municipal.map(x=>x.getLayers()[0]?.options);
         return {
             cityFillOpacity:county?.options?.fillOpacity,
-            cityBorderWeight:county?.options?.weight,
+            municipalityLayers:municipal.length,
+            hasNoDataMask:styles.some(x=>x?.fillOpacity>.9&&x?.fillColor==='#e7ecef'),
+            hasOuterBorder:styles.some(x=>x?.fill===false&&x?.weight>=1),
+            neighbourFillOpacity:neighbour?.options?.fillOpacity,
+            focused:document.querySelector('.mapwrap')?.classList.contains('city-detail-focus'),
             coverageNote:document.querySelector('.generic-city-legend')?.textContent||''
         }
     }""")
-    assert .25 < dresden["cityFillOpacity"] < .6, dresden
-    assert dresden["cityBorderWeight"] > 0, dresden
-    assert "外围市域" in dresden["coverageNote"], dresden
+    assert dresden["cityFillOpacity"] == 0, dresden
+    assert dresden["municipalityLayers"]==2, dresden
+    assert dresden["hasNoDataMask"] and dresden["hasOuterBorder"],dresden
+    assert dresden["focused"],dresden
+    assert "灰色市域" in dresden["coverageNote"],dresden
     page.screenshot(path=str(SCREENSHOT.with_name("germany-crime-map-dresden.png")),full_page=True)
 
     assert not errors, errors
