@@ -60,6 +60,11 @@ NATIONAL=[
  "summary":"联邦官方年度通报。2025年的死亡人数不应误认为2026年7月发生的单起事件。",
  "source_agency":"德国联邦毒品事务负责人","source_url":"https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/",
  "lat":None,"lon":None,"state":"","precision":"national","kind":"statistical_report"},
+ {"id":"berlin-drug-deaths-2025","publication_date":"2026-07-21","category":"death",
+ "city":"Berlin","title":"柏林官方通报：2025年记录300起与毒品有关的死亡",
+ "summary":"柏林卫生部门2026年7月公布的2025年全年死亡统计，不是2026年7月单日发生的死亡事件。",
+ "source_agency":"柏林州科学、卫生及护理参议院主管部门","source_url":"https://www.berlin.de/sen/wgp/presse/2026/pressemitteilung.1695800.php",
+ "lat":None,"lon":None,"state":"Berlin","precision":"state","kind":"statistical_report"},
  {"id":"national-crime-health-2026","publication_date":"2026-09-15","category":"health",
  "city":"德国全国","title":"联邦毒品事务负责人警告毒品交易造成严重健康和社会危害",
  "summary":"全国毒品形势专题讲话，涉及贩毒活动与2025年毒品死亡统计，并非单一城市事件。",
@@ -151,8 +156,10 @@ def read_news_listing(session,tag,min_date,limit_pages=5):
             city_node=node.select_one("a.news-topic")
             city=canonical_city(clean(city_node.get_text(" ",strip=True) if city_node else ""))
             if not city or len(city)>55 or re.search(r"\d{4}",city):continue
-            teaser_node=node.find("p")
-            summary=clean(teaser_node.get_text(" ",strip=True) if teaser_node else "")
+            # Source websites start with a short agency byline; look for the
+            # actual text excerpt so list entries explain the concrete report.
+            paragraphs=[clean(p.get_text(" ",strip=True)) for p in node.find_all("p")]
+            summary=next((p for p in paragraphs if len(p)>=65), paragraphs[-1] if paragraphs else "")
             category=categorize(title,summary)
             if not category:continue
             if not pub:continue  # refuse to fabricate publication dates
@@ -225,7 +232,7 @@ def main():
     for row in gathered.values():
         row["city"]=canonical_city(row["city"])
         if row.get("kind")=="statistical_report":
-            row.update({"lat":None,"lon":None,"state":"","precision":"national"})
+            row.update({"lat":None,"lon":None,"precision":"state" if row.get("state") else "national"})
             continue
         city=row["city"]
         hit=coords.get(city)
