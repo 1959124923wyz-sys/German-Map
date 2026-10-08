@@ -107,8 +107,7 @@ def main():
                 ('Sachsen-Anhalt', ['61','48']),
                 ('Mecklenburg-Vorpommern', ['486','421','133','94'])
             ]:
-                page.locator('#state-index-list button span:first-child').filter(
-                    has_text=re.compile('^'+re.escape(state)+'
+                page.locator('#state-index-list').get_by_text(state, exact=True).click()
                 page.wait_for_function(
                     "() => document.getElementById('region-evidence-head')?.textContent !== '州级补充资料 · 加载中'",
                     timeout=30000)
