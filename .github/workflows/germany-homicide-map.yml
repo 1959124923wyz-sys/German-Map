@@ -85,6 +85,9 @@ jobs:
       - name: Build registered city detail layers
         run: python scripts/build_city_layers.py
 
+      - name: Harmonize display-only nationwide county boundaries
+        run: python scripts/build_display_counties.py
+
       - name: Validate city detail registry
         run: python scripts/validate_city_layers.py
 
