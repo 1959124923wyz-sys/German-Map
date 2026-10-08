@@ -144,6 +144,7 @@
     const tabs = element('div', null, 'im-metrics');
     const tabButtons = new Map();
     const listeners = [];
+    const rankListeners = [];
     function listen(node,event,handler) {
       node.addEventListener(event,handler);
       listeners.push([node,event,handler]);
@@ -208,14 +209,14 @@
           weight:iso===selectedState?2.8:.7,
           opacity:iso===selectedState?1:.8,
           fillColor:colorFor(rec,breaks,selectedMetric),
-          fillOpacity:rec==null?.13:.79,
+          fillOpacity:rec == null ? .13 : .79,
         };
       },
     });
     geoLayer.addTo(map);
     container.append(root);
 
-    function selectState(iso) {
+    function selectState(iso, notifyHost = false) {
       if (!known.has(iso)) return false;
       selectedState=iso;
       picker.value=iso;
@@ -238,7 +239,7 @@
         miniStats.append(cell);
       }
       if (typeof geoLayer.setStyle === 'function') geoLayer.setStyle(geoLayer.options.style);
-      if (typeof context.onStateSelected === 'function') context.onStateSelected(iso);
+      if (notifyHost && typeof context.onStateSelected === 'function') context.onStateSelected(iso);
       return true;
     }
 
@@ -263,6 +264,8 @@
         entry.append(swatch,element('span',label));
         legend.append(entry);
       });
+      for (const [node,event,handler] of rankListeners) node.removeEventListener(event,handler);
+      rankListeners.length = 0;
       ranking.replaceChildren();
       metricRows(id).sort((a,b)=>b.metricValue-a.metricValue).slice(0,5)
         .forEach((rec,index)=>{
@@ -270,15 +273,17 @@
           const btn=element('button',null,'im-rank-button');
           btn.type='button';
           btn.append(element('span',(index+1)+'. '+rec.name_de),element('strong',fmt(rec.metricValue)));
-          listen(btn,'click',()=>selectState(rec.iso));
+          const handler = () => selectState(rec.iso,true);
+          btn.addEventListener('click',handler);
+          rankListeners.push([btn,'click',handler]);
           item.append(btn);
           ranking.append(item);
         });
       selectState(selectedState);
       return true;
     }
-    listen(picker,'change',()=>selectState(picker.value));
-    active={map,geoLayer,root,listeners,selectMetric,selectState,matched};
+    listen(picker,'change',()=>selectState(picker.value,true));
+    active={map,geoLayer,root,listeners,rankListeners,selectMetric,selectState,matched};
     selectMetric(selectedMetric);
     return {matchedStates:matched.size,reportedStates:datasets.azr.records.length};
   }
@@ -291,7 +296,7 @@
   }
   function selectState(iso) {
     if (!/^DE-[A-Z]{2}$/.test(String(iso))) return false;
-    if (active) return active.selectState(iso);
+    if (active) return active.selectState(iso,true);
     if (!datasets?.azr.records.some(r=>r.iso===iso)) return false;
     selectedState=iso;
     return true;
@@ -302,8 +307,8 @@
 
   function deactivate() {
     if (!active) return;
-    const {map,geoLayer,root,listeners}=active;
-    for (const [node,event,handler] of listeners) node.removeEventListener(event,handler);
+    const {map,geoLayer,root,listeners,rankListeners}=active;
+    for (const [node,event,handler] of [...listeners,...rankListeners]) node.removeEventListener(event,handler);
     if (map.hasLayer(geoLayer)) map.removeLayer(geoLayer);
     root.remove();
     active=null;
