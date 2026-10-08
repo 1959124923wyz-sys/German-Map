@@ -40,5 +40,8 @@ jobs:
           BASE="$(git merge-base origin/main HEAD)"
           python topics/immigration/scripts/verify_scope.py --base "$BASE" --head HEAD
 
-      - name: Unit tests
+      - name: Validate independent JavaScript component
+        run: node --check topics/immigration/topic.js
+
+      - name: Unit and source-integrity tests
         run: python -m unittest discover -s topics/immigration/tests -p 'test_*.py' -v

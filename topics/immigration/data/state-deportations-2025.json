@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "dataset_id": "deportations-by-executing-authority-2025",
+  "metric_id": "deportations_executed",
+  "title_zh": "2025年实际遣返人数（按执行机构）",
+  "title_de": "Abschiebungen im Jahr 2025 nach Bundesländern und Bundespolizei",
+  "definition_zh": "德国联邦警察输入统计中，各州与联邦警察执行的遣返人数。州归属是执行机构口径，不应理解为该州非法移民人数、居留人口存量或人员原居住地。",
+  "period_start": "2025-01-01",
+  "period_end": "2025-12-31",
+  "published_at": "2026-02-26",
+  "geography_level": "state_executing_authority",
+  "unit": "persons",
+  "source": {
+    "organization": "Deutscher Bundestag / Bundespolizei",
+    "document": "Drucksache 21/4403, Frage 2, Seite 4",
+    "url": "https://dserver.bundestag.de/btd/21/044/2104403.pdf",
+    "source_type": "official_government_reply"
+  },
+  "completeness": {
+    "expected_states": 16,
+    "reported_states": 16,
+    "missing_states": [],
+    "notes": "联邦警察单列，不能当作第17个联邦州。官方记录按执行机构统计；没有实际遣返率分母。"
+  },
+  "comparable": {
+    "across_states": "仅可比较按执行机构统计的绝对执行人数；不能据此比较违法居留发生率或遣返比例。",
+    "across_years": "须核实未来年度统计方法一致后再比较。"
+  },
+  "total_all_authorities": 22787,
+  "federal_police_separately": 613,
+  "states_subtotal": 22174,
+  "records": [
+    {
+      "ags": "08",
+      "iso": "DE-BW",
+      "name_de": "Baden-Württemberg",
+      "value": 3368
+    },
+    {
+      "ags": "09",
+      "iso": "DE-BY",
+      "name_de": "Bayern",
+      "value": 3649
+    },
+    {
+      "ags": "11",
+      "iso": "DE-BE",
+      "name_de": "Berlin",
+      "value": 1673
+    },
+    {
+      "ags": "12",
+      "iso": "DE-BB",
+      "name_de": "Brandenburg",
+      "value": 191
+    },
+    {
+      "ags": "04",
+      "iso": "DE-HB",
+      "name_de": "Bremen",
+      "value": 109
+    },
+    {
+      "ags": "02",
+      "iso": "DE-HH",
+      "name_de": "Hamburg",
+      "value": 824
+    },
+    {
+      "ags": "06",
+      "iso": "DE-HE",
+      "name_de": "Hessen",
+      "value": 1891
+    },
+    {
+      "ags": "13",
+      "iso": "DE-MV",
+      "name_de": "Mecklenburg-Vorpommern",
+      "value": 321
+    },
+    {
+      "ags": "03",
+      "iso": "DE-NI",
+      "name_de": "Niedersachsen",
+      "value": 1262
+    },
+    {
+      "ags": "05",
+      "iso": "DE-NW",
+      "name_de": "Nordrhein-Westfalen",
+      "value": 4784
+    },
+    {
+      "ags": "07",
+      "iso": "DE-RP",
+      "name_de": "Rheinland-Pfalz",
+      "value": 1124
+    },
+    {
+      "ags": "10",
+      "iso": "DE-SL",
+      "name_de": "Saarland",
+      "value": 286
+    },
+    {
+      "ags": "14",
+      "iso": "DE-SN",
+      "name_de": "Sachsen",
+      "value": 927
+    },
+    {
+      "ags": "15",
+      "iso": "DE-ST",
+      "name_de": "Sachsen-Anhalt",
+      "value": 577
+    },
+    {
+      "ags": "01",
+      "iso": "DE-SH",
+      "name_de": "Schleswig-Holstein",
+      "value": 724
+    },
+    {
+      "ags": "16",
+      "iso": "DE-TH",
+      "name_de": "Thüringen",
+      "value": 464
+    }
+  ]
+}

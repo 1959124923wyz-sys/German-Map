@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>德国非法移民与边境管制｜独立开发预览</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="./topic.css">
+  <style>
+    * { box-sizing: border-box }
+    body { margin: 0; background: #f3f6f7; font: 14px system-ui,sans-serif; color: #193344 }
+    header { padding: 12px 18px; background: #1e374a; color: white }
+    header small { opacity: .8 }
+    main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(270px, 340px); height: calc(100vh - 66px) }
+    #map { min-height: 400px; height: 100%; width: 100% }
+    aside { overflow-y: auto; background: white }
+    #status { padding: 16px; color: #935020 }
+    @media (max-width: 700px) { main { grid-template-columns: 1fr; grid-template-rows: 58vh auto; height: auto } }
+  </style>
+</head>
+<body>
+  <header><strong>German-Map · 非法移民专题 05</strong>
+    <small>　独立开发预览；未接入生产地图</small></header>
+  <main><div id="map"></div><aside id="topic-container"><p id="status">载入官方统计与州边界…</p></aside></main>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="./topic.js"></script>
+  <script>
+    (async () => {
+      const map = L.map('map', { minZoom: 5, maxZoom: 12, preferCanvas: false });
+      map.fitBounds([[47.1, 5.7], [55.1, 15.2]]);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        { opacity: .43, attribution: '© OpenStreetMap contributors' }).addTo(map);
+      try {
+        const [geoResponse] = await Promise.all([
+          fetch('../../data/germany-states.geojson'),
+          window.GermanMapTopics.immigration.loadData()
+        ]);
+        if (!geoResponse.ok) throw new Error('GeoJSON HTTP ' + geoResponse.status);
+        const states = await geoResponse.json();
+        const result = window.GermanMapTopics.immigration.activate({
+          map, container: document.getElementById('topic-container'), stateGeoJSON: states
+        });
+        document.getElementById('status')?.remove();
+        if (!result.matchedStates) throw new Error('没有州边界与数据成功匹配');
+      } catch (error) {
+        document.getElementById('status').textContent =
+          '独立预览加载失败：' + error.message + '；请通过本地 HTTP 服务打开。';
+      }
+      window.addEventListener('pagehide', () => window.GermanMapTopics.immigration.deactivate());
+    })();
+  </script>
+</body>
+</html>
