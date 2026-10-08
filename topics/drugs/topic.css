@@ -169,3 +169,17 @@ button:disabled{cursor:not-allowed}
 #drug-map .leaflet-interactive:focus{outline:none!important}
 #drug-map .leaflet-interactive:focus-visible{outline:none!important}
 @media(max-width:640px){.crime-city-label{font-size:11px}}
+
+
+/* Same SVG focus fix as /css/map.css: never draw a black bbox around
+   selected or hovered polygons. Keyboard focus draws the actual shape. */
+#drug-map .leaflet-interactive,
+#drug-map .leaflet-interactive:hover,
+#drug-map .leaflet-interactive:focus,
+#drug-map .leaflet-interactive:focus-visible {
+  outline: none !important;
+}
+#drug-map svg path.leaflet-interactive:focus-visible {
+  stroke: #ffffff !important;
+  stroke-width: 3px !important;
+}
