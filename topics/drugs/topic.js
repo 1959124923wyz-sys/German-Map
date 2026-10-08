@@ -421,7 +421,7 @@
       window.GermanMapDrugWastewater.init({map,crime:active});
     }
     if (isStandalone && window.GermanMapDrugNewsUI?.init) {
-      window.GermanMapDrugNewsUI.init({map,crime:active});
+      window.GermanMapDrugNewsUI.init({map,crime:active,states:[...stateFeatures.keys()]});
     }
     return active;
   }
