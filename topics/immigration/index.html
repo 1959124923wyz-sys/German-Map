@@ -41,6 +41,7 @@
     (async () => {
       const topic=window.GermanMapTopics.immigration;
       const map=L.map('map',{minZoom:5,maxZoom:12,preferCanvas:false,zoomControl:true});
+      window.__immigrationStandaloneMap=map; // preview harness only, never the production component
       const germany=L.latLngBounds([[47.1,5.7],[55.1,15.2]]);
       map.fitBounds(germany,{padding:[12,12]});
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
