@@ -45,8 +45,15 @@ function recordForFeature(feature,data){
   return data?.records?.[id]||data?.records?.[alias]
 }
 function baseLayerFor(c){
-  const cl=api.getCountyLayer?.(),d=api.getMode()==='property'?api.getPropertyData():api.getPksData();if(!cl)return null;
-  return cl.getLayers().find(l=>recordForFeature(l.feature,d)?.name===c.name)||null
+  const cl=api.getCountyLayer?.();if(!cl)return null;
+  // The city and the surrounding Landkreis can share a name (notably
+  // München Stadt 09162 vs Landkreis München 09184). Match by canonical AGS.
+  const ags=String(c.county_ags||'').padStart(5,'0');
+  if(ags!=='00000'){
+    return cl.getLayers().find(l=>String(l.feature?.id??l.feature?.properties?.AGS??'').padStart(5,'0')===ags)||null
+  }
+  const d=api.getMode()==='property'?api.getPropertyData():api.getPksData();
+  return cl.getLayers().find(l=>recordForFeature(l.feature,d)?.name===c.name&&l.feature?.properties?.districtType!=='Landkreis')||null
 }
 function restoreBase(c){const cl=api.getCountyLayer?.(),l=baseLayerFor(c);if(cl&&l)cl.resetStyle(l)}
 function hideBase(c){const l=baseLayerFor(c);if(l)l.setStyle({color:'transparent',weight:0,opacity:0,fillOpacity:0})}
