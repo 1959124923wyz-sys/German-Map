@@ -66,9 +66,26 @@
       $('wastewater-city').textContent = site.city;
       $('wastewater-value').textContent = number(obs.daily);
       $('wastewater-previous').textContent = number(obs.previous_2024);
-      const change = obs.previous_2024 !== null && Number.isFinite(obs.previous_2024)
-        ? '该站点2024年同期值：' + number(obs.previous_2024) + '；不同年份采样地点及人口覆盖仍需核对。'
-        : '该站点无可直接比较的2024年数据。';
+      // A reported zero means below quantification limit, not measured zero.
+      // Do not compute a percent change from / to a non-quantified measurement.
+      const previous = obs.previous_2024;
+      const comparable = Number.isFinite(previous) && previous > 0 &&
+        Number.isFinite(obs.daily) && obs.daily > 0;
+      const percent = comparable ? 100*(obs.daily-previous)/previous : null;
+      const trend = $('wastewater-change');
+      if (trend) {
+        trend.classList.toggle('is-rising',percent!==null && percent>0);
+        trend.classList.toggle('is-falling',percent!==null && percent<0);
+        trend.textContent = percent===null
+          ? '较2024年：无法计算可比变化'
+          : '较2024年：'+(percent>0?'↑ +':percent<0?'↓ −':'→ ')+
+            number(Math.abs(percent))+'%（同站点、同物质）';
+      }
+      const change = percent!==null
+        ? '两年均有高于定量限的记录；上述百分比仅比较残留负荷，仍须注意采样时段和服务人口变化。'
+        : (previous===null || previous===undefined
+          ? '无2024年同站点该物质记录。'
+          : '至少一年为零（低于定量限）或无有效值，因此不计算百分比。');
       $('wastewater-note').textContent =
         '检测物质：' + LABELS[activeSubstance] + '。站点：' + site.id +
         '（' + (site.location && site.location !== 'NA' ? site.location : '具体设施名称未披露') +
