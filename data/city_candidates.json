@@ -31,15 +31,33 @@
         "year": 2026,
         "format": "ArcGIS REST GeoJSON feature layer",
         "url": "https://ims.kiel.de/geodatenextern/rest/services/Stadtplan/LHKielWmsWfs/MapServer/38?f=pjson",
-        "evidence": "Official Kiel MapServer layer 38 exposes Statistische Stadtteile, geometryType Polygon, fields Nummer/Name and supports geoJSON. Query result still undergoing CI verification."
+        "evidence": "Official ArcGIS MapServer layer 38 returns 31 polygon parts, grouped into 30 districts. Exact names/Nummer joined and audited against police annex in CI. GovData WFS example returns zero features."
       },
       "metric_alignment": "incompatible",
       "blocking_issues": [
-        "Annual all-offense counts cannot be displayed as Gewaltkriminalität or Diebstahl under current two-mode UI.",
-        "Verify ArcGIS REST layer 38 returns nonempty polygons and join Namen/Nummer to police annex.",
-        "Resolve official denominator or provide explicitly count-only local view, never mislabel total offenses as violence."
+        "Official local all-offense counts are not violence/theft; design a separately labelled count-only local view or locate the exact offense categories.",
+        "Do not show per-100,000 district rates until official district population is matched.",
+        "Review source license and city polygon topology before publishing.",
+        "Police reporting units Hammer and Kroog have no individually matching map geometry: keep their counts unassigned."
       ],
-      "notes": "Best first source-engineering pilot; not yet approved for public thematic rendering."
+      "notes": "2025 official totals reconciled candidate-only: 24,341 mapped and 817 unassigned of 25,158; public map unchanged.",
+      "audit": {
+        "status": "candidate_data_reconciled",
+        "run": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37722455740",
+        "geometry_parts": 31,
+        "distinct_polygons": 30,
+        "matched_statistical_areas": 30,
+        "police_districts": 33,
+        "total_2025": 25158,
+        "mapped_2025": 24341,
+        "unassigned_2025": 817,
+        "unassigned_breakdown": {
+          "Tatort unbekannt": 762,
+          "Hammer": 20,
+          "Kroog": 35
+        },
+        "released": false
+      }
     },
     {
       "id": "duesseldorf",
