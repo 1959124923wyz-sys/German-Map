@@ -13,6 +13,7 @@ header{flex:0 0 auto;background:var(--bg);border-bottom:1px solid var(--line);pa
 .modebar{display:flex;align-items:center;gap:6px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}.modebar::-webkit-scrollbar{display:none}
 .modebtn{border:1px solid #354351;background:#131b24;color:#d7e0e8;border-radius:999px;padding:6px 11px;cursor:pointer;font-size:11px}
 .modebtn.active{background:#24384a;border-color:#5386aa;color:white;box-shadow:inset 0 0 0 1px #5386aa}
+.modebar a.modebtn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;flex:0 0 auto}.modebar a.modebtn:hover{background:#283543;color:#fff}
 
 main{flex:1 1 auto;min-height:480px;display:grid;grid-template-columns:minmax(0,1fr) min(420px,34vw);overflow:hidden}
 .mapwrap{position:relative;min-width:0;background:#c4d4de}#map{width:100%;height:100%;background:#c8d9e4}
