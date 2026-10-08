@@ -1,0 +1,31 @@
+name: Düsseldorf full ten-district 2025 police PKS numeric QA
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_duesseldorf_offenses_2025.py'
+      - 'scripts/validate_duesseldorf_offenses_2025.py'
+      - '.github/workflows/duesseldorf-2025-count-qa.yml'
+permissions:
+  contents: read
+jobs:
+  numeric-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install requests pypdf pyproj shapely
+      - name: Build candidate Düsseldorf source geography
+        run: python scripts/build_stuttgart_duesseldorf_geometry.py
+      - name: Match Düsseldorf all 10 Stadtbezirke to police crime cases
+        run: python scripts/build_duesseldorf_offenses_2025.py
+      - name: Archive reproducible candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: duesseldorf-10-district-official-2025-counts-candidate
+          path: artifacts/duesseldorf_total_cases_candidate.geojson
+          if-no-files-found: error
