@@ -53,15 +53,12 @@ def police_rows(data):
             raise ValueError(f"Landtag bad category counts: {ix}, {values}")
         if ix>0:
             name=ORDER[ix-1]
-            # Confirm the source actually labels each district in order.
-            # Layout-extracted PDF contains very wide fixed-width columns.
-            # Use the complete *current reporting row* after the previous
-            # district's value, instead of a fixed 330-character lookback.
-            # The case-row regex consumes the same-line Stadtbezirk
-            # label (e.g. "Stuttgart Nord Gewaltkriminalität 36").
-            context=t[match[ix-1].end():m.end()]
+            # In this PDF the left geographic label is often printed AFTER
+            # the numeric Gewaltkriminalität row, in the same statistical
+            # block as that district's detailed offences.
+            context=sub
             if norm(name) not in norm(context):
-                raise ValueError(f"Landtag district table order/name mismatch at {ix}: expected {name}; row={m.group(0)!r}; context_tail={context[-800:]!r}")
+                raise ValueError(f"Landtag district name mismatch at {ix}: expected {name}; excerpt={context[:620]!r}")
             result.append({"name":name,"metrics":values})
         else:
             if values!={"public_violence":1636,"public_robbery":358,"public_serious_injury":1243}:
