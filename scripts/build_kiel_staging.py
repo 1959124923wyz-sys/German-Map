@@ -71,40 +71,61 @@ def main():
     if len(features)!=31:
         raise RuntimeError(f"Official Kiel geometry expected 31 Stadtteile, got {len(features)}")
     observed,matched,output=set(),set(),[]
+    grouped={}
+    # A city district can be delivered as several geographic feature parts.
+    # Combine only exact same numbered official district, never neighbouring
+    # names or nearby precincts.
     for feature in features:
         props=feature.get("properties") or {}
         name=str(props.get("Name","")).strip()
         code=props.get("Nummer")
         norm=key(name)
-        if not name or code is None or norm in observed:
-            raise RuntimeError(f"Invalid/duplicate Kiel geometry label/code: {name!r}, {code!r}")
-        observed.add(norm)
+        if not name or code is None:
+            raise RuntimeError(f"Missing Kiel geometry name/code: {name!r}, {code!r}")
+        number=int(code)
+        geom=feature.get("geometry") or {}
+        if geom.get("type")=="Polygon":
+            poly_parts=[geom.get("coordinates")]
+        elif geom.get("type")=="MultiPolygon":
+            poly_parts=geom.get("coordinates")
+        else:
+            raise RuntimeError(f"Invalid Kiel polygon geometry for {name}")
+        old=grouped.get(norm)
+        if old is None:
+            grouped[norm]={"name":name,"code":number,"parts":list(poly_parts)}
+        else:
+            if old["code"]!=number:
+                raise RuntimeError(f"Same name maps to multiple Kiel codes: {name}")
+            old["parts"].extend(poly_parts)
+    observed=set(grouped)
+    for norm,group in grouped.items():
         police=rows.get(norm)
         if police is None:
             continue
         matched.add(norm)
-        geom=feature.get("geometry") or {}
-        if geom.get("type") not in ("Polygon","MultiPolygon"):
-            raise RuntimeError(f"Invalid Kiel polygon geometry for {name}")
+        parts=group["parts"]
+        geom=({"type":"Polygon","coordinates":parts[0]} if len(parts)==1
+              else {"type":"MultiPolygon","coordinates":parts})
         year_counts=police["counts"]
-        output.append({"type":"Feature","id":f"kiel-{int(code):02d}","geometry":geom,
-          "properties":{"city":"Kiel","state":"Schleswig-Holstein","name":name,
-                        "code":int(code),"crime_total":{"cases":year_counts["2025"],"rate":None},
+        output.append({"type":"Feature","id":f"kiel-{group['code']:02d}","geometry":geom,
+          "properties":{"city":"Kiel","state":"Schleswig-Holstein","name":group["name"],
+                        "code":group["code"],"crime_total":{"cases":year_counts["2025"],"rate":None},
                         "annual_cases":year_counts}})
     exempt={"stadtkiel","tatortunbekannt"}
     missing_police=sorted((set(rows)-exempt)-matched)
     missing_geometry=sorted(observed-matched)
     city_sum=sum(x["counts"]["2025"] for k,x in rows.items() if k not in exempt)
-    report={"geometry_polygons":len(features),"matched":len(output),
-            "statistic_rows":len(rows)-2,"city_total_2025":total,
-            "unknown_tatort_2025":unknown,"district_sum_2025":city_sum,
-            "unmatched_police":missing_police,"unmatched_geometry":missing_geometry}
+    report={"geometry_parts":len(features),"geometry_districts":len(grouped),
+            "matched":len(output),"statistic_rows":len(rows)-2,
+            "city_total_2025":total,"unknown_tatort_2025":unknown,"district_sum_2025":city_sum,
+            "unmatched_police":missing_police,"unmatched_geometry":missing_geometry,
+            "districts_geom_names":[x["name"] for x in grouped.values()]}
     print("[kiel-staging] QA",json.dumps(report,ensure_ascii=False),flush=True)
     if missing_police or missing_geometry:
         raise RuntimeError("Official Kiel police/geography joins incomplete; do not publish")
     if city_sum+unknown!=total:
         raise RuntimeError(f"Kiel crime totals do not reconcile: {city_sum}+{unknown}!={total}")
-    if len(output)!=31:
+    if len(output)!=len(grouped):
         raise RuntimeError("Kiel incomplete, not safe to stage")
     result={"type":"FeatureCollection",
       "meta":{"schema_version":1,"city":"Kiel","year":2025,"status":"candidate_only",
