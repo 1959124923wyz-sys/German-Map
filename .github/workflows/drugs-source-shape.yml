@@ -1,0 +1,32 @@
+name: Drugs source CSV shape probe
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/drugs-source-shape.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Inspect EUDA source CSV layouts
+        run: |
+          python - <<'PY'
+          import csv,io,urllib.request
+          root='https://www.euda.europa.eu/sites/default/files/data/data-nodes/33337/versions/5/'
+          for filename in ['ww2026-all-data_en.csv','ww2026-site-info-table_en.csv']:
+              try:
+                  req=urllib.request.Request(root+filename,headers={'User-Agent':'Mozilla/5.0 GermanMap/1.0'})
+                  raw=urllib.request.urlopen(req,timeout=35).read()
+                  print('FILE',filename,'bytes',len(raw),flush=True)
+                  text=raw.decode('utf-8-sig')
+                  print('HEAD',repr(text[:2000]),flush=True)
+                  rows=list(csv.reader(io.StringIO(text),delimiter=';'))
+                  print('SEMICOLON EXAMPLE',rows[:3],flush=True)
+                  rows=list(csv.reader(io.StringIO(text),delimiter=','))
+                  print('COMMA EXAMPLE',rows[:3],flush=True)
+                  print('GERMANY EXAMPLES',[line[:350] for line in text.splitlines() if ('Germany' in line or 'Deutschland' in line)][:7],flush=True)
+              except Exception as e: print('FETCH FAILED',repr(e),flush=True); raise
+          PY
