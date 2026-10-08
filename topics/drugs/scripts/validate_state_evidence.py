@@ -31,17 +31,41 @@ def validate():
     ok(data["meta"]["mortality_coverage_states"]==len(deaths),"Outdated death coverage metadata")
     ok(data["meta"]["drug_specific_offence_coverage_states"]==len(offences),"Outdated offence coverage metadata")
     ok(data["meta"]["health_case_coverage_states"]==len(health),"Outdated health coverage metadata")
+    ok(len(deaths)<=16 and len(offences)<=16,"Impossible state coverage")
+    allowed_scope_kinds={
+        "general_offence", "trade_or_smuggling", "statutory_total",
+        "multi_offence_substance", "multi_offence_all_drugs",
+        "subgroup", "other_statutory_offence"
+    }
+    # The original JSON stays backward-compatible with the browser. The audit
+    # expands its (year, state) keys into self-contained, typed source records.
+    records=[]
+    def add_record(year, state, metric, value, case_scope, law, source_url, source_type):
+        record=dict(year=year,state=state,metric=metric,value=value,
+                    case_scope=case_scope,law=law,
+                    source_url=source_url,source_type=source_type)
+        ok(year==2025 and state in states,"Invalid audit year or state")
+        ok(type(value) is int and value>=0,"Invalid audit value: "+metric)
+        ok(case_scope and law and source_url.startswith("https://") and source_type,
+           "Incomplete audit provenance: "+state+"/"+metric)
+        records.append(record)
     for state,entry in deaths.items():
         ok(type(entry.get("cases")) is int and entry["cases"]>=0, state+" invalid death count")
         ok(entry.get("source_url","").startswith("https://"),state+" missing death original")
         prev=entry.get("previous_2024")
         ok(prev is None or (type(prev) is int and prev>=0),state+" previous deaths")
+        ok(entry.get("source_type") and entry.get("source_title"),
+           state+" mortality source quality is unspecified")
+        add_record(2025,state,"drug_related_deaths",entry["cases"],
+                   "mortality","registered_drug_death",entry["source_url"],entry["source_type"])
         rate=entry.get("rate_per_100k")
         ok(rate is None or (isinstance(rate,(float,int)) and rate>=0),state+" invalid death rate")
     for state,entry in offences.items():
         ok(entry.get("source_type") in {"state_police","state_government"},
            state+" group data not from primary state authority")
         ok(entry.get("source_url","").startswith("https://"),state+" missing PKS source")
+        ok(entry.get("source_title") and entry.get("notes"),
+           state+" offence source context is missing")
         groups=entry.get("groups",[])
         more=entry.get("additional_metrics",[])
         ok(groups or more,state+" has no offence counts")
@@ -52,17 +76,45 @@ def validate():
             ok(row.get("name") and row["name"] not in keys,state+" duplicate PKS substance")
             keys.add(row["name"])
             ok(row.get("general_code") or row.get("law"),state+" missing PKS scope")
+            ok(row.get("law"),state+" missing law for paired offence")
+            if row.get("general_code") and row.get("trade_code"):
+                ok(row["general_code"]!=row["trade_code"],
+                   state+" general and trade code incorrectly identical")
+            for field,kind,code in (
+                ("general","general_offence",row.get("general_code") or row["law"]),
+                ("trade","trade_or_smuggling",row.get("trade_code") or row["law"])):
+                add_record(2025,state,row["name"]+"/"+field,row[field],kind,
+                           str(code),entry["source_url"],entry["source_type"])
         metrics=set()
+        all_named={x["name"]:x for x in more if x.get("name")}
         for row in more:
             ok(row.get("name") and row["name"] not in metrics,state+" duplicate additional name")
             metrics.add(row["name"])
             ok(type(row.get("cases")) is int and row["cases"]>=0,state+" invalid additional count")
             ok(row.get("code"),state+" additional metric has no law/PKS key")
+            scope_kind=row.get("scope_kind")
+            ok(scope_kind in allowed_scope_kinds,state+" missing/unknown case_scope: "+row["name"])
+            if scope_kind=="subgroup":
+                parent=row.get("subset_of")
+                ok(parent in all_named and parent!=row["name"],
+                   state+" subgroup lacks named parent: "+row["name"])
+                ok(row["cases"]<=all_named[parent]["cases"],
+                   state+" subgroup exceeds parent count: "+row["name"])
+            else:
+                ok(not row.get("subset_of"),state+" unexpected parent: "+row["name"])
+            add_record(2025,state,row["name"],row["cases"],scope_kind,str(row["code"]),
+                       entry["source_url"],entry["source_type"])
             prev=row.get("previous_2024")
             ok(prev is None or (type(prev) is int and prev>=0),state+" invalid 2024 metric")
     for state,entry in health.items():
         ok(entry.get("source_url","").startswith("https://"),state+" missing hospital data source")
         ok(entry.get("metrics"),state+" no health indicators")
+        for row in entry["metrics"]:
+            ok(row.get("name") and type(row.get("cases")) is int and row["cases"]>=0,
+               state+" invalid health value")
+            add_record(2025,state,row["name"],row["cases"],
+                       "hospital_diagnosis",row["name"],
+                       entry["source_url"],entry.get("source_type","secondary_health_source"))
     # Overlap-sensitive controls: 2025 KCanG subgroup is INSIDE KCanG
     # overall total; Berlin's cocaine case types belong to separate legal keys.
     berlin=offences.get("Berlin")
@@ -108,10 +160,17 @@ def validate():
        "NRW official 2025 cocaine incl. crack count mismatch")
     ok("包括快克" in nrw.get("notes","") and "可卡因／快克" in c["name"],
        "NRW broad-scope warning missing")
+    mv=deaths.get("Mecklenburg-Vorpommern")
+    ok(mv is not None and (mv["cases"],mv["previous_2024"])==(24,15) and
+       mv["source_type"]=="regional_newspaper_citing_LKA",
+       "MV 2025 secondary-source drug mortality record mismatch")
+    ok(len(records)==len({(r["state"],r["metric"],r["case_scope"]) for r in records}),
+       "Duplicate 2025 state evidence entries after source normalization")
     ok(len(offences)==11,"Expected eleven states with at least one original PKS substance metric")
     print("PASS verified state evidence:",
           len(deaths),"death states,",len(offences),"PKS drug-substance states,",
-          len(health),"health-source states; Berlin PKS 2025 codes and KCanG overlap verified")
+          len(health),"health-source states,",len(records),
+          "fully attributed, scope-classified audit records")
 
 if __name__=="__main__":
     validate()
