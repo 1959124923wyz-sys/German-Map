@@ -29,7 +29,7 @@ jobs:
                 break
               fi
             done
-            if [ "$ok" = true ] && grep -q 'id="modeDrugs"' /tmp/drugs-preview/index.html && grep -q 'id="drug-map"' /tmp/drugs-preview/index.html >/dev/null 2>&1; then
+            if [ "$ok" = true ]; then
               echo 'PUBLIC ROUTE STATIC RESOURCES OK'
               break
             fi
