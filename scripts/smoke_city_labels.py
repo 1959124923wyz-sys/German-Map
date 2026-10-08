@@ -14,6 +14,30 @@ def map_click(page, container, map_expr, lat, lon):
         }""", [container,map_expr,lat,lon])
     page.mouse.click(point['x'], point['y'])
 
+def assert_no_svg_focus_rectangle(page, map_selector):
+    """Reproduce the black frame in Chromium by focusing a real SVG state path.
+
+    The fix must suppress the browser's rectangular SVG bounding-box outline,
+    not the geographic selection stroke itself.
+    """
+    outcome = page.evaluate("""sel => {
+      const shapes = [...document.querySelectorAll(sel+' svg path.leaflet-interactive')];
+      if (!shapes.length) return {count:0};
+      const path = shapes.find(e => e.getAttribute('tabindex') !== null) || shapes[0];
+      path.focus();
+      const s = getComputedStyle(path);
+      const result = {count:shapes.length, tag:document.activeElement?.tagName,
+        outline:s.outlineStyle, outlineWidth:s.outlineWidth,
+        focusVisible:path.matches(':focus-visible'), stroke:s.stroke,
+        strokeWidth:s.strokeWidth};
+      path.blur();
+      return result;
+    }""", map_selector)
+    assert outcome['count'] > 20, outcome
+    assert outcome['outline'] == 'none', (
+        'Black SVG bounding-box outline remains:', map_selector, outcome)
+    print('PASS SVG focus style', map_selector, outcome, flush=True)
+
 def label_assertions(page, container, pane_expr):
     page.wait_for_function("""(c)=>document.querySelectorAll(c+' .crime-city-label').length>=8""",
                            arg=container,timeout=35000)
@@ -35,10 +59,15 @@ def main():
             page.goto(BASE,wait_until='domcontentloaded',timeout=45000)
             page.wait_for_function("() => window.__CRIME_MAP__?.getCountyLayer()?.getLayers().length>300",timeout=45000)
             label_assertions(page,'#map','main')
+            assert_no_svg_focus_rectangle(page, '#map')
             main_labels=page.locator('#map .crime-city-label').count()
             map_click(page,'#map','main',48.85,11.2)
             page.locator('#stateDrawer.open').wait_for(state='visible')
             assert page.locator('#map path[stroke="#ffffff"]').count()>=1
+            page.locator('#stateClose').click()
+            map_click(page,'#map','main',50.72,9.1)
+            page.locator('#stateDrawer.open').wait_for(state='visible')
+            assert_no_svg_focus_rectangle(page,'#map')
             page.locator('#stateClose').click()
             page.locator('#modeProperty').click()
             page.wait_for_function('() => window.__CRIME_MAP__?.getMode()==="property"')
@@ -52,6 +81,7 @@ def main():
             page.goto(BASE+'topics/drugs/',wait_until='domcontentloaded',timeout=45000)
             page.wait_for_function("()=>document.querySelector('#county-count')?.textContent.includes('/')",timeout=45000)
             label_assertions(page,'#drug-map','drug')
+            assert_no_svg_focus_rectangle(page, '#drug-map')
             map_click(page,'#drug-map','drug',48.85,11.2)
             page.locator('#state-panel').wait_for(state='visible')
             assert page.locator('#drug-map path[stroke="#ffffff"]').count()>=1
