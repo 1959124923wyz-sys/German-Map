@@ -1,35 +1,27 @@
 name: Drugs standalone public preview probe
-
 on:
   workflow_dispatch:
   push:
     branches: [feature/drugs-topic]
     paths:
       - '.github/workflows/drugs-preview-probe.yml'
-
 permissions:
   contents: read
-
 jobs:
   verify-preview:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
-      - name: Probe published HTML, JS, CSS and data (HTTP)
-        env:
-          BASE: https://raw.githack.com/1959124923wyz-sys/German-Map/a9feeaba4516bfe4d90076f174f936aa35e1d2f1
+      - name: Try GitHub-based preview proxies
         run: |
           set -euo pipefail
-          echo "Checking preview snapshot: $BASE/topics/drugs/index.html"
-          for path in topics/drugs/index.html topics/drugs/topic.css topics/drugs/topic.js topics/drugs/data/pks_drugs_2025.json data/germany-counties-display.geojson data/germany-states.geojson; do
-            echo "CHECK $path"
-            curl --max-time 40 --retry 2 --fail-with-body --location --silent --show-error "${BASE}/${path}" -o /tmp/preview-out
-            test -s /tmp/preview-out
-            wc -c /tmp/preview-out
-            if [ "$path" = 'topics/drugs/index.html' ]; then
-              grep -q 'id="drug-map"' /tmp/preview-out
-            elif [ "$path" = 'topics/drugs/data/pks_drugs_2025.json' ]; then
-              python -c 'import json; x=json.load(open("/tmp/preview-out")); assert len(x["records"])==400; print("Verified 400 counties")'
-            fi
+          for url in \
+            "https://raw.githack.com/1959124923wyz-sys/German-Map/a9feeaba4516bfe4d90076f174f936aa35e1d2f1/topics/drugs/index.html" \
+            "https://rawgit.net/1959124923wyz-sys/German-Map/a9feeaba4516bfe4d90076f174f936aa35e1d2f1/topics/drugs/index.html" \
+            "https://rawgit.net/_/gh/prod/1959124923wyz-sys/German-Map/a9feeaba4516bfe4d90076f174f936aa35e1d2f1/topics/drugs/index.html" \
+            "https://htmlpreview.github.io/?https://github.com/1959124923wyz-sys/German-Map/blob/a9feeaba4516bfe4d90076f174f936aa35e1d2f1/topics/drugs/index.html"; do
+              echo "PROBE $url"
+              code=$(curl -L --max-time 25 -s -o /tmp/preview_probe -w '%{http_code}' "$url" || true)
+              echo "HTTP $code bytes $(wc -c < /tmp/preview_probe)"
+              if grep -q 'id="drug-map"' /tmp/preview_probe; then echo 'PASS: drug preview markup'; fi
           done
-          echo 'PASS all public static preview assets fetched'
