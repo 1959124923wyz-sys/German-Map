@@ -6,7 +6,7 @@
 <title>德国犯罪态势地图 · Germany Crime Situation Monitor</title>
 <meta name="description" content="德国犯罪态势可视化：BKA官方年度统计底图、近90天警方公开通报点、柏林高覆盖局部数据叠加。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="css/map.css?v=20261008-stuttgart-v1">
+<link rel="stylesheet" href="css/map.css?v=20261008-duesseldorf-v1">
 </head>
 <body>
 <header>
@@ -82,6 +82,7 @@
         <button id="focusKielCount" type="button" aria-pressed="false" title="基尔街区2025年全部登记案件数；不是暴力/盗窃犯罪率">基尔·全部案件</button>
         <button id="focusBremenCategory" type="button" aria-pressed="false" title="不来梅22个警方统计区，2025年七项犯罪分类登记案件数量（非犯罪率）">不来梅·犯罪分类</button>
         <button id="focusStuttgartViolence" type="button" aria-pressed="false" title="斯图加特2025年公共场所暴力犯罪分区案件数量，不是全部犯罪率">斯图加特·公共场所暴力</button>
+        <button id="focusDuesseldorfCount" type="button" aria-pressed="false" title="杜塞尔多夫2025年10个市辖区全部登记案件数，支持2022—2025年历史，不是人均犯罪率">杜塞尔多夫·全部案件</button>
       </div>
     </div>
 
@@ -110,7 +111,7 @@
 </main>
 
 <footer>
-  <span>全国层：BKA PKS 2025 · 县/市每10万人犯罪率；柏林、汉堡、慕尼黑及萨克森主要城市可下钻；基尔设全部案件数量独立图层，不来梅另设分区犯罪类别图层；斯图加特独立展示2025年公共场所暴力犯罪。上述专题均非每10万人犯罪率。</span>
+  <span>全国层：BKA PKS 2025 · 县/市每10万人犯罪率；柏林、汉堡、慕尼黑及萨克森主要城市可下钻；基尔设全部案件数量独立图层，不来梅另设分区犯罪类别图层；斯图加特独立展示2025年公共场所暴力犯罪。杜塞尔多夫另设10区全部案件年度数量图层；上述专题均非每10万人犯罪率。</span>
   <span>警方登记数据，不代表未报案犯罪。</span>
 </footer>
 
@@ -130,6 +131,7 @@
 <script src="js/layers/city-detail.js?v=20261008-dresden-v2"></script>
 <script src="js/layers/city-count-detail.js?v=20261008-bremen-count-v1"></script>
 <script src="js/layers/bremen-category-detail.js?v=20261008-stuttgart-v1"></script>
-<script src="js/layers/stuttgart-public-violence.js?v=20261008-stuttgart-v1"></script>
+<script src="js/layers/stuttgart-public-violence.js?v=20261008-duesseldorf-v1"></script>
+<script src="js/layers/duesseldorf-count-detail.js?v=20261008-duesseldorf-v1"></script>
 </body>
 </html>

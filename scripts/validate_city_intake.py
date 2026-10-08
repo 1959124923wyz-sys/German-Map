@@ -94,6 +94,13 @@ def validate(intake:dict,live:dict,supplementary:dict|None=None)->dict:
                         raise ValueError(f"{cid}: published Stuttgart 23 areas/3 categories changed")
                     if item.get("official_city_count")!=1636 or item.get("assigned_to_districts")!=1577 or item.get("unmatched_remainder")!=59:
                         raise ValueError(f"{cid}: Stuttgart official 2025 city/district totals changed")
+                elif c.get("public_scope")=="supplementary_all_offense_stadtbezirk_count_only":
+                    if item.get("metric")!="all_offenses_cases_2025_by_stadtbezirk" or "非每10万人率" not in str(item.get("unit","")):
+                        raise ValueError(f"{cid}: total city district counts cannot be published as rates")
+                    if item.get("region_count")!=10 or item.get("history_years")!=[2022,2023,2024,2025]:
+                        raise ValueError(f"{cid}: Düsseldorf police area/year coverage incomplete")
+                    if item.get("reported_total")!=69522 or item.get("mapped_total")!=68224 or item.get("unassigned_total")!=1298:
+                        raise ValueError(f"{cid}: Düsseldorf source count reconciliation invalid")
                 else:
                     raise ValueError(f"{cid}: unsupported supplementary publication scope")
             else:

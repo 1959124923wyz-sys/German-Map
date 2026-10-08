@@ -102,3 +102,9 @@ footer{flex:0 0 34px;border-top:1px solid var(--line);padding:7px 18px;color:var
 .stuttgart-metrics small{font-size:8.5px;line-height:1.25}
 .stuttgart-violence-panel .supp-city-numbers{margin-top:8px}
 @media(max-width:920px){.stuttgart-violence-panel{max-height:53vh}}
+
+/* Düsseldorf 2025 PKS official 10 city-district absolute CASE totals. */
+.duesseldorf-count-panel{max-height:min(72vh,610px);overflow-y:auto}
+.duesseldorf-count-panel .supp-city-numbers{margin-top:9px}
+.duesseldorf-year-list{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:920px){.duesseldorf-count-panel{max-height:53vh}}

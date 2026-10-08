@@ -98,6 +98,7 @@ async function activate(){
  if(active){disable();return;}
  const ticket=++epoch;if(!geo)await load();if(ticket!==epoch)return;
  window.__BREMEN_CATEGORY_MAP__?.disable?.();window.__KIEL_COUNT_MAP__?.disable?.();
+ window.__DUESSELDORF_COUNT_MAP__?.disable?.();
  mapApi.clearSelection?.();active=true;
  mapApi.map.fitBounds(bounds,{padding:[32,32],maxZoom:10,animate:false});render();
 }

@@ -72,22 +72,18 @@
       "name_zh": "杜塞尔多夫",
       "state": "Nordrhein-Westfalen",
       "county_ags": "05111",
-      "phase": "join_ready",
+      "phase": "published",
       "priority": 3,
       "crime_source": {
-        "publisher": "Landeshauptstadt Düsseldorf",
+        "publisher": "Polizeipräsidium Düsseldorf / Bezirksvertretung 6",
         "year": 2025,
-        "granularity": "Stadtbezirk 1 (partial evidence)",
-        "measure": "unverified",
-        "url": "https://www.duesseldorf.de/medienportal/pressedienst-einzelansicht/pld/sitzung-der-bezirksvertretung-1-22",
-        "evidence": "City of Düsseldorf official 2026 council agendas establish 2025 PKS presentations in Stadtbezirk 1 (22 May) and Stadtbezirk 2 (9 June), but these announcements do NOT supply machine-readable counts for all 10 Bezirke. A complete uniform 2025 police city-district table has not been verified."
+        "granularity": "all 10 Stadtbezirke (complete)",
+        "measure": "Gesamtkriminalität PKS absolute cases annually 2022–2025",
+        "url": "https://ris-oparl.itk-rheinland.de/Oparl/bodies/0015/downloadfiles/00589618.pdf",
+        "evidence": "Police director Hammerschlag presentation dated 10 June 2026, PDF slide 2 'Gesamtkriminalität aller Stadtbezirke'. Full ten Bezirk 2022–2025 all-offense numeric table, downloadable via official OParl attachment 00589618.pdf, independently verified in CI."
       },
-      "metric_alignment": "unverified",
-      "blocking_issues": [
-        "Acquire numerical 2025 official PKS tables for all 10 Düsseldorf Stadtbezirke rather than equating council agenda items with statistical datasets.",
-        "Confirm definitions of per-district categories and reconcile counts without inventing missing figures.",
-        "Review source licensing, validate city-population denominators if needed and run browser regression once dataset available."
-      ],
+      "metric_alignment": "independent_count_only",
+      "blocking_issues": [],
       "geometry_source": {
         "publisher": "Landeshauptstadt Düsseldorf, Amt für Statistik und Wahlen",
         "year": 2025,
@@ -103,9 +99,31 @@
         "area_km2": 217.407,
         "polygon_overlap_m2": 0,
         "source_polygon_04_repair_m2": 0,
-        "published": false
+        "published": true,
+        "police_primary_pdf": "https://ris-oparl.itk-rheinland.de/Oparl/bodies/0015/downloadfiles/00589618.pdf",
+        "police_pdf_probe": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37734570619",
+        "numeric_qa_run": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37734749872",
+        "police_2025_10_district_total": 68224,
+        "police_2025_citywide_total": 69522,
+        "not_geo_assigned_2025": 1298,
+        "history_years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "category": "all_offenses_absolute_cases"
       },
-      "notes": "10 official 2025 Stadtbezirk GeoJSON polygons completed, no overlap. Council materials partial; no public shaded map without police table."
+      "notes": "Released independent 10 Stadtbezirk annual count-only district dataset; 2025 police district sum 68,224 and city total 69,522, residual 1,298 remains unallocated.",
+      "public_scope": "supplementary_all_offense_stadtbezirk_count_only",
+      "qa_passed": true,
+      "source_license_reviewed": true,
+      "limitations": [
+        "Source includes all-offense totals, NOT district-level violent crime or all-property crime; category comparisons forbidden.",
+        "Absolute police registered cases, not per-capita risk or annual crime rates.",
+        "2025 ten district total 68,224 vs police citywide 69,522 (difference 1,298 not assigned).",
+        "Official BV6 PDF also contains district-6 street-level-category data, but do not infer those numbers for districts 1–10."
+      ]
     },
     {
       "id": "stuttgart",

@@ -112,6 +112,7 @@ async function activate(){
  if(ticket!==epoch)return;
  window.__KIEL_COUNT_MAP__?.disable?.();
  window.__STUTTGART_PUBLIC_MAP__?.disable?.();
+ window.__DUESSELDORF_COUNT_MAP__?.disable?.();
  api.clearSelection?.();
  active=true;
  const bounds=L.geoJSON(geo).getBounds();
