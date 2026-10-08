@@ -31,6 +31,10 @@ OUT=ROOT/"data/germany-counties-display.geojson"
 CITY_SOURCES={
   "11000":"data/berlin_violent_2025.geojson",  # Berlin
   "09162":"data/munich_local_2025.geojson",    # München Stadt, NOT Landkreis 09184
+  "02000":"data/hamburg_local_2025.geojson",
+  "14713":"data/leipzig_local_2025.geojson",
+  "14511":"data/chemnitz_local_2025.geojson",
+  "14612":"data/dresden_local_2025.geojson",
 }
 TO_METRIC=Transformer.from_crs("EPSG:4326","EPSG:3035",always_xy=True).transform
 TO_WGS84=Transformer.from_crs("EPSG:3035","EPSG:4326",always_xy=True).transform
