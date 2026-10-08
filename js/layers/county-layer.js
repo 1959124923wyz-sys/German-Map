@@ -11,6 +11,14 @@
   }) {
     let layer = null;
     let selected = null;
+    let detailFocusAGS = null;
+
+    function setDetailFocus(ags) {
+      const next = ags ? String(ags).padStart(5,'0') : null;
+      if (detailFocusAGS === next) return;
+      detailFocusAGS = next;
+      if (layer) layer.eachLayer(item => layer.resetStyle(item));
+    }
 
     function style(feature) {
       const property = getMode() === 'property';
@@ -19,6 +27,12 @@
       const record = getRecord(feature, mode);
       const breaks = quantileBreaks(getRates(key, mode));
       const value = record?.[key]?.rate;
+      if (detailFocusAGS) {
+        const id = String(feature?.id??feature?.properties?.AGS??'').padStart(5,'0');
+        return id === detailFocusAGS
+          ? {pane:'countyPane',color:'transparent',weight:0,opacity:0,fillColor:'transparent',fillOpacity:0}
+          : {pane:'countyPane',color:'#94a1a9',weight:.3,opacity:.32,fillColor:'#dbe3e8',fillOpacity:.12};
+      }
       if (record?.name === 'Berlin' && isBerlinDetailActive()) {
         return {pane:'countyPane',color:'transparent',weight:0,opacity:0,fillColor:'transparent',fillOpacity:0};
       }
@@ -87,7 +101,7 @@
     }
 
     return Object.freeze({
-      render, select, hover, unhover, clearSelection, style,
+      render, select, hover, unhover, clearSelection, style, setDetailFocus,
       get layer() { return layer; },
       get selected() { return selected; },
     });

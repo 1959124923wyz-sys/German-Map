@@ -249,6 +249,17 @@ with sync_playwright() as playwright:
     assert dresden["municipalityLayers"]==2, dresden
     assert dresden["hasNoDataMask"] and dresden["hasOuterBorder"],dresden
     assert dresden["focused"],dresden
+    assert dresden["neighbourFillOpacity"]==.12,dresden
+    # A hover/mouseout on a neighbouring Kreis must restore the faded focus
+    # palette rather than reverting to the full-strength orange heatmap.
+    faded_after_hover=page.evaluate("""() => {
+        const c=window.__CRIME_MAP__.getCountyLayer().getLayers()
+            .find(x=>String(x.feature?.id)==='14625');
+        if(!c)return -1;
+        c.fire('mouseover');c.fire('mouseout');
+        return c.options.fillOpacity;
+    }""")
+    assert faded_after_hover==.12, faded_after_hover
     assert "灰色市域" in dresden["coverageNote"],dresden
     page.screenshot(path=str(SCREENSHOT.with_name("germany-crime-map-dresden.png")),full_page=True)
 

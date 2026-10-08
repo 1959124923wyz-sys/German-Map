@@ -318,7 +318,7 @@
 
   window.__CRIME_MAP__={
     map,getMode:()=>mode,getCaseData:()=>caseData,getPksData:()=>pksData,getPropertyData:()=>propertyData,getBerlinViolence:()=>berlinViolence,getHeatData:()=>heatData,
-    getCountyLayer:()=>countyLayer,getBerlinLayer:()=>berlinDetail?.violenceLayer||null,getHeatLayer:()=>berlinDetail?.propertyLayer||null,getVisibleCases:()=>visibleCases(),
+    getCountyLayer:()=>countyLayer,setCountyFocus:ags=>countyController?.setDetailFocus(ags),getBerlinLayer:()=>berlinDetail?.violenceLayer||null,getHeatLayer:()=>berlinDetail?.propertyLayer||null,getVisibleCases:()=>visibleCases(),
     getPinnedArea:()=>pinnedArea,getHoverArea:()=>hoverArea,
     clearSelection:()=>{pinnedArea=null;hoverArea=null;countyController.clearSelection();statePanel.reset();showArea(null);},
     showArea

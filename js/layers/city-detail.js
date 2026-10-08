@@ -1,7 +1,7 @@
 (()=>{"use strict";
 const {palettes:{national:WARM,property:COOL},violenceMetrics}=window.CrimeMapConfig;
 let api=null,manifest=null,active=null,activeKey=null,layer=null,selected=null,cache=new Map(),activationEpoch=0;
-let cityBackdrop=null,cityBorder=null,mutedCounties=null;
+let cityBackdrop=null,cityBorder=null;
 const boundaryCache=new Map();
 
 const $=id=>document.getElementById(id);
@@ -66,32 +66,20 @@ function baseLayerFor(c){
   return cl.getLayers().find(l=>recordForFeature(l.feature,d)?.name===c.name&&l.feature?.properties?.districtType!=='Landkreis')||null
 }
 function restoreBase(c){
-  if(mutedCounties){
-    mutedCounties.eachLayer(l=>mutedCounties.resetStyle(l));
-    mutedCounties=null;
-  }else{
-    const cl=api.getCountyLayer?.(),l=baseLayerFor(c);
-    if(cl&&l)cl.resetStyle(l);
-  }
+  api.setCountyFocus?.(null);
+  const cl=api.getCountyLayer?.(),l=baseLayerFor(c);
+  if(cl&&l)cl.resetStyle(l);
 }
 function hideBase(c){
-  const cl=api.getCountyLayer?.(),l=baseLayerFor(c);
-  if(!l)return;
+  const l=baseLayerFor(c);if(!l)return;
   if(c.coverage==='partial'){
-    // During Dresden focus, the neighbouring county heatmap is deliberately
-    // quieted so its warm fill cannot bleed through the pastel city polygons.
-    // All original crime figures remain available via county hover/click.
-    if(cl && mutedCounties!==cl){
-      if(mutedCounties)mutedCounties.eachLayer(item=>mutedCounties.resetStyle(item));
-      mutedCounties=cl;
-      cl.eachLayer(item=>item.setStyle({
-        color:'#94a1a9',weight:.3,opacity:.32,fillOpacity:.12
-      }));
-    }
+    // County resetStyle() and mouseout must both preserve the muted Dresden
+    // focus palette, not accidentally restore the warm nationwide map.
+    api.setCountyFocus?.(c.county_ags);
+  }else{
+    api.setCountyFocus?.(null);
+    l.setStyle({color:'transparent',weight:0,opacity:0,fillOpacity:0});
   }
-  // The city-wide county rate MUST NOT shine through low-crime districts;
-  // its saturated underside created the mauve/red slivers in Dresden.
-  l.setStyle({color:'transparent',weight:0,opacity:0,fillOpacity:0});
 }
 async function boundaryData(c){
   if(!c.boundary_file)return null;
