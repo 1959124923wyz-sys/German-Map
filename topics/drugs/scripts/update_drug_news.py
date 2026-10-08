@@ -200,7 +200,8 @@ def main():
     gathered={}
     # Preserve last-known-good reports; downgrade location, not content, when no GIS match.
     for entry in old.get("reports",[]):
-        if TODAY-timedelta(days=160)<=date.fromisoformat(entry["publication_date"])<=TODAY:
+        limit=TODAY-timedelta(days=160) if entry.get("kind")=="statistical_report" else CUTOFF
+        if limit<=date.fromisoformat(entry["publication_date"])<=TODAY:
             gathered[entry["source_url"]]=entry
     found_total=0
     for tag in TAGS:
@@ -216,7 +217,9 @@ def main():
             "city":city,"title":title,"summary":"相关执法情况以警方原文为准；位置标记仅对应城市中心。",
             "source_agency":agency,"source_url":url,"kind":"police_release"}
     for entry in NATIONAL:
-        if CUTOFF<=date.fromisoformat(entry["publication_date"])<=TODAY:
+        # Annual national death figures remain useful background beyond the
+        # 90-day incident-feed cutoff; they are flagged as statistical reports.
+        if TODAY-timedelta(days=160)<=date.fromisoformat(entry["publication_date"])<=TODAY:
             gathered[entry["source_url"]]=entry
     remaining=[22]
     for row in gathered.values():
