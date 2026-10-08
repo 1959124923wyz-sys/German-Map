@@ -226,19 +226,30 @@ two separately tabulated police reporting units; they are summed only
 because the municipal polygon's own title identifies both subareas.
 Unmapped cases remain outside the choropleth rather than guessed.
 
-**Kiel is NOT published.** Its source class is all offenses, not violence
-or theft. Neither a per-100k rate nor a proxy for the two existing
-top-level crime modes should be invented. Next gate: decide a clearly
-labelled count-only local view or obtain verified category-specific
-district cases, confirm any population denominator, review licensing and
-geographic topology, then complete public UI and regression tests.
+**Kiel count-only layer is now published (2026-10-08).** It is independent
+of the existing violence/property-rate controls: `data/city_count_layers.json`
+registers an explicitly titled absolute-case-count overlay, and
+`js/layers/city-count-detail.js` implements a separate 2025 choropleth,
+district 2016–2025 history popups, source attribution and a visible
+817-case unlocated remainder. No population denominator or rate is invented;
+the latest city open-data population CSV ends in 2023. Official municipal
+GeoJSON is CC BY 4.0, with attribution in the map and source links.
+The separate `scripts/validate_kiel_count_layer.py` validates source
+cases, 30 district polygons and geometry; the full Playwright smoke
+checks map load, legend, exit and switching back to Hamburg.
+The national BKA rate dataset and its 402 Kreis polygons remain unchanged.
+The `published` candidate phase must be paired with
+`public_scope=supplementary_count_only` and never appears in the main
+`city_layers.json` violence/theft registry.
 
-Re-run source and candidate-only checks in GitHub's City expansion source
-probe workflow or locally:
-```bash
-python scripts/probe_kiel_sources.py
-python scripts/build_kiel_staging.py
-```
+Next source-probe priorities: **Bremen** has 2025 official tables for
+22 local districts including robbery, injury, burglary, sexual offenses and
+theft (Senat reply 2026-06-23), but note missing small-area assignment
+and licensing. **Stuttgart** has an official CC BY 4.0 CSV for
+city-district street/violent crime since 2008 and should be checked for
+2025 field definitions, official district geometry and population.
+Neither is promoted to a public polygon layer until its own data QA passes.
+
 
 Run acceptance locally:
 

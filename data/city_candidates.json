@@ -16,7 +16,7 @@
       "name_zh": "基尔",
       "state": "Schleswig-Holstein",
       "county_ags": "01002",
-      "phase": "source_probe",
+      "phase": "published",
       "priority": 1,
       "crime_source": {
         "publisher": "Polizeidirektion Kiel",
@@ -33,14 +33,9 @@
         "url": "https://ims.kiel.de/geodatenextern/rest/services/Stadtplan/LHKielWmsWfs/MapServer/38?f=pjson",
         "evidence": "Official ArcGIS MapServer layer 38 returns 31 polygon parts, grouped into 30 districts. Exact names/Nummer joined and audited against police annex in CI. GovData WFS example returns zero features."
       },
-      "metric_alignment": "incompatible",
-      "blocking_issues": [
-        "Official local all-offense counts are not violence/theft; design a separately labelled count-only local view or locate the exact offense categories.",
-        "Do not show per-100,000 district rates until official district population is matched.",
-        "Review source license and city polygon topology before publishing.",
-        "Police reporting units Hammer and Kroog have no individually matching map geometry: keep their counts unassigned."
-      ],
-      "notes": "2025 official totals reconciled candidate-only: 24,341 mapped and 817 unassigned of 25,158; public map unchanged.",
+      "metric_alignment": "independent_count_only",
+      "blocking_issues": [],
+      "notes": "LIVE: separate Kiel all-offense absolute CASE-COUNT overlay, NOT the nationwide violence/theft rate modes. 30 polygons audited; 2025 rate is unavailable because latest downloadable district population only reaches 2023.",
       "audit": {
         "status": "candidate_data_reconciled",
         "run": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37722455740",
@@ -56,8 +51,20 @@
           "Hammer": 20,
           "Kroog": 35
         },
-        "released": false
-      }
+        "released": true,
+        "qa_run": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37723245912",
+        "geometry_area_km2": 114.04,
+        "county_area_km2": 112.66
+      },
+      "public_scope": "supplementary_count_only",
+      "qa_passed": true,
+      "source_license_reviewed": true,
+      "limitations": [
+        "No 2025 neighbourhood population in Kiel's public CSV: only counts, no per capita crime rate.",
+        "Police-only Hammer (20), Kroog (35) and unknown location (762) are not assigned to any polygon.",
+        "Kiel count-only cannot be used for national violence/property-rate comparisons.",
+        "Official detailed boundary differs slightly from national coarse AGS boundary; leave county source geometry unmodified."
+      ]
     },
     {
       "id": "duesseldorf",
@@ -87,15 +94,15 @@
       "name_zh": "斯图加特",
       "state": "Baden-Württemberg",
       "county_ags": "08111",
-      "phase": "research",
+      "phase": "source_probe",
       "priority": 3,
       "crime_source": {
-        "publisher": "Stadt Stuttgart",
+        "publisher": "Statistisches Amt Stuttgart / Polizeipräsidium Stuttgart",
         "year": 2025,
-        "granularity": "city-wide",
-        "measure": "PKS",
-        "url": "https://www.stuttgart.de/service/statistik-und-wahlen/stuttgart-in-zahlen",
-        "evidence": "Official PKS annual city tables exist; city-district crime breakdown is NOT established as public reusable source."
+        "granularity": "Stadtbezirk",
+        "measure": "Straßen- und Gewaltkriminalität, offences and suspects",
+        "url": "https://opendata.stuttgart.de/dataset/strassen-und-gewaltkriminalitaet-straftaten-und-tatverdaechtige",
+        "evidence": "Official Stuttgart OpenData CKAN dataset updated 2026-09-16; specifically states spatial granularity Stadtbezirk and describes police street/violent offences since 2008; CSV offered with CC BY 4.0."
       },
       "geometry_source": {
         "publisher": "Stadt Stuttgart",
@@ -106,7 +113,9 @@
       },
       "metric_alignment": "unverified",
       "blocking_issues": [
-        "Investigate availability/license of police neighbourhood crime records."
+        "Download original CSV, inspect district IDs, category schema and 2025 rows.",
+        "Find full official Stadtbezirk geometry and 2025 district population before crime-rate rendering.",
+        "Confirm exact Gewaltkriminalität definition vs BKA or label documented local proxy."
       ]
     },
     {
@@ -143,15 +152,15 @@
       "name_zh": "不来梅",
       "state": "Bremen",
       "county_ags": "04011",
-      "phase": "research",
+      "phase": "source_probe",
       "priority": 5,
       "crime_source": {
-        "publisher": "Senatorin für Inneres und Sport",
+        "publisher": "Senat Bremen / Polizei Bremen",
         "year": 2025,
-        "granularity": "city",
-        "measure": "PKS",
-        "url": "https://www.inneres.bremen.de/dokumente/pks-2496",
-        "evidence": "2025 Bremen and Bremerhaven PKS reports/tables are public; neighbourhood offense matrix not yet established."
+        "granularity": "22 Stadtteil/Beiratsbereiche (incl. specific Ortsteile)",
+        "measure": "total offenses, sex, robbery, injury, burglary, theft and drugs (2024–2025)",
+        "url": "https://www.rathaus.bremen.de/sixcms/media.php/13/20260623_top_28_Kriminalitaet_in_den_Stadtteilen_Bremens.pdf",
+        "evidence": "Official 23 June 2026 Senat reply: tables 1–22 give 2024 and 2025 local offenses, robbery 210000, injury 220000, theft ****00, burglary 435*00, sexual 100000. Caveat: city aggregate exceeds local sum because some cases lack sub-city assignment."
       },
       "geometry_source": {
         "publisher": "Statistisches Landesamt Bremen",
@@ -162,7 +171,9 @@
       },
       "metric_alignment": "unverified",
       "blocking_issues": [
-        "Verify whether official PKS has aligned Ortsteil offense rows and downloadable geometry."
+        "Identify official 22 Stadtteil/Beiratsbereiche exact geographic polygon joins, including special grouped areas (e.g. Gröpelingen + Industriehäfen).",
+        "Obtain official 2025 district population for meaningful rates; preserve unallocated city-wide crime counts.",
+        "Confirm source license/reuse (Transparency Portal metadata labels document CC BY-NC-ND) and exact offense category definitions before publication."
       ]
     },
     {
