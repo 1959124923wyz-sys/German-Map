@@ -29,6 +29,27 @@ def main():
             assert not errors, errors
             assert re.search(r'\d+ / \d+', count), count
             assert page.locator('.leaflet-pane svg path').count() > 200, ('SVG paths:', page.locator('.leaflet-pane svg path').count())
+            # All 16 states must have a real county-backed summary and drilldown.
+            assert page.locator('#state-index-list button').count() == 16
+            page.locator('#state-index-list button').filter(has_text='Bayern').click()
+            assert page.locator('#region-navigator').is_visible()
+            assert not page.locator('#national-drug-summary').is_visible()
+            assert 'Bayern' in page.locator('#region-heading').inner_text()
+            assert page.locator('#region-county-list button').count() == 96
+            assert '估算州级' in page.locator('#region-rate-label').inner_text()
+            assert page.locator('#region-cases').inner_text() not in ['—','0']
+            page.locator('#region-drill').click()
+            page.wait_for_function('() => window.__DRUGS_PREVIEW_MAP__.getZoom() >= 8')
+            page.locator('#region-county-list button').first.click()
+            assert '县市详情' in page.locator('#region-heading').inner_text()
+            assert '同比' in page.locator('#region-completeness').inner_text()
+            assert page.locator('#region-state-link').is_visible()
+            page.locator('#region-state-link').click()
+            assert '州级汇总' in page.locator('#region-heading').inner_text()
+            page.locator('#region-home').click()
+            assert page.locator('#national-drug-summary').is_visible()
+            assert not page.locator('#region-navigator').is_visible()
+            assert page.locator('#state-index-list button').count() == 16
             # Visual regression: site dark shell and ascending low-to-high green palette.
             palette = page.locator('#legend-data .legend-gradient span')
             assert palette.count() == 7, f'Expected seven green intervals, got {palette.count()}'
@@ -52,6 +73,9 @@ def main():
             assert first != second, (first, second)
             page.locator('#close-state').click()
             assert not page.locator('#state-panel').is_visible()
+            # Mouse focus on an SVG polygon may not produce a large black focus bbox.
+            focused_outline = page.evaluate("() => {let e=document.activeElement;return e && e.closest('#drug-map') ? getComputedStyle(e).outlineStyle : 'none';}")
+            assert focused_outline == 'none', focused_outline
             click_place(page, 48.85, 11.2)
             page.locator('#state-panel').wait_for(state='visible')
             assert page.locator('#state-name').inner_text() == first
