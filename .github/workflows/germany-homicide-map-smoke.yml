@@ -24,6 +24,8 @@ on:
       - 'scripts/build_stuttgart_duesseldorf_geometry.py'
       - 'scripts/build_stuttgart_public_violence_2025.py'
       - 'scripts/validate_stuttgart_public_violence.py'
+      - 'scripts/build_duesseldorf_offenses_2025.py'
+      - 'scripts/validate_duesseldorf_offenses_2025.py'
       - '.github/workflows/germany-homicide-map-smoke.yml'
 
 permissions:
@@ -81,6 +83,7 @@ jobs:
           node --check js/layers/city-count-detail.js
           node --check js/layers/bremen-category-detail.js
           node --check js/layers/stuttgart-public-violence.js
+          node --check js/layers/duesseldorf-count-detail.js
 
       - name: Test deterministic city builder I/O
         run: python scripts/test_city_build_common.py
@@ -130,6 +133,12 @@ jobs:
 
       - name: Verify strict Stuttgart public-space PKS statistic boundaries
         run: python scripts/validate_stuttgart_public_violence.py
+
+      - name: Build official 10 Düsseldorf police district counts (2022–2025)
+        run: python scripts/build_duesseldorf_offenses_2025.py --output data/duesseldorf_total_cases_2025.geojson --release-count-only
+
+      - name: Validate Düsseldorf district counts and official geometry
+        run: python scripts/validate_duesseldorf_offenses_2025.py
 
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py

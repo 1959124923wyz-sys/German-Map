@@ -28,7 +28,7 @@ def main():
     expected=["11000","09162","02000","14713","14511","14612"]
     assert list(sources)==expected,(list(sources),expected)
     assert sources["14612"]=="data/dresden-city-boundary.geojson"
-    assert result["active_rate"]==5 and result["active_count"]==3 and result["candidates"]>=10
+    assert result["active_rate"]==5 and result["active_count"]==4 and result["candidates"]>=10
     # Kiel is NOT a violence-rate city and can never be inserted twice.
     unauthorized=copy.deepcopy(live)
     unauthorized["cities"].append({"id":"kiel","metrics":{"violence":{"field":"crime_total"}}})
@@ -49,7 +49,10 @@ def main():
     wrong=copy.deepcopy(counts)
     next(c for c in wrong["layers"] if c["id"]=="stuttgart")["metric"]="violence"
     assert_rejected(intake,live,wrong,"public-space category cannot claim all-scene crime rate")
-    print("[city-expansion] PASS: five existing rate cities, Stuttgart/Bremen/Kiel separate count-only categories; 6 seams preserved")
+    wrong_duesseldorf=copy.deepcopy(counts)
+    next(c for c in wrong_duesseldorf["layers"] if c["id"]=="duesseldorf")["metric"]="violence"
+    assert_rejected(intake,live,wrong_duesseldorf,"total city district counts cannot be published as rates")
+    print("[city-expansion] PASS: five rate cities, four independent supplementary case-count layers, six seams preserved")
 
 
 if __name__=="__main__":main()

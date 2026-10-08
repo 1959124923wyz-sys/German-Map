@@ -312,3 +312,35 @@ python scripts/validate_stuttgart_public_violence.py
 The separate city intake gate and browser smoke test verify scientific
 scope, original district totals, strict null rates, real popup interaction
 and navigation among Stuttgart/Bremen/Kiel without cross-layer collisions.
+
+## Düsseldorf 2025 ten-Stadtbezirk total criminal case counts
+
+Official Düsseldorf Police presentation to Bezirksvertretung 6 on
+2026-06-10, **slide 2 `Gesamtkriminalität aller Stadtbezirke`**.
+Original official OParl PDF:
+https://ris-oparl.itk-rheinland.de/Oparl/bodies/0015/downloadfiles/00589618.pdf
+(HTTP server also accessible). The source includes all **10** Stadtbezirk
+columns and citywide PP total for calendar years **2022–2025**, so a
+genuine geographic ten-district map is possible. For 2025, the
+district case counts are:
+22,396 / 5,062 / 13,314 / 3,499 / 4,259 /
+5,097 / 2,490 / 4,166 / 6,438 / 1,503.
+**Sum 68,224; PP city total 69,522; official city/district
+difference 1,298.** That difference is unlocated and never assigned to
+district shapes. These are all-offense **absolute cases** (not rates, not
+violence/robbery subset), independent of the nationwide rate display.
+
+Official City of Düsseldorf 2025 administrative WGS84 GeoJSON has
+10 Stadtbezirk shapes and 217.407 km², zero overlap after documented
+zero-area self-intersection repair. Candidate geometry produced by
+`scripts/build_stuttgart_duesseldorf_geometry.py`.
+Public builder:
+```sh
+python scripts/build_stuttgart_duesseldorf_geometry.py
+python scripts/build_duesseldorf_offenses_2025.py --output data/duesseldorf_total_cases_2025.geojson --release-count-only
+python scripts/validate_duesseldorf_offenses_2025.py
+```
+Metadata identifies 2022–2025 original counts and municipality-minus-area
+differences each year. Page links to source and official boundaries.
+Dedicated browser tests cover popups, no fake rate, other city overlays,
+state/county map and all previously fixed click interactions.

@@ -71,6 +71,7 @@ jobs:
           node --check js/layers/city-count-detail.js
           node --check js/layers/bremen-category-detail.js
           node --check js/layers/stuttgart-public-violence.js
+          node --check js/layers/duesseldorf-count-detail.js
 
       - name: Test deterministic city builder I/O
         run: python scripts/test_city_build_common.py
@@ -144,6 +145,20 @@ jobs:
 
       - name: Verify Stuttgart public-space crime source and 23 polygons
         run: python scripts/validate_stuttgart_public_violence.py
+
+      - name: Refresh official 2025 Düsseldorf ten-district all-offense case counts
+        run: |
+          if ! (python scripts/build_stuttgart_duesseldorf_geometry.py &&
+                python scripts/build_duesseldorf_offenses_2025.py --output data/duesseldorf_total_cases_2025.geojson --release-count-only); then
+            if [ ! -s data/duesseldorf_total_cases_2025.geojson ]; then
+              echo "No last-good official Düsseldorf city district counts. Cannot publish new module" >&2
+              exit 1
+            fi
+            echo "::warning::Official Düsseldorf OParl PDF unavailable; retaining last-good verified data"
+          fi
+
+      - name: Validate Düsseldorf official police numeric and topology scope
+        run: python scripts/validate_duesseldorf_offenses_2025.py
 
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py

@@ -421,6 +421,38 @@ with sync_playwright() as playwright:
     page.click('#bremenCategoryClose')
     print("[stuttgart-public-regression] PASS: 23 districts, 3 public-space counts, no fake rates, popup/close/Bremen switch",flush=True)
 
+    # Düsseldorf 2025 official OParl police presentation shows all ten district
+    # total-offense counts (2022-25), NOT national violent crime risk rates.
+    page.click('#focusDuesseldorfCount')
+    page.wait_for_function("window.__DUESSELDORF_COUNT_MAP__?.getActive()===true",timeout=25000)
+    duesseldorf=page.evaluate("""() => {
+        const m=window.__DUESSELDORF_COUNT_MAP__,ls=m.getLayer().getLayers(),doc=m.getData();
+        const sum=y=>ls.reduce((n,l)=>n+l.feature.properties.crime_total[y],0);
+        return {n:ls.length,yr2025:sum('2025'),yr2024:sum('2024'),
+            city2025:doc.meta.city_by_year['2025'],unlocated2025:doc.meta.undistributed_by_year['2025'],
+            2025label:doc.meta.metric_scope,
+            ratesNull:ls.every(l=>l.feature.properties.crime_total.rate===null),
+            hasFourYears:ls.every(l=>['2022','2023','2024','2025'].every(y=>Number.isInteger(l.feature.properties.crime_total[y]))),
+            panel:!document.querySelector('#duesseldorfCountPanel')?.hidden,
+            focus:document.querySelector('.mapwrap')?.classList.contains('duesseldorf-count-focus')}
+    }""")
+    assert duesseldorf["n"]==10 and duesseldorf["yr2025"]==68224,duesseldorf
+    assert duesseldorf["yr2024"]==67059 and duesseldorf["city2025"]==69522,duesseldorf
+    assert duesseldorf["unlocated2025"]==1298,duesseldorf
+    assert duesseldorf["ratesNull"] and duesseldorf["hasFourYears"] and duesseldorf["panel"] and duesseldorf["focus"],duesseldorf
+    assert '非每10万人犯罪率' in page.locator('#legend').inner_text()
+    page.evaluate("""() => {window.__DUESSELDORF_COUNT_MAP__.getLayer().getLayers()[2].fire('click');return true;}""")
+    assert '2022年' in page.locator('.leaflet-popup-content').inner_text()
+    assert '2025年' in page.locator('.leaflet-popup-content').inner_text()
+    page.screenshot(path=str(SCREENSHOT.with_name('germany-crime-map-duesseldorf-offense-2025.png')),full_page=True)
+    page.click('#duesseldorfCountClose')
+    assert page.evaluate("window.__DUESSELDORF_COUNT_MAP__.getActive()") is False
+    page.click('#focusStuttgartViolence')
+    page.wait_for_function("window.__STUTTGART_PUBLIC_MAP__?.getActive()===true",timeout=20000)
+    assert page.evaluate("window.__DUESSELDORF_COUNT_MAP__.getActive()") is False
+    page.click('#stuttgartViolenceClose')
+    print("[duesseldorf-count-regression] PASS: 10 polygons, 2022–2025 source counts, residual 1298, real popup, no rates, city switching",flush=True)
+
     assert not errors, errors
     print(json.dumps({
         "result":"PASS",
@@ -434,6 +466,7 @@ with sync_playwright() as playwright:
         "kiel":kiel,
         "bremen":bremen,
         "stuttgart":stuttgart,
+        "duesseldorf":duesseldorf,
         "page_errors":errors,
     },ensure_ascii=False))
     browser.close()
