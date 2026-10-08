@@ -71,6 +71,11 @@ jobs:
       - name: Test deterministic city builder I/O
         run: python scripts/test_city_build_common.py
 
+      - name: Validate city expansion admission and seam contract
+        run: |
+          python scripts/validate_city_intake.py
+          python scripts/test_city_expansion.py
+
       - name: Validate city-layer registry JSON
         run: python -m json.tool data/city_layers.json >/dev/null
 

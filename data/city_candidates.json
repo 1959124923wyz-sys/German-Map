@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-08",
+  "purpose": "Research queue only. Never import this file from browser code or build unapproved city layers.",
+  "baseline_published_ids": [
+    "chemnitz",
+    "dresden",
+    "hamburg",
+    "leipzig",
+    "munich"
+  ],
+  "candidates": [
+    {
+      "id": "kiel",
+      "name": "Kiel",
+      "name_zh": "基尔",
+      "state": "Schleswig-Holstein",
+      "county_ags": "01002",
+      "phase": "source_probe",
+      "priority": 1,
+      "crime_source": {
+        "publisher": "Polizeidirektion Kiel",
+        "year": 2025,
+        "granularity": "Stadtteil",
+        "measure": "all_recorded_offenses",
+        "url": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/POLIZEI/DasSindWir/PDen/Kiel/_downloads/pks/pks_pdkiel_2025.pdf?__blob=publicationFile&v=2",
+        "evidence": "2025 police PKS PDF, annex Table 10 (pp.31–32): 2016–2025 city-district cases; includes unknown-offense-location rows."
+      },
+      "geometry_source": {
+        "publisher": "Landeshauptstadt Kiel",
+        "year": 2026,
+        "format": "WFS GeoJSON",
+        "url": "https://ims.kiel.de/geodatenextern/services/Stadtplan/LHKielWmsWfs/MapServer/WFSServer?outputFormat=geoJSON&request=GetFeature&service=WFS&typeName=Statistische_Stadtteile",
+        "evidence": "GovData Statistische Stadtteile in Kiel / municipal geodata WFS. Endpoint response and labels need machine verification."
+      },
+      "metric_alignment": "incompatible",
+      "blocking_issues": [
+        "Annual all-offense counts cannot be displayed as Gewaltkriminalität or Diebstahl under current two-mode UI.",
+        "Verify WFS returns nonempty polygons and join names to police annex.",
+        "Resolve official denominator or provide explicitly count-only local view, never mislabel total offenses as violence."
+      ],
+      "notes": "Best first source-engineering pilot; not yet approved for public thematic rendering."
+    },
+    {
+      "id": "duesseldorf",
+      "name": "Düsseldorf",
+      "name_zh": "杜塞尔多夫",
+      "state": "Nordrhein-Westfalen",
+      "county_ags": "05111",
+      "phase": "research",
+      "priority": 2,
+      "crime_source": {
+        "publisher": "Landeshauptstadt Düsseldorf",
+        "year": 2025,
+        "granularity": "Stadtbezirk 1 (partial evidence)",
+        "measure": "unverified",
+        "url": "https://www.duesseldorf.de/medienportal/pressedienst-einzelansicht/pld/sitzung-der-bezirksvertretung-1-22",
+        "evidence": "City council agenda explicitly lists 2025 crime statistics for district 1; no complete municipality-wide district table verified."
+      },
+      "metric_alignment": "unverified",
+      "blocking_issues": [
+        "Locate all city-district statistics and precise categories.",
+        "Confirm reusable official boundaries and permission."
+      ]
+    },
+    {
+      "id": "stuttgart",
+      "name": "Stuttgart",
+      "name_zh": "斯图加特",
+      "state": "Baden-Württemberg",
+      "county_ags": "08111",
+      "phase": "research",
+      "priority": 3,
+      "crime_source": {
+        "publisher": "Stadt Stuttgart",
+        "year": 2025,
+        "granularity": "city-wide",
+        "measure": "PKS",
+        "url": "https://www.stuttgart.de/service/statistik-und-wahlen/stuttgart-in-zahlen",
+        "evidence": "Official PKS annual city tables exist; city-district crime breakdown is NOT established as public reusable source."
+      },
+      "geometry_source": {
+        "publisher": "Stadt Stuttgart",
+        "year": 2026,
+        "format": "district statistics",
+        "url": "https://www.stuttgart.de/service/statistik-und-wahlen/daten-zu-stadtbezirken",
+        "evidence": "23 Stadtbezirke / 152 Stadtteile described officially."
+      },
+      "metric_alignment": "unverified",
+      "blocking_issues": [
+        "Investigate availability/license of police neighbourhood crime records."
+      ]
+    },
+    {
+      "id": "frankfurt",
+      "name": "Frankfurt am Main",
+      "name_zh": "法兰克福",
+      "state": "Hessen",
+      "county_ags": "06412",
+      "phase": "research",
+      "priority": 4,
+      "crime_source": {
+        "publisher": "Polizei Hessen",
+        "year": 2025,
+        "granularity": "city/presidium",
+        "measure": "PKS",
+        "url": "https://webapi.polizei.hessen.de/die-polizei/statistik/polizeiliche-kriminalstatistik-pks/polizeipraesidium-frankfurt",
+        "evidence": "2025 police yearbook and standard city-level tables confirmed; no local police-neighbourhood matrix verified."
+      },
+      "geometry_source": {
+        "publisher": "Stadt Frankfurt am Main",
+        "year": 2025,
+        "format": "WFS city districts",
+        "url": "https://geowebdienste.frankfurt.de/WFS_Stadtgebietsgliederung",
+        "evidence": "City's official WFS city-district geometry is documented."
+      },
+      "metric_alignment": "unverified",
+      "blocking_issues": [
+        "Find official local offense counts aligned to municipal neighbourhoods."
+      ]
+    },
+    {
+      "id": "bremen",
+      "name": "Bremen",
+      "name_zh": "不来梅",
+      "state": "Bremen",
+      "county_ags": "04011",
+      "phase": "research",
+      "priority": 5,
+      "crime_source": {
+        "publisher": "Senatorin für Inneres und Sport",
+        "year": 2025,
+        "granularity": "city",
+        "measure": "PKS",
+        "url": "https://www.inneres.bremen.de/dokumente/pks-2496",
+        "evidence": "2025 Bremen and Bremerhaven PKS reports/tables are public; neighbourhood offense matrix not yet established."
+      },
+      "geometry_source": {
+        "publisher": "Statistisches Landesamt Bremen",
+        "year": 2025,
+        "format": "Ortsteile tables",
+        "url": "https://www.statistik.bremen.de/datenangebote/stadtteil-und-ortsteiltabellen-4529",
+        "evidence": "Public district-level socioeconomic/population tables; not by itself a crime dataset."
+      },
+      "metric_alignment": "unverified",
+      "blocking_issues": [
+        "Verify whether official PKS has aligned Ortsteil offense rows and downloadable geometry."
+      ]
+    },
+    {
+      "id": "koeln",
+      "name": "Köln",
+      "name_zh": "科隆",
+      "state": "Nordrhein-Westfalen",
+      "county_ags": "05315",
+      "phase": "research",
+      "priority": 6,
+      "geometry_source": {
+        "publisher": "Stadt Köln",
+        "year": 2025,
+        "format": "municipal open geodata",
+        "url": "https://www.stadt-koeln.de/artikel/65104/index.html",
+        "evidence": "Official small-area geodata for neighbourhoods are available."
+      },
+      "metric_alignment": "unverified",
+      "blocking_issues": [
+        "No verified police neighborhood offense matrix for the 86 city districts; avoid inventing one."
+      ]
+    },
+    {
+      "id": "nuernberg",
+      "name": "Nürnberg",
+      "name_zh": "纽伦堡",
+      "state": "Bayern",
+      "county_ags": "09564",
+      "phase": "research",
+      "priority": 7,
+      "crime_source": {
+        "publisher": "Polizeipräsidium Mittelfranken",
+        "year": 2025,
+        "granularity": "city/region",
+        "measure": "PKS",
+        "url": "https://www.polizei.bayern.de/mam/pp-mittelfranken/sonstige/260507_ppmfr_sicherheitsbericht_regional_2025.pdf",
+        "evidence": "Official city-wide PKS reported; local police-inspection boundaries are not identical to statistical districts."
+      },
+      "geometry_source": {
+        "publisher": "Stadt Nürnberg",
+        "year": 2025,
+        "format": "GIS shapefiles",
+        "url": "https://www.nuernberg.de/internet/statistik/thematischekarten.html",
+        "evidence": "Official city statistical-district polygons are downloadable."
+      },
+      "metric_alignment": "unverified",
+      "blocking_issues": [
+        "Find district-matched official offense counts, not city totals or imputed precinct totals."
+      ]
+    },
+    {
+      "id": "hannover",
+      "name": "Hannover",
+      "name_zh": "汉诺威",
+      "state": "Niedersachsen",
+      "county_ags": "03241",
+      "phase": "research",
+      "priority": 8,
+      "metric_alignment": "unverified",
+      "blocking_issues": [
+        "Verify available official local district crime statistics and Kreis key: Hannover shares Region Hannover administrative geometry."
+      ]
+    },
+    {
+      "id": "dortmund",
+      "name": "Dortmund",
+      "name_zh": "多特蒙德",
+      "state": "Nordrhein-Westfalen",
+      "county_ags": "05913",
+      "phase": "research",
+      "priority": 9,
+      "metric_alignment": "unverified",
+      "blocking_issues": [
+        "Identify official police city-district statistics, matched boundaries and rate denominators."
+      ]
+    },
+    {
+      "id": "essen",
+      "name": "Essen",
+      "name_zh": "埃森",
+      "state": "Nordrhein-Westfalen",
+      "county_ags": "05113",
+      "phase": "research",
+      "priority": 10,
+      "metric_alignment": "unverified",
+      "blocking_issues": [
+        "Verify data release and small-area police offense table, not just prevention reports."
+      ]
+    },
+    {
+      "id": "mannheim",
+      "name": "Mannheim",
+      "name_zh": "曼海姆",
+      "state": "Baden-Württemberg",
+      "county_ags": "08222",
+      "phase": "research",
+      "priority": 11,
+      "metric_alignment": "unverified",
+      "blocking_issues": [
+        "Check current official district-level PKS data access and geometry coverage."
+      ]
+    },
+    {
+      "id": "augsburg",
+      "name": "Augsburg",
+      "name_zh": "奥格斯堡",
+      "state": "Bayern",
+      "county_ags": "09761",
+      "phase": "research",
+      "priority": 12,
+      "metric_alignment": "unverified",
+      "blocking_issues": [
+        "Find category-specific official Stadtbezirk cases and municipal geometry."
+      ]
+    }
+  ]
+}

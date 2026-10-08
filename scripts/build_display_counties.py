@@ -27,17 +27,39 @@ ROOT=Path(__file__).resolve().parents[1]
 COUNTY_FILE=ROOT/"data/germany-counties.geojson"
 OUT=ROOT/"data/germany-counties-display.geojson"
 
-# These metro boundaries have verified high-resolution polygon coverage.
-CITY_SOURCES={
-  "11000":"data/berlin_violent_2025.geojson",  # Berlin
-  "09162":"data/munich_local_2025.geojson",    # München Stadt, NOT Landkreis 09184
-  "02000":"data/hamburg_local_2025.geojson",
-  "14713":"data/leipzig_local_2025.geojson",
-  "14511":"data/chemnitz_local_2025.geojson",
-  # Dresden's 61 local Stadtteile cover only part of the municipality.
-  # Use the separately retrieved official complete KUEK5 city outline.
-  "14612":"data/dresden-city-boundary.geojson",
-}
+def registered_seam_sources():
+    """Read approved municipal geometry from the LIVE city registry only.
+
+    Unverified candidate cities live in city_candidates.json and cannot affect
+    the publicly displayed county map. An explicit priority keeps the old
+    deterministic stitching order even when the city registry is reordered.
+    Berlin's special police/PLR pipeline retains its established source.
+    """
+    live = json.loads((ROOT / "data/city_layers.json").read_text(encoding="utf-8"))
+    sources = [(0, "11000", "data/berlin_violent_2025.geojson")]
+    seen_ids = {"11000"}
+    seen_priorities = {0}
+    for city in live["cities"]:
+        if not city.get("seam_enabled", False):
+            continue
+        cid = city["id"]
+        ags = str(city.get("county_ags", "")).zfill(5)
+        priority = city.get("seam_priority")
+        if ags in seen_ids or len(ags) != 5 or not ags.isdigit():
+            raise RuntimeError(f"Invalid/reused seam AGS for {cid}: {ags}")
+        if not isinstance(priority, int) or priority <= 0 or priority in seen_priorities:
+            raise RuntimeError(f"Invalid/reused seam priority for {cid}: {priority}")
+        is_partial = city.get("coverage") == "partial"
+        geom_path = city.get("boundary_file") if is_partial else city.get("file")
+        if not geom_path or not str(geom_path).startswith("data/"):
+            raise RuntimeError(f"{cid}: approved seam source missing or outside data/")
+        if not (ROOT / geom_path).is_file():
+            raise RuntimeError(f"{cid}: approved seam geometry not found: {geom_path}")
+        seen_ids.add(ags)
+        seen_priorities.add(priority)
+        sources.append((priority, ags, geom_path))
+    return {ags: path for _, ags, path in sorted(sources)}
+
 TO_METRIC=Transformer.from_crs("EPSG:4326","EPSG:3035",always_xy=True).transform
 TO_WGS84=Transformer.from_crs("EPSG:3035","EPSG:4326",always_xy=True).transform
 
@@ -79,7 +101,8 @@ def main():
     stats=[]
     baseline_area=sum(g.area for g in county)
 
-    for ags,local_path in CITY_SOURCES.items():
+    city_sources=registered_seam_sources()
+    for ags,local_path in city_sources.items():
         if ags not in by_id:raise RuntimeError("Missing urban Kreis AGS "+ags)
         index=by_id[ags]
         coarse=county[index]
@@ -196,7 +219,7 @@ def main():
             "meta":{
                 "purpose":"display-only boundary harmonisation",
                 "official_source_geometry":"data/germany-counties.geojson",
-                "detail_sources":CITY_SOURCES,
+                "detail_sources":city_sources,
                 "policy":"preserve fine city geometry; reassign coarse county fringe to adjoining counties; raw boundaries and crime statistics unchanged",
                 "city_seams":stats
             },

@@ -56,7 +56,9 @@
         }
       },
       "builder": "scripts/build_hamburg_local_2025.py",
-      "county_ags": "02000"
+      "county_ags": "02000",
+      "seam_enabled": true,
+      "seam_priority": 20
     },
     {
       "id": "leipzig",
@@ -97,7 +99,9 @@
         }
       },
       "builder": "scripts/build_leipzig_local_2025.py",
-      "county_ags": "14713"
+      "county_ags": "14713",
+      "seam_enabled": true,
+      "seam_priority": 30
     },
     {
       "id": "chemnitz",
@@ -138,7 +142,9 @@
         }
       },
       "builder": "scripts/build_chemnitz_local_2025.py",
-      "county_ags": "14511"
+      "county_ags": "14511",
+      "seam_enabled": true,
+      "seam_priority": 40
     },
     {
       "id": "dresden",
@@ -182,7 +188,9 @@
       "county_ags": "14612",
       "coverage": "partial",
       "coverage_note": "灰色市域暂无街区级统计；周边县已淡化。颜色不代表这些区域的犯罪水平。",
-      "boundary_file": "data/dresden-city-boundary.geojson"
+      "boundary_file": "data/dresden-city-boundary.geojson",
+      "seam_enabled": true,
+      "seam_priority": 50
     },
     {
       "id": "munich",
@@ -223,7 +231,9 @@
         }
       },
       "builder": "scripts/build_munich_local_2025.py",
-      "county_ags": "09162"
+      "county_ags": "09162",
+      "seam_enabled": true,
+      "seam_priority": 10
     }
   ]
 }
