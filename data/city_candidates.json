@@ -113,15 +113,15 @@
       "name_zh": "斯图加特",
       "state": "Baden-Württemberg",
       "county_ags": "08111",
-      "phase": "join_ready",
+      "phase": "published",
       "priority": 4,
       "crime_source": {
-        "publisher": "Statistisches Amt Stuttgart / Polizeipräsidium Stuttgart",
-        "year": 2022,
-        "granularity": "Stadtbezirk",
-        "measure": "Straßen- und Gewaltkriminalität, offences and suspects",
-        "url": "https://opendata.stuttgart.de/dataset/strassen-und-gewaltkriminalitaet-straftaten-und-tatverdaechtige",
-        "evidence": "Verified via official CKAN CSV in GitHub Actions 2026-10-08: 361 rows covering 2008–2022, 23 official Stadtbezirke plus 'unbekannt'; columns street crime and Gewaltkriminalität recorded cases. Dataset webpage metadata appears newer than the ACTUAL CSV; no 2023–2025 rows. CC BY 4.0."
+        "publisher": "Landtag von Baden-Württemberg / Innenministerium",
+        "year": 2025,
+        "granularity": "23 Stadtbezirke",
+        "measure": "Gewaltkriminalität im öffentlichen Raum, Raub and gefährliche/schwere Körperverletzung counts",
+        "url": "https://www.landtag-bw.de/resource/blob/620460/1a5fd7fcd9c3aea2600f92f0fca27952/17_10292_D.pdf",
+        "evidence": "Official 2025 police data independently released in Landtag 17/10292 pp3–5; parsed and reconciled in CI, 23 areas, three crime categories."
       },
       "geometry_source": {
         "publisher": "Landeshauptstadt Stuttgart, Stadtmessungsamt",
@@ -130,13 +130,9 @@
         "url": "https://www.stuttgart.de/medien/ibs/OpenData-KLGL-Generalsisiert.zip",
         "evidence": "Downloaded and verified 2026-10-08 in CI: layer KLGL_BRUTTO_STADTBEZIRK has 23 official named districts and codes, 207.403 km² union, no overlap, exact match to official KLGL_BRUTTO_GEMEINDE municipal layer. Four-level source under CC BY 4.0."
       },
-      "metric_alignment": "unverified",
-      "blocking_issues": [
-        "Download or otherwise obtain police Stuttgart 2025 PKS report and verify it includes all 23 Stadtbezirk offense totals; official website returned HTTP 247 to GitHub automated requests.",
-        "For any 2025 category layer, verify per-Bezirk category-specific records: the old city OpenData CSV ends in 2022 despite current web metadata.",
-        "Only compute normalized rates if a matching district-year population denominator is verified. Maintain separate 2025 count-only track if just cases are available."
-      ],
-      "notes": "23 official geographic features completed and topology audited, but 2025 police district statistic not yet retrieved. CANDIDATE ONLY.",
+      "metric_alignment": "independent_count_only",
+      "blocking_issues": [],
+      "notes": "2025 public-space violence local CASE COUNT layer. Independent from national all-scene annual violence rates.",
       "audit": {
         "geometry_qa": "passed",
         "qa_run": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37731669812",
@@ -146,7 +142,23 @@
         "polygon_overlap_m2": 0,
         "municipality_difference_m2": 0,
         "source_epsg": 25832,
-        "published": false
+        "published": true,
+        "source_run": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37733649965",
+        "city_totals": {
+          "public_violence": 1636,
+          "public_robbery": 358,
+          "public_serious_injury": 1243
+        },
+        "assigned_totals": {
+          "public_violence": 1577,
+          "public_robbery": 350,
+          "public_serious_injury": 1194
+        },
+        "district_difference": {
+          "public_violence": 59,
+          "public_robbery": 8,
+          "public_serious_injury": 49
+        }
       },
       "crime_source_2025_candidate": {
         "publisher": "Polizeipräsidium Stuttgart",
@@ -154,7 +166,15 @@
         "granularity": "report citywide; municipality district annex requires verification",
         "url": "https://ppstuttgart.polizei-bw.de/statistiken/",
         "evidence": "Official 2025 PKS published 5 March 2026; full 2025 PDF linked by police. Automated GitHub-hosted requests to the police domain responded HTTP 247 with no readable links, so city-district rows are not verified. Do not infer 2025 district figures from historic 2008–2022 CSV."
-      }
+      },
+      "public_scope": "supplementary_public_violence_count_only",
+      "qa_passed": true,
+      "source_license_reviewed": true,
+      "limitations": [
+        "Category limited to crime in PUBLIC SPACE; cannot substitute for nationwide violence totals.",
+        "Unmatched city-vs-district statistical differences retained unallocated.",
+        "District rates not calculated: no verified matched resident-population denominator."
+      ]
     },
     {
       "id": "frankfurt",

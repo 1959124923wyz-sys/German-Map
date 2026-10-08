@@ -86,6 +86,14 @@ def validate(intake:dict,live:dict,supplementary:dict|None=None)->dict:
                         raise ValueError(f"{cid}: count categories must not claim a crime rate")
                     if item.get("region_count")!=22 or set(item.get("categories",[]))!=expected:
                         raise ValueError(f"{cid}: category names or number of official PKS regions drifted")
+                elif c.get("public_scope")=="supplementary_public_violence_count_only":
+                    expected={"public_violence","public_robbery","public_serious_injury"}
+                    if item.get("metric")!="public_space_violence_cases" or "非每10万人率" not in str(item.get("unit","")):
+                        raise ValueError(f"{cid}: public-space category cannot claim all-scene crime rate")
+                    if item.get("region_count")!=23 or set(item.get("categories",[]))!=expected:
+                        raise ValueError(f"{cid}: published Stuttgart 23 areas/3 categories changed")
+                    if item.get("official_city_count")!=1636 or item.get("assigned_to_districts")!=1577 or item.get("unmatched_remainder")!=59:
+                        raise ValueError(f"{cid}: Stuttgart official 2025 city/district totals changed")
                 else:
                     raise ValueError(f"{cid}: unsupported supplementary publication scope")
             else:

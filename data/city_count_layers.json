@@ -59,6 +59,31 @@
         "drug"
       ],
       "note": "The senate report warns area totals omit offenses without district assignment; dashes are null, never zero."
+    },
+    {
+      "id": "stuttgart",
+      "name": "Stuttgart",
+      "name_zh": "斯图加特",
+      "state": "Baden-Württemberg",
+      "ags": "08111",
+      "file": "data/stuttgart_public_violence_2025.geojson",
+      "year": 2025,
+      "metric": "public_space_violence_cases",
+      "unit": "公共场所登记案件数量（起），非每10万人率",
+      "source": "Landtag Baden-Württemberg Drucksache 17/10292 pages 3–5",
+      "source_url": "https://www.landtag-bw.de/resource/blob/620460/1a5fd7fcd9c3aea2600f92f0fca27952/17_10292_D.pdf",
+      "geometry_credit": "Landeshauptstadt Stuttgart Stadtmessungsamt; 23 Stadtbezirke; CC BY 4.0",
+      "geometry_url": "https://www.stuttgart.de/medien/ibs/OpenData-KLGL-Generalsisiert.zip",
+      "region_count": 23,
+      "categories": [
+        "public_violence",
+        "public_robbery",
+        "public_serious_injury"
+      ],
+      "official_city_count": 1636,
+      "assigned_to_districts": 1577,
+      "unmatched_remainder": 59,
+      "note": "Only violent crime in public space, not the nationwide all-scenes violent-crime rate."
     }
   ]
 }

@@ -109,6 +109,7 @@ async function load(){
 async function activate(){
  if(enabled){disable();return}
  window.__BREMEN_CATEGORY_MAP__?.disable?.();
+ window.__STUTTGART_PUBLIC_MAP__?.disable?.();
  if(!data)await load();
  enabled=true;epoch++;
  // Selecting a local count-only view must not edit nationwide crime modes.
