@@ -112,9 +112,18 @@
           2024,
           2025
         ],
-        "category": "all_offenses_absolute_cases"
+        "category": "all_offenses_absolute_cases",
+        "bv6_drilldown": true,
+        "bv6_area_count": 4,
+        "bv6_category_count": 8,
+        "bv6_2025_all_offenses": 5097,
+        "bv6_source_probe": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37744051270",
+        "bv6_source_qa": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37744276334",
+        "bv6_polygons_area_km2": 19.678,
+        "bv6_source_parent_diff_m2": 405.3,
+        "bv6_overlap_m2": 0
       },
-      "notes": "Released independent 10 Stadtbezirk annual count-only district dataset; 2025 police district sum 68,224 and city total 69,522, residual 1,298 remains unallocated.",
+      "notes": "Public 10 Stadtbezirk 2022-25 totals and separately vetted 4-Stadtteil BV6 drilldown with eight genuine neighborhood offense categories (2022-25). No rates and no extrapolation.",
       "public_scope": "supplementary_all_offense_stadtbezirk_count_only",
       "qa_passed": true,
       "source_license_reviewed": true,

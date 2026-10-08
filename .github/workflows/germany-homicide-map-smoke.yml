@@ -26,6 +26,8 @@ on:
       - 'scripts/validate_stuttgart_public_violence.py'
       - 'scripts/build_duesseldorf_offenses_2025.py'
       - 'scripts/validate_duesseldorf_offenses_2025.py'
+      - 'scripts/build_duesseldorf_bv6_local.py'
+      - 'scripts/validate_duesseldorf_bv6_local.py'
       - '.github/workflows/germany-homicide-map-smoke.yml'
 
 permissions:
@@ -139,6 +141,12 @@ jobs:
 
       - name: Validate Düsseldorf district counts and official geometry
         run: python scripts/validate_duesseldorf_offenses_2025.py
+
+      - name: Build Düsseldorf BV6 2025 four-Stadtteil crime categories
+        run: python scripts/build_duesseldorf_bv6_local.py --output data/duesseldorf_bv6_local_2025.geojson --release-count-only
+
+      - name: Audit Düsseldorf BV6 official topology and 8 crime categories
+        run: python scripts/validate_duesseldorf_bv6_local.py
 
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py

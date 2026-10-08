@@ -101,6 +101,11 @@ def validate(intake:dict,live:dict,supplementary:dict|None=None)->dict:
                         raise ValueError(f"{cid}: Düsseldorf police area/year coverage incomplete")
                     if item.get("reported_total")!=69522 or item.get("mapped_total")!=68224 or item.get("unassigned_total")!=1298:
                         raise ValueError(f"{cid}: Düsseldorf source count reconciliation invalid")
+                    sub=item.get("drilldown",{})
+                    if (sub.get("parent_stadtbezirk")!="06" or sub.get("region_count")!=4 or
+                        sub.get("category_count")!=8 or sub.get("history_years")!=[2022,2023,2024,2025] or
+                        sub.get("file")!="data/duesseldorf_bv6_local_2025.geojson"):
+                        raise ValueError(f"{cid}: unapproved local BV6 drilling scope")
                 else:
                     raise ValueError(f"{cid}: unsupported supplementary publication scope")
             else:

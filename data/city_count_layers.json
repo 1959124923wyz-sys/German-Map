@@ -109,7 +109,35 @@
       "reported_total": 69522,
       "mapped_total": 68224,
       "unassigned_total": 1298,
-      "note": "Independent all-offenses absolute count-only overlay. Complete ten city-district figures (2022–2025) from original official 2025 police presentation; residual city totals not distributed to polygons."
+      "note": "Independent all-offenses absolute count-only overlay. Complete ten city-district figures (2022–2025) from original official 2025 police presentation; residual city totals not distributed to polygons.",
+      "drilldown": {
+        "id": "duesseldorf_bv6_stadtteile",
+        "parent_stadtbezirk": "06",
+        "file": "data/duesseldorf_bv6_local_2025.geojson",
+        "unit": "2025年官方BV6街区登记案件绝对数，非犯罪率",
+        "source_url": "https://ris-oparl.itk-rheinland.de/Oparl/bodies/0015/downloadfiles/00589618.pdf",
+        "source_pages": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "geometry_url": "https://opendata.duesseldorf.de/sites/default/files/Stadtteile_2025_WGS84_EPSG4326_1.geojson",
+        "official_licence": "Datenlizenz Deutschland – Zero – 2.0",
+        "region_count": 4,
+        "category_count": 8,
+        "history_years": [
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "note": "Only BV6 (Lichtenbroich, Unterrath, Rath, Mörsenbroich) has eight police categories. All other city districts retain ONLY the ten-district total offense metric."
+      }
     }
   ]
 }

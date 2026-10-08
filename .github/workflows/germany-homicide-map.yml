@@ -160,6 +160,20 @@ jobs:
       - name: Validate Düsseldorf official police numeric and topology scope
         run: python scripts/validate_duesseldorf_offenses_2025.py
 
+      - name: Refresh Düsseldorf BV6 official 4-Stadtteil local crime category counts
+        run: |
+          if ! (python scripts/build_stuttgart_duesseldorf_geometry.py &&
+                python scripts/build_duesseldorf_bv6_local.py --output data/duesseldorf_bv6_local_2025.geojson --release-count-only); then
+            if [ ! -s data/duesseldorf_bv6_local_2025.geojson ]; then
+              echo "Düsseldorf BV6 candidate not approved, no last-good data available" >&2
+              exit 1
+            fi
+            echo "::warning::BV6 source unavailable; retaining reviewed previous data"
+          fi
+
+      - name: Audit Düsseldorf BV6 official 8 crime categories and 4 neighborhood polygons
+        run: python scripts/validate_duesseldorf_bv6_local.py
+
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py
 

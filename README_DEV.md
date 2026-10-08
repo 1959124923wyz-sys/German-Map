@@ -344,3 +344,36 @@ Metadata identifies 2022–2025 original counts and municipality-minus-area
 differences each year. Page links to source and official boundaries.
 Dedicated browser tests cover popups, no fake rate, other city overlays,
 state/county map and all previously fixed click interactions.
+
+## Düsseldorf BV6 local drill-down, 2025 eight categories
+
+Original Düsseldorf Polizeipräsidium `BV 6` PKS presentation,
+10 June 2026, **PDF pp.4–11**, contains the original 2022–2025
+individual crime case tables for *Lichtenbroich (061), Unterrath (062),
+Rath (063), Mörsenbroich (064)*. The eight local metrics are
+total offenses, street crime, street robbery, street injury,
+theft on/from motor vehicles, bicycle theft, pickpocketing and
+residential burglary. The **2025 four-Stadtteil total 5,097 cases**
+is crosschecked *independently* against the existing official
+ten-Stadtbezirk PKS table (Stadtbezirk 6 = 5,097) for **all four years**.
+
+Official City of Düsseldorf 26 March 2025 WGS84 Stadtteil polygons (50)
+are published by Amt für Statistik und Wahlen under **Datenlizenz
+Deutschland Zero 2.0**. Four geometries together cover 19.678 km²
+with zero internal overlap and only 405.3 m² symmetric difference from
+the official 2025 Stadtbezirk-6 geography (0.0021% of its area).
+All local values are absolute cases, **never per-capita rates**.
+Criminal category counts from BV6 must NOT be projected into
+Düsseldorf's other nine districts. Source PDF pages and true spatial
+coverage are cited directly in the panel.
+
+The drill-down is nested under the existing public
+`杜塞尔多夫·全部案件` panel: switch 10 administrative districts
+to 4 officially reported Stadtteile, select 8 original crime classes,
+and return to 10 districts. Scripts:
+```sh
+python scripts/build_stuttgart_duesseldorf_geometry.py
+python scripts/build_duesseldorf_bv6_local.py --output data/duesseldorf_bv6_local_2025.geojson --release-count-only
+python scripts/validate_duesseldorf_bv6_local.py
+```
+Existing nationwide rates and city overlays remain entirely separate.
