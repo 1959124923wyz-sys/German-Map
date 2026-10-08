@@ -13,7 +13,8 @@
     try {
       const u = new URL(src);
       return u.protocol === 'https:' && (/^www\.presseportal\.de$/.test(u.hostname) ||
-        /^www\.bundesdrogenbeauftragter\.de$/.test(u.hostname)) ? u.href : '';
+        /^www\.bundesdrogenbeauftragter\.de$/.test(u.hostname) ||
+        /^www\.berlin\.de$/.test(u.hostname)) ? u.href : '';
     } catch{return '';}
   }
   function sourceCheck(data) {
