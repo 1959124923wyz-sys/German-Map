@@ -7,6 +7,7 @@ on:
     paths:
       - 'scripts/audit_bremen_district_joins.py'
       - 'scripts/build_bremen_geometry_staging.py'
+      - 'scripts/extract_bremen_offenses.py'
       - '.github/workflows/bremen-district-join-audit.yml'
 
 permissions:
@@ -28,6 +29,9 @@ jobs:
       - name: Build and topologically audit unpublished official polygons
         run: python scripts/build_bremen_geometry_staging.py
 
+      - name: Parse and verify 22-by-7 official offense statistics
+        run: python scripts/extract_bremen_offenses.py
+
       - name: Archive audit with unresolved exceptions
         if: always()
         uses: actions/upload-artifact@v4
@@ -36,4 +40,5 @@ jobs:
           path: |
             artifacts/bremen_join_audit.json
             artifacts/bremen_areas_staging.geojson
+            artifacts/bremen_cases_staging.json
           if-no-files-found: warn
