@@ -61,3 +61,26 @@ python topics/immigration/scripts/verify_scope.py --base "$(git merge-base origi
 ```
 
 CI 同时执行上述检查。本 README 是约束文件，不代表已经存在经核实的全国县级非法移民数据或完成生产集成。
+
+## 2026-10-08 · 州级地图绘制阶段
+
+独立测试页面 `topics/immigration/index.html` 读取**主仓库只读** `data/germany-states.geojson`。地图按不同来源切换：AZR 2025年底的离境义务总人数／持Duldung人数／无Duldung人数；以及联邦警察2025年度遣返执行量（按执行机构统计）。
+
+- 16州原始数值均与官方表对应（AZR Drucksache 21/4103 第21页；遣返 Drucksache 21/4403 第4页），使用不同来源的独立元数据。
+- 仅做**五档州级绝对人数分级着色**，不生成县级估值、不宣称高低“风险”；没有人口分母，不能解释为移民人口占比。
+- 指标切换改变地图颜色、五档图例、国家总量、州详情和前五州列表；缺失状态用灰色。
+- 生产集成接口仍为 `loadData / activate(context) / deactivate`，额外公开 `selectState(iso)` 和 `selectMetric(id)`，使主程序现有州级点击逻辑能调用组件，而**不在专题内部抢占地图事件**。
+- `activate` 的着色面在 zIndex 215，`interactive:false` 且 pane `pointer-events:none`；主程序可能需要在统一集成阶段隐藏原有县级高透明填充，以免遮住本主题颜色。该操作由公共地图最终集成负责。
+- 独立测试页的 Leaflet 州点击层仅在测试页创建，不属于导出的专题组件；生产主程序不得复制该层。
+- 退出清除本专题 Leaflet 图层及自建DOM监听器，不动其他业务图层、州县边界和主地图状态。测试页面可点“退出/重新进入”手工烟测。
+
+### 使用方法
+
+在仓库根目录启动静态服务器（仅本地，不触发正式发布）：
+
+```bash
+python -m http.server 8765
+# 浏览器访问 http://localhost:8765/topics/immigration/
+```
+
+主程序最终集成至少提供 `context.map`、`context.container`、`context.stateGeoJSON`；公共州级选择回调使用 `window.GermanMapTopics.immigration.selectState('DE-NW')`。所有代码保持在本专题目录或 immigration 前缀工作流内。

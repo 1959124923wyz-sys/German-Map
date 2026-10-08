@@ -3,50 +3,88 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>德国非法移民与边境管制｜独立开发预览</title>
+  <title>German-Map 05 · 非法移民与边境管制（独立预览）</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="./topic.css">
   <style>
-    * { box-sizing: border-box }
-    body { margin: 0; background: #f3f6f7; font: 14px system-ui,sans-serif; color: #193344 }
-    header { padding: 12px 18px; background: #1e374a; color: white }
-    header small { opacity: .8 }
-    main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(270px, 340px); height: calc(100vh - 66px) }
-    #map { min-height: 400px; height: 100%; width: 100% }
-    aside { overflow-y: auto; background: white }
-    #status { padding: 16px; color: #935020 }
-    @media (max-width: 700px) { main { grid-template-columns: 1fr; grid-template-rows: 58vh auto; height: auto } }
+    * {box-sizing:border-box}
+    body {margin:0;background:#eaf0f4;color:#1b3544;font:14px/1.5 system-ui,"Segoe UI",sans-serif}
+    header {background:#192f40;color:#fff;min-height:64px;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .h-title {font-weight:760;font-size:15px;letter-spacing:.01em}
+    .h-subtitle {display:block;color:#a8bdca;font-size:11px}
+    .h-buttons {display:flex;gap:8px;flex-wrap:wrap}
+    header button {font:inherit;font-size:12px;padding:7px 11px;border-radius:6px;color:#ecf4f7;background:#324f62;border:1px solid #627b8a;cursor:pointer}
+    main {height:calc(100vh - 64px);min-height:490px;display:grid;grid-template-columns:minmax(0,1fr) 350px}
+    #map {width:100%;height:100%;background:#e3edf2}
+    #topic-container {overflow:auto;background:white;border-left:1px solid #cad6dd}
+    #status {padding:14px;background:#f4f7f9;color:#475e6c;font-size:12px}
+    .leaflet-container {font:inherit}
+    @media(max-width:730px) {header {align-items:flex-start;flex-direction:column} main {height:auto;grid-template-columns:1fr;grid-template-rows:52vh auto} #topic-container {overflow:visible} }
   </style>
 </head>
 <body>
-  <header><strong>German-Map · 非法移民专题 05</strong>
-    <small>　独立开发预览；未接入生产地图</small></header>
-  <main><div id="map"></div><aside id="topic-container"><p id="status">载入官方统计与州边界…</p></aside></main>
+  <header>
+    <div><div class="h-title">德国犯罪地图 · 非法移民与边境管制</div>
+      <small class="h-subtitle">专题05独立开发预览 · 2025年官方州级数据 · 尚未接入生产主页</small></div>
+    <div class="h-buttons">
+      <button id="reset" type="button">返回德国全图</button>
+      <button id="reenter" type="button">测试退出 / 重新进入</button>
+    </div>
+  </header>
+  <main>
+    <div id="map" aria-label="德国16州统计地图"></div>
+    <aside id="topic-container"><div id="status" role="status">载入官方数据与德国州界…</div></aside>
+  </main>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="./topic.js"></script>
   <script>
     (async () => {
-      const map = L.map('map', { minZoom: 5, maxZoom: 12, preferCanvas: false });
-      map.fitBounds([[47.1, 5.7], [55.1, 15.2]]);
+      const topic=window.GermanMapTopics.immigration;
+      const map=L.map('map',{minZoom:5,maxZoom:12,preferCanvas:false,zoomControl:true});
+      const germany=L.latLngBounds([[47.1,5.7],[55.1,15.2]]);
+      map.fitBounds(germany,{padding:[12,12]});
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-        { opacity: .43, attribution: '© OpenStreetMap contributors' }).addTo(map);
+        {attribution:'© OpenStreetMap contributors',maxZoom:19,opacity:.48}).addTo(map);
+      const status=document.getElementById('status');
       try {
-        const [geoResponse] = await Promise.all([
-          fetch('../../data/germany-states.geojson'),
-          window.GermanMapTopics.immigration.loadData()
-        ]);
-        if (!geoResponse.ok) throw new Error('GeoJSON HTTP ' + geoResponse.status);
-        const states = await geoResponse.json();
-        const result = window.GermanMapTopics.immigration.activate({
-          map, container: document.getElementById('topic-container'), stateGeoJSON: states
+        const [resp]=await Promise.all([fetch('../../data/germany-states.geojson'),topic.loadData()]);
+        if(!resp.ok)throw new Error('州界 GeoJSON HTTP '+resp.status);
+        const states=await resp.json();
+        const byIso=new Map(states.features.map(f=>[f.properties.id,f]));
+        const panel=document.getElementById('topic-container');
+        const context={map,container:panel,stateGeoJSON:states};
+        const enable=()=>topic.activate(context);
+        const out=enable();
+        if(out.matchedStates!==16)throw new Error('仅匹配 '+out.matchedStates+'/16 州；请检查地理编码');
+        // Standalone *harness only*. Main-map integration does not create these
+        // interactive polygons; the host map will reuse its own state click events.
+        const pickerPane=map.createPane('immigrationStandalonePicker');
+        pickerPane.style.zIndex=355;
+        const picker=L.geoJSON(states,{
+          pane:'immigrationStandalonePicker',
+          renderer:L.svg({pane:'immigrationStandalonePicker',padding:.2}),
+          interactive:true,
+          style:()=>({color:'#496a7e',weight:.8,opacity:.45,fillColor:'#fff',fillOpacity:.005}),
+          onEachFeature:(feature,layer)=>{
+            layer.bindTooltip(feature.properties.name,{sticky:true,direction:'top'});
+            layer.on('click',()=>topic.selectState(feature.properties.id));
+          }
+        }).addTo(map);
+        document.getElementById('reset').addEventListener('click',()=>map.fitBounds(germany,{padding:[12,12]}));
+        document.getElementById('reenter').addEventListener('click',()=>{
+          topic.deactivate();
+          enable();
         });
-        document.getElementById('status')?.remove();
-        if (!result.matchedStates) throw new Error('没有州边界与数据成功匹配');
-      } catch (error) {
-        document.getElementById('status').textContent =
-          '独立预览加载失败：' + error.message + '；请通过本地 HTTP 服务打开。';
+        status.remove();
+        window.addEventListener('pagehide',()=>{
+          topic.deactivate();
+          if(map.hasLayer(picker))map.removeLayer(picker);
+        });
+      }catch(error){
+        status.textContent='独立预览加载失败：'+error.message+'。请通过HTTP服务打开此页面。';
+        status.style.color='#b42318';
+        console.error(error);
       }
-      window.addEventListener('pagehide', () => window.GermanMapTopics.immigration.deactivate());
     })();
   </script>
 </body>
