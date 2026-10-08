@@ -10,7 +10,8 @@ All values are police-registered absolute cases, not rates. Never fill
 unreported BV9 categories by estimation. No official PDF is republished.
 """
 from __future__ import annotations
-import argparse,io,json,re
+import argparse,io,json,re,time
+import requests
 from pathlib import Path
 from pypdf import PdfReader
 from shapely import make_valid
@@ -61,6 +62,36 @@ CONFIG={
  }
 }
 METER=Transformer.from_crs("EPSG:4326","EPSG:3035",always_xy=True).transform
+SOURCE_CACHE=Path("data/duesseldorf_official_stadtteile_2025.geojson")
+
+def load_official_city_geometry():
+    # The exact 26 Mar 2025 official city-wide 50-Stadtteil geometry is
+    # immutable for this 2025 statistics release. Keep a source copy:
+    # rerunning multiple police presentation builders MUST NOT refetch a
+    # 3rd-party WGS84 service for every neighbourhood group.
+    if SOURCE_CACHE.is_file():
+        data=json.loads(SOURCE_CACHE.read_text(encoding="utf-8"))
+        if len(data.get("features",[]))==50:
+            print("[duesseldorf-more-geo] versioned 2025 municipal source reused",flush=True)
+            return data
+        raise ValueError("Versioned 2025 original Düsseldorf city boundary file damaged")
+    error=None
+    for attempt in range(1,4):
+        try:
+            raw=download_bytes(GEO_URL,timeout=35)
+            data=json.loads(raw.decode("utf-8-sig"))
+            fs=data.get("features",[])
+            if len(fs)!=50 or len({f.get("properties",{}).get("Nummer") for f in fs})!=50:
+                raise ValueError("Official Düsseldorf Stadtteil 2025 roster must contain exactly 50 unique numbers")
+            SOURCE_CACHE.parent.mkdir(parents=True,exist_ok=True)
+            write_geojson(SOURCE_CACHE,data)
+            print("[duesseldorf-more-geo] official 2025 source cached",len(raw),"bytes",flush=True)
+            return data
+        except (requests.RequestException,TimeoutError) as exc:
+            error=exc
+            print("[duesseldorf-more-geo] government source temporary retry",attempt,type(exc).__name__,flush=True)
+            if attempt<3:time.sleep(attempt*2)
+    raise RuntimeError(f"Official Düsseldorf 2025 source unavailable after retries: {error}")
 
 def read_pdf(bv):
     raw=download_bytes(PDFS[bv],timeout=85)
@@ -155,7 +186,7 @@ def build(bv,output,release):
     if release and output!=official_out:raise ValueError(f"Wrong public BV{bv} path")
     if not release and output.startswith("data/"):raise ValueError("Cannot publish candidate without explicit approval")
     metrics,police_full_city=read_pdf(bv)
-    original=json.loads(download_bytes(GEO_URL,timeout=75).decode("utf-8-sig"))
+    original=load_official_city_geometry()
     if len(original.get("features",[]))!=50:raise ValueError("Original Düsseldorf 2025 city has not got 50 Stadtteil polygons")
     index={f.get("properties",{}).get("Nummer"):f for f in original["features"]}
     names=NAMES[bv];codes=CODES[bv];years=CONFIG[bv]["years"]
