@@ -168,11 +168,11 @@
         "year": 2024,
         "format": "Official ATKIS WFS Verwaltungsgrenzen Stadtteile + Ortsteile",
         "url": "https://geodienste.bremen.de/wfs_verwaltungsgrenzen?SERVICE=WFS&REQUEST=GetCapabilities",
-        "evidence": "Verified 2026-10-08 in GitHub Actions: official WFS GetCapabilities advertises app:Stadtteile_Bremen and app:Ortsteile_Bremen (also Bremerhaven, excluding those from city Bremen). WFS geometries not yet downloaded/matched."
+        "evidence": "Verified 2026-10-08 by downloading native WFS 2.0 GML: 19 official Bremen Stadtteile and 87 Ortsteile with correct (lon,lat) WGS84 coordinates, names (bez_st/bez_ot), administrative codes (sch_st/sch_ot), and polygon MultiSurface. JSON outputFormat is unsupported; use GML parser. Bremerhaven excluded."
       },
       "metric_alignment": "unverified",
       "blocking_issues": [
-        "Verify official WFS feature types and complete matching Bremen's 22 2025 police reporting units; combine only explicitly documented joined Stadtteile/Ortsteile.",
+        "Parse native official WFS GML to WGS84 GeoJSON and reconcile exactly 22 police areas from 19 Stadtteile plus selected Ortsteile (Blockland, Borgfeld, Seehausen, Strom; Industriehäfen/Neustädter Hafen grouped as the police PDF specifies). Preserve leftover Hafen subdistricts without invented counts.",
         "Match 2025 population by reporting unit before creating per-100k rates, otherwise use clearly labelled counts.",
         "Document police data citywide vs area sum discrepancies and preserve unassigned incidents.",
         "Review legal reuse notice for the parliamentary document (Transparency Portal shows CC BY-NC-ND for the PDF): extract only objective aggregate figures with attribution, don't redistribute or alter PDF."
@@ -192,7 +192,11 @@
           "app:Ortsteile_Bremen"
         ],
         "geometry_joined": false,
-        "published": false
+        "published": false,
+        "qa_geometry_probe": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37724199665",
+        "official_city_district_features": 19,
+        "official_ortsteil_features": 87,
+        "source_coordinates": "EPSG:4326 longitude latitude"
       }
     },
     {
