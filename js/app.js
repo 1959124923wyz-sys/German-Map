@@ -301,7 +301,7 @@
   window.addEventListener('resize',()=>{if(el.stateDrawer.classList.contains('open'))stateDrawerDrag.keepInside();});
   Promise.all([
     fetch('data/cases.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('cases '+r.status);return r.json()}),
-    fetch('data/germany-counties.geojson',{cache:'force-cache'}).then(r=>{if(!r.ok)throw new Error('counties '+r.status);return r.json()}),
+    fetch('data/germany-counties-display.geojson',{cache:'force-cache'}).then(r=>{if(!r.ok)throw new Error('counties '+r.status);return r.json()}),
     fetch('data/germany-states.geojson',{cache:'force-cache'}).then(r=>{if(!r.ok)throw new Error('states '+r.status);return r.json()}),
     fetch('data/pks_violent_2025.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('pks '+r.status);return r.json()}),
     fetch('data/pks_property_2025.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('property pks '+r.status);return r.json()}),
