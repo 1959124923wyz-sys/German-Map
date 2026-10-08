@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "description": "Independent count-only city detail layers. Never conflate with nationwide annual violence / property rates.",
+  "layers": [
+    {
+      "id": "kiel",
+      "name": "Kiel",
+      "name_zh": "基尔",
+      "state": "Schleswig-Holstein",
+      "ags": "01002",
+      "file": "data/kiel_total_cases_2025.geojson",
+      "year": 2025,
+      "bounds": [
+        [
+          54.19,
+          9.91
+        ],
+        [
+          54.49,
+          10.39
+        ]
+      ],
+      "min_zoom": 8,
+      "metric": "all_offenses_cases",
+      "unit": "登记案件（起），非每10万人率",
+      "source": "Polizeidirektion Kiel · PKS 2025, Tabelle 10",
+      "source_url": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/POLIZEI/DasSindWir/PDen/Kiel/_downloads/pks/pks_pdkiel_2025.pdf?__blob=publicationFile&v=2",
+      "geometry_credit": "Landeshauptstadt Kiel · Statistische Stadtteile · CC BY 4.0",
+      "geometry_url": "https://www.govdata.de/suche/daten/statistische-stadtteile-in-kiel",
+      "color_measure": "2025年各街区全部犯罪的登记数量；不代表人均治安风险",
+      "reported_total": 25158,
+      "mapped_total": 24341,
+      "unassigned_total": 817
+    }
+  ]
+}

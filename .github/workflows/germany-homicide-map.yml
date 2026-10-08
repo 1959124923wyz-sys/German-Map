@@ -19,6 +19,7 @@ on:
       - 'css/**'
       - 'js/**'
       - 'data/city_layers.json'
+      - 'data/city_count_layers.json'
       - 'requirements.txt'
 
 permissions:
@@ -67,6 +68,7 @@ jobs:
           node --check js/layers/state-layer.js
           node --check js/app.js
           node --check js/layers/city-detail.js
+          node --check js/layers/city-count-detail.js
 
       - name: Test deterministic city builder I/O
         run: python scripts/test_city_build_common.py
@@ -99,6 +101,19 @@ jobs:
             fi
             echo "::warning::Dresden WFS unavailable; retaining last-known-good boundary"
           fi
+
+      - name: Build audited Kiel official supplemental count-only layer
+        run: |
+          if ! python scripts/build_kiel_staging.py --output data/kiel_total_cases_2025.geojson --release-count-only; then
+            if [ ! -s data/kiel_total_cases_2025.geojson ]; then
+              echo "Missing last-known-good Kiel total-count layer" >&2
+              exit 1
+            fi
+            echo "::warning::Kiel police source temporarily unavailable; retaining last-known-good count layer"
+          fi
+
+      - name: Validate Kiel independent crime count layer
+        run: python scripts/validate_kiel_count_layer.py
 
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py

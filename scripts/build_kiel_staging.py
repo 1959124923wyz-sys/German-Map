@@ -63,8 +63,13 @@ def police_rows(data: bytes):
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--output",type=Path,default=None,
-                        help="OPTIONAL local staging output. Never use data/city_layers.json.")
+                        help="OPTIONAL geographic output, never the main city registry.")
+    parser.add_argument("--release-count-only",action="store_true",
+                        help="Only with --output, mark this as independently labelled all-offense counts.")
     args=parser.parse_args()
+    if args.release_count_only and (args.output is None or
+                                    args.output.as_posix()!="data/kiel_total_cases_2025.geojson"):
+        raise RuntimeError("Kiel supplemental release requires exactly data/kiel_total_cases_2025.geojson")
     rows,total,unknown=police_rows(download_bytes(PKS,timeout=80))
     geo=download_json(GEOMETRY,params=GEO_PARAMS,timeout=80)
     features=geo.get("features") or []
@@ -145,21 +150,23 @@ def main():
     if len(output)!=len(grouped):
         raise RuntimeError("Kiel incomplete, not safe to stage")
     result={"type":"FeatureCollection",
-      "meta":{"schema_version":1,"city":"Kiel","year":2025,"status":"candidate_only",
+      "meta":{"schema_version":1,"city":"Kiel","year":2025,
+        "status":"supplementary_count_only" if args.release_count_only else "candidate_only",
         "metric_scope":"all_offenses_count_only_NOT_violence_or_theft",
-        "rate_status":"not_calculated_missing_verified_district_population",
+        "rate_status":"no_2025_district_population; CSV currently ends 2023",
+        "attribution":"Polizeidirektion Kiel (PKS 2025), Landeshauptstadt Kiel (statistische Stadtteile; CC BY 4.0)",
         "unknown_place_cases_excluded_from_mapped_polygons":unknown,
         "unmapped_official_police_subareas":unmapped,
         "unassigned_total_2025":unassigned+unknown,
         "crime_source":PKS,"geometry_source":GEOMETRY,
-        "note":"Primary sources, NO public UI activation; these are all-offense counts, not violence/theft."},
+        "note":"All offense counts, NOT a crime rate and NOT violence/theft. Independent local supplementary layer only."},
       "features":sorted(output,key=lambda f:f["id"])}
     if args.output:
         if ROOT/"data/city_layers.json"==args.output.resolve():
             raise RuntimeError("staging may not overwrite live registry")
         write_geojson(args.output,result)
         print("[kiel-staging] candidate output",args.output,flush=True)
-    print("[kiel-staging] PASS: official inputs reconcile; rate not estimated; not published",flush=True)
+    print("[kiel-staging] PASS: official counts reconciled, no rate invented, independent display="+str(args.release_count_only),flush=True)
 
 
 if __name__=="__main__":

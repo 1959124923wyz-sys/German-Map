@@ -64,3 +64,25 @@ footer{flex:0 0 34px;border-top:1px solid var(--line);padding:7px 18px;color:var
 .mapwrap.city-detail-focus .generic-city-legend{margin:0;padding:0;border:0}
 .city-coverage-note{margin-top:9px;padding-top:8px;border-top:1px solid rgba(255,255,255,.15);font-size:10px;line-height:1.5;color:#c8d5df}
 .city-detail-focus .city-coverage-note:before{content:"";display:inline-block;width:10px;height:10px;background:#e7ecef;border:1px solid #a6b0b8;border-radius:2px;margin-right:7px;vertical-align:-1px}
+
+/* Independently labelled Kiel all-offense case counts (not crime rates). */
+.mapwrap.supp-city-focus .legend-block:not(.supp-city-legend){display:none}
+.mapwrap.supp-city-focus .supp-city-legend{margin:0;padding:0;border:0}
+.supp-warning{font-size:10px;line-height:1.48;color:#dbd3ae;margin-top:8px}
+.supp-city-info{position:absolute;right:12px;bottom:12px;z-index:705;width:min(315px,calc(100% - 24px));padding:12px 13px;background:rgba(13,23,36,.96);border:1px solid #496175;border-radius:10px;color:#e8f2fc;box-shadow:0 4px 18px rgba(0,0,0,.3);font-size:10px}
+.supp-city-info[hidden]{display:none!important}
+.supp-city-head{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px}
+.supp-city-head button{background:transparent;border:0;color:#b7cadd;cursor:pointer;font-size:21px;line-height:1}
+.supp-city-sub{color:#8fb4cf;font-size:10px;margin:3px 0 8px}
+.supp-city-numbers{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.supp-city-numbers span{display:flex;flex-direction:column;background:#1d2b3c;border-radius:7px;padding:7px 9px}
+.supp-city-numbers b{font-size:17px}.supp-city-numbers small{color:#9aafc0;font-size:9px}
+.supp-city-info p{line-height:1.5;margin:9px 0}.supp-city-source{font-size:9px;color:#a1b7c9;line-height:1.5}
+.supp-city-source a{color:#91c9ee}
+.supp-popup{min-width:245px;color:#1d2833;font-size:11px;line-height:1.5}
+.supp-popup strong{font-size:14px}.supp-big{font-weight:750;font-size:23px;color:#214e7c}
+.supp-change{margin:5px 0;border-bottom:1px solid #d9e1e7;padding-bottom:6px}
+.supp-history{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:7px 0}
+.supp-history span{display:flex;flex-direction:column;background:#edf2f8;border-radius:4px;padding:3px}
+.supp-history small{color:#677888}.supp-popup>small{color:#657481}
+@media(max-width:920px){.supp-city-info{top:10px;bottom:auto;right:8px;width:235px}.supp-city-numbers b{font-size:14px}}

@@ -15,6 +15,9 @@ on:
       - 'scripts/build_display_counties.py'
       - 'scripts/validate_display_counties.py'
       - 'data/city_layers.json'
+      - 'data/city_count_layers.json'
+      - 'scripts/build_kiel_staging.py'
+      - 'scripts/validate_kiel_count_layer.py'
       - '.github/workflows/germany-homicide-map-smoke.yml'
 
 permissions:
@@ -69,6 +72,7 @@ jobs:
           node --check js/layers/state-layer.js
           node --check js/app.js
           node --check js/layers/city-detail.js
+          node --check js/layers/city-count-detail.js
 
       - name: Test deterministic city builder I/O
         run: python scripts/test_city_build_common.py
@@ -94,6 +98,12 @@ jobs:
           else
             echo "Use versioned Dresden boundary for reproducible smoke tests"
           fi
+
+      - name: Build audited Kiel official count-only layer
+        run: python scripts/build_kiel_staging.py --output data/kiel_total_cases_2025.geojson --release-count-only
+
+      - name: Validate Kiel independent crime count layer
+        run: python scripts/validate_kiel_count_layer.py
 
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py

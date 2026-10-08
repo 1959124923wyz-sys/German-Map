@@ -326,6 +326,33 @@ with sync_playwright() as playwright:
     assert "灰色市域" in dresden["coverageNote"],dresden
     page.screenshot(path=str(SCREENSHOT.with_name("germany-crime-map-dresden.png")),full_page=True)
 
+    # Kiel pilot is a separate police all-offense CASE-COUNT layer. It MUST NOT
+    # masquerade as violence/theft or present made-up rates.
+    page.click('#focusKielCount')
+    page.wait_for_function("""() => window.__KIEL_COUNT_MAP__?.getActive()===true""",timeout=16000)
+    kiel=page.evaluate("""() => {
+        const k=window.__KIEL_COUNT_MAP__;
+        const feats=k.getLayer().getLayers();
+        const f=feats.find(x=>x.feature?.properties?.name==='Altstadt')||feats[0];
+        return {count:feats.length,
+                cases:feats.reduce((a,l)=>a+l.feature.properties.crime_total.cases,0),
+                allRatesNull:feats.every(l=>l.feature.properties.crime_total.rate===null),
+                label:document.getElementById('legend')?.textContent,
+                visible:!document.getElementById('suppCityInfo')?.hidden,
+                pressed:document.getElementById('focusKielCount')?.getAttribute('aria-pressed'),
+                bounds:f.getBounds().toBBoxString()}
+    }""")
+    assert kiel["count"]==30 and kiel["cases"]==24341,kiel
+    assert kiel["allRatesNull"] and kiel["visible"] and kiel["pressed"]=="true",kiel
+    assert "非每10万人犯罪率" in kiel["label"],kiel
+    page.screenshot(path=str(SCREENSHOT.with_name("germany-crime-map-kiel-count.png")),full_page=True)
+    page.click('#suppCityClose')
+    assert page.evaluate("window.__KIEL_COUNT_MAP__.getActive()") is False
+    page.click('#focusCity_hamburg')
+    page.wait_for_function("""() => window.__CRIME_MAP__.map.getZoom()>=8""")
+    assert page.evaluate("window.__KIEL_COUNT_MAP__.getActive()") is False
+    print("[kiel-count-regression] PASS: 30 polygons, source totals, count-only legend, close/other city switch",flush=True)
+
     assert not errors, errors
     print(json.dumps({
         "result":"PASS",
@@ -336,6 +363,7 @@ with sync_playwright() as playwright:
         "hamburg":True,
         "munich":munich,
         "dresden":dresden,
+        "kiel":kiel,
         "page_errors":errors,
     },ensure_ascii=False))
     browser.close()
