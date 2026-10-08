@@ -167,6 +167,9 @@
       legend.innerHTML=baseLegend;
       legendTitle.textContent=baseLegendTitle;
     }
+    // External news tab may temporarily activate the police background while
+    // hiding this module's sidebar; the API prevents leaking wastewater markers.
+    window.GermanMapDrugTabs = Object.freeze({showCrime:switchCrime,showWastewater:switchWastewater});
     btnCrime.addEventListener('click',switchCrime);
     btnWater.addEventListener('click',()=>{void switchWastewater();});
     selection.addEventListener('change',()=>render(selection.value));
