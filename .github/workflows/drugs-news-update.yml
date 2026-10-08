@@ -1,0 +1,83 @@
+name: Drug news collector and Pages publish
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'topics/drugs/scripts/update_drug_news.py'
+      - '.github/workflows/drugs-news-update.yml'
+  schedule:
+    - cron: '27 4 * * *'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: german-map-pages
+  cancel-in-progress: false
+jobs:
+  refresh-news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Python runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install source parsers
+        run: pip install requests beautifulsoup4
+      - name: Build rolling German police drug news
+        run: python topics/drugs/scripts/update_drug_news.py
+      - name: Strict published-news validation
+        run: |
+          python -m json.tool topics/drugs/data/drug_news.json > /dev/null
+          python - <<'PY'
+          import json,datetime
+          p=json.load(open('topics/drugs/data/drug_news.json'))
+          rows=p['reports']
+          assert len(rows)>=6
+          assert len({x['source_url'] for x in rows})==len(rows)
+          assert any(x['category']=='trade' for x in rows)
+          assert any(x['category']=='death' for x in rows)
+          assert p['meta']['with_coordinates']>=3
+          assert all(x['source_url'].startswith('https://') for x in rows)
+          assert all('publication_date' in x and 'precision' in x for x in rows)
+          print('PASS drug news:',len(rows),'entries; mappable:',p['meta']['with_coordinates'])
+          PY
+          node --check topics/drugs/topic.js
+      - name: Commit refreshed news with conflict-aware rebase
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/drugs/data/drug_news.json topics/drugs/data/drug_news_geocode.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data(drugs): refresh geolocated drug police releases'
+            ok=false
+            for attempt in 1 2 3; do
+              git fetch origin main
+              git rebase origin/main
+              if git push origin HEAD:main; then ok=true; break; fi
+              sleep 3
+            done
+            test "$ok" = true
+          fi
+      - name: Verify drug news assets before publishing
+        run: |
+          test -s topics/drugs/data/drug_news.json
+          test -s topics/drugs/index.html
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload full site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
