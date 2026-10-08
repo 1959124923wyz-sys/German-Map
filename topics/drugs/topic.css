@@ -214,3 +214,22 @@ button:disabled{cursor:not-allowed}
 .drug-news-popup li{margin:4px 0}
 #drug-map .leaflet-pane.drugNewsPane svg{pointer-events:none}
 #drug-map .leaflet-pane.drugNewsPane svg path{pointer-events:visiblePainted}
+
+/* Compact regional context: no duplicate state flyout over the map. */
+.compare-line {
+  font-size:12px;font-weight:700;line-height:1.5;
+  color:#bcd2df;padding:8px 10px;margin:9px 0 5px;
+  background:#1b2930;border:1px solid #344c4a;border-radius:7px;
+  font-variant-numeric:tabular-nums;
+}
+.compare-line.is-rising{color:#f3c59d;border-color:#6d5342}
+.compare-line.is-falling{color:#b0ddc8;border-color:#365948}
+.region-compare-note{margin:0 0 11px}
+.region-news{border-top:1px solid var(--line);padding-top:13px;margin-top:14px}
+.region-news-list{list-style:none;margin:7px 0 4px;padding:0}
+.region-news-list li{border-bottom:1px solid #293842}
+.region-news-link{display:flex;flex-direction:column;gap:3px;padding:9px 3px;color:#deeae3;text-decoration:none;font-size:11px;line-height:1.45}
+.region-news-link:hover{color:#aeebc5;background:#1f302c;text-decoration:none}
+.region-news-date{font-size:10px;color:#99b5aa}
+.region-news-title{font-weight:630}
+#region-original-source[hidden]{display:none!important}
