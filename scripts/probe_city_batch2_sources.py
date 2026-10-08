@@ -71,8 +71,34 @@ def bremen_geometry():
     print("[batch2] bremen WFS",json.dumps({
         "bytes":len(raw),"features":names[:35]},ensure_ascii=False)[:5400],flush=True)
 
+
+def bremen_polygons():
+    url="https://geodienste.bremen.de/wfs_verwaltungsgrenzen"
+    for name in ("app:Stadtteile_Bremen","app:Ortsteile_Bremen"):
+        success=False
+        for fmt in ("application/json","json"):
+            try:
+                raw=download_bytes(url,{"SERVICE":"WFS","VERSION":"2.0.0",
+                    "REQUEST":"GetFeature","TYPENAMES":name,
+                    "OUTPUTFORMAT":fmt,"SRSNAME":"EPSG:4326"},timeout=55)
+                obj=json.loads(raw.decode("utf-8-sig"))
+                features=obj.get("features",[])
+                if not features:raise RuntimeError("WFS returned no features")
+                sample=features[0]
+                print("[batch2] bremen geodata",json.dumps({
+                  "typename":name,"format":fmt,"bytes":len(raw),
+                  "count":len(features),"sample":sample.get("properties"),
+                  "geometry":(sample.get("geometry") or {}).get("type")
+                },ensure_ascii=False)[:4800],flush=True)
+                success=True
+                break
+            except Exception as ex:
+                print("[batch2] bremen geodata try",name,fmt,repr(ex)[:200],flush=True)
+        if not success:
+            print("[batch2] bremen geodata BLOCKED for",name,"; cannot join districts yet",flush=True)
+
 def main():
-    for name,probe in (("stuttgart",stuttgart),("bremen",bremen),("bremen_geo",bremen_geometry)):
+    for name,probe in (("stuttgart",stuttgart),("bremen",bremen),("bremen_geo",bremen_geometry),("bremen_polygons",bremen_polygons)):
         try:probe()
         except Exception as e:
             print("[batch2] "+name+" BLOCKED "+repr(e),flush=True)
