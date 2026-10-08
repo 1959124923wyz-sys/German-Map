@@ -83,7 +83,32 @@ def validate():
     ok(metrics.get("新精神活性物质 · NpSG违法")==156 and
        metrics.get("新精神活性物质 · BtMG非法交易")==61,
        "Baden-Württemberg source NPS law categories incorrectly merged")
-    ok(len(offences)==9,"Expected nine states with at least one original PKS substance metric")
+    # Two additional 2025 statewide PKS originals: preserve the broader
+    # "offences involving a substance" scope, NOT §29 general-only counts.
+    bav=offences.get("Bayern")
+    ok(bav is not None and bav.get("source_type")=="state_police",
+       "Bavaria official state-level PKS source missing")
+    b={x["name"]:x for x in bav.get("additional_metrics",[])}
+    for name,number,previous in (
+        ("大麻及其制品 · 涉及违法案件",7164,15270),
+        ("可卡因／快克 · 涉BtMG违法案件",4440,3972),
+        ("新精神活性物质（NpS）· 违法案件",1308,823)):
+        row=b.get(name)
+        ok(row is not None and (row["cases"],row["previous_2024"])==(number,previous),
+           "Bavaria 2025 official PKS metric mismatch: "+name)
+    ok("BtMG" in b["可卡因／快克 · 涉BtMG违法案件"]["code"] and
+       "KCanG" in b["大麻及其制品 · 涉及违法案件"]["note"],
+       "Bavaria legal scope and cannabis law caveat missing")
+    nrw=offences.get("Nordrhein-Westfalen")
+    ok(nrw is not None and nrw.get("source_type")=="state_government",
+       "NRW Interior Ministry original missing")
+    c=next((x for x in nrw.get("additional_metrics",[])
+            if x["name"]=="可卡因／快克 · 涉及违法案件"),None)
+    ok(c is not None and (c["cases"],c["previous_2024"])==(7507,6433),
+       "NRW official 2025 cocaine incl. crack count mismatch")
+    ok("不" in nrw.get("notes","") and "含" in c["name"],
+       "NRW broad-scope warning missing")
+    ok(len(offences)==11,"Expected eleven states with at least one original PKS substance metric")
     print("PASS verified state evidence:",
           len(deaths),"death states,",len(offences),"PKS drug-substance states,",
           len(health),"health-source states; Berlin PKS 2025 codes and KCanG overlap verified")
