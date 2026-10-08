@@ -38,6 +38,11 @@ jobs:
         run: |
           node --check topics/drugs/topic.js
           node --check js/layers/city-labels.js
+          # Prevent Chromium's black rectangular SVG-path focus boxes.
+          grep -Fq '#map .leaflet-interactive' css/map.css
+          grep -Fq '#drug-map .leaflet-interactive' topics/drugs/topic.css
+          grep -Fq 'svg-outline-fix-v3' index.html
+          grep -Fq 'svg-outline-fix-v3' topics/drugs/index.html
           node --check topics/drugs/wastewater.js
           python topics/drugs/scripts/validate_drugs.py
           python - <<'PY'
