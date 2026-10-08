@@ -15,10 +15,10 @@
     "Baden-Württemberg": {
       "cases": 191,
       "previous_2024": 195,
-      "source_type": "sector_org_citing_state_report",
-      "source_title": "Landesstelle für Suchtfragen · 2025年内政部安全报告引述",
-      "source_url": "https://lss-bw.de/alarmierende-entwicklung-immer-mehr-junge-menschen-geraten-in-die-abhaengigkeit-synthetischer-opioide-baden-wuerttemberg-steht-vor-einer-neuen-welle-der-suchterkrankungen/",
-      "note": "援引巴登-符腾堡州内政部2025年安全报告；死亡统计不等于警方案件数。"
+      "source_type": "state_government",
+      "source_title": "巴登—符腾堡州内政部 · 2026年4月10日毒品相关死亡官方公告",
+      "source_url": "https://im.baden-wuerttemberg.de/de/service/presse-und-oeffentlichkeitsarbeit/pressemitteilung/pid/zahl-der-drogentoten-im-jahr-2025-leicht-zurueckgegangen",
+      "note": "2025年州内政部官方公布死亡191人（2024年195人），其中129例涉及多种毒品、替代物或药物混合使用。州政府直接来源已取代行业组织转述，死亡数据与警方案件数不能相加。"
     },
     "Bayern": {
       "cases": 247,
