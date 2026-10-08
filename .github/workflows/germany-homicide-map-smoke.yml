@@ -82,6 +82,9 @@ jobs:
       - name: Harmonize display-only nationwide county boundaries
         run: python scripts/build_display_counties.py
 
+      - name: Validate nationwide and city boundary topology
+        run: python scripts/validate_display_counties.py
+
       - name: Validate expanded crime data
         run: |
           python scripts/validate_crime_data.py
