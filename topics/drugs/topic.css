@@ -150,3 +150,22 @@ button:disabled{cursor:not-allowed}
 /* On high zoom, inactive state outlines must not intercept county pointer events. */
 #drug-map .leaflet-pane.drugs-state-passive{pointer-events:none}
 @media(max-width:940px){.regional-counties{max-height:210px}.region-navigator{padding:10px}}
+
+
+/* High contrast city names for the dark green drug map, matching the two other
+   topics' city-label positions while using a dark halo instead of a light one. */
+.leaflet-pane.drugs-city-labels,.crime-city-label-icon{pointer-events:none!important}
+.crime-city-label-icon{background:transparent!important;border:0!important;overflow:visible!important}
+.crime-city-label{
+  display:block;position:absolute;left:0;top:0;
+  transform:translate(-50%,-52%);white-space:nowrap;
+  font:780 12px/1.15 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  letter-spacing:.015em;color:#f2fff6;
+  text-shadow:0 1px 2px #071b13,0 -1px 2px #071b13,
+    1px 0 2px #071b13,-1px 0 2px #071b13,0 0 6px #071b13,
+    0 2px 5px #071b13;user-select:none;pointer-events:none;
+}
+/* Mouse selection is WHITE. Suppress only Leaflet's browser focus rectangle. */
+#drug-map .leaflet-interactive:focus{outline:none!important}
+#drug-map .leaflet-interactive:focus-visible{outline:none!important}
+@media(max-width:640px){.crime-city-label{font-size:11px}}
