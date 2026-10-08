@@ -119,6 +119,39 @@ def main():
             assert page.locator('#drugs-crime-content').is_visible()
             assert not page.locator('#drugs-wastewater-content').is_visible()
             assert page.locator('#legend-title').inner_text() == '毒品违法案件 / 每10万人'
+            # Live police reports: visible listing, clickable markers, original URLs,
+            # reliable health contextual documents, strict category and state filters.
+            page.locator('#drugs-tab-news').click()
+            page.wait_for_function(
+                "() => Number(document.querySelector('#drug-news-count')?.textContent) >= 6",
+                timeout=30000)
+            assert page.locator('#drugs-news-content').is_visible()
+            assert not page.locator('#drugs-crime-content').is_visible()
+            assert not page.locator('#drugs-wastewater-content').is_visible()
+            assert page.evaluate('() => window.GermanMapDrugNews?.active === true')
+            assert page.locator('#drug-news-list .drug-news-card').count() >= 6
+            assert '截至 ' in page.locator('#drug-news-updated').inner_text()
+            page.locator('#drug-news-type').select_option('death')
+            assert int(page.locator('#drug-news-count').inner_text()) >= 1
+            assert page.locator('#drug-news-list .drug-news-card').count() >= 1
+            page.locator('#drug-news-type').select_option('trade')
+            assert int(page.locator('#drug-news-count').inner_text()) >= 6
+            assert int(page.locator('#drug-news-mapped').inner_text()) >= 3
+            page.locator('#drug-news-list .drug-news-card').first.click()
+            page.locator('.leaflet-popup-content a[href^="https://"]').first.wait_for(timeout=15000)
+            page.locator('#drug-news-type').select_option('all')
+            assert page.locator('#drug-news-state option').count() >= 8
+            page.locator('#drug-news-state').select_option('Nordrhein-Westfalen')
+            assert 1 <= int(page.locator('#drug-news-count').inner_text()) <= 150
+            page.locator('#drug-news-state').select_option('all')
+            page.screenshot(path='/tmp/germany-crime-map-drugs-news.png',full_page=True)
+            page.locator('#drugs-tab-crime').click()
+            assert not page.locator('#drugs-news-content').is_visible()
+            assert page.locator('#drugs-crime-content').is_visible()
+            page.locator('#drugs-tab-wastewater').click()
+            page.wait_for_function("() => window.__DRUGS_WASTEWATER_TEST__?.isActive === true")
+            assert not page.locator('#drugs-news-content').is_visible()
+            page.locator('#drugs-tab-crime').click()
             page.evaluate("() => window.__DRUGS_PREVIEW_MAP__.setView([50.72,9.1],6,{animate:false})")
             page.wait_for_timeout(250)
             click_place(page, 50.72, 9.1)
