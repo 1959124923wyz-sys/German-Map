@@ -233,3 +233,25 @@ button:disabled{cursor:not-allowed}
 .region-news-date{font-size:10px;color:#99b5aa}
 .region-news-title{font-weight:630}
 #region-original-source[hidden]{display:none!important}
+
+/* Source-auditable state data: discreet, collapsed by default. */
+.region-evidence{margin:11px 0 12px;padding:0 10px 8px;background:#152822;border:1px solid #334d43;border-radius:8px}
+.region-evidence summary{padding:10px 0;font-size:11px;font-weight:730;color:#b8edd0;cursor:pointer;line-height:1.45}
+.region-evidence summary:focus-visible{outline:2px solid #9bcbb1;outline-offset:2px}
+.region-evidence-body{padding:3px 0 3px}
+.evidence-group+.evidence-group{border-top:1px solid #355047;margin-top:12px;padding-top:10px}
+.evidence-group h5{margin:0 0 5px;font-size:11px;color:#cae4d9}
+.evidence-mortality-number{display:block;font-size:20px;line-height:1.4;color:#f4f7f4;font-variant-numeric:tabular-nums}
+.evidence-trend{font-size:11px;color:#b1c7bc;margin:3px 0 8px}
+.evidence-group .note{font-size:10px;line-height:1.5;margin:6px 0}
+.evidence-source{font-size:10px;margin-top:9px;line-height:1.5}
+.evidence-source a{color:#8ed3ad}
+.evidence-offence-table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:11px}
+.evidence-offence-table th,.evidence-offence-table td{padding:5px 3px;text-align:right;border-bottom:1px solid #34493e}
+.evidence-offence-table th:first-child{text-align:left}
+.evidence-offence-table thead th{font-size:10px;color:#aec7b9}
+.evidence-offence-table tr.evidence-code-row td{padding-top:0;color:#8eae9c;font-size:9px;text-align:left}
+.evidence-caveat{margin:11px 0 2px;font-size:10px;color:#95b3a6;line-height:1.5}
+.national-health-summary{margin:7px 0 14px;font-size:11px;line-height:1.6;color:#acc5bb}
+.national-health-summary strong{color:#e3f6ed;font-size:12px}
+.national-health-summary a{color:#9bdcbb}
