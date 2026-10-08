@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "dataset_id": "azr-return-obligations-by-state-2025",
+  "title_zh": "2025年末负有可执行离境义务者人数（按州）",
+  "title_de": "Vollziehbar Ausreisepflichtige nach Bundesland und Duldungsstatus",
+  "statistics_definition_zh": "外国人中央登记册（AZR）2025年12月31日登记的负有可执行离境义务者；按持有与未持有Duldung分类。Duldung表示暂缓遣返，不等于居留许可，但对应法律保护或执行障碍，不可直接据此断言犯罪行为。",
+  "reference_date": "2025-12-31",
+  "published_at": "2026-02-11",
+  "geography_level": "state_registered_location",
+  "unit": "persons",
+  "source": {
+    "organization": "Deutscher Bundestag, Antwort der Bundesregierung; Ausländerzentralregister (AZR)",
+    "document": "Drucksache 21/4103, Frage 20, Seite 21, Tabelle: Ausreisepflichtige gesamt nach Land",
+    "url": "https://dserver.bundestag.de/btd/21/041/2104103.pdf",
+    "source_type": "official_government_reply"
+  },
+  "metric_definitions": {
+    "total": {
+      "name_zh": "负有离境义务人数",
+      "name_de": "Ausreisepflichtige gesamt",
+      "unit": "persons"
+    },
+    "with_duldung": {
+      "name_zh": "持暂缓遣返证明人数",
+      "name_de": "Ausreisepflichtige mit Duldung",
+      "unit": "persons"
+    },
+    "without_duldung": {
+      "name_zh": "无暂缓遣返证明人数",
+      "name_de": "Ausreisepflichtige ohne Duldung",
+      "unit": "persons"
+    }
+  },
+  "totals": {
+    "total": 232067,
+    "with_duldung": 190974,
+    "without_duldung": 41093
+  },
+  "records": [
+    {
+      "ags": "08",
+      "iso": "DE-BW",
+      "name_de": "Baden-Württemberg",
+      "total": 27960,
+      "with_duldung": 24159,
+      "without_duldung": 3801
+    },
+    {
+      "ags": "09",
+      "iso": "DE-BY",
+      "name_de": "Bayern",
+      "total": 25402,
+      "with_duldung": 20290,
+      "without_duldung": 5112
+    },
+    {
+      "ags": "11",
+      "iso": "DE-BE",
+      "name_de": "Berlin",
+      "total": 18103,
+      "with_duldung": 14527,
+      "without_duldung": 3576
+    },
+    {
+      "ags": "12",
+      "iso": "DE-BB",
+      "name_de": "Brandenburg",
+      "total": 8567,
+      "with_duldung": 7758,
+      "without_duldung": 809
+    },
+    {
+      "ags": "04",
+      "iso": "DE-HB",
+      "name_de": "Bremen",
+      "total": 3998,
+      "with_duldung": 3648,
+      "without_duldung": 350
+    },
+    {
+      "ags": "02",
+      "iso": "DE-HH",
+      "name_de": "Hamburg",
+      "total": 11477,
+      "with_duldung": 5964,
+      "without_duldung": 5513
+    },
+    {
+      "ags": "06",
+      "iso": "DE-HE",
+      "name_de": "Hessen",
+      "total": 13405,
+      "with_duldung": 9605,
+      "without_duldung": 3800
+    },
+    {
+      "ags": "13",
+      "iso": "DE-MV",
+      "name_de": "Mecklenburg-Vorpommern",
+      "total": 4288,
+      "with_duldung": 3843,
+      "without_duldung": 445
+    },
+    {
+      "ags": "03",
+      "iso": "DE-NI",
+      "name_de": "Niedersachsen",
+      "total": 23864,
+      "with_duldung": 20462,
+      "without_duldung": 3402
+    },
+    {
+      "ags": "05",
+      "iso": "DE-NW",
+      "name_de": "Nordrhein-Westfalen",
+      "total": 52472,
+      "with_duldung": 44060,
+      "without_duldung": 8412
+    },
+    {
+      "ags": "07",
+      "iso": "DE-RP",
+      "name_de": "Rheinland-Pfalz",
+      "total": 8640,
+      "with_duldung": 7081,
+      "without_duldung": 1559
+    },
+    {
+      "ags": "10",
+      "iso": "DE-SL",
+      "name_de": "Saarland",
+      "total": 1921,
+      "with_duldung": 1746,
+      "without_duldung": 175
+    },
+    {
+      "ags": "14",
+      "iso": "DE-SN",
+      "name_de": "Sachsen",
+      "total": 12527,
+      "with_duldung": 10633,
+      "without_duldung": 1894
+    },
+    {
+      "ags": "15",
+      "iso": "DE-ST",
+      "name_de": "Sachsen-Anhalt",
+      "total": 4770,
+      "with_duldung": 4097,
+      "without_duldung": 673
+    },
+    {
+      "ags": "01",
+      "iso": "DE-SH",
+      "name_de": "Schleswig-Holstein",
+      "total": 10336,
+      "with_duldung": 9181,
+      "without_duldung": 1155
+    },
+    {
+      "ags": "16",
+      "iso": "DE-TH",
+      "name_de": "Thüringen",
+      "total": 4337,
+      "with_duldung": 3920,
+      "without_duldung": 417
+    }
+  ],
+  "completeness": {
+    "expected_states": 16,
+    "reported_states": 16,
+    "missing_states": [],
+    "lower_geographies_available_in_this_source": false
+  },
+  "comparison_notes_zh": "州级绝对人数不等于各州非法入境发生数，不代表全部未登记人员。不能以非德籍人口或庇护申请人数替代分母制作犯罪率。各州数值仅在本表同一时间点、同一法律身份口径下可比；与遣返执行人数不可直接做全年执行率分子分母。",
+  "missing_value_policy": "Missing observations must be null, never zero. Do not interpolate county-level values."
+}
