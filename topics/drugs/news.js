@@ -65,6 +65,21 @@
       if(items.length>8)panel.append(safe('small','更多通报请查看右侧列表'));
       return panel;
     }
+    async function ensureData() {
+      if(dataset)return dataset;
+      if(!loadTask)loadTask=fetch('data/drug_news.json',{cache:'no-store'})
+        .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+        .then(data=>{sourceCheck(data);dataset=data;return data;})
+        .finally(()=>{loadTask=null});
+      return loadTask;
+    }
+    async function reportsForState(state,limit=3) {
+      if(!state)return [];
+      const data=await ensureData();
+      return data.reports.filter(row=>row.state===state)
+        .sort((a,b)=>b.publication_date.localeCompare(a.publication_date))
+        .slice(0,Math.max(1,Math.min(10,limit)));
+    }
     function visibleRows() {
       if(!dataset)return [];
       return dataset.reports.filter(row=>
@@ -152,13 +167,7 @@
       if(!map.hasLayer(group))group.addTo(map);
       status.textContent='正在加载经来源核查的警方通报…';
       try{
-        if(!dataset){
-          if(!loadTask)loadTask=fetch('data/drug_news.json',{cache:'no-store'})
-            .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
-            .then(data=>{sourceCheck(data);dataset=data;return data;})
-            .finally(()=>{loadTask=null});
-          await loadTask;
-        }
+        await ensureData();
         if(!enabled)return;
         const states=[...new Set(dataset.reports.map(r=>r.state).filter(Boolean))].sort();
         if(region.options.length===1){
@@ -199,6 +208,17 @@
         const state=name||'all';
         if([...region.options].some(o=>o.value===state)){
           region.value=state;shown=20;render();
+        }
+      },
+      reportsForState,
+      async openForState(state) {
+        await showNews();
+        if(!enabled || !dataset)return;
+        if([...region.options].some(o=>o.value===state)) {
+          kind.value='all';
+          region.value=state;
+          shown=20;
+          render();
         }
       },
       hideNews,
