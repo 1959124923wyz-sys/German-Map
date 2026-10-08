@@ -93,6 +93,10 @@ def main():
         raw=download_bytes(PKS,timeout=75)
         reader=PdfReader(io.BytesIO(raw))
         text="\n".join((page.extract_text() or "") for page in reader.pages[-5:])
+        for page_index in (30,31):
+            snippet=(reader.pages[page_index].extract_text() or "")
+            print("[kiel-probe] police-table-page",page_index+1,
+                  repr(snippet[:7000]),flush=True)
         checks["pks"]={
             "bytes":len(raw),"pages":len(reader.pages),
             "has_stadtteile_table": "Kriminalitätsentwicklung in den Stadtteilen" in text,
