@@ -23,6 +23,8 @@ with sync_playwright() as playwright:
     browser = playwright.chromium.launch(headless=True)
     page = browser.new_page(viewport={"width": 1480, "height": 900}, device_scale_factor=1)
     errors = capture_errors(page)
+    page.on("console", lambda msg: print("[browser-console]", msg.text, flush=True)
+            if "city detail skipped" in msg.text or "city-local" in msg.text else None)
     page.route("**/tile.openstreetmap.org/**", lambda route: route.abort())
 
     response = page.goto(URL, wait_until="domcontentloaded", timeout=60000)
@@ -194,6 +196,26 @@ with sync_playwright() as playwright:
     # Dresden's full municipal polygon retains a city-wide fill beneath
     # the 61 police-atlas neighbourhoods, which are not a complete city border.
     page.click("#focusCity_dresden")
+    page.wait_for_timeout(1600)
+    diagnostics=page.evaluate("""() => {
+        const a=window.__CRIME_MAP__, m=a.map, layers=[];
+        m.eachLayer(l=>{
+            if(l instanceof L.GeoJSON)layers.push({
+                pane:l.options?.pane,
+                cities:[...new Set(l.getLayers().map(x=>x.feature?.properties?.city).filter(Boolean))],
+                num:l.getLayers().length
+            });
+        });
+        return {
+            zoom:m.getZoom(),
+            bounds:m.getBounds().toBBoxString(),
+            mode:a.getMode(),
+            metric:document.querySelector('#propertyMetric')?.value,
+            layers,
+            button:!!document.getElementById('focusCity_dresden')
+        }
+    }""")
+    print("[dresden-browser-diagnostics]",json.dumps(diagnostics,ensure_ascii=False),flush=True)
     page.wait_for_function("""() => {
         const m=window.__CRIME_MAP__.map;
         let n=0;
