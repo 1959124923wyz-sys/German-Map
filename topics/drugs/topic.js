@@ -205,6 +205,7 @@
       const board = el('region-navigator'),national=el('national-drug-summary');
       if (board) board.hidden=true;
       if (national) national.hidden=false;
+      window.GermanMapDrugNews?.setStateFilter?.('all');
       text('map-guide-title','警方登记毒品案件 · 2025');
       text('map-guide-desc','单击州查看汇总；点击“查看县市”或放大地图后，可以点选具体县市。');
       map.fitBounds(NATION_BOUNDS,{padding:[13,13],animate:false});
@@ -223,6 +224,7 @@
       }
       refreshStateSelection();
       showRegionBoard(rec.state, rec);
+      window.GermanMapDrugNews?.setStateFilter?.(rec.state);
       if (typeof context.onSelection === 'function') {
         context.onSelection({kind:'drugs-county',feature,record:rec,metric:rec.drug_crime});
       }
@@ -259,6 +261,7 @@
       stateFeature = feature;
       refreshStateSelection();
       showRegionBoard(name);
+      window.GermanMapDrugNews?.setStateFilter?.(name);
       if (typeof context.onSelection === 'function') {
         context.onSelection({kind:'drugs-state',feature,name,rows,
           summedCases:rows.reduce((a,r)=>a+r.drug_crime.cases,0)});
@@ -400,6 +403,9 @@
     };
     if (isStandalone && window.GermanMapDrugWastewater?.init) {
       window.GermanMapDrugWastewater.init({map,crime:active});
+    }
+    if (isStandalone && window.GermanMapDrugNewsUI?.init) {
+      window.GermanMapDrugNewsUI.init({map,crime:active});
     }
     return active;
   }
