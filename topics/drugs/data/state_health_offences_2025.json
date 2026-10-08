@@ -8,7 +8,8 @@
     "drug_specific_offence_coverage_states": 5,
     "method": "State government/police originals preferred; agency-attributed reports accepted with source type. Each selected offence key/group has its own scope; absence is missing, never zero. Substance totals and PKS general/trade subkeys must never be added across differing scopes.",
     "mortality_scope": "Recorded drug-related deaths; state data from police/health ministries or organizations and public broadcasters quoting them. Methods and as-of dates may differ; do not add to BKA crime numbers.",
-    "updated_at": "2026-10-08"
+    "updated_at": "2026-10-08",
+    "health_case_coverage_states": 1
   },
   "mortality_by_state": {
     "Baden-Württemberg": {
@@ -275,6 +276,28 @@
           "cases": 543,
           "previous_2024": 578,
           "code": "州政府发布公告"
+        }
+      ]
+    }
+  },
+  "other_health_indicators_by_state": {
+    "Mecklenburg-Vorpommern": {
+      "source_type": "news_agency_citing_state_government",
+      "source_title": "dpa报道刊载于梅克伦堡—前波美拉尼亚州议会（2026-09-08）；引用州政府议会答复",
+      "source_url": "https://www.landtag-mv.de/dpa-ticker/dpa-mitteilung?cHash=a8814c06e6023b635157e30ad837a8ef&tx_w3dpa_dpalist%5Baction%5D=detail&tx_w3dpa_dpalist%5Bcontroller%5D=Dpa&tx_w3dpa_dpalist%5Buid%5D=7381",
+      "note": "州政府答复中的医院大麻相关诊断记录，不能据此断定人数或因果关系；病例编码和医院覆盖差异可能影响跨年变化。未取得原始州议会问答PDF，标为间接来源。",
+      "metrics": [
+        {
+          "name": "医院大麻相关诊断记录",
+          "cases": 486,
+          "previous_2024": 421,
+          "unit": "例（诊断记录）"
+        },
+        {
+          "name": "其中大麻相关精神病性障碍诊断",
+          "cases": 133,
+          "previous_2024": 94,
+          "unit": "例（诊断记录）"
         }
       ]
     }
