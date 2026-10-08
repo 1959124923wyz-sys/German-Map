@@ -47,6 +47,10 @@ def read_tables(pdf_bytes):
         rows = {}
         codes = list(ROW_START.finditer(section))
         for j, token in enumerate(codes):
+            # Table 22 is followed by explanatory narrative citing crime
+            # codes again. Consume exactly the first seven table rows.
+            if len(rows)==len(CODES):
+                break
             code = token.group(1)
             if code not in CODES:
                 continue
