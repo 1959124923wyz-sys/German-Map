@@ -5,7 +5,7 @@
     "national_drug_deaths": 2150,
     "national_source": "https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/",
     "mortality_coverage_states": 12,
-    "drug_specific_offence_coverage_states": 7,
+    "drug_specific_offence_coverage_states": 8,
     "method": "State government/police originals preferred; agency-attributed reports accepted with source type. Each selected offence key/group has its own scope; absence is missing, never zero. Substance totals and PKS general/trade subkeys must never be added across differing scopes. Sachsen and Hamburg added directly from 2025 Land police primary PKS tables; overlapping subcategories are explicitly named.",
     "mortality_scope": "Recorded drug-related deaths; state data from police/health ministries or organizations and public broadcasters quoting them. Methods and as-of dates may differ; do not add to BKA crime numbers.",
     "updated_at": "2026-10-08",
@@ -378,6 +378,36 @@
           "cases": 1331,
           "code": "732000",
           "note": "BtMG毒品交易类，与大麻法统计分开"
+        }
+      ]
+    },
+    "Berlin": {
+      "source_url": "https://www.berlin.de/polizei/_assets/verschiedenes/pks/pks-kurzbericht-2025.pdf",
+      "source_title": "柏林州警方 · PKS 2025 Kurzbericht，第30页毒品犯罪说明",
+      "source_type": "state_police",
+      "notes": "来自柏林全州2025年警察犯罪统计。可卡因／快克一般违法代码731200与非法交易走私代码732200，是不同罪名；另有严重犯罪代码未包括在这两列。大麻法§34总计2,343起，非法交易1,309起属于其中一部分，不得相加。2024年KCanG施行时段不足整年。",
+      "groups": [
+        {
+          "name": "可卡因／快克",
+          "general": 2218,
+          "trade": 1432,
+          "general_code": "731200",
+          "trade_code": "732200",
+          "law": "BtMG §29"
+        }
+      ],
+      "additional_metrics": [
+        {
+          "name": "大麻 · KCanG §34全部罪名",
+          "cases": 2343,
+          "code": "§34 KCanG / PKS 736000",
+          "note": "包含下列非法交易子项，不能与1,309起相加"
+        },
+        {
+          "name": "其中大麻非法交易",
+          "cases": 1309,
+          "code": "§34 KCanG非法交易子项",
+          "note": "已包含在2,343起内"
         }
       ]
     }
