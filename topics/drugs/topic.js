@@ -200,7 +200,7 @@
         pane:'drugsStatePane', renderer:stateRenderer, interactive,
         style: () => ({pane:'drugsStatePane',renderer:stateRenderer,
           color:'#596c70',weight:1.05,opacity:.75,
-          fillColor:'#fff',fillOpacity:0.001}),
+          fill:interactive,fillColor:'#fff',fillOpacity:interactive?0.001:0}),
         onEachFeature: (feature, layer) => {
           layer.bindTooltip(esc(feature.properties?.name || ''), {sticky:true});
           if (interactive) layer.on('click', e => {
@@ -269,6 +269,7 @@
     if (!window.L) { text('status','地图框架加载失败，请检查网络连接。'); return; }
     const map = L.map('drug-map',{minZoom:5,maxZoom:15,zoomControl:true,preferCanvas:false});
     map.fitBounds(NATION_BOUNDS, {padding:[15,15]});
+    window.__DRUGS_PREVIEW_MAP__ = map;
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom:19,opacity:.55,attribution:'© OpenStreetMap contributors'
     }).addTo(map);
