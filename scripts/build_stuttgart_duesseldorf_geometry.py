@@ -41,6 +41,7 @@ def from_gpkg(blob):
     return transform(TO_GPS,geom)
 
 def save(city,source,features,audit):
+    source_url=source  # immutable original URL; source polygon loops must not shadow it
     if len(features)!=len({f["id"] for f in features}):
         raise ValueError(city+" duplicate official district codes")
     valid=[]
@@ -87,7 +88,7 @@ def save(city,source,features,audit):
         raise ValueError(f"{city}: {len(features)} official districts area={area:.2f} km²")
     out={"type":"FeatureCollection","meta":{
           "city":city,"year":2025,"status":"candidate_geometry_only",
-          "source_url":source,"source_name":"Official municipality small-area administrative boundaries",
+          "source_url":source_url,"source_name":"Official municipality small-area administrative boundaries",
           "invalid_source_polygons_safely_repaired":repair_audit,
           "districts":len(features),"area_km2":round(area,4),
           "overlap_m2":round(overlap,3),"unclassified_police_metrics":True,
