@@ -1,6 +1,8 @@
 (()=>{"use strict";
 const {palettes:{national:WARM,property:COOL},violenceMetrics}=window.CrimeMapConfig;
 let api=null,manifest=null,active=null,activeKey=null,layer=null,selected=null,cache=new Map(),activationEpoch=0;
+let cityBackdrop=null,cityBorder=null,mutedCounties=null;
+const boundaryCache=new Map();
 
 const $=id=>document.getElementById(id);
 const fmt=n=>Number(n||0).toLocaleString('zh-CN');
@@ -63,14 +65,47 @@ function baseLayerFor(c){
   const d=api.getMode()==='property'?api.getPropertyData():api.getPksData();
   return cl.getLayers().find(l=>recordForFeature(l.feature,d)?.name===c.name&&l.feature?.properties?.districtType!=='Landkreis')||null
 }
-function restoreBase(c){const cl=api.getCountyLayer?.(),l=baseLayerFor(c);if(cl&&l)cl.resetStyle(l)}
+function restoreBase(c){
+  if(mutedCounties){
+    mutedCounties.eachLayer(l=>mutedCounties.resetStyle(l));
+    mutedCounties=null;
+  }else{
+    const cl=api.getCountyLayer?.(),l=baseLayerFor(c);
+    if(cl&&l)cl.resetStyle(l);
+  }
+}
 function hideBase(c){
-  const l=baseLayerFor(c);if(!l)return;
+  const cl=api.getCountyLayer?.(),l=baseLayerFor(c);
+  if(!l)return;
   if(c.coverage==='partial'){
-    // The 61 Dresden Stadtteile cover only part of the municipality.
-    // Retain a subdued city-wide annual PKS color outside those polygons.
-    l.setStyle({color:'#667785',weight:.7,opacity:.7,fillOpacity:.39});
-  }else l.setStyle({color:'transparent',weight:0,opacity:0,fillOpacity:0});
+    // During Dresden focus, the neighbouring county heatmap is deliberately
+    // quieted so its warm fill cannot bleed through the pastel city polygons.
+    // All original crime figures remain available via county hover/click.
+    if(cl && mutedCounties!==cl){
+      if(mutedCounties)mutedCounties.eachLayer(item=>mutedCounties.resetStyle(item));
+      mutedCounties=cl;
+      cl.eachLayer(item=>item.setStyle({
+        color:'#94a1a9',weight:.3,opacity:.32,fillOpacity:.12
+      }));
+    }
+  }
+  // The city-wide county rate MUST NOT shine through low-crime districts;
+  // its saturated underside created the mauve/red slivers in Dresden.
+  l.setStyle({color:'transparent',weight:0,opacity:0,fillOpacity:0});
+}
+async function boundaryData(c){
+  if(!c.boundary_file)return null;
+  if(!boundaryCache.has(c.id)){
+    boundaryCache.set(c.id,fetch(c.boundary_file,{cache:'no-store'})
+      .then(r=>{if(!r.ok)throw new Error('boundary '+r.status);return r.json()})
+      .catch(error=>{boundaryCache.delete(c.id);throw error}));
+  }
+  return boundaryCache.get(c.id);
+}
+function clearFocusOverlays(){
+  if(cityBorder){api.map.removeLayer(cityBorder);cityBorder=null}
+  if(cityBackdrop){api.map.removeLayer(cityBackdrop);cityBackdrop=null}
+  document.querySelector('.mapwrap')?.classList.remove('city-detail-focus');
 }
 function areaFor(c,data,f){
   const key=metricKey(),cfg=c.metrics[key],p=f.properties||{},m=p?.[cfg.field]||{},rate=Number(m.rate),cases=Number(m.cases||0),vals=values(data,cfg.field),pc=percentile(rate,vals);
@@ -102,6 +137,7 @@ async function rebuild(){
   if(nextKey&&nextKey===activeKey&&layer){hideBase(next);return}
   const epoch=++activationEpoch;
   if(layer){api.map.removeLayer(layer);layer=null;selected=null}
+  clearFocusOverlays();
   if(active)restoreBase(active);
   active=next;activeKey=nextKey;
   if(!active){
@@ -109,23 +145,44 @@ async function rebuild(){
     return;
   }
   try{
-    const data=await cityData(active);
+    const city=active;
+    const [data,boundary]=await Promise.all([cityData(city),boundaryData(city)]);
     // Ignore stale asynchronous results after the viewport/metric changes.
     if(epoch!==activationEpoch)return;
-    const cfg=active.metrics[metricKey()],vals=values(data,cfg.field),br=quantileBreaks(vals),pal=api.getMode()==='property'?COOL:WARM;
+    const cfg=city.metrics[metricKey()],vals=values(data,cfg.field),br=quantileBreaks(vals),pal=api.getMode()==='property'?COOL:WARM;
+    if(city.coverage==='partial'){
+      if(!boundary||!validCityGeometry(boundary,city))
+        throw new Error('complete official Dresden boundary unavailable');
+      // A single opaque, neutral fill shows the parts of the municipality
+      // without police-atlas neighbourhood figures. They are NO DATA, not
+      // low- or high-crime districts. Draw before the actual 61 districts.
+      cityBackdrop=L.geoJSON(boundary,{pane:'berlinPane',interactive:false,style:()=>({
+        pane:'berlinPane',color:'transparent',weight:0,opacity:0,
+        fillColor:'#e7ecef',fillOpacity:.97
+      })}).addTo(api.map);
+      document.querySelector('.mapwrap')?.classList.add('city-detail-focus');
+    }
     if(!validCityGeometry(data,active))throw new Error(active.id+' invalid CRS/geometry: expected longitude/latitude near configured city bounds');
-    layer=L.geoJSON(data,{pane:'berlinPane',filter:f=>Number.isFinite(Number(f?.properties?.[cfg.field]?.rate)),style:f=>({pane:'berlinPane',color:api.getMode()==='property'?'#486783':'#8a563b',weight:.34,opacity:.62,fillColor:scaleColor(Number(f.properties[cfg.field].rate),br,pal),fillOpacity:.84}),onEachFeature:(f,l)=>{
+    layer=L.geoJSON(data,{pane:'berlinPane',filter:f=>Number.isFinite(Number(f?.properties?.[cfg.field]?.rate)),style:f=>({pane:'berlinPane',color:city.coverage==='partial'?'#78848b':(api.getMode()==='property'?'#486783':'#8a563b'),weight:city.coverage==='partial'?.65:.34,opacity:city.coverage==='partial'?.55:.62,fillColor:scaleColor(Number(f.properties[cfg.field].rate),br,pal),fillOpacity:city.coverage==='partial'?.96:.84}),onEachFeature:(f,l)=>{
       l.bindTooltip(()=>{const a=areaFor(active,data,f);return '<b>'+esc(a.name)+'</b><br>'+esc(cfg.label)+' '+fmt(Math.round(a.rate))+'/10万人 · '+riskLabel(a.pct).text},{sticky:true});
       l.on('mouseover',()=>{if(l!==selected)l.setStyle({color:'#fff',weight:1.35,opacity:1,fillOpacity:.89});showPanel(areaFor(active,data,f))});
       l.on('mouseout',()=>{if(l!==selected)layer?.resetStyle(l);const p=api.getPinnedArea?.();if(p?.kind==='city-local-generic')showPanel(p,false);else api.showArea(p)});
       l.on('click',()=>{if(selected&&selected!==l)layer?.resetStyle(selected);selected=l;layer?.resetStyle(l);l.setStyle({color:'#fff',weight:2.1,opacity:1,fillOpacity:.91});showPanel(areaFor(active,data,f),true)})
     }}).addTo(api.map);
     if(layer.getLayers().length===0){api.map.removeLayer(layer);layer=null;throw new Error(active.id+' has no drawable features for '+metricKey())}
-    hideBase(active);
-    setTimeout(()=>{if(epoch===activationEpoch)addLegend(active,data)},0)
+    if(city.coverage==='partial'){
+      // Draw one continuous municipal border ON TOP of detailed polygons.
+      // This conceals hairline rasterisation seams at the outside edge.
+      cityBorder=L.geoJSON(boundary,{pane:'berlinPane',interactive:false,style:()=>({
+        pane:'berlinPane',color:'#59646c',weight:1.35,opacity:.93,fill:false
+      })}).addTo(api.map);
+    }
+    hideBase(city);
+    setTimeout(()=>{if(epoch===activationEpoch)addLegend(city,data)},0)
   }catch(e){
     if(epoch!==activationEpoch)return;
     if(layer){api.map.removeLayer(layer);layer=null}
+    clearFocusOverlays();
     if(active)restoreBase(active);
     console.warn('city detail skipped; retaining nationwide county fill',active?.id,e)
   }
