@@ -4,10 +4,11 @@
     "publication_context": "2026年多州警察、卫生机关和公共资料发布",
     "national_drug_deaths": 2150,
     "national_source": "https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/",
-    "mortality_coverage_states": 9,
-    "drug_specific_offence_coverage_states": 2,
-    "method": "All counts copied from cited releases; no missing-state extrapolation, no inferred per-capita mortality rates, no drug-specific totals summed across offence keys.",
-    "mortality_scope": "Recorded drug-related deaths; state data from police/health ministries or organizations and public broadcasters quoting them. Methods and as-of dates may differ; do not add to BKA crime numbers."
+    "mortality_coverage_states": 12,
+    "drug_specific_offence_coverage_states": 5,
+    "method": "State government/police originals preferred; agency-attributed reports accepted with source type. Each selected offence key/group has its own scope; absence is missing, never zero. Substance totals and PKS general/trade subkeys must never be added across differing scopes.",
+    "mortality_scope": "Recorded drug-related deaths; state data from police/health ministries or organizations and public broadcasters quoting them. Methods and as-of dates may differ; do not add to BKA crime numbers.",
+    "updated_at": "2026-10-08"
   },
   "mortality_by_state": {
     "Baden-Württemberg": {
@@ -83,6 +84,30 @@
       "source_title": "石荷州刑警局 · PKS 2025短报第19页",
       "source_url": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/POLIZEI/DasSindWir/LKA/Ermittlungen_Auswertung/kriminalstatistik/_downloads/PKS2025_Kurzfassung.pdf?__blob=publicationFile&v=4",
       "note": "州刑警局2025年短报明确写明2025年53人，与2024年持平。"
+    },
+    "Brandenburg": {
+      "cases": 19,
+      "previous_2024": 17,
+      "source_type": "state_government",
+      "source_title": "勃兰登堡州内政部 · 2025 PKS公告（2026-03-23）",
+      "source_url": "https://mik.brandenburg.de/mik/de/service/presse/pressemitteilungen/detail-pm-und-meldungen/~23-03-2026-erneut-weniger-straftaten-in-brandenburg",
+      "note": "州内政部明确披露2025年19人，较2024年增加2人。州年度警察死亡统计；不能与交通事故死亡相混。"
+    },
+    "Thüringen": {
+      "cases": 77,
+      "previous_2024": 50,
+      "source_type": "news_agency_citing_state_police",
+      "source_title": "dpa（德国新闻社）· 引述图林根州警方2025年度刑事统计（2026-04-04）",
+      "source_url": "https://www.zeit.de/news/2026-04/04/zahl-der-drogentoten-in-thueringen-erneut-gestiegen",
+      "note": "dpa引述图林根州警方2025年77人、2024年50人；包括多种吸毒相关致死情形。尚待州警独立原表复核。"
+    },
+    "Sachsen-Anhalt": {
+      "cases": 61,
+      "previous_2024": 48,
+      "source_type": "news_agency_citing_state_ministry",
+      "source_title": "dpa（德国新闻社）· 引述萨克森—安哈尔特州内政部（2026-02-27）",
+      "source_url": "https://www.sueddeutsche.de/panorama/traurige-statistik-zahl-der-drogentoten-in-sachsen-anhalt-auf-hoechststand-dpa.urn-newsml-dpa-com-20090101-260227-930-743602",
+      "note": "dpa引述州内政部2025年61名、2024年48名，创当地统计高值；死亡可能与长期多药物使用有关。"
     }
   },
   "selected_offence_codes_by_state": {
@@ -139,6 +164,117 @@
           "general_code": null,
           "trade_code": null,
           "law": "BtMG；州2025短报"
+        }
+      ]
+    },
+    "Rheinland-Pfalz": {
+      "source_url": "https://www.polizei.rlp.de/fileadmin/polizei.rlp.de/Service/Dokumente/Statistiken/_PKS_Landesweit/2025/PKS_Jahresbericht_2025.pdf",
+      "source_title": "莱茵兰—普法尔茨州刑警局 · PKS 2025年度报告第48—49页表15",
+      "source_type": "state_police",
+      "notes": "大麻的515与858属于KCanG §34不同罪名。其他分项只公布一般违法，不能当作全部违法；报告中的苯丙胺及其衍生物包含摇头丸等，不能标注为纯冰毒。2024年大麻法律调整造成跨年不可比。",
+      "groups": [
+        {
+          "name": "大麻（KCanG）",
+          "general": 515,
+          "trade": 858,
+          "general_code": "KCanG §34一般违法",
+          "trade_code": "KCanG §34非法交易",
+          "law": "KCanG §34"
+        }
+      ],
+      "additional_metrics": [
+        {
+          "name": "可卡因／快克 · 一般违法",
+          "cases": 1043,
+          "code": "BtMG §29",
+          "note": "PKS表15可卡因分项；报告另有跨十年叙述1048，采用表中2025年直接列值1043。"
+        },
+        {
+          "name": "海洛因 · 一般违法",
+          "cases": 152,
+          "code": "BtMG §29"
+        },
+        {
+          "name": "苯丙胺及衍生物（含摇头丸）· 一般违法",
+          "cases": 3202,
+          "code": "BtMG §29",
+          "note": "含多种苯丙胺相关形式，并非甲基苯丙胺（冰毒）专属。"
+        },
+        {
+          "name": "大麻相关全部登记案件",
+          "cases": 2321,
+          "code": "BtMG/KCanG/MedCanG",
+          "note": "报告第48页文字统计，多个法律项目的合计，不可与大麻分项重复相加。"
+        }
+      ]
+    },
+    "Brandenburg": {
+      "source_url": "https://mik.brandenburg.de/sixcms/media.php/9/PKS_Bericht_2025_web.pdf",
+      "source_title": "勃兰登堡州内政部 · PKS 2025第39—41页表32与表33",
+      "source_type": "state_government",
+      "notes": "大麻两列只覆盖§34 KCanG一般违法和非法交易。另列药物种类案件数来自第40页表33，包含一般违法、走私交易及部分严重案件；各项目与大麻分列存在口径差异，不可直接横向汇总。大麻§34总计701含其他子罪名。",
+      "groups": [
+        {
+          "name": "大麻（KCanG）",
+          "general": 219,
+          "trade": 171,
+          "general_code": "736100",
+          "trade_code": "736200",
+          "law": "KCanG §34"
+        }
+      ],
+      "additional_metrics": [
+        {
+          "name": "大麻（KCanG §34）· 全部罪名",
+          "cases": 701,
+          "code": "736000",
+          "note": "包括一般违法、非法交易及其他KCanG罪名，不可与表内219和171再次累加。"
+        },
+        {
+          "name": "可卡因及快克 · 涉毒案件",
+          "cases": 404,
+          "previous_2024": 399,
+          "code": "表33（多罪名）"
+        },
+        {
+          "name": "冰毒／甲基苯丙胺 · 涉毒案件",
+          "cases": 248,
+          "previous_2024": 342,
+          "code": "表33（多罪名）",
+          "note": "包括粉末、晶体、液体及片剂／胶囊形式；不是仅Crystal。"
+        },
+        {
+          "name": "海洛因 · 涉毒案件",
+          "cases": 27,
+          "previous_2024": 42,
+          "code": "表33（多罪名）"
+        },
+        {
+          "name": "苯丙胺及衍生物（含摇头丸）· 涉毒案件",
+          "cases": 1230,
+          "previous_2024": 1362,
+          "code": "表33（多罪名）"
+        }
+      ]
+    },
+    "Hessen": {
+      "source_url": "https://hessen.de/presse/straftaten-gehen-2025-weiter-zurueck",
+      "source_title": "黑森州内政部 · PKS 2025年度发布公告（2026-03-02）",
+      "source_type": "state_government",
+      "notes": "仅有部分药物的一般违法分项，不能视为全部相关毒品犯罪；可卡因与快克在本公告中分列，避免再次算进同一总数。",
+      "groups": [],
+      "additional_metrics": [
+        {
+          "name": "可卡因 · 一般违法",
+          "cases": 2406,
+          "previous_2024": 2300,
+          "code": "州政府发布公告"
+        },
+        {
+          "name": "快克（Crack）· 一般违法",
+          "cases": 543,
+          "previous_2024": 578,
+          "code": "州政府发布公告"
         }
       ]
     }
