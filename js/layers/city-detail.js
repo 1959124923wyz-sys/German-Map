@@ -158,12 +158,12 @@ async function rebuild(){
       // low- or high-crime districts. Draw before the actual 61 districts.
       cityBackdrop=L.geoJSON(boundary,{pane:'berlinPane',interactive:false,style:()=>({
         pane:'berlinPane',color:'transparent',weight:0,opacity:0,
-        fillColor:'#e7ecef',fillOpacity:.97
+        fillColor:'#e7ecef',fillOpacity:.38
       })}).addTo(api.map);
       document.querySelector('.mapwrap')?.classList.add('city-detail-focus');
     }
     if(!validCityGeometry(data,active))throw new Error(active.id+' invalid CRS/geometry: expected longitude/latitude near configured city bounds');
-    layer=L.geoJSON(data,{pane:'berlinPane',filter:f=>Number.isFinite(Number(f?.properties?.[cfg.field]?.rate)),style:f=>({pane:'berlinPane',color:city.coverage==='partial'?'#78848b':(api.getMode()==='property'?'#486783':'#8a563b'),weight:city.coverage==='partial'?.65:.34,opacity:city.coverage==='partial'?.55:.62,fillColor:scaleColor(Number(f.properties[cfg.field].rate),br,pal),fillOpacity:city.coverage==='partial'?.96:.84}),onEachFeature:(f,l)=>{
+    layer=L.geoJSON(data,{pane:'berlinPane',filter:f=>Number.isFinite(Number(f?.properties?.[cfg.field]?.rate)),style:f=>({pane:'berlinPane',color:city.coverage==='partial'?'#78848b':(api.getMode()==='property'?'#486783':'#8a563b'),weight:city.coverage==='partial'?.65:.34,opacity:city.coverage==='partial'?.55:.62,fillColor:scaleColor(Number(f.properties[cfg.field].rate),br,pal),fillOpacity:city.coverage==='partial'?.88:.84}),onEachFeature:(f,l)=>{
       l.bindTooltip(()=>{const a=areaFor(active,data,f);return '<b>'+esc(a.name)+'</b><br>'+esc(cfg.label)+' '+fmt(Math.round(a.rate))+'/10万人 · '+riskLabel(a.pct).text},{sticky:true});
       l.on('mouseover',()=>{if(l!==selected)l.setStyle({color:'#fff',weight:1.35,opacity:1,fillOpacity:.89});showPanel(areaFor(active,data,f))});
       l.on('mouseout',()=>{if(l!==selected)layer?.resetStyle(l);const p=api.getPinnedArea?.();if(p?.kind==='city-local-generic')showPanel(p,false);else api.showArea(p)});
