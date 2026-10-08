@@ -63,7 +63,36 @@ def main():
             page.locator('#state-panel').wait_for(state='visible')
             assert '每10万人登记案件' in page.locator('#state-rate-label').inner_text()
             assert not errors, errors
-            print('PASS drug map smoke:', count, 'states', first, second, 'county click at zoom 9')
+            # EUDA overlay is a separate real data layer with six substances.
+            page.locator('#drugs-tab-wastewater').click()
+            page.wait_for_function(
+                "() => document.getElementById('wastewater-sites')?.textContent === '13'",
+                timeout=30000)
+            assert page.locator('#drugs-wastewater-content').is_visible()
+            assert not page.locator('#drugs-crime-content').is_visible()
+            assert page.locator('#wastewater-rank button').count() == 13
+            assert page.evaluate('() => window.__DRUGS_WASTEWATER_TEST__.markers') == 13
+            assert page.locator('#legend-title').inner_text().startswith('大麻')
+            page.screenshot(path='/tmp/germany-crime-map-drugs-euda.png', full_page=True)
+            page.locator('#wastewater-substance').select_option('cocaine')
+            assert page.locator('#legend-title').inner_text().startswith('可卡因')
+            assert page.locator('#wastewater-rank button').count() == 13
+            page.locator('#wastewater-rank button').first.click()
+            assert page.locator('#wastewater-flyout').is_visible()
+            assert page.locator('#wastewater-value').inner_text() not in ['—','0']
+            page.locator('#close-wastewater').click()
+            assert not page.locator('#wastewater-flyout').is_visible()
+            page.locator('#drugs-tab-crime').click()
+            assert page.locator('#drugs-crime-content').is_visible()
+            assert not page.locator('#drugs-wastewater-content').is_visible()
+            assert page.locator('#legend-title').inner_text() == '毒品违法案件 / 每10万人'
+            page.evaluate("() => window.__DRUGS_PREVIEW_MAP__.setView([50.72,9.1],6,{animate:false})")
+            page.wait_for_timeout(250)
+            click_place(page, 50.72, 9.1)
+            page.locator('#state-panel').wait_for(state='visible')
+            assert not errors, errors
+            print('PASS drug map smoke:', count, 'states', first, second,
+                  'county click, EUDA 13 stations, 6 drugs, tab switch and return')
         finally:
             browser.close()
 
