@@ -142,7 +142,10 @@ def main():
                 a = projected[i].intersection(projected[j]).area
                 if a > 1:
                     pair_overlap.append((i+1, j+1, round(a, 2)))
-    city_from_admin = unary_union([v["geom"] for v in districts.values()])
+    # Stadtteile omit the standalone rural Ortsteile (Blockland, Borgfeld,
+    # Seehausen, Strom); they are NOT an exhaustive city boundary.
+    # The official 87 Ortsteile are the complete municipality partition.
+    city_from_admin = unary_union([v["geom"] for v in neighbourhoods.values()])
     drawn = unary_union(shapes)
     official_m = transform(TO_METRIC, city_from_admin)
     drawn_m = transform(TO_METRIC, drawn)
@@ -155,6 +158,7 @@ def main():
         "reporting_areas": len(shapes),
         "official_stadtteile": len(districts),
         "official_ortsteile": len(neighbourhoods),
+        "baseline": "union of all 87 official Bremen Ortsteile (not just 19 Stadtteile)",
         "official_area_km2": km2(city_from_admin),
         "mapped_area_km2": km2(drawn),
         "uncovered_km2": round(gap / 1e6, 4),
@@ -166,7 +170,7 @@ def main():
     print("[bremen-geometry] audit", json.dumps(audit, ensure_ascii=False), flush=True)
     # A sub-kilometre gap can be a geometric precision issue. A larger
     # gap or an administrative overlap is not acceptable for publication.
-    if not (280 < km2(city_from_admin) < 390):
+    if not (300 < km2(city_from_admin) < 390):
         raise ValueError("Bremen official area implausible / CRS wrong")
     if gap > 0.005 * official_m.area or extra > 0.005 * official_m.area:
         raise ValueError("Bremen candidate geometry does not cover official city")
