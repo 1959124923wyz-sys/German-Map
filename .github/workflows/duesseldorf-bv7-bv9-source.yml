@@ -1,0 +1,22 @@
+name: Düsseldorf BV7 and BV9 2025 official PKS source review
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/probe_duesseldorf_bv7_bv9_2025.py'
+      - '.github/workflows/duesseldorf-bv7-bv9-source.yml'
+permissions:
+  contents: read
+jobs:
+  original-police-presentations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install requests pypdf
+      - name: Verify district 7 and 9 primary OParl PDFs and 2025 police tables
+        run: python scripts/probe_duesseldorf_bv7_bv9_2025.py
