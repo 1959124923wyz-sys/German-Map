@@ -2,7 +2,7 @@
    No nationwide crime rate semantics, independent from violence/property UI. */
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
-const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;':'&quot;',"'":'&#39;'}[c]));
+const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=n=>Number(n).toLocaleString('zh-CN');
 const colors=['#edf3fb','#d7e7f6','#b8d6ea','#8dbbd9','#5c95c4','#3473ac','#174b81'];
 let api=null,cfg=null,data=null,layer=null,epoch=0,enabled=false,selected=null,renderer=null;
