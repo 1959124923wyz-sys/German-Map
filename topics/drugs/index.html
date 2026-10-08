@@ -7,7 +7,7 @@
 <title>德国毒品问题地图｜German-Map</title>
 <meta name="description" content="2025德国县级毒品犯罪登记案件地图。数据来自BKA PKS县级统计的公开镜像，明确区分警方记录与毒品消费。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="topic.css?v=20261008-region-context-v1">
+<link rel="stylesheet" href="topic.css?v=20261008-state-evidence-v1">
 </head>
 <body>
 <header class="topbar">
@@ -66,6 +66,12 @@
       <div class="row"><h4 id="region-list-heading" class="section-title">州内县市</h4><span id="region-subtitle" class="subtle-note"></span></div>
       <ol class="district-list regional-counties" id="region-county-list"></ol>
       <p id="region-footnote" class="note"></p>
+      <details id="region-evidence" class="region-evidence">
+        <summary id="region-evidence-head">2025年州级补充资料 · 加载中</summary>
+        <div id="region-evidence-body" class="region-evidence-body">
+          <p class="note">仅使用带来源的州级统计，暂无数据的州不会推算。</p>
+        </div>
+      </details>
       <div id="region-news" class="region-news" aria-label="所选州的相关通报">
         <div class="row"><h4 class="section-title">本州近期相关通报</h4><button type="button" class="secondary-button" id="region-news-all">查看全部</button></div>
         <ol id="region-news-list" class="region-news-list"><li class="note">正在读取已核实来源…</li></ol>
@@ -78,6 +84,7 @@
       <div class="metricvalue">164,991</div>
       <div class="metriclabel">BKA 2025全国 Rauschgiftkriminalität 登记案件（独立全国指标，与下方县级指标不直接等同）</div>
     </div>
+    <p class="national-health-summary">2025年全国登记毒品相关死亡 <strong>2,150人</strong> · <a href="https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/" target="_blank" rel="noopener noreferrer">联邦官方年度通报 ↗</a>（健康统计，非犯案数）</p>
     <div class="statgrid">
       <div class="metricbox"><div class="metricvalue">42,909</div><div class="metriclabel">2025年大麻及制品相关警方案件（全国，BKA分类）</div></div>
       <div class="metricbox"><div class="metricvalue">39,414</div><div class="metriclabel">2025年可卡因及快克相关警方案件（全国，BKA形势报告）</div></div>
@@ -184,8 +191,9 @@
 </main>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="../../js/layers/city-labels.js?v=20261008-shared-v2"></script>
+<script src="state-evidence.js?v=20261008-state-evidence-v1"></script>
 <script src="wastewater.js?v=20261008-region-context-v1"></script>
 <script src="news.js?v=20261008-region-context-v1"></script>
-<script src="topic.js?v=20261008-region-context-v1"></script>
+<script src="topic.js?v=20261008-state-evidence-v1"></script>
 </body>
 </html>
