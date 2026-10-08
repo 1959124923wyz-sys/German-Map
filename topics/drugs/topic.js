@@ -115,7 +115,7 @@
     }
     const countyRenderer = L.svg({ pane: 'drugsCountyPane' });
     const stateRenderer = L.svg({ pane: 'drugsStatePane' });
-    let counties, states, selectedCounty = null, selectedState = null, stateFeature = null;
+    let counties, states, selectedCounty = null, selectedState = null, selectedCountyLayer = null, stateFeature = null;
     const stateFeatures = new Map(stateGeo.features.map(f => [f.properties?.name, f]));
     const stateStatistics = new Map([...stateFeatures.keys()].map(name => [name, stateStats(name, data)]));
     const totalCountyCases = [...stateStatistics.values()].reduce((sum, v) => sum + v.cases, 0);
@@ -198,6 +198,9 @@
     function resetRegion() {
       selectedCounty = null;
       selectedState = null;
+      if (selectedCountyLayer && counties) counties.resetStyle(selectedCountyLayer);
+      selectedCountyLayer = null;
+      refreshStateSelection();
       if (popup) popup.hidden = true;
       const board = el('region-navigator'),national=el('national-drug-summary');
       if (board) board.hidden=true;
@@ -207,11 +210,14 @@
       map.fitBounds(NATION_BOUNDS,{padding:[13,13],animate:false});
     }
     function showPanel() { if (isStandalone && popup) popup.hidden = false; }
-    function closePanel() { if (popup) popup.hidden = true; selectedState = null; selectedCounty = null; }
+    function closePanel() { if (popup) popup.hidden = true; }
     function renderCounty(rec, feature) {
       if (!rec || !metric(rec)) return;
       selectedCounty = rec.ags;
       selectedState = rec.state;
+      if (selectedCountyLayer && counties) counties.resetStyle(selectedCountyLayer);
+      selectedCountyLayer = counties?.getLayers().find(l => l.feature && recordFor(l.feature,data)?.ags === rec.ags) || null;
+      if (selectedCountyLayer) selectedCountyLayer.setStyle({color:'#d7f7e4',weight:2.5,opacity:1});
       showRegionBoard(rec.state, rec);
       if (typeof context.onSelection === 'function') {
         context.onSelection({kind:'drugs-county',feature,record:rec,metric:rec.drug_crime});
@@ -244,7 +250,10 @@
       const rows = stateRows(name, data);
       selectedState = name;
       selectedCounty = null;
+      if (selectedCountyLayer && counties) counties.resetStyle(selectedCountyLayer);
+      selectedCountyLayer = null;
       stateFeature = feature;
+      refreshStateSelection();
       showRegionBoard(name);
       if (typeof context.onSelection === 'function') {
         context.onSelection({kind:'drugs-state',feature,name,rows,
@@ -289,11 +298,21 @@
         layer.on('click', e => {
           L.DomEvent.stopPropagation(e);
           renderCounty(rec, feature);
-          layer.setStyle({color:'#d7f7e4',weight:2,opacity:1});
         });
       }
     }).addTo(container);
     let stateInteractivity = null;
+    function refreshStateSelection() {
+      if (!states) return;
+      states.eachLayer(layer => {
+        if (!layer.feature) return;
+        layer.setStyle({
+          color:layer.feature.properties?.name===selectedState ? '#e1f5e5' : '#98c7ae',
+          weight:layer.feature.properties?.name===selectedState ? 2.7 : 1.15,
+          opacity:layer.feature.properties?.name===selectedState ? 1 : .8
+        });
+      });
+    }
     function updateStates() {
       const interactive = map.getZoom() < 7.5;
       if (states && interactive === stateInteractivity) return;
@@ -301,8 +320,8 @@
       stateInteractivity = interactive;
       states = L.geoJSON(stateGeo, {
         pane:'drugsStatePane', renderer:stateRenderer, interactive,
-        style: () => ({pane:'drugsStatePane',renderer:stateRenderer,
-          color:'#98c7ae',weight:1.15,opacity:.8,
+        style: (feature) => ({pane:'drugsStatePane',renderer:stateRenderer,
+          color:feature?.properties?.name===selectedState?'#e1f5e5':'#98c7ae',weight:feature?.properties?.name===selectedState?2.7:1.15,opacity:.8,
           fill:interactive,fillColor:'#fff',fillOpacity:interactive?0.001:0}),
         onEachFeature: (feature, layer) => {
           layer.bindTooltip(esc(feature.properties?.name || ''), {sticky:true});
@@ -312,6 +331,7 @@
           });
         }
       }).addTo(container);
+      refreshStateSelection();
     }
     map.on('zoomend', updateStates);
     updateStates();
