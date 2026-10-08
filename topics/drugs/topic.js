@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const COLORS = ['#fff4eb','#f6ddc5','#eec29c','#e4a678','#d9875e','#bd6348','#8d372e'];
+  const COLORS = ['#e5f4e8','#c5e7ce','#9dd4b0','#72bd91','#48a275','#267b59','#0e5139'];
   const nf = new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 0 });
   const esc = x => String(x ?? '').replace(/[&<>"']/g, c =>
     ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -18,7 +18,7 @@
     });
   }
   function colorFor(value, breaks) {
-    if (!Number.isFinite(value) || !breaks.length) return '#d6dfe2';
+    if (!Number.isFinite(value) || !breaks.length) return '#64727b';
     let i = 0;
     while (i < breaks.length && value > breaks[i]) i++;
     return COLORS[i];
@@ -171,9 +171,9 @@
       const rec = recordFor(f, data), datum = metric(rec);
       return {
         renderer: countyRenderer, pane:'drugsCountyPane',
-        color:'#829296',weight:.35,opacity:.65,
-        fillColor:datum ? colorFor(Number(datum.rate),breaks) : '#d6dfe2',
-        fillOpacity:datum ? .80 : .13
+        color:'#163b32',weight:.45,opacity:.75,
+        fillColor:datum ? colorFor(Number(datum.rate),breaks) : '#64727b',
+        fillOpacity:datum ? .91 : .35
       };
     }
     counties = L.geoJSON(countyGeo, {
@@ -186,7 +186,7 @@
         layer.on('click', e => {
           L.DomEvent.stopPropagation(e);
           renderCounty(rec, feature);
-          layer.setStyle({color:'#ffffff',weight:2,opacity:1});
+          layer.setStyle({color:'#d7f7e4',weight:2,opacity:1});
         });
       }
     }).addTo(container);
@@ -199,7 +199,7 @@
       states = L.geoJSON(stateGeo, {
         pane:'drugsStatePane', renderer:stateRenderer, interactive,
         style: () => ({pane:'drugsStatePane',renderer:stateRenderer,
-          color:'#596c70',weight:1.05,opacity:.75,
+          color:'#98c7ae',weight:1.15,opacity:.8,
           fill:interactive,fillColor:'#fff',fillOpacity:interactive?0.001:0}),
         onEachFeature: (feature, layer) => {
           layer.bindTooltip(esc(feature.properties?.name || ''), {sticky:true});
@@ -271,7 +271,7 @@
     map.fitBounds(NATION_BOUNDS, {padding:[15,15]});
     window.__DRUGS_PREVIEW_MAP__ = map;
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom:19,opacity:.55,attribution:'© OpenStreetMap contributors'
+      maxZoom:19,opacity:.56,attribution:'© OpenStreetMap contributors'
     }).addTo(map);
     activate({map}).catch(error => {
       console.error(error);
