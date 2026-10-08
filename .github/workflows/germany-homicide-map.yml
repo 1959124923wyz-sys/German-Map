@@ -1,0 +1,161 @@
+name: Germany crime map updater
+
+on:
+  workflow_dispatch:
+    inputs:
+      full_backfill:
+        description: 'Run a full 90-day Berlin backfill'
+        required: false
+        default: false
+        type: boolean
+  schedule:
+    - cron: "17 20 * * *"
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/germany-homicide-map.yml'
+      - 'scripts/**'
+      - 'index.html'
+      - 'css/**'
+      - 'js/**'
+      - 'data/city_layers.json'
+      - 'requirements.txt'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Serialize the shared GitHub Pages environment across site publishers.
+# The latest source/data must not collide with another active Pages deployment.
+concurrency:
+  group: german-map-pages
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Validate map JavaScript syntax
+        run: |
+          node --check js/core/geo-stats.js
+          node --check js/core/config.js
+          node --check js/core/data-model.js
+          node --check js/panels/drawer-drag.js
+          node --check js/panels/state-panel.js
+          node --check js/panels/area-panel.js
+          node --check js/layers/recent-events.js
+          node --check js/layers/berlin-detail.js
+          node --check js/layers/county-layer.js
+          node --check js/layers/state-layer.js
+          node --check js/app.js
+          node --check js/layers/city-detail.js
+
+      - name: Test deterministic city builder I/O
+        run: python scripts/test_city_build_common.py
+
+      - name: Validate city-layer registry JSON
+        run: python -m json.tool data/city_layers.json >/dev/null
+
+      - name: Ensure nationwide 2025 property heatmap data
+        run: |
+          if [ ! -f data/pks_property_2025.json ]; then
+            python scripts/build_pks_property_2025.py
+          else
+            echo "Property heatmap data already present; skip static annual rebuild"
+          fi
+
+      - name: Build registered city detail layers
+        run: python scripts/build_city_layers.py
+
+      - name: Validate city detail registry
+        run: python scripts/validate_city_layers.py
+
+      - name: Refresh homicide data
+        env:
+          APP_CONTACT: https://github.com/1959124923wyz-sys/German-Map
+        run: python scripts/update_cases.py
+
+      - name: Refresh robbery, sexual, violence and property data
+        env:
+          APP_CONTACT: https://github.com/1959124923wyz-sys/German-Map
+          CRIME_LOOKBACK_DAYS: '4'
+        run: python scripts/update_crime_categories.py
+
+      - name: Refresh direct Polizei Berlin source
+        env:
+          BERLIN_LOOKBACK_DAYS: ${{ github.event_name == 'workflow_dispatch' && inputs.full_backfill && '90' || '5' }}
+        run: python scripts/update_berlin_categories.py
+
+      - name: Refresh Berlin official theft heatmap
+        run: python scripts/update_berlin_heatmap.py
+
+      - name: Validate Berlin official heatmap
+        run: python scripts/validate_berlin_heatmap.py
+
+      - name: Commit refreshed data
+        id: save
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if ! git diff --cached --quiet; then
+            git commit -m "data: refresh Germany crime map"
+            # UI/source commits may land while this updater is running.
+            # Rebase the generated-data commit before pushing instead of failing
+            # with a non-fast-forward error.
+            # Generated-data commits can race with other source and UI changes.
+            # Rebase against the newest main and retry non-fast-forward pushes.
+            pushed=false
+            for attempt in 1 2 3 4; do
+              git fetch origin main
+              git rebase -X theirs origin/main
+              if git push origin HEAD:main; then
+                pushed=true
+                break
+              fi
+              echo "Generated-data push raced with another commit: $attempt/4"
+              sleep "$((attempt * 2))"
+            done
+            if [ "$pushed" != "true" ]; then
+              echo "Could not publish generated data after four attempts" >&2
+              exit 1
+            fi
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No map data changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Pages
+        if: github.event_name != 'pull_request' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.save.outputs.changed == 'true')
+        uses: actions/configure-pages@v5
+
+      - name: Upload complete site
+        if: github.event_name != 'pull_request' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.save.outputs.changed == 'true')
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - name: Deploy Pages
+        id: deployment
+        if: github.event_name != 'pull_request' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.save.outputs.changed == 'true')
+        uses: actions/deploy-pages@v4
