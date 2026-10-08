@@ -6,6 +6,11 @@ on:
     branches: [main]
     paths:
       - 'topics/drugs/**'
+      - 'js/layers/city-labels.js'
+      - 'js/app.js'
+      - 'css/map.css'
+      - 'index.html'
+      - 'scripts/smoke_city_labels.py'
       - '.github/workflows/drugs-visual-smoke.yml'
 
 permissions:
@@ -33,12 +38,15 @@ jobs:
       - name: Validate JS and county data
         run: |
           node --check topics/drugs/topic.js
+          node --check js/layers/city-labels.js
+          node --check js/app.js
           python topics/drugs/scripts/validate_drugs.py
       - name: Open site and verify dark UI, green legend, and real clicks
         run: |
           python -m http.server 8765 --bind 127.0.0.1 >/tmp/drugs-http.log 2>&1 &
           sleep 2
           python topics/drugs/tests/smoke_drugs.py
+          python scripts/smoke_city_labels.py
       - name: Upload screenshot
         if: always()
         uses: actions/upload-artifact@v4
@@ -47,4 +55,5 @@ jobs:
           path: |
             /tmp/germany-crime-map-drugs-dark.png
             /tmp/germany-crime-map-drugs-euda.png
+            /tmp/shared-city-labels.png
           if-no-files-found: warn
