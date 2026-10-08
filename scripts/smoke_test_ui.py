@@ -471,7 +471,9 @@ with sync_playwright() as playwright:
     assert bv6['names']==['Lichtenbroich','Mörsenbroich','Rath','Unterrath'],bv6
     page.locator('#duesseldorfBV6Metric').select_option('bicycle_theft')
     assert page.evaluate("window.__DUESSELDORF_BV6__.getMetric()")=='bicycle_theft'
+    assert page.locator('.leaflet-popup-pane .leaflet-popup').count()==0, "old city popup leaked into four-Stadtteil mode"
     page.evaluate("""() => {window.__DUESSELDORF_BV6__.getLayer().getLayers()[0].fire('click');return true;}""")
+    assert page.locator('.leaflet-popup-pane .leaflet-popup').count()==1, "more than one polygon popup visible"
     assert '2022年' in page.locator('.leaflet-popup-content').inner_text()
     assert '2025年' in page.locator('.leaflet-popup-content').inner_text()
     page.screenshot(path=str(SCREENSHOT.with_name('germany-crime-map-duesseldorf-bv6-stadtteile.png')),full_page=True)
