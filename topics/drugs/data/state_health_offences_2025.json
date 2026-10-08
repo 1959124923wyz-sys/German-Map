@@ -72,11 +72,11 @@
     },
     "Sachsen": {
       "cases": 26,
-      "previous_2024": null,
-      "source_type": "public_broadcaster_citing_police",
-      "source_title": "MDR SACHSEN · 引述萨克森警方统计",
-      "source_url": "https://www.mdr.de/nachrichten/sachsen/drogentote-statistik-gedenktag-%2Cdrogen-tote-102.html",
-      "note": "死亡与混合药物使用关联，数据源为警方年度统计，不能推算各毒品致死数。"
+      "previous_2024": 28,
+      "source_type": "state_police",
+      "source_title": "萨克森州刑警局 · PKS2025年度概览第44页（PDF页45）",
+      "source_url": "https://www.polizei.sachsen.de/de/download/Landesportal/PKS-Jahresueberblick-2025.pdf",
+      "note": "州警方报告直接列明2025年毒品相关死亡26人、2024年28人，内含莱比锡警区11人等州下辖警区记录；不得将警区或德累斯顿城市数再次加至州级总数。"
     },
     "Schleswig-Holstein": {
       "cases": 53,
