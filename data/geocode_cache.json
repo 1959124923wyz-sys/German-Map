@@ -7834,5 +7834,52 @@
       "country": "Deutschland",
       "country_code": "de"
     }
+  },
+  "Steller Chaussee, Tostedt, Germany": null,
+  "Tostedt, Germany": {
+    "lat": 53.28265,
+    "lon": 9.7124175,
+    "address": {
+      "town": "Tostedt",
+      "municipality": "Samtgemeinde Tostedt",
+      "county": "Landkreis Harburg",
+      "state": "Niedersachsen",
+      "ISO3166-2-lvl4": "DE-NI",
+      "postcode": "21255",
+      "country": "Deutschland",
+      "country_code": "de"
+    }
+  },
+  "Moltkestraße, Düren, Germany": {
+    "lat": 50.8049073,
+    "lon": 6.4888245,
+    "address": {
+      "road": "Moltkestraße",
+      "hamlet": "Grüngürtel",
+      "town": "Düren",
+      "county": "Kreis Düren",
+      "state": "Nordrhein-Westfalen",
+      "ISO3166-2-lvl4": "DE-NW",
+      "postcode": "52351",
+      "country": "Deutschland",
+      "country_code": "de"
+    }
+  },
+  "Mainz-Altstadt, Germany": {
+    "lat": 50.0017251,
+    "lon": 8.2773146,
+    "address": {
+      "information": "Mainz",
+      "road": "Adenauer-Ufer",
+      "neighbourhood": "Lauterenviertel",
+      "quarter": "Südliche Altstadt",
+      "suburb": "Altstadt",
+      "city": "Mainz",
+      "state": "Rheinland-Pfalz",
+      "ISO3166-2-lvl4": "DE-RP",
+      "postcode": "55116",
+      "country": "Deutschland",
+      "country_code": "de"
+    }
   }
 }
