@@ -47,6 +47,10 @@
     }, 0);
     return {name, rows, cases, rateEstimate:populationEstimate ? cases / populationEstimate * 100000 : null};
   }
+  function parseChange(value) {
+    const match = String(value ?? '').trim().match(/^([+-]?\d+(?:[,.]\d+)?)\s*%$/);
+    return match ? Number(match[1].replace(',', '.')) : null;
+  }
   function safeNode(tag, value, className = '') {
     const node = document.createElement(tag);
     node.textContent = String(value);
@@ -121,8 +125,45 @@
     const totalCountyCases = [...stateStatistics.values()].reduce((sum, v) => sum + v.cases, 0);
     const container = L.layerGroup().addTo(map);
     const isStandalone = Boolean(el('drug-map'));
-    const popup = el('state-panel');
 
+    function renderRegionNews(name) {
+      const list=el('region-news-list'),all=el('region-news-all');
+      if(!list||!all)return;
+      const item=document.createElement('li');
+      item.className='note';
+      item.textContent='正在读取本州公开通报…';
+      list.replaceChildren(item);
+      all.onclick=()=>window.GermanMapDrugNews?.openForState?.(name);
+      const api=window.GermanMapDrugNews;
+      if(!api?.reportsForState) {
+        item.textContent='新闻模块尚未准备好';
+        return;
+      }
+      api.reportsForState(name,3).then(entries=>{
+        if(selectedState!==name || !el('region-navigator') || el('region-navigator').hidden)return;
+        list.replaceChildren();
+        if(!entries.length) {
+          const li=document.createElement('li');li.className='note';
+          li.textContent='目前没有收录本州相关通报；不代表没有发生相关事件。';
+          list.append(li);
+          return;
+        }
+        for(const entry of entries) {
+          const li=document.createElement('li'), a=document.createElement('a');
+          a.href=entry.source_url;
+          a.target='_blank';a.rel='noopener noreferrer';
+          a.className='region-news-link';
+          a.append(safeNode('span',entry.publication_date+' · '+entry.city,'region-news-date'),
+            safeNode('span',entry.title,'region-news-title'));
+          li.append(a);list.append(li);
+        }
+      }).catch(()=>{
+        if(selectedState!==name)return;
+        list.replaceChildren();
+        const li=document.createElement('li');li.className='note';
+        li.textContent='近期通报暂时无法加载';list.append(li);
+      });
+    }
     function showRegionBoard(name, county = null) {
       if (!isStandalone) return;
       const board = el('region-navigator'), national = el('national-drug-summary');
@@ -145,6 +186,28 @@
         ? '2025年 · ' + name + ' · 该县同比 ' + (county.drug_crime.change || '未公布')
         : '2025年 · 已收录 ' + stats.rows.length + ' 个县/独立市 · 占全国县级汇总 ' +
           (totalCountyCases ? (100 * stats.cases / totalCountyCases).toFixed(1) : '—') + '%');
+      const change = countyMode ? parseChange(county.drug_crime.change) : null;
+      const trend = el('region-change');
+      if (trend) {
+        trend.classList.toggle('is-rising',countyMode && change !== null && change > 0);
+        trend.classList.toggle('is-falling',countyMode && change !== null && change < 0);
+        trend.textContent = countyMode
+          ? '较2024年登记案件：' + (change === null ? '未公布' :
+            (change > 0 ? '↑ +' : change < 0 ? '↓ −' : '→ ') +
+            nf.format(Math.abs(change)) + '%')
+          : '州级同比：暂无独立核实的可比数据';
+      }
+      text('region-compare-note', countyMode
+        ? '变化率采用县级来源原值（已四舍五入），不是吸毒率变化。2024年大麻法律调整造成统计口径断点，跨年比较应谨慎。'
+        : '不将各县已四舍五入的变化率相加推算全州同比。');
+      const original = el('region-original-source');
+      if (original) {
+        const safe = countyMode && /^https:\/\/kriminalitaets-karte\.de\/kriminalitaet\//.test(county.source_url);
+        original.hidden = !safe;
+        if (safe) original.href = county.source_url;
+        else original.removeAttribute('href');
+      }
+      renderRegionNews(name);
       text('region-list-heading', countyMode ? '州内其他县市 · 按登记率排序' : '州内全部县市 · 按登记率排序');
       text('region-subtitle', stats.rows.length + '个地区');
       text('region-footnote', countyMode
@@ -201,17 +264,15 @@
       if (selectedCountyLayer && counties) counties.resetStyle(selectedCountyLayer);
       selectedCountyLayer = null;
       refreshStateSelection();
-      if (popup) popup.hidden = true;
       const board = el('region-navigator'),national=el('national-drug-summary');
       if (board) board.hidden=true;
       if (national) national.hidden=false;
+      const regionNewsList=el('region-news-list');if(regionNewsList)regionNewsList.replaceChildren();
       window.GermanMapDrugNews?.setStateFilter?.('all');
       text('map-guide-title','警方登记毒品案件 · 2025');
       text('map-guide-desc','单击州查看汇总；点击“查看县市”或放大地图后，可以点选具体县市。');
       map.fitBounds(NATION_BOUNDS,{padding:[13,13],animate:false});
     }
-    function showPanel() { if (isStandalone && popup) popup.hidden = false; }
-    function closePanel() { if (popup) popup.hidden = true; }
     function renderCounty(rec, feature) {
       if (!rec || !metric(rec)) return;
       selectedCounty = rec.ags;
@@ -228,28 +289,6 @@
       if (typeof context.onSelection === 'function') {
         context.onSelection({kind:'drugs-county',feature,record:rec,metric:rec.drug_crime});
       }
-      if (!isStandalone) return;
-      showPanel();
-      text('state-name', rec.name);
-      text('state-type', rec.state + ' · BKA PKS 2025 / 县级镜像');
-      text('state-cases', nf.format(rec.drug_crime.cases));
-      text('state-cases-label', '登记案件');
-      text('state-rate', nf.format(rec.drug_crime.rate));
-      text('state-rate-label', '每10万人登记案件');
-      text('state-top-title', '当前县／市');
-      const list = el('state-top'); list.replaceChildren();
-      const item = document.createElement('li');item.className='note';
-      const a = document.createElement('a');
-      if (/^https:\/\/kriminalitaets-karte\.de\//.test(rec.source_url)) {
-        a.href = rec.source_url; a.target = '_blank';a.rel='noopener noreferrer';a.textContent='查看本地区原始数据 ↗';
-      } else a.textContent='来源不可用';
-      item.appendChild(a); list.appendChild(item);
-      text('state-note', '本指标为警方登记的Rauschgiftdelikte。部分合法化后大麻仍可能涉及违法交易等行为；本数字不是当地吸毒人口。');
-      const focus = el('state-focus');
-      if (focus) focus.onclick = () => {
-        const layer = counties?.getLayers().find(l => l.feature && recordFor(l.feature, data)?.ags === rec.ags);
-        if (layer?.getBounds) map.fitBounds(layer.getBounds(), {maxZoom:9,padding:[35,35]});
-      };
     }
     function renderState(feature) {
       const name = feature.properties?.name;
@@ -266,25 +305,6 @@
         context.onSelection({kind:'drugs-state',feature,name,rows,
           summedCases:rows.reduce((a,r)=>a+r.drug_crime.cases,0)});
       }
-      if (!isStandalone) return;
-      showPanel();
-      text('state-name', name);
-      text('state-type', 'BKA PKS 2025 · ' + rows.length + '个已覆盖县/市');
-      text('state-cases', nf.format(rows.reduce((a,r) => a+r.drug_crime.cases, 0)));
-      text('state-cases-label', '已覆盖县／市案件汇总');
-      const stateAverage = stateStatistics.get(name)?.rateEstimate;
-      text('state-rate', stateAverage == null ? '—' : nf.format(Math.round(stateAverage)));
-      text('state-rate-label', '估算州率/10万人（由县数据推算）');
-      text('state-top-title', '州内登记率较高县市');
-      const list = el('state-top'); list.replaceChildren();
-      rows.slice(0,8).forEach(r => list.append(linkButton(r, () => {
-        const layer = counties?.getLayers().find(l => l.feature && recordFor(l.feature,data)?.ags===r.ags);
-        if (layer?.getBounds) map.fitBounds(layer.getBounds(),{maxZoom:10,padding:[35,35],animate:false});
-        renderCounty(r, layer?.feature);
-      })));
-      text('state-note', '州案件数来自县级记录合计，估算人均率由已四舍五入的县级率推算，并非BKA官方州率。右侧面板可查看全部县市，点击“查看县市”后可进一步选择。');
-      const focus = el('state-focus');
-      if (focus) focus.onclick = () => focusState(name);
     }
     function countyStyle(f) {
       const rec = recordFor(f, data), datum = metric(rec);
@@ -379,8 +399,6 @@
       }
       const home = el('region-home');
       if (home) home.onclick=resetRegion;
-      const close = el('close-state');
-      if (close) close.onclick = closePanel;
       const reset = el('reset-map');
       if (reset) reset.onclick = resetRegion;
     }
@@ -389,15 +407,13 @@
       setVisible(visible) {
         if (visible && !map.hasLayer(container)) container.addTo(map);
         if (!visible && map.hasLayer(container)) map.removeLayer(container);
-        if (!visible) closePanel();
       },
       deactivate() {
         map.off('zoomend',updateStates);
         map.removeLayer(container);
-        closePanel();
         if (isStandalone) {
-          const close=el('close-state'), reset=el('reset-map'),focus=el('state-focus');
-          if(close)close.onclick=null;if(reset)reset.onclick=null;if(focus)focus.onclick=null;
+          const reset=el('reset-map'),regionDrill=el('region-drill');
+          if(reset)reset.onclick=null;if(regionDrill)regionDrill.onclick=null;
         }
       }
     };
