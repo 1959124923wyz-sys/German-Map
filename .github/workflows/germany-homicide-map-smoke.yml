@@ -207,7 +207,7 @@ jobs:
               links=page.locator('nav.toplinks .modebtn')
               assert links.count()==3
               links.nth(1).click()
-              page.wait_for_url('**/?mode=property')
+              page.wait_for_url('**/index.html?mode=property')
               page.wait_for_function('() => document.querySelector("#modeProperty")?.classList.contains("active")',timeout=40000)
               print('PASS main → drugs → property navigation')
               browser.close()
