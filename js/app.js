@@ -20,7 +20,7 @@
   };
   const {categories:cats,palettes,propertyMetrics,violenceMetrics}=window.CrimeMapConfig;
   const {national:nationalPalette,berlin:berlinPalette,property:propertyPalette,berlinProperty:berlinPropertyPalette}=palettes;
-  let mode='violence',caseData=null,pksData=null,propertyData=null,countyGeo=null,berlinViolence=null,heatData=null,stateGeo=null;
+  let mode=new URLSearchParams(window.location.search).get('mode')==='property'?'property':'violence',caseData=null,pksData=null,propertyData=null,countyGeo=null,berlinViolence=null,heatData=null,stateGeo=null;
   let countyLayer=null,stateLayer=null,countyController=null,stateController=null;
   let pinnedArea=null,hoverArea=null,showViolenceNews=false,showPropertyNews=false,statePanel=null,eventLayer=null,berlinDetail=null,areaPanel=null;
   const stateDrawerDrag=window.CrimeDrawerDrag.create({drawer:el.stateDrawer,handle:el.stateDragHandle});
