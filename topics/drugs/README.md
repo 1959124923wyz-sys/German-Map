@@ -1,6 +1,6 @@
 # German-Map — 毒品问题专题 / Drug Topic
 
-**工作分支：** `feature/drugs-topic`；与 `feature/immigration-topic` 并行。当前阶段不修改主站共享文件。
+**维护方式（2026-10-09起）：** 按用户最新指示直接在 `main` 分支增量维护04毒品专题。05移民专题留在本地等待合并；不修改05文件或无关共享地图文件。下文早期分支描述仅保留为历史开发记录。
 
 ## 当前交付
 
@@ -142,3 +142,20 @@ GermanMapTopics.drugs.deactivate();
 - **Nordrhein-Westfalen／北莱茵—威斯特法伦州：** [州内政部《PKS2025 Handout》，第38页（PDF第43页）](https://www.im.nrw/system/files/media/document/file/pks-nrw-2025-handout.pdf)列出可卡因含快克相关案件7,507起，较2024年的6,433起增加1,074起。统计项覆盖涉及可卡因的违法，而非仅BtMG §29一般违法代码731200；州全部毒品犯罪35,517起属于**另一范围的合计**，两者不能相加。
 - 以上记录存于 `data/state_health_offences_2025.json`，右侧“州级补充资料”延用现有折叠面板，不添加独立地图控制或额外显眼卡片。`scripts/validate_state_evidence.py`固定两州的主要原表数字、2024基期、来源级别及11州覆盖元数据；`tests/smoke_drugs.py`通过展开对应州验证UI呈现。
 - **本阶段仍在推进第①项。** 原定后续次序：②补充16州死亡率官方口径；③2021—2025趋势（2024年大麻法律断点必须明确）；④扩展城市级资料；⑤提高新闻质量与自动更新可靠性。
+
+
+## 2026-10-09 计划①＋②：原始口径标准化、死亡统计补缺（11/16；13/16）
+
+开发目标以三个问题为准：**哪里警方登记案件较多；涉及什么毒品；风险是在上升还是下降。** 优先完善①分类数据和②死亡数据，之后再考虑③2021—2025长期趋势、④城市专题和⑤新闻后台，而不是叠加独立的地图和按钮。
+
+本批实际变化：
+
+- **毒品死亡资料：13/16州。** 新增 Mecklenburg-Vorpommern（梅克伦堡—前波美拉尼亚）2025年24人。出处为[《Ostsee-Zeitung》2026年9月30日对州刑警局数字的转述](https://www.ostsee-zeitung.de/mecklenburg-vorpommern/drogenberater-warnt-vor-mischkonsum-in-mv-konsumenten-immer-juenger-6RTS5SJZZRDFNKE7RNYC45YPK4.html)，按 **regional_newspaper_citing_LKA**（媒体转引）单独标记，尚非2025原始州表；2024年的15人据[2025年3月dpa转引州刑警局](https://www.zeit.de/news/2025-03/30/15-drogentote-in-mecklenburg-vorpommern-im-jahr-2024)。保留核定时点差异提示。
+- **升级巴登—符腾堡死亡来源：** 原先引行业组织的191人（2024年195人），现直接链接[州内政部2026年4月10日公布的2025年官方统计](https://im.baden-wuerttemberg.de/de/service/presse-und-oeffentlichkeitsarbeit/pressemitteilung/pid/zahl-der-drogentoten-im-jahr-2025-leicht-zurueckgegangen)。其中129例涉及混合用药；不把该项与其他致死物质项简单相加。
+- **目前仍缺3州2025年全州死亡总数：Hessen、Rheinland-Pfalz、Saarland。** 科布伦茨警方[2025年警区报告第37页](https://www.polizei.rlp.de/fileadmin/polizei.rlp.de/Service/Dokumente/Statistiken/PKS_KO/260210_Jahresbericht_PKS_2025_PPKO.pdf)明确注明2025年全州死亡数据当时尚未获得，**11例只属于科布伦茨警区**；德国西南广播2025年12月30日关于萨尔州“迄今33例”的资料并非核定全年同质统计，也暂不入库为年度州级总数。
+- **分类统计：仍为11/16州。** 余下 Bremen、Mecklenburg-Vorpommern、Saarland、Sachsen-Anhalt、Thüringen 必须找到2025全州、按物质或罪名明确划分的记录才纳入。州内个别警区、区县的分物质记录可以留作以后城市专题，不能充当全州覆盖。
+- 所有28条 `additional_metrics` 现带 `scope_kind`，区分 `general_offence`（一般违法）、`trade_or_smuggling`（交易走私）、`statutory_total`（指定法律完整类别）、`multi_offence_substance`（同物质多罪名汇总）、`multi_offence_all_drugs`（全部毒品多罪名总数）、`subgroup`（已计入父项）和 `other_statutory_offence`（其他专项法规罪名）。
+- 汉堡快克属于可卡因一般违法、汉堡大麻交易属于KCanG大麻总数、柏林大麻交易属于KCanG大麻总数：以 `subset_of` 指向各自父项，自动核对“子集不大于总数”。对仍属不同口径的州，继续分栏原文展示，不强制汇总成“全德国可卡因犯罪”排名。
+- `scripts/validate_state_evidence.py` 将历史的州键和2025年元数据规范化为**每条单独具备年份、州名、数值、统计范围、法律/罪名标识、来源及来源级别**的内部核验记录，识别重复键、缺失范围、子项超过总项、未知州等错误；不改变前端JSON消费契约。`.github/workflows/drugs-pages-deploy.yml` 不再把覆盖州数写死，改由数据元字段交叉核验。
+
+下一步依次：继续检索缺失的3州死亡原表和5州分类原表；待可核实的官方人口分母和统一死亡认定口径到位，再加入“每10万人死亡率”；多年的毒品罪名趋势必须对2024年4月1日KCanG法律变更标注断点。
