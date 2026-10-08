@@ -89,6 +89,10 @@ def main():
                 "() => document.getElementById('region-evidence-head')?.textContent.includes('300')")
             page.locator('#region-evidence-head').click()
             assert '7.7' in page.locator('#region-evidence-body').inner_text()
+            berlin_details = page.locator('#region-evidence-body').inner_text()
+            for expected in ('2,218', '1,432', '2,343', '1,309', '731200', '732200'):
+                assert expected in berlin_details, ('Berlin 2025 PKS', expected, berlin_details)
+            assert '子项' in berlin_details or '其中' in berlin_details
             page.locator('#region-home').click()
             page.locator('#state-index-list button').filter(has_text='Saarland').click()
             page.wait_for_function(
