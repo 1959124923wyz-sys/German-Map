@@ -491,13 +491,62 @@ with sync_playwright() as playwright:
     assert not page.locator('#duesseldorfBV6Panel').is_visible()
     page.click('#focusDuesseldorfCount')
     page.wait_for_function("window.__DUESSELDORF_COUNT_MAP__?.getActive()===true",timeout=20000)
+    # BV7 and BV9 use the SAME source-scoped dynamic UI component, but
+    # intentionally have DIFFERENT real police category sets and years.
+    other={}
+    for bv,areas,category_count,expected in (
+        ('07',5,8,{'all_offenses':2490,'street_crime':600,'street_robbery':7,'residential_burglary':102}),
+        ('09',8,2,{'street_crime':1659,'residential_burglary':184})):
+        page.click('#duesseldorfOpenBV'+str(int(bv)))
+        page.wait_for_function("""() => window.__DUESSELDORF_OTHER_MAP__?.getActive()===true""",timeout=25000)
+        result=page.evaluate("""() => {
+            const d=window.__DUESSELDORF_OTHER_MAP__,f=d.getLayer().getLayers(),m=d.getData().meta;
+            const sums={};
+            for(const metric of m.categories)
+              sums[metric]=f.reduce((s,x)=>s+x.feature.properties.metrics[metric]['2025'],0);
+            return {bv:d.getDistrict(),metric:d.getMetric(),n:f.length,categories:m.categories,
+                years:m.source_years,sums,rateFree:f.every(x=>Object.values(x.feature.properties.metrics).every(y=>y.rate===null)),
+                parentHidden:document.querySelector('#duesseldorfCountPanel')?.hidden===true,
+                panel:!document.querySelector('#duesseldorfOtherPanel')?.hidden,
+                parentOff:!window.__CRIME_MAP__.map.hasLayer(window.__DUESSELDORF_COUNT_MAP__.getLayer())};
+        }""")
+        assert result['bv']==bv and result['n']==areas and len(result['categories'])==category_count,result
+        assert result['rateFree'] and result['parentHidden'] and result['panel'] and result['parentOff'],result
+        for k,v in expected.items():
+            assert result['sums'][k]==v,result
+        if bv=='09':
+            assert result['categories']==['street_crime','residential_burglary'],result
+            assert result['years']==[2021,2022,2023,2024,2025],result
+        else:
+            assert result['years']==[2022,2023,2024,2025],result
+        page.locator('#duesseldorfOtherMetric').select_option('residential_burglary')
+        assert page.evaluate("window.__DUESSELDORF_OTHER_MAP__.getMetric()")=='residential_burglary'
+        assert page.locator('.leaflet-popup-pane .leaflet-popup').count()==0,"stale official city popup before BV"+bv
+        page.evaluate("""() => {window.__DUESSELDORF_OTHER_MAP__.getLayer().getLayers()[0].fire('click');return true;}""")
+        assert page.locator('.leaflet-popup-pane .leaflet-popup').count()==1,"duplicate BV popup after nested drilldown"
+        assert '2025年' in page.locator('.leaflet-popup-content').inner_text()
+        page.screenshot(path=str(SCREENSHOT.with_name('germany-crime-map-duesseldorf-bv'+bv+'-stadtteile.png')),full_page=True)
+        page.click('#duesseldorfOtherBack')
+        assert page.evaluate("window.__DUESSELDORF_OTHER_MAP__.getActive()") is False
+        assert page.evaluate("window.__CRIME_MAP__.map.hasLayer(window.__DUESSELDORF_COUNT_MAP__.getLayer())") is True
+        assert page.locator('#duesseldorfCountPanel').is_visible()
+        other[bv]=result
+    # BV9's last local popup must not interfere with state or city navigation.
+    page.click('#duesseldorfOpenBV7')
+    page.wait_for_function("window.__DUESSELDORF_OTHER_MAP__?.getActive()===true",timeout=20000)
+    page.evaluate("window.__DUESSELDORF_COUNT_MAP__.disable()")
+    assert page.evaluate("window.__DUESSELDORF_OTHER_MAP__.getActive()") is False
+    assert page.evaluate("window.__DUESSELDORF_COUNT_MAP__.getActive()") is False
+    assert not page.locator('#duesseldorfOtherPanel').is_visible()
+    page.click('#focusDuesseldorfCount')
+    page.wait_for_function("window.__DUESSELDORF_COUNT_MAP__?.getActive()===true",timeout=20000)
     page.click('#duesseldorfCountClose')
     assert page.evaluate("window.__DUESSELDORF_COUNT_MAP__.getActive()") is False
     page.click('#focusStuttgartViolence')
     page.wait_for_function("window.__STUTTGART_PUBLIC_MAP__?.getActive()===true",timeout=20000)
     assert page.evaluate("window.__DUESSELDORF_COUNT_MAP__.getActive()") is False
     page.click('#stuttgartViolenceClose')
-    print("[duesseldorf-count-regression] PASS: 10 polygons, BV6 4-area 8-category drilldown, return/reopen/disable and real popup, no rate confusion",flush=True)
+    print("[duesseldorf-count-regression] PASS: BV6 4x8; BV7 5x8, BV9 8x2 accurate counts; all return/popup/state/city layers",flush=True)
 
     assert not errors, errors
     print(json.dumps({
@@ -514,6 +563,7 @@ with sync_playwright() as playwright:
         "stuttgart":stuttgart,
         "duesseldorf":duesseldorf,
         "duesseldorf_bv6":bv6,
+        "duesseldorf_more":other,
         "page_errors":errors,
     },ensure_ascii=False))
     browser.close()
