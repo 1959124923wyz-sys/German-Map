@@ -79,6 +79,9 @@ jobs:
       - name: Rebuild Munich city layer with WGS84 coordinates
         run: python scripts/build_city_layers.py --city munich
 
+      - name: Harmonize display-only nationwide county boundaries
+        run: python scripts/build_display_counties.py
+
       - name: Validate expanded crime data
         run: |
           python scripts/validate_crime_data.py
