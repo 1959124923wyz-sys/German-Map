@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "year": 2025,
+    "publication_context": "2026年多州警察、卫生机关和公共资料发布",
+    "national_drug_deaths": 2150,
+    "national_source": "https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/",
+    "mortality_coverage_states": 9,
+    "drug_specific_offence_coverage_states": 2,
+    "method": "All counts copied from cited releases; no missing-state extrapolation, no inferred per-capita mortality rates, no drug-specific totals summed across offence keys.",
+    "mortality_scope": "Recorded drug-related deaths; state data from police/health ministries or organizations and public broadcasters quoting them. Methods and as-of dates may differ; do not add to BKA crime numbers."
+  },
+  "mortality_by_state": {
+    "Baden-Württemberg": {
+      "cases": 191,
+      "previous_2024": 195,
+      "source_type": "sector_org_citing_state_report",
+      "source_title": "Landesstelle für Suchtfragen · 2025年内政部安全报告引述",
+      "source_url": "https://lss-bw.de/alarmierende-entwicklung-immer-mehr-junge-menschen-geraten-in-die-abhaengigkeit-synthetischer-opioide-baden-wuerttemberg-steht-vor-einer-neuen-welle-der-suchterkrankungen/",
+      "note": "援引巴登-符腾堡州内政部2025年安全报告；死亡统计不等于警方案件数。"
+    },
+    "Bayern": {
+      "cases": 247,
+      "previous_2024": 214,
+      "source_type": "state_government",
+      "source_title": "巴伐利亚州内政部 · PKS 2025发布会第12页",
+      "source_url": "https://www.stmi.bayern.de/media/presse-und-medien/news/2026/03_2026/260316-kriminalstatistik-2025-ppp.pdf",
+      "note": "采用2026年3月州内政部发布会列值，个别地区警察报告口径可能略有差异。"
+    },
+    "Berlin": {
+      "cases": 300,
+      "previous_2024": null,
+      "rate_per_100k": 7.7,
+      "rate_previous_2024": 7.6,
+      "source_type": "state_government",
+      "source_title": "柏林州卫生主管部门 · 2026年7月21日公告",
+      "source_url": "https://www.berlin.de/sen/wgp/presse/2026/pressemitteilung.1695800.php",
+      "note": "柏林官方称‘mit Drogen assoziierte Todesfälle’，2025年每10万人7.7；2024年率7.6。"
+    },
+    "Bremen": {
+      "cases": 29,
+      "previous_2024": 35,
+      "source_type": "public_broadcaster_citing_BKA",
+      "source_title": "Radio Bremen · 引述BKA全国死亡数据",
+      "source_url": "https://www.butenunbinnen.de/nachrichten/drogen-tote-bremen-bremerhaven-102.html",
+      "note": "全州口径含不来梅市27人与不来梅港2人，非仅不来梅市。"
+    },
+    "Hamburg": {
+      "cases": 100,
+      "previous_2024": 102,
+      "source_type": "public_broadcaster_citing_senate",
+      "source_title": "NDR · 引述汉堡州参议院议会答复",
+      "source_url": "https://www.ndr.de/nachrichten/hamburg/hamburg-100-menschen-starben-im-vergangenen-jahr-an-drogen%2Cdrogentote-120.html",
+      "note": "据汉堡参议院对议会问询的答复；包括官方统计列入的若干特殊情形。"
+    },
+    "Niedersachsen": {
+      "cases": 132,
+      "previous_2024": 133,
+      "source_type": "public_broadcaster_citing_LKA",
+      "source_title": "Radio Bremen · 引述下萨克森州刑警局数据",
+      "source_url": "https://www.butenunbinnen.de/nachrichten/drogen-tote-bremen-bremerhaven-102.html",
+      "note": "2025年132人、2024年133人，来自州刑警局，媒体转述。"
+    },
+    "Nordrhein-Westfalen": {
+      "cases": 709,
+      "previous_2024": 769,
+      "source_type": "sector_org_citing_state",
+      "source_title": "Aidshilfe NRW · 2026年国际纪念日数据公告",
+      "source_url": "https://nrw.aidshilfe.de/service/presse/detail/weniger-drogentote-kein-grund-zur-entwarnung",
+      "note": "州公益机构披露的州级数据，需继续核实官方单一统计原表。"
+    },
+    "Sachsen": {
+      "cases": 26,
+      "previous_2024": null,
+      "source_type": "public_broadcaster_citing_police",
+      "source_title": "MDR SACHSEN · 引述萨克森警方统计",
+      "source_url": "https://www.mdr.de/nachrichten/sachsen/drogentote-statistik-gedenktag-%2Cdrogen-tote-102.html",
+      "note": "死亡与混合药物使用关联，数据源为警方年度统计，不能推算各毒品致死数。"
+    },
+    "Schleswig-Holstein": {
+      "cases": 53,
+      "previous_2024": 53,
+      "source_type": "state_police",
+      "source_title": "石荷州刑警局 · PKS 2025短报第19页",
+      "source_url": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/POLIZEI/DasSindWir/LKA/Ermittlungen_Auswertung/kriminalstatistik/_downloads/PKS2025_Kurzfassung.pdf?__blob=publicationFile&v=4",
+      "note": "州刑警局2025年短报明确写明2025年53人，与2024年持平。"
+    }
+  },
+  "selected_offence_codes_by_state": {
+    "Niedersachsen": {
+      "source_url": "https://www.lka.polizei-nds.de/download/77720/Tab.01_2025_NI.pdf.pdf",
+      "source_title": "下萨克森州刑警局 · PKS 2025 T01原始表第48—55页",
+      "source_type": "state_police",
+      "notes": "仅列特定罪名。§29 BtMG与§34 KCanG分类不同，不能把下表相加称为该种毒品全部案件；不包括所有严重罪名。",
+      "groups": [
+        {
+          "name": "大麻",
+          "general": 753,
+          "trade": 1677,
+          "general_code": "7361..",
+          "trade_code": "7362..",
+          "law": "KCanG §34"
+        },
+        {
+          "name": "可卡因／快克",
+          "general": 3618,
+          "trade": 977,
+          "general_code": "7312..",
+          "trade_code": "7322..",
+          "law": "BtMG §29"
+        },
+        {
+          "name": "冰毒（甲基苯丙胺）",
+          "general": 83,
+          "trade": 25,
+          "general_code": "7317..",
+          "trade_code": "7327..",
+          "law": "BtMG §29"
+        },
+        {
+          "name": "海洛因",
+          "general": 329,
+          "trade": 71,
+          "general_code": "731100",
+          "trade_code": "7321..",
+          "law": "BtMG §29"
+        }
+      ]
+    },
+    "Schleswig-Holstein": {
+      "source_url": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/POLIZEI/DasSindWir/LKA/Ermittlungen_Auswertung/kriminalstatistik/_downloads/PKS2025_Kurzfassung.pdf?__blob=publicationFile&v=4",
+      "source_title": "石荷州刑警局 · PKS 2025短报第19页",
+      "source_type": "state_police",
+      "notes": "仅披露Crystal冰毒部分罪名，不代表所有冰毒违法案件。",
+      "groups": [
+        {
+          "name": "冰毒（Crystal）",
+          "general": 45,
+          "trade": 2,
+          "general_code": null,
+          "trade_code": null,
+          "law": "BtMG；州2025短报"
+        }
+      ]
+    }
+  }
+}
