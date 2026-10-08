@@ -33,3 +33,21 @@ jobs:
               except Exception as ex:
                   print('WFS Node',node,'ERROR',repr(ex),flush=True)
           PY
+      - name: Probe municipal boundary geometry
+        run: |
+          python - <<'PY'
+          import urllib.request,urllib.parse,xml.etree.ElementTree as ET
+          base='https://kommisdd.dresden.de/net3/public/ogc.ashx'
+          for node,typename in [(3,'cls:L2'),(111,'cls:L84'),(700,'cls:L525')]:
+              query=urllib.parse.urlencode(dict(NODEID=node,SERVICE='WFS',VERSION='2.0.0',REQUEST='GetFeature',TYPENAMES=typename,SRSNAME='EPSG:4326',COUNT=5))
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(base+'?'+query,headers={'User-Agent':'GermanMap/1.0'}),timeout=80) as resp:data=resp.read(4_000_000)
+                  root=ET.fromstring(data)
+                  members=[x for x in root.iter() if x.tag.split('}')[-1] in ('member','featureMember')]
+                  geom=[x for x in root.iter() if x.tag.split('}')[-1] in ('Polygon','MultiSurface','MultiPolygon','LineString','MultiLineString','Curve','Surface')]
+                  pos=[x for x in root.iter() if x.tag.split('}')[-1] in ('posList','coordinates','pos')]
+                  print('GEO node',node,'bytes',len(data),'members',len(members),'geom',[(x.tag.split('}')[-1],x.attrib) for x in geom[:6]],'rootAttrs',root.attrib,flush=True)
+                  print('GEO node',node,'member tags',[[x.tag.split('}')[-1] for x in list(m)[:5]] for m in members[:4]],flush=True)
+                  print('GEO node',node,'positions',[(len(x.text or ''),(x.text or '')[:150]) for x in pos[:3]],flush=True)
+              except Exception as ex:print('GEO node',node,'ERROR',repr(ex),flush=True)
+          PY
