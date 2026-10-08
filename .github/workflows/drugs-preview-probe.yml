@@ -49,10 +49,18 @@ jobs:
               context.add_cookies([{'name':'__Http-phish','value':'1','url':'https://rawgit.net/','secure':True,'httpOnly':True,'sameSite':'Lax'}])
               page = context.new_page()
               page.goto(os.environ['PUBLIC_PREVIEW'], wait_until='domcontentloaded', timeout=60000)
-              print('Navigation URL',page.url,'title',page.title())
-              page.wait_for_timeout(4500)
-              print('Current status',page.locator('#status').inner_text() if page.locator('#status').count() else 'No status widget')
+              print('Navigation URL',page.url,'title',page.title(),flush=True)
+              if not page.locator('#drug-map').count():
+                  print('Consent page preview:',page.locator('body').inner_text()[:1800],flush=True)
+                  print('Consent buttons:',page.locator('button').all_inner_texts(),flush=True)
+                  print('Consent forms:',page.locator('form').count(),flush=True)
+                  button=page.locator('form button')
+                  if button.count():
+                      button.first.click()
+                      page.wait_for_load_state('domcontentloaded')
+                      print('After consent:',page.title(),page.url,flush=True)
               page.wait_for_function('() => document.getElementById("county-count")?.textContent.includes("/")',timeout=35000)
+              print('Current status',page.locator('#status').inner_text() if page.locator('#status').count() else 'No status widget',flush=True)
               print('PASS remote browser verified map',page.locator('#county-count').inner_text())
               browser.close()
           PY
