@@ -5,6 +5,10 @@ on:
     branches: [main]
     paths:
       - 'topics/drugs/**'
+      - 'js/layers/city-labels.js'
+      - 'js/app.js'
+      - 'css/map.css'
+      - 'index.html'
       - '.github/workflows/drugs-pages-deploy.yml'
   workflow_dispatch:
 
@@ -33,6 +37,7 @@ jobs:
       - name: Verify EUDA source data and JS syntax
         run: |
           node --check topics/drugs/topic.js
+          node --check js/layers/city-labels.js
           node --check topics/drugs/wastewater.js
           python topics/drugs/scripts/validate_drugs.py
           python - <<'PY'
