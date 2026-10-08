@@ -1,6 +1,6 @@
 (()=>{"use strict";
 const {palettes:{national:WARM,property:COOL},violenceMetrics}=window.CrimeMapConfig;
-let api=null,manifest=null,active=null,activeKey=null,layer=null,selected=null,cache=new Map();
+let api=null,manifest=null,active=null,activeKey=null,layer=null,selected=null,cache=new Map(),activationEpoch=0;
 
 const $=id=>document.getElementById(id);
 const fmt=n=>Number(n||0).toLocaleString('zh-CN');
@@ -11,8 +11,16 @@ function caseMatches(c,key){return window.CrimeDataModel.caseMatchesMetric(api.g
 function cityBounds(c){return L.latLngBounds(c.bounds)}
 function matchingCity(){
   if(!manifest||!api)return null;
-  const k=metricKey();
-  return manifest.cities.find(c=>c.metrics?.[k]&&api.map.getZoom()>=(c.min_zoom||8)&&api.map.getBounds().intersects(cityBounds(c)))||null
+  const k=metricKey(),center=api.map.getCenter(),viewport=api.map.getBounds();
+  const visible=manifest.cities.filter(c=>c.metrics?.[k]&&api.map.getZoom()>=(c.min_zoom||8)&&viewport.intersects(cityBounds(c)));
+  // Nearby Dresden, Chemnitz and Leipzig can all intersect a wide viewport.
+  // Prefer the city UNDER the map center, never registry insertion order.
+  visible.sort((a,b)=>{
+    const ba=cityBounds(a),bb=cityBounds(b);
+    return Number(!ba.contains(center))-Number(!bb.contains(center))||
+      center.distanceTo(ba.getCenter())-center.distanceTo(bb.getCenter());
+  });
+  return visible[0]||null
 }
 async function cityData(c){
   if(cache.has(c.id))return cache.get(c.id);
@@ -92,6 +100,7 @@ function addLegend(c,data){
 async function rebuild(){
   const next=matchingCity(),nextKey=next?next.id+':'+api.getMode()+':'+metricKey():null;
   if(nextKey&&nextKey===activeKey&&layer){hideBase(next);return}
+  const epoch=++activationEpoch;
   if(layer){api.map.removeLayer(layer);layer=null;selected=null}
   if(active)restoreBase(active);
   active=next;activeKey=nextKey;
@@ -100,7 +109,10 @@ async function rebuild(){
     return;
   }
   try{
-    const data=await cityData(active),cfg=active.metrics[metricKey()],vals=values(data,cfg.field),br=quantileBreaks(vals),pal=api.getMode()==='property'?COOL:WARM;
+    const data=await cityData(active);
+    // Ignore stale asynchronous results after the viewport/metric changes.
+    if(epoch!==activationEpoch)return;
+    const cfg=active.metrics[metricKey()],vals=values(data,cfg.field),br=quantileBreaks(vals),pal=api.getMode()==='property'?COOL:WARM;
     if(!validCityGeometry(data,active))throw new Error(active.id+' invalid CRS/geometry: expected longitude/latitude near configured city bounds');
     layer=L.geoJSON(data,{pane:'berlinPane',filter:f=>Number.isFinite(Number(f?.properties?.[cfg.field]?.rate)),style:f=>({pane:'berlinPane',color:api.getMode()==='property'?'#486783':'#8a563b',weight:.34,opacity:.62,fillColor:scaleColor(Number(f.properties[cfg.field].rate),br,pal),fillOpacity:.84}),onEachFeature:(f,l)=>{
       l.bindTooltip(()=>{const a=areaFor(active,data,f);return '<b>'+esc(a.name)+'</b><br>'+esc(cfg.label)+' '+fmt(Math.round(a.rate))+'/10万人 · '+riskLabel(a.pct).text},{sticky:true});
@@ -110,8 +122,9 @@ async function rebuild(){
     }}).addTo(api.map);
     if(layer.getLayers().length===0){api.map.removeLayer(layer);layer=null;throw new Error(active.id+' has no drawable features for '+metricKey())}
     hideBase(active);
-    setTimeout(()=>addLegend(active,data),0)
+    setTimeout(()=>{if(epoch===activationEpoch)addLegend(active,data)},0)
   }catch(e){
+    if(epoch!==activationEpoch)return;
     if(layer){api.map.removeLayer(layer);layer=null}
     if(active)restoreBase(active);
     console.warn('city detail skipped; retaining nationwide county fill',active?.id,e)
