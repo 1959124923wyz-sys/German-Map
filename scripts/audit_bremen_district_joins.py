@@ -76,7 +76,7 @@ def joining(titles, districts, neighbourhoods):
         # The police deliberately groups these areas in Tables 6 and 22.
         # No numerical split between component polygons is implied.
         if number == 6:
-            if "industriehafen" not in label_norm:
+            if normal("Industriehäfen") not in label_norm:
                 problems.append({"table": number, "reason": "police table 6 grouping changed", "label": label})
             target = [("stadtteil", "Gröpelingen"), ("ortsteil", "Industriehäfen")]
         elif number == 22:
