@@ -72,7 +72,7 @@
       "name_zh": "杜塞尔多夫",
       "state": "Nordrhein-Westfalen",
       "county_ags": "05111",
-      "phase": "research",
+      "phase": "join_ready",
       "priority": 3,
       "crime_source": {
         "publisher": "Landeshauptstadt Düsseldorf",
@@ -80,13 +80,32 @@
         "granularity": "Stadtbezirk 1 (partial evidence)",
         "measure": "unverified",
         "url": "https://www.duesseldorf.de/medienportal/pressedienst-einzelansicht/pld/sitzung-der-bezirksvertretung-1-22",
-        "evidence": "City council agenda explicitly lists 2025 crime statistics for district 1; no complete municipality-wide district table verified."
+        "evidence": "City of Düsseldorf official 2026 council agendas establish 2025 PKS presentations in Stadtbezirk 1 (22 May) and Stadtbezirk 2 (9 June), but these announcements do NOT supply machine-readable counts for all 10 Bezirke. A complete uniform 2025 police city-district table has not been verified."
       },
       "metric_alignment": "unverified",
       "blocking_issues": [
-        "Locate all city-district statistics and precise categories.",
-        "Confirm reusable official boundaries and permission."
-      ]
+        "Acquire numerical 2025 official PKS tables for all 10 Düsseldorf Stadtbezirke rather than equating council agenda items with statistical datasets.",
+        "Confirm definitions of per-district categories and reconcile counts without inventing missing figures.",
+        "Review source licensing, validate city-population denominators if needed and run browser regression once dataset available."
+      ],
+      "geometry_source": {
+        "publisher": "Landeshauptstadt Düsseldorf, Amt für Statistik und Wahlen",
+        "year": 2025,
+        "format": "GeoJSON EPSG:4326, 10 Stadtbezirke",
+        "url": "https://opendata.duesseldorf.de/sites/default/files/Stadtbezirke_2025_WGS84_EPSG4326.geojson",
+        "evidence": "2025 official 10 Stadtbezirk GeoJSON fetched 2026-10-08. Original Stadtbezirk 04 contains a very small self-intersection; Shapely make_valid fixes it with 0.0m² change. Final union 217.407km², overlap zero, validated in Actions. GovData released Sep 2026."
+      },
+      "audit": {
+        "geometry_qa": "passed_with_documented_zero_area_repair",
+        "qa_run": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37731669812",
+        "geojson_staged_as": "artifacts/duesseldorf_district_boundaries_candidate.geojson",
+        "administrative_districts": 10,
+        "area_km2": 217.407,
+        "polygon_overlap_m2": 0,
+        "source_polygon_04_repair_m2": 0,
+        "published": false
+      },
+      "notes": "10 official 2025 Stadtbezirk GeoJSON polygons completed, no overlap. Council materials partial; no public shaded map without police table."
     },
     {
       "id": "stuttgart",
@@ -94,7 +113,7 @@
       "name_zh": "斯图加特",
       "state": "Baden-Württemberg",
       "county_ags": "08111",
-      "phase": "source_probe",
+      "phase": "join_ready",
       "priority": 4,
       "crime_source": {
         "publisher": "Statistisches Amt Stuttgart / Polizeipräsidium Stuttgart",
@@ -105,19 +124,37 @@
         "evidence": "Verified via official CKAN CSV in GitHub Actions 2026-10-08: 361 rows covering 2008–2022, 23 official Stadtbezirke plus 'unbekannt'; columns street crime and Gewaltkriminalität recorded cases. Dataset webpage metadata appears newer than the ACTUAL CSV; no 2023–2025 rows. CC BY 4.0."
       },
       "geometry_source": {
-        "publisher": "Stadt Stuttgart",
+        "publisher": "Landeshauptstadt Stuttgart, Stadtmessungsamt",
         "year": 2026,
-        "format": "district statistics",
-        "url": "https://www.stuttgart.de/service/statistik-und-wahlen/daten-zu-stadtbezirken",
-        "evidence": "23 Stadtbezirke / 152 Stadtteile described officially."
+        "format": "Official 4-level GeoPackage archive (EPSG:25832)",
+        "url": "https://www.stuttgart.de/medien/ibs/OpenData-KLGL-Generalsisiert.zip",
+        "evidence": "Downloaded and verified 2026-10-08 in CI: layer KLGL_BRUTTO_STADTBEZIRK has 23 official named districts and codes, 207.403 km² union, no overlap, exact match to official KLGL_BRUTTO_GEMEINDE municipal layer. Four-level source under CC BY 4.0."
       },
       "metric_alignment": "unverified",
       "blocking_issues": [
-        "Locate genuinely current 2025 district-level crime rows; existing CSV only contains 2008–2022, despite modern webpage update date.",
-        "Confirm official 23 Stadtbezirk geographic boundaries and suitable contemporary population.",
-        "For historic map expansion, build 2008–2022 layer labelled explicitly historical, never present it as 2025."
+        "Download or otherwise obtain police Stuttgart 2025 PKS report and verify it includes all 23 Stadtbezirk offense totals; official website returned HTTP 247 to GitHub automated requests.",
+        "For any 2025 category layer, verify per-Bezirk category-specific records: the old city OpenData CSV ends in 2022 despite current web metadata.",
+        "Only compute normalized rates if a matching district-year population denominator is verified. Maintain separate 2025 count-only track if just cases are available."
       ],
-      "notes": "Official district CSV is real but only 2008–2022; do NOT present as PKS 2025 even though portal page metadata updated in 2026. Keep investigating a 2025 release."
+      "notes": "23 official geographic features completed and topology audited, but 2025 police district statistic not yet retrieved. CANDIDATE ONLY.",
+      "audit": {
+        "geometry_qa": "passed",
+        "qa_run": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/37731669812",
+        "geojson_staged_as": "artifacts/stuttgart_district_boundaries_candidate.geojson",
+        "administrative_districts": 23,
+        "area_km2": 207.403,
+        "polygon_overlap_m2": 0,
+        "municipality_difference_m2": 0,
+        "source_epsg": 25832,
+        "published": false
+      },
+      "crime_source_2025_candidate": {
+        "publisher": "Polizeipräsidium Stuttgart",
+        "year": 2025,
+        "granularity": "report citywide; municipality district annex requires verification",
+        "url": "https://ppstuttgart.polizei-bw.de/statistiken/",
+        "evidence": "Official 2025 PKS published 5 March 2026; full 2025 PDF linked by police. Automated GitHub-hosted requests to the police domain responded HTTP 247 with no readable links, so city-district rows are not verified. Do not infer 2025 district figures from historic 2008–2022 CSV."
+      }
     },
     {
       "id": "frankfurt",
