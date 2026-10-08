@@ -7,7 +7,7 @@
 <title>德国毒品问题地图｜German-Map</title>
 <meta name="description" content="2025德国县级毒品犯罪登记案件地图。数据来自BKA PKS县级统计的公开镜像，明确区分警方记录与毒品消费。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="topic.css?v=20261008-svg-outline-fix-v3">
+<link rel="stylesheet" href="topic.css?v=20261008-region-context-v1">
 </head>
 <body>
 <header class="topbar">
@@ -26,19 +26,10 @@
     <div id="drug-map"></div>
     <div class="map-shade"><strong id="map-guide-title">警方登记毒品案件 · 2025</strong><small id="map-guide-desc">单击州查看汇总；点击“查看县市”或放大地图后，可以点选具体县市。</small></div>
     <div class="legend" id="legend"><div class="legend-title" id="legend-title">毒品违法案件 / 每10万人</div><div id="legend-data">读取中…</div></div>
-    <section class="state-flyout" id="state-panel" hidden aria-live="polite">
-      <div class="heading"><div><h3 id="state-name">—</h3><div class="label" id="state-type">2025年统计</div></div><button id="close-state" type="button" aria-label="关闭详情">×</button></div>
-      <div class="state-values">
-        <div><b id="state-cases">—</b><small id="state-cases-label">登记案件（县级汇总）</small></div>
-        <div><b id="state-rate">—</b><small id="state-rate-label">每10万人</small></div>
-      </div>
-      <div class="row"><strong class="section-title" id="state-top-title">州内高值县市</strong><button type="button" class="secondary-button" id="state-focus">查看县市地图</button></div>
-      <ol id="state-top" class="district-list"></ol>
-      <p class="note" id="state-note"></p>
-    </section>
     <section class="state-flyout" id="wastewater-flyout" hidden aria-live="polite">
       <div class="heading"><div><h3 id="wastewater-city">—</h3><div class="label">EUDA / SCORE · 2025 · 检测站点</div></div><button id="close-wastewater" type="button" aria-label="关闭污水检测详情">×</button></div>
-      <div class="state-values"><div><b id="wastewater-value">—</b><small>mg / 每1000人 / 每天</small></div><div><b id="wastewater-previous">—</b><small>2024年同站点检测值</small></div></div>
+      <div class="state-values"><div><b id="wastewater-value">—</b><small>2025检测值 · mg/千人/天</small></div><div><b id="wastewater-previous">—</b><small>2024检测值 · 同站点</small></div></div>
+      <p id="wastewater-change" class="compare-line" aria-live="polite">年度变化：待查看</p>
       <p class="note" id="wastewater-note"></p>
       <div class="source-links"><a href="https://www.euda.europa.eu/publications/pods/waste-water-analysis_de" target="_blank" rel="noopener noreferrer">EUDA原始数据和方法 ↗</a></div>
     </section>
@@ -70,9 +61,17 @@
         <div class="metricbox"><div class="metricvalue" id="region-rate">—</div><div class="metriclabel" id="region-rate-label">登记率（每10万人）</div></div>
       </div>
       <div class="metadata" id="region-completeness">—</div>
+      <div id="region-change" class="compare-line" aria-live="polite">年度变化：—</div>
+      <p id="region-compare-note" class="note region-compare-note"></p>
       <div class="row"><h4 id="region-list-heading" class="section-title">州内县市</h4><span id="region-subtitle" class="subtle-note"></span></div>
       <ol class="district-list regional-counties" id="region-county-list"></ol>
       <p id="region-footnote" class="note"></p>
+      <div id="region-news" class="region-news" aria-label="所选州的相关通报">
+        <div class="row"><h4 class="section-title">本州近期相关通报</h4><button type="button" class="secondary-button" id="region-news-all">查看全部</button></div>
+        <ol id="region-news-list" class="region-news-list"><li class="note">正在读取已核实来源…</li></ol>
+        <p class="note">新闻为选取的公开通报，按州关联；不代表全部毒品事件。</p>
+      </div>
+      <div class="source-links"><a id="region-original-source" target="_blank" rel="noopener noreferrer" hidden>查看县市原始统计 ↗</a></div>
     </div>
     <div id="national-drug-summary">
     <div class="metricbox wide">
@@ -185,8 +184,8 @@
 </main>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="../../js/layers/city-labels.js?v=20261008-shared-v2"></script>
-<script src="wastewater.js?v=20261008-euda-v1"></script>
-<script src="news.js?v=20261008-drugnews-v1"></script>
-<script src="topic.js?v=20261008-drugnews-v1"></script>
+<script src="wastewater.js?v=20261008-region-context-v1"></script>
+<script src="news.js?v=20261008-region-context-v1"></script>
+<script src="topic.js?v=20261008-region-context-v1"></script>
 </body>
 </html>
