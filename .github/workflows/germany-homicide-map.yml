@@ -18,6 +18,7 @@ on:
       - 'index.html'
       - 'css/**'
       - 'js/**'
+      - 'topics/drugs/**'
       - 'data/city_layers.json'
       - 'data/city_count_layers.json'
       - 'requirements.txt'
@@ -67,6 +68,8 @@ jobs:
           node --check js/layers/county-layer.js
           node --check js/layers/state-layer.js
           node --check js/app.js
+          node --check topics/drugs/topic.js
+          python topics/drugs/scripts/validate_drugs.py
           node --check js/layers/city-detail.js
           node --check js/layers/city-count-detail.js
           node --check js/layers/bremen-category-detail.js
