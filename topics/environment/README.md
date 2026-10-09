@@ -18,19 +18,20 @@
 
 ## 代码结构
 
-- `index.html`：结构 + 专用静态 SVG 地理底图，无外部地图 API 密钥；避免 OSM 失效后丢失地理参考。
-- `topic.css`：专题界面和全站导航按钮样式。
+- `index.html`：与主地图共享的顶部专题导航、Leaflet 地图左栏及统计／详情右栏。无需 API 密钥；OSM 瓦片失效时保持事件点位和本地行政边界。
+- `topic.css`：只维护 06 差异化组件；公共配色、标题栏、导航、左右栅格、指标卡及抽屉样式继承 `../../css/map.css`。
 - `data/records.js`：154 条带来源的原始记录；不会读写主站任何犯罪统计。
-- `topic.js`：筛选、缩放、点位和详情展示。五类具体行动单独筛选。
+- `topic.js`：Leaflet 点位、六种专题模式、筛选、地点排行、国家/城市定位及右栏详情。五类行动/四种能源设施状态独立筛选；保留原始坐标，近邻符号仅做像素级视觉错位。
 - `tests/smoke_environment.py`：桌面与手机视口 Chromium 交互测试。
 
-独立地图使用本地投影 SVG 作为底图（不同于 01–05 的 Leaflet）；通过共享导航链接与其他主题集成。禁止将该专题事件点位当作县级犯罪率、州级评分或已经完成的所有发电设施关闭清单。
+底图改为与 01–05 一致的 OpenStreetMap/Leaflet，并在独立图层中读取 `data/germany-states.geojson`、`data/germany-counties.geojson` 绘制参考边界，复用统一的中文城市标签 `CrimeCityLabels`；边界加载失败不会阻塞 154 条点位数据。禁止将该专题事件点位当作县级犯罪率、州级评分或已经完成的所有发电设施关闭清单。
 
 ## 回归验证
 
 ```bash
 node --check topics/environment/topic.js
 node --check topics/environment/data/records.js
+npm install --no-save --no-package-lock leaflet@1.9.4
 python -m http.server 8765
 # in another terminal:
 python topics/environment/tests/smoke_environment.py
