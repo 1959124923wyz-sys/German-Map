@@ -19,6 +19,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -142,6 +143,29 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: '.'
+      # GitHub's artifact index can lag immediately after a successful upload.
+      # A same-run retry duplicates the `github-pages` artifact, so wait before
+      # invoking deploy-pages, rather than retrying the whole job.
+      - name: Wait for uploaded Pages artifact to become queryable
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for attempt in $(seq 1 12); do
+            count=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" \
+              --jq '[.artifacts[] | select(.name == "github-pages" and (.expired | not))] | length' 2>/dev/null) || count=0
+            if [ "$count" = "1" ]; then
+              sleep 5
+              echo "Pages artifact is indexed and ready"
+              exit 0
+            fi
+            if [ "$count" != "0" ]; then
+              echo "Expected exactly one Pages artifact; found $count"
+              exit 1
+            fi
+            sleep 5
+          done
+          echo "Pages artifact indexing timed out"
+          exit 1
       - name: Deploy Pages
         id: deployment
         uses: actions/deploy-pages@v4
