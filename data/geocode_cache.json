@@ -7881,5 +7881,30 @@
       "country": "Deutschland",
       "country_code": "de"
     }
+  },
+  "Einkaufsmarkt, Kaiserslautern, Germany": null,
+  "Korschenbroich, Germany": {
+    "lat": 51.1902651,
+    "lon": 6.5143539,
+    "address": {
+      "town": "Korschenbroich",
+      "county": "Rhein-Kreis Neuss",
+      "state": "Nordrhein-Westfalen",
+      "ISO3166-2-lvl4": "DE-NW",
+      "postcode": "41352",
+      "country": "Deutschland",
+      "country_code": "de"
+    }
+  },
+  "Hochsauerlandkreis, Germany": {
+    "lat": 51.3208265,
+    "lon": 8.268492,
+    "address": {
+      "county": "Hochsauerlandkreis",
+      "state": "Nordrhein-Westfalen",
+      "ISO3166-2-lvl4": "DE-NW",
+      "country": "Deutschland",
+      "country_code": "de"
+    }
   }
 }
