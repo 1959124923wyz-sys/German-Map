@@ -281,7 +281,7 @@
       if (selectedCountyLayer && counties) counties.resetStyle(selectedCountyLayer);
       selectedCountyLayer = counties?.getLayers().find(l => l.feature && recordFor(l.feature,data)?.ags === rec.ags) || null;
       if (selectedCountyLayer) {
-        selectedCountyLayer.setStyle({color:'#ffffff',weight:3.2,opacity:1,fillOpacity:.94});
+        selectedCountyLayer.setStyle({color:'#ffffff',weight:3.2,opacity:1,fillOpacity:.72});
         selectedCountyLayer.bringToFront?.();
       }
       refreshStateSelection();
@@ -313,7 +313,7 @@
         renderer: countyRenderer, pane:'drugsCountyPane',
         color:'#163b32',weight:.45,opacity:.75,
         fillColor:datum ? colorFor(Number(datum.rate),breaks) : '#64727b',
-        fillOpacity:datum ? .91 : .35
+        fillOpacity:datum ? .56 : .16
       };
     }
     counties = L.geoJSON(countyGeo, {

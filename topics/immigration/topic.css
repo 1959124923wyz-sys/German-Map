@@ -35,3 +35,18 @@ body{overflow:hidden;display:flex;flex-direction:column}a{color:#9fd2f1;text-dec
 *{scrollbar-color:#40525d #121920;scrollbar-width:thin}
 @media(max-width:940px){body{display:block;overflow:auto}.topbar{padding:10px 13px}.workspace{display:block;overflow:visible}.map-area,#immigration-map{height:60vh;min-height:420px}.sidebar{max-height:none;overflow:visible;border-left:0;border-top:1px solid var(--line)}.map-shade{top:9px;left:9px}.map-status{top:9px;right:9px}.legend{bottom:10px;left:9px}}
 @media(max-width:550px){.toplinks{gap:5px}.modebtn{padding:5px 8px}.brand{font-size:21px}.map-shade{max-width:190px}.map-shade small{display:none}.legend{min-width:170px;max-width:190px}.control-row select{max-width:145px}}
+
+/* Same Chinese city-label layout as the violence/property map.
+   Leaflet divIcon is only 1px wide; without nowrap/overflow it renders cities vertically. */
+.leaflet-pane.immigration-city-labels,.crime-city-label-icon{pointer-events:none!important}
+.crime-city-label-icon{background:transparent!important;border:0!important;overflow:visible!important}
+.crime-city-label{
+ display:block;position:absolute;left:0;top:0;transform:translate(-50%,-52%);
+ white-space:nowrap;line-height:1.15;
+ font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+ font-size:12px;font-weight:780;letter-spacing:.015em;
+ color:#132a3e;
+ text-shadow:0 1px 2px #f5fbff,0 -1px 2px #f5fbff,1px 0 2px #f5fbff,-1px 0 2px #f5fbff,0 0 5px #f5fbff,0 2px 5px #f5fbff;
+ user-select:none;pointer-events:none;
+}
+@media(max-width:640px){.crime-city-label{font-size:11px}}

@@ -24,7 +24,7 @@ button:disabled{cursor:not-allowed}
 .map-area{position:relative;min-height:0;background:#101b21;overflow:hidden}
 #drug-map{height:100%;min-height:0;width:100%;z-index:0;background:#101b21}
 .leaflet-container{background:#101b21;font:inherit;color:var(--ink)}
-.leaflet-tile-pane{filter:grayscale(.8) invert(.92) hue-rotate(180deg) brightness(.76) contrast(.86)}
+.leaflet-tile-pane{filter:saturate(.45) contrast(.86) brightness(1.06)}
 .leaflet-control-attribution{font-size:10px!important;background:rgba(15,23,29,.85)!important;color:#a0acb6!important}
 .leaflet-control-attribution a{color:#a7dbc0!important}
 .leaflet-bar{border-color:#34434d!important;box-shadow:0 2px 10px #0006!important}
@@ -160,10 +160,10 @@ button:disabled{cursor:not-allowed}
   display:block;position:absolute;left:0;top:0;
   transform:translate(-50%,-52%);white-space:nowrap;
   font:780 12px/1.15 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-  letter-spacing:.015em;color:#f2fff6;
-  text-shadow:0 1px 2px #071b13,0 -1px 2px #071b13,
-    1px 0 2px #071b13,-1px 0 2px #071b13,0 0 6px #071b13,
-    0 2px 5px #071b13;user-select:none;pointer-events:none;
+  letter-spacing:.015em;color:#132a3e;
+  text-shadow:0 1px 2px #f5fbff,0 -1px 2px #f5fbff,
+    1px 0 2px #f5fbff,-1px 0 2px #f5fbff,0 0 5px #f5fbff,
+    0 2px 5px #f5fbff;user-select:none;pointer-events:none;
 }
 /* Mouse selection is WHITE. Suppress only Leaflet's browser focus rectangle. */
 #drug-map .leaflet-interactive:focus{outline:none!important}

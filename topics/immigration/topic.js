@@ -46,7 +46,7 @@ function stateStyle(feature){
  const iso=feature.properties?.id, sel=app.selected===iso;
  const v=currentNumber(iso),br=quantiles(app.azr.records.map(r=>currentNumber(r.iso)));
  return {pane:'immigrationStatePane',color:sel?'#ffffff':'#29475a',weight:sel?3:1.6,opacity:1,
-  fillColor:colorFor(v,br,app.metric==='share'?SHARE_COLORS:COLORS),fillOpacity:sel?.84:.79};
+  fillColor:colorFor(v,br,app.metric==='share'?SHARE_COLORS:COLORS),fillOpacity:sel?.64:.52};
 }
 function refreshLegend(){
  const values=app.azr.records.map(r=>currentNumber(r.iso));const a=values.filter(Number.isFinite);
@@ -62,7 +62,7 @@ function countyStyle(f){
  const id=String(f?.id??f?.properties?.AGS??'').padStart(5,'0'), c=app.countyByAgs.get(id), chosen=app.countySelected===id;
  return {pane:'immigrationCountyPane',color:chosen?'#fff':'#31546c',weight:chosen?3:1,opacity:1,
  fillColor:c?colorFor(c.value,quantiles([...app.countyByAgs.values()].filter(r=>r.state_iso===app.selected).map(r=>r.value)),COLORS):'#d6dee2',
- fillOpacity:c?.78:.12};
+ fillOpacity:c?.58:.09};
 }
 function renderCountry(){
  $('region-panel').hidden=true;$('national-panel').hidden=false;
