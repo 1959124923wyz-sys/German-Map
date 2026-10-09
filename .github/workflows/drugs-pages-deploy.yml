@@ -56,15 +56,20 @@ jobs:
           from pathlib import Path
           h=Path('topics/railway/index.html').read_text(encoding='utf-8')
           scripts=re.findall(r'<script src="([^"]+)"', h)
-          assert len(scripts) == 6, len(scripts)
-          assert all((Path('topics/railway')/s).is_file() for s in scripts)
-          assert all((Path('topics/railway')/s).stat().st_size > 0 for s in scripts)
+          # Verify actual required assets rather than pinning an obsolete
+          # number of script tags whenever UI/data modules are separated.
+          required={'js/states.js','data/data-core.js','overview.js','js/station-zh.js'}
+          assert required <= set(scripts), (required-set(scripts))
+          assert len(scripts)==len(set(scripts)), 'Duplicate railway script inclusion'
+          assert all((Path('topics/railway')/path).is_file() for path in scripts)
+          assert all((Path('topics/railway')/path).stat().st_size > 0 for path in scripts)
           assert 'toplinks' in h and '铁路运行' in h
           assert Path('topics/railway/research.html').is_file()
           assert Path('topics/railway/overview.css').is_file()
           print('PASS minimal railway source, official network and archival dashboard', len(scripts))
           RAIL_AUDIT
           node --check topics/railway/overview.js
+          node --check topics/railway/js/station-zh.js
           node --check topics/railway/js/app.js
           node --check topics/environment/topic.js
           node --check topics/environment/data/records.js
