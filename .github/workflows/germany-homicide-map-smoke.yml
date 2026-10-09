@@ -206,7 +206,8 @@ jobs:
               page.wait_for_url('**/topics/drugs/')
               page.wait_for_function('() => document.querySelector("#county-count")?.textContent.includes("/")',timeout=40000)
               links=page.locator('nav.toplinks .modebtn')
-              assert links.count()==3
+              assert links.count()==4
+              assert links.nth(3).get_attribute('href')=='../immigration/'
               links.nth(1).click()
               page.wait_for_url('**/index.html?mode=property')
               page.wait_for_function('() => document.querySelector("#modeProperty")?.classList.contains("active")',timeout=40000)
