@@ -6,7 +6,7 @@ const names={"Schleswig-Holstein":"石勒苏益格－荷尔斯泰因州","Hambur
 
 Object.assign(names,{Kaiserslautern:'凯泽斯劳滕',Schweinfurt:'施韦因富特',Aschaffenburg:'阿沙芬堡',Ansbach:'安斯巴赫',Landshut:'兰茨胡特',Fürth:'菲尔特'});
 const choices=Object.keys(names).sort((a,b)=>b.length-a.length||a.localeCompare(b));
-function escapeRE(s){return s.replace(/[-/\\^$*+?.()|[\]{}]/g,'\\$&');}
+function escapeRE(s){const meta='^$.*+?()[]{}|\\';return Array.from(s,ch=>meta.includes(ch)?'\\'+ch:ch).join('');}
 const re=new RegExp('(^|[^A-Za-zÀ-ž])('+choices.map(escapeRE).join('|')+')(?=$|[^A-Za-zÀ-ž])','gu');
 function translate(s){
  if(typeof s!=='string'||!s)return s;
