@@ -50,6 +50,10 @@ jobs:
         run: python topics/immigration/tests/smoke_leaflet.py
       - name: Verify Chinese place names across four maps
         run: python scripts/smoke_place_names.py
+      - name: Check 04 drug topic and shared city labels after translation
+        run: |
+          python topics/drugs/tests/smoke_drugs.py
+          python scripts/smoke_city_labels.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
