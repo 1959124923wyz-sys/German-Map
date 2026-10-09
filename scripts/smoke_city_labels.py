@@ -40,12 +40,22 @@ def assert_no_svg_focus_rectangle(page, map_selector):
     print('PASS SVG focus style', map_selector, outcome, flush=True)
 
 def label_assertions(page, container, pane_expr):
-    page.wait_for_function("""(c)=>document.querySelectorAll(c+' .crime-city-label').length>=8""",
-                           arg=container,timeout=35000)
-    assert page.locator(container + ' .crime-city-label').filter(has_text='柏林').count()>=1
-    props=page.locator(container+' .crime-city-label').first.evaluate(
-        '(e)=>({size:parseFloat(getComputedStyle(e).fontSize),color:getComputedStyle(e).color})')
-    assert props['size']>=11,props
+    # Leaflet rebuilds divIcon elements after map movements. A locator can
+    # resolve just before the previous node is detached, in which case
+    # getComputedStyle(node).fontSize becomes an empty string (NaN).
+    # Sample existence, Chinese text and computed CSS atomically in the page.
+    # A genuine missing stylesheet still fails instead of being ignored.
+    props = page.wait_for_function("""(c) => {
+        const labels = Array.from(document.querySelectorAll(c + ' .crime-city-label'));
+        if (labels.length < 8 || !labels.some(e => e.textContent.includes('柏林'))) return false;
+        const first = labels[0];
+        if (!first.isConnected) return false;
+        const style = getComputedStyle(first);
+        const size = parseFloat(style.fontSize);
+        if (!Number.isFinite(size) || size < 11 || !style.color) return false;
+        return {count: labels.length, size, color: style.color};
+    }""", arg=container, timeout=35000).json_value()
+    assert props['count'] >= 8 and props['size'] >= 11 and props['color'], props
     assert page.evaluate(
         '(p)=>getComputedStyle((p==="main" ? window.__CRIME_MAP__.map : window.__DRUGS_PREVIEW_MAP__).getPane(p==="main" ? "major-city-labels" : "drugs-city-labels")).pointerEvents',
         pane_expr)=='none'
