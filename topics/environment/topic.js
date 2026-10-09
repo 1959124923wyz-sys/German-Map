@@ -149,7 +149,6 @@
       +'。组织立场、行动认领、司法认定及实际经济损失均须依据原始证据分别判断。</div>';
     $('closeDetail').onclick=()=>selectRecord(null,false);
   }
-  function selectRecord  }
   function selectRecord(id,fly) {
     const e=rows.find(v=>v.id===id);
     state.selected=e?e.id:null;
