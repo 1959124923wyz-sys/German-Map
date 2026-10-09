@@ -6,6 +6,7 @@ on:
     paths:
       - 'topics/drugs/**'
       - 'topics/immigration/**'
+      - 'topics/environment/**'
       - 'js/layers/city-labels.js'
       - 'js/core/place-names-zh.js'
       - 'js/app.js'
@@ -40,6 +41,14 @@ jobs:
         run: |
           node --check topics/drugs/topic.js
           node --check topics/immigration/topic.js
+          node --check topics/environment/topic.js
+          node --check topics/environment/data/records.js
+          test -s topics/environment/index.html
+          test -s topics/environment/topic.css
+          grep -Fq '环境' topics/environment/index.html || grep -Fq '环保' topics/environment/index.html
+          grep -Fq 'href="topics/environment/"' index.html
+          grep -Fq 'href="../environment/"' topics/drugs/index.html
+          grep -Fq 'href="../environment/"' topics/immigration/index.html
           test -f topics/immigration/index.html
           grep -Fq 'germany-states.geojson' topics/immigration/topic.js
           grep -Fq 'germany-counties.geojson' topics/immigration/topic.js
