@@ -149,8 +149,8 @@ const CanvasLayer=L.Layer.extend({
    if(!view.networkReady)return;
    ctx.beginPath();
    for(const p of view.networkParts)if(visible(p,v))drawPath(ctx,p,v);
-   ctx.strokeStyle=COLORS.missing;ctx.globalAlpha=.66;
-   ctx.lineWidth=m.getZoom()<7?.75:.95;ctx.stroke();
+   ctx.strokeStyle='#436479';ctx.globalAlpha=.8;
+   ctx.lineWidth=m.getZoom()<7?1.0:1.25;ctx.stroke();
   }else{
    const widths=[1.65,2.25,2.65];
    const colors=[COLORS.green,COLORS.orange,COLORS.red];
@@ -495,6 +495,8 @@ try{
  makeMap();
  bindControls();
  fillLegend();placeLegend();showDetail();
+ // The extra sixth topic otherwise appears off-screen in the mobile nav.
+ const nav=$('.toplinks');if(nav)nav.scrollLeft=nav.scrollWidth;
  buildNetwork();
  window.__RAILWAY_OVERVIEW__=Object.freeze({
   getService:()=>view.service,getMetric:()=>view.metric,
