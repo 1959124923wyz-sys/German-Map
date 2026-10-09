@@ -7,6 +7,7 @@ on:
       - 'topics/drugs/**'
       - 'topics/immigration/**'
       - 'topics/environment/**'
+      - 'topics/railway/**'
       - 'js/layers/city-labels.js'
       - 'js/core/place-names-zh.js'
       - 'js/app.js'
@@ -43,6 +44,25 @@ jobs:
           node --check topics/immigration/topic.js
           node --check topics/immigration/data/azr-records.js
           test -s topics/immigration/data/azr-records.js
+          # Railway official geometry and observational aggregates are static JS.
+          test -s topics/railway/index.html
+          test -s topics/railway/js/app.js
+          grep -Fq 'href="topics/railway/"' index.html
+          grep -Fq 'href="../railway/"' topics/drugs/index.html
+          grep -Fq 'href="../railway/"' topics/immigration/index.html
+          grep -Fq 'href="../railway/"' topics/environment/index.html
+          python - <<'RAIL_AUDIT'
+          import re
+          from pathlib import Path
+          h=Path('topics/railway/index.html').read_text(encoding='utf-8')
+          scripts=re.findall(r'<script src="([^"]+)"', h)
+          assert 35 <= len(scripts) <= 100, len(scripts)
+          assert all((Path('topics/railway')/s).is_file() for s in scripts)
+          assert all((Path('topics/railway')/s).stat().st_size > 0 for s in scripts)
+          assert 'rail-topic-nav' in h and '铁路运行' in h
+          print('PASS railway static assets', len(scripts))
+          RAIL_AUDIT
+          node --check topics/railway/js/app.js
           node --check topics/environment/topic.js
           node --check topics/environment/data/records.js
           test -s topics/environment/index.html
