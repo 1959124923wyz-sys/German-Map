@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#0c1117">
 <meta name="description" content="德国铁路真实区间运行质量地图，基于2026年9月列车停靠记录，突出延误与取消标记较高的区间。">
 <title>德国铁路运行地图 · BahnMonitor | German-Map</title>
-<link rel="stylesheet" href="overview.css?v=16">
+<link rel="stylesheet" href="overview.css?v=17">
 </head>
 <body>
 <div class="page">
@@ -22,7 +22,7 @@
 </header>
 <main class="workspace">
  <section class="map-panel" aria-label="德国铁路延误和停靠取消区间分布">
-  <div class="map-caption"><strong>德国铁路 · 运行关注区段</strong><small>浅色铁路网作背景 · 红橙线突出延误与停靠取消</small></div>
+  <div class="map-caption"><strong>德国铁路 · 运行关注区段</strong><small>灰色为未匹配线路 · 绿色为有观测但低于关注阈值</small></div>
   <div id="viewport" role="application" aria-label="铁路地图，可拖动和缩放">
    <div id="world">
     <canvas id="tracks" width="1580" height="2000" aria-hidden="true"></canvas>
@@ -37,9 +37,10 @@
    <button id="home" type="button" title="返回全国" aria-label="全国视图">⌖</button>
   </div>
   <div class="map-status">2026年9月 · DB InfraGO 官方轨道几何 · 有数据才着色</div>
-  <div class="legend" aria-label="地图颜色说明">
-   <b>区间关注程度</b>
-   <span><i style="background:#567083"></i>其他铁路</span>
+  <div class="legend rail-legend" id="railLegend" aria-label="铁路数值颜色图例" aria-live="polite">
+   <b>观测比例 · 2026年9月</b>
+   <span><i style="background:#4c6578"></i>无可比观测</span>
+   <span><i style="background:#5cad91"></i>低于门槛</span>
    <span><i style="background:#e5a46e"></i>偏高</span>
    <span><i style="background:#e7777d"></i>较高</span>
   </div>
@@ -69,7 +70,7 @@
    <div><strong id="redShare">—</strong><span>高关注占比</span></div>
   </div>
   <div id="status" role="status" aria-live="polite">正在加载铁路数据…</div>
-  <section class="detail" id="detail" aria-live="polite"><h3>选择地图上的铁路区间</h3><p>点击红色或橙色路段，查看站间观测。</p></section>
+  <section class="detail" id="detail" aria-live="polite"><h3>选择地图上的铁路区间</h3><p>点击绿、橙或红色区间，查看站间观测。</p></section>
   <section class="hotspots" id="hotspots" aria-label="高关注铁路区段"><div class="hotspots-head"><h3>值得关注的区间</h3><small>当前筛选 · 前10条</small></div><div id="hotList" class="hot-list"></div></section>
   <details class="method"><summary>数据来源与统计口径</summary>
    <p>2026年9月 DB Timetables API 历史停站数据，经 Piet Brömmel 汇编；轨道依据 DB InfraGO 官方线路几何及公里标匹配。</p>
@@ -89,6 +90,6 @@
 <script src="data/data-sections-02.js"></script>
 <script src="../../js/core/place-names-zh.js"></script>
 <script src="js/station-zh.js"></script>
-<script src="overview.js?v=16"></script>
+<script src="overview.js?v=17"></script>
 </body>
 </html>
