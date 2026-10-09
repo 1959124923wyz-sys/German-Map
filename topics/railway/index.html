@@ -58,7 +58,7 @@
    <p>2026年9月 DB Timetables API 历史停站数据，经 Piet Brömmel 汇编；轨道依据 DB InfraGO 官方线路几何及公里标匹配。</p>
    <p>综合关注：到站晚点≥6分钟的比例≥40%，或者到发停靠取消标记比例≥8%时标红；≥25%或≥4%时标橙。阈值仅用于地图展示，不是德国铁路官方评级。</p>
    <p>区域列车合并 RE 与 RB，长途涵盖 ICE／IC／EC／FLX，其他运营商聚合 HLB、BRB、ERB、NWB、OE。分别按同方向站间、线路编号及公里区间合并可匹配观测；其他运营商数据与 RB／RE 在服务归属上可能重叠，不可跨类别求和。</p>
-   <p>停靠取消标记<strong>不是整趟列车取消概率</strong>；下游站晚点<strong>不表示该铁路区间造成延误</strong>。暗色线路不能据此判定运行正常，样本并未按旅客量加权。</p>
+   <p>停靠取消标记<strong>不是整趟列车取消概率</strong>；下游站晚点<strong>不表示该铁路区间造成延误</strong>。浅绿色底线不能据此判定运行正常，样本并未按旅客量加权。</p>
    <p><a href="https://github.com/piebro/deutsche-bahn-data" target="_blank" rel="noopener noreferrer">Deutsche Bahn Data · CC BY 4.0 ↗</a> · <a href="research.html">研究详情 ↗</a></p>
   </details>
  </aside>
@@ -73,6 +73,9 @@
 <script src="../../js/core/place-names-zh.js"></script>
 <script src="js/station-zh.js"></script>
 <script src="../../js/layers/city-labels.js"></script>
-<script src="overview.js?v=19"></script>
+<!-- Pure geometry and statistics execute before the Leaflet UI controller. -->
+<script src="js/rail-geometry.js?v=20"></script>
+<script src="js/rail-analysis.js?v=20"></script>
+<script src="overview.js?v=20"></script>
 </body>
 </html>

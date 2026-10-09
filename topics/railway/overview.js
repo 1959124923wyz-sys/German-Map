@@ -14,108 +14,16 @@ const specs={
  NWB:['v14_nwb_evidence',1],OE:['v14_oe_evidence',1]
 };
 const stationZh=name=>window.GermanRailStations?.localize(name)||name;
-const REF_ZOOM=9, WORLD=256*2**REF_ZOOM, CELL=64, NATION=[[47.05,5.45],[55.15,15.65]];
+const CELL=64, NATION=[[47.05,5.45],[55.15,15.65]];
+const {REF_ZOOM,WORLD,officialPart,observedParts,actualBounds,currentViewport,visible,drawPath,unproject,segmentDist}=window.Railway07Geometry;
 // Fixed 100-observation inclusion threshold (not a user-facing filter).
 const view={service:'REGIONAL',metric:'both',minimum:100,selected:null,links:[],
   rendered:[],groups:[],ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,networkParts:[],grid:new Map(),map:null,
   baseLayer:null,observedLayer:null,repaints:0};
-const cache=new Map(),geomCache=new WeakMap();
+const cache=new Map();
 const fmt=n=>Number(n).toLocaleString('zh-CN');
 const pct=n=>n===null||!Number.isFinite(n)?'—':n.toFixed(1)+'%';
 function status(s){$('#status').textContent=s;}
-function proj(lon,lat){
- const sine=Math.sin(Math.max(-85,Math.min(85,lat))*Math.PI/180);
- return [(lon+180)/360*WORLD,(.5-Math.log((1+sine)/(1-sine))/(4*Math.PI))*WORLD];
-}
-function decodePolyline(str,mult=10){
- const a=[];let x=0,y=0,i=0;
- while(i<str.length){
-  for(let axis=0;axis<2;axis++){
-   let value=0,shift=0,b;
-   do{
-    if(i>=str.length)throw Error('官方铁路几何编码截断');
-    b=str.charCodeAt(i++)-63;
-    if(b<0||b>63)throw Error('铁路几何编码无效');
-    value|=(b&31)<<shift;shift+=5;
-   }while(b>=32);
-   const delta=value&1?~(value>>1):value>>1;
-   if(axis===0)x+=delta;else y+=delta;
-  }
-  a.push(x/mult,y/mult);
- }
- return a;
-}
-function shape(points){
- let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
- for(let i=0;i<points.length;i+=2){
-  const x=points[i],y=points[i+1];
-  if(x<minX)minX=x;if(x>maxX)maxX=x;
-  if(y<minY)minY=y;if(y>maxY)maxY=y;
- }
- return {xy:new Float32Array(points),minX,minY,maxX,maxY};
-}
-function officialPart(sec){
- // Original DB InfraGO WGS84 source has already been packed into x/y,
- // not invented by interpolating between stations.
- const xy=decodePolyline(sec[5]);
- const points=[];
- for(let i=0;i<xy.length;i+=2){
-  const lon=5.34+(xy[i]-15)/76.5,lat=55.4-(xy[i+1]-6)/114.2;
-  points.push(...proj(lon,lat));
- }
- return points.length>=4?shape(points):null;
-}
-function observedParts(leg){
- if(geomCache.has(leg))return geomCache.get(leg);
- const parts=[];
- for(const segment of leg.geometry||[]){
-  if(!Array.isArray(segment)||segment.length<2)continue;
-  const points=[];
-  for(const p of segment){
-   if(!Array.isArray(p)||p.length<2)continue;
-   const [lon,lat]=p;
-   if(!Number.isFinite(lon)||!Number.isFinite(lat))continue;
-   points.push(...proj(lon,lat));
-  }
-  if(points.length>=4)parts.push(shape(points));
- }
- geomCache.set(leg,parts);return parts;
-}
-function actualBounds(parts){
- let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;
- for(const p of parts){
-  x0=Math.min(x0,p.minX);y0=Math.min(y0,p.minY);
-  x1=Math.max(x1,p.maxX);y1=Math.max(y1,p.maxY);
- }
- return {minX:x0,minY:y0,maxX:x1,maxY:y1};
-}
-function currentViewport(m,size){
- const factor=2**(m.getZoom()-REF_ZOOM),origin=m.getPixelOrigin();
- // Leaflet pixel-origin is in layer coordinates, not container coordinates.
- // Include the pan-pane translation so overlaid Canvas pixels line up with
- // real OSM tiles even after repeated pan operations.
- const pane=L.DomUtil.getPosition(m.getPanes().mapPane)||L.point(0,0);
- const ox=origin.x-pane.x,oy=origin.y-pane.y;
- return {factor,ox,oy,
-   minX:(ox-15)/factor,maxX:(ox+size.x+15)/factor,
-   minY:(oy-15)/factor,maxY:(oy+size.y+15)/factor};
-}
-function visible(p,v){
- return !(p.maxX<v.minX||p.minX>v.maxX||p.maxY<v.minY||p.minY>v.maxY);
-}
-function drawPath(ctx,p,v){
- const a=p.xy,f=v.factor,ox=v.ox,oy=v.oy;
- ctx.moveTo(a[0]*f-ox,a[1]*f-oy);
- // At national zoom, skip subpixel intermediate vertices without altering
- // either the source geometry or the detailed zoom view.
- let lx=a[0]*f-ox,ly=a[1]*f-oy;
- const skip=v.factor<1?.45:0;
- for(let i=2;i<a.length;i+=2){
-  const x=a[i]*f-ox,y=a[i+1]*f-oy;
-  if(skip&&i<a.length-2&&(x-lx)**2+(y-ly)**2<skip*skip)continue;
-  ctx.lineTo(x,y);lx=x;ly=y;
- }
-}
 const CanvasLayer=L.Layer.extend({
  initialize(kind){this.kind=kind;this._frame=null;},
  onAdd(m){
@@ -273,44 +181,13 @@ async function loadData(key){
  cache.set(key,promise);
  try{return await promise}catch(e){cache.delete(key);throw e;}
 }
-function mergeObserved(groupData){
- const byKey=new Map();
- for(const [kind,data] of groupData){
-  for(const leg of data.links||[]){
-   const range=leg.km_range||[];
-   const key=[leg.route,leg.from_station,leg.to_station,
-    range.map(x=>Number(x).toFixed(2)).join(':')].join('|');
-   let dest=byKey.get(key);
-   if(!dest){
-    dest={...leg,v11:{pairs:0,arrival_valid:0,late6:0,late15:0,boundary_cancel:0},
-      brands:[],label_hints:leg.label_hints||[]};
-    byKey.set(key,dest);
-   }
-   const a=leg.v11||{};
-   for(const field of ['pairs','arrival_valid','late6','late15','boundary_cancel'])
-    dest.v11[field]+=Number(a[field]||0);
-   if(!dest.brands.includes(kind))dest.brands.push(kind);
-  }
- }
- return [...byKey.values()];
-}
-function metrics(leg){
- const a=leg.v11||{},nArrival=Number(a.arrival_valid||0),nPlanned=Number(a.pairs||0);
- const late=nArrival?100*Number(a.late6||0)/nArrival:null;
- const cancel=nPlanned?100*Number(a.boundary_cancel||0)/nPlanned:null;
- const enough=view.metric==='both'?nArrival>=view.minimum&&nPlanned>=view.minimum:
-  view.metric==='late'?nArrival>=view.minimum:nPlanned>=view.minimum;
- return {late,cancel,nArrival,nPlanned,sufficient:enough};
-}
-function grade(m){
- if(view.metric==='late')return m.late>=40?2:m.late>=25?1:0;
- if(view.metric==='cancel')return m.cancel>=8?2:m.cancel>=4?1:0;
- return m.late>=40||m.cancel>=8?2:m.late>=25||m.cancel>=4?1:0;
-}
-function attention(m){
- const a=(m.late??0)/40,b=(m.cancel??0)/8;
- return view.metric==='late'?a:view.metric==='cancel'?b:Math.max(a,b);
-}
+// Adapter functions bind pure observation computations to the current filter.
+const {mergeObserved}=window.Railway07Analysis;
+const metrics=leg=>window.Railway07Analysis.metrics(leg,view.metric,view.minimum);
+const grade=m=>window.Railway07Analysis.grade(m,view.metric);
+const attention=m=>window.Railway07Analysis.attention(m,view.metric);
+const buildCorridors=items=>window.Railway07Analysis.buildCorridors(items);
+
 function fillLegend(){
  const mode=view.metric;
  const thresholds=mode==='late'?['晚点比例','<25%','25%–<40%','≥40%']
@@ -397,11 +274,6 @@ function updateHotspots(){
  });
 }
 
-function unproject(x,y){
- const lng=x/WORLD*360-180;
- const n=Math.PI-2*Math.PI*y/WORLD;
- return [180/Math.PI*Math.atan(Math.sinh(n)),lng];
-}
 function addToGrid(o){
  for(const p of o.parts){
   const x0=Math.floor(p.minX/CELL),x1=Math.floor(p.maxX/CELL);
@@ -416,11 +288,6 @@ function addToGrid(o){
 function rebuildIndex(){
  view.grid.clear();
  for(const o of view.rendered)addToGrid(o);
-}
-function segmentDist(px,py,ax,ay,bx,by){
- const dx=bx-ax,dy=by-ay;
- const t=(dx*dx+dy*dy)?Math.max(0,Math.min(1,((px-ax)*dx+(py-ay)*dy)/(dx*dx+dy*dy))):0;
- const x=px-ax-t*dx,y=py-ay-t*dy;return x*x+y*y;
 }
 function pickAt(latlng){
  if(!view.rendered.length)return;
@@ -444,63 +311,6 @@ function pickAt(latlng){
  if(best){
   view.selected=best.group;showDetail();view.observedLayer.schedule();
  }
-}
-// Build straight-through, same-colour directional runs only.  Branches,
-// grade changes and gaps stay separate: no fabricated line continuity.
-function canJoin(a,b){
- if(a===b||a.leg.route!==b.leg.route||a.grade!==b.grade)return false;
- if(a.leg.to_station!==b.leg.from_station)return false;
- const x=a.leg.km_range,y=b.leg.km_range;
- if(!Array.isArray(x)||!Array.isArray(y)||x.length!==2||y.length!==2)return false;
- if(![...x,...y].every(Number.isFinite))return false;
- const loX=Math.min(...x),hiX=Math.max(...x),loY=Math.min(...y),hiY=Math.max(...y);
- // Prevent chaining the same km interval in opposite directions.
- if(Math.min(hiX,hiY)-Math.max(loX,loY)>.15)return false;
- return Math.min(...x.flatMap(v=>y.map(w=>Math.abs(v-w))))<=.15;
-}
-function buildCorridors(items){
- const outgoing=new Map(),incoming=new Map();
- const key=(o,station)=>o.leg.route+'|'+o.grade+'|'+station;
- for(const o of items){
-  const a=key(o,o.leg.from_station),b=key(o,o.leg.to_station);
-  if(!outgoing.has(a))outgoing.set(a,[]);
-  if(!incoming.has(b))incoming.set(b,[]);
-  outgoing.get(a).push(o);incoming.get(b).push(o);
- }
- const next=new Map(),prev=new Map();
- for(const o of items){
-  const tails=(outgoing.get(key(o,o.leg.to_station))||[]).filter(q=>canJoin(o,q));
-  if(tails.length!==1)continue;
-  const q=tails[0];
-  const heads=(incoming.get(key(q,q.leg.from_station))||[]).filter(p=>canJoin(p,q));
-  if(heads.length===1){next.set(o,q);prev.set(q,o);}
- }
- const seen=new Set(),groups=[];
- for(const o of items){
-  if(seen.has(o))continue;
-  let first=o,walked=new Set();
-  while(prev.has(first)&&!walked.has(first)){
-   walked.add(first);first=prev.get(first);
-  }
-  const members=[];
-  let cursor=first;
-  while(cursor&&!seen.has(cursor)){
-   seen.add(cursor);members.push(cursor);cursor=next.get(cursor);
-  }
-  if(!members.length)continue;
-  const nArrival=members.reduce((n,x)=>n+x.m.nArrival,0);
-  const nPlanned=members.reduce((n,x)=>n+x.m.nPlanned,0);
-  const lateCount=members.reduce((n,x)=>n+Number(x.leg.v11?.late6||0),0);
-  const cancelledCount=members.reduce((n,x)=>n+Number(x.leg.v11?.boundary_cancel||0),0);
-  const late=nArrival?100*lateCount/nArrival:null;
-  const cancel=nPlanned?100*cancelledCount/nPlanned:null;
-  const parts=members.flatMap(x=>x.parts);
-  const group={members,parts,bounds:actualBounds(parts),grade:o.grade,
-   m:{late,onTime:late===null?null:100-late,cancel,nArrival,nPlanned}};
-  for(const x of members)x.group=group;
-  groups.push(group);
- }
- return groups;
 }
 function recalc(){
  const previous=view.selected?.members?.[0]?.leg||null;

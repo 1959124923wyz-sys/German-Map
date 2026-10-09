@@ -110,72 +110,54 @@ jobs:
           python scripts/validate_city_intake.py
           python scripts/test_city_expansion.py
 
-      - name: Refresh Berlin official theft heatmap
-        run: python scripts/update_berlin_heatmap.py
+      # UI smoke verifies versioned official snapshots. Network-dependent
+      # source rebuilds run in the dedicated data pipeline, not this job.
+      - name: Verify committed official city snapshots
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          required = (
+              'data/berlin_heatmap.json',
+              'data/munich_local_2025.geojson',
+              'data/dresden-city-boundary.geojson',
+              'data/kiel_total_cases_2025.geojson',
+              'data/bremen_local_counts_2025.geojson',
+              'data/stuttgart_public_violence_2025.geojson',
+              'data/duesseldorf_total_cases_2025.geojson',
+              'data/duesseldorf_bv6_local_2025.geojson',
+              'data/duesseldorf_bv7_local_2025.geojson',
+              'data/duesseldorf_bv9_local_2025.geojson',
+              'data/germany-counties-display.geojson',
+          )
+          for name in required:
+              f=Path(name)
+              assert f.is_file() and f.stat().st_size>1000, f'Missing published source snapshot: {name}'
+          print('PASS', len(required), 'published datasets, independent of external APIs')
+          PY
+          python scripts/validate_site_assets.py
 
       - name: Validate Berlin official heatmap
         run: python scripts/validate_berlin_heatmap.py
 
-      - name: Rebuild Munich city layer with WGS84 coordinates
-        run: python scripts/build_city_layers.py --city munich
-
-      - name: Ensure official Dresden complete municipal boundary
-        run: |
-          if [ ! -s data/dresden-city-boundary.geojson ]; then
-            python scripts/build_dresden_city_boundary.py
-          else
-            echo "Use versioned Dresden boundary for reproducible smoke tests"
-          fi
-
-      - name: Build audited Kiel official count-only layer
-        run: python scripts/build_kiel_staging.py --output data/kiel_total_cases_2025.geojson --release-count-only
-
       - name: Validate Kiel independent crime count layer
         run: python scripts/validate_kiel_count_layer.py
-
-      - name: Build Bremen official 22-region geographic candidate
-        run: python scripts/build_bremen_geometry_staging.py --output artifacts/bremen_areas_staging.geojson
-
-      - name: Build Bremen official 2024–2025 category count layer
-        run: python scripts/build_bremen_category_layer.py --geometry artifacts/bremen_areas_staging.geojson --output data/bremen_local_counts_2025.geojson --release-count-only
 
       - name: Validate Bremen independent PKS count categories
         run: python scripts/validate_bremen_category_layer.py
 
-      - name: Prepare Stuttgart 23 official urban district polygons
-        run: python scripts/build_stuttgart_duesseldorf_geometry.py
-
-      - name: Build official Stuttgart 2025 public-space violent crime overlay
-        run: python scripts/build_stuttgart_public_violence_2025.py --output data/stuttgart_public_violence_2025.geojson --release-count-only
-
       - name: Verify strict Stuttgart public-space PKS statistic boundaries
         run: python scripts/validate_stuttgart_public_violence.py
-
-      - name: Build official 10 Düsseldorf police district counts (2022–2025)
-        run: python scripts/build_duesseldorf_offenses_2025.py --output data/duesseldorf_total_cases_2025.geojson --release-count-only
 
       - name: Validate Düsseldorf district counts and official geometry
         run: python scripts/validate_duesseldorf_offenses_2025.py
 
-      - name: Build Düsseldorf BV6 2025 four-Stadtteil crime categories
-        run: python scripts/build_duesseldorf_bv6_local.py --output data/duesseldorf_bv6_local_2025.geojson --release-count-only
-
       - name: Audit Düsseldorf BV6 official topology and 8 crime categories
         run: python scripts/validate_duesseldorf_bv6_local.py
-
-      - name: Build official Düsseldorf district 7 five-Stadtteil counts
-        run: python scripts/build_duesseldorf_additional_stadtteile.py --district 07 --output data/duesseldorf_bv7_local_2025.geojson --release-count-only
-
-      - name: Build official Düsseldorf district 9 two genuine neighbourhood classes
-        run: python scripts/build_duesseldorf_additional_stadtteile.py --district 09 --output data/duesseldorf_bv9_local_2025.geojson --release-count-only
 
       - name: Validate Düsseldorf BV7 and BV9 separate 2025 source-defined PKS groups
         run: |
           python scripts/validate_duesseldorf_additional_stadtteile.py --district 07
           python scripts/validate_duesseldorf_additional_stadtteile.py --district 09
-
-      - name: Harmonize display-only nationwide county boundaries
-        run: python scripts/build_display_counties.py
 
       - name: Validate nationwide and city boundary topology
         run: python scripts/validate_display_counties.py

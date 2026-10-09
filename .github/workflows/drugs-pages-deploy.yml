@@ -8,6 +8,7 @@ on:
       - 'topics/immigration/**'
       - 'topics/environment/**'
       - 'topics/railway/**'
+      - 'scripts/validate_site_assets.py'
       - 'js/layers/city-labels.js'
       - 'js/core/place-names-zh.js'
       - 'js/app.js'
@@ -58,7 +59,7 @@ jobs:
           scripts=[src.split('?',1)[0] for src in re.findall(r'<script src="([^"]+)"', h)]
           # Verify actual required assets rather than pinning an obsolete
           # number of script tags whenever UI/data modules are separated.
-          required={'js/states.js','data/data-core.js','overview.js','js/station-zh.js'}
+          required={'js/states.js','data/data-core.js','overview.js','js/station-zh.js','js/rail-geometry.js','js/rail-analysis.js'}
           assert required <= set(scripts), (required-set(scripts))
           assert len(scripts)==len(set(scripts)), 'Duplicate railway script inclusion'
           external=[u for u in scripts if u.startswith('https://')]
@@ -74,6 +75,10 @@ jobs:
           print('PASS official rail network, external Leaflet, local assets and archival dashboard', len(scripts))
           RAIL_AUDIT
           node --check topics/railway/overview.js
+          node --check topics/railway/js/rail-geometry.js
+          node --check topics/railway/js/rail-analysis.js
+          node topics/railway/tests/unit_core.cjs
+          python scripts/validate_site_assets.py
           node --check topics/railway/js/station-zh.js
           node --check topics/railway/js/app.js
           node --check topics/environment/topic.js
