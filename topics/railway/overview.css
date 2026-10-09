@@ -46,7 +46,7 @@ button,select{font:inherit}button{cursor:pointer}a{color:inherit}
   opacity:.86;filter:none;vector-effect:non-scaling-stroke;
 }
 .segment.hot{stroke-width:2.0;filter:none;opacity:.91}
-.segment.neutral{stroke-width:.85;stroke-opacity:.34;filter:none}
+.segment.normal{stroke-width:1.25;stroke-opacity:.88;opacity:.89;filter:none}
 .segment.selected,.segment.hot.selected{
   stroke-width:3.1;stroke:#f5d19d!important;
   opacity:1;filter:none;stroke-linejoin:bevel
@@ -138,4 +138,28 @@ button,select{font:inherit}button{cursor:pointer}a{color:inherit}
  .service-tabs button{font-size:10.5px}
  .service-tabs button small{font-size:8.5px}
  .legend{max-width:calc(100% - 16px)}
+}
+
+/* Truthful source-rate legend: grey=no qualifying sample, green=measured below
+   display thresholds. Two independently denominated % figures are not
+   mislabeled as one aggregated percentage. */
+.rail-legend{
+  display:flex;align-items:center;gap:5px 12px;flex-wrap:wrap;
+  max-width:min(720px,calc(100% - 30px));padding:9px 12px;
+  background:#111d2aee;border-color:#34495a;line-height:1.45
+}
+.rail-legend>b{flex-basis:100%;font-size:10.5px;font-weight:700;color:#dce9f1}
+.rail-legend>span{font-size:10px;display:inline-flex;align-items:center;gap:6px}
+.rail-legend>span i{height:3px;width:18px;flex:0 0 auto}
+.rail-legend-note{display:block;flex-basis:100%;font-size:9px;color:#8da7ba}
+@media(max-width:760px){
+ /* Keep the southern railway network unobstructed on narrow screens. */
+ .sidebar .rail-legend{
+  position:static;left:auto;top:auto;bottom:auto;z-index:auto;
+  max-width:none;margin:2px 0 12px;padding:9px 10px;
+  background:#152331;border:1px solid #2c4052;box-shadow:none
+ }
+ .sidebar .rail-legend>span{font-size:9.5px}
+ .sidebar .rail-legend>b{font-size:10px}
+ .sidebar .rail-legend-note{font-size:9px}
 }
