@@ -152,6 +152,38 @@ def validate():
        "RLP KCanG groups exceed the statutory total")
     ok([x["cases"] for x in trend_data["Rheinland-Pfalz"]["records"]]==
        [20624,19832,19296,13433,9888],"RLP five-year official PKS trend mismatch")
+    # 2025 statewide original from Saxony-Anhalt's Interior Ministry.
+    sa=offences.get("Sachsen-Anhalt")
+    ok(sa is not None and sa.get("source_type")=="state_government",
+       "Sachsen-Anhalt 2025 original state source missing")
+    sa_fields={x["name"]:x for x in sa.get("additional_metrics",[])}
+    for name,value,prev,scope in (
+        ("甲基苯丙胺（冰毒）· 一般违法",1222,1080,"general_offence"),
+        ("苯丙胺 · 一般违法",839,788,"general_offence"),
+        ("全部毒品相关登记案件",4544,5887,"multi_offence_all_drugs"),
+        ("毒品非法交易与走私（多物质）",379,598,"trade_or_smuggling")):
+        entry=sa_fields.get(name)
+        ok(entry is not None and
+           (entry["cases"],entry["previous_2024"],entry["scope_kind"])==
+           (value,prev,scope),"Sachsen-Anhalt official PKS2025 mismatch: "+name)
+    ok(deaths["Sachsen-Anhalt"]["source_type"]=="state_government" and
+       deaths["Sachsen-Anhalt"]["source_url"]==sa["source_url"] and
+       (deaths["Sachsen-Anhalt"]["cases"],deaths["Sachsen-Anhalt"]["previous_2024"])==(61,48),
+       "Sachsen-Anhalt official death source not upgraded")
+    hessen=offences.get("Hessen")
+    ok(hessen is not None and hessen.get("source_type")=="state_police",
+       "Hessen official 2025 PKS report missing")
+    he_fields={x["name"]:x for x in hessen["additional_metrics"]}
+    for name,value,scope in (
+        ("冰毒（甲基苯丙胺）· 一般违法",153,"general_offence"),
+        ("快克（Crack）· 非法交易",157,"trade_or_smuggling"),
+        ("可卡因 · 非法交易",263,"trade_or_smuggling")):
+        entry=he_fields.get(name)
+        ok(entry is not None and (entry["cases"],entry["scope_kind"])==(value,scope),
+           "Hessen official 2025 PKS drug breakdown mismatch: "+name)
+    ok([x["cases"] for x in trend_data["Hessen"]["records"]]==
+       [25216,24363,26518,17257,12053],"Hessen original five-year PKS trend mismatch")
+    ok(len(trend_data)==2,"Expected two sourced five-year state drug trends")
     # Overlap-sensitive controls: 2025 KCanG subgroup is INSIDE KCanG
     # overall total; Berlin's cocaine case types belong to separate legal keys.
     berlin=offences.get("Berlin")
@@ -203,7 +235,7 @@ def validate():
        "MV 2025 secondary-source drug mortality record mismatch")
     ok(len(records)==len({(r["state"],r["metric"],r["case_scope"]) for r in records}),
        "Duplicate 2025 state evidence entries after source normalization")
-    ok(len(offences)==11,"Expected eleven states with at least one original PKS substance metric")
+    ok(len(offences)==12,"Expected twelve states with at least one original PKS substance metric")
     print("PASS verified state evidence:",
           len(deaths),"death states,",len(offences),"PKS drug-substance states,",
           len(health),"health-source states,",len(records),
