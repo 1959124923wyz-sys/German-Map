@@ -7,13 +7,13 @@
 <title>德国毒品问题地图｜German-Map</title>
 <meta name="description" content="2025德国县级毒品犯罪登记案件地图。数据来自BKA PKS县级统计的公开镜像，明确区分警方记录与毒品消费。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="topic.css?v=20261009-streets-v2">
+<link rel="stylesheet" href="topic.css?v=clean1">
 </head>
 <body>
 <header class="topbar">
   <div>
-    <div class="brand">德国犯罪态势地图 <span class="topic-name">/ 毒品问题</span></div>
-    <div class="subbrand">Drogenkriminalität · BKA PKS 2025 · 德国全国统计专题</div>
+    <div class="brand">德国毒品问题地图</div>
+    <div class="subbrand">BKA PKS 2025 · 案件与消费检测</div>
   </div>
   <nav class="toplinks" aria-label="犯罪专题切换">
     <a class="modebtn" href="../../index.html">暴力犯罪</a>
@@ -37,9 +37,8 @@
     </section>
   </section>
   <aside class="sidebar">
-    <div class="eyebrow">毒品专题 / Drogenkriminalität</div>
     <h2>德国毒品犯罪分布</h2>
-    <p class="intro">显示警方记录的毒品违法案件，不将案件数量解释为实际吸毒人口；大麻相关违法行为没有被排除。</p>
+    <p class="intro">警方登记的违法案件，不等于吸毒人口；大麻相关案件未全部排除。</p>
     <div class="tabset" role="group" aria-label="专题数据类别">
       <button type="button" class="selected" id="drugs-tab-crime" aria-current="true">违法案件</button>
       <button type="button" id="drugs-tab-wastewater" aria-current="false">消费检测</button>
@@ -122,7 +121,7 @@
     </details>
     <div class="barline"></div>
     <div class="warning">⚠️ 2024年4月大麻部分合法化改变了警方登记案件的法律定义；不能据2023—2025年登记量下降直接推断吸毒减少。案件数量也受执法强度、检查地点及通报行为影响。</div>
-    <p class="note">全国县级毒品案件使用第三方公开页面转录的BKA PKS 2025县级T01数据，页面保留原始县级来源URL。全国164,991起为BKA独立统计的“Rauschgiftkriminalität”，不可与县级镜像指标简单相加或作精确核对。灰色区域表示数据不可用，不表示没有犯罪。</p>
+    <details class="compact-method"><summary>数据口径与来源</summary><p class="note">全国县级毒品案件使用第三方公开页面转录的BKA PKS 2025县级T01数据，页面保留原始县级来源URL。全国164,991起为BKA独立统计的“Rauschgiftkriminalität”，不可与县级镜像指标简单相加或作精确核对。灰色区域表示数据不可用，不表示没有犯罪。</p></details>
     <div class="source-links">
       <a href="https://www.bundesdrogenbeauftragter.de/presse/detail/organisierte-kriminalitaet-im-wandel/" target="_blank" rel="noopener noreferrer">BKA毒品形势报告（官方公告）↗</a>
       <a href="https://data.gov.de/suche/daten/2025-polizeiliche-kriminalstatistik-t01-grundtabelle-kreise-ausgewahlte-straftaten-gruppen" target="_blank" rel="noopener noreferrer">BKA官方县级数据 ↗</a>
@@ -153,7 +152,7 @@
       <ol class="district-list" id="wastewater-rank"></ol>
       <div class="barline"></div>
       <div class="warning">⚠️ 这是污水中药物或代谢物的残留负荷，单位为mg/每1000人/每天。零表示低于定量限，缺失不等于零。不同物质之间不能直接比较数值大小。</div>
-      <p class="note">2025年实测点，2026年发布。站点坐标来自EUDA污水处理设施信息表，部分点是多处理厂的汇总。此数据未根据代谢排泄系数换算为实际消费量、吸毒人数或使用比例。海洛因因缺乏稳定特异性指标暂不设此图层。</p>
+      <details class="compact-method"><summary>数据口径与来源</summary><p class="note">2025年实测点，2026年发布。站点坐标来自EUDA污水处理设施信息表，部分点是多处理厂的汇总。此数据未根据代谢排泄系数换算为实际消费量、吸毒人数或使用比例。海洛因因缺乏稳定特异性指标暂不设此图层。</p></details>
       <div class="source-links"><a href="https://www.euda.europa.eu/publications/pods/waste-water-analysis_de" target="_blank" rel="noopener noreferrer">EUDA原始数据与方法 ↗</a></div>
     </div>
     <section id="drugs-news-content" hidden aria-label="德国近期毒品事件通报">
@@ -183,7 +182,7 @@
       <ol id="drug-news-list" class="drug-news-list" aria-live="polite"></ol>
       <button type="button" class="secondary-button drug-news-more" id="drug-news-more" hidden>显示更多通报</button>
       <div class="barline"></div>
-      <p class="note">地图圆点为**城市级大致位置**，不是案发街道或毒品消费地点；全国年度死亡统计不绘制为点。日期为**报道发布日期**，可能晚于案件发生时间。点击条目可定位并打开来源，死亡等数据应按原文具体口径理解。</p>
+      <details class="compact-method"><summary>数据口径与来源</summary><p class="note">地图圆点为**城市级大致位置**，不是案发街道或毒品消费地点；全国年度死亡统计不绘制为点。日期为**报道发布日期**，可能晚于案件发生时间。点击条目可定位并打开来源，死亡等数据应按原文具体口径理解。</p></details>
       <div class="source-links">
         <a target="_blank" rel="noopener noreferrer" href="https://www.presseportal.de/blaulicht/st/Drogenhandel">Presseportal · 警方毒品通报 ↗</a>
         <a target="_blank" rel="noopener noreferrer" href="https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/">德国官方毒品死亡统计 ↗</a>
@@ -192,11 +191,11 @@
   </aside>
 </main>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="../../js/core/place-names-zh.js?v=20261009-zh-v1"></script>
-<script src="../../js/layers/city-labels.js?v=20261009-zh-v1"></script>
-<script src="state-evidence.js?v=20261009-state-evidence-mortality14-no5year"></script>
-<script src="wastewater.js?v=20261008-region-context-v1"></script>
-<script src="news.js?v=20261008-region-context-v1"></script>
-<script src="topic.js?v=20261009-streets-v2"></script>
+<script src="../../js/core/place-names-zh.js?v=clean1"></script>
+<script src="../../js/layers/city-labels.js?v=clean1"></script>
+<script src="state-evidence.js?v=clean1"></script>
+<script src="wastewater.js?v=clean1"></script>
+<script src="news.js?v=clean1"></script>
+<script src="topic.js?v=clean1"></script>
 </body>
 </html>
