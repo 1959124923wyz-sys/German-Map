@@ -16,6 +16,16 @@ def check(browser, mobile=False):
     page.route(re.compile(r"https://tile\.openstreetmap\.org/"),lambda r:r.abort())
     page.goto(URL,wait_until="domcontentloaded",timeout=30000)
     page.wait_for_function("()=>window.__IMMIGRATION_READY__===true",timeout=45000)
+    # Raw AZR files remain independent of presentation and all four source
+    # payloads must load before the interactive map initializes.
+    assert page.locator('script[src^="data/azr-records.js"]').count()==1
+    assert page.evaluate("""() => [
+      window.__IMMIGRATION_INLINE_FOREIGN__,
+      window.__IMMIGRATION_INLINE_TREND__,
+      window.__IMMIGRATION_INLINE_SHARE__,
+      window.__IMMIGRATION_INLINE_COUNTIES__
+    ].every(Boolean)""")
+    assert not page.locator("script:not([src])").count()
     # A new topic must retain all existing links, in a deterministic order.
     nav=page.locator(".toplinks .modebtn")
     assert nav.count()==5
