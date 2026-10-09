@@ -190,3 +190,25 @@ GermanMapTopics.drugs.deactivate();
 - 2025年**至少一项**按物质官方州级警方案件数据**12/16**；尚缺的州为Bremen、Mecklenburg-Vorpommern、Saarland、Thüringen。**12州覆盖不代表有12州完整物质与罪名矩阵。**
 - [不来梅州2025年PKS T01全州原表入口](https://www.inneres.bremen.de/dokumente/pks/detailinformationen-kriminalstatistik-2025-31032)已确定，但下载链接在自动化环境返回403。暂不把不来梅市、不来梅港的数字错误套用为全州原表。
 - `validate_state_evidence.py` 硬性核验新增官方来源、字段及两州五年趋势；`tests/smoke_drugs.py` 具备新增两个州的侧栏断言。浏览器实际测试仍需通过 GitHub Actions 运行结果确认，不能把静态检测冒充线上验收。
+
+
+## 2026-10-09 第四轮：仅补2025年州级数据、停用五年趋势
+
+**最新网页：** https://1959124923wyz-sys.github.io/German-Map/topics/drugs/ 。本轮按用户要求**取消五年趋势**，不再维护2021—2025年毒品案件连续图。历史文档中曾讨论的五年趋势、2024统计断点和试点数字，仅属已停止维护的历史阶段记录，不代表当前线上展示。正式源数据已删除 `long_term_trends_by_state`，`state-evidence.js` 已删除趋势渲染及校验，浏览器回归脚本改为明确检查页面中没有趋势小图。
+
+### 2025年毒品相关死亡：14/16州（新增莱茵兰—普法尔茨）
+
+- [美因茨市政府2026年7月21日公告](https://www.mainz.de/pressemeldungen/Mainz/2026/juli/gedenktag-drogengebrauchende)直接披露：2025年全德毒品相关死亡2,150例，其中莱茵兰—普法尔茨全州34例。州级数据**34人**已经录入，不得与公告中提到的美因茨市数字混淆，也不可将科布伦茨警区数字当作全州。该来源属于**市政府公告中的全州数字**，不是州刑警局原始死亡表，来源字段为 `city_government_citing_statewide_figure`；2024年全州死亡人数未核实，保持 `null`。
+- 全州年度死亡人数仍缺：**Hessen（黑森州）、Saarland（萨尔州）**。法兰克福的2025年本市死亡人数不能代替黑森全州；萨尔州2025年12月媒体报道的33例属于截至当时的暂报，尚未作为已核定全年州级值录入。
+
+### 2025年按具体毒品的州级刑事案件：12/16州
+
+- 尚未取得核实全州2025年、**明确涉及物质及统计罪名范围**的数字：**Bremen（不来梅）、Mecklenburg-Vorpommern（梅克伦堡—前波美拉尼亚）、Saarland（萨尔）、Thüringen（图林根）**。
+- 2025年BKA统一联邦州PKS T01官方数据已公布，可在[德国官方GovData](https://www.govdata.de/suche/daten/2025-polizeiliche-kriminalstatistik-t01-grundtabelle-bundeslaender)查找，但自动化环境的BKA附件下载返回403。已发现[不来梅2025州级T01官方入口](https://www.inneres.bremen.de/dokumente/pks/detailinformationen-kriminalstatistik-2025-31032)，其附件下载同样遭403。暂不将城市、警区、缴获重量、全部毒品案件总计或2024旧数据虚报成2025年该州按物质的罪名记录。
+- **未达16州属于资料核验空缺，不是当地案件为零。** 以后如获取BKA原件、各州可核对州级PKS表格，再以对应PKS法律类别补录。
+
+### 本轮验收及兼容性
+
+- 当前分类覆盖元数据为12、死亡覆盖元数据为14；质量校验器核对2025年度、16州合法行政名称、来源和各罪名包含关系，并固定新录入的莱茵兰—普法尔茨死亡34例。
+- 前端保留2025年州县犯罪、可查看的分毒品类别、毒品相关死亡、EUDA污水检测及近期官方新闻，不增加按钮/第四张地图，也不修改05移民专题。
+- `topics/drugs/index.html` 已更换州级证据脚本的缓存版本标识，避免旧浏览器复用删除趋势前的脚本。真实线上浏览器与Pages工作流仍需另行确认；静态校验不可取代它们。
