@@ -41,6 +41,16 @@ def test_one(browser,url,mode=None):
     tile_urls=page.evaluate("()=>[...document.querySelectorAll('.leaflet-tile-pane img.leaflet-tile')].map(e=>e.src)")
     assert tile_urls and all('https://tile.openstreetmap.org/' in src for src in tile_urls),tile_urls[:4]
     assert not any('cartocdn' in src or 'API_KEY' in src for src in tile_urls),tile_urls[:4]
+    tile_filter=page.evaluate("()=>getComputedStyle(document.querySelector('.leaflet-tile-pane')).filter")
+    if 'drugs' in url or 'immigration' in url:
+        assert 'invert(' not in tile_filter and 'grayscale(' not in tile_filter, ('Road basemap filter inverted/greyed',url,tile_filter)
+    if 'immigration' in url:
+        label_style=page.locator('#immigration-map .crime-city-label').first.evaluate("(e)=>({whiteSpace:getComputedStyle(e).whiteSpace,overflow:getComputedStyle(e.parentElement).overflow,color:getComputedStyle(e).color})")
+        assert label_style['whiteSpace']=='nowrap' and label_style['overflow']=='visible',label_style
+        assert page.evaluate("()=>+window.__IMMIGRATION_MAP_V13__.getPane('immigrationStatePane').querySelector('path').getAttribute('fill-opacity')") <= 0.65
+    if 'drugs' in url:
+        page.wait_for_function("()=>window.__DRUGS_PREVIEW_MAP__?.getPane('drugsCountyPane')?.querySelector('path')",timeout=30000)
+        assert page.evaluate("()=>+window.__DRUGS_PREVIEW_MAP__.getPane('drugsCountyPane').querySelector('path').getAttribute('fill-opacity')") <= 0.72
     assert not errors,errors
     page.close()
 with sync_playwright() as p:

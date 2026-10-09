@@ -18,6 +18,7 @@ def check(browser, mobile=False):
     page.wait_for_function("()=>window.__IMMIGRATION_READY__===true",timeout=45000)
     assert page.locator(".toplinks .modebtn").count()==4
     assert page.locator(".toplinks .modebtn.active").inner_text()=="移民人口"
+    assert page.locator("#immigration-map .crime-city-label").first.evaluate("(e)=>getComputedStyle(e).whiteSpace")=="nowrap"
     assert page.locator(".sidebar").evaluate("(e)=>getComputedStyle(e).backgroundColor")=="rgb(19, 26, 34)"
     page.screenshot(path="/tmp/immigration-unified-diagnostic-"+("mobile" if mobile else "desktop")+".png",full_page=True)
     state_count=page.evaluate("()=>window.__IMMIGRATION_MAP_V13__.getPane('immigrationStatePane').querySelectorAll('path').length")
