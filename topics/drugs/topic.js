@@ -64,7 +64,7 @@
     button.type = 'button';
     const label = document.createElement('span');
     const value = document.createElement('span');
-    label.textContent = row.name;
+    label.textContent = window.GermanPlaceNames?.byAGS(row.ags,row.name)||row.name;
     value.textContent = nf.format(row.drug_crime.rate);
     button.append(label, value);
     button.onclick = () => onClick(row);
@@ -176,8 +176,8 @@
       stateLink.hidden = !countyMode;
       stateLink.textContent = name;
       el('region-county-separator').hidden = !countyMode;
-      text('region-current', countyMode ? county.name : name);
-      text('region-heading', countyMode ? county.name + ' · 县市详情' : name + ' · 州级汇总');
+      text('region-current', countyMode ? (window.GermanPlaceNames?.byAGS(county.ags,county.name)||county.name) : name);
+      text('region-heading', countyMode ? (window.GermanPlaceNames?.byAGS(county.ags,county.name)||county.name) + ' · 县市详情' : name + ' · 州级汇总');
       text('region-cases', nf.format(countyMode ? county.drug_crime.cases : stats.cases));
       text('region-rate', nf.format(countyMode ? county.drug_crime.rate : Math.round(stats.rateEstimate || 0)));
       text('region-cases-label', countyMode ? '县级登记案件' : '州内县级案件总数（汇总）');
@@ -226,7 +226,7 @@
           btn.classList.add('selected-region');
           btn.setAttribute('aria-current', 'true');
         }
-        btn.append(safeNode('span', row.name),safeNode('span',
+        btn.append(safeNode('span', window.GermanPlaceNames?.byAGS(row.ags,row.name)||row.name),safeNode('span',
           nf.format(row.drug_crime.rate) + ' /10万人'));
         btn.title = row.name + '：' + nf.format(row.drug_crime.cases) + '起；同比 ' +
           (row.drug_crime.change || '未公布');
@@ -321,7 +321,7 @@
       onEachFeature: (feature, layer) => {
         const rec = recordFor(feature, data);
         if (!rec || !metric(rec)) return;
-        layer.bindTooltip('<b>'+esc(rec.name)+'</b><br>'+nf.format(rec.drug_crime.cases)+
+        layer.bindTooltip('<b>'+esc(window.GermanPlaceNames?.byAGS(rec.ags,rec.name)||rec.name)+'</b><br>'+nf.format(rec.drug_crime.cases)+
           '起 · '+nf.format(rec.drug_crime.rate)+' /10万人', {sticky:true});
         layer.on('click', e => {
           L.DomEvent.stopPropagation(e);

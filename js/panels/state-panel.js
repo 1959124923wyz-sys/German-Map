@@ -21,7 +21,7 @@
       const s = getStats(feature);
       const label = getMetricLabel(s.key);
 
-      elements.stateName.textContent = s.name;
+      elements.stateName.textContent = window.GermanPlaceNames?.translate(s.name)||s.name;
       elements.stateMetric.textContent = 'BKA PKS 2025 · ' + label;
       elements.stateRate.textContent = formatNumber(Math.round(s.rate));
       elements.stateCases.textContent = formatNumber(s.cases);
@@ -34,7 +34,7 @@
         button.type = 'button';
         button.className = 'state-county-row';
         button.innerHTML =
-          '<span>' + escapeHtml(row.name) + '</span><b>' +
+          '<span>' + escapeHtml(window.GermanPlaceNames?.byAGS(row.ags,row.name)||row.name) + '</span><b>' +
           formatNumber(Math.round(row[s.key].rate)) +
           '</b>';
         button.onclick = () => onCountySelect(row, s.key);

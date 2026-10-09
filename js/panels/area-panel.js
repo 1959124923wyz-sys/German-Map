@@ -30,7 +30,7 @@
         const b=document.createElement('button');
         b.className='rank-row';b.type='button';
         b.innerHTML='<span class="rank-no">'+(i+1)+'</span><span class="rank-place">'+
-          esc(r.name)+'</span><span class="rank-value">'+fmt(Math.round(r[s.key].rate))+'</span>';
+          esc(window.GermanPlaceNames?.byAGS(r.ags,r.name)||r.name)+'</span><span class="rank-value">'+fmt(Math.round(r[s.key].rate))+'</span>';
         b.onclick=()=>onRankSelect(r);
         el.rankList.appendChild(b);
       }
@@ -71,7 +71,7 @@
 
     function show(a) {
       if (!a) { renderNationalOverview(); return; }
-      el.areaName.textContent=a.name;
+      el.areaName.textContent=window.GermanPlaceNames?.byAGS(a.ags,a.name)||a.name;
       el.areaMetric.textContent=a.metric;
       renderCoverage(a);
       if (a.kind==='property-local') {

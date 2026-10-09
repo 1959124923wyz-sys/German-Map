@@ -97,7 +97,7 @@ function renderState(){
  const available=isCountyAvailable(app.selected);$('county-section').hidden=!available;
  $('county-list').replaceChildren();
  if(available){countyRows.sort((a,b)=>b.value-a.value).forEach(c=>{
-  const li=document.createElement('li'),b=document.createElement('button');b.type='button';b.append(Object.assign(document.createElement('span'),{textContent:c.name_de}),Object.assign(document.createElement('span'),{textContent:format(c.value)}));b.addEventListener('click',()=>selectCounty(c.ags));li.append(b);$('county-list').append(li);
+  const li=document.createElement('li'),b=document.createElement('button');b.type='button';b.append(Object.assign(document.createElement('span'),{textContent:window.GermanPlaceNames?.byAGS(c.ags,c.name_de)||c.name_de}),Object.assign(document.createElement('span'),{textContent:format(c.value)}));b.addEventListener('click',()=>selectCounty(c.ags));li.append(b);$('county-list').append(li);
  });}
  const coverage=app.county.coverage_by_state?.[app.selected];
  $('county-coverage-note').textContent=available?countyRows.length+'个县级地区 · 2025年AZR官方记录'+(coverage?.rounding_difference?'；县合计与州合计相差'+coverage.rounding_difference+'人（官方五人舍入）':''):'';
@@ -128,7 +128,7 @@ function selectState(iso){
 function reset(){clearCounties();app.selected=null;refreshAll();if(map)map.fitBounds(BOUNDS,{padding:[18,18],animate:false});$('map-guide').textContent='点击联邦州查看人数、趋势与已核实的县级资料。';}
 function selectCounty(ags){
  const c=app.countyByAgs.get(ags);if(!c||c.state_iso!==app.selected||!isCountyAvailable(app.selected))return;
- app.countySelected=ags;$('county-name').textContent=c.name_de;$('county-value').textContent=format(c.value);$('county-detail').hidden=false;
+ app.countySelected=ags;$('county-name').textContent=window.GermanPlaceNames?.byAGS(c.ags,c.name_de)||c.name_de;$('county-value').textContent=format(c.value);$('county-detail').hidden=false;
  renderState();$('county-detail').hidden=false;
  if(app.countyLayer){app.countyLayer.eachLayer(l=>{const id=String(l.feature?.id??l.feature?.properties?.AGS??'').padStart(5,'0');if(id===ags){l.setStyle(countyStyle(l.feature));map.fitBounds(l.getBounds(),{padding:[35,35],maxZoom:10,animate:false});}else l.setStyle(countyStyle(l.feature));});}
 }
@@ -150,7 +150,7 @@ async function showCounties(){
     pane:'immigrationCountyPane',renderer:L.svg({pane:'immigrationCountyPane',padding:.2}),style:countyStyle,
     onEachFeature:(f,l)=>{
      const id=String(f?.id??f?.properties?.AGS??'').padStart(5,'0'),c=app.countyByAgs.get(id);
-     l.bindTooltip(()=>'<b>'+escapeHtml(c?.name_de)+'</b><br>'+format(c?.value)+' 人',{sticky:true});
+     l.bindTooltip(()=>'<b>'+escapeHtml(window.GermanPlaceNames?.byAGS(c?.ags,c?.name_de)||c?.name_de)+'</b><br>'+format(c?.value)+' 人',{sticky:true});
      l.on('mouseover',()=>{if(app.countySelected!==id)l.setStyle({color:'#fff',weight:2.0});});
      l.on('mouseout',()=>app.countyLayer?.resetStyle(l));
      l.on('click',e=>{L.DomEvent.stopPropagation(e);selectCounty(id);});
