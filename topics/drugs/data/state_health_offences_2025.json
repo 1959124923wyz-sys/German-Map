@@ -5,7 +5,7 @@
     "national_drug_deaths": 2150,
     "national_source": "https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/",
     "mortality_coverage_states": 13,
-    "drug_specific_offence_coverage_states": 11,
+    "drug_specific_offence_coverage_states": 12,
     "method": "All 16 Länder are tracked; a state counts as covered only if a 2025 state-wide source reports a concrete observation. County/police-presidium figures are never substituted for the Land. Offence general/trade, statutory totals, substance-involved counts, and subgroup figures have separate classifications; categories with known overlap are never summed.",
     "mortality_scope": "Deaths attributed to drug use in police/health reports. State figures may use different ascertainment dates or methods; media citing police is labeled as secondary, and publication date is not the death date. Missing states and unverified population denominators remain blank.",
     "updated_at": "2026-10-09",
@@ -105,10 +105,10 @@
     "Sachsen-Anhalt": {
       "cases": 61,
       "previous_2024": 48,
-      "source_type": "news_agency_citing_state_ministry",
-      "source_title": "dpa（德国新闻社）· 引述萨克森—安哈尔特州内政部（2026-02-27）",
-      "source_url": "https://www.sueddeutsche.de/panorama/traurige-statistik-zahl-der-drogentoten-in-sachsen-anhalt-auf-hoechststand-dpa.urn-newsml-dpa-com-20090101-260227-930-743602",
-      "note": "dpa引述州内政部2025年61名、2024年48名，创当地统计高值；死亡可能与长期多药物使用有关。"
+      "source_type": "state_government",
+      "source_title": "萨克森—安哈尔特州内政部 / 州警局 · PKS2025官方公告第4页",
+      "source_url": "https://polizei.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MI/Polizei/Praevention/Kriminalpraevention/PKS_und_PMK/033_2026_PKS_2025.pdf",
+      "note": "2025年州级登记毒品相关死亡61例（2024年48例），由州官方2026年PKS新闻公告直接披露，取代之前的媒体转述。不等同于吸毒人口，也不等同于毒品犯罪案件数。"
     },
     "Mecklenburg-Vorpommern": {
       "cases": 24,
@@ -332,10 +332,10 @@
       ]
     },
     "Hessen": {
-      "source_url": "https://hessen.de/presse/straftaten-gehen-2025-weiter-zurueck",
-      "source_title": "黑森州内政部 · PKS 2025年度发布公告（2026-03-02）",
-      "source_type": "state_government",
-      "notes": "仅有部分药物的一般违法分项，不能视为全部相关毒品犯罪；可卡因与快克在本公告中分列，避免再次算进同一总数。",
+      "source_url": "https://www.polizei.hessen.de/sites/polizei.hessen.de/files/2026-03/pressepapier_pks-jahresstatistik_2025.pdf",
+      "source_title": "黑森州警方 · 《Polizeiliche Kriminalstatistik Hessen 2025》官方77页报告，第40—42页",
+      "source_type": "state_police",
+      "notes": "黑森州PKS2025的2025年数据取自州警方77页报告第40—42页：可卡因及快克一般违法分开，不能把快克直接算入报告的'可卡因'分项；快克交易157、可卡因交易263分别为非法交易，非一般违法。冰毒一般违法153，属于BtMG相应一般违法罪名。五年总案件受2024年KCanG生效引发的定义与执法行为变化影响，不能解释为吸毒率。",
       "groups": [],
       "additional_metrics": [
         {
@@ -351,6 +351,27 @@
           "previous_2024": 578,
           "code": "州政府发布公告",
           "scope_kind": "general_offence"
+        },
+        {
+          "name": "冰毒（甲基苯丙胺）· 一般违法",
+          "cases": 153,
+          "code": "BtMG一般违法 · PKS2025官方报告第40页 Methamphetamin",
+          "scope_kind": "general_offence",
+          "note": "比2024年多22起（2024年131起）；州年报原文直接列2025年153及增量22。"
+        },
+        {
+          "name": "快克（Crack）· 非法交易",
+          "cases": 157,
+          "code": "BtMG非法交易 · PKS2025官方报告第41页 Handel mit Crack",
+          "scope_kind": "trade_or_smuggling",
+          "note": "与快克一般违法543起属于不同罪名，不能当作全部快克案件。"
+        },
+        {
+          "name": "可卡因 · 非法交易",
+          "cases": 263,
+          "code": "BtMG非法交易 · PKS2025官方报告第42页 Handel mit Kokain",
+          "scope_kind": "trade_or_smuggling",
+          "note": "与可卡因一般违法2,406起属于不同罪名，不能当作全部可卡因案件。"
         }
       ]
     },
@@ -572,6 +593,47 @@
           "scope_kind": "multi_offence_substance"
         }
       ]
+    },
+    "Sachsen-Anhalt": {
+      "source_url": "https://polizei.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MI/Polizei/Praevention/Kriminalpraevention/PKS_und_PMK/033_2026_PKS_2025.pdf",
+      "source_title": "萨克森—安哈尔特州内政部 / 州警局 · PKS 2025州级公告，第4页（PDF第4页）",
+      "source_type": "state_government",
+      "notes": "州内政机关公布2025年全州PKS汇总。甲基苯丙胺1,222与苯丙胺839均为BtMG一般违法中涉及对应物质的案件，不等同于含贸易、走私、严重数量犯罪的该物质全部案件。全部毒品案件4,544是所有相关罪名合计；379起毒品交易/走私也在更广统计范围内，绝不可与总数或分项重复相加。2024年4月KCanG生效对跨年案件数产生明显影响。截获公斤数不代表本地消费量。",
+      "groups": [],
+      "additional_metrics": [
+        {
+          "name": "甲基苯丙胺（冰毒）· 一般违法",
+          "cases": 1222,
+          "previous_2024": 1080,
+          "code": "BtMG一般违法 · 州PKS2025公告第4页 Methamphetamin",
+          "scope_kind": "general_offence",
+          "note": "仅一般违法案件，并非所有涉及甲基苯丙胺的违法；州官方2025年1,222起，2024年1,080起。"
+        },
+        {
+          "name": "苯丙胺 · 一般违法",
+          "cases": 839,
+          "previous_2024": 788,
+          "code": "BtMG一般违法 · 州PKS2025公告第4页 Amphetamin",
+          "scope_kind": "general_offence",
+          "note": "州内政部的Amphetamin标签，与甲基苯丙胺分开；不将它扩展解释为所有苯丙胺衍生物。"
+        },
+        {
+          "name": "全部毒品相关登记案件",
+          "cases": 4544,
+          "previous_2024": 5887,
+          "code": "PKS Rauschgiftkriminalität · 州PKS2025公告第4页",
+          "scope_kind": "multi_offence_all_drugs",
+          "note": "与本州其他具体物质的案件重叠，不得相加；大麻部分合法化引发2024年统计断点。"
+        },
+        {
+          "name": "毒品非法交易与走私（多物质）",
+          "cases": 379,
+          "previous_2024": 598,
+          "code": "BtMG非法交易/走私多物质汇总 · 州PKS2025公告第4页",
+          "scope_kind": "trade_or_smuggling",
+          "note": "未按物质单独拆解；不能误标为可卡因、冰毒等某一种毒品的交易数，且属于全部毒品统计范围的一部分。"
+        }
+      ]
     }
   },
   "other_health_indicators_by_state": {
@@ -629,6 +691,39 @@
       "break_year": 2024,
       "break_label": "2024年4月1日《大麻法》生效，部分持有行为非刑事犯罪；2025年KCanG细分代码再次调整。",
       "note": "属于警方登记毒品违法案件，不是吸毒人数。2021—2023、2024—2025两段可观察记录变化，跨2023/2024不可机械解释为吸毒或毒品问题下降。不同执法强度同样影响数字。"
+    },
+    "Hessen": {
+      "metric": "Rauschgiftdelikte gesamt",
+      "scope_kind": "multi_offence_all_drugs",
+      "law": "BtMG/KCanG/NpSG (PKS Rauschgiftdelikte; 2024 KCanG law change)",
+      "unit": "police_recorded_cases",
+      "source_url": "https://www.polizei.hessen.de/sites/polizei.hessen.de/files/2026-03/pressepapier_pks-jahresstatistik_2025.pdf",
+      "source_title": "黑森州警方《PKS Hessen 2025》第40页图23，2021—2025年全部毒品相关登记案件",
+      "records": [
+        {
+          "year": 2021,
+          "cases": 25216
+        },
+        {
+          "year": 2022,
+          "cases": 24363
+        },
+        {
+          "year": 2023,
+          "cases": 26518
+        },
+        {
+          "year": 2024,
+          "cases": 17257
+        },
+        {
+          "year": 2025,
+          "cases": 12053
+        }
+      ],
+      "break_year": 2024,
+      "break_label": "2024年4月1日《大麻法》生效。2024年度仅从4月起适用新的相关罪名，2025年为整年。",
+      "note": "州警方明确强调登记数量受警察主动执法力度影响；减少的警方记录不得推断实际毒品消费或危险程度下降。"
     }
   }
 }
