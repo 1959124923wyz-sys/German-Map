@@ -23,6 +23,9 @@ with sync_playwright() as playwright:
     browser = playwright.chromium.launch(headless=True)
     page = browser.new_page(viewport={"width": 1480, "height": 900}, device_scale_factor=1)
     errors = capture_errors(page)
+    berlin_requests = []
+    page.on("request", lambda req: berlin_requests.append(req.url)
+            if "/data/berlin_violent_2025.geojson" in req.url else None)
     page.on("console", lambda msg: print("[browser-console]", msg.text, flush=True)
             if "city detail skipped" in msg.text or "city-local" in msg.text else None)
     page.route("**/tile.openstreetmap.org/**", lambda route: route.abort())
@@ -33,7 +36,7 @@ with sync_playwright() as playwright:
     page.wait_for_function("""() => {
         const a=window.__CRIME_MAP__;
         return a && a.getCaseData() && a.getPksData() && a.getPropertyData()
-          && a.getBerlinViolence() && a.getHeatData() && a.getCountyLayer();
+          && a.getHeatData() && a.getCountyLayer();
     }""", timeout=30000)
     page.wait_for_timeout(4000)
 
@@ -50,6 +53,8 @@ with sync_playwright() as playwright:
             status:document.querySelector('#mapStatus').textContent
         };
     }""")
+    assert not berlin_requests, "Berlin fine geometry must be lazy-loaded, not fetched nationwide"
+    assert page.evaluate("window.__CRIME_MAP__.getBerlinViolence()===null")
     assert initial["mode"] == "violence", initial
     assert initial["cases"] >= 500, initial
     assert initial["counties"] >= 395, initial
@@ -182,7 +187,13 @@ with sync_playwright() as playwright:
     # Berlin's official annual violence layer and rolling 90-day property layer.
     page.evaluate("() => { window.__CRIME_MAP__.map.stop(); }")
     page.click("#focusBerlin")
-    page.wait_for_timeout(1300)
+    page.wait_for_function("""() => {
+        const a=window.__CRIME_MAP__;
+        return a?.getBerlinViolence()?.features?.length>50
+          && a?.getBerlinLayer()?.getLayers()?.length>50;
+    }""", timeout=30000)
+    assert len(berlin_requests)==1, ("Berlin fine geometry fetched more than once", berlin_requests)
+    page.wait_for_timeout(200)
     berlin_state=page.evaluate("""() => {
         const a=window.__CRIME_MAP__;
         return {zoom:a.map.getZoom(),mode:a.getMode(),features:a.getBerlinLayer()?.getLayers()?.length||0};

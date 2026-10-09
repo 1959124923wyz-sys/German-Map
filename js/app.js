@@ -300,8 +300,33 @@
   el.propertyMetric.addEventListener('change',()=>{pinnedArea=null;hoverArea=null;render();showArea(null);});
   el.viewGermany.onclick=()=>{pinnedArea=null;hoverArea=null;countyController.clearSelection();statePanel.reset();render();showArea(null);map.fitBounds(germanyBounds,{padding:[14,14]});};
   el.focusBerlin.onclick=()=>{pinnedArea=null;hoverArea=null;countyController.clearSelection();statePanel.reset();showArea(null);map.fitBounds(berlinBounds,{padding:[25,25],maxZoom:10});};
-  map.on('zoomend',()=>{buildStateLayer();berlinDetail.render();renderLegend();});
-  map.on('moveend',()=>{if(!stateLayer)buildStateLayer();if(el.stateDrawer.classList.contains('open'))stateDrawerDrag.keepInside();});
+  // Berlin's detailed LOR geometry is several MB. Keep nationwide startup light:
+  // it is needed only after entering the Berlin city view at detail zoom.
+  let berlinDataRequest=null, berlinRetryAfter=0;
+  function ensureBerlinData(){
+    if(!caseData || !countyGeo || berlinViolence || berlinDataRequest ||
+       map.getZoom()<7.5 || !map.getBounds().intersects(berlinBounds) ||
+       Date.now()<berlinRetryAfter) return;
+    berlinDataRequest=fetch('data/berlin_violent_2025.geojson',{cache:'no-store'})
+      .then(r=>{if(!r.ok)throw new Error('berlin violence '+r.status);return r.json();})
+      .then(geo=>{
+        if(geo?.type!=='FeatureCollection'||!Array.isArray(geo.features)||!geo.features.length)
+          throw new Error('Invalid Berlin detail geometry');
+        berlinViolence=geo;
+        berlinDetail.render();
+        // Restyle the existing national layer rather than rebuilding 402 polygons.
+        const selected=countyController.selected;
+        countyLayer?.eachLayer(layer=>countyLayer.resetStyle(layer));
+        if(selected)countyController.select(selected);
+        renderLegend();
+      }).catch(err=>{
+        console.warn('Berlin detail unavailable; nationwide county map stays usable',err);
+        // Avoid a request storm after a transient failure, but allow zoom retries.
+        berlinRetryAfter=Date.now()+30000;
+      }).finally(()=>{berlinDataRequest=null;});
+  }
+  map.on('zoomend',()=>{buildStateLayer();berlinDetail.render();ensureBerlinData();renderLegend();});
+  map.on('moveend',()=>{if(!stateLayer)buildStateLayer();if(el.stateDrawer.classList.contains('open'))stateDrawerDrag.keepInside();ensureBerlinData();});
 
   window.addEventListener('resize',()=>{if(el.stateDrawer.classList.contains('open'))stateDrawerDrag.keepInside();});
   Promise.all([
@@ -310,13 +335,12 @@
     fetch('data/germany-states.geojson',{cache:'force-cache'}).then(r=>{if(!r.ok)throw new Error('states '+r.status);return r.json()}),
     fetch('data/pks_violent_2025.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('pks '+r.status);return r.json()}),
     fetch('data/pks_property_2025.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('property pks '+r.status);return r.json()}),
-    fetch('data/berlin_violent_2025.geojson',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('berlin violence '+r.status);return r.json()}),
     fetch('data/berlin_heatmap.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('heat '+r.status);return r.json()})
-  ]).then(([cases,counties,states,pks,propertyPks,berlinV,heat])=>{
-    caseData=cases;countyGeo=counties;stateGeo=states;pksData=pks;propertyData=propertyPks;berlinViolence=berlinV;heatData=heat;
+  ]).then(([cases,counties,states,pks,propertyPks,heat])=>{
+    caseData=cases;countyGeo=counties;stateGeo=states;pksData=pks;propertyData=propertyPks;heatData=heat;
     const t=caseData.meta?.generated_at?new Date(caseData.meta.generated_at):null;
     el.updated.textContent=t&&!Number.isNaN(+t)?'通报更新 '+t.toLocaleString():'通报更新时间未知';
-    render();showArea(null);
+    render();showArea(null);ensureBerlinData();
   }).catch(err=>{
     console.error(err);el.mapStatus.className='mapstatus fallback';el.mapStatus.textContent='数据加载失败：'+err.message;el.updated.textContent='数据加载失败';
   });
