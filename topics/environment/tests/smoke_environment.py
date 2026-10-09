@@ -49,7 +49,7 @@ def check(browser, mobile=False):
     assert facts["total"]==154 and facts["good"],facts
     assert [facts[k] for k in ("archive","policy","organization","facility","facility_story")]==[41,10,10,92,1],facts
     assert facts["phases"]=={"retired":32,"awarded":36,"ordered":3,"scheduled":21},facts
-    page.wait_for_function("""() => document.querySelectorAll('#environment-map .leaflet-pane.environmentStates path').length>=16""",timeout=20000)
+    page.wait_for_function("""() => window.__ENVIRONMENT_MAP__.map.getPane('environmentStates')?.querySelectorAll('path').length>=16""",timeout=20000)
     # Presentation and filters remain correlated with the data, not mere decoration.
     for mode,expected in EXPECTED.items():
         page.locator('[data-mode="'+mode+'"]').click()
