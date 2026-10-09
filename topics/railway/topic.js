@@ -266,7 +266,8 @@ function hitRail(latlng){
   return candidate;
 }
 function initMap(){
-  map=L.map('railway-map',{preferCanvas:true,minZoom:5,maxZoom:16,zoomControl:true,zoomSnap:.5});
+  // Rail tracks draw on a dedicated Canvas layer; state outlines use SVG as in 01–06.
+  map=L.map('railway-map',{preferCanvas:false,minZoom:5,maxZoom:16,zoomControl:true,zoomSnap:.5});
   map.fitBounds(BOUNDS,{padding:[12,12],animate:false});
   map.setMaxBounds([[45.3,3.2],[57.1,18]]);
   map.createPane(CANVAS_PANE).style.zIndex=350;
