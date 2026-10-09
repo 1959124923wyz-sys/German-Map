@@ -42,7 +42,7 @@ def check(browser, mobile=False):
     page.locator("#show-counties").click()
     page.wait_for_function("()=>window.GermanMapTopics.immigration.getViewState().countyMode==='counties'",timeout=45000)
     assert page.evaluate("()=>window.__IMMIGRATION_MAP_V13__.getPane('immigrationCountyPane').querySelectorAll('path').length")>=15
-    page.locator("#county-list").get_by_text("Flensburg").click()
+    page.locator("#county-list").get_by_text("Flensburg", exact=True).click()
     assert page.locator("#county-value").inner_text()=="17,910"
     page.locator("#show-counties").click()
     assert page.evaluate("()=>window.GermanMapTopics.immigration.getViewState().countyMode")=="states"
