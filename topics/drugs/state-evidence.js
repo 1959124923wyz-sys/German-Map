@@ -64,7 +64,9 @@ function render(state,d){
   const src=item('div','','evidence-source');
   src.append(sourceLink('查看来源：'+death.source_title+' ↗',death.source_url));
   sect.append(src);
-  if(!['state_police','state_government'].includes(death.source_type))
+  if(death.source_type==='city_government_citing_statewide_figure')
+   sect.append(item('p','全州数据由市政府正式公告披露；尚待州警原始统计表交叉核验。','note'));
+  else if(!['state_police','state_government'].includes(death.source_type))
    sect.append(item('p','此数值由公共媒体或专业机构引述，尚待独立官方原表交叉核验。','note'));
   body.append(sect);
  }else body.append(item('p','本州2025年死亡人数尚未取得可靠的对应统计；不表示死亡人数为零。','note'));
