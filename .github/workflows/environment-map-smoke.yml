@@ -1,0 +1,63 @@
+name: Environment 06 source and map smoke
+
+on:
+  pull_request:
+    paths:
+      - 'topics/environment/**'
+      - 'index.html'
+      - 'topics/drugs/index.html'
+      - 'topics/immigration/index.html'
+      - '.github/workflows/environment-map-smoke.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'topics/environment/**'
+      - '.github/workflows/environment-map-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+concurrency:
+  group: environment-06-smoke-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Verify standalone source files and script syntax
+        run: |
+          node --check topics/environment/topic.js
+          node --check topics/environment/data/records.js
+          python -m py_compile topics/environment/tests/smoke_environment.py
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          h=Path('topics/environment/index.html').read_text()
+          for file in ['topic.css','topic.js','data/records.js']:
+              assert (Path('topics/environment')/file).is_file(),file
+          assert 'LOCAL ONLY' not in h and '未上传 GitHub' not in h
+          assert len(re.findall(r'<a ',h))>=5
+          for p in ['index.html','topics/drugs/index.html','topics/immigration/index.html']:
+              assert 'environment/' in Path(p).read_text(),p
+          print('PASS 06 shared navigation and standalone resources')
+          PY
+      - name: Install Chromium smoke runner
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Serve and verify events, facilities and interactions
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/environment-http.log 2>&1 &
+          sleep 2
+          python topics/environment/tests/smoke_environment.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: environment-06-screenshots
+          path: /tmp/environment-06-*.png
+          if-no-files-found: warn
