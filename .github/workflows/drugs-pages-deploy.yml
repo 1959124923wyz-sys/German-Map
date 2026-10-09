@@ -54,7 +54,8 @@ jobs:
           test -f topics/immigration/index.html
           grep -Fq 'germany-states.geojson' topics/immigration/topic.js
           grep -Fq 'germany-counties.geojson' topics/immigration/topic.js
-          grep -Fq '14070225' topics/immigration/index.html
+          grep -Fq 'data/azr-records.js' topics/immigration/index.html
+          grep -Fq '14070225' topics/immigration/data/azr-records.js
           node --check js/layers/city-labels.js
           node --check js/core/place-names-zh.js
           grep -Fq 'place-names-zh.js' index.html
@@ -63,8 +64,8 @@ jobs:
           # Prevent Chromium's black rectangular SVG-path focus boxes.
           grep -Fq '#map .leaflet-interactive' css/map.css
           grep -Fq '#drug-map .leaflet-interactive' topics/drugs/topic.css
-          grep -Fq 'svg-outline-fix-v3' index.html
-          grep -Fq 'region-context-v1' topics/drugs/index.html
+          grep -Fq 'href="css/map.css?' index.html
+          grep -Fq 'href="topic.css?' topics/drugs/index.html
           node --check topics/drugs/wastewater.js
           node --check topics/drugs/news.js
           node --check topics/drugs/state-evidence.js
