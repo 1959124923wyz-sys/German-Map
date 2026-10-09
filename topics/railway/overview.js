@@ -16,7 +16,7 @@ const specs={
 const stationZh=name=>window.GermanRailStations?.localize(name)||name;
 const REF_ZOOM=9, WORLD=256*2**REF_ZOOM, CELL=64, NATION=[[47.05,5.45],[55.15,15.65]];
 const view={service:'REGIONAL',metric:'both',minimum:100,selected:null,links:[],
-  rendered:[],ticket:0,networkReady:false,tiles:false,networkParts:[],grid:new Map(),map:null,
+  rendered:[],ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,networkParts:[],grid:new Map(),map:null,
   baseLayer:null,observedLayer:null,repaints:0};
 const cache=new Map(),geomCache=new WeakMap();
 const fmt=n=>Number(n).toLocaleString('zh-CN');
@@ -201,15 +201,17 @@ function makeMap(){
   if(!r.ok)throw Error('州界 HTTP '+r.status);return r.json();
  }).then(data=>{
   if(data.features?.length!==16)throw Error('州界不完整');
-  L.geoJSON(data,{pane:'rail-state-pane',interactive:false,
+  const layer=L.geoJSON(data,{pane:'rail-state-pane',interactive:false,
    style:()=>({color:'#315065',weight:1.2,opacity:.7,fill:false})}).addTo(m);
+  view.statesReady=layer.getLayers().length===16;
  }).catch(e=>console.warn('State boundaries unavailable',e));
  fetch('../../data/germany-counties.geojson',{cache:'force-cache'}).then(r=>{
   if(!r.ok)throw Error('县界 HTTP '+r.status);return r.json();
  }).then(data=>{
   m.createPane('rail-counties-pane').style.zIndex='315';
-  L.geoJSON(data,{pane:'rail-counties-pane',interactive:false,
+  const county=L.geoJSON(data,{pane:'rail-counties-pane',interactive:false,
    style:()=>({color:'#607c8f',weight:.32,opacity:.24,fill:false})}).addTo(m);
+  view.countiesReady=county.getLayers().length>350;
  }).catch(e=>console.warn('County boundaries unavailable',e));
  window.CrimeCityLabels?.create(m,{paneName:'rail-major-cities',zIndex:470});
  view.baseLayer=new CanvasLayer('network').addTo(m);
@@ -499,7 +501,8 @@ try{
   getVisible:()=>view.rendered.length,getMergedLinks:()=>view.links.length,
   getSelected:()=>view.selected,getScale:()=>view.map?.getZoom(),
   getMap:()=>view.map,getNetworkGeometryCount:()=>view.networkParts.length,
-  getNetworkReady:()=>view.networkReady,getRendered:()=>view.rendered,
+  getNetworkReady:()=>view.networkReady,getStatesReady:()=>view.statesReady,
+  getCountiesReady:()=>view.countiesReady,getRendered:()=>view.rendered,
   getRepaintCount:()=>view.repaints,getCanvasCount:()=>document.querySelectorAll('.railway-canvas').length,
   getSpatialBucketCount:()=>view.grid.size,
   clickPoint:ll=>pickAt(L.latLng(ll)),stationZh
