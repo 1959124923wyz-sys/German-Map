@@ -107,7 +107,7 @@ def main():
             # New primary-source state metrics remain explicitly scope-labeled.
             for state,expected in [
                 ('Brandenburg', ['701','404','248','27','19']),
-                ('Rheinland-Pfalz', ['515','858','1,043','152','3,202','2,319','495','316','86','47','173','178']),
+                ('Rheinland-Pfalz', ['34','515','858','1,043','152','3,202','2,319','495','316','86','47','173','178']),
                 ('Hessen', ['2,406','543','153','157','263']),
                 ('Baden-Württemberg', ['156','61','NpSG','BtMG']),
                 ('Nordrhein-Westfalen', ['7,507', '6,433', '可卡因／快克']),
@@ -127,20 +127,11 @@ def main():
                     assert value in content,(state,value,content)
                 assert page.locator('#region-evidence-body a[href^="https://"]').count()>=1
                 if state == 'Rheinland-Pfalz':
-                    assert '2024年法律统计断点' in content
-                    chart=page.locator('#region-evidence-body svg.evidence-mini-trend')
-                    assert chart.count()==1
-                    assert chart.locator('polyline').count()==2, 'KCanG legal break must separate trend segments'
-                    assert '2024' in chart.text_content()
-                    assert all(value in chart.text_content() for value in ('20,624','19,832','19,296','13,433','9,888'))
-                    assert page.locator('#region-evidence-body .evidence-source a[href*="polizei.rlp.de"]').count()>=2
-                if state == 'Hessen':
-                    assert '2024年法律统计断点' in content
-                    chart=page.locator('#region-evidence-body svg.evidence-mini-trend')
-                    assert chart.count()==1
-                    assert chart.locator('polyline').count()==2
-                    assert all(value in chart.text_content() for value in
-                        ('25,216','24,363','26,518','17,257','12,053'))
+                    assert '2025年毒品相关死亡' in content
+                    assert '34 人' in content
+                    assert '2024年可比死亡人数：未核实' in content
+                    assert page.locator('#region-evidence-body .evidence-source a[href*="mainz.de"]').count()>=1
+                assert page.locator('#region-evidence-body svg.evidence-mini-trend').count()==0
                 if state == 'Sachsen-Anhalt':
                     assert '此数值由公共媒体或专业机构引述' not in content
                     assert '毒品非法交易与走私（多物质）' in content
