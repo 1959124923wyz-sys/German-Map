@@ -6,15 +6,15 @@
 <title>德国环保争议地图 · 政策、行动与能源设施 | German-Map</title>
 <meta name="description" content="德国环保争议政策、环保组织行动、机场封锁、能源设施退役和后续证据地图；基于154条带来源的记录。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="../../css/map.css?v=20261009-svg-outline-fix-v3">
-<link rel="stylesheet" href="topic.css?v=20261009-taxonomy-v2">
+<link rel="stylesheet" href="../../css/map.css?v=clean1">
+<link rel="stylesheet" href="topic.css?v=clean1">
 </head>
 <body>
 <header>
   <div class="header-main">
     <div class="titleblock">
       <div class="title">德国环保争议地图</div>
-      <div class="header-meta">GERMAN-MAP 06 · 资料核查截至 2026-10-09</div>
+      <div class="header-meta">政策 · 行动事件 · 能源设施</div>
     </div>
     <nav class="modebar" aria-label="德国地图专题切换">
       <a class="modebtn" href="../../index.html">暴力犯罪</a>
@@ -30,43 +30,43 @@
     <div id="environment-map"></div>
     <div id="mapStatus" class="mapstatus">正在加载街道底图与事件点位…</div>
     <div class="legend" id="legend" aria-label="地图图例"></div>
-    <div class="map-corner-tip">点位表示事件／政策／设施位置，不是地区评分</div>
+
   </section>
   <aside class="environment-sidebar">
     <div class="controls">
       <div class="env-taxonomy">
-        <div class="env-taxonomy-heading"><strong>记录类型</strong><span>四类互不重叠 · 全部收录记录</span></div>
+        <div class="env-taxonomy-heading"><strong>查看内容</strong><span>按记录类型分类</span></div>
         <div class="env-tabs" role="group" aria-label="按记录性质选择互斥的分类">
-          <button type="button" class="active" data-mode="all" aria-pressed="true">全部记录 <span class="env-tab-count" data-count-for="all">154</span></button>
-          <button type="button" data-mode="archive" aria-pressed="false">直接行动 <span class="env-tab-count" data-count-for="archive">41</span></button>
-          <button type="button" data-mode="policy" aria-pressed="false">政策措施 <span class="env-tab-count" data-count-for="policy">10</span></button>
-          <button type="button" data-mode="project" aria-pressed="false">组织／项目争议 <span class="env-tab-count" data-count-for="project">11</span></button>
+          <button type="button" class="active" data-mode="all" aria-pressed="true">全部 <span class="env-tab-count" data-count-for="all">154</span></button>
+          <button type="button" data-mode="archive" aria-pressed="false">行动事件 <span class="env-tab-count" data-count-for="archive">41</span></button>
+          <button type="button" data-mode="policy" aria-pressed="false">环保政策 <span class="env-tab-count" data-count-for="policy">10</span></button>
+          <button type="button" data-mode="project" aria-pressed="false">组织争议 <span class="env-tab-count" data-count-for="project">11</span></button>
           <button type="button" data-mode="facility" aria-pressed="false">能源设施 <span class="env-tab-count" data-count-for="facility">92</span></button>
         </div>
         <details class="env-taxonomy-guide" id="taxonomyGuide">
-          <summary>这四类如何划分？为什么“组织”不单列为事件类型？</summary>
-          <p><b>直接行动</b>：机场、道路、能源运输阻断、喷涂等实际发生的行动，共41条。</p>
-          <p><b>政策措施</b>：有明确政策决策或实施地点的环保、能源政策，共10条。</p>
-          <p><b>组织／项目争议</b>：环保组织参与的工程、诉讼争议及一条单独设施争议，共11条；正常行政诉讼不等于违法行动。</p>
-          <p><b>能源设施</b>：发电设施历史退役、招标中标、监管命令和未来退出安排，共92条。计划退出不代表已停机。</p>
-          <p class="env-guide-footnote">41 + 10 + 11 + 92 = 154 条已收录记录，互不重复。这里的“全部”指本专题资料库，并非穷尽德国所有环保相关事件。</p>
+          <summary>分类说明</summary>
+          <p><b>行动事件</b>：机场、道路、能源运输及喷涂等实际行动。</p>
+          <p><b>环保政策</b>：环保、能源领域的政策决策。</p>
+          <p><b>组织争议</b>：组织参与的争议项目及独立设施案例；诉讼不等于违法行动。</p>
+          <p><b>能源设施</b>：区分已退役、中标、监管命令和未来计划。</p>
+          <p class="env-guide-footnote">四类互不重复；记录仅覆盖本专题已收录的案例。</p>
         </details>
       </div>
       <div class="env-shortcut-row" role="group" aria-label="常用查看入口">
-        <span>快速查看</span>
-        <button type="button" class="env-shortcut" data-shortcut="airport" title="直接行动中与机场有关的记录">机场相关</button>
-        <button type="button" class="env-shortcut" data-shortcut="paint" title="直接行动中涉及喷涂、涂漆等行为的记录">喷涂行动</button>
+        <span>快捷</span>
+        <button type="button" class="env-shortcut" data-shortcut="airport" title="直接行动中与机场有关的记录">机场</button>
+        <button type="button" class="env-shortcut" data-shortcut="paint" title="直接行动中涉及喷涂、涂漆等行为的记录">喷涂</button>
         <button type="button" class="env-shortcut" data-shortcut="scheduled" title="能源设施中按未来法定时间表安排退出的记录">未来退出</button>
-        <button type="button" class="env-shortcut" data-shortcut="focus" title="编辑选取的政策与项目争议案例，属于跨类型筛选而不是第五种记录类型">重点案例</button>
-        <button type="button" id="clearFilters" class="env-clear" title="返回完整的154条记录">重置</button>
+        <button type="button" class="env-shortcut" data-shortcut="focus" title="编辑选取的政策与项目争议案例，属于跨类型筛选而不是第五种记录类型">精选</button>
+        <button type="button" id="clearFilters" class="env-clear" title="清除所有筛选">清除筛选</button>
       </div>
-      <div class="env-filter-state" id="filterState" role="status" aria-live="polite">当前显示：全部154条记录，按记录性质分类。</div>
-      <div class="control-row"><strong>地图定位</strong>
+      <div class="env-filter-state" id="filterState" role="status" aria-live="polite" hidden></div>
+      <details class="env-map-tools" id="mapTools"><summary>地图定位</summary><div class="control-row">
         <button type="button" id="viewGermany">全国</button>
         <button type="button" id="viewBerlin">柏林</button>
         <button type="button" id="viewHamburg">汉堡</button>
         <button type="button" id="clearSelection">取消选中</button>
-      </div>
+      </div></details>
       <div class="control-row env-filters">
         <label><span>参与组织</span>
           <select id="org" aria-label="按组织筛选">
@@ -100,35 +100,35 @@
     </div>
 
     <section class="safety-panel" id="summaryPanel">
-      <div class="safety-head"><strong id="sectionTitle">全国 · 环保争议总览</strong><span class="safety-hint" id="resultScope">地图记录 · 悬停预览 / 点击查看</span></div>
+      <div class="safety-head"><strong id="sectionTitle">全部记录</strong><span class="safety-hint" id="resultScope">点击点位查看详情</span></div>
       <div class="area-title"><div class="area-name" id="areaName">德国全国</div><span class="risk-badge mid" id="kindBadge">专题概览</span></div>
-      <div class="area-metric" id="areaMetric">政策、直接行动和电厂退出的可核查记录</div>
-      <div class="coverage-line"><span class="coverage-pill standard">有来源记录</span><span class="coverage-text" id="coverageText">位置为政策发布地、设施或事件地点，不代表整州得分</span></div>
+      <div class="area-metric" id="areaMetric">政策、行动与设施</div>
+      
       <div class="area-grid">
         <div class="area-stat"><b id="count">154</b><small>当前筛选记录</small></div>
         <div class="area-stat"><b id="regionCount">—</b><small>涉及城市／地点</small></div>
         <div class="area-stat"><b id="sourceCount">—</b><small>引用来源链接</small></div>
       </div>
-      <div class="area-note" id="listHint">只展示已收录的可溯源事件，政府立法、合法异议和违法行动须分开判断。</div>
+      <div class="area-note" id="listHint">点击点位查看资料来源。</div>
       <div id="detail" class="env-detail" hidden aria-live="polite"></div>
       <div id="rankSection" class="rank-section">
-        <div class="rank-head"><strong>记录较多的地区</strong><span>按当前筛选 · 条数</span></div>
+        <div class="rank-head"><strong>地点分布</strong><span>当前记录数</span></div>
         <div class="rank-list" id="rankList"></div>
       </div>
     </section>
 
     <details class="incident-drawer" id="recordDrawer">
-      <summary>地点与事件清单 <span id="listCount">154 条</span></summary>
+      <summary>记录列表 <span id="listCount">154 条</span></summary>
       <div id="entries" class="env-entries"></div>
       <button type="button" id="moreRecords" class="more-records" hidden>显示更多记录</button>
     </details>
   </aside>
 </main>
-<footer><span>资料截至 2026-10-09 · 逐条注明事件日期、证据及状态 · 不是官方环保违法统计</span><span>地图 © OpenStreetMap contributors · Leaflet</span></footer>
+<footer><span>精选公开案例 · 资料截至 2026 年 10 月 · 详见各条来源</span><span>© OpenStreetMap contributors · Leaflet</span></footer>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="../../js/core/place-names-zh.js?v=20261009-zh-v1"></script>
-<script src="../../js/layers/city-labels.js?v=20261009-zh-v1"></script>
-<script src="data/records.js?v=20261009-06-v1"></script>
-<script src="topic.js?v=20261009-unified-v1"></script>
+<script src="../../js/core/place-names-zh.js?v=clean1"></script>
+<script src="../../js/layers/city-labels.js?v=clean1"></script>
+<script src="data/records.js?v=clean1"></script>
+<script src="topic.js?v=clean1"></script>
 </body>
 </html>
