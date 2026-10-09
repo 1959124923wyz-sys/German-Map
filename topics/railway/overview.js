@@ -90,9 +90,14 @@ function actualBounds(parts){
 }
 function currentViewport(m,size){
  const factor=2**(m.getZoom()-REF_ZOOM),origin=m.getPixelOrigin();
- return {factor,ox:origin.x,oy:origin.y,
-   minX:(origin.x-15)/factor,maxX:(origin.x+size.x+15)/factor,
-   minY:(origin.y-15)/factor,maxY:(origin.y+size.y+15)/factor};
+ // Leaflet pixel-origin is in layer coordinates, not container coordinates.
+ // Include the pan-pane translation so overlaid Canvas pixels line up with
+ // real OSM tiles even after repeated pan operations.
+ const pane=L.DomUtil.getPosition(m.getPanes().mapPane)||L.point(0,0);
+ const ox=origin.x-pane.x,oy=origin.y-pane.y;
+ return {factor,ox,oy,
+   minX:(ox-15)/factor,maxX:(ox+size.x+15)/factor,
+   minY:(oy-15)/factor,maxY:(oy+size.y+15)/factor};
 }
 function visible(p,v){
  return !(p.maxX<v.minX||p.minX>v.maxX||p.maxY<v.minY||p.minY>v.maxY);
