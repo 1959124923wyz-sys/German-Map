@@ -54,8 +54,6 @@ with sync_playwright() as p:
     assert "js/app.js" in page.content()
     assert not errors, ("JS errors", errors)
     assert not notfound, ("Missing assets", notfound)
-    browser.close()
-
     mobile=browser.new_page(viewport={"width":390,"height":844},device_scale_factor=1)
     moberrors=[]
     mobile.on("pageerror",lambda e:moberrors.append(str(e)))
