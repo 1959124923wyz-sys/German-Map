@@ -34,6 +34,7 @@ def check(browser, mobile=False):
     assert page.locator("#national-value").inner_text()=="14.9%"
     assert page.locator("#population-year").is_disabled()
     page.locator("#population-metric").select_option("count")
+    print("TRANSLATION_DIAGNOSTIC",page.evaluate("()=>({loaded:!!window.GermanPlaceNames,value:window.GermanPlaceNames?.translate('Berlin'),county:window.GermanPlaceNames?.byAGS('01001','Flensburg'),stateText:document.querySelector('#state-list')?.innerText?.slice(0,240),errors:[]})"),flush=True)
     page.locator("#state-list").get_by_text("柏林").click()
     assert "994,590" in page.locator("#region-value").inner_text()
     assert page.locator("#trend-chart polyline").count()==1
