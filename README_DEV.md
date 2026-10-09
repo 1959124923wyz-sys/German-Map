@@ -423,3 +423,41 @@ python scripts/validate_duesseldorf_additional_stadtteile.py --district 09
 The main site now has a third top-level navigation tab, **毒品问题**, linking to `topics/drugs/`. It is a standalone Leaflet route served by the same GitHub Pages deployment, not a third `js/app.js` in-page renderer yet. This keeps the previously tested violence/property state and county pointer behavior untouched. The drug route offers reverse links to violence and `index.html?mode=property`; the main app reads that query parameter for correct return navigation.
 
 Statistical caveats: `topics/drugs/data/pks_drugs_2025.json` is a 2025 county PKS attributed mirror (400 source records for 402 mapping polygons), and the displayed BKA national `Rauschgiftkriminalität` total uses a potentially different definition. Missing records remain missing, no proportional reallocation, no claim that police cases measure consumption, and 2024 cannabis legalization must be marked in historical comparisons. The independent data script and browser smoke live under `topics/drugs/`. Do not overwrite them when integrating future immigration or city layers.
+
+## Upcoming independent modules (06 environment / 07 railway)
+
+These are **independent thematic maps** that will join the existing top navigation
+once their actual pages, data and browser checks are ready. Do not publish dead
+tabs or replace an existing crime map as a temporary placeholder.
+
+- **06 环保与能源争议**: prospective path `topics/environment/`. Show verified
+  event locations as point markers; represent policies, shutdown dates and
+  economic impacts only at the geographic and evidentiary precision supported
+  by primary sources. Distinguish a documented action from commentary about
+  motives. Do not invent impact magnitudes or event coordinates.
+- **07 德国铁路**: prospective path `topics/railway/`. Draw actual official
+  railway **line geometries**, not straight connections between stations.
+  Keep railways, stations, tunnel/bridge features and other geometries
+  semantically separate. Preserve original source provenance and CRS
+  transformation records; validate shapes and coverage before publication.
+
+**Shared UI / operational invariants:**
+
+1. Reuse Leaflet, the existing restrained dark panels, the unkeyed
+   OpenStreetMap street basemap and `js/core/place-names-zh.js` /
+   `js/layers/city-labels.js` for Chinese toponyms. Do not apply a
+   negative-color or grayscale inversion that destroys readable roads.
+2. Each topic owns its namespace under `topics/<topic>/`, including
+   source attribution, a plain language legend, independently versioned
+   data, and browser smoke tests. Do not mix unlike metrics or silently
+   turn missing observations into zero.
+3. Add navigation links to **all** public map headers together, after
+   the new path resolves. Preserve the existing main-page violence/property
+   buttons, and cross-topic property-mode query parameter.
+4. Extend the main, 04 drug and 05 immigration browser tests to visit
+   each added page on desktop and mobile. Verify street tiles, actual
+   SVG/GeoJSON/line features, Chinese labels and map pointer interactions;
+   verify that returning to all existing pages still works.
+5. Run affected actions workflows and inspect their conclusions before
+   treating the release as finished. Keep a roll-backable commit and never
+   overwrite vetted annual source datasets during UI refactoring.
