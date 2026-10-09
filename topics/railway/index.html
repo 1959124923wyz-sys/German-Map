@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#0c1117">
 <meta name="description" content="德国铁路真实区间运行质量地图，基于2026年9月列车停靠记录，突出延误与取消标记较高的区间。">
 <title>德国铁路运行地图 · BahnMonitor | German-Map</title>
-<link rel="stylesheet" href="overview.css?v=15">
+<link rel="stylesheet" href="overview.css?v=16">
 </head>
 <body>
 <div class="page">
@@ -22,7 +22,7 @@
 </header>
 <main class="workspace">
  <section class="map-panel" aria-label="德国铁路延误和停靠取消区间分布">
-  <div class="map-caption"><strong>德国铁路 · 延误与取消热点</strong><small>红线代表较高观测比例 · 灰线代表未达警示阈值或无数据</small></div>
+  <div class="map-caption"><strong>德国铁路 · 运行关注区段</strong><small>浅色铁路网作背景 · 红橙线突出延误与停靠取消</small></div>
   <div id="viewport" role="application" aria-label="铁路地图，可拖动和缩放">
    <div id="world">
     <canvas id="tracks" width="1580" height="2000" aria-hidden="true"></canvas>
@@ -39,54 +39,46 @@
   <div class="map-status">2026年9月 · DB InfraGO 官方轨道几何 · 有数据才着色</div>
   <div class="legend" aria-label="地图颜色说明">
    <b>区间关注程度</b>
-   <span><i style="background:#364c5d"></i>未匹配</span>
-   <span><i style="background:#8c9ca9"></i>较低</span>
-   <span><i style="background:#eaa06c"></i>偏高</span>
-   <span><i style="background:#ed5763"></i>较高</span>
+   <span><i style="background:#567083"></i>其他铁路</span>
+   <span><i style="background:#e5a46e"></i>偏高</span>
+   <span><i style="background:#e7777d"></i>较高</span>
   </div>
  </section>
- <aside class="sidebar" aria-label="线路筛选和数据详情">
-  <h2>铁路区段表现</h2>
-  <p class="intro">查看哪些铁路段有较多晚点或取消标记。地图采用真实铁路走向；没有匹配数据的铁路保持灰暗。</p>
-  <div class="field"><label for="service">列车类型</label>
-   <select id="service">
-    <option value="RE" selected>RE · 区域快车</option>
-    <option value="RB">RB · 区域普通列车</option>
-    <option value="LONG">长途 · ICE／IC／EC／FLX</option>
-    <option value="ICE">仅 ICE</option><option value="IC">仅 IC</option>
-    <option value="HLB">HLB</option><option value="BRB">BRB</option><option value="ERB">ERB</option>
-    <option value="NWB">NWB</option><option value="OE">OE</option>
-   </select>
+ <aside class="sidebar" aria-label="铁路运行区段数据">
+  <div class="sidebar-head"><h2>铁路区段表现</h2><p class="intro">2026年9月 · 到站延误和停靠取消观测</p></div>
+  <div class="field"><label>列车类别</label>
+   <div id="service" class="service-tabs" role="group" aria-label="列车类别">
+    <button type="button" class="active" data-service="REGIONAL" aria-pressed="true">区域列车<small>RE · RB</small></button>
+    <button type="button" data-service="LONG" aria-pressed="false">长途列车<small>ICE · IC 等</small></button>
+    <button type="button" data-service="OTHER" aria-pressed="false">其他运营商<small>HLB 等</small></button>
+   </div>
   </div>
-  <div class="field"><label for="metric">突出显示</label>
-   <select id="metric">
-    <option value="both" selected>延误或取消较高的区间</option>
-    <option value="late">到站晚点 ≥6分钟</option>
-    <option value="cancel">到发停靠取消标记</option>
-   </select>
+  <div class="field"><label>关注指标</label>
+   <div id="metric" class="metric-tabs" role="group" aria-label="关注指标">
+    <button type="button" class="active" data-metric="both" aria-pressed="true">综合</button>
+    <button type="button" data-metric="late" aria-pressed="false">晚点</button>
+    <button type="button" data-metric="cancel" aria-pressed="false">停靠取消</button>
+   </div>
   </div>
-  <div class="field"><label for="minimum">最低区间样本</label>
-   <select id="minimum">
-    <option value="30">30次 · 探索</option>
-    <option value="100" selected>100次 · 默认</option>
-    <option value="300">300次 · 更严格</option>
-    <option value="500">500次 · 更严格</option>
-   </select>
+  <div class="field compact-field"><label for="minimum">最低观测样本</label>
+   <select id="minimum"><option value="30">30 次</option><option value="50">50 次</option><option value="100" selected>100 次</option><option value="200">200 次</option><option value="300">300 次</option><option value="500">500 次</option></select>
   </div>
   <div class="mini-stats">
-   <div><strong id="visibleCount">—</strong><span>达标的方向性区间</span></div>
-   <div><strong id="redCount">—</strong><span>红色关注区间</span></div>
+   <div><strong id="visibleCount">—</strong><span>符合样本门槛的区间</span></div>
+   <div><strong id="redCount">—</strong><span>高关注区间</span></div>
+   <div><strong id="redShare">—</strong><span>高关注占比</span></div>
   </div>
   <div id="status" role="status" aria-live="polite">正在加载铁路数据…</div>
-  <section class="detail" id="detail" aria-live="polite"><h3>点击彩色铁路段</h3><p>查看站间晚点、取消标记与观测数量。</p></section>
-  <details class="method">
-   <summary>数据来源与颜色判定</summary>
+  <section class="detail" id="detail" aria-live="polite"><h3>选择地图上的铁路区间</h3><p>点击红色或橙色路段，查看站间观测。</p></section>
+  <section class="hotspots" id="hotspots" aria-label="高关注铁路区段"><div class="hotspots-head"><h3>值得关注的区间</h3><small>当前筛选 · 前10条</small></div><div id="hotList" class="hot-list"></div></section>
+  <details class="method"><summary>数据来源与统计口径</summary>
    <p>2026年9月 DB Timetables API 历史停站数据，经 Piet Brömmel 汇编；轨道依据 DB InfraGO 官方线路几何及公里标匹配。</p>
-   <p>在“延误或取消”模式下，若下游站晚点至少6分钟的比例达到40%，或到发停靠取消标记涉及比例达到8%，标红；达到25%或4%则标橙。单指标模式沿用对应门槛。阈值是地图展示规则，并非德国铁路官方评级。</p>
-   <p>取消标记比例<strong>不是整趟列车取消概率</strong>；下游到站晚点<strong>不代表轨道本身造成了延误</strong>。不同车型/运营商品牌单独统计，未做乘客量加权，灰暗铁路不代表运行正常。</p>
+   <p>综合关注：到站晚点≥6分钟的比例≥40%，或者到发停靠取消标记比例≥8%时标红；≥25%或≥4%时标橙。阈值仅用于地图展示，不是德国铁路官方评级。</p>
+   <p>区域列车合并 RE 与 RB，长途涵盖 ICE／IC／EC／FLX，其他运营商聚合 HLB、BRB、ERB、NWB、OE。分别按同方向站间、线路编号及公里区间合并可匹配观测；其他运营商数据与 RB／RE 在服务归属上可能重叠，不可跨类别求和。</p>
+   <p>停靠取消标记<strong>不是整趟列车取消概率</strong>；下游站晚点<strong>不表示该铁路区间造成延误</strong>。暗色线路不能据此判定运行正常，样本并未按旅客量加权。</p>
    <p><a href="https://github.com/piebro/deutsche-bahn-data" target="_blank" rel="noopener noreferrer">Deutsche Bahn Data · CC BY 4.0 ↗</a></p>
   </details>
-  <a class="footerlink" href="research.html">查看完整研究版与基础设施资料 ↗</a>
+  <a class="footerlink" href="research.html">研究数据与基础设施详情 ↗</a>
  </aside>
 </main>
 </div>
@@ -95,6 +87,8 @@
 <script src="data/data-sections-00.js"></script>
 <script src="data/data-sections-01.js"></script>
 <script src="data/data-sections-02.js"></script>
-<script src="overview.js"></script>
+<script src="../../js/core/place-names-zh.js"></script>
+<script src="js/station-zh.js"></script>
+<script src="overview.js?v=16"></script>
 </body>
 </html>
