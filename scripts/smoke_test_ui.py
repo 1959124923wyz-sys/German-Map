@@ -26,6 +26,7 @@ with sync_playwright() as playwright:
     page.on("console", lambda msg: print("[browser-console]", msg.text, flush=True)
             if "city detail skipped" in msg.text or "city-local" in msg.text else None)
     page.route("**/tile.openstreetmap.org/**", lambda route: route.abort())
+    page.route("**/basemaps.cartocdn.com/**", lambda route: route.abort())
 
     response = page.goto(URL, wait_until="domcontentloaded", timeout=60000)
     assert response and response.ok, f"HTTP error: {response.status if response else 'none'}"
@@ -91,7 +92,7 @@ with sync_playwright() as playwright:
     }""")
     assert states["ok"], states
     assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
-    assert page.locator("#stateName").inner_text() == states["first"]
+    assert page.locator("#stateName").inner_text() == page.evaluate("name=>window.GermanPlaceNames.translate(name)", states["first"])
     page.click("#stateClose")
     page.wait_for_timeout(350)
     assert not page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
@@ -109,7 +110,8 @@ with sync_playwright() as playwright:
         layers[1]?.fire('click');
         return document.querySelector('#stateName').textContent;
     }""")
-    assert second == states["second"], {"expected":states["second"],"actual":second}
+    expected_second=page.evaluate("name=>window.GermanPlaceNames.translate(name)",states["second"])
+    assert second == expected_second, {"expected":expected_second,"actual":second}
     page.click("#stateClose")
     page.wait_for_timeout(900)
 
@@ -160,7 +162,8 @@ with sync_playwright() as playwright:
         page.wait_for_timeout(220)
         actual=page.locator("#stateName").inner_text()
         assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')"),diagnostic
-        assert actual==name,{"expected":name,"actual":actual,**diagnostic}
+        expected_name=page.evaluate("name=>window.GermanPlaceNames.translate(name)",name)
+        assert actual==expected_name,{"expected":expected_name,"actual":actual,**diagnostic}
         assert abs(page.evaluate("window.__CRIME_MAP__.map.getZoom()")-6)<.01, (
             "Opening a state must never change zoom")
         return diagnostic
