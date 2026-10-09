@@ -4,7 +4,7 @@
 const $ = s => document.querySelector(s);
 const P = p => [(p[0]-5.34)*76.5+15,(55.4-p[1])*114.2+6];
 const ns = 'http://www.w3.org/2000/svg';
-const color = {red:'#e7777d',orange:'#e5a46e',low:'#698094',nodata:'#4c6578'};
+const color = {red:'#e7777d',orange:'#e5a46e',green:'#5cad91',nodata:'#4c6578'};
 const stationZh=name=>window.GermanRailStations?.localize(name)||name;
 const serviceSources={REGIONAL:['RE','RB'],LONG:['LONG'],OTHER:['HLB','BRB','ERB','NWB','OE']};
 const serviceLabels={REGIONAL:'区域列车（RE / RB）',LONG:'长途列车（ICE / IC / EC / FLX）',OTHER:'其他运营商（HLB / BRB / ERB / NWB / OE）'};
@@ -97,6 +97,7 @@ function stopDrag(){drag=null;viewport.classList.remove('dragging')}
 viewport.addEventListener('pointerup',stopDrag);
 viewport.addEventListener('pointercancel',stopDrag);
 window.addEventListener('resize',fit);
+window.addEventListener('resize',placeLegend);
 const pad = n=>String(n).padStart(2,'0');
 function script(src){
  return new Promise((resolve,reject)=>{
@@ -166,6 +167,55 @@ function level(m){
  if(view.metric==='cancel')return m.cancel>=8?2:m.cancel>=4?1:0;
  return (m.late>=40||m.cancel>=8)?2:(m.late>=25||m.cancel>=4)?1:0;
 }
+function placeLegend(){
+ const box=$('#railLegend');
+ if(!box)return;
+ if(window.innerWidth<=760){
+  const field=$('#metric').closest('.field');
+  if(field&&box.previousElementSibling!==field)field.insertAdjacentElement('afterend',box);
+ }else{
+  const panel=$('.map-panel');
+  if(panel&&box.parentElement!==panel)panel.appendChild(box);
+ }
+}
+function renderLegend(){
+ // No single "combined percentage" exists: the joint filter uses OR between
+ // two different source-backed denominators. Display BOTH numeric cutoffs.
+ const mode=view.metric;
+ const single=mode==='late'?{
+   title:'到站晚点 ≥6分钟 · 观测比例',
+   low:'<25%',orange:'25%–<40%',red:'≥40%'
+ }:mode==='cancel'?{
+   title:'停靠取消标记 · 观测比例',
+   low:'<4%',orange:'4%–<8%',red:'≥8%'
+ }:{
+   title:'综合关注 · 晚点≥6分钟 / 停靠取消比例',
+   low:'晚点 <25% 且取消 <4%',
+   orange:'晚点 ≥25% 或取消 ≥4%（未达红线）',
+   red:'晚点 ≥40% 或取消 ≥8%'
+ };
+ const items=[
+   [color.nodata,'无匹配或样本不足'],
+   [color.green,single.low],
+   [color.orange,single.orange],
+   [color.red,single.red]
+ ];
+ const box=$('#railLegend');
+ placeLegend();
+ box.replaceChildren();
+ const title=document.createElement('b');title.textContent=single.title;box.appendChild(title);
+ for(const [c,label] of items){
+   const row=document.createElement('span');
+   const swatch=document.createElement('i');swatch.style.background=c;
+   row.append(swatch,document.createTextNode(label));
+   box.appendChild(row);
+ }
+ const note=document.createElement('small');note.className='rail-legend-note';
+ note.textContent=mode==='both'
+  ?'红橙按两项指标独立判定；灰色不表示运行正常。'
+  :'按当前最低样本门槛分色；灰色不表示运行正常。';
+ box.appendChild(note);
+}
 function pct(n){return n===null||!Number.isFinite(n)?'—':n.toFixed(1)+'%'}
 function status(s){$('#status').textContent=s}
 function linePath(geometry){
@@ -225,12 +275,13 @@ function render(){
  }
  observations.sort((a,b)=>a.grade-b.grade);
  const fragment=document.createDocumentFragment();view.rendered=observations;
- // At national zoom the official railway geometry is a subdued grey canvas.
- // Only concern-coloured stretches are painted above it, avoiding thick worms.
+ // Keep every sufficiently observed link visible, including those below the
+ // warning thresholds (green). Unmapped and insufficiently sampled rails
+ // remain on the subdued infrastructure canvas and NEVER count as green.
+ // Painting observations in ascending severity keeps the red stretches readable.
  for(const o of observations){
-  if(o.grade===0&&view.scale<1.18)continue;
-  const c=o.grade===2?color.red:o.grade===1?color.orange:color.low;
-  const main=svg('path',{d:o.d,stroke:c,class:'segment'+(o.grade===2?' hot':o.grade===0?' neutral':'')},fragment);
+  const c=o.grade===2?color.red:o.grade===1?color.orange:color.green;
+  const main=svg('path',{d:o.d,stroke:c,class:'segment'+(o.grade===2?' hot':o.grade===0?' normal':'')},fragment);
   const hit=svg('path',{d:o.d,class:'segment-hit'},fragment);
   o.node=main;
   const pick=e=>{e.stopPropagation();view.selected=o;showDetail();highlight(main)};
@@ -250,6 +301,7 @@ function render(){
   view.selected=one||null;
   if(one?.node)highlight(one.node);
  }
+ renderLegend();
  renderHotspots(observations);
  showDetail();
 }
@@ -267,13 +319,13 @@ function showDetail(){
  const item=view.selected;
  if(!item){
   box.classList.add('empty');
-  text(box,'h3','选择一段红色或橙色铁路');
-  text(box,'p','点击线路或下方热点列表，查看站间观测详情。');
+  text(box,'h3','选择一段彩色铁路');
+  text(box,'p','绿色为已观测且低于阈值；点击任意彩色线路查看详情。');
   return;
  }
  box.classList.remove('empty');
  const {leg,m,grade}=item;
- text(box,'span',grade===2?'● 高关注':grade===1?'● 偏高':'● 低于警示阈值','grade');
+ text(box,'span',grade===2?'● 高关注':grade===1?'● 偏高':'● 低于关注门槛','grade');
  text(box,'h3',stationZh(leg.from_station)+' → '+stationZh(leg.to_station));
  text(box,'p',leg.from_station+' → '+leg.to_station,'original-stations');
  const lbl=leg.label_hints?.[0]?.[0];

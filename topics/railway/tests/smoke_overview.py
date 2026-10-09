@@ -28,6 +28,20 @@ with sync_playwright() as p:
     assert page.locator("#cities .city").count()>=8
     assert page.locator(".hot-row").count()==10
     regional=n(page,"#visibleCount")
+    # Each sufficiently observed line must be visible even below the warning
+    # threshold. Source-missing rails are on the separate dark canvas.
+    page.wait_for_function("""() => document.querySelectorAll('.segment.normal').length>100""")
+    assert page.locator(".segment").count()==regional
+    assert page.locator(".segment.normal").first.get_attribute("stroke")=="#5cad91"
+    assert page.locator(".rail-legend b").inner_text().startswith("综合关注")
+    assert "晚点 <25% 且取消 <4%" in page.locator("#railLegend").inner_text()
+    assert "晚点 ≥40% 或取消 ≥8%" in page.locator("#railLegend").inner_text()
+    assert "无匹配或样本不足" in page.locator("#railLegend").inner_text()
+    assert page.locator(".map-panel #railLegend").count()==1
+    # A green observed section must be selectable with its real observations.
+    page.locator(".segment.normal").first.dispatch_event("click")
+    assert "低于关注门槛" in page.locator("#detail .grade").inner_text()
+    assert "→" in page.locator("#detail h3").inner_text()
     assert 0<n(page,"#redCount")<=regional
     assert page.locator("#redShare").inner_text().endswith("%")
     styles=page.locator(".segment.hot").first.evaluate("""e=>{
@@ -49,10 +63,17 @@ with sync_playwright() as p:
     page.locator('[data-metric="cancel"]').click()
     assert page.locator('[data-metric="cancel"]').get_attribute("aria-pressed")=="true"
     assert n(page,"#visibleCount")>100
+    assert "4%–<8%" in page.locator("#railLegend").inner_text()
+    assert "≥8%" in page.locator("#railLegend").inner_text()
+    assert page.locator(".segment.normal").count()>0
     page.select_option("#minimum","500")
     assert n(page,"#visibleCount")<regional
     page.select_option("#minimum","100")
+    page.locator('[data-metric="late"]').click()
+    assert "25%–<40%" in page.locator("#railLegend").inner_text()
+    assert "≥40%" in page.locator("#railLegend").inner_text()
     page.locator('[data-metric="both"]').click()
+    assert "晚点 <25% 且取消 <4%" in page.locator("#railLegend").inner_text()
     page.locator('[data-service="LONG"]').click()
     loaded(page,"LONG",10)
     page.locator('[data-service="OTHER"]').click()
@@ -71,9 +92,12 @@ with sync_playwright() as p:
     loaded(mobile,"REGIONAL",500)
     assert mobile.locator("#viewport").is_visible()
     assert mobile.locator(".hot-row").count()==10
+    assert mobile.locator(".segment.normal").count()>100
+    assert mobile.locator(".sidebar #railLegend").count()==1
+    assert mobile.locator(".map-panel #railLegend").count()==0
     assert mobile.evaluate("document.documentElement.scrollWidth <= innerWidth+3")
     mobile.screenshot(path=str(ART/"railway-mobile.png"),full_page=True)
     assert not mobile_errors,mobile_errors
-    print("PASS railway 07: merged categories, source observations, subdued lines, Chinese names, hotspots and mobile")
+    print("PASS railway 07: observed green links, numeric dynamic legend, grey no-data, existing routes, mobile and filters")
     print("Regional grouped sections:",regional)
     browser.close()
