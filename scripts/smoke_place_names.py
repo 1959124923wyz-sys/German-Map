@@ -37,7 +37,10 @@ def test_one(browser,url,mode=None):
         page.locator("#back-country").click()
     assert page.locator(target+" .crime-city-label").filter(has_text="柏林").count()>=1
     assert page.locator(target+" .crime-city-label").filter(has_text="Berlin").count()==0
-    assert all("light_nolabels" in src for src in page.evaluate("()=>[...document.querySelectorAll('.leaflet-tile')].map(e=>e.src)") if "basemaps" in src)
+    page.wait_for_function("()=>document.querySelectorAll('.leaflet-tile-pane img.leaflet-tile').length>0",timeout=12000)
+    tile_urls=page.evaluate("()=>[...document.querySelectorAll('.leaflet-tile-pane img.leaflet-tile')].map(e=>e.src)")
+    assert tile_urls and all('https://tile.openstreetmap.org/' in src for src in tile_urls),tile_urls[:4]
+    assert not any('cartocdn' in src or 'API_KEY' in src for src in tile_urls),tile_urls[:4]
     assert not errors,errors
     page.close()
 with sync_playwright() as p:

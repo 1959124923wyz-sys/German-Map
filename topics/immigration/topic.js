@@ -174,9 +174,10 @@ async function start(){
  if(!map){$('map-status').textContent='地图框架加载失败：无法连接Leaflet资源';return;}
  map.fitBounds(BOUNDS,{padding:[15,15]});map.setMaxBounds([[45.3,3.2],[57.1,18]]);
  map.createPane('immigrationStatePane').style.zIndex=330;
- const tiles=L.tileLayer('https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',{maxZoom:19,opacity:.53,attribution:'© OpenStreetMap contributors · © CARTO',crossOrigin:true});
+ const tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,opacity:.84,attribution:'© OpenStreetMap contributors',crossOrigin:true});
  let tilesSeen=false;tiles.on('tileload',()=>{tilesSeen=true;});tiles.addTo(map);
- setTimeout(()=>{if(!tilesSeen){tiles.remove();$('map-status').textContent='OSM底图不可用 · 本地统计边界仍可使用';}},7500);
+ // Keep the OSM layer attached so slow connections and zoom-triggered retries can recover.
+ setTimeout(()=>{if(!tilesSeen){$('map-status').textContent='OSM街道底图加载较慢 · 地区边界仍可使用';}},10000);
  window.CrimeCityLabels?.create(map,{paneName:'immigration-city-labels',zIndex:435});
  for(let y=2025;y>=2018;y--){const o=document.createElement('option');o.value=y;o.textContent=y+'年';$('population-year').append(o);}
  $('population-metric').addEventListener('change',e=>setMetric(e.target.value));
