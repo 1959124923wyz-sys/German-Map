@@ -56,12 +56,15 @@ jobs:
           from pathlib import Path
           h=Path('topics/railway/index.html').read_text(encoding='utf-8')
           scripts=re.findall(r'<script src="([^"]+)"', h)
-          assert 35 <= len(scripts) <= 100, len(scripts)
+          assert len(scripts) == 5, len(scripts)
           assert all((Path('topics/railway')/s).is_file() for s in scripts)
           assert all((Path('topics/railway')/s).stat().st_size > 0 for s in scripts)
-          assert 'rail-topic-nav' in h and '铁路运行' in h
-          print('PASS railway static assets', len(scripts))
+          assert 'toplinks' in h and '铁路运行' in h
+          assert Path('topics/railway/research.html').is_file()
+          assert Path('topics/railway/overview.css').is_file()
+          print('PASS minimal railway source, official network and archival dashboard', len(scripts))
           RAIL_AUDIT
+          node --check topics/railway/overview.js
           node --check topics/railway/js/app.js
           node --check topics/environment/topic.js
           node --check topics/environment/data/records.js
