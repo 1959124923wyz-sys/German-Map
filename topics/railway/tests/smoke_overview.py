@@ -43,15 +43,9 @@ def run(browser,mobile=False):
     page.screenshot(path=str(ART/("railway-mobile-initial.png" if mobile else "railway-desktop-initial.png")),full_page=True)
     # Reference outlines are intentionally non-interactive so they do not
     # steal clicks from the actual underlying rail line picking.
-    print("STATE_DIAGNOSTIC",page.evaluate("""() => ({
-      statePane:document.querySelector('#railway-map .rail-state-pane')?.outerHTML.slice(0,200),
-      statePaths:document.querySelectorAll('#railway-map .rail-state-pane path').length,
-      allPaths:document.querySelectorAll('#railway-map .leaflet-pane path').length,
-      statesReady:window.__RAILWAY_OVERVIEW__.getStatesReady(),
-      countiesReady:window.__RAILWAY_OVERVIEW__.getCountiesReady()
-    })"""),flush=True)
-    page.wait_for_function("""() => window.__RAILWAY_OVERVIEW__.getStatesReady()""",timeout=20000)
-    assert page.locator("#railway-map .leaflet-pane path").count()>=16
+    page.wait_for_function("""() => window.__RAILWAY_OVERVIEW__.getStatesReady()
+       && window.__RAILWAY_OVERVIEW__.getCountiesReady()""",timeout=20000)
+    assert page.locator("#railway-map .leaflet-pane path").count()>=400
     # Hundreds of county/state paths are acceptable; thousands of duplicate
     # route and click-hit SVG nodes would recreate the original lag.
     assert page.locator("#segments").count()==0
@@ -105,6 +99,11 @@ def run(browser,mobile=False):
         assert page.locator("#railway-map").is_visible()
         assert page.locator(".sidebar #railLegend").count()==1
         assert page.evaluate("document.documentElement.scrollWidth<=innerWidth+3")
+        assert page.evaluate("""() => {
+          const n=document.querySelector('.toplinks'),a=n.querySelector('a.active');
+          const r=a.getBoundingClientRect(),p=n.getBoundingClientRect();
+          return r.left>=p.left-3 && r.right<=p.right+3;
+        }"""),"Current railway tab must be visible without scrolling the mobile navbar"
     page.locator(".hot-row").first.click()
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getSelected()!==null")
     assert "→" in page.locator("#detail h3").inner_text()
