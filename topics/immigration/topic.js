@@ -114,7 +114,10 @@ function refreshAll(){refreshLegend();$('guide-year').textContent=app.metric==='
 }
 function clearCounties(){
  if(app.countyLayer){app.countyLayer.remove();app.countyLayer=null;}app.mode='states';app.countySelected=null;
- if(app.stateLayer)app.stateLayer.setStyle(stateStyle);
+ if(app.stateLayer){
+  app.stateLayer.eachLayer(l=>{l.options.interactive=true;if(l._path)l._path.style.pointerEvents='auto';});
+  app.stateLayer.setStyle(stateStyle);
+ }
 }
 function selectState(iso){
  if(!app.stateByIso.has(iso))return;
