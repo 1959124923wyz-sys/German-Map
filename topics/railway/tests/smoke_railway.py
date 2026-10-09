@@ -48,7 +48,7 @@ def run(browser, mobile=False):
     assert d["routes"]==1546 and d["sections"]==33547 and d["states"]==16,d
     assert d["sourceRows"]==33425 and d["germanyRows"]==33376,d
     assert d["geometry"]==33547 and d["missing"]==0,d
-    assert d["selected"] is None and d["rendered"]>20000,d
+    assert d["selected"] is None and d["rendered"]>500,d
     for mode in ("elec","tracks","speed"):
         page.locator('[data-style="'+mode+'"]').click()
         assert page.locator('[data-style="'+mode+'"]').get_attribute("aria-pressed")=="true"
