@@ -72,6 +72,16 @@ def run(browser, mobile=False):
     if mobile:
         assert page.locator('.railway-sidebar').is_visible()
         assert page.evaluate("document.body.scrollWidth <= innerWidth+3")
+        visible=page.evaluate("""() => {
+          const active=document.querySelector('.modebar .modebtn.active').getBoundingClientRect();
+          const nav=document.querySelector('.modebar').getBoundingClientRect();
+          return active.left >= nav.left-2 && active.right <= nav.right+2;
+        }""")
+        assert visible, "The railway tab must be visible on mobile without manual horizontal scrolling"
+        assert page.evaluate("""() => {
+          const m=window.__RAILWAY_07__.getMap();
+          return m.getBounds().contains(L.latLngBounds([[47.05,5.45],[55.15,15.65]]));
+        }"""), "National network must fit inside the mobile map at overview zoom"
     else:
         assert page.evaluate("""document.querySelector('.railway-sidebar')
           .getBoundingClientRect().left > innerWidth*.55""")
