@@ -36,14 +36,16 @@
   map.getPane('tilePane').style.filter='saturate(.45) contrast(.86) brightness(1.06)';
 
   let tileOk=false,tileErrors=0;
-  const tiles=L.tileLayer('https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',{maxZoom:19,opacity:.52,attribution:'© OpenStreetMap contributors · © CARTO',crossOrigin:true,updateWhenIdle:true});
+  const tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,opacity:.86,attribution:'© OpenStreetMap contributors',crossOrigin:true,updateWhenIdle:true});
   tiles.on('tileload',()=>{if(!tileOk){tileOk=true;el.mapStatus.className='mapstatus ok';el.mapStatus.textContent='OSM街道底图 + 本地统计图层';}});
-  tiles.on('tileerror',()=>{tileErrors++;if(tileErrors>=6&&!tileOk){if(map.hasLayer(tiles))map.removeLayer(tiles);el.mapStatus.className='mapstatus fallback';el.mapStatus.textContent='本地统计底图（OSM当前不可用）';}});
+  // Never remove the tile layer merely because an initial request failed or is slow.
+  // Keeping it mounted allows a subsequent zoom/retry to recover the street background.
+  tiles.on('tileerror',()=>{tileErrors++;if(tileErrors>=6&&!tileOk){el.mapStatus.className='mapstatus fallback';el.mapStatus.textContent='OSM街道底图暂时不可用 · 地区统计仍可使用';}});
   tiles.addTo(map);
   // Consistent, high-contrast German city names shared with the drug topic.
   // Separate non-interactive pane: state/county clicks remain available.
   const cityLabels = window.CrimeCityLabels?.create(map,{paneName:'major-city-labels',zIndex:435});
-  setTimeout(()=>{if(!tileOk){if(map.hasLayer(tiles))map.removeLayer(tiles);el.mapStatus.className='mapstatus fallback';el.mapStatus.textContent='本地统计底图（OSM当前不可用）';}},4000);
+  setTimeout(()=>{if(!tileOk){el.mapStatus.className='mapstatus fallback';el.mapStatus.textContent='OSM街道底图加载较慢 · 正在继续尝试';}},10000);
 
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const fmt=n=>Number(n||0).toLocaleString('zh-CN');
