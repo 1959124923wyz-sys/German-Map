@@ -11,3 +11,4 @@
 - [数据来源及统计口径](SOURCE_MATRIX.md)
 
 GitHub Actions 每天自动更新近90天警方公开通报及柏林开放数据；全国县市与城市的2025年度官方基线数据为年度统计快照。
+- [打开地方财政专题地图（08 · 2025年地方收支与经核实事件）](https://1959124923wyz-sys.github.io/German-Map/topics/finance/)

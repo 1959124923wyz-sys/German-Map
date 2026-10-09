@@ -7,6 +7,7 @@ on:
       - 'topics/drugs/**'
       - 'topics/immigration/**'
       - 'topics/environment/**'
+      - 'topics/finance/**'
       - 'topics/railway/**'
       - 'js/layers/city-labels.js'
       - 'js/core/place-names-zh.js'
@@ -72,6 +73,10 @@ jobs:
           node --check topics/railway/js/station-zh.js
           node --check topics/railway/js/app.js
           node --check topics/environment/topic.js
+          node --check topics/finance/topic.js
+          node --check topics/finance/data/finance-data.js
+          python topics/finance/tests/validate_finance.py
+          grep -Fq 'href="topics/finance/"' index.html
           node --check topics/environment/data/records.js
           test -s topics/environment/index.html
           test -s topics/environment/topic.css

@@ -1,0 +1,20 @@
+﻿chain_id,municipality,ags,root_event_id,event_ids,summary_zh,start_or_decision,end_or_resolution,evidence_type,revision_round
+BAD26-BUERGERBAD,Bad Iburg,03459004,DE-FB-0131,DE-FB-0131;DE-FB-0132,财政原因停开后由居民协会修缮并于2026-05-15恢复,2023,2026-05-15,operator_and_broadcaster,5
+BER26-ZLB,Berlin,11000000,DE-FB-0135,DE-FB-0135;DE-FB-0136;DE-FB-0137,已减少人工服务时段，报刊削订与5年缩岗仍须核实完成日；馆舍开放未减少,2026-02-01,,library_direct,5
+BEX26-POOL,Bexbach,10045111,DE-FB-0163,DE-FB-0163;DE-FB-0164,泳池2026整季因设施技术老化停开，五月未参与特定联邦资助轮次，九月仍争取其他资金，永久关闭被市长否认,2026-04-28,2026-09-30,municipal_operator_and_mayoral_followup,7
+DA26-APP,Darmstadt,06411000,DE-FB-0143,DE-FB-0143;DE-FB-0144,预算获批与长期削减40岗位的目标应分开呈现,2026-03-11,,official_city_notice,6
+GI26-FREEZE,Gießen,06531005,DE-FB-0145,DE-FB-0145;DE-FB-0146,2026预算冻结已执行，补充预算仍在编制,2026-09-07,,municipal_freeze_notice,6
+HAN26-POOL-OPERATIONS,Hannover,03241001,DE-FB-0133,DE-FB-0133;DE-FB-0134,2025人手不足与2026恢复；未证实财政因果，禁入财政地图,,2026-05-14,city_notice_not_fiscal_verified,5
+HH24-LIBRARY,Hannover,03241001,DE-FB-0034,DE-FB-0034;DE-FB-0064,Nordstadt原关闭计划转为社区共享馆舍；替代预算节省预计9.5万/年，非已核决算，也不是原关闭方案26万/年,2024-06,2026,official_city_announcement_and_budget_sheet,7
+HD26-VHS,Heidelberg,08221000,DE-FB-0165,DE-FB-0165;DE-FB-0166,成人教育机构减租赁教学场地+9.6万预算补助防止破产；不是机构倒闭,2025-12,2026-04-16,municipal_press_council_decision,7
+HOM25-POOL,Homberg (Ohm),06535009,DE-FB-0167,DE-FB-0167,泳池票价上调争议后2025年议会决定维持上年票价并退还多收部分；不应标注已经提价,2025-09-03,,council_minutes,7
+KL24-BUD,Kaiserslautern,07312000,DE-FB-0169,DE-FB-0169;DE-FB-0170,2024历史预算冻结造成交通改善调查委托延期；2025年1月已解除，委托签约及项目实际成果待核实,2024,2025-01-15,municipal_press_and_2026_budget_report,7
+KAR26-POOL,Karlsruhe,08212000,DE-FB-0121,DE-FB-0121;DE-FB-0122;DE-FB-0123,2026全馆停业计划没有实施；实际仅部分开放，部分池区停开,2026-04-28,2026-08-30,official_document_and_operator,5
+MZ26-LIBRARY,Mainz,07315000,DE-FB-0168,DE-FB-0168,迁建图书馆仍需核2026-06-17最终议会表决与资金落实，市长预计租金/能源费用降低但未提供量化金额,2026-06-10,,municipal_planning_announcement,7
+MZ26-REG,Mainz,07315000,DE-FB-0138,DE-FB-0138;DE-FB-0139;DE-FB-0140,ADD对投资信用、承诺授权和流动性贷款三项限额属于同一批准决定,2026-04-21,,official_city_regulatory_notice,6
+MZ27-DRAFT,Mainz,07315000,DE-FB-0141,DE-FB-0141,2027拟议节支及增收4200万；不能显示已执行,2026-09-02,,municipal_budget_draft,6
+ME26-TAX,Merzig,10042113,DE-FB-0150,DE-FB-0150;DE-FB-0151;DE-FB-0152,2026预算获批、房产税B+20点与营业税+15点；金额不可重复累计,2025-12-18,2026-06-24,municipal_budget_bylaws_2025_2026,6
+NEU26-MAY,Neuhaus am Rennweg,16072013,DE-FB-0124,DE-FB-0124;DE-FB-0125,5月投资冻结至7月解除；不能与9月新冻结合并,2026-05-11,2026-07-01,municipal_government,5
+NEU26-SEP,Neuhaus am Rennweg,16072013,DE-FB-0126,DE-FB-0126;DE-FB-0127;DE-FB-0128;DE-FB-0129,9月冻结执行中；公交站点及文化馆预算属于子项，2026—2030 HSK仍在准备,2026-09-08,,municipal_gazette,5
+NEU26-CONS,Neustrelitz,13071110,DE-FB-0157,DE-FB-0157;DE-FB-0158;DE-FB-0159;DE-FB-0160;DE-FB-0161;DE-FB-0162,同日议会一组财政整顿政策和文化活动例外；金额分别为自筹资金上限/冻结额度/项目门槛/活动释放上限，禁止加总为节约,2026-05-07,,council_resolution,7
+SN25-COMP,Schwerin,13004000,DE-FB-0154,DE-FB-0154;DE-FB-0155,2025临时预算管理至议会5月妥协；州监管正式完成日尚未核实,2025-03-24,2025-05-26,municipal_council_announcements,6

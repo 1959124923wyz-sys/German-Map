@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>德国地方财政地图 · 收支、债务背景与财政紧缩事件 | German-Map</title>
+<meta name="description" content="德国2025年地方财政人均收支、莱茵兰-普法尔茨县辖外城市收支，以及2020—2026年有出处的地方财政事件。不同口径不混为破产风险。">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="../../css/map.css?v=clean1">
+<link rel="stylesheet" href="topic.css?v=f1">
+</head>
+<body>
+<header><div class="header-main">
+ <div class="titleblock"><div class="title">德国地方财政地图</div><div class="header-meta">08 · 财政收支与地方公共服务 · 资料截至2026-10-09</div></div>
+ <nav class="modebar" aria-label="德国地图专题">
+  <a class="modebtn" href="../../index.html">暴力犯罪</a>
+  <a class="modebtn" href="../../index.html?mode=property">财产犯罪</a>
+  <a class="modebtn" href="../drugs/">毒品问题</a>
+  <a class="modebtn" href="../immigration/">移民人口</a>
+  <a class="modebtn" href="../environment/">环保争议</a>
+  <a class="modebtn" href="../railway/">铁路运行</a>
+  <a class="modebtn active" href="./" aria-current="page">地方财政</a>
+ </nav>
+</div></header>
+<main class="finance-workspace">
+ <section class="mapwrap finance-map-wrap" aria-label="德国地方财政分级设色地图">
+  <div id="finance-map"></div>
+  <div id="mapStatus" class="mapstatus" role="status">正在加载官方财政指标和地图边界…</div>
+  <div id="legend" class="legend" aria-label="财政指标图例"></div>
+ </section>
+ <aside class="finance-sidebar">
+  <div class="finance-controls">
+   <div class="finance-control-title">地图涂色指标</div>
+   <div class="finance-tabs" role="group" aria-label="切换财政指标">
+    <button data-mode="state" class="active" aria-pressed="true">2025地方收支 · 州级</button>
+    <button data-mode="rp" aria-pressed="false">莱法州12城市 · 2025</button>
+    <button data-mode="events" aria-pressed="false">仅看财政事件</button>
+   </div>
+   <label class="finance-checkbox"><input id="showEvents" type="checkbox" checked>叠加财政事件县域标记（非设施坐标）</label>
+   <div class="finance-filters">
+    <label>事件类型 <select id="category"><option value="all">全部类型</option><option value="budget">预算及监管</option><option value="facilities">公共设施和文化</option><option value="investment">公共投资</option><option value="transit">公共交通</option><option value="staffing">人事编制</option><option value="taxfees">税费</option><option value="other">其他</option></select></label>
+    <label>事件状态 <select id="status"><option value="all">全部核实状态</option><option value="implemented">已生效或完成</option><option value="ended">撤销或解除</option></select></label>
+   </div>
+  </div>
+  <section class="safety-panel finance-summary" aria-live="polite">
+   <div class="safety-head"><strong id="sectionTitle">2025年地方财政收支</strong><span class="safety-hint">点击地图查看地区详情</span></div>
+   <div class="area-title"><div class="area-name" id="areaName">全国（13个非城市州）</div></div>
+   <div class="area-metric" id="metricValue">请选择地图上的州或地区</div>
+   <div class="finance-coverage" id="coverageNote">三个城市州无同口径市镇数据，地图显示灰色。</div>
+   <div class="area-grid">
+    <div class="area-stat"><b id="countState">13/16</b><small>有可比州数据</small></div>
+    <div class="area-stat"><b id="countMapped">72</b><small>基础地图候选事件</small></div>
+    <div class="area-stat"><b id="countArchive">170</b><small>研究归档记录</small></div>
+   </div>
+   <div class="finance-detail" id="detail" hidden></div>
+   <div class="finance-case-switch">
+    <button id="showMapCases" class="active" aria-pressed="true">地图候选记录 <span id="mappedCount">72</span></button>
+    <button id="showAllCases" aria-pressed="false">全部研究档案 170</button>
+   </div>
+   <div class="finance-list-heading"><strong id="listHeading">地图候选记录</strong><span id="visibleCount">72条</span></div>
+   <div id="caseList" class="finance-case-list"></div>
+   <button id="loadMore" class="finance-more" hidden>加载更多</button>
+  </section>
+  <details class="finance-method"><summary>统计口径、证据级别与局限</summary>
+   <p>州级涂色仅表示2025年非城市州辖内地方政府核心及附属预算的人均收支差额，单位欧元/人。负数代表赤字，不代表该州政府本身赤字或破产概率。</p>
+   <p>“莱法州12城市”仅覆盖12个非县辖市2025年全年市政现金收支，统计范围与州级汇总不完全相同，不进行跨图排名。普通县本级预算数据未当作全县市镇总和。</p>
+   <p>事件为170条精选公开记录，并非覆盖率一致的全国普查。只有72条达到目前地图候选标准，包含已撤销及已完成的历史事件。财政原因与其他因素共同作用时按原始证据说明。</p>
+   <p>地图事件数字显示所在县域的候选记录数，位置取历史县界的近似中心，<strong>不是具体图书馆、泳池、交通线路或市政机构的精确坐标</strong>。同一决议可拆分为多条记录，不能加总记录数量解释为独立项目数，更不能把金额直接相加。</p>
+   <p>县界来自现有德国地图，仍需按2026年区划核对。统计资料截至2026-10-09，事件来源网址可能发生变动。详见<a href="README.md">方法与来源说明</a>。</p>
+  </details>
+ </aside>
+</main>
+<footer><span>德国统计机构财政指标 · 精选有来源的地方事件 · 非破产概率模型</span><span>© OpenStreetMap contributors · Leaflet</span></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="data/finance-data.js?v=f1"></script>
+<script src="topic.js?v=f1"></script>
+</body></html>

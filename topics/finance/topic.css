@@ -1,0 +1,46 @@
+/* Finance 08 shares German-Map global palette, map grid and header. */
+.finance-workspace{grid-template-columns:minmax(0,1fr) min(425px,35vw)}
+#finance-map{width:100%;height:100%;min-height:440px;background:#c1d5df}
+.finance-sidebar{background:#131a22;overflow:auto}
+.finance-controls{padding:11px;border-bottom:1px solid #344351;background:#141e27}
+.finance-control-title{font-size:11px;font-weight:750;color:#d5e5ef;margin-bottom:8px}
+.finance-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.finance-tabs button,.finance-case-switch button{font-size:10px;line-height:1.4;color:#d4e1eb;background:#1b2c39;border:1px solid #345163;border-radius:7px;padding:8px 6px;cursor:pointer}
+.finance-tabs button.active,.finance-case-switch button.active{background:#2b4557;border-color:#81b8d7;color:#fff}
+.finance-checkbox{display:flex;gap:8px;align-items:flex-start;color:#bfced9;line-height:1.5;font-size:10px;margin:10px 0}
+.finance-checkbox input{accent-color:#78add0;margin-top:2px}
+.finance-filters{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.finance-filters label{font-size:10px;color:#9fb7c8;display:grid;gap:4px}
+.finance-filters select{width:100%;min-width:0;color:#d8e4ed;background:#1b2a37;border:1px solid #3c5364;border-radius:5px;padding:6px 4px;font-size:10px}
+.finance-summary{padding:12px!important}
+.finance-coverage{font-size:10px;color:#abbfcc;line-height:1.65;margin:7px 0 10px}
+.finance-case-switch{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:12px 0}
+.finance-list-heading{display:flex;justify-content:space-between;align-items:center;color:#d9e8f0;font-size:11px;margin:8px 0}
+.finance-list-heading span{color:#9bb0bd;font-size:10px}
+.finance-case-list{display:grid;gap:6px;max-height:47vh;overflow:auto}
+.finance-case{display:block;width:100%;background:#172631;color:#dbe5ec;border:1px solid #2d4454;border-radius:8px;padding:9px;text-align:left;cursor:pointer}
+.finance-case:hover,.finance-case.selected{border-color:#89b8d3;background:#203646}
+.finance-case-title{font-size:11px;font-weight:700;line-height:1.4;margin-bottom:4px}
+.finance-case-meta{font-size:9px;color:#9eb4c2;line-height:1.5}
+.finance-detail{border-top:1px solid #41515c;padding:9px 0 4px;color:#d9e5ed}
+.finance-detail[hidden]{display:none!important}
+.finance-detail h3{font-size:13px;line-height:1.4;margin:0 0 6px;color:#f1f5f8}
+.finance-detail p{font-size:10.5px;line-height:1.65;overflow-wrap:anywhere;margin:7px 0}
+.finance-detail a{font-size:10px;color:#97cbec;overflow-wrap:anywhere;display:block;margin:5px 0}
+.finance-info-row{color:#a7b9c7;font-size:10px;line-height:1.7}
+.finance-more{width:100%;padding:9px;color:#d5e8f2;background:#233f51;border:1px solid #3b5868;border-radius:6px;margin:7px 0;cursor:pointer;font-size:10px}
+.finance-method{margin:8px 12px 20px;padding:9px;border:1px solid #344351;border-radius:8px;color:#b7c9d7;font-size:10px;line-height:1.65}
+.finance-method summary{color:#d7e7ef;cursor:pointer;font-weight:700}
+.finance-method p{margin:9px 0}
+.finance-method a{color:#91c9e8}
+.finance-map-wrap .legend{max-width:min(350px,calc(100% - 32px))}
+.finance-legend-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 9px;padding-top:5px}
+.finance-legend-line{display:flex;gap:5px;align-items:center;font-size:10px;line-height:1.45;color:#d1e0e9}
+.finance-legend-color{width:13px;height:11px;border:1px solid #698497;display:inline-block;flex:0 0 auto}
+.finance-legend-note{color:#9fb4c3;font-size:9px;line-height:1.4;padding-top:7px}
+.finance-bubble{background:transparent;border:0}
+.finance-bubble-inner{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:2px solid #e9f0f5;background:#264c62;color:#fff;font-size:12px;font-weight:750;box-shadow:0 1px 7px #14212b85}
+.finance-bubble-inner.many{width:34px;height:34px;background:#b46d58}
+#mapStatus{pointer-events:none}
+@media(max-width:960px){.finance-workspace{display:block}.finance-sidebar{height:auto;overflow:visible}.finance-case-list{max-height:450px}#finance-map{height:60vh;min-height:420px}}
+@media(max-width:500px){.finance-tabs button{font-size:9px;padding:7px 3px}.finance-summary{padding:9px!important}.finance-filters{grid-template-columns:1fr 1fr}.finance-map-wrap .legend{max-width:270px}}
