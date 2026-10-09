@@ -276,7 +276,6 @@ function initMap(){
   tile.on('tileload',()=>{if(!tilesLoaded){tilesLoaded=true;$('mapStatus').className='mapstatus ok';$('mapStatus').textContent='OSM街道底图 · DB铁路网'}});
   let errors=0;tile.on('tileerror',()=>{if(++errors>6&&!tilesLoaded)$('mapStatus').textContent='底图暂不可用 · 铁路线路仍可浏览'});
   tile.addTo(map);
-  L.geoJSON; // Map and style share the same data/geometry semantics as modules 01–06.
   fetch('../../data/germany-states.geojson',{cache:'force-cache'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json()})
     .then(data=>L.geoJSON(data,{pane:'railway-states',interactive:false,
       style:{color:'#273c50',weight:1.4,opacity:.75,fill:false}}).addTo(map))
