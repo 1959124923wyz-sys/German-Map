@@ -119,7 +119,7 @@ def run(browser,mobile=False):
           .getBounds().contains(L.latLngBounds([[47.05,5.45],[55.15,15.65]]))""")
     else:
         assert page.locator("#railway-map").is_visible()
-        assert page.locator(".sidebar #railLegend").count()==1
+        assert page.locator(".map-panel #railLegend").count()==1
         assert page.evaluate("document.documentElement.scrollWidth<=innerWidth+3")
         assert page.evaluate("""() => {
           const n=document.querySelector('.toplinks'),a=n.querySelector('a.active');
