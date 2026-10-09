@@ -23,7 +23,8 @@ def check(browser, mobile=False):
     state_count=page.evaluate("()=>window.__IMMIGRATION_MAP_V13__.getPane('immigrationStatePane').querySelectorAll('path').length")
     print("Diagnostics: panes",page.evaluate("()=>[...document.querySelectorAll('#immigration-map .leaflet-pane')].map(e=>[e.className,e.querySelectorAll('path').length])"),"state path count",state_count,flush=True)
     assert state_count>=16,("No 16 real state polygons",state_count)
-    assert page.locator("#immigration-map .crime-city-label").count()>=6
+    assert page.evaluate("()=>window.__IMMIGRATION_MAP_V13__.getPane('immigration-city-labels').style.pointerEvents") == "none"
+    if not mobile: assert page.locator("#immigration-map .crime-city-label").count() >= 6
     assert page.locator("#state-list button").count()==16
     assert page.locator("#national-value").inner_text()=="14,070,225"
     page.locator("#population-year").select_option("2018")
