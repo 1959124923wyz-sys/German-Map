@@ -137,6 +137,12 @@ const RailCanvas=L.Layer.extend({
     this.visibleSections=visible;
   }
 });
+function placeLegend(){
+  const legend=$('legend'), mapBox=document.querySelector('.railway-workspace .mapwrap');
+  const sideBox=document.querySelector('.rail-selector');
+  const target=window.innerWidth<=920?sideBox:mapBox;
+  if(legend.parentElement!==target)target.appendChild(legend);
+}
 function legend(){
   $('legend').innerHTML='<div class="rail-legend-label">铁路属性 · '+({speed:'最高速度',elec:'电气化',tracks:'单双线'}[style])+'</div>'
     +'<div class="rail-legend-rows">'+STYLE_META[style].map(([name,color])=>
@@ -308,7 +314,8 @@ try{
   if(!window.L)throw Error('Leaflet 无法加载');
   buildGeometry();
   initMap();
-  wire();legend();details();
+  wire();legend();details();placeLegend();
+  window.addEventListener('resize',placeLegend);
   // The sixth tab overflows horizontally on mobile. Keep the current topic visible.
   const nav=document.querySelector('.modebar');
   if(nav)nav.scrollLeft=nav.scrollWidth;
