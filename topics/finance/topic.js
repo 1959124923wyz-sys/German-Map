@@ -6,7 +6,7 @@
  const STATUSES={effective:'已生效/执行中（未必仍持续）',completed:'已经完成（可能是历史）',reversed:'已撤销或解除',withdrawn:'已撤回',adopted:'已批准、未证实执行',announced:'已宣布',proposed:'仅提议',rejected:'被否决',under_review:'审议或核查中'};
  const CAT={budget:'预算及监管',facilities:'公共设施及文化',transit:'公共交通',investment:'公共投资',staffing:'人事编制',taxfees:'税费',other:'其他'};
  const MODE={state:'2025年地方财政人均收支 · 13个非城市州',rp:'2025年莱法州12个非县辖市人均财政收支',events:'财政事件 · 县域汇总锚点'};
- const initial={mode:'state',showEvents:true,category:'all',status:'all',archive:false,selected:null,county:null,limit:20};
+ const initial={mode:'state',showEvents:false,category:'all',status:'all',archive:false,selected:null,county:null,limit:8};
  let view={...initial}, map, statesLayer, countiesLayer, bubblesLayer;
  let stateRows=new Map(D.states.map(x=>[x.id,x])), cityRows=new Map(D.cities.map(x=>[x.id,x]));
  let allCountyShapes=new Map(), stateGeo=null, countyGeo=null;
@@ -34,12 +34,22 @@
   else displayArea('德国 · 县域财政事件','72条地图候选（精选案例）','圆点显示每个县域关联的记录数，位置不是具体设施地址；存在撤销及历史已结束措施。');
  }
  function renderLegend(){
-  const note=view.mode==='state'?'州级：2025年辖内市镇财政收支，欧元/人；城市州无同口径值。':view.mode==='rp'?'12个非县辖市：2025年全年市政现金收支；其他区域留空。':'事件圆点为县域记录聚合位置，不是设施精确地址。';
-  const colorCells=view.mode==='events'?'':[
-   ['盈余 ≥ 0','#6a9f8e'],['赤字 0～150','#edd4b4'],['赤字 150～250','#e0b597'],['赤字 250～350','#d3997b'],['赤字 350～450','#c27666'],['赤字 450～550','#ae5957'],['赤字 > 550','#963f41'],['无同口径数据','#82909a']]
-   .map(([label,c])=>`<span class="finance-legend-line"><i class="finance-legend-color" style="background:${c}"></i>${label}</span>`).join('');
-  $('legend').innerHTML='<div class="legend-title">'+escapeHTML(MODE[view.mode])+'</div>'+
-    (colorCells?'<div class="finance-legend-list">'+colorCells+'</div>':'')+'<div class="finance-legend-note">'+escapeHTML(note)+'</div>';
+  const notes={
+   state:'2025年非城市州地方政府人均财政收支',
+   rp:'2025年莱法州12个非县辖市；其他县市不涂色',
+   events:'数字表示县域关联记录数，非设施定位'
+  };
+  if(view.mode==='events'){
+   $('legend').innerHTML='<div class="legend-title">财政事件 · 县域汇总</div>'+
+    '<div class="finance-legend-note">圆点是关联记录数量，位置不是具体设施坐标。</div>';
+   return;
+  }
+  const colors=['#963f41','#ae5957','#c27666','#d3997b','#e0b597','#edd4b4','#6a9f8e'];
+  $('legend').innerHTML='<div class="legend-title">人均财政收支差额 · 欧元/人</div>'+
+   '<div class="finance-legend-scale">'+colors.map(c=>'<span style="background:'+c+'"></span>').join('')+'</div>'+
+   '<div class="finance-legend-labels"><span>−550 以下</span><span>−350</span><span>−150</span><span>盈余 ≥ 0</span></div>'+
+   '<div class="finance-legend-empty"><i></i>灰色：无同口径数据</div>'+
+   '<div class="finance-legend-note">'+escapeHTML(notes[view.mode])+'</div>';
  }
  function caseSource(row){
   const a=[['原始来源',row.source],['补充来源',row.source2]].filter(x=>/^https:\/\//.test(x[1]));
@@ -72,9 +82,10 @@
  function renderList(){
   const entries=relevantCases(), limit=entries.slice(0,view.limit);
   $('mappedCount').textContent=readyCases.length;
-  $('listHeading').textContent=view.county?'县域 '+view.county+' · '+(view.archive?'全部档案':'候选记录'):(view.archive?'全部研究档案':'地图候选记录');
-  $('visibleCount').textContent=entries.length+'条（样本非完整普查）';
-  $('caseList').innerHTML=limit.map(r=>`<button type="button" class="finance-case ${view.selected===r.id?'selected':''}" data-case="${escapeHTML(r.id)}"><div class="finance-case-title">${escapeHTML(r.city)} · ${escapeHTML(r.facility||CAT[r.category])}</div><div class="finance-case-meta">${escapeHTML(STATUSES[r.status])} · ${escapeHTML(r.effective||r.decision||'日期待核')} · ${escapeHTML(r.id)} ${r.map_ready?'':'· 不上图'}</div></button>`).join('') || '<p class="finance-coverage">该筛选条件下无对应记录；不代表该地区没有财政事件。</p>';
+  const countyName=view.county?(allCountyShapes.get(view.county)?.feature?.properties?.name||view.county):'';
+  $('listHeading').textContent=countyName?countyName+' · 事件':(view.archive?'全部研究档案':'已核实的地方事件');
+  $('visibleCount').textContent=entries.length+'条 · 定向样本';
+  $('caseList').innerHTML=limit.map(r=>`<button type="button" class="finance-case ${view.selected===r.id?'selected':''}" data-case="${escapeHTML(r.id)}"><div class="finance-case-title">${escapeHTML(r.city)} · ${escapeHTML(r.facility||CAT[r.category])}</div><div class="finance-case-meta">${escapeHTML(STATUSES[r.status])} · ${escapeHTML(r.effective||r.decision||'日期待核')} ${r.map_ready?'':'· 档案记录'}</div></button>`).join('') || '<p class="finance-coverage">本次筛选无匹配记录，不代表当地没有财政事件。</p>';
   $('loadMore').hidden=entries.length<=view.limit;
   $('caseList').querySelectorAll('[data-case]').forEach(el=>el.addEventListener('click',()=>chooseRecord(el.dataset.case)));
  }
@@ -90,11 +101,10 @@
    L.marker(p,{icon:L.divIcon({html,className:'finance-bubble',iconSize:[34,34],iconAnchor:[17,17]}),keyboard:true,
      title:`县级AGS ${code} · ${rows.length}条有来源记录（县域示意位置）`})
     .bindTooltip(`${escapeHTML(rows[0].city)} 等 · ${rows.length}条记录<br>县域聚合，非设施精确地址`)
-    .on('click',()=>{view.county=code;view.archive=false;view.limit=100;view.selected=null;renderList();
+    .on('click',()=>{view.county=code;view.archive=false;view.limit=8;view.selected=null;toggleArchive();renderList();$('caseList').scrollTop=0;
       displayArea('县级AGS '+code,rows.length+'条地图候选记录','圆点标在县域概略中心。相同议会措施可有多条关联记录，不能解释为独立事件数。')})
     .addTo(bubblesLayer);
   }
-  $('countMapped').textContent=byCounty.size+'县域';
  }
  function renderMap(){
   if(!map||!stateGeo||!countyGeo)return;
@@ -121,27 +131,53 @@
   renderLegend();renderMarkers();
  }
  function selectMode(mode){
-  if(!MODE[mode])return;view.mode=mode;view.selected=null;view.county=null;view.limit=20;
-  document.querySelectorAll('[data-mode]').forEach(el=>{const yes=el.dataset.mode===mode;el.classList.toggle('active',yes);el.setAttribute('aria-pressed',String(yes))});
-  $('sectionTitle').textContent=MODE[mode];resetArea();renderMap();renderList();
+  if(!MODE[mode])return;
+  const wasEvents=view.mode==='events';
+  if(mode==='events'&&!wasEvents){view.overlayBeforeEvents=view.showEvents;view.showEvents=true;}
+  else if(wasEvents&&mode!=='events')view.showEvents=Boolean(view.overlayBeforeEvents);
+  view.mode=mode;view.selected=null;view.county=null;view.limit=8;
+  $('showEvents').checked=view.showEvents;
+  $('eventsControl').hidden=mode==='events';
+  document.querySelectorAll('[data-mode]').forEach(el=>{
+   const active=el.dataset.mode===mode;
+   el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));
+  });
+  const mapGuides={
+   state:['地方财政收支 · 2025','13个非城市州 · 点击州查看人均收支'],
+   rp:['城市收支 · 2025','莱茵兰-普法尔茨州 · 12座非县辖市'],
+   events:['地方财政事件','县域汇总点，不是设施精确位置']
+  };
+  $('mapGuideTitle').textContent=mapGuides[mode][0];
+  $('mapGuideNote').textContent=mapGuides[mode][1];
+  $('sectionTitle').textContent=MODE[mode];
+  resetArea();renderMap();renderList();
+  if(map&&stateGeo){
+   if(mode==='rp'){
+    const rp=stateGeo.features.find(f=>f.properties?.id==='DE-RP'||f.properties?.name==='Rheinland-Pfalz');
+    if(rp)map.fitBounds(L.geoJSON(rp).getBounds(),{padding:[22,22],maxZoom:8});
+   }else map.fitBounds(withinBounds);
+  }
  }
- function updateFilters(){view.category=$('category').value;view.status=$('status').value;view.county=null;view.limit=20;resetArea();renderList();renderMarkers()}
+ function updateFilters(){view.category=$('category').value;view.status=$('status').value;view.county=null;view.limit=8;view.selected=null;resetArea();renderList();renderMarkers()}
  function setupUI(){
   document.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=>selectMode(el.dataset.mode)));
   $('showEvents').addEventListener('change',()=>{view.showEvents=$('showEvents').checked;renderMarkers()});
+  $('resetView').addEventListener('click',()=>{view.archive=false;view.showEvents=false;view.overlayBeforeEvents=false;view.category='all';view.status='all';$('category').value='all';$('status').value='all';toggleArchive();selectMode('state')});
   $('category').addEventListener('change',updateFilters);$('status').addEventListener('change',updateFilters);
-  $('showMapCases').addEventListener('click',()=>{view.archive=false;view.limit=20;toggleArchive();renderList();renderMarkers()});
-  $('showAllCases').addEventListener('click',()=>{view.archive=true;view.limit=20;toggleArchive();renderList();renderMarkers()});
-  $('loadMore').addEventListener('click',()=>{view.limit+=30;renderList()});
+  $('showMapCases').addEventListener('click',()=>{view.archive=false;view.limit=8;toggleArchive();renderList();renderMarkers()});
+  $('showAllCases').addEventListener('click',()=>{view.archive=true;view.limit=8;toggleArchive();renderList();renderMarkers()});
+  $('loadMore').addEventListener('click',()=>{view.limit+=20;renderList()});
  }
  function toggleArchive(){for(const [id,yes] of [['showMapCases',!view.archive],['showAllCases',view.archive]]){
    const el=$(id);el.classList.toggle('active',yes);el.setAttribute('aria-pressed',String(yes))}}
  async function boot(){
   if(!D||D.cases.length!==170||readyCases.length!==72)throw Error('财政数据不完整或版本不匹配');
   setupUI();resetArea();renderList();renderLegend();
-  map=L.map('finance-map',{zoomSnap:.25,minZoom:5,maxZoom:13,zoomControl:true});map.fitBounds(withinBounds);
+  map=L.map('finance-map',{zoomSnap:.25,minZoom:5,maxZoom:13,zoomControl:true,preferCanvas:true});map.fitBounds(withinBounds);
   const tile=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'});
-  tile.addTo(map);bubblesLayer=L.layerGroup().addTo(map);
+  tile.addTo(map);
+  if(window.CrimeCityLabels && window.GermanPlaceNames)window.CrimeCityLabels.create(map,{paneName:'financeCityLabels',zIndex:440});
+  bubblesLayer=L.layerGroup().addTo(map);
   const [sf,cf]=await Promise.all([
    fetch('../../data/germany-states.geojson').then(r=>{if(!r.ok)throw Error('州界无法读取');return r.json()}),
    fetch('../../data/germany-counties.geojson').then(r=>{if(!r.ok)throw Error('县界无法读取');return r.json()})]);

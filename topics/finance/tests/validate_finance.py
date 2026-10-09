@@ -35,6 +35,14 @@ check('no city state filled as zero',all(x['value'] is None for x in obj['states
 check('money amount_kind preserved',all(r['amount'] is None or r['amount_kind'] for r in cases))
 check('page loads its own data',"data/finance-data.js" in (FIN/'index.html').read_text())
 check('stats/source language',"非县辖市" in (FIN/'index.html').read_text() and "不是具体" in (FIN/'index.html').read_text())
+page=(FIN/'index.html').read_text(encoding='utf-8')
+app=(FIN/'topic.js').read_text(encoding='utf-8')
+check('compact 3-map-mode navigation',all('data-mode="'+x+'"' in page for x in ('state','rp','events')))
+check('event overlays opt-in', 'id="showEvents" type="checkbox"' in page and 'showEvents:false' in app)
+check('advanced research controls collapsed', '<details class="finance-drawer"' in page)
+check('simplified event list and archive switch retained',all('id="'+x+'"' in page for x in ('caseList','showMapCases','showAllCases','loadMore')))
+check('shared Chinese place name assets included', 'js/core/place-names-zh.js' in page and 'js/layers/city-labels.js' in page)
+
 check('source references archived',sum(bool(r['source']) for r in maps)==72)
 check('source/aggregation audit',json.loads((FIN/'data/finance-audit.json').read_text())['map_ready']==72)
 
