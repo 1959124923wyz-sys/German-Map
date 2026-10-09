@@ -2,6 +2,24 @@
 
 This directory powers the public Germany crime map. The current goal is to keep the map visually simple while the implementation remains modular enough to add or replace official data sources without editing unrelated code.
 
+## October 2026 regression/build separation
+
+The browser/UI smoke workflow now uses **committed, previously validated official
+GeoJSON/JSON snapshots** for Munich, Berlin, Kiel, Bremen, Stuttgart and
+Düsseldorf. It verifies their schema and geometry but no longer rebuilds
+them from external APIs on each UI-only pull request. This makes a third-party
+HTTP 503 unable to suppress a valid browser regression result.
+
+Source updates remain owned by the independent source/data workflows and
+deterministic `scripts/build_*.py` pipelines. A failed official source fetch
+must never be interpreted as zero cases, and the last known good versioned
+dataset must not be silently overwritten.
+
+`python scripts/validate_site_assets.py` is the shared local HTML asset and
+navigation checker for all published topic entry points, including future
+additions under `topics/*/index.html`. The railway's geometry and statistics
+are separately unit-tested in `topics/railway/tests/unit_core.cjs`.
+
 ## Runtime architecture
 
 ```text
