@@ -33,7 +33,7 @@ def check(browser, mobile=False):
     assert page.locator("#environment-map .crime-city-label").count()>=5
     assert "街道底图" in page.locator("#mapStatus").inner_text() or "底图" in page.locator("#mapStatus").inner_text()
 
-    facts=page.evaluate("""() => {
+    facts=page.evaluate(r"""() => {
       const rows=window.GermanEnvironment06Data;
       const count=k=>rows.filter(x=>x.kind===k).length;
       const good=rows.every(x=>/^\d{4}-\d{2}-\d{2}$/.test(x.date)
@@ -86,7 +86,7 @@ def check(browser, mobile=False):
     assert page.locator("#detail").is_visible()
     assert page.evaluate("window.__ENVIRONMENT_MAP__.map.getZoom()")>=8
     page.locator("#viewGermany").click()
-    assert page.evaluate("window.__ENVIRONMENT_MAP__.map.getZoom()")<8
+    page.wait_for_function("window.__ENVIRONMENT_MAP__.map.getZoom() < 8", timeout=10000)
     if mobile:
         assert page.locator(".environment-sidebar").is_visible()
         assert page.evaluate("document.body.scrollWidth <= innerWidth+3")
