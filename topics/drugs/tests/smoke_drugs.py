@@ -131,7 +131,7 @@ def main():
                     chart=page.locator('#region-evidence-body svg.evidence-mini-trend')
                     assert chart.count()==1
                     assert chart.locator('polyline').count()==2, 'KCanG legal break must separate trend segments'
-                    assert '2024' in chart.inner_text()
+                    assert '2024' in chart.text_content()
                     assert page.locator('#region-evidence-body .evidence-source a[href*="polizei.rlp.de"]').count()>=2
                 if state == 'Mecklenburg-Vorpommern':
                     assert '媒体或专业机构' in content
