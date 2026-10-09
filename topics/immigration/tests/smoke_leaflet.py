@@ -34,22 +34,23 @@ def check(browser, mobile=False):
     assert page.locator("#national-value").inner_text()=="14.9%"
     assert page.locator("#population-year").is_disabled()
     page.locator("#population-metric").select_option("count")
-    page.locator("#state-list").get_by_text("Berlin").click()
+    print("TRANSLATION_DIAGNOSTIC",page.evaluate("()=>({loaded:!!window.GermanPlaceNames,value:window.GermanPlaceNames?.translate('Berlin'),county:window.GermanPlaceNames?.byAGS('01001','Flensburg'),stateText:document.querySelector('#state-list')?.innerText?.slice(0,240),errors:[]})"),flush=True)
+    page.locator("#state-list").get_by_text("柏林").click()
     assert "994,590" in page.locator("#region-value").inner_text()
     assert page.locator("#trend-chart polyline").count()==1
     page.locator("#back-country").click()
-    page.locator("#state-list").get_by_text("Schleswig-Holstein").click()
+    page.locator("#state-list").get_by_text("石勒苏益格－荷尔斯泰因州").click()
     assert page.locator("#county-list button").count()==15
     page.locator("#show-counties").click()
     page.wait_for_function("()=>window.GermanMapTopics.immigration.getViewState().countyMode==='counties'",timeout=45000)
     assert page.evaluate("()=>window.__IMMIGRATION_MAP_V13__.getPane('immigrationCountyPane').querySelectorAll('path').length")>=15
-    page.locator("#county-list").get_by_text("Flensburg", exact=True).click()
+    page.locator("#county-list").get_by_text("弗伦斯堡", exact=True).click()
     assert page.locator("#county-value").inner_text()=="17,910"
     page.locator("#show-counties").click()
     assert page.evaluate("()=>window.GermanMapTopics.immigration.getViewState().countyMode")=="states"
     assert page.evaluate("()=>getComputedStyle(window.__IMMIGRATION_MAP_V13__.getPane('immigrationStatePane').querySelector('path')).pointerEvents")!="none"
     page.locator("#back-country").click()
-    page.locator("#state-list").get_by_text("Bayern").click()
+    page.locator("#state-list").get_by_text("巴伐利亚州").click()
     assert page.locator("#region-value").inner_text()=="2,386,525"
     page.locator("#reset-map").click()
     assert page.locator("#national-panel").is_visible()
