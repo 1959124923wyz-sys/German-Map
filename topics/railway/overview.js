@@ -1,10 +1,13 @@
-/* BahnMonitor v15 — real geometry + transparent stop-observation thresholds. */
+/* Railway 07: low-noise national tracks, grouped service observations, Chinese station labels. */
 (() => {
 'use strict';
 const $ = s => document.querySelector(s);
 const P = p => [(p[0]-5.34)*76.5+15,(55.4-p[1])*114.2+6];
 const ns = 'http://www.w3.org/2000/svg';
-const color = {red:'#ed5763',orange:'#eaa06c',low:'#8c9ca9',nodata:'#364c5d'};
+const color = {red:'#e7777d',orange:'#e5a46e',low:'#698094',nodata:'#4c6578'};
+const stationZh=name=>window.GermanRailStations?.localize(name)||name;
+const serviceSources={REGIONAL:['RE','RB'],LONG:['LONG'],OTHER:['HLB','BRB','ERB','NWB','OE']};
+const serviceLabels={REGIONAL:'区域列车（RE / RB）',LONG:'长途列车（ICE / IC / EC / FLX）',OTHER:'其他运营商（HLB / BRB / ERB / NWB / OE）'};
 const specs = {
   RE:['v12_re_evidence',8],
   RB:['v13_rb_evidence',6],
@@ -16,7 +19,7 @@ const specs = {
   LONG:['v10_september_evidence',4]
 };
 const cache = new Map();
-const view = {service:'RE',metric:'both',minimum:100,selected:null,scale:1,tx:0,ty:0,links:[],rendered:[],ticket:0};
+const view = {service:'REGIONAL',metric:'both',minimum:100,selected:null,scale:1,tx:0,ty:0,links:[],rendered:[],ticket:0};
 const viewport=$('#viewport'),world=$('#world'),canvas=$('#tracks'),ctx=canvas.getContext('2d',{alpha:true});
 const overlay=$('#overlay'),states=$('#states'),cities=$('#cities'),group=$('#segments');
 if(!ctx || !DATA || !STATES_PACKED) throw Error('Official rail geography missing');
@@ -43,7 +46,7 @@ function buildBase(){
   rails.moveTo(xy[0],xy[1]);for(let j=2;j<xy.length;j+=2)rails.lineTo(xy[j],xy[j+1]);
  }
  ctx.clearRect(0,0,790,1000);
- ctx.strokeStyle='#668093';ctx.globalAlpha=.32;ctx.lineWidth=.62;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke(rails);ctx.globalAlpha=1;
+ ctx.strokeStyle='#5b788c';ctx.globalAlpha=.18;ctx.lineWidth=.48;ctx.lineJoin='bevel';ctx.lineCap='butt';ctx.stroke(rails);ctx.globalAlpha=1;
  for(const parts of Object.values(STATES_PACKED)){
   let d='';
   for(const packed of parts){
@@ -73,6 +76,7 @@ function camera(){world.style.transform='translate('+view.tx+'px,'+view.ty+'px) 
 function zoom(f,cx,cy){
  const old=view.scale,now=Math.max(.38,Math.min(6,old*f)),x=(cx-view.tx)/old,y=(cy-view.ty)/old;
  view.scale=now;view.tx=cx-x*now;view.ty=cy-y*now;camera();
+ if((old>=1.18)!==(now>=1.18)&&view.links.length)render();
 }
 $('#zoomIn').addEventListener('click',()=>zoom(1.25,viewport.clientWidth/2,viewport.clientHeight/2));
 $('#zoomOut').addEventListener('click',()=>zoom(.8,viewport.clientWidth/2,viewport.clientHeight/2));
@@ -111,10 +115,9 @@ function dataFor(key){
   default: return V10_SEPTEMBER_EVIDENCE;
  }
 }
-function sourceKey(type){return ['ICE','IC','LONG'].includes(type)?'LONG':type}
-async function loadData(type){
- const key=sourceKey(type);
+async function loadData(key){
  if(cache.has(key))return cache.get(key);
+ if(!specs[key])throw Error('未知列车数据类别：'+key);
  const [base,n]=specs[key];
  const promise=(async()=>{
   await script('data/'+base+'-core.js');
@@ -124,9 +127,33 @@ async function loadData(type){
  cache.set(key,promise);
  try{return await promise}catch(err){cache.delete(key);throw err}
 }
+// Combine same-direction route-and-station pairs within one displayed group.
+// Always aggregate integer stop observations before computing percentages.
+// Original source datasets are left untouched and independently cached.
+function mergeObserved(groupData){
+ const byKey=new Map();
+ for(const [type,data] of groupData){
+  for(const leg of (data.links||[])){
+   const range=leg.km_range||[];
+   const key=[leg.route,leg.from_station,leg.to_station,
+      range.map(x=>Number(x).toFixed(2)).join(':')].join('|');
+   let dest=byKey.get(key);
+   if(!dest){
+    dest={...leg,v11:{pairs:0,arrival_valid:0,late6:0,late15:0,boundary_cancel:0},
+      brands:[],label_hints:leg.label_hints||[]};
+    byKey.set(key,dest);
+   }
+   const a=leg.v11||{};
+   for(const fld of ['pairs','arrival_valid','late6','late15','boundary_cancel'])
+    dest.v11[fld]+=Number(a[fld]||0);
+   if(!dest.brands.includes(type))dest.brands.push(type);
+  }
+ }
+ return [...byKey.values()];
+}
 function metrics(leg){
  const all=leg.v11||{};
- const a=view.service==='ICE'||view.service==='IC'?(all.by_type?.[view.service]||{}):all;
+ const a=all;
  const nArrival=Number(a.arrival_valid||0),nPlanned=Number(a.pairs||0);
  const late=nArrival?100*Number(a.late6||0)/nArrival:null;
  const cancel=nPlanned?100*Number(a.boundary_cancel||0)/nPlanned:null;
@@ -143,19 +170,49 @@ function pct(n){return n===null||!Number.isFinite(n)?'—':n.toFixed(1)+'%'}
 function status(s){$('#status').textContent=s}
 function linePath(geometry){
  if(!Array.isArray(geometry))return '';
+ // Render-only decimation at national zoom; original official route geometry
+ // is still retained and rendered at full fidelity after zooming in.
+ const tolerance=view.scale<1.18?.85:0, tol2=tolerance*tolerance;
  let d='';
  for(const part of geometry){
   if(!Array.isArray(part)||part.length<2)continue;
-  let p='';
+  let prev=null,started=false;
   for(let j=0;j<part.length;j++){
    const point=part[j];if(!Array.isArray(point)||point.length<2)continue;
-   const [x,y]=P(point);
-   if(!Number.isFinite(x)||!Number.isFinite(y)){p='';break}
-   p+=(p?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)+' ';
+   const p=P(point);
+   if(!Number.isFinite(p[0])||!Number.isFinite(p[1])){started=false;break;}
+   if(started&&j<part.length-1&&tol2&&
+       (p[0]-prev[0])**2+(p[1]-prev[1])**2<tol2)continue;
+   d+=(started?'L':'M')+p[0].toFixed(2)+' '+p[1].toFixed(2)+' ';
+   started=true;prev=p;
   }
-  d+=p;
  }
  return d;
+}
+function attention(m){
+ const delay=(m.late??0)/40,cancel=(m.cancel??0)/8;
+ return view.metric==='late'?delay:view.metric==='cancel'?cancel:Math.max(delay,cancel);
+}
+function renderHotspots(observations){
+ const list=$('#hotList');list.replaceChildren();
+ const hot=observations.filter(o=>o.grade>0)
+  .sort((a,b)=>b.grade-a.grade||attention(b.m)-attention(a.m)).slice(0,10);
+ if(!hot.length){
+  const note=document.createElement('p');note.className='hot-empty';
+  note.textContent='当前条件下没有达到关注门槛的区间。';list.appendChild(note);return;
+ }
+ for(const [i,o] of hot.entries()){
+  const btn=document.createElement('button');btn.type='button';btn.className='hot-row';
+  const title=stationZh(o.leg.from_station)+' → '+stationZh(o.leg.to_station);
+  const desc='晚点 '+pct(o.m.late)+' · 取消标记 '+pct(o.m.cancel);
+  btn.innerHTML='<span class="hot-rank">'+(i+1)+'</span><span class="hot-main"></span><span class="hot-grade '+(o.grade===2?'high':'medium')+'">'+(o.grade===2?'高':'中')+'</span>';
+  const content=btn.querySelector('.hot-main');
+  text(content,'strong',title);
+  text(content,'small',desc);
+  btn.addEventListener('click',()=>{view.selected=o;showDetail();highlight(o.node);
+   const box=$('#detail');box.scrollIntoView({block:'nearest',behavior:'smooth'});});
+  list.appendChild(btn);
+ }
 }
 function render(){
  const observations=[];
@@ -168,23 +225,32 @@ function render(){
  }
  observations.sort((a,b)=>a.grade-b.grade);
  const fragment=document.createDocumentFragment();view.rendered=observations;
+ // At national zoom the official railway geometry is a subdued grey canvas.
+ // Only concern-coloured stretches are painted above it, avoiding thick worms.
  for(const o of observations){
+  if(o.grade===0&&view.scale<1.18)continue;
   const c=o.grade===2?color.red:o.grade===1?color.orange:color.low;
-  const main=svg('path',{d:o.d,stroke:c,class:'segment'+(o.grade===2?' hot':'')},fragment);
+  const main=svg('path',{d:o.d,stroke:c,class:'segment'+(o.grade===2?' hot':o.grade===0?' neutral':'')},fragment);
   const hit=svg('path',{d:o.d,class:'segment-hit'},fragment);
+  o.node=main;
   const pick=e=>{e.stopPropagation();view.selected=o;showDetail();highlight(main)};
   main.addEventListener('click',pick);hit.addEventListener('click',pick);
-  const tooltip=svg('title',{},main);tooltip.textContent=o.leg.from_station+' → '+o.leg.to_station+' · 晚点≥6分 '+pct(o.m.late)+' · 停靠取消 '+pct(o.m.cancel);
+  const tooltip=svg('title',{},main);
+  tooltip.textContent=stationZh(o.leg.from_station)+' → '+stationZh(o.leg.to_station)
+    +' · 晚点≥6分 '+pct(o.m.late)+' · 停靠取消 '+pct(o.m.cancel);
  }
  group.replaceChildren(fragment);
  $('#visibleCount').textContent=observations.length.toLocaleString('zh-CN');
- $('#redCount').textContent=observations.filter(o=>o.grade===2).length.toLocaleString('zh-CN');
- const serviceLabel=$('#service').selectedOptions[0]?.textContent||view.service;
- status('2026年9月 · '+serviceLabel+' · '+observations.length+' 个达标方向性区间');
+ const red=observations.filter(o=>o.grade===2).length;
+ $('#redCount').textContent=red.toLocaleString('zh-CN');
+ $('#redShare').textContent=observations.length?(red/observations.length*100).toFixed(1)+'%':'—';
+ status(serviceLabels[view.service]+' · '+observations.length+' 个达标方向性区间');
  if(view.selected){
-  const newOne=observations.find(o=>o.leg===view.selected.leg);
-  view.selected=newOne||null;
+  const one=observations.find(o=>o.leg===view.selected.leg);
+  view.selected=one||null;
+  if(one?.node)highlight(one.node);
  }
+ renderHotspots(observations);
  showDetail();
 }
 function highlight(node){
@@ -199,12 +265,20 @@ function text(parent,tag,value,className){
 function showDetail(){
  const box=$('#detail');box.replaceChildren();
  const item=view.selected;
- if(!item){text(box,'h3','点击彩色铁路段');text(box,'p','查看该段的实际到站延误与停靠取消记录。');return}
+ if(!item){
+  box.classList.add('empty');
+  text(box,'h3','选择一段红色或橙色铁路');
+  text(box,'p','点击线路或下方热点列表，查看站间观测详情。');
+  return;
+ }
+ box.classList.remove('empty');
  const {leg,m,grade}=item;
- text(box,'span',grade===2?'● 高关注区间':grade===1?'● 较高关注区间':'● 未达警示阈值','grade');
- text(box,'h3',leg.from_station+' → '+leg.to_station);
+ text(box,'span',grade===2?'● 高关注':grade===1?'● 偏高':'● 低于警示阈值','grade');
+ text(box,'h3',stationZh(leg.from_station)+' → '+stationZh(leg.to_station));
+ text(box,'p',leg.from_station+' → '+leg.to_station,'original-stations');
  const lbl=leg.label_hints?.[0]?.[0];
- text(box,'p','官方线路 '+leg.route+(lbl?' · '+lbl:''));
+ text(box,'p','官方线路 '+leg.route+(lbl?' · '+lbl:'')
+   +(leg.brands?.length?' · '+leg.brands.join(' / '):''));
  const grid=text(box,'div','','detail-grid');
  for(const [v,label] of [
   [pct(m.late),'到站晚点≥6分钟'],
@@ -213,23 +287,42 @@ function showDetail(){
   [m.nPlanned.toLocaleString('zh-CN'),'计划站间配对']]){
   const n=document.createElement('div');text(n,'b',v);text(n,'span',label);grid.appendChild(n);
  }
- text(box,'p','2026年9月 · 两端停站匹配至 DB InfraGO 官方线路。统计是观测区间，不是轨道故障归因。');
+ text(box,'p','2026年9月 · 区间观测不等于轨道故障归因或整趟车取消概率。');
 }
 async function chooseService(){
- const id=++view.ticket;const s=$('#service').value;
- view.service=s;view.selected=null;group.replaceChildren();
- $('#visibleCount').textContent='—';$('#redCount').textContent='—';
- status('正在读取 '+$('#service').selectedOptions[0].textContent+' 的实测区间…');
+ const id=++view.ticket,s=view.service;
+ view.selected=null;group.replaceChildren();
+ $('#visibleCount').textContent='—';$('#redCount').textContent='—';$('#redShare').textContent='—';
+ status('正在读取 '+serviceLabels[s]+' 的实测区间…');
  try{
-  const data=await loadData(s);
+  const list=await Promise.all(serviceSources[s].map(async key=>[key,await loadData(key)]));
   if(id!==view.ticket)return;
-  view.links=data.links||[];
+  view.links=mergeObserved(list);
   render();
- }catch(e){if(id!==view.ticket)return;view.links=[];group.replaceChildren();status('数据加载失败，请刷新或检查网络：'+e.message);showDetail();}
+ }catch(e){
+  if(id!==view.ticket)return;
+  view.links=[];group.replaceChildren();status('数据加载失败，请刷新或检查网络：'+e.message);
+  renderHotspots([]);showDetail();
+ }
 }
-$('#service').addEventListener('change',chooseService);
-$('#metric').addEventListener('change',e=>{view.metric=e.target.value;view.selected=null;render()});
+for(const b of document.querySelectorAll('[data-service]'))b.addEventListener('click',()=>{
+ view.service=b.dataset.service;
+ for(const x of document.querySelectorAll('[data-service]')){
+  const active=x===b;x.classList.toggle('active',active);x.setAttribute('aria-pressed',String(active));
+ }
+ chooseService();
+});
+for(const b of document.querySelectorAll('[data-metric]'))b.addEventListener('click',()=>{
+ view.metric=b.dataset.metric;
+ for(const x of document.querySelectorAll('[data-metric]')){
+  const active=x===b;x.classList.toggle('active',active);x.setAttribute('aria-pressed',String(active));
+ }
+ view.selected=null;render();
+});
 $('#minimum').addEventListener('change',e=>{view.minimum=Number(e.target.value);view.selected=null;render()});
+window.__RAILWAY_OVERVIEW__={getService:()=>view.service,getMetric:()=>view.metric,
+ getVisible:()=>view.rendered.length,getMergedLinks:()=>view.links.length,
+ getSelected:()=>view.selected,getScale:()=>view.scale,stationZh};
 buildBase();
 fit();
 showDetail();
