@@ -1,5 +1,9 @@
-name: Railway minimal map browser smoke
+name: Railway map visual and data smoke
 on:
+  pull_request:
+    paths:
+      - 'topics/railway/**'
+      - '.github/workflows/railway-map-smoke.yml'
   push:
     branches: [main]
     paths:
@@ -11,7 +15,7 @@ permissions:
 jobs:
   railway:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -20,6 +24,7 @@ jobs:
       - name: Check JavaScript and Python syntax
         run: |
           node --check topics/railway/overview.js
+          node --check topics/railway/js/station-zh.js
           python -m py_compile topics/railway/tests/smoke_overview.py
       - name: Install browser testing runtime
         run: |
@@ -34,5 +39,5 @@ jobs:
         if: always()
         with:
           name: railway-minimal-browser-screenshots
-          path: /tmp/railway-v15/*.png
+          path: /tmp/railway-v16/*.png
           if-no-files-found: warn
