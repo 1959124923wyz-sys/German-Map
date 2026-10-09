@@ -1,4 +1,4 @@
-/* Railway v15 — shared German-Map dark shell, map-first presentation. */
+/* Railway map · German-Map shared visual system. */
 :root{--bg:#0c1117;--panel:#131a22;--panel2:#19232e;--border:#2c3845;--text:#e7eef4;--muted:#9cabb8;--red:#ed5763;--orange:#eaa06c;--neutral:#8797a4}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font:13px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans CJK SC","Microsoft Yahei",sans-serif}
 button,select{font:inherit}button{cursor:pointer}a{color:inherit}
@@ -35,3 +35,107 @@ button,select{font:inherit}button{cursor:pointer}a{color:inherit}
 @media(max-width:1100px){.topbar{flex-wrap:wrap;align-content:center;gap:8px}.page{grid-template-rows:104px minmax(0,1fr)}.toplinks{max-width:100%;width:100%}.workspace{grid-template-columns:minmax(0,1fr) 275px}.sidebar{padding:14px 12px}}
 @media(max-width:760px){.page{height:auto;display:flex;flex-direction:column;min-height:100dvh}.topbar{min-height:102px}.workspace{display:flex;flex-direction:column}.map-panel{height:65vh;min-height:440px}.sidebar{border-left:0;border-top:1px solid #2c3845}.field{display:inline-block;width:calc(50% - 7px);vertical-align:top}.field + .field{margin-left:10px}.mini-stats{max-width:440px}.detail{max-width:600px}}
 @media(max-width:420px){.map-panel{height:58vh;min-height:410px}.map-caption strong{font-size:15px}.map-caption{top:12px;left:12px}.legend{left:8px;bottom:8px;padding:8px;gap:9px;font-size:10px}.field{width:100%;display:block}.field + .field{margin-left:0}.map-buttons{right:8px;top:8px}}
+
+
+/* Railway public map: restrained track overlay, unified cards, simple service groups. */
+.workspace{grid-template-columns:minmax(0,1fr) 350px}
+.map-panel{background:radial-gradient(ellipse at 50% 42%,#142436,#0e1927 70%,#0c1117)}
+#segments{pointer-events:none}
+.segment{
+  stroke-width:1.55;stroke-linecap:butt;stroke-linejoin:bevel;
+  opacity:.86;filter:none;vector-effect:non-scaling-stroke;
+}
+.segment.hot{stroke-width:2.0;filter:none;opacity:.91}
+.segment.neutral{stroke-width:.85;stroke-opacity:.34;filter:none}
+.segment.selected,.segment.hot.selected{
+  stroke-width:3.1;stroke:#f5d19d!important;
+  opacity:1;filter:none;stroke-linejoin:bevel
+}
+.segment-hit{stroke-width:12;stroke-linecap:round}
+.state-border{stroke-opacity:.36;stroke-width:.8;fill-opacity:.03}
+.map-caption{top:14px;left:15px}
+.map-caption strong{font-size:15px}
+.map-caption small{font-size:10px;color:#89a2b5}
+.legend{padding:8px 10px;gap:9px;border-color:#31475a;background:#101b27db;font-size:10px}
+.legend i{width:17px;height:3px}
+.map-status{font-size:9px;bottom:57px;left:16px;padding:5px 9px}
+.sidebar{padding:17px 16px 24px}
+.sidebar-head{border-bottom:1px solid #2a3846;padding-bottom:10px;margin-bottom:12px}
+.sidebar-head h2{font-size:17px;margin:0 0 2px}
+.sidebar .intro{font-size:10.5px;line-height:1.5;margin:0;color:#94abbb}
+.sidebar .field{margin:0 0 12px}
+.sidebar .field>label{display:block;margin:0 0 6px;font-size:10px;font-weight:650;color:#9cb1c0}
+.service-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.service-tabs button{
+ display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1px;
+ min-width:0;min-height:52px;padding:7px 3px;
+ background:#15232f;border:1px solid #324858;border-radius:8px;
+ color:#d5e4ef;font-size:11px;font-weight:650;line-height:1.4
+}
+.service-tabs button small{font-size:9px;font-weight:450;color:#8ba6b9;white-space:nowrap}
+.service-tabs button.active{background:#274056;border-color:#6ba8ca;color:#fff}
+.service-tabs button.active small{color:#c2d9e8}
+.service-tabs button:hover,.metric-tabs button:hover{background:#294359}
+.metric-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.metric-tabs button{
+ padding:6px 4px;background:#14212d;border:1px solid #344757;
+ border-radius:7px;color:#b9ccdc;font-size:10.5px;line-height:1.35
+}
+.metric-tabs button.active{background:#263d50;border-color:#6499bd;color:#fff}
+.compact-field{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.sidebar .compact-field>label{margin:0;flex:1}
+.sidebar .compact-field select{width:120px;max-width:45%;padding:6px 9px;font-size:10.5px}
+.mini-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;border:0;padding:1px 0 4px;margin:8px 0 5px}
+.mini-stats>div{background:#192632;border:1px solid #2a3d4d;border-radius:8px;padding:10px 7px}
+.mini-stats strong{font-size:20px;letter-spacing:-.025em;font-variant-numeric:tabular-nums}
+.mini-stats span{font-size:9px;line-height:1.45;margin-top:4px}
+#status{font-size:9.5px;color:#8ca8bb;min-height:0;margin:4px 0 14px}
+.detail{min-height:0;padding:11px 12px;background:#182633}
+.detail.empty{border:1px dashed #3c5364;background:#15212c}
+.detail.empty h3{font-size:12px;color:#c0d6e4}
+.detail.empty p{margin:5px 0 0;font-size:10px}
+.detail h3{font-size:13px;line-height:1.55;margin:4px 0 5px}
+.detail .original-stations{color:#8faabc;font-size:10px;overflow-wrap:anywhere}
+.detail p{font-size:10px;line-height:1.55}
+.detail-grid{gap:6px}
+.detail-grid div{padding:8px 6px;background:#162531}
+.detail-grid b{font-size:17px}
+.detail-grid span{font-size:9px}
+.hotspots{border-top:1px solid #2b3d4b;margin:16px 0 0;padding:12px 0 3px}
+.hotspots-head{display:flex;justify-content:space-between;align-items:baseline;gap:7px;margin-bottom:6px}
+.hotspots-head h3{font-size:12px;color:#dce9f1;margin:0}
+.hotspots-head small{color:#91a8b7;font-size:9px}
+.hot-list{display:grid;gap:2px}
+.hot-row{
+ display:grid;grid-template-columns:16px minmax(0,1fr) 23px;gap:7px;align-items:center;
+ width:100%;padding:8px 4px;color:#dce8ef;background:transparent;
+ text-align:left;border:0;border-bottom:1px solid #263747;cursor:pointer
+}
+.hot-row:hover,.hot-row:focus-visible{background:#213646}
+.hot-rank{color:#758fa2;font-size:10px;text-align:center}
+.hot-main{min-width:0}
+.hot-main strong{font-size:10px;font-weight:600;display:block;overflow-wrap:anywhere;line-height:1.45}
+.hot-main small{color:#87a3b8;font-size:9px;line-height:1.5;display:block;margin-top:2px}
+.hot-grade{border-radius:5px;font-size:9px;text-align:center;padding:2px 0}
+.hot-grade.high{background:#663239;color:#f1acaf}
+.hot-grade.medium{background:#59402f;color:#efbd92}
+.hot-empty{font-size:10px;color:#95adbd;margin:7px 0}
+.method{margin-top:14px;padding-top:10px}
+.footerlink{margin-top:11px;font-size:10px}
+@media(max-width:1100px){
+ .workspace{grid-template-columns:minmax(0,1fr) 320px}
+ .sidebar{padding:13px 11px}
+}
+@media(max-width:760px){
+ .workspace{display:flex;flex-direction:column}
+ .sidebar{padding:12px 13px}
+ .sidebar .field{display:block;width:100%;margin-left:0}
+ .service-tabs button{min-height:47px}
+ .mini-stats{max-width:none}
+}
+@media(max-width:420px){
+ .map-caption small{font-size:9px;max-width:265px;display:block}
+ .service-tabs button{font-size:10.5px}
+ .service-tabs button small{font-size:8.5px}
+ .legend{max-width:calc(100% - 16px)}
+}
