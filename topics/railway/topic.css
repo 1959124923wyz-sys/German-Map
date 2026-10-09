@@ -42,6 +42,17 @@
 .rail-legend-item{display:inline-flex;align-items:center;gap:6px;font-size:10px;white-space:nowrap}
 .rail-legend-swatch{width:20px;height:4px;display:inline-block;border-radius:4px}
 .railway-sidebar .area-stat b{font-size:16px}
+/* On narrow viewports the legend joins the property controls instead of
+   obscuring southern rail routes in the national map. */
+.railway-sidebar .rail-selector>.legend{
+ position:static;left:auto;right:auto;bottom:auto;top:auto;z-index:auto;
+ width:100%;max-width:none;min-width:0;padding:6px 0 1px;margin:1px 0 0;
+ border:0;background:transparent;box-shadow:none;backdrop-filter:none;
+}
+.railway-sidebar .rail-selector>.legend .rail-legend-label{font-size:9px;color:#90aabc}
+.railway-sidebar .rail-selector>.legend .rail-legend-item{font-size:9px}
+.railway-sidebar .rail-selector>.legend .rail-legend-swatch{width:16px}
+
 @media(max-width:920px){
  .railway-workspace{display:block}
  #railway-map{min-height:440px}
