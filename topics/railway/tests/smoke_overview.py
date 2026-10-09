@@ -43,9 +43,15 @@ def run(browser,mobile=False):
     page.screenshot(path=str(ART/("railway-mobile-initial.png" if mobile else "railway-desktop-initial.png")),full_page=True)
     # Reference outlines are intentionally non-interactive so they do not
     # steal clicks from the actual underlying rail line picking.
-    page.wait_for_function("""() =>
-      document.querySelectorAll('#railway-map .rail-state-pane path').length>=16
-    """,timeout=20000)
+    print("STATE_DIAGNOSTIC",page.evaluate("""() => ({
+      statePane:document.querySelector('#railway-map .rail-state-pane')?.outerHTML.slice(0,200),
+      statePaths:document.querySelectorAll('#railway-map .rail-state-pane path').length,
+      allPaths:document.querySelectorAll('#railway-map .leaflet-pane path').length,
+      statesReady:window.__RAILWAY_OVERVIEW__.getStatesReady(),
+      countiesReady:window.__RAILWAY_OVERVIEW__.getCountiesReady()
+    })"""),flush=True)
+    page.wait_for_function("""() => window.__RAILWAY_OVERVIEW__.getStatesReady()""",timeout=20000)
+    assert page.locator("#railway-map .leaflet-pane path").count()>=16
     # Hundreds of county/state paths are acceptable; thousands of duplicate
     # route and click-hit SVG nodes would recreate the original lag.
     assert page.locator("#segments").count()==0
