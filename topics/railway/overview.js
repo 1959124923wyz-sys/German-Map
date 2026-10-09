@@ -97,6 +97,7 @@ function stopDrag(){drag=null;viewport.classList.remove('dragging')}
 viewport.addEventListener('pointerup',stopDrag);
 viewport.addEventListener('pointercancel',stopDrag);
 window.addEventListener('resize',fit);
+window.addEventListener('resize',placeLegend);
 const pad = n=>String(n).padStart(2,'0');
 function script(src){
  return new Promise((resolve,reject)=>{
@@ -166,6 +167,17 @@ function level(m){
  if(view.metric==='cancel')return m.cancel>=8?2:m.cancel>=4?1:0;
  return (m.late>=40||m.cancel>=8)?2:(m.late>=25||m.cancel>=4)?1:0;
 }
+function placeLegend(){
+ const box=$('#railLegend');
+ if(!box)return;
+ if(window.innerWidth<=760){
+  const field=$('#metric').closest('.field');
+  if(field&&box.previousElementSibling!==field)field.insertAdjacentElement('afterend',box);
+ }else{
+  const panel=$('.map-panel');
+  if(panel&&box.parentElement!==panel)panel.appendChild(box);
+ }
+}
 function renderLegend(){
  // No single "combined percentage" exists: the joint filter uses OR between
  // two different source-backed denominators. Display BOTH numeric cutoffs.
@@ -189,6 +201,7 @@ function renderLegend(){
    [color.red,single.red]
  ];
  const box=$('#railLegend');
+ placeLegend();
  box.replaceChildren();
  const title=document.createElement('b');title.textContent=single.title;box.appendChild(title);
  for(const [c,label] of items){
