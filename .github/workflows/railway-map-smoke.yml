@@ -1,0 +1,38 @@
+name: Railway minimal map browser smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'topics/railway/**'
+      - '.github/workflows/railway-map-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  railway:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Check JavaScript and Python syntax
+        run: |
+          node --check topics/railway/overview.js
+          python -m py_compile topics/railway/tests/smoke_overview.py
+      - name: Install browser testing runtime
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Start static site and exercise real railway controls
+        run: |
+          python -m http.server 8769 --bind 127.0.0.1 > /tmp/railway-web.log 2>&1 &
+          sleep 2
+          python topics/railway/tests/smoke_overview.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: railway-minimal-browser-screenshots
+          path: /tmp/railway-v15/*.png
+          if-no-files-found: warn
