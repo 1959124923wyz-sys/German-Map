@@ -13,15 +13,15 @@
   // selections and actor labels are FILTERS, never competing classes.
   const MODES = ['all','archive','policy','project','facility'];
   const CATEGORIES = {
-    all:'全部环保争议记录',archive:'直接行动与干扰事件',policy:'环保及能源政策措施',
-    project:'环保组织与项目争议',facility:'能源设施与退役安排'
+    all:'全部记录',archive:'行动事件',policy:'环保政策',
+    project:'组织争议',facility:'能源设施'
   };
   const NOTES = {
-    all:'完整显示本专题收录的154条有来源记录；记录数并非全德国环保活动总量。政策、行动、组织项目及设施四类互不重复。',
-    archive:'实际发生的机场、道路、能源运输干扰、喷涂和工程冲击，细分为五类。逐条区分行动认领与司法认定。',
-    policy:'法律、行政规制及能源转型措施。联邦政策的地图点位通常是表决／发布地，并非政策实际影响范围。',
-    project:'环保组织参与的工程、诉讼及项目争议10条，另有1条独立设施项目争议；合法申诉不等于违法阻工。',
-    facility:'设施状态包括32项历史退役、36项招标中标、3项监管命令和21项未来计划；计划和中标均不能冒充实际停机。'
+    all:'点选地图或列表，查看事件详情及资料来源。',
+    archive:'交通、能源、设施、文化和工程行动可分别筛选。',
+    policy:'政策点位代表表决或发布地点。',
+    project:'项目争议和正常法律诉讼不等同于违法行动。',
+    facility:'招标、命令及未来计划不等于实际退役。'
   };
   const SHORTCUT_DESCRIPTIONS = {
     airport:'直接行动 · 与机场有关的记录',
@@ -104,10 +104,10 @@
         ['组织／项目争议',COLORS.organization,'organization'],['设施项目争议',COLORS.facility_story,'organization'],
         ['能源设施',COLORS.facility,'facility']];
     }
-    $('legend').innerHTML='<div class="legend-title">环保争议点位 · 2026-10-09 数据基准</div>'
+    $('legend').innerHTML='<div class="legend-title">地图图例</div>'
       +'<div class="env-legend-row">'+items.map(([name,c,shape])=>'<span class="env-legend-item">'
       +'<i class="env-symbol '+shape+'" style="color:'+c+'"></i>'+esc(name)+'</span>').join('')+'</div>'
-      +'<div class="env-legend-note">图形表示对象类别，颜色表示分类或状态；不代表犯罪率、风险评分或实际损失规模。</div>';
+      +'<div class="env-legend-note">按事件类型或设施状态区分，不代表地区评分。</div>';
   }
   function markerHtml(e,index,total) {
     // Visual separation applies to glyphs only; geodata coordinates remain untouched.
@@ -177,7 +177,14 @@
       +'。组织立场、行动认领、司法认定及实际经济损失均须依据原始证据分别判断。</div>'
       +(actor?'<button type="button" class="env-detail-actor" id="actorFilter">筛选 '+esc(actor)+' 关联的记录 →</button>':'');
     $('closeDetail').onclick=()=>selectRecord(null,false);
-    if(actor) $('actorFilter').onclick=()=>{$('org').value=actor;state.org=actor;state.selected=null;state.limit=18;render();};
+    if(actor) $('actorFilter').onclick=()=>{
+      // The actor button is a cross-category jump: do not leave a hidden
+      // "facility/policy" primary filter active and accidentally show zero.
+      state.mode='all';state.action='all';state.phase='all';state.shortcut=null;
+      state.search='';state.org=actor;state.selected=null;state.limit=18;
+      $('org').value=actor;$('action').value='all';$('phase').value='all';$('search').value='';
+      render();
+    };
   }
   function selectRecord(id,fly) {
     const e=rows.find(v=>v.id===id);
@@ -233,9 +240,9 @@
     $('sourceCount').textContent=new Set(rows.flatMap(e=>e.sources||[]).map(x=>x.url)).size;
     $('listCount').textContent=rows.length+' 条';
     $('sectionTitle').textContent=state.shortcut?SHORTCUT_DESCRIPTIONS[state.shortcut]:CATEGORIES[state.mode];
-    $('resultScope').textContent='当前 '+rows.length+' / 154 条 · 点击查看';
-    $('listHint').textContent=state.org==='all'?(state.shortcut?SHORTCUT_DESCRIPTIONS[state.shortcut]+'。'+NOTES[state.mode]:NOTES[state.mode])
-      :NOTES[state.mode]+' 当前按“'+state.org+'”参与主体筛选；仅匹配明确记录，不推定其参与未署名的行动。';
+    $('resultScope').textContent='点选查看详情';
+    $('listHint').textContent=NOTES[state.mode];
+    $('summaryPanel').classList.toggle('has-selection',!!selected);
     $('actionFilter').hidden=state.mode!=='archive';
     $('phaseFilter').hidden=state.mode!=='facility';
     $('org').parentElement.hidden=!['all','archive','project'].includes(state.mode);
@@ -252,8 +259,11 @@
       state.mode==='archive'&&state.action!=='all'?'行动类型：'+ACTION_LABELS[state.action]:null,
       state.mode==='facility'&&state.phase!=='all'?'设施状态：'+PHASE_LABELS[state.phase]:null,
       state.search?'关键词：'+state.search:null].filter(Boolean);
-    $('filterState').textContent='当前显示：'+rows.length+' / 154 条'+(state.shortcut?' · '+SHORTCUT_DESCRIPTIONS[state.shortcut]: ' · '+CATEGORIES[state.mode])
-      +(extra.length?' · '+extra.join(' · '):'')+'。筛选只在本专题已收录记录中进行。';
+    const filterActive=!!state.shortcut||extra.length>0;
+    $('filterState').hidden=!filterActive;
+    $('filterState').textContent=filterActive
+      ? '筛选：'+[state.shortcut?SHORTCUT_DESCRIPTIONS[state.shortcut]:null,...extra].filter(Boolean).join(' · ')+' · '+rows.length+' 条'
+      : '';
     legend();detail(selected);rank();renderEntries();renderMarkers();
   }
 
