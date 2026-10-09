@@ -1,4 +1,4 @@
-name: Railway map visual and data smoke
+name: Railway 07 visual and real geometry smoke
 on:
   pull_request:
     paths:
@@ -15,7 +15,7 @@ permissions:
 jobs:
   railway:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 22
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -29,6 +29,7 @@ jobs:
           python -m py_compile topics/railway/tests/smoke_overview.py
       - name: Install browser testing runtime
         run: |
+          npm install --no-save --no-package-lock --ignore-scripts leaflet@1.9.4
           pip install playwright
           python -m playwright install --with-deps chromium
       - name: Start static site and exercise real railway controls
@@ -40,5 +41,5 @@ jobs:
         if: always()
         with:
           name: railway-minimal-browser-screenshots
-          path: /tmp/railway-v16/*.png
+          path: /tmp/railway-v18/*.png
           if-no-files-found: warn
