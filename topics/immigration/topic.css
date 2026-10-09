@@ -50,3 +50,8 @@ body{overflow:hidden;display:flex;flex-direction:column}a{color:#9fd2f1;text-dec
  user-select:none;pointer-events:none;
 }
 @media(max-width:640px){.crime-city-label{font-size:11px}}
+
+/* AZR definition and caveats remain intact, but are available on demand. */
+.compact-method{margin:10px 0 6px;border:1px solid #344454;border-radius:7px;background:#1a2732;color:#a9c3d6;font-size:10px}
+.compact-method>summary{padding:7px 9px;cursor:pointer;list-style:revert;font-size:10px}
+.compact-method .bottom-note{margin:0;padding:0 10px 8px;line-height:1.55}
