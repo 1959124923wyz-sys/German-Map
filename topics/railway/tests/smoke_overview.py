@@ -40,9 +40,12 @@ def run(browser,mobile=False):
     assert page.locator("#railway-map .railway-network").count()==1
     assert page.locator("#railway-map .railway-observed").count()==1
     assert page.locator("#railway-map .crime-city-label").count()>=5
+    page.screenshot(path=str(ART/("railway-mobile-initial.png" if mobile else "railway-desktop-initial.png")),full_page=True)
+    # Reference outlines are intentionally non-interactive so they do not
+    # steal clicks from the actual underlying rail line picking.
     page.wait_for_function("""() =>
-      document.querySelectorAll('#railway-map .leaflet-interactive').length>=16
-    """,timeout=30000)
+      document.querySelectorAll('#railway-map .rail-state-pane path').length>=16
+    """,timeout=20000)
     # Hundreds of county/state paths are acceptable; thousands of duplicate
     # route and click-hit SVG nodes would recreate the original lag.
     assert page.locator("#segments").count()==0
