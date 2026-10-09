@@ -30,7 +30,7 @@ def check(browser, mobile=False):
     nav=page.locator(".toplinks .modebtn")
     assert nav.count()==6
     assert [name.strip() for name in nav.all_inner_texts()]==[
-        "暴力犯罪","财产犯罪","毒品问题","移民人口","环保争议"]
+        "暴力犯罪","财产犯罪","毒品问题","移民人口","环保争议","铁路运行"]
     assert page.locator('.toplinks a[href="../environment/"]').count()==1
     assert page.locator(".toplinks .modebtn.active").inner_text()=="移民人口"
     assert page.locator("#immigration-map .crime-city-label").first.evaluate("(e)=>getComputedStyle(e).whiteSpace")=="nowrap"
