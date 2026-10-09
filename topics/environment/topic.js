@@ -9,24 +9,32 @@
     retired:'#8b90ca', awarded:'#d6a16d', ordered:'#e4ce88', scheduled:'#70a8c9',
     traffic:'#dc9663',energy:'#edb766',sabotage:'#d77373',culture:'#bdaccb',construction:'#80afb7'
   };
+  // A record belongs to exactly one of four primary classes. Editorial
+  // selections and actor labels are FILTERS, never competing classes.
+  const MODES = ['all','archive','policy','project','facility'];
   const CATEGORIES = {
-    overview:'政策与能源退出总览',archive:'具体环保行动',policy:'环保政策',
-    organization:'环保组织与项目争议',facility:'能源设施与退役安排',focus:'争议精选案例'
+    all:'全部环保争议记录',archive:'直接行动与干扰事件',policy:'环保及能源政策措施',
+    project:'环保组织与项目争议',facility:'能源设施与退役安排'
   };
   const NOTES = {
-    overview:'包括政策、设施争议、已退役设施及未来法定期限。计划退役不等于已经停机。',
-    archive:'机场／道路封锁、涂漆、能源干扰及工程冲击；行为性质和司法结果以逐条证据为准。',
-    policy:'全国性政策定位于立法或发布地点，地图点位不代表该政策仅影响此处。',
-    organization:'组织提出的合法行政异议，与已经实施的阻断、侵入或破坏行为分别记录。',
-    facility:'退役、中标、监管命令及未来法定时间表各自独立；无法确认退出状态时不标为停机。',
-    focus:'具有明确地点、争议内容及公开后续的精选案例，不构成全面的环保组织排名。'
+    all:'完整显示本专题收录的154条有来源记录；记录数并非全德国环保活动总量。政策、行动、组织项目及设施四类互不重复。',
+    archive:'实际发生的机场、道路、能源运输干扰、喷涂和工程冲击，细分为五类。逐条区分行动认领与司法认定。',
+    policy:'法律、行政规制及能源转型措施。联邦政策的地图点位通常是表决／发布地，并非政策实际影响范围。',
+    project:'环保组织参与的工程、诉讼及项目争议10条，另有1条独立设施项目争议；合法申诉不等于违法阻工。',
+    facility:'设施状态包括32项历史退役、36项招标中标、3项监管命令和21项未来计划；计划和中标均不能冒充实际停机。'
+  };
+  const SHORTCUT_DESCRIPTIONS = {
+    airport:'直接行动 · 与机场有关的记录',
+    paint:'直接行动 · 喷涂、涂漆有关的记录',
+    scheduled:'能源设施 · 21项未来退出安排（不是已经停机）',
+    focus:'跨类型重点案例 · 10项政策 + 10项组织争议 + 1项设施项目争议'
   };
   const PHASE_LABELS = {retired:'历史退役',awarded:'招标中标',ordered:'监管命令',scheduled:'未来退出计划'};
   const ACTION_LABELS = {traffic:'交通干扰',energy:'能源干扰',sabotage:'设施破坏',culture:'文化设施',construction:'工程冲击'};
   const GERMANY = L.latLngBounds([[47.05,5.45],[55.15,15.65]]);
   const BERLIN = L.latLngBounds([[52.34,13.08],[52.67,13.75]]);
   const HAMBURG = L.latLngBounds([[53.38,9.68],[53.78,10.36]]);
-  const state = {mode:'overview',action:'all',phase:'all',org:'all',search:'',selected:null,limit:18};
+  const state = {mode:'all',shortcut:null,action:'all',phase:'all',org:'all',search:'',selected:null,limit:18};
   let group=null, map=null, rows=[], activeMarkers=new Map(), tilesLoaded=false;
 
   function validData() {
@@ -60,20 +68,21 @@
     }
     return null;
   }
-  function inMode(e) {
-    if (state.mode==='overview') return ['policy','facility_story'].includes(e.kind)
-      || e.kind==='facility' && ['retired','scheduled'].includes(e.facility_phase);
-    if (state.mode==='focus') return ['policy','organization','facility_story'].includes(e.kind);
-    if (state.mode==='archive') return e.kind==='archive';
-    return e.kind===state.mode;
+  function primaryClass(e) {
+    if(e.kind==='organization'||e.kind==='facility_story') return 'project';
+    if(e.kind==='archive'||e.kind==='policy'||e.kind==='facility') return e.kind;
+    throw Error('未知环保记录类型：'+e.kind);
   }
+  function inMode(e) {return state.mode==='all'||primaryClass(e)===state.mode;}
   function filtered() {
-    let result=state.org==='all' ? ALL.filter(inMode)
-      : ALL.filter(e=>['organization','archive'].includes(e.kind)
-          && String(e.actor||'').toLowerCase().includes(state.org.toLowerCase()));
-    if(state.org==='all'&&state.mode==='archive'&&state.action!=='all')
+    let result=ALL.filter(inMode);
+    if(state.shortcut==='focus')
+      result=result.filter(e=>['policy','organization','facility_story'].includes(e.kind));
+    if(state.org!=='all')
+      result=result.filter(e=>String(e.actor||'').toLowerCase().includes(state.org.toLowerCase()));
+    if(state.mode==='archive'&&state.action!=='all')
       result=result.filter(e=>e.action_group===state.action);
-    if(state.org==='all'&&state.mode==='facility'&&state.phase!=='all')
+    if(state.mode==='facility'&&state.phase!=='all')
       result=result.filter(e=>e.facility_phase===state.phase);
     if(state.search) {
       result=result.filter(e=>[e.title,e.actor,e.city,e.summary,e.dispute,e.outcome,e.status_label]
@@ -84,13 +93,16 @@
   }
   function legend() {
     let items;
-    if(state.mode==='archive'&&state.org==='all') {
+    if(state.mode==='archive') {
       items=Object.entries(ACTION_LABELS).map(([k,v])=>[v,COLORS[k],'archive']);
-    } else if(state.mode==='facility'&&state.org==='all') {
+    } else if(state.mode==='facility') {
       items=Object.entries(PHASE_LABELS).map(([k,v])=>[v,COLORS[k],'facility']);
+    } else if(state.mode==='project') {
+      items=[['组织争议',COLORS.organization,'organization'],['设施项目争议',COLORS.facility_story,'organization']];
     } else {
-      items=[['政策',COLORS.policy,'policy'],['行动',COLORS.archive,'archive'],
-        ['组织争议',COLORS.organization,'organization'],['能源设施',COLORS.facility,'facility']];
+      items=[['直接行动',COLORS.archive,'archive'],['政策措施',COLORS.policy,'policy'],
+        ['组织／项目争议',COLORS.organization,'organization'],['设施项目争议',COLORS.facility_story,'organization'],
+        ['能源设施',COLORS.facility,'facility']];
     }
     $('legend').innerHTML='<div class="legend-title">环保争议点位 · 2026-10-09 数据基准</div>'
       +'<div class="env-legend-row">'+items.map(([name,c,shape])=>'<span class="env-legend-item">'
@@ -216,21 +228,32 @@
     rows=filtered();
     if(state.selected&&!rows.some(e=>e.id===state.selected))state.selected=null;
     const selected=rows.find(e=>e.id===state.selected)||null;
-    const events=rows.filter(e=>e.kind==='archive').length;
-    const plants=rows.filter(e=>e.kind==='facility').length;
     $('count').textContent=rows.length;
-    $('eventCount').textContent=events;
-    $('facilityCount').textContent=plants;
+    $('regionCount').textContent=new Set(rows.map(cityName)).size;
+    $('sourceCount').textContent=new Set(rows.flatMap(e=>e.sources||[]).map(x=>x.url)).size;
     $('listCount').textContent=rows.length+' 条';
-    $('sectionTitle').textContent=state.org==='all'?CATEGORIES[state.mode]:state.org+' · 关联记录';
-    $('resultScope').textContent='点位 '+rows.length+' · 点击查看';
-    $('listHint').textContent=state.org==='all'?NOTES[state.mode]:'当前仅展示明确涉及所选组织的行动或争议记录；不能推定该组织参与其他破坏事件。';
-    $('actionFilter').hidden=state.mode!=='archive'||state.org!=='all';
-    $('phaseFilter').hidden=state.mode!=='facility'||state.org!=='all';
+    $('sectionTitle').textContent=state.shortcut?SHORTCUT_DESCRIPTIONS[state.shortcut]:CATEGORIES[state.mode];
+    $('resultScope').textContent='当前 '+rows.length+' / 154 条 · 点击查看';
+    $('listHint').textContent=state.org==='all'?(state.shortcut?SHORTCUT_DESCRIPTIONS[state.shortcut]+'。'+NOTES[state.mode]:NOTES[state.mode])
+      :NOTES[state.mode]+' 当前按“'+state.org+'”参与主体筛选；仅匹配明确记录，不推定其参与未署名的行动。';
+    $('actionFilter').hidden=state.mode!=='archive';
+    $('phaseFilter').hidden=state.mode!=='facility';
+    $('org').parentElement.hidden=!['all','archive','project'].includes(state.mode);
     $('areaName').textContent=selected?cityName(selected):'德国全国';
     $('kindBadge').textContent=selected?kind(selected):'专题概览';
     $('areaMetric').textContent=selected?selected.actor+' · '+selected.date:'政策、直接行动和电厂退出的可核查记录';
-    document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===state.mode));
+    document.querySelectorAll('[data-mode]').forEach(b=>{
+      const active=b.dataset.mode===state.mode;
+      b.classList.toggle('active',active);
+      b.setAttribute('aria-pressed',String(active));
+    });
+    document.querySelectorAll('[data-shortcut]').forEach(b=>b.classList.toggle('active',b.dataset.shortcut===state.shortcut));
+    const extra=[state.org!=='all'?'组织：'+state.org:null,
+      state.mode==='archive'&&state.action!=='all'?'行动类型：'+ACTION_LABELS[state.action]:null,
+      state.mode==='facility'&&state.phase!=='all'?'设施状态：'+PHASE_LABELS[state.phase]:null,
+      state.search?'关键词：'+state.search:null].filter(Boolean);
+    $('filterState').textContent='当前显示：'+rows.length+' / 154 条'+(state.shortcut?' · '+SHORTCUT_DESCRIPTIONS[state.shortcut]: ' · '+CATEGORIES[state.mode])
+      +(extra.length?' · '+extra.join(' · '):'')+'。筛选只在本专题已收录记录中进行。';
     legend();detail(selected);rank();renderEntries();renderMarkers();
   }
 
@@ -276,17 +299,31 @@
       getSelected:()=>state.selected,getMarkerCount:()=>activeMarkers.size,
       getMarkers:()=>activeMarkers,getAll:()=>ALL,selectRecord};
   }
+  function resetFilters(mode='all'){
+    state.mode=mode;state.shortcut=null;state.org='all';state.action='all';
+    state.phase='all';state.search='';state.selected=null;state.limit=18;
+    $('org').value='all';$('action').value='all';$('phase').value='all';$('search').value='';
+    render();
+  }
   function wire() {
-    for(const b of document.querySelectorAll('[data-mode]')) b.onclick=()=>{
-      state.mode=b.dataset.mode;state.org='all';state.action='all';state.phase='all';state.search='';
-      state.selected=null;state.limit=18;
-      $('org').value='all';$('action').value='all';$('phase').value='all';$('search').value='';
+    for(const b of document.querySelectorAll('[data-mode]'))
+      b.onclick=()=>resetFilters(b.dataset.mode);
+    $('clearFilters').onclick=()=>resetFilters();
+    for(const b of document.querySelectorAll('[data-shortcut]')) b.onclick=()=>{
+      const shortcut=b.dataset.shortcut;
+      resetFilters(shortcut==='scheduled'?'facility':shortcut==='focus'?'all':'archive');
+      state.shortcut=shortcut;
+      if(shortcut==='airport'||shortcut==='paint') {
+        state.search=shortcut==='airport'?'机场':'喷';
+        $('search').value=state.search;
+      }
+      if(shortcut==='scheduled') {state.phase='scheduled';$('phase').value='scheduled';}
       render();
     };
-    $('org').onchange=e=>{state.org=e.target.value;state.limit=18;render();};
-    $('action').onchange=e=>{state.action=e.target.value;state.limit=18;render();};
-    $('phase').onchange=e=>{state.phase=e.target.value;state.limit=18;render();};
-    $('search').oninput=e=>{state.search=e.target.value.toLowerCase().trim();state.limit=18;render();};
+    $('org').onchange=e=>{state.org=e.target.value;state.shortcut=null;state.limit=18;render();};
+    $('action').onchange=e=>{state.action=e.target.value;state.shortcut=null;state.limit=18;render();};
+    $('phase').onchange=e=>{state.phase=e.target.value;state.shortcut=null;state.limit=18;render();};
+    $('search').oninput=e=>{state.search=e.target.value.toLowerCase().trim();state.shortcut=null;state.limit=18;render();};
     $('viewGermany').onclick=()=>{map.fitBounds(GERMANY,{padding:[14,14],animate:false});selectRecord(null,false);};
     $('viewBerlin').onclick=()=>map.fitBounds(BERLIN,{padding:[20,20],animate:false});
     $('viewHamburg').onclick=()=>map.fitBounds(HAMBURG,{padding:[20,20],animate:false});
@@ -296,7 +333,16 @@
   try{
     validData();
     initMap();
-    if(map){wire();render();}
+    if(map){
+      // Enforce exhaustiveness and disjoint primary groups before publishing numbers.
+      const census=Object.fromEntries(MODES.map(mode=>[mode,0]));
+      for(const e of ALL){census.all++;census[primaryClass(e)]++;}
+      if(census.archive+census.policy+census.project+census.facility!==census.all)
+        throw Error('主分类未覆盖完整环保数据');
+      for(const el of document.querySelectorAll('[data-count-for]'))el.textContent=census[el.dataset.countFor];
+      window.__ENVIRONMENT_TAXONOMY__=Object.freeze({...census});
+      wire();render();
+    }
   }catch(e){
     console.error(e);
     $('mapStatus').className='mapstatus fallback';
