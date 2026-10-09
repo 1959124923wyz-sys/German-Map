@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'topics/drugs/**'
+      - 'topics/immigration/**'
       - 'js/layers/city-labels.js'
       - 'js/app.js'
       - 'css/map.css'
@@ -37,6 +38,11 @@ jobs:
       - name: Verify EUDA source data and JS syntax
         run: |
           node --check topics/drugs/topic.js
+          node --check topics/immigration/topic.js
+          test -f topics/immigration/index.html
+          grep -Fq 'germany-states.geojson' topics/immigration/topic.js
+          grep -Fq 'germany-counties.geojson' topics/immigration/topic.js
+          grep -Fq '14070225' topics/immigration/index.html
           node --check js/layers/city-labels.js
           # Prevent Chromium's black rectangular SVG-path focus boxes.
           grep -Fq '#map .leaflet-interactive' css/map.css

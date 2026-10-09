@@ -1,0 +1,51 @@
+name: Immigration 05 unified Leaflet smoke
+on:
+  pull_request:
+    paths:
+      - 'topics/immigration/**'
+      - '.github/workflows/immigration-map-smoke.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'topics/immigration/**'
+      - '.github/workflows/immigration-map-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install reproducible local Leaflet and Chromium
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts leaflet@1.9.4
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Verify source and launch static site
+        run: |
+          node --check topics/immigration/topic.js
+          python - <<'PY'
+          import json
+          s=json.load(open('data/germany-states.geojson'))
+          assert len(s['features'])==16
+          assert len(set(f['properties']['id'] for f in s['features']))==16
+          print('PASS 16 official state polygons')
+          PY
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/immigration-http.log 2>&1 &
+          sleep 2
+      - name: Click, drilldown and screenshot at desktop and mobile sizes
+        run: python topics/immigration/tests/smoke_leaflet.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: immigration-05-leaflet-preview
+          path: /tmp/immigration-unified-*.png
+          if-no-files-found: warn
