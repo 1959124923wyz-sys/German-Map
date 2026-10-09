@@ -27,7 +27,7 @@ def check(browser, mobile=False):
         && window.GermanEnvironment06Data?.length===154
         && window.__ENVIRONMENT_TAXONOMY__?.all===154
         && document.querySelectorAll('#environment-map .leaflet-marker-icon.env-marker-icon').length>=40""",timeout=30000)
-    assert page.locator(".modebar a.modebtn").count()==5
+    assert page.locator(".modebar a.modebtn").count()==6
     assert page.locator(".modebar .modebtn.active").inner_text()=="环保争议"
     assert page.locator("#environment-map .leaflet-control-zoom-in").is_visible()
     assert page.locator("#environment-map .leaflet-tile-pane").count()==1
