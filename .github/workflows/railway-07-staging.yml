@@ -1,0 +1,56 @@
+name: Railway 07 staging map smoke
+
+on:
+  pull_request:
+    paths:
+      - 'topics/railway/**'
+      - '.github/workflows/railway-07-staging.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+concurrency:
+  group: railway07-staging-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Validate source files and independent railway fixture
+        run: |
+          node --check topics/railway/data/network.js
+          node --check topics/railway/topic.js
+          python -m py_compile topics/railway/tests/smoke_railway.py
+          test -s topics/railway/data/network.js
+          ! grep -q 'href="topics/railway/"' index.html
+          python - <<'PY'
+          from pathlib import Path
+          html=Path('topics/railway/index.html').read_text()
+          assert html.count('class="modebtn')==6
+          assert '../../css/map.css' in html and '../environment/' in html
+          assert 'railway-map' in html and 'railway-sidebar' in html
+          assert Path('topics/railway/data/network.js').stat().st_size>1_500_000
+          print('PASS 07 isolated shell, assets and release gating')
+          PY
+      - name: Install Chromium runner and offline Leaflet
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts leaflet@1.9.4
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Test nationwide network, attribute switch and route details
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/railway07-http.log 2>&1 &
+          sleep 2
+          python topics/railway/tests/smoke_railway.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: railway07-unified-preview
+          path: /tmp/railway07-*.png
+          if-no-files-found: warn
