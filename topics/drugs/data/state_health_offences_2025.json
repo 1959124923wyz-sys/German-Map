@@ -8,7 +8,7 @@
     "drug_specific_offence_coverage_states": 11,
     "method": "All 16 Länder are tracked; a state counts as covered only if a 2025 state-wide source reports a concrete observation. County/police-presidium figures are never substituted for the Land. Offence general/trade, statutory totals, substance-involved counts, and subgroup figures have separate classifications; categories with known overlap are never summed.",
     "mortality_scope": "Deaths attributed to drug use in police/health reports. State figures may use different ascertainment dates or methods; media citing police is labeled as secondary, and publication date is not the death date. Missing states and unverified population denominators remain blank.",
-    "updated_at": "2026-10-08",
+    "updated_at": "2026-10-09",
     "health_case_coverage_states": 1
   },
   "mortality_by_state": {
@@ -180,7 +180,7 @@
       "source_url": "https://www.polizei.rlp.de/fileadmin/polizei.rlp.de/Service/Dokumente/Statistiken/_PKS_Landesweit/2025/PKS_Jahresbericht_2025.pdf",
       "source_title": "莱茵兰—普法尔茨州刑警局 · PKS 2025年度报告第48—49页表15",
       "source_type": "state_police",
-      "notes": "大麻的515与858属于KCanG §34不同罪名。其他分项只公布一般违法，不能当作全部违法；报告中的苯丙胺及其衍生物包含摇头丸等，不能标注为纯冰毒。2024年大麻法律调整造成跨年不可比。",
+      "notes": "大麻的515与858属于KCanG §34不同罪名。其他分项只公布一般违法，不能当作全部违法；报告中的苯丙胺及其衍生物包含摇头丸等，不能标注为纯冰毒。2024年大麻法律调整造成跨年不可比。 州PKS 2025表15核实KCanG §34总数2,319，含一般违法515、交易858、走私495、特别严重案件316、非法种植86及§34 Abs.4重罪47；指定子项与总数不得相加。新增§29 BtMG一般违法NPS 173及NpSG独立违法178，法律类别不同，亦不可相加为NPS整体。",
       "groups": [
         {
           "name": "大麻（KCanG）",
@@ -218,6 +218,62 @@
           "code": "BtMG/KCanG/MedCanG",
           "note": "报告第48页文字统计，多个法律项目的合计，不可与大麻分项重复相加。",
           "scope_kind": "multi_offence_substance"
+        },
+        {
+          "name": "大麻 · KCanG §34全部罪名",
+          "cases": 2319,
+          "previous_2024": 951,
+          "code": "KCanG §34 / PKS 736000；州PKS2025表15",
+          "scope_kind": "statutory_total",
+          "note": "含大麻一般违法515与非法交易858及下列其他子项；2025年更改细分罪名代码，2024年起新法部分年度，不能作直接同比。"
+        },
+        {
+          "name": "其中大麻非法走私",
+          "cases": 495,
+          "code": "KCanG §34；表15 unerlaubter Schmuggel",
+          "scope_kind": "subgroup",
+          "subset_of": "大麻 · KCanG §34全部罪名",
+          "note": "属于2,319起法定总项内；与非法交易858为不同表列，不可与总项重复加算。"
+        },
+        {
+          "name": "其中大麻特别严重案件",
+          "cases": 316,
+          "code": "KCanG §34；表15 besonders schwere Fälle",
+          "scope_kind": "subgroup",
+          "subset_of": "大麻 · KCanG §34全部罪名",
+          "note": "属于KCanG §34全部罪名总数。"
+        },
+        {
+          "name": "其中非法种植大麻",
+          "cases": 86,
+          "code": "KCanG §34；表15 unerlaubter Anbau",
+          "scope_kind": "subgroup",
+          "subset_of": "大麻 · KCanG §34全部罪名",
+          "note": "属于KCanG §34全部罪名总数。"
+        },
+        {
+          "name": "其中大麻 §34 Abs.4 重罪",
+          "cases": 47,
+          "code": "KCanG §34 Abs. 4；表15",
+          "scope_kind": "subgroup",
+          "subset_of": "大麻 · KCanG §34全部罪名",
+          "note": "属于KCanG §34全部罪名总数；与特别严重案件可能有代码边界差异，不作额外合计。"
+        },
+        {
+          "name": "新精神活性物质 · BtMG一般违法",
+          "cases": 173,
+          "previous_2024": 283,
+          "code": "BtMG §29；州PKS2025表15 Allgemeiner Verstoß mit NPS",
+          "scope_kind": "general_offence",
+          "note": "与下一项NpSG独立法律罪名不同，不得相加称全部NPS案件。"
+        },
+        {
+          "name": "新精神活性物质 · NpSG违法",
+          "cases": 178,
+          "previous_2024": 55,
+          "code": "NpSG；州PKS2025表15 Straftaten nach dem NpSG",
+          "scope_kind": "other_statutory_offence",
+          "note": "法定口径与BtMG一般违法NPS 173不一致，勿并为总数。"
         }
       ]
     },
@@ -538,6 +594,41 @@
           "unit": "例（诊断记录）"
         }
       ]
+    }
+  },
+  "long_term_trends_by_state": {
+    "Rheinland-Pfalz": {
+      "metric": "Rauschgiftdelikte",
+      "scope_kind": "multi_offence_all_drugs",
+      "law": "BtMG/NpSG/KCanG/MedCanG (PKS drug offences; scope changes from 2024)",
+      "unit": "police_recorded_cases",
+      "source_url": "https://www.polizei.rlp.de/fileadmin/polizei.rlp.de/Service/Dokumente/Statistiken/_PKS_Landesweit/2025/PKS_Jahresbericht_2025.pdf",
+      "source_title": "莱茵兰—普法尔茨州刑警局《PKS2025年报》第47页图21；2021—2025年度毒品违法案件",
+      "records": [
+        {
+          "year": 2021,
+          "cases": 20624
+        },
+        {
+          "year": 2022,
+          "cases": 19832
+        },
+        {
+          "year": 2023,
+          "cases": 19296
+        },
+        {
+          "year": 2024,
+          "cases": 13433
+        },
+        {
+          "year": 2025,
+          "cases": 9888
+        }
+      ],
+      "break_year": 2024,
+      "break_label": "2024年4月1日《大麻法》生效，部分持有行为非刑事犯罪；2025年KCanG细分代码再次调整。",
+      "note": "属于警方登记毒品违法案件，不是吸毒人数。2021—2023、2024—2025两段可观察记录变化，跨2023/2024不可机械解释为吸毒或毒品问题下降。不同执法强度同样影响数字。"
     }
   }
 }
