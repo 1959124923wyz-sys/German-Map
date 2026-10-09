@@ -4,7 +4,7 @@
 (()=>{
 'use strict';
 const $=s=>document.querySelector(s);
-const COLORS={red:'#c74753',orange:'#cf7f27',green:'#167f63',missing:'#5c7380'};
+const COLORS={red:'#c74753',orange:'#cf7f27',green:'#16865e',missing:'#16865e'};
 const sources={REGIONAL:['RE','RB'],LONG:['LONG'],OTHER:['HLB','BRB','ERB','NWB','OE']};
 const labels={REGIONAL:'区域列车（RE / RB）',LONG:'长途列车（ICE / IC / EC / FLX）',OTHER:'其他运营商'};
 const specs={
@@ -15,6 +15,7 @@ const specs={
 };
 const stationZh=name=>window.GermanRailStations?.localize(name)||name;
 const REF_ZOOM=9, WORLD=256*2**REF_ZOOM, CELL=64, NATION=[[47.05,5.45],[55.15,15.65]];
+// Fixed 100-observation inclusion threshold (not a user-facing filter).
 const view={service:'REGIONAL',metric:'both',minimum:100,selected:null,links:[],
   rendered:[],groups:[],ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,networkParts:[],grid:new Map(),map:null,
   baseLayer:null,observedLayer:null,repaints:0};
@@ -149,8 +150,9 @@ const CanvasLayer=L.Layer.extend({
    if(!view.networkReady)return;
    ctx.beginPath();
    for(const p of view.networkParts)if(visible(p,v))drawPath(ctx,p,v);
-   ctx.strokeStyle='#436479';ctx.globalAlpha=.8;
-   ctx.lineWidth=m.getZoom()<7?1.0:1.25;ctx.stroke();
+   // Unknown samples use the same green family without pretending to be on-time.
+   ctx.strokeStyle=COLORS.green;ctx.globalAlpha=.53;
+   ctx.lineWidth=m.getZoom()<7?.9:1.1;ctx.stroke();
   }else{
    const widths=[1.65,2.25,2.65];
    const colors=[COLORS.green,COLORS.orange,COLORS.red];
@@ -190,11 +192,11 @@ function makeMap(){
   maxZoom:19,opacity:.9,attribution:'© OpenStreetMap contributors',
   crossOrigin:true,updateWhenIdle:true,keepBuffer:2});
  tiles.on('tileload',()=>{
-  if(!view.tiles){view.tiles=true;$('#mapStatus').textContent='OSM街道底图 · DB InfraGO 官方铁路网';$('#mapStatus').classList.add('ok');}
+  if(!view.tiles){view.tiles=true;$('#mapStatus').textContent='';$('#mapStatus').classList.add('ok');}
  });
  let errors=0;
  tiles.on('tileerror',()=>{
-  if(++errors>5&&!view.tiles){$('#mapStatus').textContent='底图暂不可用 · 官方轨道及运行区间仍可查看';}
+  if(++errors>5&&!view.tiles){$('#mapStatus').textContent='地图底图暂不可用';$('#mapStatus').classList.remove('ok');}
  });
  tiles.addTo(m);
  fetch('../../data/germany-states.geojson',{cache:'force-cache'}).then(r=>{
@@ -231,11 +233,11 @@ function buildNetwork(){
    const p=officialPart(sections[cursor]);if(p)view.networkParts.push(p);
   }
   if(cursor<sections.length){
-   if(cursor===950)$('#mapStatus').textContent='正在读取 DB InfraGO 真实轨道…';
+   if(cursor===950)$('#mapStatus').textContent='';
    requestAnimationFrame(batch);
   }else{
    view.networkReady=true;view.baseLayer.schedule();
-   $('#mapStatus').textContent=view.tiles?'OSM街道底图 · 官方完整铁路网':'官方完整铁路网 · 街道底图加载中';
+   if(view.tiles)$('#mapStatus').textContent='';
   }
  };
  requestAnimationFrame(batch);
@@ -318,8 +320,7 @@ function fillLegend(){
  const box=$('#railLegend');
  box.replaceChildren();
  const title=document.createElement('b');title.textContent=thresholds[0];box.appendChild(title);
- for(const [col,s] of [[COLORS.missing,'无匹配或样本不足'],
-   [COLORS.green,thresholds[1]],[COLORS.orange,thresholds[2]],[COLORS.red,thresholds[3]]]){
+ for(const [col,s] of [[COLORS.green,'其他线路'],[COLORS.orange,thresholds[2]],[COLORS.red,thresholds[3]]]){
   const row=document.createElement('span'),dot=document.createElement('i');
   dot.style.background=col;row.append(dot,document.createTextNode(s));box.append(row);
  }
@@ -516,10 +517,7 @@ function recalc(){
  view.groups=buildCorridors(items);
  view.selected=previous?(view.groups.find(g=>g.members.some(x=>x.leg===previous))||null):null;
  rebuildIndex();
- $('#visibleCount').textContent=fmt(items.length);
- const count=items.filter(o=>o.grade===2).length;
- $('#redCount').textContent=fmt(count);
- $('#redShare').textContent=items.length?(100*count/items.length).toFixed(1)+'%':'—';
+ // The research dashboard retains all overall counts; the map stays focused on picked segments.
  status(labels[view.service]+' · '+fmt(view.groups.length)+' 段连续区间');
  fillLegend();placeLegend();updateHotspots();showDetail();
  view.observedLayer.schedule();
@@ -528,7 +526,6 @@ function recalc(){
 async function chooseService(){
  const id=++view.ticket,service=view.service;
  view.selected=null;view.links=[];view.rendered=[];view.groups=[];view.grid.clear();
- $('#visibleCount').textContent='—';$('#redCount').textContent='—';$('#redShare').textContent='—';
  view.observedLayer.schedule();status('正在读取 '+labels[service]+' 的观测…');
  try{
   const data=await Promise.all(sources[service].map(async k=>[k,await loadData(k)]));
@@ -555,7 +552,6 @@ function bindControls(){
   }
   view.selected=null;recalc();
  };
- $('#minimum').onchange=e=>{view.minimum=Number(e.target.value);view.selected=null;recalc();};
  window.addEventListener('resize',placeLegend);
 }
 try{
