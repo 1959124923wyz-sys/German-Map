@@ -33,7 +33,10 @@ def check(browser, mobile=False):
     assert page.locator("#environment-map .leaflet-tile-pane").count()==1
     assert page.locator("#environment-map .crime-city-label").count()>=5
     assert page.locator("#summaryPanel .area-title").is_hidden()
-    assert page.locator("#mapTools").evaluate("(el)=>el.open") is False
+    # The category tabs are the only navigation/filter controls in the sidebar.
+    for removed in ("#taxonomyGuide","#mapTools","#org","#search","#action","#phase",
+                    "#clearFilters","#filterState",'[data-shortcut]'):
+        assert page.locator(removed).count()==0,removed
     assert "街道底图" in page.locator("#mapStatus").inner_text() or "底图" in page.locator("#mapStatus").inner_text()
 
     facts=page.evaluate(r"""() => {
@@ -65,51 +68,21 @@ def check(browser, mobile=False):
         assert page.locator("#count").inner_text()==str(expected),mode
         assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==expected,mode
         assert page.locator("#listCount").inner_text()==str(expected)+" 条",mode
-        assert page.locator("#filterState").is_hidden(), "Default topic choice needs no redundant summary"
-    page.locator("#taxonomyGuide summary").click()
-    assert page.locator("#taxonomyGuide").evaluate("(e)=>e.open") is True
-    assert "未来计划" in page.locator("#taxonomyGuide").inner_text()
-    page.locator("#taxonomyGuide summary").click()
+
     page.locator('[data-mode="project"]').click()
     project=page.evaluate("window.__ENVIRONMENT_MAP__.getRows().map(e=>e.kind)")
     assert project.count("organization")==10 and project.count("facility_story")==1,project
-    # Actor filtering must not override the selected primary record class.
-    page.locator("#org").select_option("BUND")
-    assert all(k in ("organization","facility_story") for k in page.evaluate("window.__ENVIRONMENT_MAP__.getRows().map(e=>e.kind)"))
+    page.locator('[data-mode="facility"]').click()
+    assert "未来退出计划" in page.locator("#legend").inner_text()
+    assert page.locator("#count").inner_text()=="92"
+    page.locator('[data-mode="archive"]').click()
+    assert "交通干扰" in page.locator("#legend").inner_text()
+    assert page.locator("#count").inner_text()=="41"
     page.locator('[data-mode="all"]').click()
     assert page.locator("#count").inner_text()=="154"
-    assert page.locator("#regionCount").inner_text()!="—"
-    assert int(page.locator("#sourceCount").inner_text())>=100 # 121 distinct URLs across 154 records; sources are reused
-    # Editorial picks and common questions are cross-category shortcuts, not primary classes.
-    page.locator('[data-shortcut="focus"]').click()
-    assert page.locator("#count").inner_text()=="21"
-    assert "重点案例" in page.locator("#filterState").inner_text()
-    page.locator('[data-shortcut="airport"]').click()
-    assert 0<int(page.locator("#count").inner_text())<=41
-    page.locator('[data-shortcut="paint"]').click()
-    assert 0<int(page.locator("#count").inner_text())<=41
-    page.locator('[data-shortcut="scheduled"]').click()
-    assert page.locator("#count").inner_text()=="21"
-    assert page.locator('[data-mode="facility"]').get_attribute("aria-pressed")=="true"
-    page.locator("#clearFilters").click()
-    assert page.locator("#count").inner_text()=="154"
-    assert page.locator("#search").input_value()==""
-    assert page.locator("#org").input_value()=="all"
-    # Facility phase entries only apply inside the facility class.
-    page.locator('[data-mode="facility"]').click()
-    page.locator('[data-mode="facility"]').click()
-    page.locator('#phase').select_option("scheduled")
-    assert page.locator("#count").inner_text()=="21"
-    assert "计划" in page.locator("#listHint").inner_text() or "退出" in page.locator("#listHint").inner_text()
-    page.locator('#phase').select_option("retired")
-    assert page.locator("#count").inner_text()=="32"
+    assert int(page.locator("#sourceCount").inner_text())>=100
+    # Preserve detail links and the list navigation with no secondary filters.
     page.locator('[data-mode="archive"]').click()
-    page.locator("#search").fill("机场")
-    assert 0<int(page.locator("#count").inner_text())<=41
-    page.locator("#search").fill("")
-    page.locator('#action').select_option("traffic")
-    assert page.locator("#count").inner_text()=="21"
-    page.locator('#action').select_option("all")
     # Click a real Leaflet marker and verify actual source-linked detail in the sidebar.
     first=page.evaluate("window.__ENVIRONMENT_MAP__.getRows()[0].id")
     page.evaluate("""id => window.__ENVIRONMENT_MAP__.getMarkers().get(id).fire('click')""",first)
@@ -127,10 +100,9 @@ def check(browser, mobile=False):
     page.locator("#entries .env-entry").first.click()
     assert page.locator("#detail").is_visible()
     assert page.evaluate("window.__ENVIRONMENT_MAP__.map.getZoom()")>=8
-    page.locator("#mapTools summary").click()
-    assert page.locator("#mapTools").evaluate("(el)=>el.open") is True
-    page.locator("#viewGermany").click()
-    page.wait_for_function("window.__ENVIRONMENT_MAP__.map.getZoom() < 8", timeout=10000)
+    zoom=page.evaluate("window.__ENVIRONMENT_MAP__.map.getZoom()")
+    page.locator("#environment-map .leaflet-control-zoom-out").click()
+    page.wait_for_function("(z) => window.__ENVIRONMENT_MAP__.map.getZoom() < z",arg=zoom,timeout=10000)
     if mobile:
         assert page.locator(".environment-sidebar").is_visible()
         assert page.evaluate("document.body.scrollWidth <= innerWidth+3")
