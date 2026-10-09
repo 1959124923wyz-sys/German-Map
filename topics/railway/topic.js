@@ -267,7 +267,7 @@ function hitRail(latlng){
 }
 function initMap(){
   // Rail tracks draw on a dedicated Canvas layer; state outlines use SVG as in 01–06.
-  map=L.map('railway-map',{preferCanvas:false,minZoom:5,maxZoom:16,zoomControl:true,zoomSnap:.5});
+  map=L.map('railway-map',{preferCanvas:false,minZoom:4,maxZoom:16,zoomControl:true,zoomSnap:.5});
   map.fitBounds(BOUNDS,{padding:[12,12],animate:false});
   map.setMaxBounds([[45.3,3.2],[57.1,18]]);
   map.createPane(CANVAS_PANE).style.zIndex=350;
@@ -309,6 +309,9 @@ try{
   buildGeometry();
   initMap();
   wire();legend();details();
+  // The sixth tab overflows horizontally on mobile. Keep the current topic visible.
+  const nav=document.querySelector('.modebar');
+  if(nav)nav.scrollLeft=nav.scrollWidth;
   window.__RAILWAY_07__={getMap:()=>map,getStyle:()=>style,
     getRouteCount:()=>D.routes.length,getGeometryCount:()=>parts.length,
     getSelected:()=>selected,getVisibleGeometryCount:()=>layer.visibleSections,
