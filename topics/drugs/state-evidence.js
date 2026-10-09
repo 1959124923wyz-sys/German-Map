@@ -22,7 +22,7 @@ function validate(d){
     throw Error('医院记录非法');
  }
  for(const [state,trend] of Object.entries(d.long_term_trends_by_state||{})){
-  if(!state||!/^https:\\/\\//.test(trend.source_url)||
+  if(!state||!String(trend.source_url||'').startsWith('https://')||
     !Array.isArray(trend.records)||trend.records.length!==5||
     trend.break_year!==2024||!trend.break_label||
     !trend.records.every((r,i)=>r.year===2021+i&&Number.isInteger(r.cases)&&r.cases>=0))
