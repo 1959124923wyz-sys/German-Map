@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>德国铁路基础设施地图 | German-Map</title>
+<meta name="description" content="按德国铁路官方基础设施线路编号浏览真实轨道、最高速等级、电气化和单／双线属性。">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="../../css/map.css">
+<link rel="stylesheet" href="topic.css">
+</head>
+<body>
+<header><div class="header-main">
+  <div class="titleblock"><div class="title">德国铁路地图</div><div class="header-meta">铁路线路 · 轨道属性 · 基础设施</div></div>
+  <nav class="modebar" aria-label="德国地图专题切换">
+    <a class="modebtn" href="../../index.html">暴力犯罪</a>
+    <a class="modebtn" href="../../index.html?mode=property">财产犯罪</a>
+    <a class="modebtn" href="../drugs/">毒品问题</a>
+    <a class="modebtn" href="../immigration/">移民人口</a>
+    <a class="modebtn" href="../environment/">环保争议</a>
+    <a class="modebtn active" aria-current="page" href="./">铁路交通</a>
+  </nav>
+</div></header>
+<main class="railway-workspace">
+  <section class="mapwrap" aria-label="德国官方铁路线路图">
+    <div id="railway-map"></div>
+    <div id="mapStatus" class="mapstatus" role="status">正在读取铁路网…</div>
+    <div id="legend" class="legend" aria-label="线路属性图例"></div>
+  </section>
+  <aside class="railway-sidebar">
+    <div class="controls">
+      <div class="rail-selector">
+        <span class="control-label">显示属性</span>
+        <div class="rail-tabs" role="group" aria-label="铁路线路属性">
+          <button type="button" class="active" data-style="speed" aria-pressed="true">速度</button>
+          <button type="button" data-style="elec" aria-pressed="false">电气化</button>
+          <button type="button" data-style="tracks" aria-pressed="false">单双线</button>
+        </div>
+      </div>
+      <div class="rail-search"><label for="routeSearch">线路编号或名称</label>
+        <input id="routeSearch" type="search" placeholder="例如 1733、汉诺威、Kassel…" autocomplete="off">
+        <div class="rail-matches" id="matches" hidden></div>
+      </div>
+      <div class="rail-selected-tools" id="selectedTools" hidden>
+        <span id="selectedInfo"></span><button id="clearRoute" type="button">返回全国</button>
+      </div>
+    </div>
+    <section class="safety-panel" aria-label="铁路线路与设施统计">
+      <div class="safety-head"><strong id="sectionTitle">全国铁路基础设施</strong><span class="safety-hint" id="detailHint">点击线路查看详情</span></div>
+      <div class="area-title"><div class="area-name" id="detailName">德国铁路网</div><span class="risk-badge mid" id="detailBadge">线路</span></div>
+      <div class="area-metric" id="detailSub">官方基础设施线路编号，不等于 ICE 车次</div>
+      <div class="area-grid">
+        <div class="area-stat"><b id="routeCount">—</b><small id="routeLabel">线路编号</small></div>
+        <div class="area-stat"><b id="segmentCount">—</b><small id="segmentLabel">原始境内分段</small></div>
+        <div class="area-stat"><b id="stateCount">—</b><small id="stateLabel">覆盖联邦州</small></div>
+      </div>
+      <div class="rail-facts" id="facts"></div>
+      <div class="rail-stops" id="stops" hidden><strong>关联运营点</strong><div id="stopList"></div></div>
+      <details class="rail-source"><summary>数据口径与来源</summary>
+        <p>轨道几何及线路编号基于 DB InfraGO 官方基础设施线段资料。线路轴线、正向与反向轨道等记录可能重复覆盖位置；其长度相加不是去重后的营业里程。</p>
+        <p>最高速度等级及电气化属性描述基础设施，不表示列车实际准点率、车次取消率或载客服务。数据进入正式发布前仍须核对原始 CSV 的版本、许可证及完整导出。</p>
+      </details>
+    </section>
+  </aside>
+</main>
+<footer><span>德国铁路基础设施 · 非实时列车运行数据</span><span>© OpenStreetMap contributors · Leaflet</span></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="../../js/core/place-names-zh.js"></script>
+<script src="../../js/layers/city-labels.js"></script>
+<script src="data/network.js"></script>
+<script src="topic.js"></script>
+</body></html>
