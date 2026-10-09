@@ -128,3 +128,36 @@
  .env-taxonomy-heading span{font-size:8.5px}
  .env-shortcut-row{gap:4px}
 }
+
+
+/* Site cleanup: prioritize the map and filters, show long methods on demand. */
+.environment-sidebar .controls{padding:9px 11px}
+.environment-sidebar .env-taxonomy .env-tabs button{padding:6px 8px;font-size:10px;min-height:33px}
+.environment-sidebar .env-taxonomy-heading{margin:0 0 6px}
+.environment-sidebar .env-taxonomy-heading span{font-size:9px}
+.env-taxonomy-guide{margin-top:2px}
+.env-taxonomy-guide>summary{font-size:9px;color:#8eabbb}
+.env-shortcut-row{margin:5px 0 3px;padding-top:7px}
+.environment-sidebar .env-shortcut-row button{padding:4px 7px;font-size:9.5px}
+.environment-sidebar .env-shortcut-row .env-clear{font-size:9px}
+.env-map-tools{font-size:10px;color:#91a7b6;margin:4px 0 5px}
+.env-map-tools>summary{cursor:pointer;font-size:10px;padding:4px 0;color:#9fc7dc}
+.env-map-tools .control-row{padding:6px 0 3px;gap:5px;margin:0}
+.env-map-tools .control-row button{font-size:9.5px}
+.env-map-tools[open]{border-bottom:1px solid #293846}
+.environment-sidebar .env-filters{margin:2px 0 5px}
+.environment-sidebar .env-search{margin-bottom:0}
+.env-filter-state[hidden]{display:none!important}
+.env-filter-state{margin:3px 0 0;color:#a5c2d3}
+#summaryPanel:not(.has-selection) .area-title,
+#summaryPanel:not(.has-selection) .area-metric{display:none}
+#summaryPanel .coverage-line{display:none}
+#summaryPanel .safety-head{margin-bottom:8px}
+#summaryPanel .area-stat{padding:7px 8px}
+#summaryPanel .area-note{margin-top:7px;font-size:9px;line-height:1.4}
+#summaryPanel .rank-section{margin-top:11px;padding-top:8px}
+#summaryPanel .rank-row{padding:4px 5px}
+#recordDrawer>summary{padding:8px 10px}
+@media(max-width:920px){
+ .environment-sidebar .controls{padding:9px 11px}
+}
