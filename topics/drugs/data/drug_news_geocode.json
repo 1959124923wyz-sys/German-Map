@@ -86,5 +86,61 @@
   "Aurich": {
     "lat": 53.509462,
     "lon": 7.358341
+  },
+  "Gotha": {
+    "lat": 50.949485,
+    "lon": 10.701443
+  },
+  "Traben-Trarbach": {
+    "lat": 49.953044,
+    "lon": 7.123316
+  },
+  "Duisburg; Kreis Kleve": {
+    "lat": 51.831862,
+    "lon": 6.247809
+  },
+  "Schleswig | Nordfriesland": {
+    "lat": 55.057926,
+    "lon": 8.416892
+  },
+  "Kiel, Flensburg": {
+    "lat": 54.768711,
+    "lon": 9.442903
+  },
+  "Mönchengladbach": {
+    "lat": 51.194713,
+    "lon": 6.435379
+  },
+  "Stuttgart-Feuerbach": {
+    "lat": 48.813504,
+    "lon": 9.169306
+  },
+  "Lörrach": {
+    "lat": 47.61209,
+    "lon": 7.660722
+  },
+  "VS - Schwenningen": {
+    "lat": 48.065705,
+    "lon": 8.536126
+  },
+  "Bredstedt": {
+    "lat": 54.623633,
+    "lon": 8.964083
+  },
+  "Bremerhaven": {
+    "lat": 53.550539,
+    "lon": 8.585195
+  },
+  "Ludwigsburg": {
+    "lat": 48.895394,
+    "lon": 9.189515
+  },
+  "Bochum, Dortmund": {
+    "lat": 51.503563,
+    "lon": 7.456794
+  },
+  "Mühlhausen": {
+    "lat": 51.209426,
+    "lon": 10.458904
   }
 }
