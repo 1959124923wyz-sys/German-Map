@@ -55,7 +55,7 @@ jobs:
           import re
           from pathlib import Path
           h=Path('topics/railway/index.html').read_text(encoding='utf-8')
-          scripts=re.findall(r'<script src="([^"]+)"', h)
+          scripts=[src.split('?',1)[0] for src in re.findall(r'<script src="([^"]+)"', h)]
           # Verify actual required assets rather than pinning an obsolete
           # number of script tags whenever UI/data modules are separated.
           required={'js/states.js','data/data-core.js','overview.js','js/station-zh.js'}
