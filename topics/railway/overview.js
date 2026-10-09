@@ -313,10 +313,9 @@ function attention(m){
 }
 function fillLegend(){
  const mode=view.metric;
- const thresholds=mode==='late'?['到站晚点 ≥6分钟 · 观测比例','<25%','25%–<40%','≥40%']
- :mode==='cancel'?['停靠取消标记 · 观测比例','<4%','4%–<8%','≥8%']
- :['综合关注 · 晚点≥6分钟 / 停靠取消比例','晚点 <25% 且取消 <4%',
-   '晚点 ≥25% 或取消 ≥4%（未达红线）','晚点 ≥40% 或取消 ≥8%'];
+ const thresholds=mode==='late'?['晚点比例','<25%','25%–<40%','≥40%']
+ :mode==='cancel'?['停靠取消标记率','<4%','4%–<8%','≥8%']
+ :['晚点 / 取消标记','','晚点 ≥25% 或取消 ≥4%','晚点 ≥40% 或取消 ≥8%'];
  const box=$('#railLegend');
  box.replaceChildren();
  const title=document.createElement('b');title.textContent=thresholds[0];box.appendChild(title);
@@ -562,7 +561,7 @@ try{
  const nav=$('.toplinks');if(nav)nav.scrollLeft=nav.scrollWidth;
  buildNetwork();
  window.__RAILWAY_OVERVIEW__=Object.freeze({
-  getService:()=>view.service,getMetric:()=>view.metric,
+  getService:()=>view.service,getMetric:()=>view.metric,getMinimum:()=>view.minimum,
   getVisible:()=>view.rendered.length,getMergedLinks:()=>view.links.length,
   getSelected:()=>view.selected,getScale:()=>view.map?.getZoom(),
   getMap:()=>view.map,getNetworkGeometryCount:()=>view.networkParts.length,
