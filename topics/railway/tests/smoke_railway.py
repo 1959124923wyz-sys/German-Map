@@ -71,6 +71,9 @@ def run(browser, mobile=False):
     assert page.locator('.rail-source').count()==1
     if mobile:
         assert page.locator('.railway-sidebar').is_visible()
+        assert page.locator('.railway-sidebar .rail-selector #legend').count()==1
+        assert page.locator('.mapwrap #legend').count()==0
+        assert page.locator('#legend .rail-legend-item').count()>=3
         assert page.evaluate("document.body.scrollWidth <= innerWidth+3")
         visible=page.evaluate("""() => {
           const active=document.querySelector('.modebar .modebtn.active').getBoundingClientRect();
@@ -83,6 +86,7 @@ def run(browser, mobile=False):
           return m.getBounds().contains(L.latLngBounds([[47.05,5.45],[55.15,15.65]]));
         }"""), "National network must fit inside the mobile map at overview zoom"
     else:
+        assert page.locator('.mapwrap #legend').count()==1
         assert page.evaluate("""document.querySelector('.railway-sidebar')
           .getBoundingClientRect().left > innerWidth*.55""")
     page.screenshot(path="/tmp/railway07-"+("mobile" if mobile else "desktop")+".png",full_page=True)
