@@ -19,7 +19,10 @@ def check(browser, mobile=False):
     assert page.locator(".toplinks .modebtn").count()==4
     assert page.locator(".toplinks .modebtn.active").inner_text()=="移民人口"
     assert page.locator(".sidebar").evaluate("(e)=>getComputedStyle(e).backgroundColor")=="rgb(19, 26, 34)"
-    assert page.locator(".leaflet-immigrationStatePane-pane svg path").count()>=16
+    page.screenshot(path="/tmp/immigration-unified-diagnostic-"+("mobile" if mobile else "desktop")+".png",full_page=True)
+    state_count=page.evaluate("()=>window.__IMMIGRATION_MAP_V13__.getPane('immigrationStatePane').querySelectorAll('path').length")
+    print("Diagnostics: panes",page.evaluate("()=>[...document.querySelectorAll('#immigration-map .leaflet-pane')].map(e=>[e.className,e.querySelectorAll('path').length])"),"state path count",state_count,flush=True)
+    assert state_count>=16,("No 16 real state polygons",state_count)
     assert page.locator("#immigration-map .crime-city-label").count()>=6
     assert page.locator("#state-list button").count()==16
     assert page.locator("#national-value").inner_text()=="14,070,225"
@@ -38,12 +41,12 @@ def check(browser, mobile=False):
     assert page.locator("#county-list button").count()==15
     page.locator("#show-counties").click()
     page.wait_for_function("()=>window.GermanMapTopics.immigration.getViewState().countyMode==='counties'",timeout=45000)
-    assert page.locator(".leaflet-immigrationCountyPane-pane svg path").count()>=15
+    assert page.evaluate("()=>window.__IMMIGRATION_MAP_V13__.getPane('immigrationCountyPane').querySelectorAll('path').length")>=15
     page.locator("#county-list").get_by_text("Flensburg").click()
     assert page.locator("#county-value").inner_text()=="17,910"
     page.locator("#show-counties").click()
     assert page.evaluate("()=>window.GermanMapTopics.immigration.getViewState().countyMode")=="states"
-    assert page.locator(".leaflet-immigrationStatePane-pane svg path").first.evaluate("(e)=>getComputedStyle(e).pointerEvents")!="none"
+    assert page.evaluate("()=>getComputedStyle(window.__IMMIGRATION_MAP_V13__.getPane('immigrationStatePane').querySelector('path')).pointerEvents")!="none"
     page.locator("#back-country").click()
     page.locator("#state-list").get_by_text("Bayern").click()
     assert page.locator("#region-value").inner_text()=="2,386,525"
