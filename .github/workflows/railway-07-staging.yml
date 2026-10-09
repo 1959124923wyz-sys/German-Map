@@ -26,6 +26,8 @@ jobs:
         run: |
           node --check topics/railway/data/network.js
           node --check topics/railway/topic.js
+          node topics/railway/scripts/export-route-index.cjs
+          test "$(wc -l < topics/railway/data/route-index.csv)" -eq 1547
           python -m py_compile topics/railway/tests/smoke_railway.py
           test -s topics/railway/data/network.js
           ! grep -q 'href="topics/railway/"' index.html
@@ -52,5 +54,7 @@ jobs:
         if: always()
         with:
           name: railway07-unified-preview
-          path: /tmp/railway07-*.png
+          path: |
+            /tmp/railway07-*.png
+            topics/railway/data/route-index.csv
           if-no-files-found: warn
