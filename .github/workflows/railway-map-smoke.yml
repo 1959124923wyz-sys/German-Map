@@ -25,6 +25,7 @@ jobs:
         run: |
           node --check topics/railway/overview.js
           node --check topics/railway/js/station-zh.js
+          node --check topics/railway/js/app.js
           python -m py_compile topics/railway/tests/smoke_overview.py
       - name: Install browser testing runtime
         run: |
