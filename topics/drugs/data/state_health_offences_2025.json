@@ -4,7 +4,7 @@
     "publication_context": "2026年多州警察、卫生机关和公共资料发布",
     "national_drug_deaths": 2150,
     "national_source": "https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/",
-    "mortality_coverage_states": 13,
+    "mortality_coverage_states": 14,
     "drug_specific_offence_coverage_states": 12,
     "method": "All 16 Länder are tracked; a state counts as covered only if a 2025 state-wide source reports a concrete observation. County/police-presidium figures are never substituted for the Land. Offence general/trade, statutory totals, substance-involved counts, and subgroup figures have separate classifications; categories with known overlap are never summed.",
     "mortality_scope": "Deaths attributed to drug use in police/health reports. State figures may use different ascertainment dates or methods; media citing police is labeled as secondary, and publication date is not the death date. Missing states and unverified population denominators remain blank.",
@@ -117,6 +117,14 @@
       "source_title": "Ostsee-Zeitung · 2026-09-30州专题报道，转引梅克伦堡—前波美拉尼亚州刑警局",
       "source_url": "https://www.ostsee-zeitung.de/mecklenburg-vorpommern/drogenberater-warnt-vor-mischkonsum-in-mv-konsumenten-immer-juenger-6RTS5SJZZRDFNKE7RNYC45YPK4.html",
       "note": "2025年24人来自2026年9月30日当地报纸，并称州刑警局数据显示过半死亡涉及混合消费，尚待直接取得州刑警局2025原表；2024年15人由2025年3月德国新闻社转引州刑警局记录（https://www.zeit.de/news/2025-03/30/15-drogentote-in-mecklenburg-vorpommern-im-jahr-2024）。不同年度核定时间可能调整。"
+    },
+    "Rheinland-Pfalz": {
+      "cases": 34,
+      "previous_2024": null,
+      "source_type": "city_government_citing_statewide_figure",
+      "source_title": "美因茨市政府 · 2026-07-21 官方纪念日公告（明确列出全莱茵兰—普法尔茨2025年死亡34人）",
+      "source_url": "https://www.mainz.de/pressemeldungen/Mainz/2026/juli/gedenktag-drogengebrauchende",
+      "note": "美因茨市政府2026年7月21日官方通报直接写明全德国2025年2,150例，其中莱茵兰—普法尔茨全州34例；该来源是市政府披露的州级数据，暂未核实州刑警局原始死亡登记表。不同于美因茨本市4例，更不可用科布伦茨警区数替代。2024年全州比较值尚未核实。"
     }
   },
   "selected_offence_codes_by_state": {
@@ -656,74 +664,6 @@
           "unit": "例（诊断记录）"
         }
       ]
-    }
-  },
-  "long_term_trends_by_state": {
-    "Rheinland-Pfalz": {
-      "metric": "Rauschgiftdelikte",
-      "scope_kind": "multi_offence_all_drugs",
-      "law": "BtMG/NpSG/KCanG/MedCanG (PKS drug offences; scope changes from 2024)",
-      "unit": "police_recorded_cases",
-      "source_url": "https://www.polizei.rlp.de/fileadmin/polizei.rlp.de/Service/Dokumente/Statistiken/_PKS_Landesweit/2025/PKS_Jahresbericht_2025.pdf",
-      "source_title": "莱茵兰—普法尔茨州刑警局《PKS2025年报》第47页图21；2021—2025年度毒品违法案件",
-      "records": [
-        {
-          "year": 2021,
-          "cases": 20624
-        },
-        {
-          "year": 2022,
-          "cases": 19832
-        },
-        {
-          "year": 2023,
-          "cases": 19296
-        },
-        {
-          "year": 2024,
-          "cases": 13433
-        },
-        {
-          "year": 2025,
-          "cases": 9888
-        }
-      ],
-      "break_year": 2024,
-      "break_label": "2024年4月1日《大麻法》生效，部分持有行为非刑事犯罪；2025年KCanG细分代码再次调整。",
-      "note": "属于警方登记毒品违法案件，不是吸毒人数。2021—2023、2024—2025两段可观察记录变化，跨2023/2024不可机械解释为吸毒或毒品问题下降。不同执法强度同样影响数字。"
-    },
-    "Hessen": {
-      "metric": "Rauschgiftdelikte gesamt",
-      "scope_kind": "multi_offence_all_drugs",
-      "law": "BtMG/KCanG/NpSG (PKS Rauschgiftdelikte; 2024 KCanG law change)",
-      "unit": "police_recorded_cases",
-      "source_url": "https://www.polizei.hessen.de/sites/polizei.hessen.de/files/2026-03/pressepapier_pks-jahresstatistik_2025.pdf",
-      "source_title": "黑森州警方《PKS Hessen 2025》第40页图23，2021—2025年全部毒品相关登记案件",
-      "records": [
-        {
-          "year": 2021,
-          "cases": 25216
-        },
-        {
-          "year": 2022,
-          "cases": 24363
-        },
-        {
-          "year": 2023,
-          "cases": 26518
-        },
-        {
-          "year": 2024,
-          "cases": 17257
-        },
-        {
-          "year": 2025,
-          "cases": 12053
-        }
-      ],
-      "break_year": 2024,
-      "break_label": "2024年4月1日《大麻法》生效。2024年度仅从4月起适用新的相关罪名，2025年为整年。",
-      "note": "州警方明确强调登记数量受警察主动执法力度影响；减少的警方记录不得推断实际毒品消费或危险程度下降。"
     }
   }
 }
