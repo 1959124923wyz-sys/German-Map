@@ -190,6 +190,7 @@
     const e=rows.find(v=>v.id===id);
     state.selected=e?e.id:null;
     detail(e||null);
+    $('summaryPanel').classList.toggle('has-selection',!!e);
     $('areaName').textContent=e?cityName(e):'德国全国';
     $('kindBadge').textContent=e?kind(e):'专题概览';
     $('areaMetric').textContent=e?(e.actor||'事件主体未确定')+' · '+e.date:'政策、直接行动和电厂退出的可核查记录';
