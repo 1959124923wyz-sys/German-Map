@@ -442,8 +442,8 @@
     window.__DRUGS_PREVIEW_MAP__ = map;
     // Shared label placement with violence/property; city labels cannot capture map clicks.
     window.CrimeCityLabels?.create(map,{paneName:'drugs-city-labels',zIndex:440});
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom:19,opacity:.56,attribution:'© OpenStreetMap contributors'
+    L.tileLayer('https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+      maxZoom:19,opacity:.56,attribution:'© OpenStreetMap contributors · © CARTO'
     }).addTo(map);
     activate({map}).catch(error => {
       console.error(error);

@@ -36,7 +36,7 @@
   map.getPane('tilePane').style.filter='saturate(.45) contrast(.86) brightness(1.06)';
 
   let tileOk=false,tileErrors=0;
-  const tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,opacity:.52,attribution:'© OpenStreetMap contributors',crossOrigin:true,updateWhenIdle:true});
+  const tiles=L.tileLayer('https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',{maxZoom:19,opacity:.52,attribution:'© OpenStreetMap contributors · © CARTO',crossOrigin:true,updateWhenIdle:true});
   tiles.on('tileload',()=>{if(!tileOk){tileOk=true;el.mapStatus.className='mapstatus ok';el.mapStatus.textContent='OSM街道底图 + 本地统计图层';}});
   tiles.on('tileerror',()=>{tileErrors++;if(tileErrors>=6&&!tileOk){if(map.hasLayer(tiles))map.removeLayer(tiles);el.mapStatus.className='mapstatus fallback';el.mapStatus.textContent='本地统计底图（OSM当前不可用）';}});
   tiles.addTo(map);

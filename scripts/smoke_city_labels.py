@@ -42,7 +42,7 @@ def assert_no_svg_focus_rectangle(page, map_selector):
 def label_assertions(page, container, pane_expr):
     page.wait_for_function("""(c)=>document.querySelectorAll(c+' .crime-city-label').length>=8""",
                            arg=container,timeout=35000)
-    assert page.locator(container + ' .crime-city-label').filter(has_text='Berlin').count()>=1
+    assert page.locator(container + ' .crime-city-label').filter(has_text='柏林').count()>=1
     props=page.locator(container+' .crime-city-label').first.evaluate(
         '(e)=>({size:parseFloat(getComputedStyle(e).fontSize),color:getComputedStyle(e).color})')
     assert props['size']>=11,props

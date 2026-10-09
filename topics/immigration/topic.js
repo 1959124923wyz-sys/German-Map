@@ -174,7 +174,7 @@ async function start(){
  if(!map){$('map-status').textContent='地图框架加载失败：无法连接Leaflet资源';return;}
  map.fitBounds(BOUNDS,{padding:[15,15]});map.setMaxBounds([[45.3,3.2],[57.1,18]]);
  map.createPane('immigrationStatePane').style.zIndex=330;
- const tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,opacity:.53,attribution:'© OpenStreetMap contributors',crossOrigin:true});
+ const tiles=L.tileLayer('https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',{maxZoom:19,opacity:.53,attribution:'© OpenStreetMap contributors · © CARTO',crossOrigin:true});
  let tilesSeen=false;tiles.on('tileload',()=>{tilesSeen=true;});tiles.addTo(map);
  setTimeout(()=>{if(!tilesSeen){tiles.remove();$('map-status').textContent='OSM底图不可用 · 本地统计边界仍可使用';}},7500);
  window.CrimeCityLabels?.create(map,{paneName:'immigration-city-labels',zIndex:435});

@@ -50,7 +50,9 @@
       for (const [name,lat,lon,tier] of CITIES) {
         if (tier > maxTier || !bounds.contains([lat,lon])) continue;
         const p = map.latLngToContainerPoint([lat,lon]);
-        const width = Math.min(142, Math.max(41,name.length * (zoom < 7 ? 7.0 : 7.7) + 14));
+        const title = window.GermanPlaceNames?.translate(name) || name;
+        const visualUnits = [...title].reduce((sum, ch) => sum + (/[^\x00-\xff]/.test(ch) ? 1.55 : 1),0);
+        const width = Math.min(142, Math.max(41,visualUnits * (zoom < 7 ? 7.0 : 7.7) + 14));
         const height = 24;
         const rect = {l:p.x-width/2-spacing,r:p.x+width/2+spacing,
           t:p.y-height/2-spacing,b:p.y+height/2+spacing};
@@ -59,7 +61,8 @@
         occupied.push(rect);
         const node=document.createElement('span');
         node.className='crime-city-label';
-        node.textContent=name;
+        node.textContent=title;
+        node.dataset.germanName=name;
         const icon=L.divIcon({
           className:'crime-city-label-icon',
           html:node.outerHTML,

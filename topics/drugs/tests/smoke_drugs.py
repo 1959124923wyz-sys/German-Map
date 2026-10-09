@@ -31,16 +31,16 @@ def main():
             assert page.locator('.leaflet-pane svg path').count() > 200, ('SVG paths:', page.locator('.leaflet-pane svg path').count())
             # Shared city labels must show above choropleths without taking clicks.
             assert page.locator('#drug-map .crime-city-label').count() >= 8
-            assert page.locator('#drug-map .crime-city-label').filter(has_text='Berlin').count() >= 1
+            assert page.locator('#drug-map .crime-city-label').filter(has_text='柏林').count() >= 1
             assert page.locator('#drug-map .crime-city-label').first.evaluate(
                 '(e) => parseFloat(getComputedStyle(e).fontSize)') >= 11
             assert page.evaluate("() => getComputedStyle(window.__DRUGS_PREVIEW_MAP__.getPane('drugs-city-labels')).pointerEvents") == 'none'
             # All 16 states must have a real county-backed summary and drilldown.
             assert page.locator('#state-index-list button').count() == 16
-            page.locator('#state-index-list button').filter(has_text='Bayern').click()
+            page.locator('#state-index-list button').filter(has_text='巴伐利亚州').click()
             assert page.locator('#region-navigator').is_visible()
             assert not page.locator('#national-drug-summary').is_visible()
-            assert 'Bayern' in page.locator('#region-heading').inner_text()
+            assert '巴伐利亚州' in page.locator('#region-heading').inner_text()
             page.wait_for_function(
                 "() => document.getElementById('region-evidence-head')?.textContent.includes('247')",
                 timeout=30000)
@@ -80,7 +80,7 @@ def main():
             assert page.locator('#state-index-list button').count() == 16
             # Authentic drug offence codes exist in two states; other states
             # are explicitly missing, not assigned synthetic values.
-            page.locator('#state-index-list button').filter(has_text='Niedersachsen').click()
+            page.locator('#state-index-list button').filter(has_text='下萨克森州').click()
             page.wait_for_function(
                 "() => document.getElementById('region-evidence-head')?.textContent.includes('毒品罪名细分')")
             page.locator('#region-evidence-head').click()
@@ -88,7 +88,7 @@ def main():
             assert '1,677' in page.locator('#region-evidence-body').inner_text()
             assert page.locator('.evidence-offence-table tbody tr:not(.evidence-code-row)').count() == 4
             page.locator('#region-home').click()
-            page.locator('#state-index-list button').filter(has_text='Berlin').click()
+            page.locator('#state-index-list button').filter(has_text='柏林').click()
             page.wait_for_function(
                 "() => document.getElementById('region-evidence-head')?.textContent.includes('300')")
             page.locator('#region-evidence-head').click()
@@ -98,7 +98,7 @@ def main():
                 assert expected in berlin_details, ('Berlin 2025 PKS', expected, berlin_details)
             assert '子项' in berlin_details or '其中' in berlin_details
             page.locator('#region-home').click()
-            page.locator('#state-index-list button').filter(has_text='Saarland').click()
+            page.locator('#state-index-list button').filter(has_text='萨尔州').click()
             page.wait_for_function(
                 "() => document.getElementById('region-evidence-head')?.textContent.includes('暂无核实数字')")
             page.locator('#region-evidence-head').click()
@@ -117,7 +117,7 @@ def main():
                 ('Sachsen-Anhalt', ['61','48','1,222','1,080','839','788','4,544','5,887','379','598']),
                 ('Mecklenburg-Vorpommern', ['24','15','486','421','133','94'])
             ]:
-                page.locator('#state-index-list').get_by_text(state, exact=True).click()
+                page.locator('#state-index-list').get_by_text({'Brandenburg':'勃兰登堡州','Rheinland-Pfalz':'莱茵兰－普法尔茨州','Hessen':'黑森州','Baden-Württemberg':'巴登－符腾堡州','Nordrhein-Westfalen':'北莱茵－威斯特法伦州','Sachsen':'萨克森州','Hamburg':'汉堡','Thüringen':'图林根州','Sachsen-Anhalt':'萨克森－安哈尔特州','Mecklenburg-Vorpommern':'梅克伦堡－前波美拉尼亚州'}.get(state,state), exact=True).click()
                 page.wait_for_function(
                     "() => document.getElementById('region-evidence-head')?.textContent !== '州级补充资料 · 加载中'",
                     timeout=30000)
@@ -159,7 +159,7 @@ def main():
             click_place(page, 48.85, 11.2)
             page.locator('#region-navigator').wait_for(state='visible')
             first = page.locator('#region-current').inner_text()
-            assert first == 'Bayern', first
+            assert first == '巴伐利亚州', first
             click_place(page, 50.72, 9.1)
             second = page.locator('#region-current').inner_text()
             assert first != second, (first, second)
