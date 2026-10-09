@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>德国外国籍人口分布地图 · German-Map 05</title>
+ <meta name="description" content="德国16州2018—2025年AZR外国籍人数、2025年人口统计占比，及官方AZR趋势。">
+ <style>
+:root{color-scheme:dark}
+.im-topic{box-sizing:border-box;color:#e7edf2;background:#17283a;padding:23px 24px 28px;font:13px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.im-topic *{box-sizing:border-box}
+.im-overline{margin:0 0 5px;color:#a7bccb;font-size:11px}
+.im-heading{font-size:17px;font-weight:700;line-height:1.4;margin:0 0 20px}
+.im-national{padding:0 0 18px;border-bottom:1px solid #34485b}
+.im-national-label{display:block;color:#a8b9c6;font-size:12px}
+.im-national-number{display:block;font-size:28px;font-weight:730;letter-spacing:-.02em;line-height:1.5;font-variant-numeric:tabular-nums}
+.im-list-heading{font-size:13px;font-weight:650;margin:20px 0 8px;color:#c5d3db}
+.im-state-list{display:grid;gap:0}
+.im-state-row{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;padding:8px 7px;background:transparent;border:0;border-bottom:1px solid #2d3f51;border-radius:0;cursor:pointer;color:#d7e3eb;text-align:left;font:inherit}
+.im-state-row:hover,.im-state-row:focus-visible{background:#243e52;outline:none}
+.im-state-row.selected{background:#27485c;color:#fff;border-left:2px solid #83bfd4;padding-left:5px}
+.im-state-name{min-width:0}
+.im-state-value{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:600}
+.im-note{color:#9bb0bd;font-size:11px;line-height:1.75;margin:18px 0 8px}
+.im-source{color:#b5d3e2;font-size:11px;text-decoration:underline;text-underline-offset:3px}
+.im-source:hover{color:#fff}
+/* v7: compact compare without an additional dashboard */
+.im-mode-switch{display:flex;gap:2px;margin:13px 0 2px;padding:3px;background:#0f2030;border-radius:7px;border:1px solid #345268}
+.im-mode{flex:1;padding:8px 5px;font:inherit;font-weight:600;color:#9eb6c6;background:transparent;border:0;border-radius:4px;cursor:pointer}
+.im-mode[aria-pressed="true"]{color:#fff;background:#35546b;box-shadow:0 1px 3px #0005}
+.im-mode:focus-visible{outline:2px solid #9dddf0}
+.im-mode-source{margin:4px 0 14px;color:#8faec0;font-size:10px}
+.im-detail{background:#1d3447;border:1px solid #365266;border-radius:8px;padding:12px 13px 11px}
+.im-detail-title{font-size:15px;margin:0 0 10px;color:#e7f1f5}
+.im-detail-stats{display:grid;grid-template-columns:1fr 1fr;gap:11px 9px}
+.im-stat{display:grid;gap:3px}
+.im-stat span{font-size:10px;color:#9cbbcd}
+.im-stat strong{font-size:16px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.im-stat .im-negative{color:#e9c29c}
+.im-trend-head{margin:16px 0 1px;color:#b5cfdb;font-size:11px}
+.im-trend-chart{height:88px}
+.im-sparkline{display:block;width:100%;height:88px;max-width:284px;overflow:visible}
+.im-trend-ends{display:flex;justify-content:space-between;margin:0;color:#aec4d0;font-size:10px;white-space:nowrap}
+.im-source-links{display:grid;gap:6px;margin-top:10px}
+.im-list-heading{margin-top:17px}
+@media(max-width:740px){.im-detail-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.im-stat strong{font-size:14px}}
+
+/* v8: one compact year dropdown, only in AZR count mode */
+.im-year-row{display:flex;align-items:center;gap:8px;margin:12px 0 4px;min-height:30px;color:#c6d7e2}
+.im-year-row[hidden]{display:none!important}
+.im-year-title{font-size:12px;font-weight:610;white-space:nowrap}
+.im-year-select{background:#213a50;border:1px solid #4c6a7f;border-radius:5px;color:#f1f7fa;padding:6px 8px;font:inherit;min-width:88px;cursor:pointer}
+.im-year-select:focus-visible{outline:2px solid #a4e4f1;outline-offset:2px}
+.im-year-note{font-size:10px;color:#a4b9c7}
+@media(max-width:380px){.im-year-note{font-size:9px}}
+
+/* v9 county pilot: visible only for 2025 count and supported state; collapsed by default. */
+.im-county-section{margin:11px 0 5px;padding:11px 13px;border:1px solid #355165;border-radius:7px;background:#1b3143}
+.im-county-section[hidden]{display:none!important}
+.im-county-summary{cursor:pointer;color:#d6eaf3;font-size:12px;font-weight:650}
+.im-county-summary:focus-visible{outline:2px solid #9cdbea;outline-offset:2px}
+.im-county-help{margin:8px 0;color:#a4bfce;font-size:11px;line-height:1.6}
+.im-county-list{display:grid;margin:8px 0}
+.im-county-row{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #345064;padding:6px 0;font-size:11px}
+.im-county-name{color:#d0e2eb}
+.im-county-value{font-size:11px;color:#fff;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* Subtle highlight of a county selected from a verified polygon, without adding UI controls. */
+.im-county-row.active{background:#28495b;border-left:2px solid #b0ddec;padding-left:6px}
+
+</style>
+ <style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#102030;color:#e7edf2;font:13px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+  header{height:64px;background:#17283a;border-bottom:1px solid #35495b;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  header h1{font-size:16px;font-weight:680;line-height:1.35;margin:0}
+  header span{font-size:11px;color:#9db0c0}
+  main{height:calc(100vh - 64px);min-height:520px;display:grid;grid-template-columns:minmax(0,1fr) 330px}
+  #map-box{position:relative;min-width:0;overflow:hidden;background:#102030}
+  .im-map-svg{width:100%;height:100%;position:absolute;inset:0;cursor:grab;touch-action:none}
+  .im-map-svg:active{cursor:grabbing}
+  .im-country-outline{fill:#21394b;stroke:#7991a3;stroke-width:2;stroke-linejoin:round}
+  .im-state-polygon{cursor:pointer;stroke-linejoin:round}
+  .im-state-polygon:hover{stroke:#f5fbff;stroke-width:2.7}
+  .im-count-label{cursor:pointer;user-select:none}
+  .im-label-back{fill:#183347;fill-opacity:.96;stroke:#557388;stroke-width:1}
+  .im-count-label.selected .im-label-back{fill:#27516b;stroke:#e8f7ff;stroke-width:1.7}
+  .im-count-label:hover .im-label-back{fill:#345d74;stroke:#f2fbff}
+  .im-label-text{font-size:14px;fill:#e3edf3;pointer-events:none}
+  .im-label-region{fill:#b6c9d6;font-size:13px;font-weight:570}
+  .im-label-number{fill:#ffffff;font-size:14px;font-weight:760;font-variant-numeric:tabular-nums}
+  .im-label-leader{stroke:#819bad;stroke-opacity:.67;stroke-width:1}
+  .im-capital-point{cursor:pointer}
+  .im-capital-point:hover{stroke:#f9fdff;stroke-width:3}
+  .im-capital-label{fill:#f2f7fa;font-weight:700;font-size:12px;paint-order:stroke;stroke:#1b3346;stroke-width:3px;pointer-events:none}
+  #map-actions{position:absolute;top:16px;right:16px;display:grid;gap:6px;z-index:2}
+  #map-actions button{height:32px;width:32px;border:1px solid #496276;border-radius:4px;background:#21394c;color:#e8f1f7;font:19px system-ui;cursor:pointer}
+  #map-actions button:hover{background:#345368}
+  #map-legend{display:flex;align-items:center;gap:4px;margin-top:8px;min-height:10px}
+  .im-swatch{display:inline-block;width:24px;height:7px;border-radius:2px}
+  .im-legend-end{font-size:10px;color:#afc8d8}
+  #map-caption{position:absolute;left:18px;bottom:18px;z-index:2;padding:9px 12px;background:#172a3de8;border:1px solid #385267;border-radius:5px;color:#b7c7d1;font-size:11px;max-width:min(360px,75%)}
+  #map-status{font-weight:650;color:#d8e7ef}
+  #map-hint{margin-top:3px;line-height:1.45}
+  #map-tooltip{position:absolute;z-index:5;background:#0e2233ee;border:1px solid #668ba2;border-radius:5px;padding:8px 10px;color:#fff;pointer-events:none;box-shadow:0 8px 22px #0005}
+  #topic-container{background:#17283a;overflow:auto;border-left:1px solid #35495b}
+  #preview-error{padding:20px;color:#ffb7a7}
+  .geocredit{position:absolute;right:16px;bottom:16px;font-size:10px;color:#8fa7b5;text-align:right;max-width:260px}
+  .geocredit a{color:#afc9d9}
+  @media(max-width:740px){header{height:auto;min-height:64px;padding:12px 16px;align-items:flex-start;flex-direction:column}main{height:auto;grid-template-columns:1fr;grid-template-rows:62vh auto}#map-box{min-height:390px}#topic-container{overflow:visible}.geocredit{display:none}}
+ </style>
+<style>.topic-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}.topic-nav a{border:1px solid #456075;border-radius:6px;padding:7px 10px;color:#c5d9e5;text-decoration:none;white-space:nowrap;font-size:12px}.topic-nav a[aria-current]{background:#33536a;color:#fff;border-color:#668aa3}.topic-nav a:hover{border-color:#b0d5e6;color:#fff}@media(max-width:740px){.topic-nav{gap:5px;justify-content:flex-start}.topic-nav a{padding:5px 8px;font-size:11px}}</style></head>
+<body>
+ <header><div><h1>德国外国籍人口分布图</h1><span>AZR人数：2018—2025年末 · 人口占比：2025年</span></div><nav aria-label="其他德国地图专题" class="topic-nav"><a href="../../index.html">暴力犯罪</a><a href="../../index.html?mode=property">财产犯罪</a><a href="../drugs/">毒品问题</a><a href="./" aria-current="page">移民人口</a></nav></header>
+ <main>
+  <section id="map-box" aria-label="德国各州人数地图">
+   <div id="map-actions"><button id="map-zoom-in" type="button" aria-label="放大地图">+</button><button id="map-zoom-out" type="button" aria-label="缩小地图">−</button><button id="map-reset" type="button" aria-label="返回全图">⌖</button></div>
+   <div id="map-caption"><div id="map-status">读取地图数据…</div><div id="map-hint"></div><div id="map-legend" aria-label="着色图例"></div></div>
+   <div id="map-tooltip" hidden></div>
+   <div class="geocredit">离线国界：Natural Earth<br>州界模式数据：<a href="https://ec.europa.eu/eurostat/web/gisco/geodata/statistical-units/territorial-units-statistics" target="_blank" rel="noopener">Eurostat GISCO</a> / © EuroGeographics</div>
+  </section>
+  <aside id="topic-container" aria-label="各州统计数据"></aside>
+ </main>
+ <script>
+window.__IMMIGRATION_INLINE_FOREIGN__={"schema_version":1,"dataset_id":"foreign-population-AZR-2025","metric_id":"foreign_population_registered_AZR","title_zh":"德国外国籍人口（AZR登记）","title_de":"Ausländische Bevölkerung nach Ausländerzentralregister","definition_zh":"截至2025年12月31日，德国外国人中央登记册（AZR）中的外国籍人口，即没有德国国籍的登记人员。包括合法居留人员，不应被解释为非法移民或犯罪人口；也不等于全部具有移民经历的人。","observed_at":"2025-12-31","published_at":"2026-04-02","unit":"persons","geography_level":"state","source":{"organization":"Statistisches Bundesamt (Destatis)","database":"Ausländerzentralregister (AZR)","document":"Ausländische Bevölkerung nach Bundesländern · 2025 · AZR column, NOT Bevölkerungsfortschreibung column","url":"https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Migration-Integration/Tabellen/auslaendische-bevoelkerung-bundeslaender.html","published_at":"2026-04-02","method":"administrative_register"},"totals":{"national":14070225,"states_sum":14070225},"completeness":{"expected":16,"available":16,"missing":[],"county_rows_in_source":false},"precision_note_zh":"官方州级数据以5人为单位公布；不能将取整值理解为逐人精确的原始个体记录。","comparability_zh":"严格使用AZR一列，不能混用人口统计推算（Bevölkerungsfortschreibung）一列，不能与移民经历人口和保护寻求者相加。","records":[{"ags":"08","iso":"DE-BW","name_de":"Baden-Württemberg","name_zh":"巴登-符腾堡","value":2192400},{"ags":"09","iso":"DE-BY","name_de":"Bayern","name_zh":"巴伐利亚","value":2386525},{"ags":"11","iso":"DE-BE","name_de":"Berlin","name_zh":"柏林","value":994590},{"ags":"12","iso":"DE-BB","name_de":"Brandenburg","name_zh":"勃兰登堡","value":213330},{"ags":"04","iso":"DE-HB","name_de":"Bremen","name_zh":"不来梅","value":164135},{"ags":"02","iso":"DE-HH","name_de":"Hamburg","name_zh":"汉堡","value":387845},{"ags":"06","iso":"DE-HE","name_de":"Hessen","name_zh":"黑森","value":1360875},{"ags":"13","iso":"DE-MV","name_de":"Mecklenburg-Vorpommern","name_zh":"梅克伦堡-前波美拉尼亚","value":125710},{"ags":"03","iso":"DE-NI","name_de":"Niedersachsen","name_zh":"下萨克森","value":1084595},{"ags":"05","iso":"DE-NW","name_de":"Nordrhein-Westfalen","name_zh":"北莱茵-威斯特法伦","value":3265705},{"ags":"07","iso":"DE-RP","name_de":"Rheinland-Pfalz","name_zh":"莱茵兰-普法尔茨","value":626355},{"ags":"10","iso":"DE-SL","name_de":"Saarland","name_zh":"萨尔","value":164395},{"ags":"14","iso":"DE-SN","name_de":"Sachsen","name_zh":"萨克森","value":371045},{"ags":"15","iso":"DE-ST","name_de":"Sachsen-Anhalt","name_zh":"萨克森-安哈尔特","value":192155},{"ags":"01","iso":"DE-SH","name_de":"Schleswig-Holstein","name_zh":"石勒苏益格-荷尔斯泰因","value":352575},{"ags":"16","iso":"DE-TH","name_de":"Thüringen","name_zh":"图林根","value":187990}]};
+window.__IMMIGRATION_INLINE_TREND__={"schema_version":1,"metric_id":"foreign_population_registered_AZR","period":"2018-2025","years":[2018,2019,2020,2021,2022,2023,2024,2025],"national":[10915455,11228300,11432460,11817790,13383910,13895865,14061640,14070225],"source":{"organization":"Statistisches Bundesamt (Destatis) / Ausländerzentralregister","url":"https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Migration-Integration/Tabellen/auslaendische-bevoelkerung-bundeslaender-jahre.html","publication_date":"2026-04-02","unit":"persons","observed_at":"each_year_12-31"},"records":[{"iso":"DE-BW","ags":"08","name_de":"Baden-Württemberg","values":[1777350,1821815,1840040,1885925,2089960,2168475,2188075,2192400]},{"iso":"DE-BY","ags":"09","name_de":"Bayern","values":[1858425,1921955,1964285,2051505,2293085,2364850,2392900,2386525]},{"iso":"DE-BE","ags":"11","name_de":"Berlin","values":[795390,812705,823985,848400,949375,1000115,993295,994590]},{"iso":"DE-BB","ags":"12","name_de":"Brandenburg","values":[124340,132405,137640,149540,196170,209780,211470,213330]},{"iso":"DE-HB","ags":"04","name_de":"Bremen","values":[131365,135600,137205,140330,154915,159000,161710,164135]},{"iso":"DE-HH","ags":"02","name_de":"Hamburg","values":[310540,317560,323450,328375,367335,376910,390445,387845]},{"iso":"DE-HE","ags":"06","name_de":"Hessen","values":[1090460,1121230,1138795,1163800,1290565,1335380,1349460,1360875]},{"iso":"DE-MV","ags":"13","name_de":"Mecklenburg-Vorpommern","values":[77245,79640,81735,87410,115865,123855,124620,125710]},{"iso":"DE-NI","ags":"03","name_de":"Niedersachsen","values":[813080,841165,857895,895490,1045140,1085315,1093110,1084595]},{"iso":"DE-NW","ags":"05","name_de":"Nordrhein-Westfalen","values":[2648645,2710795,2753530,2815800,3139895,3232720,3273545,3265705]},{"iso":"DE-RP","ags":"07","name_de":"Rheinland-Pfalz","values":[481495,496890,512760,532230,599755,618370,628690,626355]},{"iso":"DE-SL","ags":"10","name_de":"Saarland","values":[123265,126095,128425,134350,153455,160665,163935,164395]},{"iso":"DE-SN","ags":"14","name_de":"Sachsen","values":[207515,215715,222780,244415,322230,351525,362855,371045]},{"iso":"DE-ST","ags":"15","name_de":"Sachsen-Anhalt","values":[113365,116730,119845,127670,169220,181370,189100,192155]},{"iso":"DE-SH","ags":"01","name_de":"Schleswig-Holstein","values":[254195,263360,272965,286270,331105,346690,350665,352575]},{"iso":"DE-TH","ags":"16","name_de":"Thüringen","values":[108785,114625,117130,126270,165840,180850,187765,187990]}],"note_zh":"AZR州级人数按5人公布。州级逐行取整，因此逐州合计与官方全国数可能相差少量（不调整原始观察值）。同口径跨年可比；登记人口变动不能简单等同净移民流量。"};
+window.__IMMIGRATION_INLINE_SHARE__={"schema_version":1,"metric_id":"non_german_share_population_progression_2025","observed_at":"2025-12-31","unit":"percent","source":{"organization":"Statistisches Bundesamt (Destatis) / Bevölkerungsfortschreibung nach Zensus 2022","url":"https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/Tabellen/bevoelkerung-nichtdeutsch-laender-basis-2022.html","published_at":"2026-06-16","definition_zh":"按人口推算统计的非德国籍居民占本州人口比例，而不是AZR人数除以总人口"},"national":{"population":83467117,"non_german":12430895,"share_percent":14.9},"records":[{"iso":"DE-BW","ags":"08","name_de":"Baden-Württemberg","population":11238761,"non_german":2050550,"share_percent":18.2},{"iso":"DE-BY","ags":"09","name_de":"Bayern","population":13245503,"non_german":2056670,"share_percent":15.5},{"iso":"DE-BE","ags":"11","name_de":"Berlin","population":3700577,"non_german":833213,"share_percent":22.5},{"iso":"DE-BB","ags":"12","name_de":"Brandenburg","population":2551889,"non_german":188347,"share_percent":7.4},{"iso":"DE-HB","ags":"04","name_de":"Bremen","population":706915,"non_german":164936,"share_percent":23.3},{"iso":"DE-HH","ags":"02","name_de":"Hamburg","population":1869473,"non_german":363032,"share_percent":19.4},{"iso":"DE-HE","ags":"06","name_de":"Hessen","population":6278594,"non_german":1170322,"share_percent":18.6},{"iso":"DE-MV","ags":"13","name_de":"Mecklenburg-Vorpommern","population":1573685,"non_german":102939,"share_percent":6.5},{"iso":"DE-NI","ags":"03","name_de":"Niedersachsen","population":8000826,"non_german":938232,"share_percent":11.7},{"iso":"DE-NW","ags":"05","name_de":"Nordrhein-Westfalen","population":17986214,"non_german":2840060,"share_percent":15.8},{"iso":"DE-RP","ags":"07","name_de":"Rheinland-Pfalz","population":4123022,"non_german":575883,"share_percent":14.0},{"iso":"DE-SL","ags":"10","name_de":"Saarland","population":1007342,"non_german":154156,"share_percent":15.3},{"iso":"DE-SN","ags":"14","name_de":"Sachsen","population":4026599,"non_german":339493,"share_percent":8.4},{"iso":"DE-ST","ags":"15","name_de":"Sachsen-Anhalt","population":2120252,"non_german":168421,"share_percent":7.9},{"iso":"DE-SH","ags":"01","name_de":"Schleswig-Holstein","population":2958519,"non_german":310069,"share_percent":10.5},{"iso":"DE-TH","ags":"16","name_de":"Thüringen","population":2078946,"non_german":174572,"share_percent":8.4}],"comparability_zh":"此数据使用基于Zensus 2022的人口统计推算，2025全国非德国籍人口12,430,895，与AZR登记14,070,225不是同一个数据体系。比例是该体系的官方非德国籍人口占比；绝不可拿AZR登记人数直接除以人口推算数得到所谓官方占比。"};
+window.__IMMIGRATION_INLINE_COUNTIES__={"schema_version":1,"metric_id":"foreign_population_registered_AZR","observed_at":"2025-12-31","statistical_unit":"persons","geography_level":"Kreise (district)","coverage":"partial_verified_pilot","coverage_note_zh":"2025年底已核实石荷州15/15、汉堡1/1、柏林1/1、梅前州8/8个县级地区；其他12个州尚无完整县级覆盖，不推算未知地区。","source":{"publisher":"Statistisches Bundesamt (Destatis)","title":"GENESIS 12521-0041: Ausländer: Kreise, Stichtag, Geschlecht, Ländergruppierungen/Staatsangehörigkeit","url":"https://genesis.destatis.de/datenbank/online/statistic/12521/table/12521-0041","filter":"Stichtag=31.12.2025; Geschlecht=Insgesamt; Ländergruppierungen=Insgesamt"},"records":[{"ags":"01001","state_iso":"DE-SH","name_de":"Flensburg","name_zh":"弗伦斯堡","value":17910,"quality":"direct_official_row","source_table":"12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":13},{"ags":"01002","state_iso":"DE-SH","name_de":"Kiel","name_zh":"基尔","value":37900,"quality":"direct_official_row","source_table":"12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":13},{"ags":"01003","state_iso":"DE-SH","name_de":"Lübeck","name_zh":"吕贝克","value":33155,"quality":"direct_official_row","source_table":"12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":13},{"ags":"01004","state_iso":"DE-SH","name_de":"Neumünster","name_zh":"新明斯特","value":14770,"quality":"direct_official_row","source_table":"12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":13},{"ags":"01051","state_iso":"DE-SH","name_de":"Dithmarschen","name_zh":"迪特马尔申","value":13315,"quality":"direct_official_row","source_table":"12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":13},{"ags":"01053","state_iso":"DE-SH","name_de":"Herzogtum Lauenburg","name_zh":"劳恩堡公国","value":23905,"quality":"direct_official_row","source_table":"12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":13},{"ags":"01054","state_iso":"DE-SH","name_de":"Nordfriesland","name_zh":"北弗里斯兰","value":17395,"quality":"direct_official_row","source_table":"Statistik Nord A I 4 - j 25 SH / GENESIS 12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":13},{"ags":"01055","state_iso":"DE-SH","name_de":"Ostholstein","name_zh":"东荷尔斯泰因","value":18000,"quality":"direct_official_row","source_table":"Statistik Nord A I 4 - j 25 SH / GENESIS 12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":13},{"ags":"01056","state_iso":"DE-SH","name_de":"Pinneberg","name_zh":"平讷贝格","value":51705,"quality":"direct_official_row","source_table":"Statistik Nord A I 4 - j 25 SH / GENESIS 12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":14},{"ags":"01057","state_iso":"DE-SH","name_de":"Plön","name_zh":"普伦","value":8685,"quality":"direct_official_row","source_table":"Statistik Nord A I 4 - j 25 SH / GENESIS 12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":14},{"ags":"01058","state_iso":"DE-SH","name_de":"Rendsburg-Eckernförde","name_zh":"伦茨堡-埃肯弗尔德","value":21835,"quality":"direct_official_row","source_table":"Statistik Nord A I 4 - j 25 SH / GENESIS 12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":14},{"ags":"01059","state_iso":"DE-SH","name_de":"Schleswig-Flensburg","name_zh":"石勒苏益格-弗伦斯堡","value":16345,"quality":"direct_official_row","source_table":"Statistik Nord A I 4 - j 25 SH / GENESIS 12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":14},{"ags":"01060","state_iso":"DE-SH","name_de":"Segeberg","name_zh":"塞格贝格","value":37415,"quality":"direct_official_row","source_table":"Statistik Nord A I 4 - j 25 SH / GENESIS 12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":14},{"ags":"01061","state_iso":"DE-SH","name_de":"Steinburg","name_zh":"施泰因堡","value":12940,"quality":"direct_official_row","source_table":"Statistik Nord A I 4 - j 25 SH / GENESIS 12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":14},{"ags":"01062","state_iso":"DE-SH","name_de":"Stormarn","name_zh":"施托尔马恩","value":27290,"quality":"direct_official_row","source_table":"Statistik Nord A I 4 - j 25 SH / GENESIS 12521-0041","source_url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","source_pdf_page":14},{"ags":"02000","state_iso":"DE-HH","name_de":"Hamburg","name_zh":"汉堡","value":387845,"quality":"direct_official_row","source_table":"GENESIS 12521-0041","source_url":"https://genesis.destatis.de/datenbank/online/statistic/12521/table/12521-0041"},{"ags":"11000","state_iso":"DE-BE","name_de":"Berlin","name_zh":"柏林","value":994590,"quality":"direct_official_row","source_table":"Destatis GENESIS 12521-0041 / 12521-0021","source_url":"https://genesis.destatis.de/datenbank/online/statistic/12521/table/12521-0041","geography_note_zh":"柏林为城市州，市与州行政范围相同；本条县级地区的AZR总量与州级原始总量一致。"},{"ags":"13003","state_iso":"DE-MV","name_de":"Rostock","name_zh":"罗斯托克市","value":21025,"quality":"direct_official_row","source_table":"Statistisches Amt MV A143 2025 00, Tabelle 2.3","source_url":"https://www.laiv-mv.de/static/LAIV/Statistik/Dateien/Publikationen/A%20I%20Bev%C3%B6lkerungsstand/A143/A143%202025%2000.pdf","source_pdf_page":12},{"ags":"13004","state_iso":"DE-MV","name_de":"Schwerin","name_zh":"什未林","value":13220,"quality":"direct_official_row","source_table":"Statistisches Amt MV A143 2025 00, Tabelle 2.3","source_url":"https://www.laiv-mv.de/static/LAIV/Statistik/Dateien/Publikationen/A%20I%20Bev%C3%B6lkerungsstand/A143/A143%202025%2000.pdf","source_pdf_page":12},{"ags":"13071","state_iso":"DE-MV","name_de":"Mecklenburgische Seenplatte","name_zh":"梅克伦堡湖区","value":15085,"quality":"direct_official_row","source_table":"Statistisches Amt MV A143 2025 00, Tabelle 2.3","source_url":"https://www.laiv-mv.de/static/LAIV/Statistik/Dateien/Publikationen/A%20I%20Bev%C3%B6lkerungsstand/A143/A143%202025%2000.pdf","source_pdf_page":12},{"ags":"13072","state_iso":"DE-MV","name_de":"Landkreis Rostock","name_zh":"罗斯托克县","value":13935,"quality":"direct_official_row","source_table":"Statistisches Amt MV A143 2025 00, Tabelle 2.3","source_url":"https://www.laiv-mv.de/static/LAIV/Statistik/Dateien/Publikationen/A%20I%20Bev%C3%B6lkerungsstand/A143/A143%202025%2000.pdf","source_pdf_page":12},{"ags":"13073","state_iso":"DE-MV","name_de":"Vorpommern-Rügen","name_zh":"前波美拉尼亚-吕根","value":17545,"quality":"direct_official_row","source_table":"Statistisches Amt MV A143 2025 00, Tabelle 2.3","source_url":"https://www.laiv-mv.de/static/LAIV/Statistik/Dateien/Publikationen/A%20I%20Bev%C3%B6lkerungsstand/A143/A143%202025%2000.pdf","source_pdf_page":12},{"ags":"13074","state_iso":"DE-MV","name_de":"Nordwestmecklenburg","name_zh":"西北梅克伦堡","value":10080,"quality":"direct_official_row","source_table":"Statistisches Amt MV A143 2025 00, Tabelle 2.3","source_url":"https://www.laiv-mv.de/static/LAIV/Statistik/Dateien/Publikationen/A%20I%20Bev%C3%B6lkerungsstand/A143/A143%202025%2000.pdf","source_pdf_page":12},{"ags":"13075","state_iso":"DE-MV","name_de":"Vorpommern-Greifswald","name_zh":"前波美拉尼亚-格赖夫斯瓦尔德","value":17420,"quality":"direct_official_row","source_table":"Statistisches Amt MV A143 2025 00, Tabelle 2.3","source_url":"https://www.laiv-mv.de/static/LAIV/Statistik/Dateien/Publikationen/A%20I%20Bev%C3%B6lkerungsstand/A143/A143%202025%2000.pdf","source_pdf_page":12},{"ags":"13076","state_iso":"DE-MV","name_de":"Ludwigslust-Parchim","name_zh":"路德维希斯卢斯特-帕尔希姆","value":17400,"quality":"direct_official_row","source_table":"Statistisches Amt MV A143 2025 00, Tabelle 2.3","source_url":"https://www.laiv-mv.de/static/LAIV/Statistik/Dateien/Publikationen/A%20I%20Bev%C3%B6lkerungsstand/A143/A143%202025%2000.pdf","source_pdf_page":12}],"limitations":["25 verified records covering all counties of DE-SH (15), DE-HH (1), DE-BE (1), and DE-MV (8); national county coverage remains partial.","Schleswig-Holstein independently rounded district sum 352,565 versus state figure 352,575; preserve both source values.","County administrative jurisdiction is not always identical to residential location (see COUNTY_SOURCE_AUDIT.md).","Other states are missing, NOT zero. AZR foreign nationality is not a measure of undocumented migration."],"sources":[{"publisher":"Statistikamt Nord","report":"A I 4 - j 25 SH","url":"https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf","data_pdf_pages":[13,14],"geography":"DE-SH","observed_at":"2025-12-31"},{"publisher":"Destatis GENESIS","table":"12521-0041","url":"https://genesis.destatis.de/datenbank/online/statistic/12521/table/12521-0041","geography":"DE-HH","observed_at":"2025-12-31"},{"publisher":"Destatis GENESIS","table":"12521-0041 / 12521-0021","url":"https://genesis.destatis.de/datenbank/online/statistic/12521/table/12521-0041","geography":"DE-BE","observed_at":"2025-12-31"},{"publisher":"Statistisches Amt Mecklenburg-Vorpommern","report":"A143 2025 00, Tabelle 2.3, printed page 12","url":"https://www.laiv-mv.de/static/LAIV/Statistik/Dateien/Publikationen/A%20I%20Bev%C3%B6lkerungsstand/A143/A143%202025%2000.pdf","data_pdf_pages":[12],"geography":"DE-MV","observed_at":"2025-12-31"}],"coverage_by_state":{"DE-SH":{"expected_districts":15,"verified_districts":15,"complete":true,"published_state_total":352575,"published_district_sum":352565,"rounding_difference":10},"DE-HH":{"expected_districts":1,"verified_districts":1,"complete":true,"published_state_total":387845,"published_district_sum":387845,"rounding_difference":0},"DE-BE":{"expected_districts":1,"verified_districts":1,"complete":true,"published_state_total":994590,"published_district_sum":994590,"rounding_difference":0},"DE-MV":{"expected_districts":8,"verified_districts":8,"complete":true,"published_state_total":125710,"published_district_sum":125710,"rounding_difference":0}}};
+window.__IMMIGRATION_INLINE_OUTLINE__={"type":"FeatureCollection","features":[{"type":"Feature","properties":{"name":"Germany","source":"Natural Earth 1:110m","license":"public domain"},"geometry":{"type":"Polygon","coordinates":[[[14.119686313542559,53.75702912049104],[14.353315463934138,53.24817129171297],[14.074521111719434,52.98126251892535],[14.437599725002201,52.62485016540839],[14.685026482815687,52.0899474147552],[14.607098422919535,51.74518809671997],[15.01699588385867,51.10667409932158],[14.570718214586066,51.002339382524276],[14.307013380600637,51.117267767941414],[14.056227654688172,50.9269176295943],[13.338131951560285,50.73323436136435],[12.966836785543194,50.484076443069085],[12.240111118222558,50.266337795607285],[12.415190870827445,49.96912079528057],[12.521024204161193,49.547415269562734],[13.031328973043431,49.30706818297324],[13.595945672264437,48.87717194273715],[13.243357374737,48.416114813829054],[12.884102817443875,48.28914581968786],[13.02585127122049,47.63758352313583],[12.932626987365948,47.467645575544],[12.620759718484493,47.67238760028441],[12.141357456112788,47.703083401065776],[11.426414015354737,47.523766181012974],[10.544504021861599,47.5663992376538],[10.402083774465211,47.30248769793916],[9.89606814946319,47.580196845075704],[9.59422610844635,47.52505809182027],[8.522611932009767,47.83082754169129],[8.317301466514095,47.61357982033627],[7.466759067422231,47.62058197691181],[7.593676385131062,48.33301911070372],[8.099278598674744,49.01778351500333],[6.658229607783568,49.20195831969157],[6.186320428094177,49.463802802114515],[6.242751092156993,49.90222565367873],[6.043073357781111,50.128051662794235],[6.15665815595878,50.80372101501058],[5.988658074577813,51.851615709025054],[6.589396599970826,51.852029120483394],[6.842869500362383,52.22844025329755],[7.092053256873896,53.144043280644894],[6.905139601274129,53.48216217713065],[7.100424838905269,53.69393219666267],[7.936239454793963,53.74829580343379],[8.121706170289485,53.52779246684429],[8.800734490604668,54.020785630908904],[8.57211795414537,54.39564647075406],[8.526229282270208,54.96274363872516],[9.282048780971138,54.830865383516176],[9.921906365609118,54.98310415304803],[9.9395797054529,54.596641954153256],[10.950112338920519,54.363607082733154],[10.93946699386845,54.00869334575259],[11.956252475643282,54.19648550070116],[12.518440382546714,54.470370591847995],[13.647467075259499,54.0755109727059],[14.119686313542559,53.75702912049104]]]}}]};
+window.__IMMIGRATION_NO_NETWORK__=false;
+</script>
+<script>
+/* German-Map 05 v7 — AZR foreign counts (2018–2025) and distinct
+ * census-based non-German population share (2025). All sources official.
+ * No host map events are overridden; no synthetic county observations.
+ */
+(() => {
+  'use strict';
+  const scriptUrl=document.currentScript?.src || 'https://offline.invalid/topics/immigration/topic.js';
+  const paths={
+    azr:'./data/state-foreign-population-2025.json',
+    trend:'./data/state-foreign-population-trend-2018-2025.json',
+    share:'./data/state-foreign-share-popstat-2025.json',
+    county:'./data/county-foreign-population-2025-partial.json'
+  };
+  const inline={azr:'__IMMIGRATION_INLINE_FOREIGN__',trend:'__IMMIGRATION_INLINE_TREND__',share:'__IMMIGRATION_INLINE_SHARE__',county:'__IMMIGRATION_INLINE_COUNTIES__'};
+  const stateZh=Object.freeze({
+    'DE-BW':'巴登-符腾堡','DE-BY':'巴伐利亚','DE-BE':'柏林','DE-BB':'勃兰登堡',
+    'DE-HB':'不来梅','DE-HH':'汉堡','DE-HE':'黑森','DE-MV':'梅克伦堡-前波美拉尼亚',
+    'DE-NI':'下萨克森','DE-NW':'北莱茵-威斯特法伦','DE-RP':'莱茵兰-普法尔茨',
+    'DE-SL':'萨尔','DE-SN':'萨克森','DE-ST':'萨克森-安哈尔特',
+    'DE-SH':'石勒苏益格-荷尔斯泰因','DE-TH':'图林根'
+  });
+  const palettes={count:['#b0c4d0','#819daf','#58798f','#345c73','#183d54'],
+                  share:['#c7d6db','#8db5c2','#5b97aa','#2c7088','#114458']};
+  const format=n=>n==null?'无数据':Number(n).toLocaleString('zh-CN');
+  const fmtRate=n=>n==null?'无数据':Number(n).toFixed(1)+'%';
+  const deltaStr=n=>(n>0?'+':'')+format(n);
+  const NODE='http://www.w3.org/2000/svg';
+  let all=null,pending=null,session=null,selected='DE-NW',metric='count',year=2025;
+  const ids=new Set(Object.keys(stateZh));
+
+  function validate(azr,trend,share,county){
+    if(azr?.metric_id!=='foreign_population_registered_AZR'||azr.totals?.national!==14070225||
+       azr.records?.length!==16||azr.observed_at!=='2025-12-31')throw Error('AZR官方快照数据损坏');
+    if(trend?.metric_id!=='foreign_population_registered_AZR'||trend.years?.join(',')!=='2018,2019,2020,2021,2022,2023,2024,2025'||
+       trend.records?.length!==16||trend.national?.[7]!==14070225)throw Error('AZR历史数据损坏');
+    if(share?.metric_id!=='non_german_share_population_progression_2025'||share.records?.length!==16||
+       share.national?.population!==83467117||share.national?.non_german!==12430895||share.national?.share_percent!==14.9)
+      throw Error('人口占比数据损坏');
+    const azrIds=new Set(),trendMap=new Map(),shareMap=new Map();let total=0,po=0,fr=0;
+    for(const r of azr.records){
+      if(!ids.has(r.iso)||azrIds.has(r.iso)||!Number.isSafeInteger(r.value)||r.value<0||r.value%5!==0)
+        throw Error('AZR州编码或人数无效');
+      azrIds.add(r.iso);total+=r.value;
+    }
+    if(total!==azr.totals.national)throw Error('AZR全国人数求和不符');
+    for(const r of trend.records){
+      if(!ids.has(r.iso)||trendMap.has(r.iso)||r.values?.length!==8||r.values.some(v=>!Number.isSafeInteger(v)||v<0||v%5!==0))
+        throw Error('AZR历史趋势数据无效');
+      trendMap.set(r.iso,r);
+      if(r.values[7]!==azr.records.find(a=>a.iso===r.iso)?.value)
+        throw Error('历史2025年与现值冲突');
+    }
+    for(let yr=0;yr<8;yr++){
+      const summed=trend.records.reduce((s,r)=>s+r.values[yr],0);
+      if(Math.abs(summed-trend.national[yr])>35)throw Error('AZR历史全国人数校验失败');
+    }
+    for(const r of share.records){
+      if(!ids.has(r.iso)||shareMap.has(r.iso)||!Number.isSafeInteger(r.population)||!Number.isSafeInteger(r.non_german)||
+         r.population<=0||r.non_german<0||r.non_german>r.population||
+         Math.round(r.non_german/r.population*1000)/10!==r.share_percent)
+        throw Error('官方人口占比数据无效');
+      shareMap.set(r.iso,r);po+=r.population;fr+=r.non_german;
+    }
+    if(po!==share.national.population||fr!==share.national.non_german||
+       azrIds.size!==16||trendMap.size!==16||shareMap.size!==16)throw Error('官方总量或州覆盖不符');
+    // Official county pilot remains partial, is keyed by official AGS, and never
+    // changes state totals. Never substitute county samples for complete data.
+    if(county?.metric_id!=='foreign_population_registered_AZR'||county.observed_at!=='2025-12-31'||
+       !['partial_verified_pilot','complete_codes_not_all_spatially_locatable'].includes(county.coverage)||!Array.isArray(county.records)||county.records.length<1||county.records.length>450)
+      throw Error('县级试点来源与覆盖范围校验失败');
+    const countyMap=new Map(),codeSet=new Set();
+    const agsPrefix={'01':'DE-SH','02':'DE-HH','03':'DE-NI','04':'DE-HB','05':'DE-NW','06':'DE-HE',
+      '07':'DE-RP','08':'DE-BW','09':'DE-BY','10':'DE-SL','11':'DE-BE','12':'DE-BB',
+      '13':'DE-MV','14':'DE-SN','15':'DE-ST','16':'DE-TH'};
+    for(const r of county.records){
+      if(!/^\d{5}$/.test(r.ags)||codeSet.has(r.ags)||agsPrefix[r.ags.slice(0,2)]!==r.state_iso||
+         !ids.has(r.state_iso)||
+         !((r.quality==='direct_official_row'&&Number.isSafeInteger(r.value)&&r.value>=0&&r.value%5===0)||
+           (r.quality==='cross_district_not_locatable'&&r.value===null))||!r.name_de)throw Error('县级记录编码或人数无效');
+      codeSet.add(r.ags);
+      if(!countyMap.has(r.state_iso))countyMap.set(r.state_iso,[]);
+      countyMap.get(r.state_iso).push(r);
+    }
+    for(const [iso,countyRows] of countyMap){
+      const stateCount=azr.records.find(r=>r.iso===iso).value;
+      const sum=countyRows.reduce((acc,r)=>acc+(r.value??0),0);
+      if(sum>stateCount)throw Error('县级试点超出州级人数');
+      const coverage=county.coverage_by_state?.[iso];
+      if(coverage){
+        if(coverage.verified_districts!==countyRows.length||coverage.published_state_total!==stateCount||
+           coverage.published_district_sum!==sum||coverage.rounding_difference!==stateCount-sum||
+           coverage.expected_districts<countyRows.length||
+           (coverage.complete&&coverage.expected_districts!==countyRows.length)||
+           (coverage.complete&&stateCount-sum>Math.ceil(countyRows.length/2)*5))
+          throw Error('县级覆盖、州级合计与舍入误差不一致');
+      }
+    }
+    return {azr,trend,share,county,countyMap,trendMap,shareMap};
+  }
+  async function loadData(){
+    if(all)return all;
+    if(pending)return pending;
+    pending=Promise.all(Object.entries(paths).map(async ([key,path])=>{
+      const content=window[inline[key]];
+      if(content)return [key,content];
+      const res=await fetch(new URL(path,scriptUrl).href,{cache:'no-store'});
+      if(!res.ok)throw Error('无法读取数据：'+key+' HTTP '+res.status);
+      return [key,await res.json()];
+    })).then(x=>{
+      const data=Object.fromEntries(x);all=validate(data.azr,data.trend,data.share,data.county);return all;
+    }).finally(()=>{pending=null});
+    return pending;
+  }
+  const e=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
+  const yearIndex=()=>year-2018;
+  const countAt=(iso,when=year)=>all.trendMap.get(iso)?.values[when-2018] ?? null;
+  const number=(r)=>metric==='count'?countAt(r.iso):all.shareMap.get(r.iso)?.share_percent;
+  function getMapData(){
+    if(!all)return null;
+    const rows=all.azr.records.map(r=>({
+      iso:r.iso,ags:r.ags,name_zh:stateZh[r.iso],name_de:r.name_de,
+      value:number(r),azr:countAt(r.iso,metric==='count'?year:2025),share:all.shareMap.get(r.iso).share_percent
+    }));
+    const sorted=rows.map(r=>r.value).sort((a,b)=>a-b);
+    const breaks=[1,2,3,4].map(i=>sorted[Math.ceil(sorted.length*i/5)-1]);
+    return {metric:metric==='count'?'foreign_population':'non_german_share',
+      unit:metric==='count'?'persons':'percent',selected,rows,breaks,
+      colors:palettes[metric].slice(),
+      total:metric==='count'?all.trend.national[yearIndex()]:all.share.national.share_percent,
+      title:metric==='count'?'AZR登记外国籍人口':'外国籍人口占比（人口统计口径）',
+      period:(metric==='count'?year:2025)+'-12-31',year:metric==='count'?year:2025};
+  }
+  function sparkline(values){
+    const box=document.createElementNS(NODE,'svg');
+    box.setAttribute('viewBox','0 0 284 88');box.setAttribute('class','im-sparkline');
+    box.setAttribute('role','img');box.setAttribute('aria-label','该州2018至2025年AZR外国籍人口变化折线图');
+    const lo=Math.min(...values),hi=Math.max(...values),spread=Math.max(1,hi-lo);
+    const pts=values.map((v,i)=>[8+i*(268/7),71-(v-lo)/spread*56]);
+    const path=document.createElementNS(NODE,'polyline');
+    path.setAttribute('points',pts.map(x=>x.map(y=>y.toFixed(1)).join(',')).join(' '));
+    path.setAttribute('fill','none');path.setAttribute('stroke','#91c8db');path.setAttribute('stroke-width','2.5');
+    path.setAttribute('stroke-linejoin','round');box.append(path);
+    for(const coord of [pts[0],pts[7]]){
+      const dot=document.createElementNS(NODE,'circle');dot.setAttribute('cx',coord[0]);dot.setAttribute('cy',coord[1]);
+      dot.setAttribute('r','3.5');dot.setAttribute('fill','#d9f6ff');box.append(dot);
+    }
+    return box;
+  }
+  function paint(){
+    if(!session)return;
+    const {context,lines,countButton,shareButton,yearRow,yearSelect,yearInfo,total,subtitle,detailTitle,detailCount,detailCountLabel,detailRate,detailDelta,detailDeltaLabel,trendHolder,trendEnds,layer,sourceCaption,countySection,countyList,countyHelp,countySource}=session;
+    countButton.setAttribute('aria-pressed',String(metric==='count'));
+    shareButton.setAttribute('aria-pressed',String(metric==='share'));
+    total.textContent=(metric==='count'?format(all.trend.national[yearIndex()]):fmtRate(all.share.national.share_percent))+(metric==='count'?' 人':'');
+    subtitle.textContent=metric==='count'?'AZR登记人数 · '+year+'年12月31日':'人口统计推算中的非德国籍比例 · 2025年12月31日';
+    yearRow.hidden=metric!=='count';
+    yearSelect.value=String(year);
+    yearInfo.textContent='人数数据截至每年12月31日';
+    sourceCaption.textContent=metric==='count'?'地图着色：'+year+'年AZR登记人数':'地图着色：2025年人口统计占比（不同于AZR口径）';
+    for(const [iso,button] of lines){
+      button.classList.toggle('selected',iso===selected);
+      button.querySelector('strong').textContent=metric==='count'?format(countAt(iso)):fmtRate(all.shareMap.get(iso).share_percent);
+    }
+    const share=all.shareMap.get(selected),series=all.trendMap.get(selected)?.values;
+    const shownYear=metric==='count'?year:2025;
+    const shownValue=countAt(selected,shownYear);
+    detailTitle.textContent=stateZh[selected];
+    detailCountLabel.textContent='AZR登记人数 · '+shownYear;
+    detailCount.textContent=format(shownValue)+' 人';
+    detailRate.textContent=fmtRate(share.share_percent);
+    const prevIndex=shownYear-2019;
+    const change=shownYear>2018?shownValue-series[prevIndex]:null;
+    detailDeltaLabel.textContent=shownYear>2018?(shownYear-1)+'—'+shownYear+'年变化 · AZR':'2018年 · 无前期数据';
+    detailDelta.textContent=change==null?'—':deltaStr(change)+' 人';
+    detailDelta.classList.toggle('im-negative',change!=null&&change<0);
+    trendHolder.replaceChildren(sparkline(series));
+    trendEnds.textContent='2018　'+format(series[0])+'　→　2025　'+format(series[7]);
+    // County data only appear when the selected state and period match
+    // the actual pilot observations; other states are not shown as zero.
+    const countyRows=all.countyMap.get(selected)||[];
+    if(countySection.firstElementChild)countySection.firstElementChild.textContent=
+      selected==='DE-SH'?'县级人口 · 全州15个地区':selected==='DE-MV'?'县级人口 · 全州8个地区':(selected==='DE-HH'||selected==='DE-BE')?'县级人口 · 市州合一':
+      '县级数据 · 已核实'+countyRows.length+'个地区';
+    if(selected==='DE-SH'){
+      countyHelp.textContent='2025年末官方AZR · 已覆盖全部15个县级地区。各县公布值合计352,565人，州级公布值352,575人，相差10人（5人舍入）。';
+      countySource.href='https://www.statistik-nord.de/fileadmin/Dokumente/A_I_4_j_25_SH.pdf';
+      countySource.textContent='查看统计局原始报告 · 第13—14页';
+    }else if(selected==='DE-MV'){
+      countyHelp.textContent='2025年末官方AZR · 已完整覆盖梅前州8个县级行政区。县级总数125,710人，与州级公布总数完全一致。';
+      countySource.href='https://www.laiv-mv.de/static/LAIV/Statistik/Dateien/Publikationen/A%20I%20Bev%C3%B6lkerungsstand/A143/A143%202025%2000.pdf';
+      countySource.textContent='查看梅前州统计局A143报告 · 第12页';
+    }else{
+      countyHelp.textContent='2025年末官方AZR · '+stateZh[selected]+'为市州合一，县级与州级行政范围相同，公布值一致。其他各州尚未取得完整县级数据。';
+      countySource.href=all.county.source.url;
+      countySource.textContent='查看官方GENESIS县级表';
+    }
+    const countyVisible=metric==='count'&&year===2025&&countyRows.length>0;
+    countySection.hidden=!countyVisible;
+    countyList.replaceChildren();
+    if(countyVisible){
+      for(const r of countyRows.slice().sort((a,b)=>b.value-a.value)){
+        const item=e('div','im-county-row');item.dataset.ags=r.ags;
+        item.append(e('span','im-county-name',r.name_zh+' · '+r.ags),
+          e('strong','im-county-value',r.value==null?'跨县合并':format(r.value)));
+        countyList.append(item);
+      }
+    }
+    if(layer?.setStyle)layer.setStyle(layer.options.style);
+    if(typeof context.onViewChange==='function')context.onViewChange(getMapData());
+  }
+  function selectState(iso){if(!all?.azr.records.some(r=>r.iso===iso))return false;selected=iso;paint();return true;}
+  // Geography-driven county lookup: no new top-level controls or fictional county totals.
+  function selectCounty(ags){
+    const row=all?.county.records.find(r=>r.ags===ags);
+    if(!row||row.value==null||metric!=='count'||year!==2025)return false;
+    if(selected!==row.state_iso){selected=row.state_iso;paint();}
+    if(!session)return false;
+    session.countySection.open=true;
+    for(const item of session.countyList.querySelectorAll('[data-ags]'))
+      item.classList.toggle('active',item.dataset.ags===ags);
+    return true;
+  }
+  function selectYear(next){
+    const candidate=Number(next);
+    if(!Number.isInteger(candidate)||candidate<2018||candidate>2025)return false;
+    year=candidate;paint();return true;
+  }
+  function selectMetric(next){
+    const target=next==='share'||next==='non_german_share'?'share':
+      next==='count'||next==='foreign_population'||next==='total'?'count':null;
+    if(!target)return false;
+    metric=target;paint();return true;
+  }
+  function activate(context){
+    if(!all)throw Error('先调用 loadData()');
+    if(!context?.container)throw Error('缺少专题容器');
+    if(session)deactivate();
+    const root=e('section','im-topic');
+    root.append(e('p','im-overline','DESTATIS · 外国籍人口 · 2018—2025'),e('h2','im-heading','德国各州外国籍人口'));
+    const national=e('section','im-national');
+    const subtitle=e('p','im-national-label');
+    const total=e('strong','im-national-number');
+    national.append(subtitle,total);
+    const modeBar=e('div','im-mode-switch');
+    const countButton=e('button','im-mode','人数');countButton.type='button';countButton.dataset.metric='count';
+    const shareButton=e('button','im-mode','人口占比');shareButton.type='button';shareButton.dataset.metric='share';
+    modeBar.append(countButton,shareButton);
+    const sourceCaption=e('p','im-mode-source');
+    const yearRow=e('label','im-year-row');
+    const yearText=e('span','im-year-title','查看年份');
+    const yearSelect=e('select','im-year-select');
+    yearSelect.setAttribute('aria-label','选择AZR人数年份');
+    for(let y=2025;y>=2018;y--){const option=e('option','',String(y));option.value=String(y);yearSelect.append(option);}
+    const yearInfo=e('span','im-year-note','人数数据截至每年12月31日');
+    yearRow.append(yearText,yearSelect,yearInfo);
+    root.append(national,modeBar,yearRow,sourceCaption);
+    const detail=e('section','im-detail');
+    const detailTitle=e('h3','im-detail-title');
+    const stats=e('div','im-detail-stats');
+    const cell=(label)=>{const wrapper=e('div','im-stat');const caption=e('span','',label);wrapper.append(caption);const value=e('strong');wrapper.append(value);stats.append(wrapper);return {value,caption};};
+    const countCell=cell('AZR登记人数');const detailCount=countCell.value,detailCountLabel=countCell.caption;
+    const detailRate=cell('2025人口统计占比').value;
+    const deltaCell=cell('2024—2025变化 · AZR');const detailDelta=deltaCell.value,detailDeltaLabel=deltaCell.caption;
+    const trendHead=e('p','im-trend-head','2018—2025 · AZR人数趋势');
+    const trendHolder=e('div','im-trend-chart');
+    const trendEnds=e('p','im-trend-ends');
+    detail.append(detailTitle,stats,trendHead,trendHolder,trendEnds);
+    // Compact native disclosure keeps the principal map unchanged.
+    const countySection=e('details','im-county-section');
+    const countySummary=e('summary','im-county-summary','县级数据');
+    const countyHelp=e('p','im-county-help','2025年末官方AZR县级数据。');
+    const countyList=e('div','im-county-list');
+    const countySource=e('a','im-source','查看县级官方统计表');
+    countySource.href=all.county.source.url;countySource.rel='noopener noreferrer';countySource.target='_blank';
+    countySection.append(countySummary,countyHelp,countyList,countySource);
+    root.append(detail,countySection,e('h3','im-list-heading','16个联邦州'));
+    const list=e('div','im-state-list'),lines=new Map();
+    for(const r of all.azr.records.slice().sort((a,b)=>stateZh[a.iso].localeCompare(stateZh[b.iso],'zh-CN'))){
+      const button=e('button','im-state-row');button.type='button';button.dataset.state=r.iso;
+      button.append(e('span','im-state-name',stateZh[r.iso]),e('strong','im-state-value',''));
+      list.append(button);lines.set(r.iso,button);
+    }
+    root.append(list);
+    const note=e('p','im-note',
+      '说明：人数模式提供2018—2025年各年末AZR登记外国籍人口；人口占比只有2025年官方数据。AZR含大量合法居留者，不代表非法移民。占比来自另一套基于2022年人口普查的居民人口推算，不可与AZR人数混算。人数按5人取整，登记数变化不等于当年净移民数。');
+    const links=e('div','im-source-links');
+    const sources=[['AZR人数：2025州级官方表',all.azr.source.url],['2018—2025历史AZR数据',all.trend.source.url],['人口统计占比官方表',all.share.source.url]];
+    for(const [title,url] of sources){const a=e('a','im-source',title);a.href=url;a.target='_blank';a.rel='noopener noreferrer';links.append(a);}
+    root.append(note,links);
+    const onClick=event=>{
+      const mode=event.target.closest('[data-metric]');
+      if(mode&&root.contains(mode)){selectMetric(mode.dataset.metric);return;}
+      const state=event.target.closest('[data-state]');
+      if(state&&root.contains(state))selectState(state.dataset.state);
+    };
+    root.addEventListener('click',onClick);
+    const onYearChange=()=>selectYear(yearSelect.value);
+    yearSelect.addEventListener('change',onYearChange);
+    let layer=null;
+    const geo=context.stateGeoJSON;
+    if(context.map&&typeof L!=='undefined'&&Array.isArray(geo?.features)){
+      const map=context.map,pane=map.getPane('immigrationDataPane')||map.createPane('immigrationDataPane');
+      pane.style.zIndex='215';pane.style.pointerEvents='none';
+      layer=L.geoJSON(geo,{pane:'immigrationDataPane',interactive:false,
+        style:f=>{
+          const view=getMapData(),row=view.rows.find(r=>r.iso===f?.properties?.id),value=row?.value;
+          let i=view.breaks.findIndex(b=>value<=b);if(i<0)i=4;
+          return {pane:'immigrationDataPane',interactive:false,color:f?.properties?.id===selected?'#ffffff':'#203a4d',
+            weight:f?.properties?.id===selected?2.7:1,opacity:.92,
+            fillColor:value==null?'#77828c':view.colors[i],fillOpacity:value==null?.18:.88};
+        }}).addTo(map);
+    }
+    context.container.append(root);
+    session={root,context,lines,countButton,shareButton,yearRow,yearSelect,yearInfo,onYearChange,total,subtitle,detailTitle,detailCount,detailCountLabel,detailRate,detailDeltaLabel,
+      detailDelta,trendHolder,trendEnds,layer,onClick,sourceCaption,countySection,countyList,countyHelp,countySource};
+    paint();
+    return {reportedStates:16,matchedStates:Array.isArray(geo?.features)?
+      geo.features.filter(f=>ids.has(f.properties?.id)).length:0};
+  }
+  function deactivate(){
+    if(!session)return;
+    const {root,context,onClick,onYearChange,yearSelect,layer}=session;
+    root.removeEventListener('click',onClick);
+    yearSelect.removeEventListener('change',onYearChange);
+    if(layer&&context.map?.hasLayer(layer))context.map.removeLayer(layer);
+    root.remove();session=null;
+  }
+  window.GermanMapTopics=window.GermanMapTopics||{};
+  window.GermanMapTopics.immigration=Object.freeze({
+    id:'immigration',title:'外国籍人口',loadData,activate,deactivate,selectState,selectCounty,selectMetric,selectYear,getMapData,
+    getCountyRecords:()=>all?.county.records.map(r=>({...r}))||[],
+    getCountyCoverage:iso=>all?.county.coverage_by_state?.[iso]||null,
+    getViewState:()=>({metric:metric==='count'?'foreign_population':'non_german_share',year:metric==='count'?year:2025,state:selected,active:!!session})
+  });
+})();
+
+</script>
+<script>
+/* Standalone-only map visualizer for German-Map 05.
+   True state polygons: host GeoJSON or Eurostat GISCO NUTS 2024 (NUTS1).
+   Offline fallback: Natural Earth Germany *country* outline + capital-city markers.
+   Never invent missing state boundaries and never interfere with the host map.
+*/
+(() => {
+  'use strict';
+  const NS='http://www.w3.org/2000/svg';
+  const NUTS_TO_ISO={DE1:'DE-BW',DE2:'DE-BY',DE3:'DE-BE',DE4:'DE-BB',DE5:'DE-HB',DE6:'DE-HH',DE7:'DE-HE',DE8:'DE-MV',DE9:'DE-NI',DEA:'DE-NW',DEB:'DE-RP',DEC:'DE-SL',DED:'DE-SN',DEE:'DE-ST',DEF:'DE-SH',DEG:'DE-TH'};
+  // Locations of the 16 state capitals; markers are *reference locations*, not migrant locations.
+  const CAPITALS={
+   'DE-BW':[9.18,48.78,'斯图加特'],'DE-BY':[11.58,48.14,'慕尼黑'],
+   'DE-BE':[13.41,52.52,'柏林'],'DE-BB':[13.06,52.40,'波茨坦'],
+   'DE-HB':[8.80,53.08,'不来梅'],'DE-HH':[9.99,53.55,'汉堡'],
+   'DE-HE':[8.24,50.08,'威斯巴登'],'DE-MV':[11.41,53.63,'什未林'],
+   'DE-NI':[9.74,52.37,'汉诺威'],'DE-NW':[6.78,51.22,'杜塞尔多夫'],
+   'DE-RP':[8.27,50.00,'美因茨'],'DE-SL':[7.00,49.23,'萨尔布吕肯'],
+   'DE-SN':[13.74,51.05,'德累斯顿'],'DE-ST':[11.63,52.13,'马格德堡'],
+   'DE-SH':[10.14,54.32,'基尔'],'DE-TH':[11.03,50.98,'爱尔福特']
+  };
+  const BASE={x:0,y:0,w:1060,h:1000};
+  // Short state names are identifiers, not personal or geographical guesses.
+  const MAP_NAMES={'DE-BW':'巴符','DE-BY':'巴伐','DE-BE':'柏林','DE-BB':'勃兰',
+    'DE-HB':'不梅','DE-HH':'汉堡','DE-HE':'黑森','DE-MV':'梅前',
+    'DE-NI':'下萨','DE-NW':'北威','DE-RP':'莱普','DE-SL':'萨尔',
+    'DE-SN':'萨克','DE-ST':'萨安','DE-SH':'石荷','DE-TH':'图林'};
+  const format=n=>n==null?'无数据':Number(n).toLocaleString('zh-CN');
+  const point=([lon,lat])=>[135+(lon-5.5)*78,45+(55.4-lat)*110];
+  const svgNode=(name,attrs={})=>{
+    const el=document.createElementNS(NS,name);
+    for(const [key,val] of Object.entries(attrs))el.setAttribute(key,String(val));
+    return el;
+  };
+  const geometries=geom=>{
+    if(!geom)return [];
+    if(geom.type==='Polygon')return [geom.coordinates];
+    if(geom.type==='MultiPolygon')return geom.coordinates;
+    return [];
+  };
+  function geoPath(geom){
+    const pieces=[];
+    for(const polygon of geometries(geom)){
+      for(const ring of polygon){
+        if(!ring.length)continue;
+        pieces.push(ring.map((coords,index)=>{
+          const [x,y]=point(coords);
+          return (index?'L':'M')+x.toFixed(2)+' '+y.toFixed(2);
+        }).join(' '));
+        pieces.push('Z');
+      }
+    }
+    return pieces.join(' ');
+  }
+  function normalize16(raw){
+    if(!Array.isArray(raw?.features))return null;
+    const filtered=[];
+    const seen=new Set();
+    for(const source of raw.features){
+      const p=source?.properties||{};
+      const id=/^DE-[A-Z]{2}$/.test(p.id||'') ? p.id : (NUTS_TO_ISO[p.NUTS_ID] || NUTS_TO_ISO[p.id]);
+      if(!/^DE-[A-Z]{2}$/.test(id||'') || seen.has(id) || !geometries(source.geometry).length)continue;
+      seen.add(id);
+      filtered.push({...source,properties:{...p,id}});
+    }
+    return filtered.length===16?{type:'FeatureCollection',metadata:raw.metadata||{},features:filtered}:null;
+  }
+  function normalizeCounties(raw){
+    if(!Array.isArray(raw?.features))return null;
+    const seen=new Set(),features=[];
+    for(const f of raw.features){
+      const prop=f?.properties||{};
+      // A NUTS3 or municipal code is NOT interchangeable with the 5-digit AGS.
+      const code=prop.ags||prop.AGS||prop.id;
+      if(typeof code!=='string'||!/^\d{5}$/.test(code)||seen.has(code)||
+         !geometries(f.geometry).length)return null;
+      seen.add(code);
+      features.push({...f,properties:{...prop,ags:code}});
+    }
+    return features.length ? {type:'FeatureCollection',features,metadata:raw.metadata||{}} : null;
+  }
+  const colorOf=(row,view)=>{
+    if(row?.value==null)return '#8a95a0';
+    let i=view.breaks.findIndex(b=>row.value<=b);
+    if(i<0)i=4;
+    return view.colors[i];
+  };
+  function create({target,topic}){
+    const svg=svgNode('svg',{viewBox:'0 0 1060 1000','aria-label':'德国地图——官方州界或州府点位','role':'img'});
+    svg.classList.add('im-map-svg');
+    const drawing=svgNode('g');svg.append(drawing);
+    target.append(svg);
+    const info=document.querySelector('#map-status');
+    const hint=document.querySelector('#map-hint');
+    const legend=document.querySelector('#map-legend');
+    const tip=document.querySelector('#map-tooltip');
+    const attribution=document.querySelector('.geocredit');
+    function setAttribution(kind){
+      if(!attribution)return;
+      attribution.replaceChildren();
+      const label=document.createElement('span');
+      if(kind==='BKG-local' || kind==='BKG-bundled'){
+        label.textContent='国界：Natural Earth · 州界：© BKG (2026) ';attribution.append(label);
+        const license=document.createElement('a');license.textContent='dl-de/by-2-0';
+        license.href='https://www.govdata.de/dl-de/by-2-0';
+        license.target='_blank';license.rel='noopener noreferrer';attribution.append(license);
+        attribution.append(document.createTextNode(' · 已简化边界'));
+      }else if(kind.startsWith('GISCO')){
+        label.textContent='国界：Natural Earth · 州界：© EuroGeographics for the administrative boundaries / Eurostat GISCO（非商业使用）';
+        attribution.append(label);
+      }else if(kind==='host'){
+        label.textContent='国界：Natural Earth · 州界：主项目既有行政边界（须保留原数据署名）';
+        attribution.append(label);
+      }else{
+        label.textContent='国界：Natural Earth · 圆点为州府参考位置（不是州行政界限）';
+        attribution.append(label);
+      }
+    }
+    let outline=null,stateGeo=null,countyGeo=null,mode='loading';
+    let view=null;
+    let zoom=1,cx=BASE.w/2,cy=BASE.h/2;
+    function setZoom(next){
+      zoom=Math.max(1,Math.min(5,next));
+      const w=BASE.w/zoom,h=BASE.h/zoom;
+      cx=Math.max(w/2,Math.min(BASE.w-w/2,cx));
+      cy=Math.max(h/2,Math.min(BASE.h-h/2,cy));
+      svg.setAttribute('viewBox',`${(cx-w/2).toFixed(1)} ${(cy-h/2).toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`);
+    }
+    function zoomBy(factor){setZoom(zoom*factor)}
+    document.querySelector('#map-zoom-in').addEventListener('click',()=>zoomBy(1.35));
+    document.querySelector('#map-zoom-out').addEventListener('click',()=>zoomBy(1/1.35));
+    document.querySelector('#map-reset').addEventListener('click',()=>{cx=BASE.w/2;cy=BASE.h/2;setZoom(1)});
+    svg.addEventListener('wheel',e=>{e.preventDefault();zoomBy(e.deltaY<0?1.17:1/1.17)},{passive:false});
+    let panning=null,wasDragging=false;
+    svg.addEventListener('pointerdown',e=>{
+      if(e.button!==0)return;
+      panning={x:e.clientX,y:e.clientY,cx,cy};wasDragging=false;
+    });
+    svg.addEventListener('pointermove',e=>{
+      if(!panning)return;
+      if(Math.hypot(e.clientX-panning.x,e.clientY-panning.y)>6)wasDragging=true;
+      const box=svg.getBoundingClientRect();
+      cx=panning.cx-(e.clientX-panning.x)*BASE.w/zoom/box.width;
+      cy=panning.cy-(e.clientY-panning.y)*BASE.h/zoom/box.height;
+      setZoom(zoom);
+    });
+    window.addEventListener('pointerup',()=>{panning=null});
+    function showTip(e,text){
+      if(!tip)return;
+      tip.textContent=text;
+      const box=target.getBoundingClientRect();
+      tip.style.left=Math.min(e.clientX-box.left+16,box.width-200)+'px';
+      tip.style.top=Math.max(15,e.clientY-box.top-35)+'px';
+      tip.hidden=false;
+    }
+    function hideTip(){if(tip)tip.hidden=true}
+    function select(e,id){
+      if(!wasDragging)topic.selectState(id);
+      wasDragging=false;
+    }
+    function interactive(el,id,row,extra=''){
+      el.setAttribute('tabindex','0');el.setAttribute('role','button');
+      el.setAttribute('aria-label',row.name_zh+'：'+(view.unit==='percent'?row.value.toFixed(1)+'%':row.value.toLocaleString('zh-CN')+'人')+extra);
+      el.addEventListener('click',e=>select(e,id));
+      el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();topic.selectState(id)}});
+      el.addEventListener('pointermove',e=>{if(!panning)showTip(e,row.name_zh+'：'+(view.unit==='percent'?row.value.toFixed(1)+'%':row.value.toLocaleString('zh-CN')+' 人'))});
+      el.addEventListener('pointerleave',hideTip);
+    }
+    function drawCountLabels(rows){
+      // Show 16 exact values without hover. Use geographic *state-capital reference*
+      // positions to avoid manufacturing county/state geometry. Layout is deterministic.
+      const occupied=[];
+      const labels=svgNode('g',{class:'im-count-labels'});
+      const ordered=[...rows.values()].sort((a,b)=>b.value-a.value);
+      const width=145,height=32;
+      const intersects=(a,b)=>a.x<b.x+b.w+7 && a.x+a.w+7>b.x &&
+        a.y<b.y+b.h+7 && a.y+a.h+7>b.y;
+      for(const row of ordered){
+        const capital=CAPITALS[row.iso];if(!capital)continue;
+        const [px,py]=point(capital);
+        const candidates=[
+          [px+12,py-35],[px+12,py+9],[px-width-12,py-35],[px-width-12,py+9],
+          [px-width/2,py-51],[px-width/2,py+25],
+          [px+16,py-14],[px-width-16,py-14],
+          [px-width/2,py-82],[px-width/2,py+55]
+        ];
+        let chosen=null,penalty=Infinity;
+        for(const [x,y] of candidates){
+          const box={x,y,w:width,h:height};
+          const overlaps=occupied.filter(other=>intersects(box,other)).length;
+          const edge=Math.max(0,108-x)+Math.max(0,x+width-972)+
+            Math.max(0,50-y)+Math.max(0,y+height-954);
+          const score=overlaps*10000+edge*200+Math.hypot(x-px,y-py);
+          if(score<penalty){chosen=box;penalty=score;}
+          if(score<140)break;
+        }
+        if(!chosen)continue;
+        occupied.push(chosen);
+        const selected=row.iso===view.selected;
+        // A thin leader line makes it clear which state-capital marker a displaced
+        // label belongs to; it must not intercept underlying polygon clicks.
+        const tx=Math.max(chosen.x,Math.min(px,chosen.x+width));
+        const ty=Math.max(chosen.y,Math.min(py,chosen.y+height));
+        const leader=svgNode('line',{x1:px,y1:py,x2:tx,y2:ty,class:'im-label-leader',
+          'pointer-events':'none'});
+        labels.append(leader);
+        const label=svgNode('g',{class:'im-count-label'+(selected?' selected':''),
+          transform:`translate(${chosen.x.toFixed(2)} ${chosen.y.toFixed(2)})`});
+        label.append(svgNode('rect',{x:0,y:0,width,height,rx:5,ry:5,class:'im-label-back'}));
+        const text=svgNode('text',{x:8,y:19,class:'im-label-text'});
+        const st=svgNode('tspan',{class:'im-label-region'});st.textContent=MAP_NAMES[row.iso]||row.iso;
+        const number=svgNode('tspan',{x:49,class:'im-label-number'});number.textContent=view.unit==='percent'?row.value.toFixed(1)+'%':format(row.value);
+        text.append(st,number);label.append(text);
+        interactive(label,row.iso,row);
+        labels.append(label);
+      }
+      drawing.append(labels);
+    }
+    function draw(){
+      if(!view||!outline)return;
+      drawing.replaceChildren();
+      if(legend){
+        legend.replaceChildren();
+        const left=document.createElement('span');left.className='im-legend-end';left.textContent='较低';legend.append(left);
+        for(const color of view.colors){const swatch=document.createElement('i');swatch.className='im-swatch';swatch.style.background=color;legend.append(swatch);}
+        const right=document.createElement('span');right.className='im-legend-end';right.textContent='较高';legend.append(right);
+      }
+      const base=svgNode('path',{d:geoPath(outline.features[0].geometry),class:'im-country-outline'});
+      drawing.append(base);
+      const rows=new Map(view.rows.map(r=>[r.iso,r]));
+      if(stateGeo){
+        // Large regions first, small city-states last to keep their tiny polygons
+        // clickable even when boundaries share complex geometry.
+        const extent=geom=>{
+          let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+          for(const polygon of geometries(geom))for(const ring of polygon)for(const p of ring){
+            minX=Math.min(minX,p[0]);maxX=Math.max(maxX,p[0]);
+            minY=Math.min(minY,p[1]);maxY=Math.max(maxY,p[1]);
+          }
+          return (maxX-minX)*(maxY-minY);
+        };
+        const states=[...stateGeo.features].sort((a,b)=>extent(b.geometry)-extent(a.geometry));
+        for(const state of states){
+          const id=state.properties.id,row=rows.get(id);
+          const el=svgNode('path',{d:geoPath(state.geometry),class:'im-state-polygon',
+            fill:colorOf(row,view),stroke:id===view.selected?'#ffffff':'#203a4d',
+            'stroke-width':id===view.selected?2.9:1.4,'fill-rule':'evenodd'});
+          interactive(el,id,row);
+          drawing.append(el);
+        }
+        // County shapes are optional: show them ONLY with official AGS geometry,
+        // genuine same-date AZR values and a fully verified county collection.
+        let countyOverlayCount=0;
+        if(countyGeo&&view.metric==='foreign_population'&&view.year===2025){
+          const records=topic.getCountyRecords().filter(r=>r.state_iso===view.selected&&r.value!=null);
+          const coverage=topic.getCountyCoverage(view.selected);
+          const matched=countyGeo.features.filter(f=>records.some(r=>r.ags===f.properties.ags));
+          if(coverage?.complete&&records.length===coverage.expected_districts&&
+             matched.length===coverage.expected_districts){
+            const recordMap=new Map(records.map(r=>[r.ags,r]));
+            const sorted=records.map(r=>r.value).sort((a,b)=>a-b);
+            const quantile=[1,2,3,4].map(i=>sorted[Math.ceil(sorted.length*i/5)-1]);
+            for(const f of matched){
+              const r=recordMap.get(f.properties.ags);
+              let index=quantile.findIndex(v=>r.value<=v);if(index<0)index=4;
+              const node=svgNode('path',{d:geoPath(f.geometry),class:'im-county-polygon',
+                fill:view.colors[index],stroke:'#12283a','stroke-width':1.2,
+                'data-county-ags':r.ags,'fill-rule':'evenodd'});
+              node.setAttribute('tabindex','0');node.setAttribute('role','button');
+              node.setAttribute('aria-label',r.name_zh+'：'+format(r.value)+'人，2025年AZR');
+              node.addEventListener('click',e=>{if(!wasDragging)topic.selectCounty(r.ags)});
+              node.addEventListener('pointermove',e=>{if(!panning)showTip(e,r.name_zh+' · '+format(r.value)+' 人')});
+              node.addEventListener('pointerleave',hideTip);
+              node.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();topic.selectCounty(r.ags)}});
+              drawing.append(node);countyOverlayCount++;
+            }
+          }
+        }
+        drawCountLabels(rows);
+        info.textContent=view.unit==='percent'?'16州人口占比 · 按州着色':view.year+'年 · 16州外国籍人口数 · 按州着色';
+        hint.textContent=countyOverlayCount?'已加载'+countyOverlayCount+'个官方县界：颜色表示选中州各县人数；点击州界或侧栏切换。':'点击州界查看对应人数；滚轮缩放。';
+      }else{
+        for(const row of view.rows){
+          const city=CAPITALS[row.iso];if(!city)continue;
+          const [x,y]=point(city);
+          const radius=8;
+          const circle=svgNode('circle',{cx:x,cy:y,r:radius,class:'im-capital-point',
+            fill:colorOf(row,view),stroke:row.iso===view.selected?'#ffffff':'#9bbed1',
+            'stroke-width':row.iso===view.selected?2.7:1.3,'fill-opacity':.94});
+          interactive(circle,row.iso,row,'（点位标记：'+city[2]+'）');
+          drawing.append(circle);
+        }
+        drawCountLabels(rows);
+        info.textContent=view.unit==='percent'?'16州人口占比 · 州府点位显示':view.year+'年 · 16州外国籍人口数 · 州府点位显示';
+        hint.textContent='点击圆点查看人数。点位代表州，不是外国籍人口的实际居住点；未绘制州界。';
+      }
+    }
+    async function start(){
+      if (window.__IMMIGRATION_INLINE_OUTLINE__) {
+        outline = window.__IMMIGRATION_INLINE_OUTLINE__;
+      } else {
+        const national=await fetch('./data/germany-outline-ne110.geojson');
+        if(!national.ok)throw Error('German outline missing: HTTP '+national.status);
+        outline=await national.json();
+      }
+      mode='offline';
+      // Locally bundled original-state boundaries work with file:// HTML and
+      // without external services. The source remains independently documented.
+      const countyEmbedded=normalizeCounties(window.__IMMIGRATION_INLINE_COUNTY_GEOMETRY__);
+      if(countyEmbedded)countyGeo=countyEmbedded;
+      const embedded=normalize16(window.__IMMIGRATION_INLINE_STATES__);
+      if(embedded){
+        stateGeo=embedded;
+        mode=/BKG|Kartographie/i.test(embedded.metadata?.provider||'')?'BKG-bundled':'GISCO-bundled';
+      }
+      setAttribution(mode);
+      draw();
+      if (window.__IMMIGRATION_NO_NETWORK__ || embedded)
+        return {mode,matched:stateGeo?.features.length||0};
+      const candidates=[
+        {url:'../../data/germany-states.geojson',source:'host'},
+        {url:'./data/bkg-states-2026.geojson',source:'BKG-local'},
+        {url:'./data/gisco-nuts1-de-2024.geojson',source:'GISCO-local'},
+        {url:'https://gisco-services.ec.europa.eu/distribution/v2/nuts/geojson/NUTS_RG_03M_2024_4326_LEVL_1.geojson',source:'GISCO-web'}
+      ];
+      for(const candidate of candidates){
+        try{
+          const ctrl=new AbortController();const timer=setTimeout(()=>ctrl.abort(),candidate.source==='GISCO-web'?10000:1500);
+          let res;
+          try{res=await fetch(candidate.url,{signal:ctrl.signal})}finally{clearTimeout(timer)}
+          if(!res.ok)continue;
+          const normalized=normalize16(await res.json());
+          if(!normalized)continue;
+          stateGeo=normalized;mode=candidate.source;setAttribution(mode);draw();break;
+        }catch(err){console.info('Optional official state geometry unavailable:',candidate.source,err.message)}
+      }
+      return {mode,matched:stateGeo?.features?.length||0};
+    }
+    function update(next){view=next;draw()}
+    function useCountyGeometry(raw){countyGeo=normalizeCounties(raw);draw();return countyGeo?.features.length||0;}
+    return {start,update,useCountyGeometry,getMode:()=>mode,hasStates:()=>!!stateGeo,reset:()=>setZoom(1)};
+  }
+  window.ImmigrationStandaloneMap={create,normalize16,normalizeCounties};
+})();
+
+</script>
+ <script>
+ (async()=>{
+   const topic=window.GermanMapTopics.immigration;
+   const panel=document.getElementById('topic-container');
+   try{
+     await topic.loadData();
+     const visual=window.ImmigrationStandaloneMap.create({target:document.getElementById('map-box'),topic});
+     window.__v8Map=visual; // standalone test harness, not exported topic API
+     const context={container:panel,onViewChange:state=>visual.update(state)};
+     topic.activate(context);
+     window.addEventListener('pagehide',()=>topic.deactivate());
+     visual.start().catch(err=>{document.getElementById('map-status').textContent='地图边界无法载入';document.getElementById('map-hint').textContent=err.message;});
+   }catch(err){const notice=document.createElement('p');notice.id='preview-error';notice.textContent='数据载入失败：'+err.message;panel.append(notice);console.error(err);}
+ })();
+ </script>
+</body>
+</html>

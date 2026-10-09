@@ -4,6 +4,7 @@
 
 - [打开主地图（暴力犯罪／财产犯罪）](https://1959124923wyz-sys.github.io/German-Map/)
 - [打开毒品专题地图（2025年全国县级数据）](https://1959124923wyz-sys.github.io/German-Map/topics/drugs/)
+- [打开外国籍人口地图（AZR 2025 · 16州 · 2018—2025趋势）](https://1959124923wyz-sys.github.io/German-Map/topics/immigration/)
 - [开发文档](README_DEV.md)
 - [数据来源及统计口径](SOURCE_MATRIX.md)
 
