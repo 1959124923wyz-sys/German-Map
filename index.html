@@ -6,7 +6,7 @@
 <title>德国犯罪态势地图 · Germany Crime Situation Monitor</title>
 <meta name="description" content="德国犯罪态势可视化：BKA官方年度统计底图、近90天警方公开通报点、柏林高覆盖局部数据叠加。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="css/map.css?v=20261008-svg-outline-fix-v3">
+<link rel="stylesheet" href="css/map.css?v=clean1">
 </head>
 <body>
 <header>
@@ -107,16 +107,18 @@
     </section>
 
     <details class="incident-drawer">
-      <summary><span id="listTitle">近90天公开通报（次要参考）</span></summary>
+      <summary><span id="listTitle">近90天公开通报</span></summary>
       <div id="list"></div>
+    </details>
+    <details class="site-method">
+      <summary>数据口径与方法</summary>
+      <p>全国层依据 BKA PKS 2025，显示县、市每10万人登记犯罪率。警方登记案件不等于未报案犯罪。</p>
+      <p>柏林、汉堡、慕尼黑及部分其他城市可下钻。基尔、不来梅、斯图加特、杜塞尔多夫的局部专题显示独立的案件数量或特定类别，不能直接与全国犯罪率比较。</p>
     </details>
   </aside>
 </main>
 
-<footer>
-  <span>全国层：BKA PKS 2025 · 县/市每10万人犯罪率；柏林、汉堡、慕尼黑及萨克森主要城市可下钻；基尔设全部案件数量独立图层，不来梅另设分区犯罪类别图层；斯图加特独立展示2025年公共场所暴力犯罪。杜塞尔多夫另设10区全部案件年度数量图层；上述专题均非每10万人犯罪率。</span>
-  <span>警方登记数据，不代表未报案犯罪。</span>
-</footer>
+<footer><span>BKA PKS 2025 · 官方登记犯罪数据</span><span>© OpenStreetMap contributors</span></footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="vendor/leaflet-heat.js"></script>
@@ -124,21 +126,21 @@
 <script src="js/core/config.js"></script>
 <script src="js/core/data-model.js"></script>
 <script src="js/panels/drawer-drag.js"></script>
-<script src="js/panels/state-panel.js?v=20261009-zh-v1"></script>
-<script src="js/panels/area-panel.js?v=20261009-zh-v1"></script>
-<script src="js/layers/recent-events.js?v=20261008-pointer-fix"></script>
+<script src="js/panels/state-panel.js?v=clean1"></script>
+<script src="js/panels/area-panel.js?v=clean1"></script>
+<script src="js/layers/recent-events.js?v=clean1"></script>
 <script src="js/layers/berlin-detail.js"></script>
 <script src="js/layers/county-layer.js"></script>
-<script src="js/layers/state-layer.js?v=20261008-state-nav-svg"></script>
-<script src="js/core/place-names-zh.js?v=20261009-zh-v1"></script>
-<script src="js/layers/city-labels.js?v=20261009-zh-v1"></script>
-<script src="js/app.js?v=20261009-osm-restore-v1"></script>
-<script src="js/layers/city-detail.js?v=20261008-dresden-v2"></script>
-<script src="js/layers/city-count-detail.js?v=20261008-bremen-count-v1"></script>
-<script src="js/layers/bremen-category-detail.js?v=20261008-stuttgart-v1"></script>
-<script src="js/layers/stuttgart-public-violence.js?v=20261008-duesseldorf-v1"></script>
-<script src="js/layers/duesseldorf-count-detail.js?v=20261008-bv7-bv9-v1"></script>
-<script src="js/layers/duesseldorf-bv6-detail.js?v=20261008-bv6-v2"></script>
-<script src="js/layers/duesseldorf-other-stadtteile.js?v=20261008-bv7-bv9-v1"></script>
+<script src="js/layers/state-layer.js?v=clean1"></script>
+<script src="js/core/place-names-zh.js?v=clean1"></script>
+<script src="js/layers/city-labels.js?v=clean1"></script>
+<script src="js/app.js?v=clean1"></script>
+<script src="js/layers/city-detail.js?v=clean1"></script>
+<script src="js/layers/city-count-detail.js?v=clean1"></script>
+<script src="js/layers/bremen-category-detail.js?v=clean1"></script>
+<script src="js/layers/stuttgart-public-violence.js?v=clean1"></script>
+<script src="js/layers/duesseldorf-count-detail.js?v=clean1"></script>
+<script src="js/layers/duesseldorf-bv6-detail.js?v=clean1"></script>
+<script src="js/layers/duesseldorf-other-stadtteile.js?v=clean1"></script>
 </body>
 </html>

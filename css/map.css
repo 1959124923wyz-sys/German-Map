@@ -170,3 +170,10 @@ footer{flex:0 0 34px;border-top:1px solid var(--line);padding:7px 18px;color:var
   stroke: #ffffff !important;
   stroke-width: 3px !important;
 }
+
+/* Long statistical caveats remain available, without crowding the default map view. */
+.site-method{flex:0 0 auto;background:#121b24;border-top:1px solid #2c3845;color:#a7b7c3}
+.site-method>summary{cursor:pointer;padding:8px 12px;font-size:10px;list-style:revert}
+.site-method[open]{max-height:min(34vh,240px);overflow:auto}
+.site-method p{margin:0;padding:5px 12px;font-size:10px;line-height:1.55;color:#a8b6c2}
+@media(max-width:920px){.site-method[open]{max-height:none}}

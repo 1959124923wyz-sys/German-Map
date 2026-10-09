@@ -35,6 +35,7 @@ jobs:
       - name: Verify source and launch static site
         run: |
           node --check topics/immigration/topic.js
+          node --check topics/immigration/data/azr-records.js
           node --check js/core/place-names-zh.js
           node --check js/layers/city-labels.js
           python - <<'PY'

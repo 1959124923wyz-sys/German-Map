@@ -32,6 +32,8 @@ def check(browser, mobile=False):
     assert page.locator("#environment-map .leaflet-control-zoom-in").is_visible()
     assert page.locator("#environment-map .leaflet-tile-pane").count()==1
     assert page.locator("#environment-map .crime-city-label").count()>=5
+    assert page.locator("#summaryPanel .area-title").is_hidden()
+    assert page.locator("#mapTools").evaluate("(el)=>el.open") is False
     assert "街道底图" in page.locator("#mapStatus").inner_text() or "底图" in page.locator("#mapStatus").inner_text()
 
     facts=page.evaluate(r"""() => {
@@ -63,10 +65,10 @@ def check(browser, mobile=False):
         assert page.locator("#count").inner_text()==str(expected),mode
         assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==expected,mode
         assert page.locator("#listCount").inner_text()==str(expected)+" 条",mode
-        assert "154 条" in page.locator("#filterState").inner_text()
+        assert page.locator("#filterState").is_hidden(), "Default topic choice needs no redundant summary"
     page.locator("#taxonomyGuide summary").click()
     assert page.locator("#taxonomyGuide").evaluate("(e)=>e.open") is True
-    assert "41 + 10 + 11 + 92 = 154" in page.locator("#taxonomyGuide").inner_text()
+    assert "未来计划" in page.locator("#taxonomyGuide").inner_text()
     page.locator("#taxonomyGuide summary").click()
     page.locator('[data-mode="project"]').click()
     project=page.evaluate("window.__ENVIRONMENT_MAP__.getRows().map(e=>e.kind)")
@@ -113,6 +115,7 @@ def check(browser, mobile=False):
     page.evaluate("""id => window.__ENVIRONMENT_MAP__.getMarkers().get(id).fire('click')""",first)
     assert page.evaluate("window.__ENVIRONMENT_MAP__.getSelected()")==first
     assert page.locator("#detail").is_visible()
+    assert page.locator("#summaryPanel .area-title").is_visible()
     assert page.locator("#detail .env-sources a[href^='https://']").count()>=1
     assert page.locator("#detail .env-detail-section").count()>=3
     page.locator("#closeDetail").click()
@@ -124,6 +127,8 @@ def check(browser, mobile=False):
     page.locator("#entries .env-entry").first.click()
     assert page.locator("#detail").is_visible()
     assert page.evaluate("window.__ENVIRONMENT_MAP__.map.getZoom()")>=8
+    page.locator("#mapTools summary").click()
+    assert page.locator("#mapTools").evaluate("(el)=>el.open") is True
     page.locator("#viewGermany").click()
     page.wait_for_function("window.__ENVIRONMENT_MAP__.map.getZoom() < 8", timeout=10000)
     if mobile:

@@ -3,7 +3,17 @@ name: Germany crime map UI smoke test
 on:
   pull_request:
     paths:
-      - '**'
+      - 'index.html'
+      - 'css/**'
+      - 'js/**'
+      - 'topics/drugs/index.html'
+      - 'topics/immigration/index.html'
+      - 'topics/environment/index.html'
+      - 'data/city_layers.json'
+      - 'data/city_count_layers.json'
+      - 'scripts/build_*.py'
+      - 'scripts/validate_*.py'
+      - 'scripts/smoke_test_ui.py'
       - '.github/workflows/germany-homicide-map-smoke.yml'
   workflow_dispatch:
   push:

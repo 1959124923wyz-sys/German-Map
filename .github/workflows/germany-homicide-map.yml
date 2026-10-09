@@ -15,9 +15,8 @@ on:
     paths:
       - '.github/workflows/germany-homicide-map.yml'
       - 'scripts/**'
-      - 'index.html'
-      - 'css/**'
-      - 'js/**'
+      # Frontend-only edits are published by the lightweight Pages workflow.
+      # Do not rebuild all official crime layers for a CSS/navigation tweak.
       # Drug-topic updates deploy through drugs-pages-deploy.yml;
       # avoid requiring unrelated city-source rebuilds for minor topic UI changes.
       - 'data/city_layers.json'

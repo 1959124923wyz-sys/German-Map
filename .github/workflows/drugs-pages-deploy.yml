@@ -1,4 +1,4 @@
-name: Deploy drug topic changes to GitHub Pages
+name: Publish German-Map website
 
 on:
   push:
@@ -37,10 +37,12 @@ jobs:
         uses: actions/checkout@v6
         with:
           ref: main
-      - name: Verify EUDA source data and JS syntax
+      - name: Validate website scripts and source assets
         run: |
           node --check topics/drugs/topic.js
           node --check topics/immigration/topic.js
+          node --check topics/immigration/data/azr-records.js
+          test -s topics/immigration/data/azr-records.js
           node --check topics/environment/topic.js
           node --check topics/environment/data/records.js
           test -s topics/environment/index.html
