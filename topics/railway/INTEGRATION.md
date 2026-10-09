@@ -8,7 +8,7 @@
 
 ## 已有资料与已确认的规模
 
-来源作者标注 DB InfraGO 铁路基础设施的官方 CSV（WGS84 线几何），压缩后以便在浏览器显示。**尚未独立核验原始 CSV 的 URL、发布时间、许可证/再分发条件，以及当前数据是否与后续版本一致。**
+来源作者标注 DB InfraGO 铁路基础设施的官方 CSV（WGS84 线几何），压缩后以便在浏览器显示。德国联邦开放数据目录 [GovData：Infrastrukturdaten der DB InfraGO](https://www.govdata.de/suche/daten/infrastrukturdaten-der-db-infrago?ids=b88d0ec0-dbab-4990-8539-6461f32df53b) 确认存在官方 CSV/GeoPackage、数据期为**2026年5月**，CSV资源标注**CC BY 4.0**。但**尚不能证明原型使用的恰好是这份2026年5月的 CSV**，仍须以原始文件名、下载 URL、散列及字段/数量核对再确认数据来源和适用许可。不要将另一套 BKG 受限制发布的地图产品混同于此开放数据集。
 
 内置地图数据：
 
