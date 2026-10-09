@@ -23,18 +23,10 @@
     project:'项目争议和正常法律诉讼不等同于违法行动。',
     facility:'招标、命令及未来计划不等于实际退役。'
   };
-  const SHORTCUT_DESCRIPTIONS = {
-    airport:'直接行动 · 与机场有关的记录',
-    paint:'直接行动 · 喷涂、涂漆有关的记录',
-    scheduled:'能源设施 · 21项未来退出安排（不是已经停机）',
-    focus:'跨类型重点案例 · 10项政策 + 10项组织争议 + 1项设施项目争议'
-  };
   const PHASE_LABELS = {retired:'历史退役',awarded:'招标中标',ordered:'监管命令',scheduled:'未来退出计划'};
   const ACTION_LABELS = {traffic:'交通干扰',energy:'能源干扰',sabotage:'设施破坏',culture:'文化设施',construction:'工程冲击'};
   const GERMANY = L.latLngBounds([[47.05,5.45],[55.15,15.65]]);
-  const BERLIN = L.latLngBounds([[52.34,13.08],[52.67,13.75]]);
-  const HAMBURG = L.latLngBounds([[53.38,9.68],[53.78,10.36]]);
-  const state = {mode:'all',shortcut:null,action:'all',phase:'all',org:'all',search:'',selected:null,limit:18};
+  const state = {mode:'all',selected:null,limit:18};
   let group=null, map=null, rows=[], activeMarkers=new Map(), tilesLoaded=false;
 
   function validData() {
@@ -61,13 +53,6 @@
     const raw = String(e.city || '').split(/[·（(]/)[0].trim();
     return window.GermanPlaceNames?.translate(raw) || raw || '未注明';
   }
-  function actorGroup(e) {
-    const v=String(e.actor||'').toLowerCase();
-    for(const key of ['Letzte Generation','Ende Gelände','Greenpeace','Tesla Stoppen','BUND','NABU','DUH']) {
-      if (v.includes(key.toLowerCase())) return key;
-    }
-    return null;
-  }
   function primaryClass(e) {
     if(e.kind==='organization'||e.kind==='facility_story') return 'project';
     if(e.kind==='archive'||e.kind==='policy'||e.kind==='facility') return e.kind;
@@ -75,20 +60,8 @@
   }
   function inMode(e) {return state.mode==='all'||primaryClass(e)===state.mode;}
   function filtered() {
-    let result=ALL.filter(inMode);
-    if(state.shortcut==='focus')
-      result=result.filter(e=>['policy','organization','facility_story'].includes(e.kind));
-    if(state.org!=='all')
-      result=result.filter(e=>String(e.actor||'').toLowerCase().includes(state.org.toLowerCase()));
-    if(state.mode==='archive'&&state.action!=='all')
-      result=result.filter(e=>e.action_group===state.action);
-    if(state.mode==='facility'&&state.phase!=='all')
-      result=result.filter(e=>e.facility_phase===state.phase);
-    if(state.search) {
-      result=result.filter(e=>[e.title,e.actor,e.city,e.summary,e.dispute,e.outcome,e.status_label]
-        .some(x=>String(x||'').toLowerCase().includes(state.search)));
-    }
-    return result.sort((a,b) => (a.facility_phase==='scheduled'?1:0)-(b.facility_phase==='scheduled'?1:0)
+    return ALL.filter(inMode).sort((a,b)=>
+      (a.facility_phase==='scheduled'?1:0)-(b.facility_phase==='scheduled'?1:0)
       || b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
   }
   function legend() {
@@ -164,7 +137,6 @@
       :e.location_type==='facility'?'设施附近定位'
       :e.location_type==='municipality'?'市镇级近似定位，并非精确设备位置'
       :'事件／项目附近的参考位置';
-    const actor=actorGroup(e);
     target.innerHTML='<div class="env-detail-head"><strong>记录详情 · '+esc(cityName(e))
       +'</strong><button type="button" id="closeDetail" aria-label="关闭详情">关闭 ×</button></div>'
       +'<div class="env-detail-title">'+esc(e.title)+'</div>'
@@ -174,17 +146,8 @@
       +fields.join('')
       +'<div class="env-detail-section"><h3>原始资料</h3><div class="env-sources">'+sources+'</div></div>'
       +'<div class="env-limit">位置说明：'+esc(locationDescription)
-      +'。组织立场、行动认领、司法认定及实际经济损失均须依据原始证据分别判断。</div>'
-      +(actor?'<button type="button" class="env-detail-actor" id="actorFilter">筛选 '+esc(actor)+' 关联的记录 →</button>':'');
+      +'。组织立场、行动认领、司法认定及实际经济损失均须依据原始证据分别判断。</div>';
     $('closeDetail').onclick=()=>selectRecord(null,false);
-    if(actor) $('actorFilter').onclick=()=>{
-      // The actor button is a cross-category jump: do not leave a hidden
-      // "facility/policy" primary filter active and accidentally show zero.
-      state.mode='all';state.action='all';state.phase='all';state.shortcut=null;
-      state.search='';state.org=actor;state.selected=null;state.limit=18;
-      $('org').value=actor;$('action').value='all';$('phase').value='all';$('search').value='';
-      render();
-    };
   }
   function selectRecord(id,fly) {
     const e=rows.find(v=>v.id===id);
@@ -240,13 +203,10 @@
     $('regionCount').textContent=new Set(rows.map(cityName)).size;
     $('sourceCount').textContent=new Set(rows.flatMap(e=>e.sources||[]).map(x=>x.url)).size;
     $('listCount').textContent=rows.length+' 条';
-    $('sectionTitle').textContent=state.shortcut?SHORTCUT_DESCRIPTIONS[state.shortcut]:CATEGORIES[state.mode];
+    $('sectionTitle').textContent=CATEGORIES[state.mode];
     $('resultScope').textContent='点选查看详情';
     $('listHint').textContent=NOTES[state.mode];
     $('summaryPanel').classList.toggle('has-selection',!!selected);
-    $('actionFilter').hidden=state.mode!=='archive';
-    $('phaseFilter').hidden=state.mode!=='facility';
-    $('org').parentElement.hidden=!['all','archive','project'].includes(state.mode);
     $('areaName').textContent=selected?cityName(selected):'德国全国';
     $('kindBadge').textContent=selected?kind(selected):'专题概览';
     $('areaMetric').textContent=selected?selected.actor+' · '+selected.date:'政策、直接行动和电厂退出的可核查记录';
@@ -255,16 +215,6 @@
       b.classList.toggle('active',active);
       b.setAttribute('aria-pressed',String(active));
     });
-    document.querySelectorAll('[data-shortcut]').forEach(b=>b.classList.toggle('active',b.dataset.shortcut===state.shortcut));
-    const extra=[state.org!=='all'?'组织：'+state.org:null,
-      state.mode==='archive'&&state.action!=='all'?'行动类型：'+ACTION_LABELS[state.action]:null,
-      state.mode==='facility'&&state.phase!=='all'?'设施状态：'+PHASE_LABELS[state.phase]:null,
-      state.search?'关键词：'+state.search:null].filter(Boolean);
-    const filterActive=!!state.shortcut||extra.length>0;
-    $('filterState').hidden=!filterActive;
-    $('filterState').textContent=filterActive
-      ? '筛选：'+[state.shortcut?SHORTCUT_DESCRIPTIONS[state.shortcut]:null,...extra].filter(Boolean).join(' · ')+' · '+rows.length+' 条'
-      : '';
     legend();detail(selected);rank();renderEntries();renderMarkers();
   }
 
@@ -310,35 +260,15 @@
       getSelected:()=>state.selected,getMarkerCount:()=>activeMarkers.size,
       getMarkers:()=>activeMarkers,getAll:()=>ALL,selectRecord};
   }
-  function resetFilters(mode='all'){
-    state.mode=mode;state.shortcut=null;state.org='all';state.action='all';
-    state.phase='all';state.search='';state.selected=null;state.limit=18;
-    $('org').value='all';$('action').value='all';$('phase').value='all';$('search').value='';
-    render();
-  }
   function wire() {
-    for(const b of document.querySelectorAll('[data-mode]'))
-      b.onclick=()=>resetFilters(b.dataset.mode);
-    $('clearFilters').onclick=()=>resetFilters();
-    for(const b of document.querySelectorAll('[data-shortcut]')) b.onclick=()=>{
-      const shortcut=b.dataset.shortcut;
-      resetFilters(shortcut==='scheduled'?'facility':shortcut==='focus'?'all':'archive');
-      state.shortcut=shortcut;
-      if(shortcut==='airport'||shortcut==='paint') {
-        state.search=shortcut==='airport'?'机场':'喷';
-        $('search').value=state.search;
-      }
-      if(shortcut==='scheduled') {state.phase='scheduled';$('phase').value='scheduled';}
-      render();
-    };
-    $('org').onchange=e=>{state.org=e.target.value;state.shortcut=null;state.limit=18;render();};
-    $('action').onchange=e=>{state.action=e.target.value;state.shortcut=null;state.limit=18;render();};
-    $('phase').onchange=e=>{state.phase=e.target.value;state.shortcut=null;state.limit=18;render();};
-    $('search').oninput=e=>{state.search=e.target.value.toLowerCase().trim();state.shortcut=null;state.limit=18;render();};
-    $('viewGermany').onclick=()=>{map.fitBounds(GERMANY,{padding:[14,14],animate:false});selectRecord(null,false);};
-    $('viewBerlin').onclick=()=>map.fitBounds(BERLIN,{padding:[20,20],animate:false});
-    $('viewHamburg').onclick=()=>map.fitBounds(HAMBURG,{padding:[20,20],animate:false});
-    $('clearSelection').onclick=()=>selectRecord(null,false);
+    for (const b of document.querySelectorAll('[data-mode]')) {
+      b.onclick=()=>{
+        state.mode=b.dataset.mode;
+        state.selected=null;
+        state.limit=18;
+        render();
+      };
+    }
     $('moreRecords').onclick=()=>{state.limit+=24;renderEntries();};
   }
   try{

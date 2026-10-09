@@ -7,7 +7,7 @@
 <meta name="description" content="德国环保争议政策、环保组织行动、机场封锁、能源设施退役和后续证据地图；基于154条带来源的记录。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css?v=clean1">
-<link rel="stylesheet" href="topic.css?v=clean1">
+<link rel="stylesheet" href="topic.css?v=clean2">
 </head>
 <body>
 <header>
@@ -43,60 +43,7 @@
           <button type="button" data-mode="project" aria-pressed="false">组织争议 <span class="env-tab-count" data-count-for="project">11</span></button>
           <button type="button" data-mode="facility" aria-pressed="false">能源设施 <span class="env-tab-count" data-count-for="facility">92</span></button>
         </div>
-        <details class="env-taxonomy-guide" id="taxonomyGuide">
-          <summary>分类说明</summary>
-          <p><b>行动事件</b>：机场、道路、能源运输及喷涂等实际行动。</p>
-          <p><b>环保政策</b>：环保、能源领域的政策决策。</p>
-          <p><b>组织争议</b>：组织参与的争议项目及独立设施案例；诉讼不等于违法行动。</p>
-          <p><b>能源设施</b>：区分已退役、中标、监管命令和未来计划。</p>
-          <p class="env-guide-footnote">四类互不重复；记录仅覆盖本专题已收录的案例。</p>
-        </details>
       </div>
-      <div class="env-shortcut-row" role="group" aria-label="常用查看入口">
-        <span>快捷</span>
-        <button type="button" class="env-shortcut" data-shortcut="airport" title="直接行动中与机场有关的记录">机场</button>
-        <button type="button" class="env-shortcut" data-shortcut="paint" title="直接行动中涉及喷涂、涂漆等行为的记录">喷涂</button>
-        <button type="button" class="env-shortcut" data-shortcut="scheduled" title="能源设施中按未来法定时间表安排退出的记录">未来退出</button>
-        <button type="button" class="env-shortcut" data-shortcut="focus" title="编辑选取的政策与项目争议案例，属于跨类型筛选而不是第五种记录类型">精选</button>
-        <button type="button" id="clearFilters" class="env-clear" title="清除所有筛选">清除筛选</button>
-      </div>
-      <div class="env-filter-state" id="filterState" role="status" aria-live="polite" hidden></div>
-      <details class="env-map-tools" id="mapTools"><summary>地图定位</summary><div class="control-row">
-        <button type="button" id="viewGermany">全国</button>
-        <button type="button" id="viewBerlin">柏林</button>
-        <button type="button" id="viewHamburg">汉堡</button>
-        <button type="button" id="clearSelection">取消选中</button>
-      </div></details>
-      <div class="control-row env-filters">
-        <label><span>参与组织</span>
-          <select id="org" aria-label="按组织筛选">
-            <option value="all">不限组织</option>
-            <option>BUND</option><option>NABU</option><option>DUH</option>
-            <option>Greenpeace</option><option>Ende Gelände</option>
-            <option>Letzte Generation</option><option>Tesla Stoppen</option>
-          </select>
-        </label>
-        <label id="actionFilter" hidden><span>行动</span>
-          <select id="action" aria-label="行动分类">
-            <option value="all">全部行动</option>
-            <option value="traffic">交通干扰</option>
-            <option value="energy">能源干扰</option>
-            <option value="sabotage">设施破坏</option>
-            <option value="culture">文化设施</option>
-            <option value="construction">工程冲击</option>
-          </select>
-        </label>
-        <label id="phaseFilter" hidden><span>状态</span>
-          <select id="phase" aria-label="能源设施状态">
-            <option value="all">全部状态</option>
-            <option value="retired">历史退役</option>
-            <option value="awarded">招标中标</option>
-            <option value="ordered">监管命令</option>
-            <option value="scheduled">未来计划</option>
-          </select>
-        </label>
-      </div>
-      <div class="control-row env-search"><strong>搜索</strong><input id="search" type="search" placeholder="地点、政策、组织、事件…" aria-label="搜索记录"></div>
     </div>
 
     <section class="safety-panel" id="summaryPanel">
@@ -129,6 +76,6 @@
 <script src="../../js/core/place-names-zh.js?v=clean1"></script>
 <script src="../../js/layers/city-labels.js?v=clean1"></script>
 <script src="data/records.js?v=clean1"></script>
-<script src="topic.js?v=clean1"></script>
+<script src="topic.js?v=clean2"></script>
 </body>
 </html>

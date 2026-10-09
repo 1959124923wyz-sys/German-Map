@@ -7,15 +7,6 @@
 .env-tabs{display:flex;gap:5px;flex-wrap:wrap;min-width:0;flex:1}
 .environment-sidebar .env-tabs button{padding:5px 8px;white-space:nowrap}
 .environment-sidebar .env-tabs button.active{border-color:#6499bd;background:#2a4354;color:#fff}
-.env-filters{display:flex;gap:9px;align-items:end}
-.env-filters label{display:flex;align-items:center;gap:5px;flex:1 1 155px;min-width:0}
-.env-filters label[hidden]{display:none!important}
-.env-filters label span{font-size:10px;color:#9babb9;flex:0 0 auto}
-.env-filters select{min-width:0;max-width:100%;width:100%;flex:1}
-.env-search input{width:calc(100% - 48px);min-width:0;background:#10171f;border:1px solid #354250;border-radius:7px;color:#f0f5f9;padding:6px 8px;font-size:11px}
-.env-search input::placeholder{color:#7d91a1}
-.env-search input:focus-visible{outline:2px solid #6499bd}
-.map-corner-tip{position:absolute;z-index:690;left:12px;top:12px;background:rgba(12,17,23,.86);color:#d0dbe5;padding:5px 9px;border:1px solid #40505c;border-radius:8px;font-size:9px;pointer-events:none}
 .env-legend-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 3px}
 .env-legend-item{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-size:10px}
 .env-symbol{display:inline-block;height:11px;width:11px;border:2px solid currentColor;background:rgba(22,30,40,.6);border-radius:50%}
@@ -35,7 +26,6 @@
 .env-marker.selected:before{box-shadow:0 0 0 3px #fff,0 0 0 5px rgba(17,28,40,.55)}
 .env-marker:hover:before{box-shadow:0 0 0 2px #fff}
 .env-marker .env-marker-signal{position:absolute;z-index:1;width:4px;height:4px;border-radius:50%;background:#fff}
-.env-dot-caption{font-size:9px;color:#8296a4;margin-left:5px}
 .env-detail{margin-top:13px;border-top:1px solid #324453;padding-top:11px}
 .env-detail[hidden]{display:none!important}
 .env-detail-title{font-size:14px;font-weight:750;line-height:1.4;margin:5px 0}
@@ -51,8 +41,6 @@
 .env-detail-head{display:flex;justify-content:space-between;gap:7px;align-items:center}
 .env-detail-head strong{font-size:10px;color:#bed4e3;letter-spacing:.03em}
 .env-detail-head button{color:#aebfcb;border:1px solid #354b5b;background:#182936;border-radius:6px;cursor:pointer}
-.env-detail-actor{display:block;background:#172834;border:1px solid #43576a;color:#cbe0e9;padding:6px 8px;font-size:10px;border-radius:7px;margin-top:11px;cursor:pointer;text-align:left}
-.env-detail-actor:hover{background:#244054}
 .rank-row:focus-visible,.env-entry:focus-visible{outline:2px solid #8ab9d7;outline-offset:-2px}
 #recordDrawer{max-height:37%;overflow:auto}
 #recordDrawer>summary{font-size:10px;position:sticky;top:0;z-index:2;background:#111a24}
@@ -70,16 +58,13 @@
 .mapwrap .leaflet-container{font-family:inherit}
 .env-tooltip.leaflet-tooltip{background:#111b25;color:#e5edf3;font-size:10px;padding:6px 9px;border:1px solid #465a6c;border-radius:7px}
 .env-tooltip.leaflet-tooltip:before{display:none}
-.env-pane-label{pointer-events:none}
 @media(max-width:920px){
   .environment-workspace{display:block}
   .environment-sidebar{height:auto;overflow:visible}
   .environment-sidebar .safety-panel{max-height:none;overflow:visible}
   #recordDrawer{max-height:none}
   #environment-map{min-height:430px}
-  .map-corner-tip{top:46px;font-size:8px;max-width:205px}
   .environment-sidebar .controls{padding:10px}
-  .env-filters label{flex:1 1 180px}
 }
 @media(max-width:540px){
   .environment-sidebar .env-tabs button{font-size:10px;padding:5px 7px}
@@ -87,8 +72,6 @@
   .legend{min-width:0;width:min(275px,calc(100% - 22px))}
 }
 
-/* Layered, exhaustive navigation: 4 mutually exclusive classes plus All.
-   Curated picks, actions, facilities, and named groups remain secondary filters. */
 .env-taxonomy{width:100%}
 .env-taxonomy-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:2px 0 7px}
 .env-taxonomy-heading strong{font-size:11px;color:#d9e4ec;letter-spacing:.03em}
@@ -100,55 +83,11 @@
 .environment-sidebar .env-taxonomy .env-tabs button.active{background:#263e51;border-color:#6499bd;box-shadow:inset 0 0 0 1px rgba(100,153,189,.35);color:#fff}
 .env-tab-count{flex:0 0 auto;padding:1px 4px;border:1px solid rgba(143,179,205,.3);border-radius:6px;font-size:9px;font-variant-numeric:tabular-nums;color:#a8c7d9;background:rgba(255,255,255,.025)}
 .environment-sidebar .env-taxonomy .env-tabs button.active .env-tab-count{color:#fff;border-color:#789eba}
-.env-taxonomy-guide{margin-top:6px;font-size:10px;line-height:1.55}
-.env-taxonomy-guide>summary{cursor:pointer;color:#91bcd2;font-size:10px;padding:4px 0;list-style:revert}
-.env-taxonomy-guide>summary:hover{color:#c5dbe8}
-.env-taxonomy-guide[open]{padding:0 8px 7px;border:1px solid #334554;border-radius:7px;background:#192734}
-.env-taxonomy-guide[open]>summary{padding:7px 0 2px}
-.env-taxonomy-guide p{color:#becbd5;margin:7px 0 0;line-height:1.5}
-.env-taxonomy-guide b{color:#e0eaf0}
-.env-taxonomy-guide .env-guide-footnote{color:#92afc0;border-top:1px solid #354b5b;padding-top:7px}
-.env-shortcut-row{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:9px 0 6px;padding-top:8px;border-top:1px solid #303d4b}
-.env-shortcut-row>span{font-size:10px;color:#9cacba;margin-right:2px;white-space:nowrap}
-.environment-sidebar .env-shortcut-row button{border:1px solid #3c4d5c;background:#172532;color:#b7cedc;border-radius:6px;padding:5px 7px;cursor:pointer;font-size:10px;white-space:nowrap}
-.environment-sidebar .env-shortcut-row button:hover{background:#203748}
-.environment-sidebar .env-shortcut-row button.active{background:#294757;border-color:#7bacc2;color:#f6fbff}
-.environment-sidebar .env-shortcut-row .env-clear{margin-left:auto;border-color:#414c56;background:transparent;color:#9eafbd}
-.env-filter-state{font-size:9px;line-height:1.45;color:#90a8ba;margin:5px 0 2px;min-height:1.3em}
-.environment-sidebar .control-row{margin-bottom:6px}
-.environment-sidebar .env-taxonomy .env-tabs button:focus-visible,
-.environment-sidebar .env-shortcut-row button:focus-visible,
-.env-taxonomy-guide>summary:focus-visible{outline:2px solid #99c5e1;outline-offset:2px}
-@media(max-width:920px){
- .environment-sidebar .env-taxonomy .env-tabs button{font-size:11px}
- .env-taxonomy-heading{margin-top:4px}
-}
-@media(max-width:380px){
- .environment-sidebar .env-taxonomy .env-tabs button{font-size:10px;padding:7px 5px}
- .env-taxonomy-heading span{font-size:8.5px}
- .env-shortcut-row{gap:4px}
-}
 
-
-/* Site cleanup: prioritize the map and filters, show long methods on demand. */
-.environment-sidebar .controls{padding:9px 11px}
+/* The primary record types are the only sidebar controls. */
+.environment-sidebar .controls{padding:10px 11px}
 .environment-sidebar .env-taxonomy .env-tabs button{padding:6px 8px;font-size:10px;min-height:33px}
 .environment-sidebar .env-taxonomy-heading{margin:0 0 6px}
-.environment-sidebar .env-taxonomy-heading span{font-size:9px}
-.env-taxonomy-guide{margin-top:2px}
-.env-taxonomy-guide>summary{font-size:9px;color:#8eabbb}
-.env-shortcut-row{margin:5px 0 3px;padding-top:7px}
-.environment-sidebar .env-shortcut-row button{padding:4px 7px;font-size:9.5px}
-.environment-sidebar .env-shortcut-row .env-clear{font-size:9px}
-.env-map-tools{font-size:10px;color:#91a7b6;margin:4px 0 5px}
-.env-map-tools>summary{cursor:pointer;font-size:10px;padding:4px 0;color:#9fc7dc}
-.env-map-tools .control-row{padding:6px 0 3px;gap:5px;margin:0}
-.env-map-tools .control-row button{font-size:9.5px}
-.env-map-tools[open]{border-bottom:1px solid #293846}
-.environment-sidebar .env-filters{margin:2px 0 5px}
-.environment-sidebar .env-search{margin-bottom:0}
-.env-filter-state[hidden]{display:none!important}
-.env-filter-state{margin:3px 0 0;color:#a5c2d3}
 #summaryPanel:not(.has-selection) .area-title,
 #summaryPanel:not(.has-selection) .area-metric{display:none}
 #summaryPanel .coverage-line{display:none}
@@ -158,6 +97,9 @@
 #summaryPanel .rank-section{margin-top:11px;padding-top:8px}
 #summaryPanel .rank-row{padding:4px 5px}
 #recordDrawer>summary{padding:8px 10px}
-@media(max-width:920px){
- .environment-sidebar .controls{padding:9px 11px}
+.environment-sidebar .env-taxonomy .env-tabs button:focus-visible{outline:2px solid #99c5e1;outline-offset:2px}
+@media(max-width:920px){.environment-sidebar .env-taxonomy .env-tabs button{font-size:11px}}
+@media(max-width:380px){
+ .environment-sidebar .env-taxonomy .env-tabs button{font-size:10px;padding:7px 5px}
+ .env-taxonomy-heading span{font-size:8.5px}
 }
