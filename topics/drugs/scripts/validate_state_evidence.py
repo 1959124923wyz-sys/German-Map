@@ -115,6 +115,43 @@ def validate():
             add_record(2025,state,row["name"],row["cases"],
                        "hospital_diagnosis",row["name"],
                        entry["source_url"],entry.get("source_type","secondary_health_source"))
+    # 2021–2025 trend is separate from the per-record 2025-only audit.
+    # A 2024 code/law break must not be silently connected or ranked.
+    trend_data=data.get("long_term_trends_by_state",{})
+    ok(set(trend_data)<=states,"Unknown trend states")
+    for state,trend in trend_data.items():
+        series=trend.get("records",[])
+        ok(trend.get("source_url","").startswith("https://") and
+           trend.get("source_title") and trend.get("metric") and
+           trend.get("scope_kind")=="multi_offence_all_drugs" and
+           trend.get("law"),state+" trend lacks statistical scope or provenance")
+        ok(len(series)==5 and [x.get("year") for x in series]==list(range(2021,2026)) and
+           all(type(x.get("cases")) is int and x["cases"]>=0 for x in series),
+           state+" incomplete 2021–2025 trend")
+        ok(trend.get("break_year")==2024 and "大麻" in trend.get("break_label",""),
+           state+" 2024 KCanG statistical break missing")
+    rlp=offences.get("Rheinland-Pfalz")
+    ok(rlp is not None and rlp.get("source_type")=="state_police",
+       "RLP primary PKS evidence missing")
+    r={x["name"]:x for x in rlp.get("additional_metrics",[])}
+    for name,cases,scope in (
+        ("大麻 · KCanG §34全部罪名",2319,"statutory_total"),
+        ("其中大麻非法走私",495,"subgroup"),
+        ("其中大麻特别严重案件",316,"subgroup"),
+        ("其中非法种植大麻",86,"subgroup"),
+        ("其中大麻 §34 Abs.4 重罪",47,"subgroup"),
+        ("新精神活性物质 · BtMG一般违法",173,"general_offence"),
+        ("新精神活性物质 · NpSG违法",178,"other_statutory_offence")):
+        row=r.get(name)
+        ok(row is not None and (row["cases"],row["scope_kind"])==(cases,scope),
+           "RLP PKS2025 Table15 offence key mismatch: "+name)
+    ok(rlp["groups"][0]["general"]==515 and rlp["groups"][0]["trade"]==858,
+       "RLP KCanG group changed")
+    ok(r["大麻 · KCanG §34全部罪名"]["cases"]>=
+       rlp["groups"][0]["general"]+rlp["groups"][0]["trade"],
+       "RLP KCanG groups exceed the statutory total")
+    ok([x["cases"] for x in trend_data["Rheinland-Pfalz"]["records"]]==
+       [20624,19832,19296,13433,9888],"RLP five-year official PKS trend mismatch")
     # Overlap-sensitive controls: 2025 KCanG subgroup is INSIDE KCanG
     # overall total; Berlin's cocaine case types belong to separate legal keys.
     berlin=offences.get("Berlin")
