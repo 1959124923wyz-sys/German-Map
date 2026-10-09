@@ -4,7 +4,7 @@
 (()=>{
 'use strict';
 const $=s=>document.querySelector(s);
-const COLORS={red:'#c74753',orange:'#cf7f27',green:'#167f63',missing:'#5c7380'};
+const COLORS={red:'#c74753',orange:'#cf7f27',green:'#16865e',missing:'#16865e'};
 const sources={REGIONAL:['RE','RB'],LONG:['LONG'],OTHER:['HLB','BRB','ERB','NWB','OE']};
 const labels={REGIONAL:'区域列车（RE / RB）',LONG:'长途列车（ICE / IC / EC / FLX）',OTHER:'其他运营商'};
 const specs={
@@ -15,8 +15,9 @@ const specs={
 };
 const stationZh=name=>window.GermanRailStations?.localize(name)||name;
 const REF_ZOOM=9, WORLD=256*2**REF_ZOOM, CELL=64, NATION=[[47.05,5.45],[55.15,15.65]];
+// Fixed 100-observation inclusion threshold (not a user-facing filter).
 const view={service:'REGIONAL',metric:'both',minimum:100,selected:null,links:[],
-  rendered:[],ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,networkParts:[],grid:new Map(),map:null,
+  rendered:[],groups:[],ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,networkParts:[],grid:new Map(),map:null,
   baseLayer:null,observedLayer:null,repaints:0};
 const cache=new Map(),geomCache=new WeakMap();
 const fmt=n=>Number(n).toLocaleString('zh-CN');
@@ -149,8 +150,9 @@ const CanvasLayer=L.Layer.extend({
    if(!view.networkReady)return;
    ctx.beginPath();
    for(const p of view.networkParts)if(visible(p,v))drawPath(ctx,p,v);
-   ctx.strokeStyle='#436479';ctx.globalAlpha=.8;
-   ctx.lineWidth=m.getZoom()<7?1.0:1.25;ctx.stroke();
+   // Unknown samples use the same green family without pretending to be on-time.
+   ctx.strokeStyle=COLORS.green;ctx.globalAlpha=.53;
+   ctx.lineWidth=m.getZoom()<7?.9:1.1;ctx.stroke();
   }else{
    const widths=[1.65,2.25,2.65];
    const colors=[COLORS.green,COLORS.orange,COLORS.red];
@@ -190,11 +192,11 @@ function makeMap(){
   maxZoom:19,opacity:.9,attribution:'© OpenStreetMap contributors',
   crossOrigin:true,updateWhenIdle:true,keepBuffer:2});
  tiles.on('tileload',()=>{
-  if(!view.tiles){view.tiles=true;$('#mapStatus').textContent='OSM街道底图 · DB InfraGO 官方铁路网';$('#mapStatus').classList.add('ok');}
+  if(!view.tiles){view.tiles=true;$('#mapStatus').textContent='';$('#mapStatus').classList.add('ok');}
  });
  let errors=0;
  tiles.on('tileerror',()=>{
-  if(++errors>5&&!view.tiles){$('#mapStatus').textContent='底图暂不可用 · 官方轨道及运行区间仍可查看';}
+  if(++errors>5&&!view.tiles){$('#mapStatus').textContent='地图底图暂不可用';$('#mapStatus').classList.remove('ok');}
  });
  tiles.addTo(m);
  fetch('../../data/germany-states.geojson',{cache:'force-cache'}).then(r=>{
@@ -231,11 +233,11 @@ function buildNetwork(){
    const p=officialPart(sections[cursor]);if(p)view.networkParts.push(p);
   }
   if(cursor<sections.length){
-   if(cursor===950)$('#mapStatus').textContent='正在读取 DB InfraGO 真实轨道…';
+   if(cursor===950)$('#mapStatus').textContent='';
    requestAnimationFrame(batch);
   }else{
    view.networkReady=true;view.baseLayer.schedule();
-   $('#mapStatus').textContent=view.tiles?'OSM街道底图 · 官方完整铁路网':'官方完整铁路网 · 街道底图加载中';
+   if(view.tiles)$('#mapStatus').textContent='';
   }
  };
  requestAnimationFrame(batch);
@@ -311,27 +313,22 @@ function attention(m){
 }
 function fillLegend(){
  const mode=view.metric;
- const thresholds=mode==='late'?['到站晚点 ≥6分钟 · 观测比例','<25%','25%–<40%','≥40%']
- :mode==='cancel'?['停靠取消标记 · 观测比例','<4%','4%–<8%','≥8%']
- :['综合关注 · 晚点≥6分钟 / 停靠取消比例','晚点 <25% 且取消 <4%',
-   '晚点 ≥25% 或取消 ≥4%（未达红线）','晚点 ≥40% 或取消 ≥8%'];
+ const thresholds=mode==='late'?['晚点比例','<25%','25%–<40%','≥40%']
+ :mode==='cancel'?['停靠取消标记率','<4%','4%–<8%','≥8%']
+ :['晚点 / 取消标记','','晚点 ≥25% 或取消 ≥4%','晚点 ≥40% 或取消 ≥8%'];
  const box=$('#railLegend');
  box.replaceChildren();
  const title=document.createElement('b');title.textContent=thresholds[0];box.appendChild(title);
- for(const [col,s] of [[COLORS.missing,'无匹配或样本不足'],
-   [COLORS.green,thresholds[1]],[COLORS.orange,thresholds[2]],[COLORS.red,thresholds[3]]]){
+ for(const [col,s] of [[COLORS.green,'其他线路'],[COLORS.orange,thresholds[2]],[COLORS.red,thresholds[3]]]){
   const row=document.createElement('span'),dot=document.createElement('i');
   dot.style.background=col;row.append(dot,document.createTextNode(s));box.append(row);
  }
- const note=document.createElement('small');note.className='rail-legend-note';
- note.textContent=mode==='both'?'红橙依两项独立指标判定；灰色不代表正常。':'按当前样本门槛分色；灰色不代表正常。';
- box.appendChild(note);
+ 
 }
 function placeLegend(){
  const box=$('#railLegend');
  if(window.innerWidth<=760){
-  const field=$('#metric')?.closest('.field');
-  if(field&&box.previousElementSibling!==field)field.insertAdjacentElement('afterend',box);
+  const target=$('.map-panel');if(target&&box.parentElement!==target)target.appendChild(box);
  }else{
   const target=$('.map-panel');if(target&&box.parentElement!==target)target.appendChild(box);
  }
@@ -346,42 +343,52 @@ function showDetail(){
  const o=view.selected;
  if(!o){
   box.classList.add('empty');
-  element(box,'h3','选择一段彩色铁路');
-  element(box,'p','绿色为有观测且低于警示门槛，点击地图或下方区间榜单查看详情。');
+  element(box,'h3','点击地图上的彩色铁路');
   return;
  }
  box.classList.remove('empty');
- const {leg,m,grade:g}=o;
- element(box,'span',g===2?'● 高关注':g===1?'● 偏高':'● 低于关注门槛','grade');
- element(box,'h3',stationZh(leg.from_station)+' → '+stationZh(leg.to_station));
- element(box,'p',leg.from_station+' → '+leg.to_station,'original-stations');
- const hint=leg.label_hints?.[0]?.[0];
- element(box,'p','官方线路 '+leg.route+(hint?' · '+hint:'')+
-  (leg.brands?.length?' · '+leg.brands.join(' / '):''));
+ const {m,grade:g,members}=o;
+ const first=members[0].leg,last=members[members.length-1].leg;
+ const title=stationZh(first.from_station)+' → '+stationZh(last.to_station);
+ element(box,'span',g===2?'● 晚点或取消较多':g===1?'● 需要关注':'● 表现相对较好','grade');
+ element(box,'h3',title);
+ if(members.length>1)element(box,'p','连续区段 · '+members.length+' 个站间区间','corridor-count');
  const grid=element(box,'div','','detail-grid');
- for(const [v,label] of [[pct(m.late),'到站晚点≥6分钟'],
-   [pct(m.cancel),'停靠取消标记'],[fmt(m.nArrival),'有效到站观测'],[fmt(m.nPlanned),'计划站间配对']]){
+ for(const [value,label] of [[pct(m.onTime),'准点率（晚点不足6分钟）'],
+  [pct(m.cancel),'停靠取消标记率']]){
   const cell=document.createElement('div');
-  element(cell,'b',v);element(cell,'span',label);grid.append(cell);
+  element(cell,'b',value);element(cell,'span',label);grid.append(cell);
  }
- element(box,'p','2026年9月 · 区间观测不代表轨道故障归因或整趟车取消概率。');
+ const more=document.createElement('details');more.className='corridor-more';
+ const summary=document.createElement('summary');summary.textContent='查看站间明细与样本（'+members.length+' 段）';more.append(summary);
+ const sub=element(more,'div','','corridor-items');
+ for(const item of members){
+  const r=element(sub,'div','','corridor-row');
+  element(r,'strong',stationZh(item.leg.from_station)+' → '+stationZh(item.leg.to_station));
+  element(r,'span','准点 '+pct(item.m.late===null?null:100-item.m.late)+' · 取消标记 '+pct(item.m.cancel));
+ }
+ element(more,'p','线路 '+first.route+' · 有效到站 '+fmt(m.nArrival)+' 次 · 计划站间配对 '+fmt(m.nPlanned)+' 次');
+ element(more,'p','晚点率 '+pct(m.late)+'（至少6分钟）；相邻区间可能重复观测同一趟车。');
+ element(more,'p','原始站名：'+first.from_station+' → '+last.to_station,'original-stations');
+ box.append(more);
 }
+
 function updateHotspots(){
  const list=$('#hotList');list.replaceChildren();
- const items=view.rendered.filter(o=>o.grade>0)
+ const items=view.groups.filter(o=>o.grade>0)
   .sort((a,b)=>b.grade-a.grade||attention(b.m)-attention(a.m)).slice(0,10);
- if(!items.length){element(list,'p','当前条件下没有达到关注门槛的区间。','hot-empty');return;}
+ if(!items.length){element(list,'p','当前没有高关注区间。','hot-empty');return;}
  items.forEach((o,i)=>{
   const row=document.createElement('button');row.type='button';row.className='hot-row';
-  const rank=element(row,'span',String(i+1),'hot-rank');
+  element(row,'span',String(i+1),'hot-rank');
   const main=element(row,'span','','hot-main');
-  element(main,'strong',stationZh(o.leg.from_station)+' → '+stationZh(o.leg.to_station));
-  element(main,'small','晚点 '+pct(o.m.late)+' · 取消标记 '+pct(o.m.cancel));
+  const first=o.members[0].leg,last=o.members[o.members.length-1].leg;
+  element(main,'strong',stationZh(first.from_station)+' → '+stationZh(last.to_station));
+  element(main,'small','准点 '+pct(o.m.onTime)+' · 取消标记 '+pct(o.m.cancel));
   element(row,'span',o.grade===2?'高':'中','hot-grade '+(o.grade===2?'high':'medium'));
   row.onclick=()=>{
    view.selected=o;showDetail();view.observedLayer.schedule();
-   const b=o.bounds;
-   const ll1=unproject(b.minX,b.minY),ll2=unproject(b.maxX,b.maxY);
+   const b=o.bounds,ll1=unproject(b.minX,b.minY),ll2=unproject(b.maxX,b.maxY);
    const bounds=L.latLngBounds(ll1,ll2);
    if(bounds.isValid())view.map.fitBounds(bounds.pad(.38),{maxZoom:11,animate:false});
    $('#detail').scrollIntoView({block:'nearest',behavior:'smooth'});
@@ -389,6 +396,7 @@ function updateHotspots(){
   list.append(row);
  });
 }
+
 function unproject(x,y){
  const lng=x/WORLD*360-180;
  const n=Math.PI-2*Math.PI*y/WORLD;
@@ -434,11 +442,68 @@ function pickAt(latlng){
   }
  }
  if(best){
-  view.selected=best;showDetail();view.observedLayer.schedule();
+  view.selected=best.group;showDetail();view.observedLayer.schedule();
  }
 }
+// Build straight-through, same-colour directional runs only.  Branches,
+// grade changes and gaps stay separate: no fabricated line continuity.
+function canJoin(a,b){
+ if(a===b||a.leg.route!==b.leg.route||a.grade!==b.grade)return false;
+ if(a.leg.to_station!==b.leg.from_station)return false;
+ const x=a.leg.km_range,y=b.leg.km_range;
+ if(!Array.isArray(x)||!Array.isArray(y)||x.length!==2||y.length!==2)return false;
+ if(![...x,...y].every(Number.isFinite))return false;
+ const loX=Math.min(...x),hiX=Math.max(...x),loY=Math.min(...y),hiY=Math.max(...y);
+ // Prevent chaining the same km interval in opposite directions.
+ if(Math.min(hiX,hiY)-Math.max(loX,loY)>.15)return false;
+ return Math.min(...x.flatMap(v=>y.map(w=>Math.abs(v-w))))<=.15;
+}
+function buildCorridors(items){
+ const outgoing=new Map(),incoming=new Map();
+ const key=(o,station)=>o.leg.route+'|'+o.grade+'|'+station;
+ for(const o of items){
+  const a=key(o,o.leg.from_station),b=key(o,o.leg.to_station);
+  if(!outgoing.has(a))outgoing.set(a,[]);
+  if(!incoming.has(b))incoming.set(b,[]);
+  outgoing.get(a).push(o);incoming.get(b).push(o);
+ }
+ const next=new Map(),prev=new Map();
+ for(const o of items){
+  const tails=(outgoing.get(key(o,o.leg.to_station))||[]).filter(q=>canJoin(o,q));
+  if(tails.length!==1)continue;
+  const q=tails[0];
+  const heads=(incoming.get(key(q,q.leg.from_station))||[]).filter(p=>canJoin(p,q));
+  if(heads.length===1){next.set(o,q);prev.set(q,o);}
+ }
+ const seen=new Set(),groups=[];
+ for(const o of items){
+  if(seen.has(o))continue;
+  let first=o,walked=new Set();
+  while(prev.has(first)&&!walked.has(first)){
+   walked.add(first);first=prev.get(first);
+  }
+  const members=[];
+  let cursor=first;
+  while(cursor&&!seen.has(cursor)){
+   seen.add(cursor);members.push(cursor);cursor=next.get(cursor);
+  }
+  if(!members.length)continue;
+  const nArrival=members.reduce((n,x)=>n+x.m.nArrival,0);
+  const nPlanned=members.reduce((n,x)=>n+x.m.nPlanned,0);
+  const lateCount=members.reduce((n,x)=>n+Number(x.leg.v11?.late6||0),0);
+  const cancelledCount=members.reduce((n,x)=>n+Number(x.leg.v11?.boundary_cancel||0),0);
+  const late=nArrival?100*lateCount/nArrival:null;
+  const cancel=nPlanned?100*cancelledCount/nPlanned:null;
+  const parts=members.flatMap(x=>x.parts);
+  const group={members,parts,bounds:actualBounds(parts),grade:o.grade,
+   m:{late,onTime:late===null?null:100-late,cancel,nArrival,nPlanned}};
+  for(const x of members)x.group=group;
+  groups.push(group);
+ }
+ return groups;
+}
 function recalc(){
- const previous=view.selected?.leg||null;
+ const previous=view.selected?.members?.[0]?.leg||null;
  const items=[];
  for(const leg of view.links){
   const m=metrics(leg);
@@ -448,20 +513,18 @@ function recalc(){
   items.push({leg,m,parts,bounds:actualBounds(parts),grade:grade(m)});
  }
  view.rendered=items;
- view.selected=items.find(x=>x.leg===previous)||null;
+ view.groups=buildCorridors(items);
+ view.selected=previous?(view.groups.find(g=>g.members.some(x=>x.leg===previous))||null):null;
  rebuildIndex();
- $('#visibleCount').textContent=fmt(items.length);
- const count=items.filter(o=>o.grade===2).length;
- $('#redCount').textContent=fmt(count);
- $('#redShare').textContent=items.length?(100*count/items.length).toFixed(1)+'%':'—';
- status(labels[view.service]+' · '+fmt(items.length)+' 个达标方向性区间');
+ // The research dashboard retains all overall counts; the map stays focused on picked segments.
+ status(labels[view.service]+' · '+fmt(view.groups.length)+' 段连续区间');
  fillLegend();placeLegend();updateHotspots();showDetail();
  view.observedLayer.schedule();
 }
+
 async function chooseService(){
  const id=++view.ticket,service=view.service;
- view.selected=null;view.links=[];view.rendered=[];view.grid.clear();
- $('#visibleCount').textContent='—';$('#redCount').textContent='—';$('#redShare').textContent='—';
+ view.selected=null;view.links=[];view.rendered=[];view.groups=[];view.grid.clear();
  view.observedLayer.schedule();status('正在读取 '+labels[service]+' 的观测…');
  try{
   const data=await Promise.all(sources[service].map(async k=>[k,await loadData(k)]));
@@ -488,7 +551,6 @@ function bindControls(){
   }
   view.selected=null;recalc();
  };
- $('#minimum').onchange=e=>{view.minimum=Number(e.target.value);view.selected=null;recalc();};
  window.addEventListener('resize',placeLegend);
 }
 try{
@@ -499,12 +561,13 @@ try{
  const nav=$('.toplinks');if(nav)nav.scrollLeft=nav.scrollWidth;
  buildNetwork();
  window.__RAILWAY_OVERVIEW__=Object.freeze({
-  getService:()=>view.service,getMetric:()=>view.metric,
+  getService:()=>view.service,getMetric:()=>view.metric,getMinimum:()=>view.minimum,
   getVisible:()=>view.rendered.length,getMergedLinks:()=>view.links.length,
   getSelected:()=>view.selected,getScale:()=>view.map?.getZoom(),
   getMap:()=>view.map,getNetworkGeometryCount:()=>view.networkParts.length,
   getNetworkReady:()=>view.networkReady,getStatesReady:()=>view.statesReady,
   getCountiesReady:()=>view.countiesReady,getRendered:()=>view.rendered,
+  getCorridors:()=>view.groups,
   getRepaintCount:()=>view.repaints,getCanvasCount:()=>document.querySelectorAll('.railway-canvas').length,
   getSpatialBucketCount:()=>view.grid.size,
   clickPoint:ll=>pickAt(L.latLng(ll)),stationZh

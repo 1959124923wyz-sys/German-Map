@@ -52,11 +52,28 @@ def run(browser,mobile=False):
     assert page.locator("#railway-map .segment-hit").count()==0
     assert page.locator("#railway-map canvas").count()==2
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getNetworkGeometryCount()")==33547
-    assert number(page,"#visibleCount")>500
-    regional=number(page,"#visibleCount")
-    assert 0<number(page,"#redCount")<regional
-    assert page.locator("#redShare").inner_text().endswith("%")
-    assert "晚点 <25% 且取消 <4%" in page.locator("#railLegend").inner_text()
+    assert page.locator("#minimum").count()==0
+    assert page.locator(".mini-stats").count()==0
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getMinimum()")==100
+    regional=page.evaluate("window.__RAILWAY_OVERVIEW__.getVisible()")
+    assert regional>500
+    assert page.locator("#railLegend i").count()==3
+    assert "其他线路" in page.locator("#railLegend").inner_text()
+    assert page.evaluate("""() => {
+      const a=window.__RAILWAY_OVERVIEW__.getCorridors();
+      const rows=a.flatMap(g=>g.members);
+      const joined=a.filter(g=>g.members.length>1);
+      return joined.length>0 && rows.length===window.__RAILWAY_OVERVIEW__.getVisible()
+        && joined.every(g=>{
+          const late=g.members.reduce((s,m)=>s+Number(m.leg.v11?.late6||0),0);
+          const cancel=g.members.reduce((s,m)=>s+Number(m.leg.v11?.boundary_cancel||0),0);
+          const arrival=g.members.reduce((s,m)=>s+m.m.nArrival,0);
+          const planned=g.members.reduce((s,m)=>s+m.m.nPlanned,0);
+          return Math.abs(g.m.onTime-(100-100*late/arrival))<1e-9
+            && Math.abs(g.m.cancel-100*cancel/planned)<1e-9
+            && g.members.every(m=>m.grade===g.grade && m.leg.route===g.members[0].leg.route);
+        });
+    }""")
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.stationZh('Berlin Hbf')")=="柏林中央火车站"
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.stationZh('Unknown Small Village')")=="Unknown Small Village"
     assert page.locator(".hot-row").count()==10
@@ -79,8 +96,13 @@ def run(browser,mobile=False):
           return {lat:mid.lat,lon:mid.lng};
         }""")
         assert picked
+        assert page.locator("#detail .detail-grid>div").count()==2
+        assert "准点率" in page.locator("#detail").inner_text()
+        assert "停靠取消标记率" in page.locator("#detail").inner_text()
+        assert page.locator("#detail .corridor-more").count()==1
+        page.locator("#detail .corridor-more>summary").click()
         assert page.locator("#detail .original-stations").is_visible()
-        assert "有效到站观测" in page.locator("#detail").inner_text()
+        assert "有效到站" in page.locator("#detail").inner_text()
         # Zoom, pan and redraw should reuse exactly two Canvas elements.
         before=page.evaluate("window.__RAILWAY_OVERVIEW__.getRepaintCount()")
         page.evaluate("""() => {
@@ -97,22 +119,22 @@ def run(browser,mobile=False):
           .getBounds().contains(L.latLngBounds([[47.05,5.45],[55.15,15.65]]))""")
     else:
         assert page.locator("#railway-map").is_visible()
-        assert page.locator(".sidebar #railLegend").count()==1
+        assert page.locator(".map-panel #railLegend").count()==1
         assert page.evaluate("document.documentElement.scrollWidth<=innerWidth+3")
         assert page.evaluate("""() => {
           const n=document.querySelector('.toplinks'),a=n.querySelector('a.active');
           const r=a.getBoundingClientRect(),p=n.getBoundingClientRect();
           return r.left>=p.left-3 && r.right<=p.right+3;
         }"""),"Current railway tab must be visible without scrolling the mobile navbar"
+    page.locator("#hotspots>summary").click()
     page.locator(".hot-row").first.click()
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getSelected()!==null")
     assert "→" in page.locator("#detail h3").inner_text()
+    assert page.locator("#detail .detail-grid>div").count()==2
     page.locator('[data-metric="cancel"]').click()
     assert page.locator('[data-metric="cancel"]').get_attribute("aria-pressed")=="true"
     assert "4%–<8%" in page.locator("#railLegend").inner_text()
-    page.select_option("#minimum","500")
-    assert number(page,"#visibleCount")<regional
-    page.select_option("#minimum","100")
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getMinimum()")==100
     page.locator('[data-metric="late"]').click()
     assert "25%–<40%" in page.locator("#railLegend").inner_text()
     page.locator('[data-metric="both"]').click()
@@ -123,7 +145,7 @@ def run(browser,mobile=False):
         loaded(page,"OTHER",100)
         page.locator('[data-service="REGIONAL"]').click()
         loaded(page,"REGIONAL",500)
-        assert number(page,"#visibleCount")==regional
+        assert page.evaluate("window.__RAILWAY_OVERVIEW__.getVisible()")==regional
     page.screenshot(path=str(ART/("railway-mobile.png" if mobile else "railway-desktop.png")),full_page=True)
     assert not errors,errors
     print("PASS railway 07",width,"x",height,{"official_parts":33547,"observed":regional,

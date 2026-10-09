@@ -219,3 +219,50 @@ button,select{font:inherit}button{cursor:pointer}a{color:inherit}
  #railway-map .leaflet-control-zoom{margin:9px 0 0 9px}
  .crime-city-label{font-size:11px}
 }
+
+
+/* 07 corridor-first view: two values visible; fine stop-by-stop evidence and
+   the old ranking live behind native, keyboard-accessible disclosures. */
+.sidebar{padding-top:19px}
+.sidebar-head{padding-bottom:9px;margin-bottom:12px}
+.sidebar-head h2{font-size:16px}
+.sidebar .field{margin-bottom:12px}
+#status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;padding:0;margin:-1px}
+.map-caption{display:none}
+.map-status:empty{display:none}
+.map-status.ok{display:none}
+.detail{border:1px solid #354859;background:#192630;padding:16px 13px;min-height:0}
+.detail.empty{padding:16px 12px;min-height:70px}
+.detail.empty h3{font-size:12px;text-align:center;margin:7px 0;color:#b3c8d6}
+.detail .grade{display:block;font-size:10px;color:#b7d0df;margin-bottom:5px}
+.detail h3{font-size:15px;line-height:1.45;margin:0 0 8px;color:#f0f5fa}
+.detail .corridor-count{margin:0 0 12px;font-size:10px;color:#8da9ba}
+.detail-grid{gap:8px;grid-template-columns:repeat(2,minmax(0,1fr));margin:10px 0 0}
+.detail-grid>div{padding:15px 9px;border:1px solid #3a5060;background:#142331;border-radius:10px}
+.detail-grid b{font-size:clamp(22px,2vw,29px);color:#f2f8fc;line-height:1.25;font-variant-numeric:tabular-nums}
+.detail-grid span{font-size:10px;color:#adc4d4;line-height:1.45;margin-top:8px}
+.corridor-more{margin-top:14px;border-top:1px solid #314554;padding-top:10px}
+.corridor-more>summary,.hotspots>summary,.method>summary{
+ cursor:pointer;color:#a8c0d0;font-size:11px;line-height:1.5
+}
+.corridor-more[open]>summary,.hotspots[open]>summary{color:#e2edf5;margin-bottom:10px}
+.corridor-items{display:grid;gap:0;max-height:250px;overflow:auto}
+.corridor-row{border-bottom:1px solid #2a3e4f;padding:7px 0;display:grid;gap:3px}
+.corridor-row strong{font-size:10px;font-weight:600;color:#d9e9f2;line-height:1.5}
+.corridor-row span{font-size:10px;color:#9eb9ca}
+.corridor-more p{font-size:10px;line-height:1.5;color:#98aebe;margin:8px 0 0}
+.hotspots{margin:15px 0 0;padding:12px 0;border-top:1px solid #2a3c4b;border-bottom:1px solid #2a3c4b}
+.hot-list{padding-top:8px}
+.method{border:0;margin-top:9px;padding:0}
+.rail-legend{gap:6px 12px;max-width:min(650px,calc(100% - 22px));padding:7px 10px}
+.rail-legend>b{flex-basis:auto;font-size:10px;margin-right:3px}
+.rail-legend>span{font-size:10px}
+.rail-legend-note{display:none}
+@media(max-width:760px){
+ .sidebar{padding:14px 13px 20px}
+ .sidebar .rail-legend{display:none}
+ .rail-legend{max-width:calc(100% - 14px);left:7px;bottom:8px;gap:5px 10px}
+ .rail-legend>b{display:none}
+ .rail-legend>span{font-size:9px}
+ .detail-grid b{font-size:25px}
+}
