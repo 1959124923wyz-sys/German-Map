@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>德国铁路运行地图 · BahnMonitor | German-Map</title>
+<style>
+:root{--bg:#08131e;--panel:#0b1724;--panel2:#102233;--border:#24384b;--text:#e5eff7;--muted:#90a7b9;--cyan:#7fd0da;--orange:#f4ad69;--red:#e36b78}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{background:var(--bg);color:var(--text);font:13px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans CJK SC","Microsoft Yahei",sans-serif;overflow:hidden}button,input,select{font:inherit}button{cursor:pointer}
+.app{height:100dvh;display:grid;grid-template-columns:280px minmax(400px,1fr) 307px;grid-template-rows:64px minmax(0,1fr)}.head{grid-column:1/-1;padding:0 22px;background:#0a1521;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:18px;z-index:6}.brand{display:flex;gap:12px;align-items:center}.brand-mark{height:36px;width:36px;display:grid;place-items:center;background:#d3e6ee;color:#0b1823;border-radius:10px;font-weight:900;font-size:19px}.head h1{font-size:16px;margin:0;letter-spacing:.15px}.head small{display:block;font-size:10px;color:#7893a8;margin-top:2px}.head-stat{display:flex;align-items:center;gap:14px;font-size:11px;color:#a7c0d0}.mini-pill{border:1px solid #846536;background:#302a1f;color:#e9c17a;padding:6px 12px;border-radius:30px;font-weight:700;white-space:nowrap}
+.left,.right{overflow:auto;scrollbar-width:thin;scrollbar-color:#28445b transparent}.left{background:#0a1724;border-right:1px solid var(--border);padding:18px 15px 30px}.right{background:#0a1724;border-left:1px solid var(--border);padding:19px 16px 30px}.section{margin-bottom:23px}.subhead{font-size:10px;letter-spacing:1.55px;color:#8aa3b7;font-weight:800;margin-bottom:11px}.sub{color:#8ba4b7;font-size:11px;line-height:1.75}.tabs{display:flex;gap:3px;padding:3px;background:#132638;border:1px solid #274157;border-radius:10px}.tabs button{flex:1;border:0;background:transparent;color:#91abbc;border-radius:7px;padding:8px 3px;font-size:11px}.tabs button.active{background:#2b455a;color:#eef8fd}
+.field{margin:10px 0}.field label{display:block;color:#96afc1;margin-bottom:6px;font-size:11px}.input,.select{width:100%;border-radius:9px;border:1px solid #2b455b;background:#112437;color:#dbe9f4;outline:0;padding:10px 12px;font-size:12px}.input:focus,.select:focus{border-color:#5d9aac}.check{display:flex;align-items:center;justify-content:space-between;padding:9px 0;color:#bdd0dc;font-size:12px}.check input{accent-color:#4aabb7;cursor:pointer}.searchbox{position:relative}.results{display:none;max-height:250px;overflow:auto;margin-top:7px;border-radius:9px;border:1px solid #31516b;background:#0f2234;position:relative;z-index:20}.results.show{display:block}.results button{display:block;width:100%;background:transparent;border:0;padding:10px 11px;text-align:left;border-bottom:1px solid #1c364a;color:#dcecf5}.results button:hover{background:#224156}.results b{display:block;font-size:11px}.results span{display:block;font-size:10px;color:#92aab9}.result-empty{padding:11px;color:#a6bac9;font-size:11px}.presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.presets button{border:1px solid #31516b;background:#142b3d;color:#aacee2;border-radius:18px;padding:5px 10px;font-size:10px}.presets button:hover{background:#254862}
+.legend{display:grid;gap:9px}.legend-item{display:flex;gap:9px;align-items:center;color:#c1d1dc;font-size:11px}.line-key{display:block;width:20px;height:4px;border-radius:3px}.legend-item span:last-child{margin-left:auto;color:#748fa4}.note{border:1px solid #2d4252;border-radius:10px;padding:12px;background:#142331;color:#9cb1c2;line-height:1.7;font-size:10.5px}.note b{color:#d6e9f2}
+.mapzone{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 38%,#102437,#0a1a2a 60%,#07121e 100%)}.mapzone:before{position:absolute;content:"";inset:0;background-image:linear-gradient(#7ea3bf09 1px,transparent 1px),linear-gradient(90deg,#7ea3bf09 1px,transparent 1px);background-size:45px 45px;pointer-events:none}.map-top{position:absolute;top:20px;left:20px;z-index:3;pointer-events:none}.map-top h2{margin:0 0 4px;font-size:18px}.map-top p{margin:0;color:#8da8b9;font-size:11px}.map-tag{display:inline-block;margin-top:10px;border:1px solid #3f6479;background:#163144c9;color:#bde2f1;border-radius:6px;padding:4px 8px;font-size:10px}
+.viewport{position:absolute;inset:0;touch-action:none;cursor:grab}.viewport.dragging{cursor:grabbing}.world{position:absolute;left:0;top:0;width:790px;height:1000px;transform-origin:0 0}#canvas,#overlay{position:absolute;left:0;top:0;width:790px;height:1000px}#overlay{pointer-events:none}.state{stroke:#517995;stroke-width:.8;fill:#152e3d;fill-opacity:.075;stroke-opacity:.7;vector-effect:non-scaling-stroke}.state.sel{stroke:#b3dceb;stroke-width:1.65;stroke-opacity:1;fill-opacity:.12}.statename{font-size:10.5px;fill:#78a0c0;text-anchor:middle;opacity:.7;paint-order:stroke;stroke:#0c1b29;stroke-width:3}.station-dot{fill:#e9f7fb;stroke:#234359;stroke-width:1.4}.station-label{fill:#c7dce8;font-size:10px;font-weight:650;paint-order:stroke;stroke:#0b1c2a;stroke-width:3}.tip{display:none;position:absolute;z-index:7;background:#0b2030ed;border:1px solid #456a81;box-shadow:0 8px 30px #0008;padding:7px 9px;border-radius:7px;pointer-events:none;font-size:11px;max-width:260px}.mapctrl{position:absolute;top:22px;right:19px;display:grid;gap:5px;z-index:5}.mapctrl button{width:33px;height:33px;border-radius:8px;border:1px solid #39566d;background:#132737e6;color:#c7e0ed;font-size:19px}.mapctrl button:hover{background:#29475e}.map-foot{position:absolute;bottom:15px;left:20px;z-index:3;color:#7795a7;font-size:10px;pointer-events:none}.watermark{position:absolute;bottom:14px;right:15px;z-index:3;border:1px solid #314e63;background:#0b2030df;color:#9eb3c1;padding:6px 10px;border-radius:7px;font-size:9.5px;pointer-events:none}
+.eyebrow{font-size:10px;color:#82a0b6;letter-spacing:1.7px;margin:0 0 15px}.detailtitle{font-size:19px;font-weight:800;line-height:1.38}.detailsub{font-size:11px;color:#96aabb;margin-top:4px;word-break:break-word}.headline{margin-top:14px;border:1px solid #284257;background:#0f2231;border-radius:10px;padding:12px}.headline-value{font-size:31px;line-height:1;font-weight:800;color:#dbeefa}.headline-caption{margin-top:7px;font-size:11px;color:#92a8b8}.twostats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.smallstat{border:1px solid #29445a;border-radius:9px;background:#102335;padding:10px}.smallstat strong{font-size:19px;display:block}.smallstat span{color:#8fa7b9;font-size:10px}.detailsec{font-size:10px;color:#82a0b6;letter-spacing:1.2px;font-weight:800;margin:20px 0 9px}.kv{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #203447;font-size:11px}.kv:last-child{border-bottom:0}.kv span{color:#9aafc0}.kv b{color:#d4e7f0;font-size:11px;text-align:right;font-weight:700}.stop{font-size:11px;padding:6px 0;color:#a9c4d2;border-bottom:1px solid #203447}.stop em{font-size:10px;color:#7591a6;margin-right:8px;font-style:normal}
+@media(max-width:1130px){.app{grid-template-columns:240px minmax(360px,1fr) 260px}.left,.right{padding:14px 11px}.head{padding:0 13px}.head-stat{gap:8px}}@media(max-width:780px){body{overflow:auto}.app{height:auto;display:flex;flex-direction:column}.head{min-height:65px}.left{order:2;border-right:none;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:14px}.left .section{margin-bottom:0}.mapzone{order:1;height:610px}.right{order:3;border-left:none;border-top:1px solid var(--border)}.head-stat span:not(.mini-pill){display:none}}@media(max-width:480px){.left{display:block}.left .section{margin-bottom:17px}.mapzone{height:560px}.map-top h2{font-size:16px}.map-top{top:13px;left:12px}.mapctrl{top:12px;right:12px}}
+
+/* Real observation overlays: calm, distinct from rail geometry */
+.perf-dot{stroke:#0b1e2e;stroke-width:1.6;vector-effect:non-scaling-stroke;pointer-events:none;opacity:.92}
+.perf-halo{fill:none;stroke:#e1f7ff;stroke-opacity:.35;stroke-width:1.3;pointer-events:none}
+.perf-dot.active{stroke:#fff;stroke-width:2.2;filter:drop-shadow(0 0 4px rgba(234,249,255,.7))}
+.station-ranks{display:grid;gap:4px}.station-ranks button{width:100%;padding:7px 9px;background:#102638;border:1px solid #274156;border-radius:8px;color:#c3d9e9;display:flex;justify-content:space-between;gap:9px;text-align:left;font-size:10.5px}.station-ranks button:hover{border-color:#76b0c8}.station-ranks b{white-space:nowrap;color:#e7bd7a}
+.bench{display:grid;grid-template-columns:1fr 1fr;gap:8px}.bench>div{background:#102638;border:1px solid #254358;border-radius:10px;padding:10px 8px}.bench b{font-size:21px;color:#e9f3fb;display:block}.bench span{font-size:9.5px;color:#93adbd;display:block;margin-top:3px}
+@media(max-width:780px){.station-ranks{grid-template-columns:1fr 1fr}}
+
+#verifiedLinkGeometry{pointer-events:none}.chain-link{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.15;opacity:.91;vector-effect:non-scaling-stroke}.chain-link{cursor:pointer;pointer-events:stroke}.chain-link.highlight{stroke-width:3.5;filter:drop-shadow(0 0 2px #c1efff)}
+#trainRankings{max-height:226px;overflow:auto}#chainRanks{max-height:188px;overflow:auto}
+#trainSort button{font-size:10px}.train-meta{font-size:10px;color:#9db8c8;margin-top:7px}
+
+#routeEvidencePresets{max-height:180px;overflow:auto}#routeEvidenceStops{max-height:210px;overflow:auto}
+#routeEvidenceStops button{background:#10283a;border-color:#2d4b60}
+.route-evidence-pin{fill:#e9f9ff;stroke:#e9a85d;stroke-width:1.6;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 3px rgba(250,205,119,.4));pointer-events:none}
+.route-evidence-number{font-size:8px;font-weight:bold;fill:#ffdda0;stroke:#091924;stroke-width:2.4;paint-order:stroke;pointer-events:none}
+.rail-metric-legend{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px}
+.rail-metric-legend span{font-size:10px;padding:5px 7px;background:#122d3e;border:1px solid #29495d;border-radius:8px;color:#d9ebf5}
+.rail-metric-legend i{display:inline-block;width:14px;height:4px;border-radius:2px;vertical-align:middle;margin-right:4px}
+.rail-quality-notice{margin-top:10px;border-left:3px solid #efba6a;background:#142333;padding:9px 10px;border-radius:6px;line-height:1.65}
+.chain-link{stroke-width:2.5;opacity:.97}
+</style>
+<style id="german-map-theme">
+:root{--bg:#0c1117;--panel:#131a22;--panel2:#19222c;--border:#2c3845;--text:#eef3f7;--muted:#91a0ae;--cyan:#70b4e2}
+body{background:var(--bg);color:var(--text)}.app{grid-template-rows:76px minmax(0,1fr)}
+.head{background:#0c1117;border-bottom:1px solid #2c3845;padding:9px 14px;gap:14px}
+.brand{min-width:210px}.brand h1{font-size:clamp(19px,1.7vw,24px);font-weight:760;line-height:1.15;color:#eef3f7}.brand small{color:#91a0ae;font-size:10px;letter-spacing:.1px}
+.rail-topic-nav{display:flex;gap:6px;align-items:center;overflow-x:auto;white-space:nowrap;scrollbar-width:none;max-width:calc(100vw - 245px)}.rail-topic-nav::-webkit-scrollbar{display:none}
+.rail-topic-nav a{display:inline-flex;align-items:center;justify-content:center;border:1px solid #354351;background:#131b24;color:#d7e0e8;border-radius:999px;padding:6px 11px;cursor:pointer;font-size:11px;text-decoration:none;flex:0 0 auto}
+.rail-topic-nav a.active{background:#24384a;border-color:#5386aa;color:#fff;box-shadow:inset 0 0 0 1px #5386aa}.rail-topic-nav a:hover{background:#283543;color:#fff}
+.left,.right{background:#131a22;border-color:#2c3845}.tabs{background:#19222c;border-color:#34414e}.tabs button.active{background:#24384a;color:#fff}
+.input,.select,.note,.smallstat,.headline{background:#19222c;border-color:#2c3845}
+.mapzone{background:radial-gradient(ellipse at 50% 38%,#152735,#101b28 60%,#0c1117 100%)}
+@media(max-width:1100px){.app{grid-template-rows:106px minmax(0,1fr)}.head{align-items:flex-start;flex-wrap:wrap;align-content:center;gap:8px}.rail-topic-nav{max-width:100%;width:100%}}
+@media(max-width:780px){.app{height:auto}.head{min-height:106px;align-items:flex-start}.rail-topic-nav{width:100%;max-width:100%}.brand{min-width:0}.mapzone{height:610px}}
+@media(max-width:480px){.head{padding:10px}.brand h1{font-size:19px}.mapzone{height:560px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="head"><div class="brand"><div><h1>德国铁路运行地图</h1><small>DB InfraGO 铁路网 · 2026年9月列车停靠观测</small></div></div><nav class="rail-topic-nav modebar" aria-label="德国地图专题切换"><a class="modebtn" href="../../index.html">暴力犯罪</a><a class="modebtn" href="../../index.html?mode=property">财产犯罪</a><a class="modebtn" href="../drugs/">毒品问题</a><a class="modebtn" href="../immigration/">移民人口</a><a class="modebtn" href="../environment/">环保争议</a><a class="modebtn active" href="./" aria-current="page">铁路运行</a></nav></header>
+<aside class="left">
+<section class="section" id="perfControl"><div class="subhead">车站/区间 · 双尺度运行观测</div><div class="tabs" id="perfView"><button data-view="station" class="active">实测车站</button><button data-view="infra">纯基础设施</button><button data-view="links">相邻停靠链</button></div><div class="field"><label for="perfType">车次类型</label><select class="select" id="perfType"><option value="ICE">ICE（长途高铁）</option><option value="ALL">全部车次</option><option value="RE">RE（区域快车）</option></select></div><div class="field"><label for="perfMetric">实测指标</label><select class="select" id="perfMetric"><option value="delay">平均晚点（分钟）</option><option value="cancel">停靠取消率（%）</option></select></div><div class="field"><label for="minSample">最低停靠样本数</label><select class="select" id="minSample"><option value="300">300</option><option value="1000" selected>1,000</option><option value="3000">3,000</option><option value="10000">10,000</option></select></div><div class="sub" id="perfCoverage">正在载入历史车站观测...</div><div class="legend" id="perfLegend" style="margin-top:10px"></div></section>
+<section class="section" id="chainSection"><div class="subhead">2026年9月 · 地方运营商 / RB / RE / ICE 区间对照</div>
+<div class="sub">已根据2026年9月完整月度观测生成站间区间统计，已整合进入本站。月度原始 Parquet 无须在浏览器解压。只有匹配到唯一官方基础设施线路编号及公里标的区间才着色，且达到设定样本门槛时才着色。<a href="https://huggingface.co/datasets/piebro/deutsche-bahn-data/tree/main/monthly_processed_data" target="_blank" rel="noopener" style="color:#9bd5e5">月度数据下载页</a>。</div>
+<div class="field"><label for="linkFile">可选择更新已处理的区间 JSON（不支持直接选择 Parquet）</label><input class="input" type="file" id="linkFile" accept=".json,application/json"></div>
+<div class="field"><label for="linkMetric">区间观测指标（2026年9月）</label><select id="linkMetric" class="select">
+<option value="ontime6" selected>下游到站晚点不足6分钟的比例</option>
+<option value="late15">下游到站晚点≥15分钟比例</option>
+<option value="boundary">到发取消标记涉及比例</option>
+<option value="drift">相邻站晚点变化（分钟）</option></select></div>
+<div class="field"><label for="linkTrainType">区间车次类别</label><select class="select" id="linkTrainType"><option value="RB">RB 区域普通列车</option><optgroup label="区域铁路运营品牌 · v14"><option value="HLB" selected>Hessische Landesbahn · 黑森地方铁路</option><option value="BRB">Bayerische Regiobahn · 巴伐利亚区域铁路</option><option value="ERB">eurobahn · 西部区域铁路</option><option value="NWB">NordWestBahn · 西北地区铁路</option><option value="OE">ODEG · 德国东部铁路</option></optgroup><option value="RE">RE 区域快车</option><option value="ALL">全部长途（ICE / IC / EC / FLX）</option><option value="ICE">仅 ICE</option><option value="IC">仅 IC</option></select></div>
+<div class="note" style="margin:8px 0 12px;padding:10px 11px;font-size:12px"><b>新增五家运营品牌 · 2026年9月</b><br>HLB、BRB、ERB、NWB、OE 为时刻表原始类型标签，不代表统一车种；其中包含 RE/RB 或通勤服务。<b>请分别分析，不能直接把本表与 RB/RE 加总，可能有运营分类交叉。</b> 未染色的线路不是表现正常。<br>核验：<a href="https://www.deutschlandtarifverbund.de/" target="_blank" rel="noopener">德国票价联盟</a>、<a href="https://www.brb.de/en/route-network" target="_blank" rel="noopener">BRB线路</a>、<a href="https://www.nordwestbahn.de/de/liniennetz" target="_blank" rel="noopener">NWB线路</a>、<a href="https://www.odeg.de/linien-fahrplaene" target="_blank" rel="noopener">ODEG线路</a>。</div>
+<div class="field"><label for="linkRankMode">右侧区间列表排序</label><select class="select" id="linkRankMode"><option value="worst">较差表现优先</option><option value="volume">观测量最多</option></select></div>
+<div class="rail-metric-legend" id="linkLegend"></div>
+<div class="field" style="margin-top:8px"><label for="linkMinPairs">地图最低观测样本量（相邻停站配对）</label><select class="select" id="linkMinPairs"><option value="12">12（完整覆盖）</option><option value="40">40（中等样本）</option><option value="100" selected>100（推荐）</option><option value="200">200（高样本）</option><option value="500">500（重点走廊）</option></select></div><div class="sub" id="chainInfo">2026年9月实测区间数据正在载入。</div>
+<div id="reCompare" class="card" style="margin:11px 0 13px;padding:12px;background:#0d2435;border:1px solid #31536a;border-radius:12px">
+<div style="font-weight:750;font-size:13px;margin-bottom:7px;color:#dceff8">2026年9月 · 同口径到站表现</div>
+<table style="width:100%;font-size:12px;border-collapse:collapse;text-align:right"><thead><tr><th style="text-align:left;color:#91adbf">车种</th><th>不足6分钟</th><th>晚点≥15分钟</th><th>停靠取消标记</th></tr></thead><tbody>
+<tr><td style="text-align:left;color:#9bd7e2">HLB*</td><td>82.06%</td><td>4.82%</td><td>4.53%</td></tr>
+<tr><td style="text-align:left;color:#9bd7e2">BRB*</td><td>85.86%</td><td>3.26%</td><td>2.79%</td></tr>
+<tr><td style="text-align:left;color:#9bd7e2">ERB*</td><td>74.04%</td><td>7.17%</td><td>3.10%</td></tr>
+<tr><td style="text-align:left;color:#9bd7e2">NWB*</td><td>77.05%</td><td>5.63%</td><td>1.63%</td></tr>
+<tr><td style="text-align:left;color:#9bd7e2">OE*</td><td>87.48%</td><td>3.66%</td><td>1.78%</td></tr>
+<tr><td style="text-align:left;color:#a8dbfa">RB</td><td><b>84.75%</b></td><td>3.7%</td><td>2.85%</td></tr>
+<tr><td style="text-align:left;color:#8eddd1">RE</td><td><b>76.2%</b></td><td>7.62%</td><td>2.59%</td></tr>
+<tr><td style="text-align:left">ICE</td><td>48.26%</td><td>30.76%</td><td>4.18%</td></tr>
+<tr><td style="text-align:left">IC</td><td>51.17%</td><td>25.75%</td><td>12.22%</td></tr>
+</tbody></table><div style="font-size:10.5px;line-height:1.55;color:#94abba;margin-top:9px">有效到站时间（新增运营品牌五类共 1,058,920 条）；RB 1,643,263条、RE 1,233,427条、ICE 152,961条、IC 44,383条。各类型仅作停站记录比较，样本线路和停靠结构不同；不是德国铁路官方准点率，也不是整趟取消率。</div></div>
+<div class="station-ranks" id="chainRanks" style="margin-top:8px"></div>
+<div class="sub rail-quality-notice"><b>数据解释</b> · 颜色衡量的是经过官方匹配区间、在下游站的 API 到站时间观测。部分时间为预估，并非由轨道故障导致的延误证明。灰色=无足量观测；没有着色的其他铁路不代表准点。</div>
+<div class="sub" style="margin-top:7px">“疑似后段取消”仅是调查线索，不能据此认定列车中途甩客。</div></section>
+<section class="section" id="routeEvidenceSection">
+<div class="subhead">沿线车站 · 实测证据</div>
+<div class="sub" id="routeEvidenceStatus">通过官方运营点名称和坐标双重校验，将实测车站挂接到铁路基础设施线路。没有证明具体 ICE 走过哪条轨道。</div>
+<div class="field"><label>快速查看已匹配的线路</label><div class="station-ranks" id="routeEvidencePresets"></div></div>
+<div class="station-ranks" id="routeEvidenceStops"></div>
+<div class="sub" style="margin-top:8px">车站历史数据为2026年8—9月；彩色区间层单独采用2026年9月数据。沿线站点均值不能作为该线路的平均晚点或取消率。选择某条线路后出现校验标记。</div></section>
+<section class="section" id="rankingSection"><div class="subhead">实测热点 · 当前筛选</div><div id="stationRanks" class="station-ranks"></div><div class="sub" style="margin-top:9px">点击车站名称定位。样本为精选站点，不代表全国排名。</div></section>
+<section class="section" id="trainSection"><div class="subhead">长途列车 · 历史车次档案</div>
+<div class="field"><input class="input" id="trainSearch" placeholder="搜索 ICE 618 / IC 2432" autocomplete="off"></div>
+<div class="tabs" id="trainSort"><button data-sort="volume" class="active">样本最多</button><button data-sort="delay">平均晚点</button><button data-sort="cancel">取消比例</button></div>
+<div class="station-ranks" id="trainRankings" style="margin-top:8px"></div>
+<div class="sub">来自2026年8—9月的列车编号汇总。样本量是有效晚点停靠记录数，不是不同出车趟数；取消比例也是停靠记录口径。列车编号不是固定轨道路径，点击车次不会给任何铁路着色。</div></section>
+
+<section class="section" id="v09EvidenceSection">
+  <div class="subhead">真实运行链 · 2026年9月</div>
+  <div class="note" style="border-left:3px solid #e1ba68;background:#102334;color:#d2e5f0">
+    <b>两层证据必须分开</b><br>
+    <span style="color:#9ccad6">现有：</span>官方真实轨道、114个精选车站的历史观测、沿线车站归属核验。<br>
+    <span style="color:#e4c389">现已接入：</span>2026年9月长途列车观测已接入；仅展示官方线路编号匹配且样本达标的站间区间。
+  </div>
+  <div class="field" style="margin-top:10px"><a href="https://huggingface.co/datasets/piebro/deutsche-bahn-data/blob/main/monthly_processed_data/data-2026-09.parquet" target="_blank" rel="noopener" style="color:#9bd5e5">↗ 下载 data-2026-09.parquet（约359 MB）</a></div>
+  <div class="sub" id="v09AuditMessage">运行链统计及证据核验已就绪。</div>
+  <div id="v09AuditStats" class="station-ranks" style="margin-top:8px;display:grid;gap:5px"></div>
+  <div class="sub" style="margin-top:9px">经核验的 JSON 必须含来源、月份、样本量、未匹配数及真实铁路几何。取消停靠不是整趟列车取消，更不是途中甩客证据。</div>
+</section><section class="section" id="officialBench"><div class="subhead">全国对照 · DB官方</div><div class="bench"><div><b>58.7%</b><span>2026年上半年 · DB长途准点率</span></div><div><b>60.1%</b><span>2025年全年 · DB长途准点率</span></div></div><div class="sub">全国准点率与逐站平均晚点口径不同，不能直接算百分比差。</div></section>
+<section class="section"><div class="note"><b>数据来源</b><br><a href="https://piebro.github.io/deutsche-bahn-data/stats/verspaetung_pro_bahnhof.html" target="_blank" rel="noopener" style="color:#a5dbe5">车站实测：Deutsche Bahn Data (2026年8—9月)</a><br><a href="https://piebro.github.io/deutsche-bahn-data/stats/zugverbindung.html" target="_blank" rel="noopener" style="color:#a5dbe5">同源车次编号统计：2026年8—9月</a><br><a href="https://zbir.deutschebahn.com/2026/en/punctuality/" target="_blank" rel="noopener" style="color:#a5dbe5">全国基准：DB 2026上半年报告</a><br>轨道地理与运营点：用户提供的DB InfraGO官方数据。车站样本经过人工精选，不代表全德国排序。</div></section>
+<section class="section"><div class="subhead">查询铁路 · STRECKENSUCHE</div><div class="searchbox"><input class="input" id="search" placeholder="输入线路编号、城市或德文线路名" autocomplete="off"><div id="results" class="results"></div></div><div class="presets"><button data-route="1733">1733 高铁干线</button><button data-route="4000">4000 莱茵河谷</button><button data-route="2550">2550 亚琛—卡塞尔</button><button data-route="5500">5500 慕尼黑</button></div><div class="sub" id="resultStatus" style="margin-top:9px">输入后可选择官方线路；也可在地图上点击轨道。</div></section>
+<section class="section"><div class="subhead">线路图层 · FARBCODIERUNG</div><div class="tabs" id="layers"><button class="active" data-style="speed">速度</button><button data-style="elec">电气化</button><button data-style="tracks">单双线</button></div><div class="sub" style="margin-top:8px">基于官方各段属性着色，不使用推算准点率。</div></section>
+<section class="section"><div class="subhead">区域底色 · BUNDESLÄNDER</div><div class="field"><label>州级基础指标</label><select class="select" id="areaMetric"><option value="none">无色（突出线路）</option><option value="elec">电气化占比</option><option value="high">高速线段累计长度</option><option value="length">线段累计长度</option></select></div><div class="check"><span>显示州名</span><input id="showStates" type="checkbox" checked></div><div class="check"><span>显示主要枢纽</span><input id="showHubs" type="checkbox" checked></div><div class="check"><span>隐藏未选中线路</span><input id="onlyRoute" type="checkbox"></div></section>
+<section class="section"><div class="subhead">属性图例 · LEGENDE</div><div id="legend" class="legend"></div></section>
+<section class="section"><div class="note"><b>数据严谨性说明</b><br>轨道位置来自 DB InfraGO 官方 CSV 的 WGS84 线几何，并按线路编号 Streckennummer 聚合。<br><br>“线段累计长度”包含线路轴线、正向与反向轨道等记录，不能直接作为去重后的营业里程。车站数据是精选实测样本；车次数据是公开来源的编号层面聚合，均不是基础设施线路准点率。2026年9月的实测区间已接入；未匹配线路保持原始底色。</div></section>
+</aside>
+<main class="mapzone" id="mapzone"><div class="map-top"><h2>德国铁路 · 地方运营商及 RB / RE / ICE 运行观察</h2><p>Deutschland · DB InfraGO Streckennetz</p><span class="map-tag">官方真实轨道 · 有证据的沿线站点匹配</span></div><div class="viewport" id="viewport"><div id="world" class="world"><canvas id="canvas" width="1580" height="2000"></canvas><svg id="overlay" viewBox="0 0 790 1000"><g id="stateG"></g><g id="stateLabels"></g><g id="hubs"></g><g id="verifiedLinkGeometry"></g><g id="stationPerformance"></g><g id="routeEvidencePins"></g><g id="selectedStops"></g></svg></div></div><div class="mapctrl"><button title="放大" id="zoomIn">+</button><button title="缩小" id="zoomOut">−</button><button title="恢复全国" id="reset">⌖</button></div><div class="tip" id="tip"></div><div class="map-foot">滚轮缩放 · 拖动平移 · 点击彩色线段查看到站时间观测</div><div class="watermark">SOURCE: OFFICIAL M1 CSV &nbsp; / &nbsp; OFFICIAL GEOMETRY + VERIFIED STATION LINK · NO INFERRED PUNCTUALITY</div></main>
+<aside class="right"><div class="eyebrow">SELECTED DETAIL / 线路·车站·车次</div><div class="detailtitle" id="detailTitle">德国铁路网</div><div class="detailsub" id="detailSub">请点击轨道，或从左侧选择线路编号</div><div class="headline"><div class="headline-value" id="bigNum">1,546</div><div class="headline-caption" id="bigCaption">德国16州内出现的线路编号数量</div></div><div class="twostats"><div class="smallstat"><strong id="aVal">33,376</strong><span id="aLab">境内原始分段记录</span></div><div class="smallstat"><strong id="bVal">16</strong><span id="bLab">覆盖联邦州数量</span></div></div><div class="detailsec">结构与统计</div><div id="kvlist"></div><div class="detailsec">关联运营点 · 原始记录</div><div id="stops"><div class="sub">选中铁路线路后展示官方运营点名称。</div></div><div class="note" style="margin-top:20px">线路编号不等同 ICE 车次或客运运营线路。逐站/逐车次聚合资料来自独立项目对 DB API 的历史采集，既不能等同铁路基础设施故障率，也不能用单一车次号反推其固定线路。只有经过计划站序和官方线路公里标双重匹配，才显示相邻停靠链观测。</div></aside>
+</div>
+<script src="js/states.js"></script>
+<script src="data/data-core.js"></script>
+<script src="data/data-routes-00.js"></script>
+<script src="data/data-routes-01.js"></script>
+<script src="data/data-sections-00.js"></script>
+<script src="data/data-sections-01.js"></script>
+<script src="data/data-sections-02.js"></script>
+<script src="js/stations.js"></script>
+<script src="js/train-profiles.js"></script>
+<script src="data/v10_september_evidence-core.js"></script>
+<script src="data/v10_september_evidence-links-00.js"></script>
+<script src="data/v10_september_evidence-links-01.js"></script>
+<script src="data/v10_september_evidence-links-02.js"></script>
+<script src="data/v10_september_evidence-links-03.js"></script>
+<script src="data/v10_september_evidence-possible_partial_cancel_candidates-00.js"></script>
+<script src="data/v12_re_evidence-core.js"></script>
+<script src="data/v12_re_evidence-links-00.js"></script>
+<script src="data/v12_re_evidence-links-01.js"></script>
+<script src="data/v12_re_evidence-links-02.js"></script>
+<script src="data/v12_re_evidence-links-03.js"></script>
+<script src="data/v12_re_evidence-links-04.js"></script>
+<script src="data/v12_re_evidence-links-05.js"></script>
+<script src="data/v12_re_evidence-links-06.js"></script>
+<script src="data/v12_re_evidence-links-07.js"></script>
+<script src="data/v13_rb_evidence-core.js"></script>
+<script src="data/v13_rb_evidence-links-00.js"></script>
+<script src="data/v13_rb_evidence-links-01.js"></script>
+<script src="data/v13_rb_evidence-links-02.js"></script>
+<script src="data/v13_rb_evidence-links-03.js"></script>
+<script src="data/v13_rb_evidence-links-04.js"></script>
+<script src="data/v13_rb_evidence-links-05.js"></script>
+<script src="data/v14_hlb_evidence-core.js"></script>
+<script src="data/v14_hlb_evidence-links-00.js"></script>
+<script src="data/v14_hlb_evidence-links-01.js"></script>
+<script src="data/v14_brb_evidence-core.js"></script>
+<script src="data/v14_brb_evidence-links-00.js"></script>
+<script src="data/v14_erb_evidence-core.js"></script>
+<script src="data/v14_erb_evidence-links-00.js"></script>
+<script src="data/v14_nwb_evidence-core.js"></script>
+<script src="data/v14_nwb_evidence-links-00.js"></script>
+<script src="data/v14_oe_evidence-core.js"></script>
+<script src="data/v14_oe_evidence-links-00.js"></script>
+<script src="js/app.js"></script>
+<script src="js/crosswalk.js"></script>
+<script src="js/audit.js"></script><script src="js/mode-ui.js"></script></body></html>
