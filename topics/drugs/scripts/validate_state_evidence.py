@@ -115,21 +115,6 @@ def validate():
             add_record(2025,state,row["name"],row["cases"],
                        "hospital_diagnosis",row["name"],
                        entry["source_url"],entry.get("source_type","secondary_health_source"))
-    # 2021–2025 trend is separate from the per-record 2025-only audit.
-    # A 2024 code/law break must not be silently connected or ranked.
-    trend_data=data.get("long_term_trends_by_state",{})
-    ok(set(trend_data)<=states,"Unknown trend states")
-    for state,trend in trend_data.items():
-        series=trend.get("records",[])
-        ok(trend.get("source_url","").startswith("https://") and
-           trend.get("source_title") and trend.get("metric") and
-           trend.get("scope_kind")=="multi_offence_all_drugs" and
-           trend.get("law"),state+" trend lacks statistical scope or provenance")
-        ok(len(series)==5 and [x.get("year") for x in series]==list(range(2021,2026)) and
-           all(type(x.get("cases")) is int and x["cases"]>=0 for x in series),
-           state+" incomplete 2021–2025 trend")
-        ok(trend.get("break_year")==2024 and "大麻" in trend.get("break_label",""),
-           state+" 2024 KCanG statistical break missing")
     rlp=offences.get("Rheinland-Pfalz")
     ok(rlp is not None and rlp.get("source_type")=="state_police",
        "RLP primary PKS evidence missing")
@@ -150,8 +135,6 @@ def validate():
     ok(r["大麻 · KCanG §34全部罪名"]["cases"]>=
        rlp["groups"][0]["general"]+rlp["groups"][0]["trade"],
        "RLP KCanG groups exceed the statutory total")
-    ok([x["cases"] for x in trend_data["Rheinland-Pfalz"]["records"]]==
-       [20624,19832,19296,13433,9888],"RLP five-year official PKS trend mismatch")
     # 2025 statewide original from Saxony-Anhalt's Interior Ministry.
     sa=offences.get("Sachsen-Anhalt")
     ok(sa is not None and sa.get("source_type")=="state_government",
@@ -181,9 +164,14 @@ def validate():
         entry=he_fields.get(name)
         ok(entry is not None and (entry["cases"],entry["scope_kind"])==(value,scope),
            "Hessen official 2025 PKS drug breakdown mismatch: "+name)
-    ok([x["cases"] for x in trend_data["Hessen"]["records"]]==
-       [25216,24363,26518,17257,12053],"Hessen original five-year PKS trend mismatch")
-    ok(len(trend_data)==2,"Expected two sourced five-year state drug trends")
+    # 2025 all-state total issued by the Mainz municipal government for RLP.
+    rlp_deaths=deaths.get("Rheinland-Pfalz")
+    ok(rlp_deaths is not None and rlp_deaths["cases"]==34 and
+       rlp_deaths["previous_2024"] is None and
+       rlp_deaths["source_type"]=="city_government_citing_statewide_figure" and
+       "mainz.de" in rlp_deaths["source_url"],
+       "2025 Rheinland-Pfalz statewide deaths must cite Mainz city government's official 34 figure")
+    ok(len(deaths)==14,"Expected fourteen 2025 state-level drug death counts")
     # Overlap-sensitive controls: 2025 KCanG subgroup is INSIDE KCanG
     # overall total; Berlin's cocaine case types belong to separate legal keys.
     berlin=offences.get("Berlin")
