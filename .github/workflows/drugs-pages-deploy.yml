@@ -61,12 +61,17 @@ jobs:
           required={'js/states.js','data/data-core.js','overview.js','js/station-zh.js'}
           assert required <= set(scripts), (required-set(scripts))
           assert len(scripts)==len(set(scripts)), 'Duplicate railway script inclusion'
-          assert all((Path('topics/railway')/path).is_file() for path in scripts)
-          assert all((Path('topics/railway')/path).stat().st_size > 0 for path in scripts)
+          external=[u for u in scripts if u.startswith('https://')]
+          assert external==['https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'], external
+          local=[u for u in scripts if not u.startswith('https://')]
+          assert all((Path('topics/railway')/path).is_file() for path in local)
+          assert all((Path('topics/railway')/path).stat().st_size > 0 for path in local)
+          assert 'js/station-zh.js' in local and '../../js/layers/city-labels.js' in local
+          assert Path('topics/railway/data/data-sections-02.js').stat().st_size > 100000
           assert 'toplinks' in h and '铁路运行' in h
           assert Path('topics/railway/research.html').is_file()
           assert Path('topics/railway/overview.css').is_file()
-          print('PASS minimal railway source, official network and archival dashboard', len(scripts))
+          print('PASS official rail network, external Leaflet, local assets and archival dashboard', len(scripts))
           RAIL_AUDIT
           node --check topics/railway/overview.js
           node --check topics/railway/js/station-zh.js
