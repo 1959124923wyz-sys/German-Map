@@ -16,7 +16,12 @@ def check(browser, mobile=False):
     page.route(re.compile(r"https://tile\.openstreetmap\.org/"),lambda r:r.abort())
     page.goto(URL,wait_until="domcontentloaded",timeout=30000)
     page.wait_for_function("()=>window.__IMMIGRATION_READY__===true",timeout=45000)
-    assert page.locator(".toplinks .modebtn").count()==4
+    # A new topic must retain all existing links, in a deterministic order.
+    nav=page.locator(".toplinks .modebtn")
+    assert nav.count()==5
+    assert [name.strip() for name in nav.all_inner_texts()]==[
+        "暴力犯罪","财产犯罪","毒品问题","移民人口","环保争议"]
+    assert page.locator('.toplinks a[href="../environment/"]').count()==1
     assert page.locator(".toplinks .modebtn.active").inner_text()=="移民人口"
     assert page.locator("#immigration-map .crime-city-label").first.evaluate("(e)=>getComputedStyle(e).whiteSpace")=="nowrap"
     assert page.locator(".sidebar").evaluate("(e)=>getComputedStyle(e).backgroundColor")=="rgb(19, 26, 34)"
@@ -63,5 +68,5 @@ with sync_playwright() as p:
     b=p.chromium.launch(headless=True)
     try:
         check(b,False);check(b,True)
-        print("PASS: real state/county polygons, Leaflet, 4-topic nav, OSM-compatible map, mode/year, 25-county drilldown and state re-entry, desktop/mobile")
+        print("PASS: real state/county polygons, Leaflet, 5-topic nav, OSM-compatible map, mode/year, 25-county drilldown and state re-entry, desktop/mobile")
     finally:b.close()
