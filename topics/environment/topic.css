@@ -86,3 +86,45 @@
   .environment-sidebar .area-stat b{font-size:15px}
   .legend{min-width:0;width:min(275px,calc(100% - 22px))}
 }
+
+/* Layered, exhaustive navigation: 4 mutually exclusive classes plus All.
+   Curated picks, actions, facilities, and named groups remain secondary filters. */
+.env-taxonomy{width:100%}
+.env-taxonomy-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:2px 0 7px}
+.env-taxonomy-heading strong{font-size:11px;color:#d9e4ec;letter-spacing:.03em}
+.env-taxonomy-heading span{font-size:9px;color:#91a7b6}
+.environment-sidebar .env-taxonomy .env-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;width:100%}
+.environment-sidebar .env-taxonomy .env-tabs button{grid-column:span 2;display:flex;align-items:center;justify-content:space-between;gap:4px;min-width:0;white-space:nowrap;background:#121d27;border:1px solid #344453;border-radius:7px;color:#dce5ec;padding:7px 7px;font-size:10.5px;cursor:pointer}
+.environment-sidebar .env-taxonomy .env-tabs button:nth-child(n+4){grid-column:span 3}
+.environment-sidebar .env-taxonomy .env-tabs button:hover{border-color:#729fb8;background:#203240}
+.environment-sidebar .env-taxonomy .env-tabs button.active{background:#263e51;border-color:#6499bd;box-shadow:inset 0 0 0 1px rgba(100,153,189,.35);color:#fff}
+.env-tab-count{flex:0 0 auto;padding:1px 4px;border:1px solid rgba(143,179,205,.3);border-radius:6px;font-size:9px;font-variant-numeric:tabular-nums;color:#a8c7d9;background:rgba(255,255,255,.025)}
+.environment-sidebar .env-taxonomy .env-tabs button.active .env-tab-count{color:#fff;border-color:#789eba}
+.env-taxonomy-guide{margin-top:6px;font-size:10px;line-height:1.55}
+.env-taxonomy-guide>summary{cursor:pointer;color:#91bcd2;font-size:10px;padding:4px 0;list-style:revert}
+.env-taxonomy-guide>summary:hover{color:#c5dbe8}
+.env-taxonomy-guide[open]{padding:0 8px 7px;border:1px solid #334554;border-radius:7px;background:#192734}
+.env-taxonomy-guide[open]>summary{padding:7px 0 2px}
+.env-taxonomy-guide p{color:#becbd5;margin:7px 0 0;line-height:1.5}
+.env-taxonomy-guide b{color:#e0eaf0}
+.env-taxonomy-guide .env-guide-footnote{color:#92afc0;border-top:1px solid #354b5b;padding-top:7px}
+.env-shortcut-row{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:9px 0 6px;padding-top:8px;border-top:1px solid #303d4b}
+.env-shortcut-row>span{font-size:10px;color:#9cacba;margin-right:2px;white-space:nowrap}
+.environment-sidebar .env-shortcut-row button{border:1px solid #3c4d5c;background:#172532;color:#b7cedc;border-radius:6px;padding:5px 7px;cursor:pointer;font-size:10px;white-space:nowrap}
+.environment-sidebar .env-shortcut-row button:hover{background:#203748}
+.environment-sidebar .env-shortcut-row button.active{background:#294757;border-color:#7bacc2;color:#f6fbff}
+.environment-sidebar .env-shortcut-row .env-clear{margin-left:auto;border-color:#414c56;background:transparent;color:#9eafbd}
+.env-filter-state{font-size:9px;line-height:1.45;color:#90a8ba;margin:5px 0 2px;min-height:1.3em}
+.environment-sidebar .control-row{margin-bottom:6px}
+.environment-sidebar .env-taxonomy .env-tabs button:focus-visible,
+.environment-sidebar .env-shortcut-row button:focus-visible,
+.env-taxonomy-guide>summary:focus-visible{outline:2px solid #99c5e1;outline-offset:2px}
+@media(max-width:920px){
+ .environment-sidebar .env-taxonomy .env-tabs button{font-size:11px}
+ .env-taxonomy-heading{margin-top:4px}
+}
+@media(max-width:380px){
+ .environment-sidebar .env-taxonomy .env-tabs button{font-size:10px;padding:7px 5px}
+ .env-taxonomy-heading span{font-size:8.5px}
+ .env-shortcut-row{gap:4px}
+}

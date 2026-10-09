@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[3]
 ASSET=ROOT/"node_modules/leaflet/dist"
 BASE=os.getenv("GERMAN_MAP_TEST_BASE","http://127.0.0.1:8765/")
-EXPECTED={"overview":64,"focus":21,"policy":10,"organization":10,"facility":92,"archive":41}
+EXPECTED={"all":154,"archive":41,"policy":10,"project":11,"facility":92}
 
 def check(browser, mobile=False):
     width,height=(390,844) if mobile else (1440,900)
@@ -23,9 +23,10 @@ def check(browser, mobile=False):
     page.route("**/tile.openstreetmap.org/**",lambda route:route.abort())
     resp=page.goto(BASE+"topics/environment/",wait_until="domcontentloaded",timeout=30000)
     assert resp and resp.ok, ("HTTP",resp.status if resp else None)
-    page.wait_for_function("""() => window.__ENVIRONMENT_MAP__?.getMarkerCount()===64
+    page.wait_for_function("""() => window.__ENVIRONMENT_MAP__?.getMarkerCount()===154
         && window.GermanEnvironment06Data?.length===154
-        && document.querySelectorAll('#environment-map .leaflet-marker-icon.env-marker-icon').length>=64""",timeout=30000)
+        && window.__ENVIRONMENT_TAXONOMY__?.all===154
+        && document.querySelectorAll('#environment-map .leaflet-marker-icon.env-marker-icon').length>=40""",timeout=30000)
     assert page.locator(".modebar a.modebtn").count()==5
     assert page.locator(".modebar .modebtn.active").inner_text()=="环保争议"
     assert page.locator("#environment-map .leaflet-control-zoom-in").is_visible()
@@ -50,12 +51,50 @@ def check(browser, mobile=False):
     assert [facts[k] for k in ("archive","policy","organization","facility","facility_story")]==[41,10,10,92,1],facts
     assert facts["phases"]=={"retired":32,"awarded":36,"ordered":3,"scheduled":21},facts
     page.wait_for_function("""() => window.__ENVIRONMENT_MAP__.map.getPane('environmentStates')?.querySelectorAll('path').length>=16""",timeout=20000)
-    # Presentation and filters remain correlated with the data, not mere decoration.
+    assert page.locator('[data-mode]').count()==5
+    census=page.evaluate("window.__ENVIRONMENT_TAXONOMY__")
+    assert census=={"all":154,"archive":41,"policy":10,"project":11,"facility":92},census
+    assert census["archive"]+census["policy"]+census["project"]+census["facility"]==census["all"]
     for mode,expected in EXPECTED.items():
-        page.locator('[data-mode="'+mode+'"]').click()
+        button=page.locator('[data-mode="'+mode+'"]')
+        assert button.locator(".env-tab-count").inner_text()==str(expected),mode
+        button.click()
+        assert button.get_attribute("aria-pressed")=="true"
         assert page.locator("#count").inner_text()==str(expected),mode
         assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==expected,mode
         assert page.locator("#listCount").inner_text()==str(expected)+" 条",mode
+        assert "154 条" in page.locator("#filterState").inner_text()
+    page.locator("#taxonomyGuide summary").click()
+    assert page.locator("#taxonomyGuide").evaluate("(e)=>e.open") is True
+    assert "41 + 10 + 11 + 92 = 154" in page.locator("#taxonomyGuide").inner_text()
+    page.locator("#taxonomyGuide summary").click()
+    page.locator('[data-mode="project"]').click()
+    project=page.evaluate("window.__ENVIRONMENT_MAP__.getRows().map(e=>e.kind)")
+    assert project.count("organization")==10 and project.count("facility_story")==1,project
+    # Actor filtering must not override the selected primary record class.
+    page.locator("#org").select_option("BUND")
+    assert all(k in ("organization","facility_story") for k in page.evaluate("window.__ENVIRONMENT_MAP__.getRows().map(e=>e.kind)"))
+    page.locator('[data-mode="all"]').click()
+    assert page.locator("#count").inner_text()=="154"
+    assert page.locator("#regionCount").inner_text()!="—"
+    assert int(page.locator("#sourceCount").inner_text())>=100 # 121 distinct URLs across 154 records; sources are reused
+    # Editorial picks and common questions are cross-category shortcuts, not primary classes.
+    page.locator('[data-shortcut="focus"]').click()
+    assert page.locator("#count").inner_text()=="21"
+    assert "重点案例" in page.locator("#filterState").inner_text()
+    page.locator('[data-shortcut="airport"]').click()
+    assert 0<int(page.locator("#count").inner_text())<=41
+    page.locator('[data-shortcut="paint"]').click()
+    assert 0<int(page.locator("#count").inner_text())<=41
+    page.locator('[data-shortcut="scheduled"]').click()
+    assert page.locator("#count").inner_text()=="21"
+    assert page.locator('[data-mode="facility"]').get_attribute("aria-pressed")=="true"
+    page.locator("#clearFilters").click()
+    assert page.locator("#count").inner_text()=="154"
+    assert page.locator("#search").input_value()==""
+    assert page.locator("#org").input_value()=="all"
+    # Facility phase entries only apply inside the facility class.
+    page.locator('[data-mode="facility"]').click()
     page.locator('[data-mode="facility"]').click()
     page.locator('#phase').select_option("scheduled")
     assert page.locator("#count").inner_text()=="21"

@@ -7,7 +7,7 @@
 <meta name="description" content="德国环保争议政策、环保组织行动、机场封锁、能源设施退役和后续证据地图；基于154条带来源的记录。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css?v=20261009-svg-outline-fix-v3">
-<link rel="stylesheet" href="topic.css?v=20261009-unified-v1">
+<link rel="stylesheet" href="topic.css?v=20261009-taxonomy-v2">
 </head>
 <body>
 <header>
@@ -34,26 +34,43 @@
   </section>
   <aside class="environment-sidebar">
     <div class="controls">
-      <div class="control-row"><strong>专题</strong>
-        <div class="env-tabs" role="group" aria-label="选择环保主题">
-          <button type="button" class="active" data-mode="overview">总览</button>
-          <button type="button" data-mode="archive">行动事件</button>
-          <button type="button" data-mode="policy">环保政策</button>
-          <button type="button" data-mode="organization">环保组织</button>
-          <button type="button" data-mode="facility">能源设施</button>
-          <button type="button" data-mode="focus">争议精选</button>
+      <div class="env-taxonomy">
+        <div class="env-taxonomy-heading"><strong>记录类型</strong><span>四类互不重叠 · 全部收录记录</span></div>
+        <div class="env-tabs" role="group" aria-label="按记录性质选择互斥的分类">
+          <button type="button" class="active" data-mode="all" aria-pressed="true">全部记录 <span class="env-tab-count" data-count-for="all">154</span></button>
+          <button type="button" data-mode="archive" aria-pressed="false">直接行动 <span class="env-tab-count" data-count-for="archive">41</span></button>
+          <button type="button" data-mode="policy" aria-pressed="false">政策措施 <span class="env-tab-count" data-count-for="policy">10</span></button>
+          <button type="button" data-mode="project" aria-pressed="false">组织／项目争议 <span class="env-tab-count" data-count-for="project">11</span></button>
+          <button type="button" data-mode="facility" aria-pressed="false">能源设施 <span class="env-tab-count" data-count-for="facility">92</span></button>
         </div>
+        <details class="env-taxonomy-guide" id="taxonomyGuide">
+          <summary>这四类如何划分？为什么“组织”不单列为事件类型？</summary>
+          <p><b>直接行动</b>：机场、道路、能源运输阻断、喷涂等实际发生的行动，共41条。</p>
+          <p><b>政策措施</b>：有明确政策决策或实施地点的环保、能源政策，共10条。</p>
+          <p><b>组织／项目争议</b>：环保组织参与的工程、诉讼争议及一条单独设施争议，共11条；正常行政诉讼不等于违法行动。</p>
+          <p><b>能源设施</b>：发电设施历史退役、招标中标、监管命令和未来退出安排，共92条。计划退出不代表已停机。</p>
+          <p class="env-guide-footnote">41 + 10 + 11 + 92 = 154 条已收录记录，互不重复。这里的“全部”指本专题资料库，并非穷尽德国所有环保相关事件。</p>
+        </details>
       </div>
-      <div class="control-row"><strong>定位</strong>
+      <div class="env-shortcut-row" role="group" aria-label="常用查看入口">
+        <span>快速查看</span>
+        <button type="button" class="env-shortcut" data-shortcut="airport" title="直接行动中与机场有关的记录">机场相关</button>
+        <button type="button" class="env-shortcut" data-shortcut="paint" title="直接行动中涉及喷涂、涂漆等行为的记录">喷涂行动</button>
+        <button type="button" class="env-shortcut" data-shortcut="scheduled" title="能源设施中按未来法定时间表安排退出的记录">未来退出</button>
+        <button type="button" class="env-shortcut" data-shortcut="focus" title="编辑选取的政策与项目争议案例，属于跨类型筛选而不是第五种记录类型">重点案例</button>
+        <button type="button" id="clearFilters" class="env-clear" title="返回完整的154条记录">重置</button>
+      </div>
+      <div class="env-filter-state" id="filterState" role="status" aria-live="polite">当前显示：全部154条记录，按记录性质分类。</div>
+      <div class="control-row"><strong>地图定位</strong>
         <button type="button" id="viewGermany">全国</button>
         <button type="button" id="viewBerlin">柏林</button>
         <button type="button" id="viewHamburg">汉堡</button>
         <button type="button" id="clearSelection">取消选中</button>
       </div>
       <div class="control-row env-filters">
-        <label><span>组织</span>
+        <label><span>参与组织</span>
           <select id="org" aria-label="按组织筛选">
-            <option value="all">全部组织</option>
+            <option value="all">不限组织</option>
             <option>BUND</option><option>NABU</option><option>DUH</option>
             <option>Greenpeace</option><option>Ende Gelände</option>
             <option>Letzte Generation</option><option>Tesla Stoppen</option>
@@ -89,8 +106,8 @@
       <div class="coverage-line"><span class="coverage-pill standard">有来源记录</span><span class="coverage-text" id="coverageText">位置为政策发布地、设施或事件地点，不代表整州得分</span></div>
       <div class="area-grid">
         <div class="area-stat"><b id="count">154</b><small>当前筛选记录</small></div>
-        <div class="area-stat"><b id="eventCount">41</b><small>其中行动事件</small></div>
-        <div class="area-stat"><b id="facilityCount">92</b><small>其中能源设施</small></div>
+        <div class="area-stat"><b id="regionCount">—</b><small>涉及城市／地点</small></div>
+        <div class="area-stat"><b id="sourceCount">—</b><small>引用来源链接</small></div>
       </div>
       <div class="area-note" id="listHint">只展示已收录的可溯源事件，政府立法、合法异议和违法行动须分开判断。</div>
       <div id="detail" class="env-detail" hidden aria-live="polite"></div>
