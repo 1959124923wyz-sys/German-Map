@@ -287,9 +287,9 @@
     $('action').onchange=e=>{state.action=e.target.value;state.limit=18;render();};
     $('phase').onchange=e=>{state.phase=e.target.value;state.limit=18;render();};
     $('search').oninput=e=>{state.search=e.target.value.toLowerCase().trim();state.limit=18;render();};
-    $('viewGermany').onclick=()=>{map.fitBounds(GERMANY,{padding:[14,14]});selectRecord(null,false);};
-    $('viewBerlin').onclick=()=>map.fitBounds(BERLIN,{padding:[20,20]});
-    $('viewHamburg').onclick=()=>map.fitBounds(HAMBURG,{padding:[20,20]});
+    $('viewGermany').onclick=()=>{map.fitBounds(GERMANY,{padding:[14,14],animate:false});selectRecord(null,false);};
+    $('viewBerlin').onclick=()=>map.fitBounds(BERLIN,{padding:[20,20],animate:false});
+    $('viewHamburg').onclick=()=>map.fitBounds(HAMBURG,{padding:[20,20],animate:false});
     $('clearSelection').onclick=()=>selectRecord(null,false);
     $('moreRecords').onclick=()=>{state.limit+=24;renderEntries();};
   }
