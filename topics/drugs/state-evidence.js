@@ -21,13 +21,6 @@ function validate(d){
    if(!row.name||!Number.isInteger(row.cases)||!Number.isInteger(row.previous_2024)||row.cases<0||row.previous_2024<0)
     throw Error('医院记录非法');
  }
- for(const [state,trend] of Object.entries(d.long_term_trends_by_state||{})){
-  if(!state||!String(trend.source_url||'').startsWith('https://')||
-    !Array.isArray(trend.records)||trend.records.length!==5||
-    trend.break_year!==2024||!trend.break_label||
-    !trend.records.every((r,i)=>r.year===2021+i&&Number.isInteger(r.cases)&&r.cases>=0))
-   throw Error('年度趋势来源、年份或法律断点异常');
- }
  for(const o of Object.values(d.selected_offence_codes_by_state)){
   if(!/^https:\/\//.test(o.source_url)||!Array.isArray(o.groups))throw Error('州案件来源格式错误');
   for(const row of o.groups)
@@ -114,44 +107,6 @@ function render(state,d){
   const src=item('div','','evidence-source');src.append(sourceLink('警察统计原表：'+off.source_title+' ↗',off.source_url));sect.append(src);
   body.append(sect);
  } else body.append(item('p','本州大麻、可卡因、冰毒、海洛因罪名细分原表尚未核实，不依据全国比例估算。','note'));
- const trend=d.long_term_trends_by_state?.[state];
- if(trend){
-  const section=item('div','','evidence-group');
-  section.append(item('h5','2021—2025年毒品案件趋势 · 全州'));
-  // Two line segments rather than a continuous line: 2024 KCanG is a
-  // legal/statistical break, not evidence of declining drug consumption.
-  const NS='http://www.w3.org/2000/svg';
-  const svg=document.createElementNS(NS,'svg');
-  svg.classList.add('evidence-mini-trend');
-  svg.setAttribute('viewBox','0 0 310 82');
-  svg.setAttribute('role','img');
-  svg.setAttribute('aria-label','警方登记毒品案件五年序列；2024年存在法定统计断点，不能跨断点直接比较');
-  svg.style.cssText='display:block;width:100%;max-width:350px;height:auto;margin:8px 0 4px';
-  const points=trend.records, vals=points.map(x=>x.cases);
-  const lo=Math.min(...vals),hi=Math.max(...vals),span=Math.max(1,hi-lo);
-  const xy=points.map((p,i)=>({x:20+i*66,y:15+33*(hi-p.cases)/span,p}));
-  function node(tag,attrs,text){
-   const n=document.createElementNS(NS,tag);
-   for(const [k,v]of Object.entries(attrs))n.setAttribute(k,String(v));
-   if(text!==undefined)n.textContent=String(text);
-   return n;
-  }
-  svg.append(node('line',{x1:185,y1:4,x2:185,y2:64,stroke:'#8b949d','stroke-dasharray':'3 4','stroke-width':1}));
-  for(const segment of [xy.filter(x=>x.p.year<2024),xy.filter(x=>x.p.year>=2024)])
-   svg.append(node('polyline',{points:segment.map(a=>a.x+','+a.y).join(' '),fill:'none',stroke:'#8ab9a0','stroke-width':2.4,'stroke-linecap':'round','stroke-linejoin':'round'}));
-  for(const a of xy){
-   svg.append(node('circle',{cx:a.x,cy:a.y,r:3.2,fill:'#c6dfcc'}));
-   svg.append(node('text',{x:a.x,y:a.y-7,'text-anchor':'middle',fill:'#dbe6df','font-size':10},fmt(a.p.cases)));
-   svg.append(node('text',{x:a.x,y:76,'text-anchor':'middle',fill:'#b5c5cc','font-size':10},a.p.year));
-  }
-  section.append(svg);
-  section.append(item('p','2024年法律统计断点 · 两段折线故意不连接','note'));
-  section.append(item('p',trend.break_label+' '+trend.note,'note'));
-  const source=item('div','','evidence-source');
-  source.append(sourceLink('趋势原表：'+trend.source_title+' ↗',trend.source_url));
-  section.append(source);
-  body.append(section);
- }
  if(health){
   const sect=item('div','','evidence-group');
   sect.append(item('h5','2025年大麻相关健康诊断 · 全州'));
