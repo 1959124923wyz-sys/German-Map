@@ -3,6 +3,9 @@ on:
   pull_request:
     paths:
       - 'topics/immigration/**'
+      - 'js/core/place-names-zh.js'
+      - 'js/layers/city-labels.js'
+      - 'scripts/smoke_place_names.py'
       - '.github/workflows/immigration-map-smoke.yml'
   push:
     branches: [main]
@@ -32,6 +35,8 @@ jobs:
       - name: Verify source and launch static site
         run: |
           node --check topics/immigration/topic.js
+          node --check js/core/place-names-zh.js
+          node --check js/layers/city-labels.js
           python - <<'PY'
           import json
           s=json.load(open('data/germany-states.geojson'))
@@ -43,6 +48,8 @@ jobs:
           sleep 2
       - name: Click, drilldown and screenshot at desktop and mobile sizes
         run: python topics/immigration/tests/smoke_leaflet.py
+      - name: Verify Chinese place names across four maps
+        run: python scripts/smoke_place_names.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
