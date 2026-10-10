@@ -31,3 +31,9 @@
 
 ## 证据
 来源见各条`source_url`、`confirmation_source_url`，官方GIS见已提交GeoJSON `_provenance`。获取/验收/来源与实施状态分开留存，不得将“找到网址”表述为“已经拿到数据”。
+
+## R8官方Regionaldatenbank接口实测补充（重要，已真正保存）
+- 查官方2020 REST OpenAPI `https://www.regionalstatistik.de/genesisws/rest/2020/GOJsonApi.json` 确认大小写为 `/genesisws/rest/2020`，metadata/table、data/tablefile、data/table都是 **POST**，username/password放HTTP header，查询参数在form body。避免把曾经的CSV 404错误路径反复尝试。
+- 建立 `scripts/probe_regionalstatistik_genesis.py`、自动保存的研究工作流 `.github/workflows/industry-r8-genesis-probe.yml`。
+- 已真实写入 `topics/industry/research/R8_GENESIS_API_PROBE.json`，三项调用均**HTTP 401**，官方服务器JSON明确报 `Code=15`，德语信息“您无权调用此服务或请求头信息不完整以致无法识别凭证”。本轮访客账号 `GAST/GAST` 不是有效的数据访问凭证，需注册获认证后再提取；不把401冒充成功下载。
+- 研究程序完整保存URL、查询参数、HTTP状态和响应片段，不保存/公开个人认证密钥；没有生成任何就业人数、没有改动生产 `county-employment.json`。下一位研究者优先寻找免认证BA官方下载CSV或按官方流程申请API token，不要继续使用匿名GAST盲试。
