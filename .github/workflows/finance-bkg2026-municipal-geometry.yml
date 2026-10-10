@@ -1,0 +1,61 @@
+name: Finance 08 - BKG 2026 Municipality Geometry (Research Only)
+on:
+  push:
+    branches: [research/finance-regional-expansion-20261010]
+    paths:
+      - 'research/finance/regional-expansion/build_bkg2026_municipality_geometry.py'
+      - '.github/workflows/finance-bkg2026-municipal-geometry.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: finance08-muni2026-geometry
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 29
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install "shapely>=2,<3" "pyproj>=3,<4"
+      - name: Download and validate source, build state-partitioned municipal GeoJSON
+        id: geometry
+        continue-on-error: true
+        run: |
+          set +e
+          python research/finance/regional-expansion/build_bkg2026_municipality_geometry.py > /tmp/finance08_muni_geometry.log 2>&1
+          rc=$?
+          cat /tmp/finance08_muni_geometry.log
+          mkdir -p research/finance/regional-expansion/derived/bkg2026
+          EXIT_CODE=$rc python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path('research/finance/regional-expansion/derived/bkg2026/municipality_geometry_run_status.json')
+          rc=int(os.environ['EXIT_CODE'])
+          txt=Path('/tmp/finance08_muni_geometry.log').read_text(encoding='utf-8',errors='replace')
+          p.write_text(json.dumps({'verified':rc==0,'exit_code':rc,
+              'status':'validated_10939_municipalities' if rc==0 else 'failed_no_release',
+              'notes':txt[-3500:]},indent=2)+'\n',encoding='utf-8')
+          PY
+          exit $rc
+      - name: Commit state geojsons and provenance to research only
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/finance/regional-expansion/derived/bkg2026/municipal_geometry_by_state/
+          git add research/finance/regional-expansion/derived/bkg2026/municipality_geometry_2026_audit.json research/finance/regional-expansion/derived/bkg2026/municipality_geometry_run_status.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "data(finance): stage 2026 real municipal boundaries 16 state chunks with QA"
+            git pull --rebase origin research/finance-regional-expansion-20261010
+            git push origin HEAD:research/finance-regional-expansion-20261010
+          fi
+      - name: Require geometry verified after status archived
+        if: always()
+        run: test "${{ steps.geometry.outcome }}" = success
