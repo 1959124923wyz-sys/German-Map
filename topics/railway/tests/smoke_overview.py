@@ -37,7 +37,7 @@ def run(browser,mobile=False):
        x.getAttribute('src').includes('data-sections-'));
     }""")
     assert page.locator("#minimum").count()==0
-    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getMinimum()")==100 if False else True
+    assert page.locator("[data-metric]").count()==0
 
     audit=page.evaluate("""()=>{
       const api=window.__RAILWAY_OVERVIEW__,groups=api.getCityCorridors();
@@ -66,6 +66,10 @@ def run(browser,mobile=False):
     assert audit["physical"]>=audit["count"]
     assert audit["hidden"]>0
     assert audit["thuringia"],'Erfurt/Ilmenau/Coburg city paths missing'
+    assert all(g["from"]!=g["to"] for g in audit["thuringia"])
+    assert audit["count"]<550, "Public map must not restore 600+ station fragments"
+    assert audit["hidden"]>300
+
 
     if not mobile:
         selected=page.evaluate("""()=>{
@@ -106,11 +110,6 @@ def run(browser,mobile=False):
     assert page.locator(".hot-row").count()==10
     page.locator(".hot-row").first.click()
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getSelected()?.observedEdges>=1")
-    page.locator('[data-metric="cancel"]').click()
-    assert page.locator('[data-metric="cancel"]').get_attribute("aria-pressed")=="true"
-    page.locator('[data-metric="late"]').click()
-    assert page.locator('[data-metric="late"]').get_attribute("aria-pressed")=="true"
-    page.locator('[data-metric="both"]').click()
     if not mobile:
         page.locator('[data-service="LONG"]').click()
         loaded(page,"LONG",10)
