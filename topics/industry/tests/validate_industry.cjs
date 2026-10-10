@@ -11,8 +11,20 @@ const r5b=JSON.parse(fs.readFileSync(path.join(root,'research/r5b-manufacturing-
 const r5c=JSON.parse(fs.readFileSync(path.join(root,'research/r5c-screened-manufacturing.json'),'utf8'));
 const r5d=JSON.parse(fs.readFileSync(path.join(root,'research/r5d-2025-factory-closures.json'),'utf8'));
 const r6=JSON.parse(fs.readFileSync(path.join(root,'research/r6-events.json'),'utf8'));
+const r7a=JSON.parse(fs.readFileSync(path.join(root,'research/r7a-screened-2026-events.json'),'utf8'));
+const r7b=JSON.parse(fs.readFileSync(path.join(root,'research/r7b-2025-retrospective.json'),'utf8'));
 const r6Audit=JSON.parse(fs.readFileSync(path.join(root,'research/r6-dedup-audit.json'),'utf8'));
 assert.equal(r6.events.length,1,'R6 only genuinely new site');
+assert.equal(r7a.events.length,10,'R7A individually screened cases');
+assert.equal(r7b.events.length,11,'R7B retrospective events');
+for(const b of [r7a,r7b])for(const e of b.events){
+ if(e.eligible_factory_marker){
+  assert.match(e.county_ags||'',/^\d{5}$/,'R7 site must have current AGS: '+e.event_id);
+ }
+}
+assert.equal(r7a.events.filter(e=>e.eligible_factory_marker===true).length,3);
+assert.equal(r7b.events.filter(e=>e.eligible_factory_marker===true).length,9);
+assert.equal(r7b.events.filter(e=>e.shared_program_id==='musashi_2025_de_457').reduce((s,e)=>s+e.jobs_affected,0),457,'Musashi updated 457 only once across 3 site figures');
 assert.equal(r6Audit.excluded_duplicates,10,'Ten already represented factsheets rejected');
 const employment=JSON.parse(fs.readFileSync(path.join(root,'data/county-employment.json'),'utf8'));
 const crosswalk=JSON.parse(fs.readFileSync(path.join(root,'data/county_ags_crosswalk.json'),'utf8'));
@@ -57,9 +69,9 @@ assert.equal(r5c.manifest.sites,7);
 assert.equal(r5c.events.filter(e=>e.eligible_factory_marker===false).length,5,'R5C undecided/group/nonfactory excluded');
 assert.equal(r5b.events.filter(e=>e.eligible_factory_marker===false).length,2,'R5B groups are not map markers');
 assert.equal(r5a.events.filter(e=>e.eligible_factory_marker===false).length,2,'Exclude operators/multi-site');
-const rows=[...r1.events,...r23.events,...r4.events,...r5a.events,...r5b.events,...r5c.events,...r5d.events,...r6.events];
-assert.equal(rows.length,174);
-assert.equal(new Set(rows.map(e=>e.event_id)).size,174,'IDs unique');
+const rows=[...r1.events,...r23.events,...r4.events,...r5a.events,...r5b.events,...r5c.events,...r5d.events,...r6.events,...r7a.events,...r7b.events];
+assert.equal(rows.length,195);
+assert.equal(new Set(rows.map(e=>e.event_id)).size,195,'IDs unique');
 for(const [id,fix] of Object.entries(r4.updates)){
  assert.ok(rows.some(e=>e.event_id===id),'patch target '+id);
  assert.ok((fix.source_url||rows.find(e=>e.event_id===id)?.source_url)?.startsWith('https://'),'patch citation '+id);
@@ -89,6 +101,8 @@ assert.match(js,/r5a-eurofound-sites.json/);
 assert.match(js,/r5b-manufacturing-cases.json/);
 assert.match(js,/r5c-screened-manufacturing.json/);
 assert.match(js,/r5d-2025-factory-closures.json/);
+assert.match(js,/r7a-screened-2026-events.json/);
+assert.match(js,/r7b-2025-retrospective.json/);
 assert.match(js,/ags-crosswalk-402-to-400.json/);
 assert.match(js,/new Set\(counties.features.map\(stateKey\)\).size!==400/);
 const grouped=r5b.events.filter(e=>e.shared_program_id);
@@ -125,4 +139,4 @@ try{
  fs.writeFileSync(csv,fixture.replace('WZ2008_C','WZ2008_BC'));
  assert.throws(()=>execFileSync(process.execPath,[importer,'--input',csv,'--output',out],{stdio:'pipe'}));
 }finally{fs.rmSync(tmp,{recursive:true,force:true})}
-console.log('industry staging validation passed: 174 unique events; 400 canonical districts; official-CSV guardrail fixture.');
+console.log('industry staging validation passed: 195 unique events; 400 canonical districts; official-CSV guardrail fixture.');
