@@ -102,6 +102,27 @@ def run(browser,mobile=False):
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getBridgedCount()")>=40
     print('Official railway corridor bridges:',
       page.evaluate("window.__RAILWAY_OVERVIEW__.getBridgedCount()"),flush=True)
+    if not mobile:
+        # Observed green is a real measured selection, not the same thing as
+        # clicking the unobserved network underlay.
+        observed_green=page.evaluate("""() => {
+          const api=window.__RAILWAY_OVERVIEW__,map=api.getMap();
+          for(const item of api.getRendered().filter(x=>x.grade===0).slice(0,350)){
+            const v=item.parts[0].xy;
+            if(v.length<4)continue;
+            const ll=map.unproject(L.point((v[0]+v[2])/2,(v[1]+v[3])/2),9);
+            api.clickPoint(ll);
+            const current=api.getSelected();
+            if(current&&!current.unobserved&&current.grade===0)
+              return {from:item.leg.from_station,to:item.leg.to_station};
+          }
+          return null;
+        }""")
+        assert observed_green,'Observed green must still show measured numbers'
+        numbers=page.locator("#detail .detail-grid b").all_inner_texts()
+        assert len(numbers)==2 and all(v.endswith("%") for v in numbers),numbers
+        print("PASS selectable measured green:",observed_green,flush=True)
+
     assert page.locator("#minimum").count()==0
     assert page.locator(".mini-stats").count()==0
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getMinimum()")==100
@@ -193,6 +214,16 @@ def run(browser,mobile=False):
         loaded(page,"LONG",10)
         page.locator('[data-service="OTHER"]').click()
         loaded(page,"OTHER",100)
+        # Switching service datasets must not erase the independent official
+        # green track index used around Berlin.
+        again=page.evaluate("""({lat,lng}) => {
+          const api=window.__RAILWAY_OVERVIEW__;
+          api.clickPoint([lat,lng]);
+          const selected=api.getSelected();
+          return !!selected&&(selected.unobserved||selected.members?.length>0);
+        }""",green)
+        assert again is True
+
         page.locator('[data-service="REGIONAL"]').click()
         loaded(page,"REGIONAL",500)
         assert page.evaluate("window.__RAILWAY_OVERVIEW__.getVisible()")==regional
