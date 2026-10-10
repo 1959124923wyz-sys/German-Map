@@ -9,7 +9,7 @@
 const {shape,actualBounds,segmentDist}=window.Railway07Geometry;
 const {SpatialIndex}=window.Railway07Picker;
 const {grade:gradeOf}=window.Railway07Analysis;
-const RADIUS=1.25;  // projection pixels at reference zoom 9, not kilometres
+const RADIUS=.9;  // projection pixels at reference zoom 9, not kilometres
 const SPACING=.85;
 const sq=x=>x*x;
 function indexItems(items){
