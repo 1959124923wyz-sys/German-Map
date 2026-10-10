@@ -28,9 +28,10 @@ jobs:
           d=json.load(open('topics/infrastructure/research/candidate_bridge_county_geometry_join.json'))
           assert d['matched_source_groups']+d['unmatched_source_groups']==d['source_groups']
           assert d['matched_source_features']+d['unmatched_source_features']==51664
-          assert not d['polygon_has_AGS']
-          assert all(x['official_AGS'] is None for x in d['joined'])
-          print('PASS no false official AGS and source feature conservation')
+          assert d['polygon_has_AGS'] and d['ags_verified_by'].startswith('GeoJSON')
+          assert all(len(x['official_AGS'])==5 and x['official_AGS'].isdigit() for x in d['joined'])
+          assert all(x['AGS_from_historical_geometry_not_revalidated_current'] for x in d['joined'])
+          print('PASS AGS sourced from top-level GeoJSON ID, 402 unique state-correct codes, historic currency flagged')
           PY
       - name: Commit source-preserving audit only
         run: |
