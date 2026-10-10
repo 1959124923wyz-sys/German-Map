@@ -34,7 +34,7 @@ SOURCES = {
 }
 METRICS = {
     "asking_rent_2025_eur_m2": ("2024", "preis_miet", "2025", "EUR/m2", "Wiedervermietungsmieten, internet advertised, net cold"),
-    "building_land_price_2024_eur_m2": ("2024", "preis_baul", "2024", "EUR/m2", "Average location purchase price for one- or two-family residential building land; NOT multi-family land"),
+    "building_land_price_band_2024": ("2024", "preis_baul", "2024", "EUR/m2 band", "Ordinal residential land price band for one-/two-family houses; no precise numeric price is published in this release"),
     "vacancy_2022_pct": ("2022", "wohn_leer", "2022", "pct", "Unoccupied dwellings including non-marketable stock, excludes leisure homes"),
     "owner_occupier_2022_pct": ("2022", "wohn_eigen", "2022", "pct", "Share of households in self-occupied property, not proportion of flats"),
     "living_area_2022_m2_person": ("2024", "fl_wohn", "2022", "m2/person", "Average living area per capita, microcensus estimate"),
@@ -109,13 +109,17 @@ def read_official(raw: bytes, vintage: str):
             raise ValueError(f"Duplicated AGS {ags} in {vintage}, lines include {line}")
         d = {"id": ags, "name": name}
         for metric, source_code in requested.items():
-            d[metric] = parse_value(row[idx[source_code]]) if source_code in idx and len(row)>idx[source_code] else None
+            d[metric] = (parse_band(row[idx[source_code]]) if metric=="building_land_price_band_2024" else parse_value(row[idx[source_code]])) if source_code in idx and len(row)>idx[source_code] else None
         result[ags] = d
     print("PARSED", vintage, len(result), "rows; examples", list(result.items())[:2],
           "unparsed examples", sample_bad[:2])
     if len(result) < 380 or len(result) > 420:
         raise ValueError(f"Implausible district count {len(result)} from {vintage}")
     return result, {"header_line": header_i+1, "header": header, "rows": len(result), "unparsed_examples": sample_bad}
+
+def parse_band(v: str):
+    s=str(v).strip()
+    return None if s in ("", ".", "-", "-9999", "-99999", "x", "/") else s
 
 def parse_value(v: str):
     s = str(v).strip().replace("\u00a0", "").replace(" ", "")
@@ -165,7 +169,7 @@ def output():
                      for ags in county_ids]
     availability = {metric: sum(r[metric] is not None for r in county_joined) for metric in METRICS}
     print("COVERAGE", availability)
-    for key in STRICT:
+    for key in STRICT | {"building_land_price_band_2024"}:
         if availability[key] < 380:
             raise ValueError(f"Insufficient official data coverage for {key}: {availability[key]}/402")
     units = {metric: {"year": spec[2], "unit": spec[3], "meaning": spec[4],
@@ -189,7 +193,7 @@ def output():
     with (DATA_DIR/"deutschlandatlas_ha26_housing_counties.csv").open("w", encoding="utf-8", newline="") as f:
         w=csv.DictWriter(f,fieldnames=["id","name",*METRICS])
         w.writeheader();w.writerows(data)
-    (QA_DIR/"ha26_raw_manifest.json").write_text(json.dumps(manifests,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    (QA_DIR/"ha26_raw_manifest.json").write_text(json.dumps(manifests,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     (QA_DIR/"ha26_join_audit.json").write_text(json.dumps({
         "official_csv":SOURCES, "source_csv_headers":{k:v[1] for k,v in current.items()},
         "geo_crosswalk":diff,"coverage":availability,
