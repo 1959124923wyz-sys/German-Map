@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "status": "verified_source__not_automatically_published",
+  "research_date": "2026-10-10",
+  "purpose": "待地图事件编辑流程进行新旧工程ID对照、坐标核实及最新状态复查，现不计入正式22条事件",
+  "items": [
+    {
+      "candidate_id": "R9-01",
+      "state_iso": "DE-BE",
+      "asset": "Promenadenwegbrücke Alte Erpe",
+      "reported_date": "2026-06-23",
+      "finding": "闭桥：木结构支承部位损坏且承载能力丧失",
+      "status_at_source_date": "closed",
+      "source_url": "https://www.berlin.de/ba-treptow-koepenick/aktuelles/pressemitteilungen/2026/pressemitteilung.1685083.php",
+      "reviewed": "source_excerpt_checked",
+      "location_precision": "locality_only",
+      "map_ready": false
+    },
+    {
+      "candidate_id": "R9-02",
+      "state_iso": "DE-BE",
+      "asset": "Breitenbachplatz Hochbrücken",
+      "reported_date": "2026-07-30",
+      "finding": "因招标异议审查而延迟拆除；桥下部分停车区安全封闭",
+      "status_at_source_date": "delayed",
+      "source_url": "https://www.berlin.de/sen/uvk/presse/pressemitteilungen/2026/pressemitteilung.1698515.php",
+      "reviewed": "source_excerpt_checked",
+      "location_precision": "locality_only",
+      "map_ready": false
+    },
+    {
+      "candidate_id": "R9-03",
+      "state_iso": "DE-BB",
+      "asset": "L65 Wahrenbrück Schwarze Elster",
+      "reported_date": "2026-06-04",
+      "finding": "2026年4月全封后6月允许步行与自行车恢复，机动车仍封闭",
+      "status_at_source_date": "partly_open",
+      "source_url": "https://www.ls.brandenburg.de/ls/de/service/presse/ansicht/~02-06-2026-l65-wahrenbrueck-bruecke-ueber-die-schwarze-elster-offen-fuer-fuss-und-radverkehr",
+      "reviewed": "source_excerpt_checked",
+      "location_precision": "locality_only",
+      "map_ready": false
+    },
+    {
+      "candidate_id": "R9-04",
+      "state_iso": "DE-BB",
+      "asset": "L421 Schlepzig-Krausnick四座桥",
+      "reported_date": "2026-03-31",
+      "finding": "四座1956年前后建成的桥梁限重16吨；道路未对全部车辆封闭",
+      "status_at_source_date": "restricted",
+      "source_url": "https://www.ls.brandenburg.de/ls/de/service/presse/ansicht/~26-03-2026-l421-tonnagebegrenzung-zw-schlepzig-und-krausnick",
+      "reviewed": "source_excerpt_checked",
+      "location_precision": "locality_only",
+      "map_ready": false
+    },
+    {
+      "candidate_id": "R9-05",
+      "state_iso": "DE-BY",
+      "asset": "奥格斯堡州立及市立图书馆",
+      "reported_date": "2026-03-27",
+      "finding": "旧建筑翻修查出有害旧涂层，局部工程预防性暂停，尚无证据证明发生急性危害",
+      "status_at_source_date": "partially_stopped",
+      "source_url": "https://www.stbaa.bayern.de/service/medien/meldungen/2026/schadstoffaufkommen-im-bestandsgebaude-der-staats-und-stadtbibliothek/",
+      "reviewed": "source_excerpt_checked",
+      "location_precision": "locality_only",
+      "map_ready": false
+    },
+    {
+      "candidate_id": "R9-06",
+      "state_iso": "DE-HE",
+      "asset": "Haiger Hallenbad",
+      "reported_date": "2026-03-04",
+      "finding": "泳池翻新发现额外缺陷，原计划关闭延长至2026年5月，10月运营现状未核实",
+      "status_at_source_date": "archive_status_unknown",
+      "source_url": "https://www.haiger.de/leben-in-haiger/presse/2026/februar/hallenbad-sanierung-voraussichtlich-bis-mai/",
+      "reviewed": "source_excerpt_checked",
+      "location_precision": "locality_only",
+      "map_ready": false
+    },
+    {
+      "candidate_id": "R9-07",
+      "state_iso": "DE-RP",
+      "asset": "B421 Jünkerath铁路跨线桥",
+      "reported_date": "2026-10-09",
+      "finding": "临时改为单车道交替通行、限制特殊运输；2024起计划更换",
+      "status_at_source_date": "restricted",
+      "source_url": "https://lbm.rlp.de/service/presse-aktuelles/detail/b-421-db-bruecke-bei-juenkerath-verkehrseinschraenkung-dient-der-sicherheit",
+      "reviewed": "source_excerpt_checked",
+      "location_precision": "locality_only",
+      "map_ready": false
+    },
+    {
+      "candidate_id": "R9-08",
+      "state_iso": "DE-RP",
+      "asset": "L449 Marnheim Gerbachbrücke",
+      "reported_date": "2026-07-20",
+      "finding": "建于1880年的拱桥拆除重建，预计2027年春完工，合同金额99.9万欧元",
+      "status_at_source_date": "under_construction",
+      "source_url": "https://lbm.rlp.de/service/presse-aktuelles/detail/l-449-vollsperrung-bei-marnheim-wegen-brueckenneubau-bis-fruehjahr-2027",
+      "reviewed": "source_excerpt_checked",
+      "location_precision": "locality_only",
+      "map_ready": false
+    },
+    {
+      "candidate_id": "R9-09",
+      "state_iso": "DE-BE",
+      "asset": "Grundschule am Weißen See",
+      "reported_date": "2026-02-25",
+      "finding": "总额3670万欧元修复项目因屋顶漏水、逃生楼梯水损继续推迟迁回；最新状态待核实",
+      "status_at_source_date": "archive_status_unknown",
+      "source_url": "https://www.berlin.de/ba-pankow/aktuelles/pressemitteilungen/2026/pressemitteilung.1646857.php",
+      "reviewed": "source_excerpt_checked",
+      "location_precision": "locality_only",
+      "map_ready": false
+    }
+  ]
+}
