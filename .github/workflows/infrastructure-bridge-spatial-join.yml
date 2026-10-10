@@ -1,0 +1,66 @@
+name: Infrastructure BASt bridge spatial join candidate
+on:
+  push:
+    branches: [feature/infrastructure-map-phase1]
+    paths:
+      - 'topics/infrastructure/research/scripts/spatial_join_bridge_points_400.py'
+      - '.github/workflows/infrastructure-bridge-spatial-join.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: infrastructure-bridge-spatial-join
+  cancel-in-progress: false
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/infrastructure-map-phase1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install topology library
+        run: pip install 'shapely>=2,<3'
+      - name: Retrieve every bridge feature and spatially intersect with 400 county candidate polygons
+        run: python topics/infrastructure/research/scripts/spatial_join_bridge_points_400.py
+      - name: Audit point and output conservation
+        run: |
+          python - <<'PY'
+          import gzip,json,csv
+          from pathlib import Path
+          p=Path('topics/infrastructure/research/candidate_bridge_spatial_county_400_2025.json')
+          d=json.loads(p.read_text())
+          assert d['source_count']==52553
+          assert d['assigned_count']+d['unassigned_count']==52553
+          assert len(d['data'])==d['districts_total']==400
+          assert d['assigned_count']==sum(x['substructures'] for x in d['data'])
+          assert sum(d['status_counts'].values())==52553
+          assert d['never_use_as_official_all_bridges_quality_ranking'] is True
+          raw=Path('topics/infrastructure/research/bast_bridge_point_audit_2025.csv.gz')
+          assert raw.stat().st_size>200000
+          with gzip.open(raw,'rt',newline='',encoding='utf-8') as f:
+            n=sum(1 for _ in csv.DictReader(f))
+          assert n==52553,(n,d['source_count'])
+          print('PASS source IDs, every raw point row, 400 candidate districts, no fictional county assignment')
+          PY
+      - name: Save research artifacts on isolated branch
+        run: |
+          git config user.name 'german-map-research-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/infrastructure/research/candidate_bridge_spatial_county_400_2025.json topics/infrastructure/research/bast_bridge_point_audit_2025.csv.gz
+          if ! git diff --cached --quiet; then
+            git commit -m "research: checkpoint 52,553 point-level BASt evidence and spatial county join audit"
+            git pull --rebase origin feature/infrastructure-map-phase1
+            git push origin HEAD:feature/infrastructure-map-phase1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: infrastructure-bridge-spatial-research
+          path: |
+            topics/infrastructure/research/candidate_bridge_spatial_county_400_2025.json
+            topics/infrastructure/research/bast_bridge_point_audit_2025.csv.gz
+          if-no-files-found: warn
