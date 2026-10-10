@@ -46,8 +46,10 @@
   <section id="national-panel">
    <div class="metricbox wide"><strong id="national-value" class="metricvalue">—</strong><div class="metriclabel" id="national-label">德国全国 · AZR登记外国籍人口</div></div>
    <div class="metadata" id="national-description">2025年12月31日 · 官方外国人中央登记册</div>
-   <div class="row"><h3 class="section-title">16个联邦州</h3><span class="subtle-note">点击查看详情</span></div>
-   <ol class="region-list" id="state-list"></ol>
+   <details class="azr-state-drawer" id="azrStateDrawer">
+    <summary>浏览16个联邦州 · 官方AZR人数和占比</summary>
+    <ol class="region-list" id="state-list"></ol>
+   </details>
   </section>
   <section id="region-panel" hidden>
    <div class="breadcrumbs"><button id="back-country" type="button">德国全国</button><span>›</span><strong id="region-crumb">—</strong></div>
@@ -56,7 +58,13 @@
     <div class="metricbox"><b id="region-value">—</b><div class="metriclabel" id="region-value-label">官方AZR人数</div></div>
     <div class="metricbox"><b id="region-change">—</b><div class="metriclabel" id="region-change-label">较上年变化</div></div>
    </div>
-   <div id="region-trend"><div class="row"><h4 class="section-title">2018—2025年登记人数</h4><span class="subtle-note">AZR同一口径</span></div><svg id="trend-chart" viewBox="0 0 320 85" role="img" aria-label="历年登记人数折线" preserveAspectRatio="none"></svg><div class="trend-ends"><span>2018</span><span>2025</span></div></div>
+   <div id="region-trend"><div class="row"><h4 class="section-title">2018—2025年登记人数</h4><span class="subtle-note">AZR同一口径</span></div><svg id="trend-chart" viewBox="0 0 320 85" role="img" aria-label="历年登记人数折线" preserveAspectRatio="none"></svg><div class="trend-ends"><span>2018</span><span>2025</span></div>
+    <details id="azrAnnualDrawer" class="azr-annual-drawer">
+     <summary>展开2018—2025年逐年AZR登记数据</summary>
+     <div id="azrAnnualRows" class="azr-annual-rows"></div>
+     <p class="note">数字是各年末AZR官方登记人数；点击某年可将地图切换到同一年。变化额不是净移民人数，也不等于当年新增定居人口。</p>
+    </details>
+   </div>
    <section id="county-section" hidden>
     <div class="row county-heading"><h4 class="section-title" id="county-heading">州内县市</h4><button id="show-counties" type="button" class="secondary-button">查看县市地图</button></div>
     <p class="note" id="county-coverage-note"></p>
