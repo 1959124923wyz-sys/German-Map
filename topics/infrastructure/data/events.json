@@ -290,7 +290,7 @@
       "title": "A99环线跨桥损坏严重，先架临时桥，再拆1973年的旧桥",
       "category": "bridge",
       "status": "in_progress",
-      "event_date": "2026-09-01",
+      "event_date": "2026-09",
       "coordinates": {
         "lat": 48.1096,
         "lon": 11.7329,
@@ -303,7 +303,8 @@
           "role": "official"
         }
       ],
-      "last_reviewed": "2026-10-10"
+      "last_reviewed": "2026-10-10",
+      "event_date_precision": "month"
     },
     {
       "id": "bremen_bremerhaven_canal",
@@ -404,7 +405,7 @@
       "title": "B100 Mulde桥损坏太重无法维修，只能重建并持续大规模绕行",
       "category": "bridge",
       "status": "replacement",
-      "event_date": "2024-11-01",
+      "event_date": "2024-11",
       "coordinates": {
         "lat": 51.6285,
         "lon": 12.4012,
@@ -417,7 +418,8 @@
           "role": "official"
         }
       ],
-      "last_reviewed": "2026-10-10"
+      "last_reviewed": "2026-10-10",
+      "event_date_precision": "month"
     },
     {
       "id": "missunde_iii",
@@ -467,6 +469,54 @@
         {
           "url": "https://www.mdr.de/nachrichten/thueringen/mitte-thueringen/erfurt/eisenbahnbruecke-baustelle-schmidtstedter-knoten-100.html",
           "role": "public_broadcaster"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "datteln_comenius_school",
+      "state_iso": "DE-NW",
+      "city": "Datteln",
+      "title": "学校本来要装网线，拆开吊顶发现1928年施工问题，17间教室封闭",
+      "category": "school",
+      "status": "partly_closed",
+      "event_date": "2026-08-21",
+      "coordinates": {
+        "lat": 51.6557,
+        "lon": 7.3458,
+        "precision": "locality_approx"
+      },
+      "summary": "Datteln市政府2026年8月21日通报：Comenius-Gymnasium老楼数字化施工中发现1928年楼板局部施工质量不合格，17间教室以及食堂、图书馆和厕所不能使用。市政府预计维修至少持续到2027年暑假，不代表整所学校停课。",
+      "sources": [
+        {
+          "url": "https://www.datteln.de/news/comenius-gymnasium-altbau-muss-gesperrt-werden-17-klassenraeume-betroffen-maengel-durch",
+          "role": "official"
+        },
+        {
+          "url": "https://www1.wdr.de/nrw/ruhrgebiet/kreis-recklinghausen/marode-klassenzimmer-datteln-100.html",
+          "role": "public_broadcaster"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "hallenberg_naturbad",
+      "state_iso": "DE-NW",
+      "city": "Hallenberg",
+      "title": "露天泳池设备老化且持续漏水，财政紧张之下2026年整季不开门",
+      "category": "facility",
+      "status": "unavailable",
+      "event_date": "2026-04-15",
+      "coordinates": {
+        "lat": 51.1138,
+        "lon": 8.621,
+        "precision": "locality_approx"
+      },
+      "summary": "Hallenberg市政府公布：市议会2026年4月15日一致决定该市Naturbad在2026年泳季不开放，原因包括水处理设备老化、尚未解决的严重失水以及财政紧张。属于当季关闭决定，不应写成永久关闭。",
+      "sources": [
+        {
+          "url": "https://www.stadt-hallenberg.de/buergerservice/veroeffentlichungen/pressemeldungen/presseartikel/default-1dbeff87eaff78acf01c5ae4fd13878e",
+          "role": "official"
         }
       ],
       "last_reviewed": "2026-10-10"
