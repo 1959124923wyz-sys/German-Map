@@ -31,7 +31,9 @@ def main():
             while part:=a.read(8*1024*1024):b.write(part)
     c=sqlite3.connect('file:'+str(dest)+'?mode=ro',uri=True)
     candidates=c.execute("SELECT table_name FROM gpkg_contents WHERE data_type='features'").fetchall()
-    names=[x[0] for x in candidates if x[0].upper().endswith('_KRS')]
+    # BKG GPKG exposes the physical vg250_krs table AND virtual v_vg250_krs view.
+    # Only select the physical layer; suffix-matching both was ambiguous and aborted QA.
+    names=[x[0] for x in candidates if x[0].lower()=='vg250_krs']
     assert len(names)==1,(candidates,names)
     tab=names[0]
     columns=[x[1] for x in c.execute('PRAGMA table_info("'+tab+'")')]
