@@ -79,6 +79,14 @@ def run(browser,mobile=False):
     assert "中位数" not in page.locator("#description").inner_text()
     page.locator("#stateJump").select_option("09")
     assert page.evaluate("GermanHousingResearch.state().focusState")=="09"
+    assert page.evaluate("GermanHousingResearch.state().bavariaReady") is True
+    page.locator("#topRank .housing-rank-row").first.click()
+    assert page.locator("#bavariaCompletions").is_visible(),"Bavaria official 2025 district source should appear only on Bavarian county"
+    assert page.locator("#nrwCompletions").is_hidden()
+    page.locator("#bavariaCompletions summary").click()
+    assert "2025" in page.locator("#bavariaHistory").inner_text()
+    assert "巴伐利亚统计局" in page.locator("#bavariaHistory").inner_text()
+    page.locator("#stateJump").select_option("09")
     assert page.evaluate("GermanHousingResearch.state().selectedCounty") is None
     # State-specific evidence: no pseudo-national construction/homelessness overlay.
     page.locator("#stateJump").select_option("05")
