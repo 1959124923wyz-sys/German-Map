@@ -219,13 +219,23 @@ function forOfficial(official,rawRisk){
  return runs;
 }
 function findRun(runs,point,preferred=null,maxDist=16){
- let best=null,d=Infinity;
- for(const run of runs){
-  const dd=closestOnParts(point,run.parts);
-  const score=dd+(preferred!==null&&run.grade!==preferred?Math.max(3,maxDist/3):0);
-  if(score<d){d=score;best=run;}
+ // The actual coloured stroke under the pointer is authoritative. At
+ // parallel tracks / shared platforms another run can be slightly closer
+ // in the official skeleton, but must not steal an observed RED click.
+ const threshold=maxDist*maxDist;
+ function nearest(list){
+  let best=null,d=Infinity;
+  for(const run of list){
+   const q=closestOnParts(point,run.parts);
+   if(q<d){d=q;best=run;}
+  }
+  return d<threshold?best:null;
  }
- return d<maxDist*maxDist?best:null;
+ if(preferred!==null){
+  const matching=nearest(runs.filter(r=>r.grade===preferred));
+  if(matching)return matching;
+ }
+ return nearest(runs);
 }
 window.Railway07ColorRuns=Object.freeze({
  samplePath,indexItems,forCorridor,forOfficial,findRun,aggregate
