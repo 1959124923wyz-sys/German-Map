@@ -8,13 +8,34 @@
  const escapeHTML = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const STATUSES={effective:'已生效/执行中（未必仍持续）',completed:'已经完成（可能是历史）',reversed:'已撤销或解除',withdrawn:'已撤回',adopted:'已批准、未证实执行',announced:'已宣布',proposed:'仅提议',rejected:'被否决',under_review:'审议或核查中'};
  const CAT={budget:'预算及监管',facilities:'公共设施及文化',transit:'公共交通',investment:'公共投资',staffing:'人事编制',taxfees:'税费',other:'其他'};
- const initial={showEvents:false,category:'all',status:'all',archive:false,selected:null,county:null,limit:8,rpPeriod:'2025-full-cities',focusState:null};
+ const initial={showEvents:false,metric:'balance-2025',category:'all',status:'all',archive:false,selected:null,county:null,limit:8,rpPeriod:'2025-full-cities',focusState:null};
  let view={...initial}, map, statesLayer, countiesLayer, bubblesLayer;
  let stateRows=new Map(D.states.map(x=>[x.id,x])), cityRows=new Map(D.cities.map(x=>[x.id,x]));
  const debtRows=new Map(H.states.map(x=>[x.id,x]));
  const integratedRows=new Map(I.states.map(x=>[x.id,x]));
  const countyDebtRows=new Map((R?.counties||[]).map(x=>[x.id,x]));
  const independentCityDebtRows=new Map((R?.cities||[]).map(x=>[x.id,x]));
+ const municipalByState=new Map();
+ const municipalPending=new Map();
+ const historicalPalette=['#dce9e5','#c1dad1','#a0c7b9','#7cafa2','#569385','#357a70','#205d5e'];
+ const numericForCounty=id=>view.metric==='core-2023'?(countyDebtRows.get(id)?.value??null):
+  view.metric==='city-2024'?(independentCityDebtRows.get(id)?.integrated2024??null):null;
+ const historicalValues=key=>key==='core-2023'?[...countyDebtRows.values()].map(x=>x.value).filter(Number.isFinite):
+  [...independentCityDebtRows.values()].map(x=>x.integrated2024).filter(Number.isFinite);
+ const historicalBreaks=key=>{
+  const values=historicalValues(key).sort((a,b)=>a-b);
+  return [0.15,0.30,0.45,0.60,0.75,0.90].map(p=>values[Math.round((values.length-1)*p)]);
+ };
+ const breaksByMetric={'core-2023':historicalBreaks('core-2023'),'city-2024':historicalBreaks('city-2024')};
+ function historicFill(value,metric){
+  if(!Number.isFinite(value))return '#82909a';
+  let idx=0;const br=breaksByMetric[metric];while(idx<br.length&&value>br[idx])idx++;
+  return historicalPalette[idx];
+ }
+ function currentMetricLabel(){
+  return view.metric==='core-2023'?'2023年县域核心预算债务':
+   view.metric==='city-2024'?'2024年非县辖市综合地方债务':'2025年人均地方财政收支';
+ }
  // Public map always shows the 2025 municipal financing balance. The
  // historic debt series is preserved exclusively in the state drilldown.
  const selectedStateValue=id=>stateRows.get(id)?.value??null;
@@ -38,7 +59,7 @@
  function stateStyle(feature){
   const id=feature.properties?.id, value=selectedStateValue(id);
   return {color:id===view.focusState?'#e6f2f8':'#4b5d66',weight:id===view.focusState?2.3:1,
-   fillColor:color(value),fillOpacity:.81};
+   fillColor:color(value),fillOpacity:view.metric==='balance-2025'?.81:0};
  }
  function regionalRow(id){
   if(view.rpPeriod==='2025-full-cities')return cityRows.get(id);
@@ -102,12 +123,17 @@
   if(!view.selected){$('detail').hidden=true;$('detail').innerHTML='';}
  }
  function resetArea(){
-  displayArea('德国 · 全国','点击联邦州查看财政收支','2025年 · 欧元/人');
+  displayArea('德国 · 全国',
+   view.metric==='balance-2025'?'点击联邦州查看财政收支':'点击县市查看所选年份债务',
+   view.metric==='balance-2025'?'2025年 · 欧元/人':
+    (view.metric==='core-2023'?'2023年 · 392个有数值县域 · 核心预算':'2024年 · 102个非县辖市 · 综合债务'));
   $('districtPanel').hidden=true;
   $('regionalDebtDrawer').hidden=true;
   $('regionalDebtDrawer').open=false;
   $('loanDrawer').hidden=true;
-  $('sectionTitle').textContent='2025年人均地方财政收支';
+  $('municipalDrawer').hidden=true;
+  $('municipalDrawer').open=false;
+  $('sectionTitle').textContent=currentMetricLabel();
  }
  function renderLegend(){
   const colors=['#963f41','#ae5957','#c27666','#d3997b','#e0b597','#edd4b4','#6a9f8e'];
