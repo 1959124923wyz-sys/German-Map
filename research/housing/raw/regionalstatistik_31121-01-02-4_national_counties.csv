@@ -1,0 +1,583 @@
+GENESIS-Tabelle: 31121-01-02-4
+Fertigstellungen neuer Wohngebäude und Wohnungen in;;;;;;;;;;;
+Wohngebäuden nach Zahl der Wohnungen - Jahressumme -;;;;;;;;;;;
+regionale Tiefe: Kreise und krfr. Städte;;;;;;;;;;;
+Statistik der Baufertigstellungen;;;;;;;;;;;
+Wohngebäude (inkl. Wohnheime);;;;;;;;;;;
+;;;Gebäude;Gebäude;Gebäude;Gebäude;Wohnungen;Wohnungen;Wohnungen;Wohnungen;Wohnfläche
+;;;(nach Anzahl der Wohnungen);(nach Anzahl der Wohnungen);(nach Anzahl der Wohnungen);(nach Anzahl der Wohnungen);in Wohngebäuden;in Wohngebäuden;in Wohngebäuden;in Wohngebäuden;
+;;;Insgesamt;1 Wohnung;2 Wohnungen;mit 3 und mehr Wohnungen;Insgesamt;1 Wohnung;2 Wohnungen;mit 3 und mehr Wohnungen;
+;;;Anzahl;Anzahl;Anzahl;Anzahl;Anzahl;Anzahl;Anzahl;Anzahl;1000 qm
+2023;DG;Deutschland;96827;69892;11911;15024;257241;69892;23822;163527;25530,0
+2023;01;  Schleswig-Holstein;4922;3692;480;750;11756;3692;960;7104;1101,2
+2023;01001;      Flensburg, kreisfreie Stadt;50;40;2;8;115;40;4;71;11,4
+2023;01002;      Kiel, kreisfreie Stadt;72;32;5;35;665;32;10;623;40,6
+2023;01003;      Lübeck, kreisfreie Stadt, Hansestadt;183;132;9;42;563;132;18;413;49,7
+2023;01004;      Neumünster, kreisfreie Stadt;54;31;11;12;122;31;22;69;11,1
+2023;01051;      Dithmarschen, Kreis;304;227;33;44;558;227;66;265;53,2
+2023;01053;      Herzogtum Lauenburg, Kreis;325;258;40;27;658;258;80;320;69,2
+2023;01054;      Nordfriesland, Kreis;481;321;96;64;1040;321;192;527;97,4
+2023;01055;      Ostholstein, Kreis;289;213;27;49;735;213;54;468;68,6
+2023;01056;      Pinneberg, Kreis;586;454;40;92;1480;454;80;946;141,0
+2023;01057;      Plön, Kreis;284;215;19;50;639;215;38;386;61,7
+2023;01058;      Rendsburg-Eckernförde, Kreis;492;386;32;74;1001;386;64;551;97,7
+2023;01059;      Schleswig-Flensburg, Kreis;634;469;71;94;1267;469;142;656;122,4
+2023;01060;      Segeberg, Kreis;556;428;27;101;1647;428;54;1165;150,8
+2023;01061;      Steinburg, Kreis;226;183;19;24;439;183;38;218;42,9
+2023;01062;      Stormarn, Kreis;386;303;49;34;827;303;98;426;83,6
+2023;02;  Hamburg;1092;651;118;323;5620;651;236;4733;462,8
+2023;03;  Niedersachsen;11111;8132;1405;1574;25383;8132;2810;14441;2628,5
+2023;031;    Braunschweig, Statistische Region;1651;1374;117;160;3482;1374;234;1874;385,8
+2023;03101;      Braunschweig, kreisfreie Stadt;121;88;2;31;501;88;4;409;42,5
+2023;03102;      Salzgitter, kreisfreie Stadt;39;33;-;6;204;33;-;171;16,1
+2023;03103;      Wolfsburg, kreisfreie Stadt;85;54;10;21;397;54;20;323;36,4
+2023;03151;      Gifhorn, Landkreis;486;410;52;24;689;410;104;175;89,9
+2023;03152;      Göttingen, Landkreis;-;-;-;-;-;-;-;-;-
+2023;03153;      Goslar, Landkreis;84;74;5;5;122;74;10;38;16,3
+2023;03154;      Helmstedt, Landkreis;165;161;4;-;169;161;8;-;27,4
+2023;03155;      Northeim, Landkreis;31;28;2;1;35;28;4;3;4,9
+2023;03156;      Osterode am Harz, Landkreis;-;-;-;-;-;-;-;-;-
+2023;03157;      Peine, Landkreis;238;195;22;21;423;195;44;184;51,0
+2023;03158;      Wolfenbüttel, Landkreis;195;178;6;11;331;178;12;141;38,3
+2023;03159;      Göttingen, Landkreis;207;153;14;40;611;153;28;430;63,0
+2023;032;    Hannover, Statistische Region;2163;1539;183;441;7386;1539;366;5481;651,2
+2023;03241;      Region Hannover, Landkreis;1113;737;57;319;5302;737;114;4451;423,5
+2023;03241001;      Hannover, Landeshauptstadt;498;252;18;228;3922;252;36;3634;270,4
+2023;03251;      Diepholz, Landkreis;376;254;65;57;744;254;130;360;77,1
+2023;03252;      Hameln-Pyrmont, Landkreis;198;170;17;11;303;170;34;99;39,5
+2023;03254;      Hildesheim, Landkreis;67;42;8;17;356;42;16;298;31,1
+2023;03255;      Holzminden, Landkreis;19;18;-;1;24;18;-;6;3,0
+2023;03256;      Nienburg (Weser), Landkreis;243;199;22;22;433;199;44;190;48,2
+2023;03257;      Schaumburg, Landkreis;147;119;14;14;224;119;28;77;28,8
+2023;033;    Lüneburg, Statistische Region;2803;2053;410;340;5521;2053;820;2648;595,4
+2023;03351;      Celle, Landkreis;162;119;31;12;270;119;62;89;32,5
+2023;03352;      Cuxhaven, Landkreis;533;399;70;64;1051;399;140;512;113,3
+2023;03353;      Harburg, Landkreis;496;366;73;57;1020;366;146;508;109,5
+2023;03354;      Lüchow-Dannenberg, Landkreis;71;62;3;6;143;62;6;75;13,3
+2023;03355;      Lüneburg, Landkreis;44;31;2;11;155;31;4;120;13,4
+2023;03356;      Osterholz, Landkreis;173;151;17;5;215;151;34;30;28,5
+2023;03357;      Rotenburg (Wümme), Landkreis;343;255;55;33;599;255;110;234;66,8
+2023;03358;      Heidekreis;273;180;61;32;533;180;122;231;58,1
+2023;03359;      Stade, Landkreis;360;223;54;83;961;223;108;630;95,4
+2023;03360;      Uelzen, Landkreis;166;138;17;11;257;138;34;85;28,7
+2023;03361;      Verden, Landkreis;182;129;27;26;317;129;54;134;35,9
+2023;034;    Weser-Ems, Statistische Region;4494;3166;695;633;8994;3166;1390;4438;996,0
+2023;03401;      Delmenhorst, kreisfreie Stadt;75;48;13;14;139;48;26;65;14,7
+2023;03402;      Emden, kreisfreie Stadt;14;7;2;5;37;7;4;26;4,2
+2023;03403;      Oldenburg (Oldenburg), kreisfreie Stadt;207;135;16;56;582;135;32;415;53,1
+2023;03404;      Osnabrück, kreisfreie Stadt;115;70;16;29;553;70;32;451;47,7
+2023;03405;      Wilhelmshaven, kreisfreie Stadt;21;15;1;5;74;15;2;57;7,9
+2023;03451;      Ammerland, Landkreis;320;236;35;49;624;236;70;318;63,7
+2023;03452;      Aurich, Landkreis;401;294;61;46;691;294;122;275;80,4
+2023;03453;      Cloppenburg, Landkreis;617;437;107;73;1117;437;214;466;128,5
+2023;03454;      Emsland, Landkreis;849;645;126;78;1407;645;252;510;177,7
+2023;03455;      Friesland, Landkreis;47;34;7;6;87;34;14;39;9,0
+2023;03456;      Grafschaft Bentheim, Landkreis;196;127;29;40;462;127;58;277;47,4
+2023;03457;      Leer, Landkreis;211;130;42;39;503;130;84;289;50,1
+2023;03458;      Oldenburg, Landkreis;200;142;33;25;326;142;66;118;40,3
+2023;03459;      Osnabrück, Landkreis;598;407;105;86;1248;407;210;631;142,8
+2023;03460;      Vechta, Landkreis;397;273;67;57;759;273;134;352;87,3
+2023;03461;      Wesermarsch, Landkreis;114;87;16;11;178;87;32;59;19,9
+2023;03462;      Wittmund, Landkreis;112;79;19;14;207;79;38;90;21,5
+2023;04;  Bremen;248;185;9;54;1317;185;18;1114;94,1
+2023;04011;      Bremen, kreisfreie Stadt;203;158;5;40;1104;158;10;936;78,9
+2023;04012;      Bremerhaven, kreisfreie Stadt;45;27;4;14;213;27;8;178;15,2
+2023;05;  Nordrhein-Westfalen;14143;9700;1652;2791;42278;9700;3304;29274;4138,5
+2023;051;    Düsseldorf, Regierungsbezirk;2703;1919;236;548;9060;1919;472;6669;870,8
+2023;05111;      Düsseldorf, kreisfreie Stadt;303;197;15;91;1886;197;30;1659;148,9
+2023;05112;      Duisburg, kreisfreie Stadt;188;156;7;25;515;156;14;345;54,1
+2023;05113;      Essen, kreisfreie Stadt;105;69;3;33;715;69;6;640;62,1
+2023;05114;      Krefeld, kreisfreie Stadt;82;62;7;13;302;62;14;226;27,2
+2023;05116;      Mönchengladbach, kreisfreie Stadt;134;90;13;31;593;90;26;477;52,7
+2023;05117;      Mülheim an der Ruhr, kreisfreie Stadt;66;38;5;23;177;38;10;129;21,0
+2023;05119;      Oberhausen, kreisfreie Stadt;25;17;2;6;81;17;4;60;8,1
+2023;05120;      Remscheid, kreisfreie Stadt;27;20;2;5;50;20;4;26;5,9
+2023;05122;      Solingen, kreisfreie Stadt;70;54;2;14;280;54;4;222;26,7
+2023;05124;      Wuppertal, kreisfreie Stadt;84;65;5;14;217;65;10;142;24,4
+2023;05154;      Kleve, Kreis;443;291;60;92;1323;291;120;912;122,2
+2023;05158;      Mettmann, Kreis;262;181;25;56;911;181;50;680;89,6
+2023;05162;      Rhein-Kreis Neuss;414;303;38;73;1000;303;76;621;115,0
+2023;05166;      Viersen, Kreis;218;165;27;26;444;165;54;225;49,7
+2023;05170;      Wesel, Kreis;282;211;25;46;566;211;50;305;63,2
+2023;053;    Köln, Regierungsbezirk;4119;2818;498;803;12775;2818;996;8961;1259,3
+2023;05314;      Bonn, kreisfreie Stadt;92;39;12;41;700;39;24;637;54,9
+2023;05315;      Köln, kreisfreie Stadt;457;203;37;217;3232;203;74;2955;266,2
+2023;05316;      Leverkusen, kreisfreie Stadt;33;19;4;10;191;19;8;164;17,6
+2023;05334;      Städteregion Aachen, Kreis;356;236;43;77;1134;236;86;812;112,9
+2023;05334002;      Aachen, kreisfreie Stadt;44;27;9;8;166;27;18;121;15,9
+2023;05354;      Aachen, Kreis;-;-;-;-;-;-;-;-;-
+2023;05358;      Düren, Kreis;398;310;36;52;953;310;72;571;104,7
+2023;05362;      Rhein-Erft-Kreis;446;299;58;89;1491;299;116;1076;144,0
+2023;05366;      Euskirchen, Kreis;524;387;95;42;847;387;190;270;103,9
+2023;05370;      Heinsberg, Kreis;624;459;91;74;1316;459;182;675;136,1
+2023;05374;      Oberbergischer Kreis;247;191;26;30;428;191;52;185;52,4
+2023;05378;      Rheinisch-Bergischer Kreis;253;171;29;53;912;171;58;683;92,9
+2023;05382;      Rhein-Sieg-Kreis;689;504;67;118;1571;504;134;933;173,8
+2023;055;    Münster, Regierungsbezirk;2738;1725;388;625;8443;1725;776;5942;765,0
+2023;05512;      Bottrop, kreisfreie Stadt;53;34;4;15;196;34;8;154;19,7
+2023;05513;      Gelsenkirchen, kreisfreie Stadt;19;14;-;5;33;14;-;19;4,9
+2023;05515;      Münster, kreisfreie Stadt;277;136;17;124;2099;136;34;1929;124,1
+2023;05554;      Borken, Kreis;543;312;112;119;1335;312;224;799;138,1
+2023;05558;      Coesfeld, Kreis;303;205;44;54;720;205;88;427;73,2
+2023;05562;      Recklinghausen, Kreis;385;276;36;73;1085;276;72;737;108,5
+2023;05566;      Steinfurt, Kreis;734;452;112;170;1981;452;224;1305;194,5
+2023;05570;      Warendorf, Kreis;424;296;63;65;994;296;126;572;102,1
+2023;057;    Detmold, Regierungsbezirk;2290;1598;281;411;5357;1598;562;3197;577,2
+2023;05711;      Bielefeld, kreisfreie Stadt;242;180;13;49;718;180;26;512;69,0
+2023;05754;      Gütersloh, Kreis;491;305;58;128;1413;305;116;992;144,7
+2023;05758;      Herford, Kreis;211;143;25;43;436;143;50;243;49,7
+2023;05762;      Höxter, Kreis;183;144;19;20;417;144;38;235;42,9
+2023;05766;      Lippe, Kreis;321;240;41;40;619;240;82;297;74,1
+2023;05770;      Minden-Lübbecke, Kreis;353;252;47;54;635;252;94;289;77,7
+2023;05774;      Paderborn, Kreis;489;334;78;77;1119;334;156;629;119,1
+2023;059;    Arnsberg, Regierungsbezirk;2293;1640;249;404;6643;1640;498;4505;666,2
+2023;05911;      Bochum, kreisfreie Stadt;113;62;6;45;890;62;12;816;67,2
+2023;05913;      Dortmund, kreisfreie Stadt;226;137;10;79;1180;137;20;1023;102,5
+2023;05914;      Hagen, kreisfreie Stadt;50;40;6;4;74;40;12;22;9,4
+2023;05915;      Hamm, kreisfreie Stadt;138;93;14;31;478;93;28;357;46,7
+2023;05916;      Herne, kreisfreie Stadt;37;26;2;9;124;26;4;94;12,5
+2023;05954;      Ennepe-Ruhr-Kreis;195;162;12;21;406;162;24;220;46,3
+2023;05958;      Hochsauerlandkreis;319;254;39;26;541;254;78;209;70,4
+2023;05962;      Märkischer Kreis;193;152;14;27;504;152;28;324;51,8
+2023;05966;      Olpe, Kreis;120;83;20;17;243;83;40;120;27,7
+2023;05970;      Siegen-Wittgenstein, Kreis;188;125;26;37;448;125;52;271;46,1
+2023;05974;      Soest, Kreis;439;306;75;58;929;306;150;473;104,3
+2023;05978;      Unna, Kreis;275;200;25;50;826;200;50;576;81,2
+2023;06;  Hessen;5900;4199;677;1024;17795;4199;1354;12242;1774,9
+2023;064;    Darmstadt, Regierungsbezirk;3082;2097;328;657;11805;2097;656;9052;1101,3
+2023;06411;      Darmstadt, kreisfreie Stadt, Wissenschaftsstadt;69;39;5;25;464;39;10;415;32,0
+2023;06412;      Frankfurt am Main, kreisfreie Stadt;231;103;5;123;2842;103;10;2729;195,4
+2023;06413;      Offenbach am Main, kreisfreie Stadt;44;5;10;29;305;5;20;280;23,7
+2023;06414;      Wiesbaden, kreisfreie Stadt, Landeshauptstadt;250;149;20;81;1328;149;40;1139;106,9
+2023;06431;      Bergstraße, Landkreis;320;251;35;34;611;251;70;290;77,0
+2023;06432;      Darmstadt-Dieburg, Landkreis;196;148;18;30;405;148;36;221;45,9
+2023;06433;      Groß-Gerau, Landkreis;221;130;26;65;976;130;52;794;93,5
+2023;06434;      Hochtaunuskreis;206;154;20;32;589;154;40;395;69,5
+2023;06435;      Main-Kinzig-Kreis;491;358;61;72;1337;358;122;857;137,1
+2023;06436;      Main-Taunus-Kreis;202;138;27;37;543;138;54;351;64,8
+2023;06437;      Odenwaldkreis;149;116;20;13;270;116;40;114;31,9
+2023;06438;      Offenbach, Landkreis;122;63;9;50;894;63;18;813;82,1
+2023;06439;      Rheingau-Taunus-Kreis;175;129;25;21;483;129;50;304;48,3
+2023;06440;      Wetteraukreis;406;314;47;45;758;314;94;350;93,2
+2023;065;    Gießen, Regierungsbezirk;1342;944;187;211;3089;944;374;1771;343,0
+2023;06531;      Gießen, Landkreis;241;155;37;49;646;155;74;417;72,7
+2023;06532;      Lahn-Dill-Kreis;328;223;50;55;775;223;100;452;82,1
+2023;06533;      Limburg-Weilburg, Landkreis;258;175;41;42;744;175;82;487;75,6
+2023;06534;      Marburg-Biedenkopf, Landkreis;359;254;46;59;731;254;92;385;85,7
+2023;06535;      Vogelsbergkreis;156;137;13;6;193;137;26;30;26,9
+2023;066;    Kassel, Regierungsbezirk;1476;1158;162;156;2901;1158;324;1419;330,6
+2023;06611;      Kassel, kreisfreie Stadt, documenta-Stadt;42;26;5;11;155;26;10;119;15,3
+2023;06631;      Fulda, Landkreis;366;260;57;49;777;260;114;403;88,9
+2023;06632;      Hersfeld-Rotenburg, Landkreis;118;106;4;8;175;106;8;61;22,8
+2023;06633;      Kassel, Landkreis;282;216;29;37;698;216;58;424;68,1
+2023;06634;      Schwalm-Eder-Kreis;329;261;37;31;590;261;74;255;70,7
+2023;06635;      Waldeck-Frankenberg, Landkreis;278;235;27;16;410;235;54;121;52,0
+2023;06636;      Werra-Meißner-Kreis;61;54;3;4;96;54;6;36;12,8
+2023;07;  Rheinland-Pfalz;5487;4029;755;703;12098;4029;1510;6559;1379,6
+2023;071;    Koblenz, Statistische Region;2224;1671;300;253;4466;1671;600;2195;520,7
+2023;07111;      Koblenz, kreisfreie Stadt;29;15;5;9;164;15;10;139;14,1
+2023;07131;      Ahrweiler, Landkreis;247;194;31;22;435;194;62;179;53,1
+2023;07132;      Altenkirchen (Westerwald), Landkreis;148;120;15;13;203;120;30;53;28,0
+2023;07133;      Bad Kreuznach, Landkreis;219;154;37;28;708;154;74;480;70,0
+2023;07134;      Birkenfeld, Landkreis;109;91;10;8;157;91;20;46;19,7
+2023;07135;      Cochem-Zell, Landkreis;170;142;15;13;276;142;30;104;33,3
+2023;07137;      Mayen-Koblenz, Landkreis;296;209;49;38;553;209;98;246;67,1
+2023;07138;      Neuwied, Landkreis;252;181;34;37;591;181;68;342;65,8
+2023;07140;      Rhein-Hunsrück-Kreis;209;172;13;24;392;172;26;194;46,8
+2023;07141;      Rhein-Lahn-Kreis;184;141;26;17;370;141;52;177;45,0
+2023;07143;      Westerwaldkreis;361;252;65;44;617;252;130;235;77,9
+2023;072;    Trier, Statistische Region;987;739;130;118;1981;739;260;982;229,9
+2023;07211;      Trier, kreisfreie Stadt;68;35;13;20;375;35;26;314;35,5
+2023;07231;      Bernkastel-Wittlich, Landkreis;208;147;30;31;404;147;60;197;46,2
+2023;07232;      Eifelkreis Bitburg-Prüm;322;245;43;34;592;245;86;261;70,0
+2023;07233;      Vulkaneifel, Landkreis;160;137;21;2;185;137;42;6;25,4
+2023;07235;      Trier-Saarburg, Landkreis;229;175;23;31;425;175;46;204;52,9
+2023;073;    Rheinhessen-Pfalz, Statistische Region;2276;1619;325;332;5651;1619;650;3382;629,0
+2023;07311;      Frankenthal (Pfalz), kreisfreie Stadt;13;11;1;1;16;11;2;3;2,7
+2023;07312;      Kaiserslautern, kreisfreie Stadt;77;47;10;20;268;47;20;201;32,0
+2023;07313;      Landau in der Pfalz, kreisfreie Stadt;31;16;6;9;278;16;12;250;20,6
+2023;07314;      Ludwigshafen am Rhein, kreisfreie Stadt;46;23;7;16;203;23;14;166;20,1
+2023;07315;      Mainz, kreisfreie Stadt;85;34;13;38;941;34;26;881;75,4
+2023;07316;      Neustadt an der Weinstraße, kreisfreie Stadt;31;22;4;5;101;22;8;71;9,6
+2023;07317;      Pirmasens, kreisfreie Stadt;38;30;5;3;62;30;10;22;8,7
+2023;07318;      Speyer, kreisfreie Stadt;16;4;3;9;121;4;6;111;8,9
+2023;07319;      Worms, kreisfreie Stadt;46;29;7;10;143;29;14;100;13,9
+2023;07320;      Zweibrücken, kreisfreie Stadt;12;9;3;-;15;9;6;-;2,0
+2023;07331;      Alzey-Worms, Landkreis;381;289;43;49;747;289;86;372;88,4
+2023;07332;      Bad Dürkheim, Landkreis;194;157;16;21;327;157;32;138;43,2
+2023;07333;      Donnersbergkreis;97;76;16;5;140;76;32;32;19,8
+2023;07334;      Germersheim, Landkreis;218;151;30;37;470;151;60;259;55,0
+2023;07335;      Kaiserslautern, Landkreis;77;53;16;8;130;53;32;45;17,7
+2023;07336;      Kusel, Landkreis;87;72;12;3;113;72;24;17;16,2
+2023;07337;      Südliche Weinstraße, Landkreis;127;97;9;21;247;97;18;132;31,0
+2023;07338;      Rhein-Pfalz-Kreis;150;119;18;13;253;119;36;98;34,9
+2023;07339;      Mainz-Bingen, Landkreis;384;246;84;54;821;246;168;407;96,6
+2023;07340;      Südwestpfalz, Landkreis;166;134;22;10;255;134;44;77;32,3
+2023;08;  Baden-Württemberg;13523;8387;2565;2571;37247;8387;5130;23730;3798,2
+2023;081;    Stuttgart, Regierungsbezirk;4699;2945;822;932;13030;2945;1644;8441;1314,5
+2023;08111;      Stuttgart, Stadtkreis;206;71;26;109;1646;71;52;1523;115,2
+2023;08115;      Böblingen, Landkreis;450;280;66;104;1246;280;132;834;127,9
+2023;08116;      Esslingen, Landkreis;515;315;76;124;1530;315;152;1063;149,9
+2023;08117;      Göppingen, Landkreis;305;215;38;52;699;215;76;408;76,6
+2023;08118;      Ludwigsburg, Landkreis;482;291;76;115;1389;291;152;946;141,1
+2023;08119;      Rems-Murr-Kreis, Landkreis;490;302;75;113;1465;302;150;1013;142,9
+2023;08121;      Heilbronn, Stadtkreis;69;21;12;36;432;21;24;387;35,3
+2023;08125;      Heilbronn, Landkreis;577;397;108;72;1139;397;216;526;139,3
+2023;08126;      Hohenlohekreis, Landkreis;242;149;60;33;577;149;120;308;63,8
+2023;08127;      Schwäbisch Hall, Landkreis;377;242;82;53;851;242;164;445;91,6
+2023;08128;      Main-Tauber-Kreis, Landkreis;246;173;50;23;512;173;100;239;56,6
+2023;08135;      Heidenheim, Landkreis;175;125;24;26;401;125;48;228;43,6
+2023;08136;      Ostalbkreis, Landkreis;565;364;129;72;1143;364;258;521;130,8
+2023;082;    Karlsruhe, Regierungsbezirk;2970;2002;479;489;7724;2002;958;4764;817,5
+2023;08211;      Baden-Baden, Stadtkreis;59;37;7;15;253;37;14;202;26,1
+2023;08212;      Karlsruhe, Stadtkreis;104;77;17;10;162;77;34;51;20,8
+2023;08215;      Karlsruhe, Landkreis;637;410;97;130;1686;410;194;1082;178,7
+2023;08216;      Rastatt, Landkreis;226;163;30;33;465;163;60;242;55,2
+2023;08221;      Heidelberg, Stadtkreis;49;18;6;25;253;18;12;223;22,8
+2023;08222;      Mannheim, Stadtkreis;212;149;4;59;1385;149;8;1228;107,7
+2023;08225;      Neckar-Odenwald-Kreis, Landkreis;311;225;61;25;586;225;122;239;67,0
+2023;08226;      Rhein-Neckar-Kreis, Landkreis;605;420;101;84;1380;420;202;758;153,2
+2023;08231;      Pforzheim, Stadtkreis;73;48;5;20;229;48;10;171;24,6
+2023;08235;      Calw, Landkreis;274;185;57;32;504;185;114;205;61,4
+2023;08236;      Enzkreis, Landkreis;229;146;49;34;462;146;98;218;56,6
+2023;08237;      Freudenstadt, Landkreis;191;124;45;22;359;124;90;145;43,3
+2023;083;    Freiburg, Regierungsbezirk;3022;1817;601;604;8703;1817;1202;5684;871,0
+2023;08311;      Freiburg im Breisgau, Stadtkreis;99;31;13;55;776;31;26;719;56,1
+2023;08315;      Breisgau-Hochschwarzwald, Landkreis;345;235;60;50;693;235;120;338;79,8
+2023;08316;      Emmendingen, Landkreis;302;203;56;43;630;203;112;315;68,7
+2023;08317;      Ortenaukreis, Landkreis;683;404;146;133;1843;404;292;1147;191,5
+2023;08325;      Rottweil, Landkreis;278;163;82;33;581;163;164;254;65,9
+2023;08326;      Schwarzwald-Baar-Kreis, Landkreis;274;160;43;71;1059;160;86;813;96,9
+2023;08327;      Tuttlingen, Landkreis;232;145;40;47;660;145;80;435;69,1
+2023;08335;      Konstanz, Landkreis;334;188;65;81;1145;188;130;827;103,8
+2023;08336;      Lörrach, Landkreis;210;120;39;51;709;120;78;511;68,1
+2023;08337;      Waldshut, Landkreis;265;168;57;40;607;168;114;325;71,1
+2023;084;    Tübingen, Regierungsbezirk;2832;1623;663;546;7790;1623;1326;4841;795,2
+2023;08415;      Reutlingen, Landkreis;338;227;48;63;884;227;96;561;88,1
+2023;08416;      Tübingen, Landkreis;315;175;72;68;889;175;144;570;87,6
+2023;08417;      Zollernalbkreis, Landkreis;320;210;63;47;687;210;126;351;75,2
+2023;08421;      Ulm, Stadtkreis;71;8;10;53;729;8;20;701;59,9
+2023;08425;      Alb-Donau-Kreis, Landkreis;345;207;85;53;831;207;170;454;90,7
+2023;08426;      Biberach, Landkreis;514;290;155;69;1130;290;310;530;128,3
+2023;08435;      Bodenseekreis, Landkreis;220;101;57;62;764;101;114;549;71,8
+2023;08436;      Ravensburg, Landkreis;432;222;106;104;1384;222;212;950;137,1
+2023;08437;      Sigmaringen, Landkreis;277;183;67;27;492;183;134;175;56,7
+2023;09;  Bayern;23459;16772;3336;3351;57077;16772;6672;33633;5931,6
+2023;091;    Oberbayern, Regierungsbezirk;7574;5064;1003;1507;23240;5064;2006;16170;2222,2
+2023;09161;      Ingolstadt, kreisfreie Stadt;208;144;14;50;652;144;28;480;60,1
+2023;09162;      München, kreisfreie Stadt;1249;658;57;534;9079;658;114;8307;660,8
+2023;09163;      Rosenheim, kreisfreie Stadt;56;40;8;8;108;40;16;52;13,4
+2023;09171;      Altötting, Landkreis;215;156;25;34;451;156;50;245;53,3
+2023;09172;      Berchtesgadener Land, Landkreis;82;52;11;19;220;52;22;146;22,6
+2023;09173;      Bad Tölz-Wolfratshausen, Landkreis;245;168;38;39;608;168;76;364;67,6
+2023;09174;      Dachau, Landkreis;224;155;32;37;492;155;64;273;51,0
+2023;09175;      Ebersberg, Landkreis;158;106;16;36;419;106;32;281;44,0
+2023;09176;      Eichstätt, Landkreis;471;349;85;37;740;349;170;221;95,6
+2023;09177;      Erding, Landkreis;312;203;64;45;712;203;128;381;79,8
+2023;09178;      Freising, Landkreis;345;249;52;44;809;249;104;456;85,9
+2023;09179;      Fürstenfeldbruck, Landkreis;333;247;36;50;755;247;72;436;77,0
+2023;09180;      Garmisch-Partenkirchen, Landkreis;120;61;20;39;386;61;40;285;37,1
+2023;09181;      Landsberg am Lech, Landkreis;294;224;42;28;482;224;84;174;59,2
+2023;09182;      Miesbach, Landkreis;110;75;15;20;272;75;30;167;28,8
+2023;09183;      Mühldorf a.Inn, Landkreis;316;217;52;47;727;217;104;406;80,9
+2023;09184;      München, Landkreis;562;414;43;105;1664;414;86;1164;164,6
+2023;09185;      Neuburg-Schrobenhausen, Landkreis;316;225;60;31;548;225;120;203;67,4
+2023;09186;      Pfaffenhofen a.d.Ilm, Landkreis;454;310;87;57;853;310;174;369;100,1
+2023;09187;      Rosenheim, Landkreis;621;385;112;124;1556;385;224;947;170,1
+2023;09188;      Starnberg, Landkreis;264;189;31;44;518;189;62;267;67,2
+2023;09189;      Traunstein, Landkreis;257;185;38;34;529;185;76;268;58,8
+2023;09190;      Weilheim-Schongau, Landkreis;362;252;65;45;660;252;130;278;77,2
+2023;092;    Niederbayern, Regierungsbezirk;3178;2346;473;359;6551;2346;946;3259;742,3
+2023;09261;      Landshut, kreisfreie Stadt;86;53;11;22;230;53;22;155;23,9
+2023;09262;      Passau, kreisfreie Stadt;43;21;9;13;195;21;18;156;13,6
+2023;09263;      Straubing, kreisfreie Stadt;68;37;7;24;335;37;14;284;27,2
+2023;09271;      Deggendorf, Landkreis;345;256;54;35;735;256;108;371;79,4
+2023;09272;      Freyung-Grafenau, Landkreis;79;59;13;7;138;59;26;53;16,4
+2023;09273;      Kelheim, Landkreis;380;265;78;37;972;265;156;551;93,6
+2023;09274;      Landshut, Landkreis;455;348;66;41;745;348;132;265;98,3
+2023;09275;      Passau, Landkreis;804;643;79;82;1465;643;158;664;177,7
+2023;09276;      Regen, Landkreis;182;126;39;17;343;126;78;139;41,0
+2023;09277;      Rottal-Inn, Landkreis;325;255;30;40;574;255;60;259;75,3
+2023;09278;      Straubing-Bogen, Landkreis;342;235;75;32;558;235;150;173;71,4
+2023;09279;      Dingolfing-Landau, Landkreis;69;48;12;9;261;48;24;189;24,6
+2023;093;    Oberpfalz, Regierungsbezirk;3365;2435;589;341;6754;2435;1178;3141;747,4
+2023;09361;      Amberg, kreisfreie Stadt;37;28;5;4;77;28;10;39;8,5
+2023;09362;      Regensburg, kreisfreie Stadt;115;66;11;38;1052;66;22;964;60,1
+2023;09363;      Weiden i.d.OPf., kreisfreie Stadt;24;10;4;10;111;10;8;93;10,1
+2023;09371;      Amberg-Sulzbach, Landkreis;254;195;40;19;371;195;80;96;48,2
+2023;09372;      Cham, Landkreis;471;326;103;42;844;326;206;312;103,9
+2023;09373;      Neumarkt i.d.OPf., Landkreis;620;430;122;68;1212;430;244;538;144,5
+2023;09374;      Neustadt a.d.Waldnaab, Landkreis;235;190;28;17;362;190;56;116;45,6
+2023;09375;      Regensburg, Landkreis;701;483;155;63;1264;483;310;471;147,5
+2023;09376;      Schwandorf, Landkreis;633;473;88;72;1098;473;176;449;130,1
+2023;09377;      Tirschenreuth, Landkreis;275;234;33;8;363;234;66;63;49,1
+2023;094;    Oberfranken, Regierungsbezirk;1638;1334;154;150;3183;1334;308;1541;358,8
+2023;09461;      Bamberg, kreisfreie Stadt;46;17;4;25;326;17;8;301;27,5
+2023;09462;      Bayreuth, kreisfreie Stadt;40;16;2;22;338;16;4;318;25,1
+2023;09463;      Coburg, kreisfreie Stadt;28;20;3;5;74;20;6;48;7,5
+2023;09464;      Hof, kreisfreie Stadt;31;26;5;-;36;26;10;-;5,1
+2023;09471;      Bamberg, Landkreis;548;451;52;45;842;451;104;287;108,6
+2023;09472;      Bayreuth, Landkreis;186;175;7;4;253;175;14;64;32,2
+2023;09473;      Coburg, Landkreis;122;103;13;6;228;103;26;99;24,6
+2023;09474;      Forchheim, Landkreis;209;170;20;19;333;170;40;123;42,2
+2023;09475;      Hof, Landkreis;91;82;6;3;111;82;12;17;15,5
+2023;09476;      Kronach, Landkreis;43;36;4;3;80;36;8;36;9,1
+2023;09477;      Kulmbach, Landkreis;76;60;13;3;162;60;26;76;16,4
+2023;09478;      Lichtenfels, Landkreis;116;94;19;3;146;94;38;14;19,1
+2023;09479;      Wunsiedel i.Fichtelgebirge, Landkreis;102;84;6;12;254;84;12;158;25,9
+2023;095;    Mittelfranken, Regierungsbezirk;2420;1754;317;349;6348;1754;634;3960;617,6
+2023;09561;      Ansbach, kreisfreie Stadt;30;21;5;4;55;21;10;24;6,4
+2023;09562;      Erlangen, kreisfreie Stadt;126;94;8;24;283;94;16;173;31,6
+2023;09563;      Fürth, kreisfreie Stadt;84;53;1;30;310;53;2;255;29,3
+2023;09564;      Nürnberg, kreisfreie Stadt;219;102;11;106;2083;102;22;1959;124,0
+2023;09565;      Schwabach, kreisfreie Stadt;50;38;7;5;93;38;14;41;11,6
+2023;09571;      Ansbach, Landkreis;468;343;82;43;877;343;164;370;100,8
+2023;09572;      Erlangen-Höchstadt, Landkreis;153;114;17;22;356;114;34;208;38,0
+2023;09573;      Fürth, Landkreis;175;138;14;23;416;138;28;250;45,3
+2023;09574;      Nürnberger Land, Landkreis;336;275;38;23;514;275;76;163;67,2
+2023;09575;      Neustadt a.d.Aisch-Bad Windsheim, Landkreis;250;179;55;16;372;179;110;83;46,8
+2023;09576;      Roth, Landkreis;302;232;40;30;558;232;80;246;67,7
+2023;09577;      Weißenburg-Gunzenhausen, Landkreis;227;165;39;23;431;165;78;188;48,9
+2023;096;    Unterfranken, Regierungsbezirk;2036;1537;291;208;3841;1537;582;1722;449,4
+2023;09661;      Aschaffenburg, kreisfreie Stadt;67;44;3;20;320;44;6;270;29,0
+2023;09662;      Schweinfurt, kreisfreie Stadt;18;11;1;6;144;11;2;131;10,9
+2023;09663;      Würzburg, kreisfreie Stadt;40;15;2;23;354;15;4;335;22,3
+2023;09671;      Aschaffenburg, Landkreis;221;158;28;35;424;158;56;210;51,2
+2023;09672;      Bad Kissingen, Landkreis;315;266;27;22;449;266;54;129;60,4
+2023;09673;      Rhön-Grabfeld, Landkreis;131;92;31;8;201;92;62;47;24,6
+2023;09674;      Haßberge, Landkreis;115;91;20;4;148;91;40;17;20,5
+2023;09675;      Kitzingen, Landkreis;144;123;12;9;193;123;24;46;26,0
+2023;09676;      Miltenberg, Landkreis;177;133;24;20;332;133;48;151;41,9
+2023;09677;      Main-Spessart, Landkreis;218;166;42;10;327;166;84;77;43,6
+2023;09678;      Schweinfurt, Landkreis;247;190;36;21;381;190;72;119;48,5
+2023;09679;      Würzburg, Landkreis;343;248;65;30;568;248;130;190;70,5
+2023;097;    Schwaben, Regierungsbezirk;3248;2302;509;437;7160;2302;1018;3840;793,8
+2023;09761;      Augsburg, kreisfreie Stadt;148;77;7;64;832;77;14;741;66,7
+2023;09762;      Kaufbeuren, kreisfreie Stadt;92;82;3;7;159;82;6;71;17,7
+2023;09763;      Kempten (Allgäu), kreisfreie Stadt;41;18;12;11;117;18;24;75;12,8
+2023;09764;      Memmingen, kreisfreie Stadt;51;26;4;21;258;26;8;224;22,6
+2023;09771;      Aichach-Friedberg, Landkreis;368;268;68;32;616;268;136;212;77,7
+2023;09772;      Augsburg, Landkreis;536;402;64;70;1167;402;128;637;130,4
+2023;09773;      Dillingen a.d.Donau, Landkreis;182;145;20;17;311;145;40;126;38,7
+2023;09774;      Günzburg, Landkreis;283;200;62;21;463;200;124;139;58,2
+2023;09775;      Neu-Ulm, Landkreis;304;205;41;58;1007;205;82;720;96,3
+2023;09776;      Lindau (Bodensee), Landkreis;60;27;15;18;220;27;30;163;20,2
+2023;09777;      Ostallgäu, Landkreis;244;168;38;38;450;168;76;206;53,3
+2023;09778;      Unterallgäu, Landkreis;431;334;76;21;623;334;152;137;82,5
+2023;09779;      Donau-Ries, Landkreis;353;270;58;25;551;270;116;165;73,9
+2023;09780;      Oberallgäu, Landkreis;155;80;41;34;386;80;82;224;42,9
+2023;10;  Saarland;783;545;106;132;1884;545;212;1127;202,4
+2023;10041;      Saarbrücken, Regionalverband;145;94;21;30;544;94;42;408;53,2
+2023;10041100;      Saarbrücken, Landeshauptstadt;70;41;11;18;375;41;22;312;34,0
+2023;10042;      Merzig-Wadern, Landkreis;154;99;22;33;340;99;44;197;36,5
+2023;10043;      Neunkirchen, Landkreis;91;75;9;7;131;75;18;38;18,5
+2023;10044;      Saarlouis, Landkreis;179;125;22;32;472;125;44;303;46,0
+2023;10045;      Saarpfalz-Kreis;90;59;15;16;197;59;30;108;23,6
+2023;10046;      St. Wendel, Landkreis;124;93;17;14;200;93;34;73;24,7
+2023;11;  Berlin;1436;824;82;530;14431;824;164;13443;918,9
+2023;11001001;      Berlin-Mitte;58;1;-;57;1795;1;-;1794;113,7
+2023;11002002;      Berlin-Friedrichshain-Kreuzberg;14;-;-;14;490;-;-;490;24,5
+2023;11003003;      Berlin-Pankow;235;173;10;52;1455;173;20;1262;86,4
+2023;11004004;      Berlin-Charlottenburg-Wilmersdorf;41;3;2;36;764;3;4;757;62,3
+2023;11005005;      Berlin-Spandau;96;59;6;31;608;59;12;537;46,9
+2023;11006006;      Berlin-Steglitz-Zehlendorf;56;40;4;12;265;40;8;217;23,2
+2023;11007007;      Berlin-Tempelhof-Schöneberg;69;37;5;27;618;37;10;571;39,7
+2023;11008008;      Berlin-Neukölln;83;52;4;27;663;52;8;603;47,5
+2023;11009009;      Berlin-Treptow-Köpenick;207;116;11;80;2076;116;22;1938;107,7
+2023;11010010;      Berlin-Marzahn-Hellersdorf;339;235;32;72;2077;235;64;1778;153,3
+2023;11011011;      Berlin-Lichtenberg;137;30;2;105;3268;30;4;3234;186,3
+2023;11012012;      Berlin-Reinickendorf;101;78;6;17;352;78;12;262;27,5
+2023;12;  Brandenburg;5517;4714;301;502;10709;4714;602;5393;1095,7
+2023;12051;      Brandenburg an der Havel, kreisfreie Stadt;93;60;6;27;393;60;12;321;30,7
+2023;12052;      Cottbus, kreisfreie Stadt;82;59;3;20;249;59;6;184;24,5
+2023;12053;      Frankfurt (Oder), kreisfreie Stadt;39;34;-;5;106;34;-;72;9,9
+2023;12054;      Potsdam, kreisfreie Stadt;134;73;7;54;832;73;14;745;73,1
+2023;12060;      Barnim, Landkreis;486;421;17;48;1120;421;34;665;106,7
+2023;12061;      Dahme-Spreewald, Landkreis;555;437;43;75;1492;437;86;969;137,7
+2023;12062;      Elbe-Elster, Landkreis;95;94;1;-;96;94;2;-;13,5
+2023;12063;      Havelland, Landkreis;526;426;28;72;1167;426;56;685;109,3
+2023;12064;      Märkisch-Oderland, Landkreis;531;485;20;26;786;485;40;261;88,0
+2023;12065;      Oberhavel, Landkreis;454;397;27;30;725;397;54;274;79,1
+2023;12066;      Oberspreewald-Lausitz, Landkreis;101;88;10;3;119;88;20;11;15,3
+2023;12067;      Oder-Spree, Landkreis;436;367;31;38;714;367;62;285;75,2
+2023;12068;      Ostprignitz-Ruppin, Landkreis;148;127;6;15;231;127;12;92;25,3
+2023;12069;      Potsdam-Mittelmark, Landkreis;629;542;39;48;1085;542;78;465;118,9
+2023;12070;      Prignitz, Landkreis;101;99;-;2;107;99;-;8;12,5
+2023;12071;      Spree-Neiße, Landkreis;186;165;12;9;255;165;24;66;30,3
+2023;12072;      Teltow-Fläming, Landkreis;810;743;47;20;1040;743;94;203;125,2
+2023;12073;      Uckermark, Landkreis;111;97;4;10;192;97;8;87;20,4
+2023;13;  Mecklenburg-Vorpommern;2058;1778;114;166;4211;1778;228;2205;407,3
+2023;13001;      Greifswald, Hansestadt, kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;13002;      Neubrandenburg, Stadt,  kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;13003;      Rostock, kreisfreie Stadt;71;36;2;33;810;36;4;770;54,7
+2023;13004;      Schwerin, kreisfreie Stadt;39;25;5;9;148;25;10;113;13,3
+2023;13005;      Stralsund, Hansestadt,  kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;13006;      Wismar, Hansestadt,  kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;13051;      Bad Doberan, Landkreis;-;-;-;-;-;-;-;-;-
+2023;13052;      Landkreis Demmin;-;-;-;-;-;-;-;-;-
+2023;13053;      Güstrow, Landkreis;-;-;-;-;-;-;-;-;-
+2023;13054;      Landkreis Ludwigslust;-;-;-;-;-;-;-;-;-
+2023;13055;      Mecklenburg-Strelitz, Landkreis;-;-;-;-;-;-;-;-;-
+2023;13056;      Landkreis Müritz;-;-;-;-;-;-;-;-;-
+2023;13057;      Nordvorpommern, Landkreis;-;-;-;-;-;-;-;-;-
+2023;13058;      Landkreis Nordwestmecklenburg;-;-;-;-;-;-;-;-;-
+2023;13059;      Ostvorpommern, Landkreis;-;-;-;-;-;-;-;-;-
+2023;13060;      Landkreis Parchim;-;-;-;-;-;-;-;-;-
+2023;13061;      Rügen, Landkreis;-;-;-;-;-;-;-;-;-
+2023;13062;      Landkreis Uecker-Randow;-;-;-;-;-;-;-;-;-
+2023;13071;      Mecklenburgische Seenplatte, Landkreis;181;159;10;12;328;159;20;149;34,3
+2023;13072;      Landkreis Rostock;408;365;17;26;671;365;34;272;71,8
+2023;13073;      Vorpommern-Rügen, Landkreis;459;386;30;43;970;386;60;524;89,8
+2023;13074;      Nordwestmecklenburg, Landkreis;257;236;13;8;323;236;26;61;39,8
+2023;13075;      Vorpommern-Greifswald, Landkreis;303;265;21;17;516;265;42;209;50,9
+2023;13076;      Ludwigslust-Parchim, Landkreis;340;306;16;18;445;306;32;107;52,8
+2023;14;  Sachsen;3443;2938;165;340;8414;2938;330;5146;851,8
+2023;141;    Chemnitz, Regierungsbezirk;-;-;-;-;-;-;-;-;-
+2023;14161;      Chemnitz, kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;14166;      Plauen, kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;14167;      Zwickau, kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;14171;      Annaberg, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14173;      Chemnitzer Land, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14177;      Freiberg, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14178;      Vogtlandkreis;-;-;-;-;-;-;-;-;-
+2023;14181;      Mittlerer Erzgebirgskreis;-;-;-;-;-;-;-;-;-
+2023;14182;      Mittweida, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14188;      Stollberg, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14191;      Aue-Schwarzenberg, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14193;      Zwickauer Land, Landkreis;-;-;-;-;-;-;-;-;-
+2023;142;    Dresden, Regierungsbezirk;-;-;-;-;-;-;-;-;-
+2023;14262;      Dresden, kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;14263;      Görlitz, kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;14264;      Hoyerswerda, kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;14272;      Bautzen, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14280;      Meißen, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14284;      Niederschlesischer Oberlausitzkreis;-;-;-;-;-;-;-;-;-
+2023;14285;      Riesa-Großenhain, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14286;      Löbau-Zittau, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14287;      Sächsische Schweiz, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14290;      Weißeritzkreis;-;-;-;-;-;-;-;-;-
+2023;14292;      Kamenz, Landkreis;-;-;-;-;-;-;-;-;-
+2023;143;    Leipzig, Regierungsbezirk;-;-;-;-;-;-;-;-;-
+2023;14365;      Leipzig, kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;14374;      Delitzsch, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14375;      Döbeln, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14379;      Leipziger Land, Landkreis;-;-;-;-;-;-;-;-;-
+2023;14383;      Muldentalkreis;-;-;-;-;-;-;-;-;-
+2023;14389;      Torgau-Oschatz, Landkreis;-;-;-;-;-;-;-;-;-
+2023;145;    Chemnitz, Statistische Region;1149;1036;51;62;1862;1036;102;724;216,6
+2023;14511;      Chemnitz, kreisfreie Stadt;145;122;5;18;280;122;10;148;34,0
+2023;14521;      Erzgebirgskreis;293;258;19;16;424;258;38;128;52,4
+2023;14522;      Mittelsachsen, Landkreis;346;327;12;7;482;327;24;131;58,3
+2023;14523;      Vogtlandkreis;163;149;7;7;240;149;14;77;30,5
+2023;14524;      Zwickau, Landkreis;202;180;8;14;436;180;16;240;41,4
+2023;146;    Dresden, Statistische Region;1344;1118;75;151;3479;1118;150;2211;347,5
+2023;14612;      Dresden, kreisfreie Stadt;233;121;9;103;1862;121;18;1723;150,2
+2023;14625;      Bautzen, Landkreis;418;376;27;15;571;376;54;141;69,2
+2023;14626;      Görlitz, Landkreis;168;151;12;5;206;151;24;31;27,4
+2023;14627;      Meißen, Landkreis;283;261;11;11;416;261;22;133;50,6
+2023;14628;      Sächsische Schweiz-Osterzgebirge, Landkreis;242;209;16;17;424;209;32;183;50,1
+2023;147;    Leipzig, Statistische Region;950;784;39;127;3073;784;78;2211;287,6
+2023;14713;      Leipzig, kreisfreie Stadt;283;174;14;95;2084;174;28;1882;166,7
+2023;14729;      Leipzig, Landkreis;403;369;18;16;625;369;36;220;76,0
+2023;14730;      Nordsachsen, Landkreis;264;241;7;16;364;241;14;109;44,9
+2023;15;  Sachsen-Anhalt;2165;1993;63;109;3529;1993;126;1410;392,3
+2023;15001;      Dessau-Roßlau, kreisfreie Stadt;70;67;-;3;159;67;-;92;13,8
+2023;15002;      Halle (Saale), kreisfreie Stadt;111;92;3;16;331;92;6;233;33,0
+2023;15003;      Magdeburg, kreisfreie Stadt, Landeshauptstadt;220;194;3;23;719;194;6;519;56,5
+2023;15081;      Altmarkkreis Salzwedel;108;98;3;7;134;98;6;30;16,3
+2023;15082;      Anhalt-Bitterfeld, Landkreis;209;186;13;10;300;186;26;88;37,5
+2023;15083;      Börde, Landkreis;310;290;12;8;372;290;24;58;47,5
+2023;15084;      Burgenlandkreis;135;125;5;5;179;125;10;44;25,0
+2023;15085;      Harz, Landkreis;176;166;4;6;207;166;8;33;27,8
+2023;15086;      Jerichower Land, Landkreis;114;110;-;4;216;110;-;106;21,7
+2023;15087;      Mansfeld-Südharz, Landkreis;118;106;3;9;154;106;6;42;18,3
+2023;15088;      Saalekreis;274;259;10;5;349;259;20;70;42,9
+2023;15089;      Salzlandkreis;129;117;3;9;198;117;6;75;22,9
+2023;15090;      Stendal, Landkreis;64;59;2;3;79;59;4;16;10,2
+2023;15091;      Wittenberg, Landkreis;127;124;2;1;132;124;4;4;18,9
+2023;151;    Dessau, Statistische Region;-;-;-;-;-;-;-;-;-
+2023;15101;      Dessau, kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;15151;      Anhalt-Zerbst, Kreis;-;-;-;-;-;-;-;-;-
+2023;15153;      Bernburg, Kreis;-;-;-;-;-;-;-;-;-
+2023;15154;      Bitterfeld, Kreis;-;-;-;-;-;-;-;-;-
+2023;15159;      Köthen, Kreis;-;-;-;-;-;-;-;-;-
+2023;15171;      Wittenberg, Kreis;-;-;-;-;-;-;-;-;-
+2023;152;    Halle, Statistische Region;-;-;-;-;-;-;-;-;-
+2023;15202;      Halle (Saale), kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;15256;      Burgenlandkreis;-;-;-;-;-;-;-;-;-
+2023;15260;      Mansfelder Land, Kreis;-;-;-;-;-;-;-;-;-
+2023;15261;      Merseburg-Querfurt, Kreis;-;-;-;-;-;-;-;-;-
+2023;15265;      Saalkreis;-;-;-;-;-;-;-;-;-
+2023;15266;      Sangerhausen, Kreis;-;-;-;-;-;-;-;-;-
+2023;15268;      Weißenfels, Kreis;-;-;-;-;-;-;-;-;-
+2023;153;    Magdeburg, Statistische Region;-;-;-;-;-;-;-;-;-
+2023;15303;      Magdeburg, kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;15352;      Aschersleben-Staßfurt, Kreis;-;-;-;-;-;-;-;-;-
+2023;15355;      Bördekreis;-;-;-;-;-;-;-;-;-
+2023;15357;      Halberstadt, Kreis;-;-;-;-;-;-;-;-;-
+2023;15358;      Jerichower Land, Kreis;-;-;-;-;-;-;-;-;-
+2023;15362;      Ohrekreis;-;-;-;-;-;-;-;-;-
+2023;15363;      Stendal, Kreis;-;-;-;-;-;-;-;-;-
+2023;15364;      Quedlinburg, Kreis;-;-;-;-;-;-;-;-;-
+2023;15367;      Schönebeck, Kreis;-;-;-;-;-;-;-;-;-
+2023;15369;      Wernigerode, Kreis;-;-;-;-;-;-;-;-;-
+2023;15370;      Altmarkkreis Salzwedel, Kreis;-;-;-;-;-;-;-;-;-
+2023;16;  Thüringen;1540;1353;83;104;3492;1353;166;1973;351,9
+2023;16051;      Erfurt, kreisfreie Stadt;92;83;3;6;552;83;6;463;46,9
+2023;16052;      Gera, kreisfreie Stadt;49;44;4;1;69;44;8;17;9,5
+2023;16053;      Jena, kreisfreie Stadt;39;22;4;13;156;22;8;126;15,8
+2023;16054;      Suhl, kreisfreie Stadt;19;19;-;-;19;19;-;-;2,2
+2023;16055;      Weimar, kreisfreie Stadt;19;13;1;5;316;13;2;301;24,5
+2023;16056;      Eisenach, kreisfreie Stadt;-;-;-;-;-;-;-;-;-
+2023;16061;      Eichsfeld, Landkreis;127;105;15;7;169;105;30;34;24,6
+2023;16062;      Nordhausen, Landkreis;63;60;2;1;82;60;4;18;10,1
+2023;16063;      Wartburgkreis;121;105;9;7;192;105;18;69;22,2
+2023;16064;      Unstrut-Hainich-Kreis;119;109;4;6;171;109;8;54;21,0
+2023;16065;      Kyffhäuserkreis;42;39;3;-;45;39;6;-;6,9
+2023;16066;      Schmalkalden-Meiningen, Landkreis;80;66;4;10;506;66;8;432;22,2
+2023;16067;      Gotha, Landkreis;80;68;6;6;112;68;12;32;14,4
+2023;16068;      Sömmerda, Landkreis;76;69;4;3;94;69;8;17;12,1
+2023;16069;      Hildburghausen, Landkreis;69;68;-;1;80;68;-;12;10,5
+2023;16070;      Ilm-Kreis;103;85;3;15;299;85;6;208;32,0
+2023;16071;      Weimarer Land, Landkreis;115;104;5;6;144;104;10;30;18,7
+2023;16072;      Sonneberg, Landkreis;29;26;1;2;62;26;2;34;6,3
+2023;16073;      Saalfeld-Rudolstadt, Landkreis;59;51;4;4;110;51;8;51;12,0
+2023;16074;      Saale-Holzland-Kreis;49;45;1;3;84;45;2;37;9,0
+2023;16075;      Saale-Orla-Kreis;51;41;7;3;66;41;14;11;8,2
+2023;16076;      Greiz, Landkreis;77;70;3;4;99;70;6;23;13,3
+2023;16077;      Altenburger Land, Landkreis;62;61;-;1;65;61;-;4;9,4
+__________
+"zu ""gesamte Tabelle"":
+Baden-Württemberg: Berichtsjahr 1995-2010 Gebietsstand
+01.01.1979; ab Berichtsjahr 2011 Gebietsstand 01.01.2011
+Bayern (2004, 2006): einschl. Nachmeldungen aus vergangenen
+Jahren für die Stadt München;
+Berlin (1995 bis 2000): bezogen auf den Gebietsstand
+01.01.2001;
+Deutschland (2000): Eventuelle geringfügige Differenzen
+zwischen dem Ergebnis für Deutschland und der Summe der
+Länder beruhen auf nachträglichen Ergebniskorrekturen
+einzelner Länder nach Aufbereitung und Veröffentlichung des
+Bundesergebnisses;
+Hessen (2018): Aufgrund fehlender Datenlieferungen im Rahmen
+der Bauüberhangsstatistik wurden die Ergebnisse des
+Main-Kinzig-Kreises aus dem Vorjahr übernommen und haben
+damit den Stand des Jahres 2017. Aus diesem Grund sind die
+Ergebnisse des Bauüberhangs nur eingeschränkt aussagefähig.
+Die Statistik des Bauüberhangs ist jedoch ein wesentlicher
+Bestandteil der Statistik der Baufertigstellungen. Aus
+diesem Grund besitzen die Ergebnisse der
+Baufertigstellungen für den Main-Kinzig-Kreis ebenfalls nur
+eine eingeschränkte Aussagekraft. Gleiches gilt für die
+Ergebnisse des Regierungsbezirks Darmstadt sowie des Landes
+Hessen.
+Niedersachsen: Durch verzögerte Lieferung konnten 1998 die
+Daten für die Landeshauptstadt Hannover sowie 1996 für die
+kreisfreie Stadt Delmenhorst und den Landkreis Cloppenburg
+nicht vollständig verarbeitet werden;
+Niedersachsen (1999, 2000): Landeshauptstadt Hannover
+beinhaltet Fälle aus den Vorjahren."
+"© Statistische Ämter des Bundes und der Länder, Deutschland, 2024.
+Dieses Werk ist lizenziert unter der Datenlizenz Deutschland
+- Namensnennung - Version 2.0."
+Stand: 27.11.2024 / 11:10:23
