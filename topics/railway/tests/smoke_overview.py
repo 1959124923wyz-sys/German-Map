@@ -11,7 +11,9 @@ ART.mkdir(exist_ok=True)
 def loaded(page,service,threshold):
     page.wait_for_function("""([service,threshold])=>{
       const v=window.__RAILWAY_OVERVIEW__;
-      return v?.getService()===service &&
+      return v?.getService()===service && v.getNetworkReady() &&
+       v.getNetworkGeometryCount()===33547 &&
+       v.getOfficialPickCount()===33547 &&
        v.getVisible()>threshold && v.getCanvasCount()===1 &&
        v.getCityCorridors().length>0;
     }""",arg=[service,threshold],timeout=150000)
@@ -32,10 +34,11 @@ def run(browser,mobile=False):
     assert page.locator(".toplinks a").count()==6
     assert page.locator("#railway-map canvas").count()==1
     assert page.locator("#railway-map .railway-network").count()==0
-    assert page.evaluate("""()=>{
-      return ![...document.querySelectorAll('script[src]')].some(x=>
-       x.getAttribute('src').includes('data-sections-'));
-    }""")
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getBackboneCoverage().sections")>1000
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getCompleteBackboneRoutes()")>100
+    assert page.locator('script[src="data/data-sections-00.js"]').count()==1
+    assert page.locator('script[src="data/data-sections-01.js"]').count()==1
+    assert page.locator('script[src="data/data-sections-02.js"]').count()==1
     assert page.locator("#minimum").count()==0
     assert page.locator("[data-metric]").count()==0
 
@@ -54,6 +57,8 @@ def run(browser,mobile=False):
          x.leg.from_station+' '+x.leg.to_station)));
       return {count:groups.length,hidden:api.getHiddenCorridors(),
        original:api.getVisible(),physical:api.getPhysicalEdgeCount(),
+       official:api.getNetworkGeometryCount(),active:api.getBackboneCoverage().sections,
+       risky:api.getDrawnObserved().filter(x=>x.grade>0).length,
        weighted:weights,thuringia:thuringia.slice(0,15).map(g=>({
         label:g.serviceName,from:g.cityFrom,to:g.cityTo,km:g.km,
         edges:g.observedEdges,grade:g.grade
@@ -61,6 +66,8 @@ def run(browser,mobile=False):
     }""")
     print("CITY ROUTE AUDIT:",audit,flush=True)
     assert audit["weighted"]
+    assert audit["official"]==33547
+    assert audit["active"]>1000 and audit["risky"]>0
     assert audit["original"]==4218
     assert audit["count"]>=30
     assert audit["physical"]>=audit["count"]
@@ -72,6 +79,29 @@ def run(browser,mobile=False):
 
 
     if not mobile:
+        # Unobserved green official line must be selectable rather than absent.
+        green=page.evaluate("""() => {
+          const api=window.__RAILWAY_OVERVIEW__,map=api.getMap();
+          const seen=new Set();
+          for(const entries of api.getOfficialPickEntries().values()){
+            for(const entry of entries){
+              if(seen.has(entry))continue;seen.add(entry);
+              if(seen.size>6000)return null;
+              const xy=entry.part.xy;
+              const ll=map.unproject(L.point((xy[0]+xy[2])/2,(xy[1]+xy[3])/2),9);
+              if(ll.lat<49||ll.lat>54||ll.lng<8||ll.lng>15)continue;
+              api.clickPoint(ll);
+              const g=api.getSelected();
+              if(g?.unobserved&&g.parts.length>1)return {
+                 route:g.route,parts:g.parts.length,lat:ll.lat,lng:ll.lng
+              };
+            }
+          }
+          return null;
+        }""")
+        assert green,'Real unmeasured DB railway must have connected green selection'
+        assert page.locator("#detail .detail-grid b").all_inner_texts()==["—","—"]
+        print('PASS nationwide continuous no-data green railway:',green,flush=True)
         selected=page.evaluate("""()=>{
           const app=window.__RAILWAY_OVERVIEW__,map=app.getMap();
           for(const g of app.getCityCorridors().filter(g=>g.observedEdges>=2)){
@@ -119,7 +149,7 @@ def run(browser,mobile=False):
         loaded(page,"REGIONAL",500)
     assert not errors,errors
     page.screenshot(path=str(ART/("railway-mobile.png" if mobile else "railway-desktop.png")),full_page=True)
-    print("PASS railway city overview",width,height,audit["count"],flush=True)
+    print("PASS continuous backbone",width,height,audit["count"],audit["official"],flush=True)
     page.close()
 
 if __name__=="__main__":
