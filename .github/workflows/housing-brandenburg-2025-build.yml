@@ -1,0 +1,40 @@
+name: Housing research - Brandenburg 2024 and 2025 18 county completions verified
+on:
+  push:
+    branches:
+      - research/housing-crisis-20261010
+    paths:
+      - 'research/housing/build_brandenburg_completions.py'
+      - '.github/workflows/housing-brandenburg-2025-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: housing-brandenburg-2025-district-extract
+  cancel-in-progress: false
+jobs:
+  brandenburg-counties:
+    runs-on: ubuntu-latest
+    timeout-minutes: 11
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/housing-crisis-20261010
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --quiet openpyxl
+      - name: Check 18 official county names to canonical AGS and sum to four source controls
+        run: python research/housing/build_brandenburg_completions.py
+      - name: Commit only officially verified county construction figures
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add topics/housing/data/brandenburg-completions-2024-2025.json
+          git add research/housing/data/brandenburg_2024_2025_18_county_completions.csv
+          git add research/housing/qa/brandenburg_2025_18_county_completions_audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "housing data: validate 2025 Brandenburg 18 district completions to four official state totals [skip ci]"
+            git pull --rebase origin research/housing-crisis-20261010
+            git push origin HEAD:research/housing-crisis-20261010
+          fi
