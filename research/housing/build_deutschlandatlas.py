@@ -34,6 +34,7 @@ SOURCES = {
 }
 METRICS = {
     "asking_rent_2025_eur_m2": ("2024", "preis_miet", "2025", "EUR/m2", "Wiedervermietungsmieten, internet advertised, net cold"),
+    "disposable_income_2023_keur_person": ("2024", "hh_veink", "2023", "kEUR/person/year", "Mean disposable private household income per RESIDENT, NOT typical renting household income or disposable income net of rent"),
     "building_land_price_band_2024": ("2024", "preis_baul", "2024", "EUR/m2 band", "Ordinal residential land price band for one-/two-family houses; no precise numeric price is published in this release"),
     "vacancy_2022_pct": ("2022", "wohn_leer", "2022", "pct", "Unoccupied dwellings including non-marketable stock, excludes leisure homes"),
     "owner_occupier_2022_pct": ("2022", "wohn_eigen", "2022", "pct", "Share of households in self-occupied property, not proportion of flats"),
