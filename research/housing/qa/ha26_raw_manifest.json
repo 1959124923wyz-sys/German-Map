@@ -1,0 +1,12 @@
+{
+  "deutschlandatlas_krs2024_ha26.csv": {
+    "source": "https://deutschlandatlas.bund.de/fileadmin/Downloaddateien/HA26/Deutschlandatlas_KRS1224_HA26.csv",
+    "sha256": "f2852842a08d41d9f5f47440aff1a60e9fa562aba5a10f2c75f949415c52717c",
+    "bytes": 146657
+  },
+  "deutschlandatlas_krs2022_ha26.csv": {
+    "source": "https://deutschlandatlas.bund.de/fileadmin/Downloaddateien/HA26/Deutschlandatlas_KRS1222_HA26.csv",
+    "sha256": "c05b3ee80df70172e76834e9023c0db49a28eaf074eeb77073dac30a6792fc97",
+    "bytes": 30758
+  }
+}\n
