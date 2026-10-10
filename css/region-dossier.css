@@ -1,0 +1,26 @@
+/* Progressive disclosure across 09 Industry, 10 Infrastructure, 11 Housing.
+   Maps stay primary; region dossiers only appear after a state/county choice. */
+.region-dossier[hidden],.dossier-pane[hidden],.dossier-national[hidden]{display:none!important}
+.region-dossier{margin:9px 0;border-top:1px solid #3a4d5a;padding-top:10px;min-width:0}
+.dossier-heading{display:flex;gap:8px;justify-content:space-between;align-items:baseline;color:#eaf2f7;margin:0 0 9px}
+.dossier-heading strong{font-size:13px}.dossier-heading small{font-size:9.5px;color:#93abba}
+.dossier-tabs{display:flex;gap:5px;overflow-x:auto;scrollbar-width:thin;margin:0 0 9px;padding:0 0 4px}
+.dossier-tabs button{flex:1 0 auto;cursor:pointer;background:#182b38;border:1px solid #385164;color:#abc0cb;border-radius:6px;padding:8px 9px;font-size:10.5px;line-height:1.25}
+.dossier-tabs button[aria-selected="true"]{background:#31516a;border-color:#82adc7;color:#fff;font-weight:650}
+.dossier-tabs button:focus-visible,.dossier-entry:focus-visible{outline:2px solid #93c5e2;outline-offset:2px}
+.dossier-pane{font-size:10.5px;color:#cad8e1;line-height:1.6;min-width:0}
+.dossier-note{color:#9eb5c4;font-size:9.5px;line-height:1.6;margin:8px 0}
+.dossier-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:5px 0 10px}
+.dossier-metrics>div{min-width:0;background:#1d2e3b;border:1px solid #324957;border-radius:7px;padding:9px}
+.dossier-metrics small{display:block;color:#a3b8c7;font-size:9px;line-height:1.5}
+.dossier-metrics b{display:block;color:#ecf5f9;font-size:16px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.dossier-entry{display:block;text-align:left;background:transparent;border:0;border-bottom:1px solid #344653;padding:9px 4px;width:100%;color:#ecf1f6;cursor:pointer}
+.dossier-entry:hover{background:#293f50}
+.dossier-entry strong,.dossier-entry small{display:block}.dossier-entry small{color:#9bb3c1;font-size:9.5px;line-height:1.5;margin-top:2px}
+.dossier-scroll{max-height:320px;overflow-y:auto;overscroll-behavior:contain}
+.dossier-search{display:block;width:100%;box-sizing:border-box;border:1px solid #456175;border-radius:7px;background:#172733;color:#e6edf4;padding:8px 9px;margin:6px 0 8px;font-size:11px}
+.dossier-national{margin:9px 0;border:1px solid #334654;border-radius:7px;background:#162530}
+.dossier-national summary{cursor:pointer;padding:9px 10px;color:#bdd1dd;font-size:10.5px}
+.dossier-national[open]{padding-bottom:8px}
+.dossier-intro{font-size:10px;line-height:1.55;color:#9db6c5;margin:6px 0}
+@media(max-width:560px){.dossier-tabs button{padding:7px 8px;font-size:10px}.dossier-metrics b{font-size:14px}}
