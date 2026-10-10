@@ -1,0 +1,40 @@
+name: Housing research - official BKG 2024 county geometry
+on:
+  push:
+    branches:
+      - research/housing-crisis-20261010
+    paths:
+      - 'research/housing/build_bkg_counties.py'
+      - '.github/workflows/housing-bkg-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: housing-bkg-geometry-build
+  cancel-in-progress: false
+jobs:
+  official-county-geometry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/housing-crisis-20261010
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --quiet shapely
+      - name: Fetch BKG official complete 2024 county geometries and audit all 400 district IDs
+        run: python research/housing/build_bkg_counties.py
+      - name: Preserve official geometries, compressed original and QA
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/housing/raw/bkg_counties_2024_arcgis_response.geojson.gz
+          git add topics/housing/data/germany-counties-2024.geojson
+          git add research/housing/qa/bkg_2024_400_county_geometries.json
+          if ! git diff --cached --quiet; then
+            git commit -m "housing GIS: 400/400 source-licensed 2024 county geometries [skip ci]"
+            git pull --rebase origin research/housing-crisis-20261010
+            git push origin HEAD:research/housing-crisis-20261010
+          fi
