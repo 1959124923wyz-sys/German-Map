@@ -35,7 +35,13 @@ def run(browser,mobile=False):
     assert "2025" in page.locator("#legend").inner_text()
     assert "欧元" in page.locator("#value").inner_text()
     assert page.locator("main .housing-rank-row").count()==8
-    assert page.locator("#housingMetric option").count()==11
+    assert page.locator("#housingMetric option").count()==12
+    assert page.evaluate("GermanHousingResearch.state().completionsReady") is True
+    page.locator("#housingMetric").select_option("completed_dwellings_new_residential_buildings_2023")
+    assert page.evaluate("GermanHousingResearch.state().validCount")==400
+    assert "Regionalstatistik" in page.locator("#sourceCredit").inner_text()
+    assert "2023" in page.locator("#yearLabel").inner_text()
+    page.locator("#housingMetric").select_option("asking_rent_2025_eur_m2")
     assert page.evaluate("GermanHousingResearch.state().homelessReady") is True
     page.locator("#housingMetric").select_option("sheltered_homeless_2025")
     assert page.evaluate("GermanHousingResearch.state().validCount")==394
