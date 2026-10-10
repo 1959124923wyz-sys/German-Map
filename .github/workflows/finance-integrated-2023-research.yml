@@ -5,6 +5,7 @@ on:
     paths:
       - 'research/finance/regional-expansion/inspect_integrated_2023.py'
       - 'research/finance/regional-expansion/normalize_integrated_2023.py'
+      - 'research/finance/regional-expansion/tests/validate_2023_integrated.py'
       - '.github/workflows/finance-integrated-2023-research.yml'
   workflow_dispatch:
 permissions:
@@ -27,6 +28,7 @@ jobs:
         run: |
           python research/finance/regional-expansion/inspect_integrated_2023.py
           python research/finance/regional-expansion/normalize_integrated_2023.py
+          python research/finance/regional-expansion/tests/validate_2023_integrated.py
       - name: Commit source hash, 2023 state CSVs and cross-year entity audit on research branch only
         run: |
           set -euo pipefail
