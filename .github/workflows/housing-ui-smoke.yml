@@ -34,8 +34,8 @@ jobs:
           import json
           p=json.load(open('topics/housing/data/atlas-counties.json',encoding='utf8'))
           d=json.load(open('topics/housing/data/stock-counties.json',encoding='utf8'))
-          assert len(p['counties'])==402 and len(d['counties'])==400
-          assert p['meta']['coverage_on_existing_402_map']['asking_rent_2025_eur_m2']==399
+          assert len(p['counties'])==400 and len(d['counties'])==400
+          assert p['meta']['coverage_on_official_400_geometry']['asking_rent_2025_eur_m2']==400
           PY
       - name: Install local Leaflet and browser
         run: |
