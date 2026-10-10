@@ -1,0 +1,21 @@
+{
+  "source": "https://www.statistik.bayern.de/mam/produkte/veroffentlichungen/statistische_berichte/f2200c_202500.xlsx",
+  "county_count": 96,
+  "new_residential_finished_dwellings": 39204,
+  "all_dwellings_finished": 47359,
+  "bavaria_2025_official_all_dwellings": 47359,
+  "regierungsbezirke_checks": {
+    "Oberbayern": 13211,
+    "Niederbayern": 5108,
+    "Oberpfalz": 4431,
+    "Oberfranken": 2563,
+    "Mittelfranken": 4915,
+    "Unterfranken": 3244,
+    "Schwaben": 5732
+  },
+  "notes": [
+    "Exact full administrative district code 09 + 3-digit Bayern region code",
+    "Report 2025 is newer than 2023 nationwide regionalstatistik static archive",
+    "Dwellings in new residential buildings and all completed dwellings are distinct measures"
+  ]
+}
