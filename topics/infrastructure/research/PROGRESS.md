@@ -23,3 +23,18 @@
 
 ## Output contract
 Every record includes `source_url`, `data_year`, `geographical_scope`, `measurement_definition`, `comparability`, `verified_status`, and explicit null for missing. Keep historical reports and live status separate.
+
+## R9 checkpoint (2026-10-10) · verified successful GitHub writes
+- **Major acquisition:** completed ArcGIS API extraction of **52,553** unique geocoded BASt-derived features (2025-09 publisher snapshot), **51,707** linked to all 16 states, **846** missing state codes. Data is committed to `research/candidate_bridge_arcgis_2025.json`, with reproduction script in `research/scripts/import_bridge_arcgis.py`; successful acquisition run: https://github.com/1959124923wyz-sys/German-Map/actions/runs/38036429551.
+- **Critical caution:** only **9,969 / 51,707** state-assigned geocoded records have valid 1.0–4.0 DIN status grades (19.3%). State-level condition coverage ranges about 13%–24%; published bridge-state poor-condition rates are currently NOT representative and must not be visualized as full-state comparisons.
+- Improved API request batching to 120 IDs after 350-ID requests returned HTTP 404; added strict state-code parsing and missing-state preservation. Further diagnostic run is underway to determine why grades are missing, including publisher `teil_der_bast_liste` field.
+- **New confirmed source:** Saxony official Nov 2024 bridge-condition table `https://www.lasuv.sachsen.de/download/Bauwerksliste_Tabelle_Zustand_Stand_20241121.pdf` p.3; 69/952 federal B-road bridge substructures (7.25%) vs 164/1688 state-road substructures (9.72%) DIN≥3.0. Store six condition-band counts as verified originals; these are *not* municipal or motorway inventory.
+- Berlin March 2026 masterplan, June 2025 baseline: 1,047 state-managed bridge structures, 19% good/very good, 175 replacements and 125 major repairs planned over 15 years, projected €1.84 billion (not disbursed). Bavaria federal-road bridge poor status in 2024 amounted to 10% of inspected bridge *area* (8.8% 3.0–3.4, 1.2% 3.5–4.0); Brandenburg 66 bridges with stress-corrosion-sensitive tendons as of Dec 2025 (not 66 structurally unsafe). Saved to `data/condition_evidence.json`.
+- **Nine additional primary-source event leads** stored to `research/events_candidates_R9.json` with `map_ready:false`, exact reported-date status and source URLs. Not yet merged into selected 22 records or map; avoid double-counting.
+- Current older 16-state pilot score unchanged, and main branch untouched.
+
+### Outstanding
+1. Compare ArcGIS publisher selection condition fields against official BASt full bridge table; do not compute normative 16-state bridge score using the 19.3% rated subset.
+2. Discover ZEB roads in missing states; process and retain old 2020/21 inspection years where only old official data exist.
+3. Ensure final bridge diagnostic GitHub Actions run succeeds and has committed updated candidate snapshot.
+4. Review 9 candidate events for point precision, duplicate IDs and post-publication updates before promoting from candidate to visible event archive.
