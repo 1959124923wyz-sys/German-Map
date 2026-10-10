@@ -111,6 +111,28 @@ class RouteGraph{
   }
   return best;
  }
+ // Select a connected official track run around an unobserved green click.
+ // Stop at ambiguous junctions, route changes and capped travel distance.
+ // Every displayed part still comes verbatim from DB InfraGO.
+ walk(route,point,maxKm=22,maxParts=140){
+  const hit=this.nearest(route,point);
+  if(!hit)return null;
+  const seen=new Set([hit.edge]),parts=[hit.edge.part];
+  let km=hit.edge.length;
+  const traverse=node=>{
+   for(let steps=0;steps<maxParts&&km<maxKm;steps++){
+    const choices=node.adj.filter(([,edge])=>!seen.has(edge));
+    if(choices.length!==1)break;
+    const [other,edge]=choices[0];
+    if(km+edge.length>maxKm)break;
+    km+=edge.length;seen.add(edge);parts.push(edge.part);
+    node=other;
+   }
+  };
+  traverse(hit.edge.nodes[0]);
+  traverse(hit.edge.nodes[1]);
+  return {route:String(route),parts,km};
+ }
  // Certain published observation links refer to a different DB route label
  // than the later infrastructure extract. Reconcile only through identical
  // geographic curves, never by guessing a numerical ID.
