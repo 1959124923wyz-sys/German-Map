@@ -11,6 +11,7 @@ keep unmatched features as null, never extrapolate or name-match.
 from __future__ import annotations
 
 import csv
+import hashlib
 import io
 import json
 import re
@@ -33,6 +34,7 @@ SOURCES = {
 }
 METRICS = {
     "asking_rent_2025_eur_m2": ("2024", "preis_miet", "2025", "EUR/m2", "Wiedervermietungsmieten, internet advertised, net cold"),
+    "building_land_price_2024_eur_m2": ("2024", "preis_baul", "2024", "EUR/m2", "Average location purchase price for one- or two-family residential building land; NOT multi-family land"),
     "vacancy_2022_pct": ("2022", "wohn_leer", "2022", "pct", "Unoccupied dwellings including non-marketable stock, excludes leisure homes"),
     "owner_occupier_2022_pct": ("2022", "wohn_eigen", "2022", "pct", "Share of households in self-occupied property, not proportion of flats"),
     "living_area_2022_m2_person": ("2024", "fl_wohn", "2022", "m2/person", "Average living area per capita, microcensus estimate"),
@@ -141,7 +143,16 @@ def get_map_ids():
     return ids
 
 def output():
-    current = {v: read_official(fetch(url), v) for v, url in SOURCES.items()}
+    rawdir=ROOT/"research/housing/raw"
+    rawdir.mkdir(parents=True,exist_ok=True)
+    current={}
+    manifests={}
+    for vintage,url in SOURCES.items():
+        raw=fetch(url)
+        filename=f"deutschlandatlas_krs{vintage}_ha26.csv"
+        (rawdir/filename).write_bytes(raw)
+        manifests[filename]={"source":url,"sha256":hashlib.sha256(raw).hexdigest(),"bytes":len(raw)}
+        current[vintage]=read_official(raw,vintage)
     county_ids = get_map_ids()
     data = []
     for ags in sorted(set(current["2024"][0]) | set(current["2022"][0])):
@@ -178,6 +189,7 @@ def output():
     with (DATA_DIR/"deutschlandatlas_ha26_housing_counties.csv").open("w", encoding="utf-8", newline="") as f:
         w=csv.DictWriter(f,fieldnames=["id","name",*METRICS])
         w.writeheader();w.writerows(data)
+    (QA_DIR/"ha26_raw_manifest.json").write_text(json.dumps(manifests,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
     (QA_DIR/"ha26_join_audit.json").write_text(json.dumps({
         "official_csv":SOURCES, "source_csv_headers":{k:v[1] for k,v in current.items()},
         "geo_crosswalk":diff,"coverage":availability,
