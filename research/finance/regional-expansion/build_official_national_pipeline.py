@@ -132,8 +132,20 @@ def load_integrated(paths,tax):
    allrows+=rows
  counts=Counter(x['reporting_unit_class'] for x in allrows)
  assert counts=={'municipality':10750,'county_administration':294,'joint_administration':830},counts
+ # These atlas rows are NOT omitted debt values: 4 city-state units are outside the
+ # municipal debt workbook; 202 other atlas records have no tax-capacity metric
+ # (primarily independent forest/lake/unincorporated geography). Preserve every one.
+ integrated_ids={x['municipality_ags8_candidate'] for x in allrows if x['reporting_unit_class']=='municipality'}
+ residual=[x for x in tax if x['ags8'] not in integrated_ids]
+ assert len(residual)==206,len(residual)
+ assert sum(x['state_code'] in {'02','04','11'} for x in residual)==4
+ assert sum(not x['tax_capacity_eur_per_capita'] for x in residual)==202
+ gap_rows=[dict(ags8=x['ags8'],name_de=x['name_de'],state_code=x['state_code'],
+   tax_capacity_2024=x['tax_capacity_eur_per_capita'],
+   reason='city_state_not_in_integrated_debt_scope' if x['state_code'] in {'02','04','11'} else 'tax_capacity_missing_no_integrated_debt_entity') for x in residual]
+ writecsv(OUT/'atlas_tax_entities_without_integrated_debt_2024.csv',gap_rows,list(gap_rows[0]))
  assert len(allrows)==11874 and len({x['original_region_key'] for x in allrows})==11874
- audit={'source_url':FILES[0][1],'source_sha256':FILES[0][2],'reporting_rows':11874,'municipalities':10750,'county_administrations_not_full_county_totals':294,'joint_administrations':830,'municipal_ags_matched_other_official_2024_atlas':10750,'municipal_missing_from_atlas':0,'atlas_2024_tax_ags_without_debt_row':206,'cities_not_in_scope':'Berlin,Hamburg,Bremen','status':'research_only_not_national_choropleth','official_publication_discrepancy':'published national 342761 million EUR vs 13 state totals sum 343762 million EUR (1001 million) unresolved','caution':'Do not add county government / joint administrations / municipalities; different scopes can overlap. No missing values converted to zero.'}
+ audit={'source_url':FILES[0][1],'source_sha256':FILES[0][2],'reporting_rows':11874,'municipalities':10750,'county_administrations_not_full_county_totals':294,'joint_administrations':830,'municipal_ags_matched_other_official_2024_atlas':10750,'municipal_missing_from_atlas':0,'atlas_2024_tax_ags_without_debt_row':206,'atlas_2024_outside_integrated_city_states':4,'atlas_2024_outside_integrated_tax_missing_other':202,'cities_not_in_scope':'Berlin,Hamburg,Bremen','status':'research_only_not_national_choropleth','official_publication_discrepancy':'published national 342761 million EUR vs 13 state totals sum 343762 million EUR (1001 million) unresolved','caution':'Do not add county government / joint administrations / municipalities; different scopes can overlap. No missing values converted to zero.'}
  writemeta('integrated_debt_2024_audit.json',audit)
  return allrows
 def join_cities(debt,tax,cash):
