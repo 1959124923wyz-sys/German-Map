@@ -126,7 +126,7 @@
   },
   "coverage": {
     "asking_rent_2025_eur_m2": 399,
-    "building_land_price_2024_eur_m2": 0,
+    "building_land_price_band_2024": 399,
     "vacancy_2022_pct": 399,
     "owner_occupier_2022_pct": 399,
     "living_area_2022_m2_person": 399,
