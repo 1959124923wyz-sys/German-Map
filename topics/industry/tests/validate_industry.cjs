@@ -11,6 +11,10 @@ const r5b=JSON.parse(fs.readFileSync(path.join(root,'research/r5b-manufacturing-
 const r5c=JSON.parse(fs.readFileSync(path.join(root,'research/r5c-screened-manufacturing.json'),'utf8'));
 const r5d=JSON.parse(fs.readFileSync(path.join(root,'research/r5d-2025-factory-closures.json'),'utf8'));
 const employment=JSON.parse(fs.readFileSync(path.join(root,'data/county-employment.json'),'utf8'));
+const crosswalk=JSON.parse(fs.readFileSync(path.join(root,'data/county_ags_crosswalk.json'),'utf8'));
+assert.equal(crosswalk.records.length,402,'402 county AGS source geometry crosswalk');
+assert.equal(new Set(crosswalk.records.map(x=>x.ags5)).size,402,'402 AGS must be unique');
+for(const x of crosswalk.records)assert.match(x.ags5,/^[0-9]{5}$/,'invalid AGS');
 const ags=JSON.parse(fs.readFileSync(path.join(root,'data/ags-crosswalk-402-to-400.json'),'utf8'));
 assert.equal(ags.features.length,402);
 assert.equal(new Set(ags.features.map(e=>e.canonical_ags)).size,400);
@@ -74,6 +78,7 @@ assert.match(js,/COUNTY_HINTS/);
 assert.match(js,/isMajor/);
 assert.match(js,/source_url/);
 assert.match(js,/county-employment.json/);
+assert.match(js,/String\(feature.id\|\|''\)/,'Official employment metric must use AGS, not state-name key');
 assert.match(js,/r4-events-and-updates.json/);
 assert.match(js,/r5a-eurofound-sites.json/);
 assert.match(js,/r5b-manufacturing-cases.json/);
