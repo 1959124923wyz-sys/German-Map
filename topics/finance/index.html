@@ -8,7 +8,7 @@
 <meta name="description" content="德国2025年地方财政收支地图，州级涂色、莱法州12座非县辖市数据与核实过的财政紧缩事件。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css?v=clean1">
-<link rel="stylesheet" href="topic.css?v=f5">
+<link rel="stylesheet" href="topic.css?v=f6">
 </head>
 <body>
 <header>
@@ -42,7 +42,13 @@
     <span>显示地方财政事件</span>
     <small>勾选查看 · 悬停预览</small>
    </label>
-   <button type="button" id="resetView" class="finance-reset">返回全国</button>
+   <div class="finance-state-actions">
+    <label for="stateJump" class="finance-state-label">直接切换州</label>
+    <select id="stateJump" class="finance-state-jump" aria-label="直接选择要查看的联邦州，无需返回全国">
+     <option value="">选择联邦州…</option>
+    </select>
+    <button type="button" id="resetView" class="finance-reset" title="缩放至德国全境">全国</button>
+   </div>
   </div>
   <section class="safety-panel finance-summary" aria-live="polite">
    <div class="safety-head"><strong id="sectionTitle">2025年人均地方财政收支</strong><span class="safety-hint">点击州放大查看</span></div>
@@ -111,6 +117,6 @@
 <script src="data/finance-data.js?v=f1"></script>
 <script src="data/finance-history.js?v=h1"></script>
 <script src="data/finance-integrated.js?v=r10"></script>
-<script src="topic.js?v=f5"></script>
+<script src="topic.js?v=f6"></script>
 </body>
 </html>

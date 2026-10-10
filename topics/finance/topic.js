@@ -25,7 +25,7 @@
   '2026-H1-cities':{label:'2026上半年 · 12座非县辖市',scope:'city',period:'2026-H1',count:12},
   '2026-H1-counties':{label:'2026上半年 · 24县政府本级',scope:'county_budget_only',period:'2026-H1',count:24}
  };
- let allCountyShapes=new Map(), stateGeo=null, countyGeo=null;
+ let allCountyShapes=new Map(), stateGeo=null, countyGeo=null, countyDisplayedFor=null;
  const readyCases=D.cases.filter(x=>x.map_ready);
  const withinBounds=L.latLngBounds([[47.15,5.4],[55.1,15.6]]);
  const number=n=>new Intl.NumberFormat('zh-CN',{maximumFractionDigits:1}).format(n);
@@ -171,31 +171,49 @@
  }
  function renderCountyOutline(){
   if(!map||!countiesLayer)return;
+  // All counties previously shared one Canvas interaction layer with the
+  // states. Even invisible counties in neighbouring states swallowed clicks.
+  // The Leaflet Canvas element is shared; per-feature pointer-events changes
+  // would disable or enable the ENTIRE canvas, not individual county paths.
   if(view.focusState&&map.getZoom()>=6.5){
+   if(countyDisplayedFor!==view.focusState){
+    countiesLayer.clearLayers();
+    const prefix=AGS[view.focusState];
+    for(const [id,layer] of allCountyShapes)
+     if(prefix&&String(id).startsWith(prefix))countiesLayer.addLayer(layer);
+    countyDisplayedFor=view.focusState;
+   }
    if(!map.hasLayer(countiesLayer))countiesLayer.addTo(map);
-   countiesLayer.setStyle(countyStyle);
-   // Transparent county geometries outside the focused state must not steal
-   // clicks meant for a neighbouring state in the persistent choropleth.
-   countiesLayer.eachLayer(layer=>{
-    const selectable=String(layer.feature?.id||'').startsWith(AGS[view.focusState]||'!!');
-    const element=layer.getElement();
-    if(element)element.style.pointerEvents=selectable?'auto':'none';
-   });
-  }else if(map.hasLayer(countiesLayer))map.removeLayer(countiesLayer);
+  }else if(map.hasLayer(countiesLayer)){
+   map.removeLayer(countiesLayer);
+  }
  }
  function zoomToState(id,name){
+  const layer=statesLayer.getLayers().find(x=>x.feature?.properties?.id===id);
+  if(!layer)return;
+  const changed=view.focusState!==id;
   view.county=null;view.currentCounty=null;view.selected=null;view.limit=8;
-  displaySelectedState(id,name);
+  if(changed)$('loanDrawer').open=false;
+  // Preserve national colour, event visibility and current archive settings;
+  // switching states is a one-click operation, not a reset-to-Germany flow.
+  displaySelectedState(id,name||layer.feature?.properties?.name);
   $('sectionTitle').textContent='2025年人均地方财政收支';
   $('districtPanel').hidden=id!=='DE-RP';
   $('districtHint').textContent='点击县市边界查看地方数据；仅已公开的统计地区有数值。';
-  const layer=statesLayer.getLayers().find(x=>x.feature?.properties?.id===id);
-  if(layer){
-   map.stop();
-   map.fitBounds(layer.getBounds(),{padding:[32,32],maxZoom:8,animate:false});
-   renderCountyOutline();
+  $('stateJump').value=id;
+  if(countyDisplayedFor!==id&&countiesLayer){
+   // Release the old county hitboxes BEFORE painting the next state's
+   // polygons so a neighbour's first click always reaches its state.
+   if(map.hasLayer(countiesLayer))map.removeLayer(countiesLayer);
+   countiesLayer.clearLayers();
+   countyDisplayedFor=null;
   }
+  map.stop();
+  map.fitBounds(layer.getBounds(),{padding:[32,32],maxZoom:8,animate:false});
+  renderCountyOutline();
   renderList();
+  const sidebar=document.querySelector('.finance-summary');
+  if(sidebar)sidebar.scrollTop=0;
  }
  function showCounty(feature){
   if(!view.focusState||!String(feature.id||'').startsWith(AGS[view.focusState]))return;
@@ -232,6 +250,9 @@
  }
  function resetView(){
   view.focusState=null;view.county=null;view.currentCounty=null;view.selected=null;
+  $('stateJump').value='';
+  countyDisplayedFor=null;
+  if(countiesLayer){if(map?.hasLayer(countiesLayer))map.removeLayer(countiesLayer);countiesLayer.clearLayers();}
   view.limit=8;view.rpPeriod='2025-full-cities';
   $('rpPeriod').value=view.rpPeriod;
   resetArea();renderList();
@@ -244,6 +265,12 @@
   renderList();renderMarkers();
  }
  function setupUI(){
+  $('stateJump').addEventListener('change',()=>{
+   const id=$('stateJump').value;
+   if(!id){resetView();return;}
+   const layer=statesLayer?.getLayers().find(x=>x.feature?.properties?.id===id);
+   if(layer)zoomToState(id,layer.feature?.properties?.name);
+  });
   $('showEvents').addEventListener('change',()=>{
    view.showEvents=$('showEvents').checked;
    $('eventPanel').hidden=!view.showEvents;
@@ -284,6 +311,11 @@
    fetch('../../data/germany-states.geojson').then(r=>{if(!r.ok)throw Error('州界无法读取');return r.json()}),
    fetch('../../data/germany-counties.geojson').then(r=>{if(!r.ok)throw Error('县界无法读取');return r.json()})]);
   stateGeo=sf;countyGeo=cf;
+  const stateSelect=$('stateJump');
+  const stateOptions=sf.features.map(f=>({
+   id:f.properties?.id,name:f.properties?.name||f.properties?.id
+  })).filter(x=>x.id&&x.name).sort((a,b)=>a.name.localeCompare(b.name,'zh-CN'));
+  stateOptions.forEach(x=>stateSelect.add(new Option(x.name,x.id)));
   const countyIds=new Set(cf.features.map(f=>f.id));
   const unmatched=readyCases.filter(r=>!countyIds.has(r.county));
   if(unmatched.length)throw Error('地图候选县级AGS没有匹配的边界：'+unmatched.map(x=>x.id).join(','));
@@ -299,7 +331,9 @@
    hasStateLayer:()=>map.hasLayer(statesLayer),
    hasCountyDetail:()=>map.hasLayer(countiesLayer),
    stateLayer:()=>statesLayer,
-   eventMarkers:()=>bubblesLayer.getLayers()
+   eventMarkers:()=>bubblesLayer.getLayers(),
+   selectedCounties:()=>countiesLayer?.getLayers().map(l=>l.feature?.id)||[],
+   countyRenderer:()=>countiesLayer?.getLayers()[0]?.getElement()?.tagName||null
   });
   renderMap();showStatus('');
  }
