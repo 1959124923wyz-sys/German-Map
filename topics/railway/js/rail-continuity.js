@@ -33,12 +33,13 @@ class Backbone{
  // The stations at both ends of a city-pair corridor can be identified from
  // original stop records; they do not need to be guessed from route geometry.
  stations(group,city){
-  const names=[group.startStation,group.endStation];
   const cityKey=String(city||'').toLowerCase();
+  const cityLabel=window.Railway07Cities.cityName(city).toLowerCase();
   const alternatives=group.members.filter(m=>{
    const from=m.leg.from_station,to=m.leg.to_station;
-   return [from,to].some(n=>n===city||n===group.startStation||n===group.endStation||
-     String(n||'').toLowerCase().startsWith(cityKey+' '));
+   return [from,to].some(n=>n===city||
+      window.Railway07Cities.cityName(n).toLowerCase()===cityLabel||
+      String(n||'').toLowerCase().startsWith(cityKey+' '));
   });
   const points=[];
   for(const member of alternatives.slice(0,20))for(const part of member.parts){
