@@ -61,6 +61,9 @@ def run():
  if any(n%5 for n in counts):raise ValueError("Expected 5-person disclosure rounding")
  total=sum(counts)
  if not 300_000 <= total <= 650_000:raise ValueError(f"Implausible 2025 district subtotal {total}")
+ # Independent federal press release (2025-07-08) rounded national count: 474,700.
+ # County disclosure-rounded totals need not add exactly, but should be close.
+ if abs(total-474_700)>1_000:raise ValueError(f'County subtotal {total} inconsistent with official 2025 national 474,700')
  for p in (QA,OUT,WEB):p.mkdir(parents=True,exist_ok=True)
  saxony=json.loads((WEB/"saxony-homeless-counties.json").read_text(encoding="utf-8"))
  sax_checks=[]
@@ -89,7 +92,10 @@ def run():
  audit={"source":URL,"table":"22971-0080","table_dates":sorted(dates),"dimension_headers_total_col":allcol,
         "exact_3_dimension_totals":[headers[0][allcol],headers[1][allcol],headers[2][allcol]],
         "county_keys":len(extracted),"numerical":len(counts),"nulls":400-len(counts),
-        "rounded_subtotal":total,"legacy_or_deprecated_codes":legacy,
+        "rounded_subtotal":total,"destatis_published_national_2025":474700,
+        "national_check_difference":total-474700,
+        "destatis_published_national_source":"https://www.destatis.de/DE/Presse/Pressemitteilungen/2025/07/PD25_246_229.html",
+        "legacy_or_deprecated_codes":legacy,
         "saxony_checks":sax_checks,
         "saxony_differences":sum(c["difference"]!=0 for c in sax_checks),
         "warnings":["This is JAN 2025 rather than 2026","Do not sum country-nationality or sex disaggregated counts",
