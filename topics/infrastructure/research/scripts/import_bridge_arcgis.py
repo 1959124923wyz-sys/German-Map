@@ -69,6 +69,8 @@ def summarize(rows, expected):
     listed_grade_present = defaultdict(lambda: [0,0])
     invalid_zn_values = defaultdict(int)
     source_grade_class_crosscheck = defaultdict(lambda: {"total":0,"decoded_min":None,"decoded_max":None,"poor":0})
+    county_stats = defaultdict(lambda:{"features":0,"poor_features":0,"valid_area_m2":0.0,"poor_area_m2":0.0})
+    county_missing_by_state = defaultdict(int)
     ids = set()
     for record in rows:
         a=record["attributes"]
@@ -84,7 +86,9 @@ def summarize(rows, expected):
             continue
         t=stats[key]
         t["features"]+=1
-        if a.get("kreis"):t["county_present"]+=1
+        district_name=str(a.get("kreis") or "").strip()
+        if district_name:t["county_present"]+=1
+        else:county_missing_by_state[key]+=1
         if num(a.get("jahr_letzte_hauptpruefung")) is not None:t["inspections_year_present"]+=1
         raw_grade=num(a.get("zn"))
         # ArcGIS numeric field appears to drop decimal point for non-whole values:
@@ -112,6 +116,13 @@ def summarize(rows, expected):
         if z>=3:cross["poor"]+=1
         area=num(a.get("flaeche"))
         valid_area = area is not None and 0 < area < 10000000
+        if district_name:
+            c=county_stats[(key,district_name)]
+            c["features"]+=1
+            if z>=3:c["poor_features"]+=1
+            if valid_area:
+                c["valid_area_m2"]+=area
+                if z>=3:c["poor_area_m2"]+=area
         if not valid_area:t["area_missing_or_invalid"]+=1
         if z is None or not 1<=z<=4:
             t["condition_missing"]+=1
@@ -141,7 +152,18 @@ def summarize(rows, expected):
              condition_valid_pct_of_geocoded=ratio("condition_valid","features"))
         results.append(v)
     if sum(x["features"] for x in results)+missing_state!=expected:raise RuntimeError("state totals + missing attribution fail")
-    return results,missing_state,dict(missing_grade_reason),dict(listed_grade_present),dict(sorted(invalid_zn_values.items(),key=lambda x:-x[1])[:15]),dict(source_grade_class_crosscheck)
+    county_rows=[]
+    for (state_id,district_name),v in sorted(county_stats.items()):
+        county_rows.append(dict(iso=state_id,kreis_source_label=district_name,
+            features=v["features"],poor_features=v["poor_features"],
+            poor_pct_count=round(100*v["poor_features"]/v["features"],3),
+            valid_area_m2=round(v["valid_area_m2"],2),
+            poor_area_m2=round(v["poor_area_m2"],2),
+            poor_pct_area=round(100*v["poor_area_m2"]/v["valid_area_m2"],3) if v["valid_area_m2"] else None,
+            small_denominator_warning=v["features"]<20))
+    if sum(r["features"] for r in county_rows)+sum(county_missing_by_state.values())!=expected-missing_state:
+        raise RuntimeError("county names and missing county counts do not reconcile with known state count")
+    return results,missing_state,dict(missing_grade_reason),dict(listed_grade_present),dict(sorted(invalid_zn_values.items(),key=lambda x:-x[1])[:15]),dict(source_grade_class_crosscheck),county_rows,dict(county_missing_by_state)
 
 def main():
     count=http_json({"f":"json","where":"1=1","returnCountOnly":"true"})
@@ -164,7 +186,7 @@ def main():
         if retrieved!=set(batch):raise RuntimeError("ArcGIS returned wrong ID set")
         rows.extend(records)
         if offset%3600==0:print("Downloaded",len(rows),"/",expected,flush=True)
-    results,unattributed,grade_gaps,listing_coverage,invalid_zn,class_crosscheck=summarize(rows,expected)
+    results,unattributed,grade_gaps,listing_coverage,invalid_zn,class_crosscheck,county_rows,county_missing=summarize(rows,expected)
     output={
       "status":"candidate_geocoded_subset_not_full_BASt",
       "snapshot_claim":"2025-09",
@@ -190,7 +212,22 @@ def main():
       "weight":"bridge area m2 among records with valid condition and valid area",
       "not_for_score":True
     }
+    county_output={
+      "status":"candidate_source_labels_not_geographical_polygon_join",
+      "snapshot_claim":"2025-09",
+      "retrieved_utc":dt.datetime.now(dt.timezone.utc).isoformat(),
+      "source_url":BASE,
+      "district_label_meaning":"Unvalidated literal ArcGIS kreis field, not official AGS; no administrative geometry association was performed",
+      "missing_county_name_by_state":county_missing,
+      "small_denominator_flag_below":20,
+      "do_not_use_for_choropleth":True,
+      "not_for_score":True,
+      "counties":county_rows
+    }
+    county_file=DEST.parent / "candidate_bridge_counties_arcgis_2025.json"
     DEST.parent.mkdir(parents=True,exist_ok=True)
+    county_file.write_text(json.dumps(county_output,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
+    print("County source-label groups:",len(county_rows),"no county:",sum(county_missing.values()),flush=True)
     DEST.write_text(json.dumps(output,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
     print("SUCCESS candidate bridge metrics:",str(DEST),"features:",expected,"states:",len(results),flush=True)
     for a in sorted(results,key=lambda x:x["condition_bad_pct_area"] or -1,reverse=True):
