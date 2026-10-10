@@ -5,6 +5,7 @@ on:
     paths:
       - 'research/finance/regional-expansion/inspect_regional_core_county_debt.py'
       - 'research/finance/regional-expansion/normalize_regional_core_county_debt_2023.py'
+      - 'research/finance/regional-expansion/filter_regional_core_debt_2023.py'
       - '.github/workflows/finance-regional-core-debt.yml'
   workflow_dispatch:
 permissions:
@@ -30,7 +31,8 @@ jobs:
           set +e
           (
             python research/finance/regional-expansion/inspect_regional_core_county_debt.py &&
-            python research/finance/regional-expansion/normalize_regional_core_county_debt_2023.py
+            python research/finance/regional-expansion/normalize_regional_core_county_debt_2023.py &&
+            python research/finance/regional-expansion/filter_regional_core_debt_2023.py
           ) > /tmp/finance08_71327.log 2>&1
           code=$?
           cat /tmp/finance08_71327.log
@@ -42,7 +44,7 @@ jobs:
           rc=int(os.environ['EXIT_CODE'])
           log=Path('/tmp/finance08_71327.log').read_text(encoding='utf-8',errors='replace')
           p.write_text(json.dumps({'verified':rc==0,'exit_code':rc,
-             'status':'2023_county_core_debt_parsed' if rc==0 else 'failed_not_imported',
+             'status':'2023_county_core_debt_active_and_historical_validated' if rc==0 else 'failed_not_imported',
              'notes':log[-2500:]},indent=2)+'\n',encoding='utf-8')
           PY
           exit $code
