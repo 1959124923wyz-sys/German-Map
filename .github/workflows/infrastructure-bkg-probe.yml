@@ -1,0 +1,33 @@
+name: Infrastructure BKG official AGS probe
+on:
+  push:
+    branches: [feature/infrastructure-map-phase1]
+    paths:
+      - 'topics/infrastructure/research/scripts/probe_bkg_ags.py'
+      - '.github/workflows/infrastructure-bkg-probe.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: infrastructure-bkg-probe
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/infrastructure-map-phase1
+      - name: Probe German official BKG WFS limited to one feature
+        run: python topics/infrastructure/research/scripts/probe_bkg_ags.py
+      - name: Commit checked probe without claiming AGS coverage
+        run: |
+          git config user.name 'german-map-research-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/infrastructure/research/bkg_wfs_ags_probe.json
+          if ! git diff --cached --quiet; then
+            git commit -m "research: save BKG county AGS WFS probe results"
+            git pull --rebase origin feature/infrastructure-map-phase1
+            git push origin HEAD:feature/infrastructure-map-phase1
+          fi
