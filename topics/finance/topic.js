@@ -69,6 +69,7 @@
   if(!row)return opt.label+'；该地区无同口径数据。';
   let s=opt.label+'。'+(opt.scope==='county_budget_only'?'县政府本级预算，不含下属市镇。':'非县辖市预算。');
   if(Number.isFinite(row.operating_eur))s+=' 日常收支：'+(row.operating_eur/1e6).toFixed(1)+'百万欧元；资本收支：'+(row.capital_eur/1e6).toFixed(1)+'百万欧元。';
+  s+=' 全年与半年不可直接比较。';
   return s;
  }
  function displayArea(title,value,note){
