@@ -37,6 +37,15 @@ def main():
   if year!="2023":raise ValueError(f"Unexpected alternate completion year {year}")
   if key=="DG":
    de_total=val(row[7]);continue
+  # Berlin and Hamburg each have exactly one county, geographically
+  # coextensive with the federal state. The official table reports their
+  # state-level values only; map those exactly to canonical 11000/02000.
+  # Do NOT do this for Bremen, which comprises TWO separate county cities.
+  if key in ("02","11"):
+   canonical={"02":("02000","Hamburg"),"11":("11000","Berlin")}[key]
+   if canonical[1].casefold() not in name.casefold():
+    raise ValueError(f"Unexpected Land for singleton city-state {key}: {name}")
+   key=canonical[0]
   if not re.fullmatch(r"\d{5}",key):continue
   dwellings=val(row[7]);bldgs=val(row[3])
   if key not in expected:
