@@ -463,6 +463,8 @@ try{
   getHiddenCorridors:()=>view.hiddenCorridors,getPhysicalEdgeCount:()=>view.physicalEdges,
   getNetworkGeometryCount:()=>view.backbone.official,getBackboneCoverage:()=>view.backboneCoverage,
   getOfficialPickCount:()=>view.picker.network.items,getCompleteBackboneRoutes:()=>view.backbone.perRoute.size,
+  getOfficialPickEntries:()=>view.picker.network.cells,getDrawnObserved:()=>view.drawnObserved,
+  getVerifiedCorridorPaths:()=>view.backbone.verified,
   getRepaintCount:()=>view.repaints,
   getCanvasCount:()=>document.querySelectorAll('.railway-canvas').length,
   getSpatialBucketCount:()=>view.picker.observed.cells.size,
