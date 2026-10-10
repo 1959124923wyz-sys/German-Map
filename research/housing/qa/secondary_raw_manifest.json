@@ -1,0 +1,12 @@
+{
+  "greix_city_metrics_q2_2026.xlsx": {
+    "url": "https://www.kielinstitut.de/fileadmin/Dateiverwaltung/IfW_Unit/Macroeconomics/GREIX/Mietpreisindex/City_metrics_public.xlsx",
+    "sha256": "39fc62b52af7f0e9c550b72a55a1e60f9df8e69cda39377dcb980be9eb29e178",
+    "bytes": 1465512
+  },
+  "deutschlandatlas_vbgem1222_ha26.csv": {
+    "url": "https://deutschlandatlas.bund.de/fileadmin/Downloaddateien/HA26/Deutschlandatlas_VBGEM1222_HA26.csv",
+    "sha256": "4ef0d5691090bc17e2dad5d31d5b5d8ab8fe8a11c94028798f3821ed2d70ba5e",
+    "bytes": 142572
+  }
+}

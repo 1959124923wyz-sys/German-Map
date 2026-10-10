@@ -1,0 +1,4602 @@
+Regionalschlüssel;Gemeindeverbandsname;preis_miet_best
+10010000;Flensburg, Stadt;6,96
+10020000;Kiel, Landeshauptstadt;7,64
+10030000;Lübeck, Hansestadt;7,47
+10040000;Neumünster, Stadt;6,22
+10510011;Brunsbüttel, Stadt;5,74
+10510044;Heide, Stadt;6,68
+10515163;Burg-St. Michaelisdonn;5,5
+10515166;Marne-Nordsee;5,92
+10515169;Eider;5,24
+10515172;Heider Umland;6,03
+10515175;Mitteldithmarschen;5,67
+10515178;Büsum-Wesselburen;7,09
+10530032;Geesthacht, Stadt;7,93
+10530083;Lauenburg/ Elbe, Stadt;6,82
+10530090;Mölln, Stadt;6,87
+10530100;Ratzeburg, Stadt;6,87
+10530116;Schwarzenbek, Stadt;7,59
+10530129;Wentorf bei Hamburg;8,9
+10535308;Berkenthin;6,61
+10535313;Breitenfelde;6,35
+10535318;Büchen;7,07
+10535323;Hohe Elbgeest;8,27
+10535343;Lütau;6,42
+10535358;Lauenburgische Seen;6,73
+10535373;Schwarzenbek-Land;7,08
+10535391;Sandesneben-Nusse;6,63
+10539105;Sachsenwald (Forstgutsbez.),gemfr.Geb.;-9999
+10540033;Friedrichstadt, Stadt;6,51
+10540056;Husum, Stadt;7,25
+10540108;Reußenköge;5,25
+10540138;Tönning, Stadt;6,52
+10540168;Sylt;11,49
+10545417;Eiderstedt;7,91
+10545439;Landschaft Sylt;11,44
+10545453;Viöl;6,11
+10545459;Pellworm;7,06
+10545488;Föhr-Amrum;9,13
+10545489;Südtondern;6,36
+10545492;Nordsee-Treene;6,28
+10545494;Mittleres Nordfriesland;6,13
+10550001;Ahrensbök;6,46
+10550004;Bad Schwartau, Stadt;7,95
+10550007;Bosau;6,45
+10550010;Dahme;7,47
+10550012;Eutin, Stadt;7,03
+10550016;Grömitz;8,26
+10550018;Grube;6,99
+10550021;Heiligenhafen, Stadt;7,62
+10550025;Kellenhusen (Ostsee);7,71
+10550028;Malente;6,93
+10550032;Neustadt in Holstein, Stadt;6,8
+10550033;Oldenburg in Holstein, Stadt;6,54
+10550035;Ratekau;7
+10550040;Stockelsdorf;7,47
+10550041;Süsel;6,4
+10550042;Timmendorfer Strand;9,53
+10550044;Scharbeutz;8,79
+10550046;Fehmarn, Stadt;7,48
+10555543;Oldenburg-Land;6,43
+10555546;Lensahn;6,13
+10555591;Ostholstein-Mitte;6,82
+10560002;Barmstedt, Stadt;7,56
+10560005;Bönningstedt;8,74
+10560015;Elmshorn, Stadt;7,75
+10560018;Halstenbek;9,23
+10560021;Hasloh;8,6
+10560025;Helgoland;9,69
+10560039;Pinneberg, Stadt;8,24
+10560041;Quickborn, Stadt;8,62
+10560043;Rellingen;9,01
+10560044;Schenefeld, Stadt;9,28
+10560048;Tornesch, Stadt;8,23
+10560049;Uetersen, Stadt;7,58
+10560050;Wedel, Stadt;8,79
+10565616;Elmshorn-Land;7,83
+10565636;Hörnerkirchen;6,69
+10565660;Rantzau;6,95
+10565687;Pinnau;8,35
+10565690;Geest und Marsch Südholstein;7,87
+10570001;Ascheberg (Holstein);6,11
+10570008;Bönebüttel;6,73
+10570009;Bösdorf;6,29
+10570057;Plön, Stadt;6,64
+10570062;Preetz, Stadt;6,98
+10570091;Schwentinental, Stadt;7,46
+10575727;Amt Lütjenburg;6,15
+10575739;Großer Plöner See;6,1
+10575747;Preetz-Land;6,2
+10575755;Probstei;7,34
+10575775;Selent/ Schlesen;5,99
+10575782;Schrevenborn;7,89
+10575785;Bokhorst-Wankendorf;6,12
+10580005;Altenholz;7,57
+10580034;Büdelsdorf, Stadt;7,02
+10580043;Eckernförde, Stadt;7,47
+10580092;Kronshagen;8,35
+10580135;Rendsburg, Stadt;6,46
+10580169;Wasbek;6,67
+10585803;Achterwehr;6,76
+10585822;Dänischenhagen;7,44
+10585824;Dänischer Wohld;6,94
+10585830;Flintbek;7,03
+10585833;Fockbek;7,27
+10585847;Hohner Harde;5,74
+10585853;Jevenstedt;6,29
+10585859;Molfsee;7,62
+10585864;Nortorfer  Land;6,4
+10585888;Eiderkanal;6,47
+10585889;Bordesholm;7,11
+10585890;Hüttener Berge;6,27
+10585893;Schlei-Ostsee;6,69
+10585895;Mittelholstein;5,81
+10590045;Kappeln, Stadt;6,42
+10590075;Schleswig, Stadt;6,56
+10590113;Glücksburg (Ostsee), Stadt;7,27
+10590120;Harrislee;6,88
+10590183;Handewitt;6,99
+10595912;Eggebek;6,25
+10595915;Haddeby;6,44
+10595919;Hürup;6,31
+10595920;Kappeln-Land;6,15
+10595937;Langballig;6,44
+10595940;Oeversee;6,73
+10595949;Amt Mittelangeln;6,36
+10595952;Schafflund;6,26
+10595974;Süderbrarup;6,1
+10595987;Südangeln;5,85
+10595990;Geltinger Bucht;6,23
+10595993;Arensharde;6,2
+10595996;Kropp-Stapelholm;5,99
+10600004;Bad Bramstedt, Stadt;7,4
+10600005;Bad Segeberg, Stadt;7,53
+10600019;Ellerau;8,51
+10600039;Henstedt-Ulzburg;8,57
+10600044;Kaltenkirchen, Stadt;7,47
+10600063;Norderstedt, Stadt;8,98
+10600092;Wahlstedt, Stadt;6,24
+10605005;Bad Bramstedt-Land;6,63
+10605024;Bornhöved;5,97
+10605034;Itzstedt;7,23
+10605043;Auenland Südholstein;7,46
+10605048;Kisdorf;7,1
+10605053;Leezen;6,35
+10605063;Boostedt-Rickling;6,45
+10605086;Trave-Land;6,58
+10609014;Buchholz (Forstgutsbez.),gemfr. Gebiet;-9999
+10610029;Glückstadt, Stadt;6,27
+10610046;Itzehoe, Stadt;6,33
+10610113;Wilster, Stadt;5,77
+10615104;Breitenburg;6,04
+10615134;Horst-Herzhorn;6,87
+10615138;Itzehoe-Land;5,82
+10615153;Krempermarsch;6,02
+10615168;Schenefeld;5,73
+10615179;Wilstermarsch;5,45
+10615189;Kellinghusen;5,95
+10620001;Ahrensburg, Stadt;10,46
+10620004;Bad Oldesloe, Stadt;7,6
+10620006;Bargteheide, Stadt;8,85
+10620009;Barsbüttel;9,26
+10620018;Glinde, Stadt;8,56
+10620023;Großhansdorf;8,78
+10620053;Oststeinbek;8,89
+10620060;Reinbek, Stadt;8,7
+10620061;Reinfeld (Holstein), Stadt;7,84
+10620076;Tangstedt;8,15
+10620090;Ammersbek;8,47
+10625207;Bad Oldesloe-Land;7,18
+10625218;Bargteheide-Land;7,83
+10625244;Nordstormarn;6,75
+10625262;Siek;8,3
+10625270;Trittau;8,17
+20000000;Hamburg, Freie und Hansestadt;9,16
+31010000;Braunschweig, Stadt;7,27
+31020000;Salzgitter, Stadt;5,6
+31030000;Wolfsburg, Stadt;7,21
+31510009;Gifhorn, Stadt;6,74
+31510025;Sassenburg;6,36
+31510040;Wittingen, Stadt;5,38
+31515401;Boldecker Land;7,29
+31515402;Brome;6,36
+31515403;Hankensbüttel;5,26
+31515404;Isenbüttel;7,08
+31515405;Meinersen;5,82
+31515406;Papenteich;6,71
+31515407;Wesendorf;5,61
+31519501;Giebel, gemfr. Gebiet;-9999
+31530002;Bad Harzburg, Stadt;5,81
+31530008;Liebenburg;4,8
+31530012;Seesen, Stadt;5,27
+31530016;Braunlage, Stadt;5
+31530017;Goslar, Stadt;5,8
+31530018;Clausthal-Zellerfeld, Berg- und Universitätsstadt;5,49
+31530019;Langelsheim, Stadt;4,57
+31539504;Harz (Landkreis Goslar), gemfr. Gebiet;-9999
+31540013;Königslutter am Elm, Stadt;5,52
+31540014;Lehre;6,63
+31540019;Schöningen, Stadt;4,77
+31540028;Helmstedt, Stadt;5,33
+31545401;Grasleben;5,37
+31545402;Heeseberg;3,82
+31545403;Nord-Elm;4,63
+31545404;Velpke;6,17
+31549501;Brunsleberfeld, gemfr. Gebiet;-9999
+31549502;Helmstedt, gemfr. Gebiet;-9999
+31549503;Königslutter, gemfr. Gebiet;-9999
+31549504;Mariental, gemfr. Gebiet;-9999
+31549506;Schöningen, gemfr. Gebiet;-9999
+31550001;Bad Gandersheim, Stadt;4,68
+31550002;Bodenfelde, Flecken;4
+31550003;Dassel, Stadt;4,23
+31550005;Hardegsen, Stadt;5
+31550006;Kalefeld;4,2
+31550007;Katlenburg-Lindau;4,44
+31550009;Moringen, Stadt;4,73
+31550010;Nörten-Hardenberg, Flecken;5,57
+31550011;Northeim, Stadt;5,53
+31550012;Uslar, Stadt;4,36
+31550013;Einbeck, Stadt;5,13
+31559501;Solling (Landkreis Northeim), gemfr. Geb.;-9999
+31570001;Edemissen;5,86
+31570002;Hohenhameln;5,15
+31570005;Lengede;6,45
+31570006;Peine, Stadt;6,15
+31570007;Vechelde;6,5
+31570008;Wendeburg;6,3
+31570009;Ilsede;5,41
+31580006;Cremlingen;6
+31580037;Wolfenbüttel, Stadt;6,73
+31580039;Schladen-Werla;5,25
+31585402;Baddeckenstedt;4,85
+31585403;Oderwald;4,89
+31585406;Sickte;5,86
+31585407;Elm-Asse;5,31
+31589501;Am Großen Rhode, gemfr. Gebiet;-9999
+31589502;Barnstorf-Warle, gemfr. Gebiet;-9999
+31589503;Voigtsdahlum, gemfr. Gebiet;-9999
+31590001;Adelebsen, Flecken;4,82
+31590002;Bad Grund (Harz);4,14
+31590003;Bad Lauterberg im Harz, Stadt;5,02
+31590004;Bad Sachsa, Stadt;4,95
+31590007;Bovenden, Flecken;6,72
+31590010;Duderstadt, Stadt;5,41
+31590013;Friedland;5,68
+31590015;Gleichen;5,13
+31590016;Göttingen, Stadt;8,38
+31590017;Hann. Münden, Stadt;5,3
+31590019;Herzberg am Harz, Stadt;5,03
+31590026;Osterode am Harz, Stadt;5,02
+31590029;Rosdorf;6,52
+31590034;Staufenberg;5,09
+31590036;Walkenried;4,39
+31595401;Dransfeld;5,03
+31595402;Gieboldehausen;4,75
+31595403;Hattorf am Harz;4,65
+31595404;Radolfshausen;4,8
+31599501;Harz (Landkreis Göttingen), gemfr. Geb.;-9999
+32410001;Hannover, Landeshauptstadt;7,61
+32410002;Barsinghausen, Stadt;6,09
+32410003;Burgdorf, Stadt;6,6
+32410004;Burgwedel, Stadt;7,33
+32410005;Garbsen, Stadt;6,56
+32410006;Gehrden, Stadt;6,6
+32410007;Hemmingen, Stadt;6,68
+32410008;Isernhagen;7,49
+32410009;Laatzen, Stadt;6,91
+32410010;Langenhagen, Stadt;7,18
+32410011;Lehrte, Stadt;6,32
+32410012;Neustadt am Rübenberge, Stadt;5,83
+32410013;Pattensen, Stadt;6,32
+32410014;Ronnenberg, Stadt;6,58
+32410015;Seelze, Stadt;6,34
+32410016;Sehnde, Stadt;6,38
+32410017;Springe, Stadt;5,91
+32410018;Uetze;5,77
+32410019;Wedemark;7,08
+32410020;Wennigsen (Deister);6,01
+32410021;Wunstorf, Stadt;6,43
+32510007;Bassum, Stadt;5,82
+32510012;Diepholz, Stadt;5,75
+32510037;Stuhr;6,96
+32510040;Sulingen, Stadt;5,86
+32510041;Syke, Stadt;6,45
+32510042;Twistringen, Stadt;5,79
+32510044;Wagenfeld;4,89
+32510047;Weyhe;7,21
+32515401;Altes Amt Lemförde;5,88
+32515402;Barnstorf;5,21
+32515403;Bruchhausen-Vilsen;5,63
+32515404;Kirchdorf;5,08
+32515405;Rehden;5,28
+32515406;Schwaförden;4,71
+32515407;Siedenburg;4,64
+32520001;Aerzen, Flecken;4,6
+32520002;Bad Münder am Deister, Stadt;5,22
+32520003;Bad Pyrmont, Stadt;5,39
+32520004;Coppenbrügge, Flecken;4,36
+32520005;Emmerthal;4,64
+32520006;Hameln, Stadt;5,5
+32520007;Hessisch Oldendorf, Stadt;4,63
+32520008;Salzhemmendorf, Flecken;4,38
+32540002;Alfeld (Leine), Stadt;5,31
+32540003;Algermissen;5,56
+32540005;Bad Salzdetfurth, Stadt;5,3
+32540008;Bockenem, Stadt;4,81
+32540011;Diekholzen;5,35
+32540014;Elze, Stadt;4,99
+32540017;Giesen;5,54
+32540020;Harsum;5,32
+32540021;Hildesheim, Stadt;6,34
+32540022;Holle;5,17
+32540026;Nordstemmen;5,34
+32540028;Sarstedt, Stadt;6,11
+32540029;Schellerten;4,72
+32540032;Söhlde;4,91
+32540042;Freden (Leine);4,2
+32540044;Lamspringe;4,35
+32540045;Sibbesse;4,44
+32545406;Leinebergland;4,83
+32550008;Delligsen, Flecken;4,4
+32550023;Holzminden, Stadt;5,04
+32555401;Bevern;4,17
+32555403;Boffzen;4,09
+32555408;Bodenwerder-Polle;4,12
+32555409;Eschershausen-Stadtoldendorf;4,11
+32559501;Boffzen, gemfr. Gebiet;-9999
+32559502;Eimen, gemfr. Gebiet;-9999
+32559503;Eschershausen, gemfr. Gebiet;-9999
+32559504;Grünenplan, gemfr. Gebiet;-9999
+32559505;Holzminden, gemfr. Gebiet;-9999
+32559506;Merxhausen, gemfr. Gebiet;-9999
+32559508;Wenzen, gemfr. Gebiet;-9999
+32560022;Nienburg (Weser), Stadt;5,94
+32560025;Rehburg-Loccum, Stadt;5,06
+32560030;Steyerberg, Flecken;4,84
+32565402;Heemsen;4,89
+32565407;Steimbke;4,67
+32565408;Uchte;4,69
+32565409;Grafschaft Hoya;5,15
+32565410;Mittelweser;4,81
+32565411;Weser-Aue;5,22
+32570003;Auetal;4,58
+32570009;Bückeburg, Stadt;6,11
+32570028;Obernkirchen, Stadt;5,27
+32570031;Rinteln, Stadt;5,44
+32570035;Stadthagen, Stadt;5,69
+32575401;Eilsen;5,42
+32575402;Lindhorst;5,57
+32575403;Nenndorf;6,05
+32575404;Niedernwöhren;4,85
+32575405;Nienstädt;5,21
+32575406;Rodenberg;5,45
+32575407;Sachsenhagen;5,46
+33510004;Bergen, Stadt;5,12
+33510006;Celle, Stadt;6,4
+33510010;Faßberg;5,7
+33510012;Hambühren;5,98
+33510023;Wietze;5,72
+33510024;Winsen (Aller);6,07
+33510025;Eschede;5,1
+33510026;Südheide;5,56
+33515402;Flotwedel;5,75
+33515403;Lachendorf;5,75
+33515404;Wathlingen;5,9
+33519501;Lohheide, gemfr. Bezirk;4,3
+33520011;Cuxhaven, Stadt;6,12
+33520032;Loxstedt;5,81
+33520050;Schiffdorf;6,08
+33520059;Beverstedt;5,34
+33520060;Hagen im Bremischen;5,71
+33520061;Wurster Nordseeküste;6,11
+33520062;Geestland, Stadt;5,9
+33525404;Börde Lamstedt;5,02
+33525407;Hemmoor;5,69
+33525411;Land Hadeln;5,78
+33530005;Buchholz in der Nordheide, Stadt;8,83
+33530026;Neu Wulmstorf;8,92
+33530029;Rosengarten;8,36
+33530031;Seevetal;8,47
+33530032;Stelle;8,06
+33530040;Winsen (Luhe), Stadt;8,07
+33535401;Elbmarsch;7,11
+33535402;Hanstedt;7,64
+33535403;Hollenstedt;7,39
+33535404;Jesteburg;8,26
+33535405;Salzhausen;6,89
+33535406;Tostedt;7,38
+33545403;Gartow;4,58
+33545406;Elbtalaue;4,88
+33545407;Lüchow (Wendland);4,62
+33549501;Gartow, gemfr. Gebiet;-9999
+33549502;Göhrde, gemfr. Gebiet;-9999
+33550001;Adendorf;7,83
+33550009;Bleckede, Stadt;6,16
+33550022;Lüneburg, Hansestadt;8,46
+33550049;Amt Neuhaus;5,13
+33555401;Amelinghausen;6,04
+33555402;Bardowick;7,53
+33555403;Dahlenburg;5,45
+33555404;Gellersen;7,17
+33555405;Ilmenau;7,07
+33555406;Ostheide;6,37
+33555407;Scharnebeck;6,66
+33560002;Grasberg;6,26
+33560005;Lilienthal;7,4
+33560007;Osterholz-Scharmbeck, Stadt;6,45
+33560008;Ritterhude;6,9
+33560009;Schwanewede;6,83
+33560011;Worpswede;6,5
+33565401;Hambergen;5,52
+33570008;Bremervörde, Stadt;5,82
+33570016;Gnarrenburg;5,35
+33570039;Rotenburg (Wümme), Stadt;6,71
+33570041;Scheeßel;6,01
+33570051;Visselhövede, Stadt;5,24
+33575401;Bothel;5,34
+33575402;Fintel;5,44
+33575403;Geestequelle;4,97
+33575404;Selsingen;5,42
+33575405;Sittensen;6,29
+33575406;Sottrum;6,11
+33575407;Tarmstedt;6,04
+33575408;Zeven;6,25
+33580002;Bispingen;6,08
+33580008;Bad Fallingbostel, Stadt;5,67
+33580016;Munster, Stadt;5,62
+33580017;Neuenkirchen;5,41
+33580019;Schneverdingen, Stadt;6,09
+33580021;Soltau, Stadt;6,11
+33580023;Wietzendorf;5,46
+33580024;Walsrode, Stadt;5,88
+33585401;Ahlden;5,34
+33585402;Rethem (Aller), Stadt;4,85
+33585403;Schwarmstedt;5,81
+33589501;Osterheide, gemfr. Bezirk;3,66
+33590010;Buxtehude, Stadt;8,16
+33590013;Drochtersen;6,19
+33590028;Jork;7,67
+33590038;Stade, Hansestadt;7,34
+33595401;Apensen;7,04
+33595402;Fredenbeck;6,46
+33595403;Harsefeld;7,1
+33595405;Horneburg;7,4
+33595406;Lühe;6,84
+33595407;Nordkehdingen;5,66
+33595409;Oldendorf-Himmelpforten;6,12
+33600004;Bienenbüttel;5,99
+33600025;Uelzen, Hansestadt;5,79
+33605404;Rosche;4,56
+33605405;Suderburg;5,3
+33605407;Bevensen-Ebstorf;6,05
+33605408;Aue;4,96
+33610001;Achim, Stadt;7,11
+33610003;Dörverden;5,21
+33610005;Kirchlinteln;5,75
+33610006;Langwedel, Flecken;6,31
+33610008;Ottersberg, Flecken;6,72
+33610009;Oyten;7,13
+33610012;Verden (Aller), Stadt;6,5
+33615401;Thedinghausen;5,89
+34010000;Delmenhorst, Stadt;6,34
+34020000;Emden, Stadt;6,13
+34030000;Oldenburg (Oldenburg), Stadt;7,79
+34040000;Osnabrück, Stadt;7,3
+34050000;Wilhelmshaven, Stadt;5,69
+34510001;Apen;5,77
+34510002;Bad Zwischenahn;7,36
+34510004;Edewecht;6,23
+34510005;Rastede;6,45
+34510007;Westerstede, Stadt;6,31
+34510008;Wiefelstede;6,83
+34520001;Aurich, Stadt;6,4
+34520002;Baltrum;8,37
+34520006;Großefehn;5,51
+34520007;Großheide;5,6
+34520011;Hinte;5,84
+34520012;Ihlow;5,53
+34520013;Juist, Inselgemeinde;10,19
+34520014;Krummhörn;5,88
+34520019;Norden, Stadt;6,6
+34520020;Norderney, Stadt;10,53
+34520023;Südbrookmerland;5,69
+34520025;Wiesmoor, Stadt;6,01
+34520027;Dornum;5,85
+34525401;Brookmerland;5,97
+34525403;Hage;6,1
+34529501;Nordseeinsel Memmert, gemfr. Gebiet;-9999
+34530001;Barßel;5,61
+34530002;Bösel;5,6
+34530003;Cappeln (Oldenburg);5,38
+34530004;Cloppenburg, Stadt;6,39
+34530005;Emstek;5,87
+34530006;Essen (Oldenburg);5,54
+34530007;Friesoythe, Stadt;5,71
+34530008;Garrel;6,18
+34530009;Lastrup;5,44
+34530010;Lindern (Oldenburg);5,15
+34530011;Löningen, Stadt;5,54
+34530012;Molbergen;5,6
+34530013;Saterland;5,36
+34540010;Emsbüren;5,38
+34540014;Geeste;5,37
+34540018;Haren (Ems), Stadt;5,74
+34540019;Haselünne, Stadt;6,01
+34540032;Lingen (Ems), Stadt;6,33
+34540035;Meppen, Stadt;6,14
+34540041;Papenburg, Stadt;6,19
+34540044;Rhede (Ems);6,05
+34540045;Salzbergen;5,77
+34540054;Twist;5,45
+34545401;Dörpen;5,5
+34545402;Freren;4,89
+34545403;Herzlake;5,48
+34545404;Lathen;5,29
+34545405;Lengerich;4,98
+34545406;Nordhümmling;5,23
+34545407;Sögel;5,4
+34545408;Spelle;5,71
+34545409;Werlte;5,33
+34550007;Jever, Stadt;5,98
+34550014;Sande;5,73
+34550015;Schortens, Stadt;5,72
+34550020;Wangerland;6,02
+34550021;Wangerooge, Nordseebad;9,59
+34550025;Bockhorn;5,49
+34550026;Varel, Stadt;5,88
+34550027;Zetel;5,58
+34560001;Bad Bentheim, Stadt;5,97
+34560015;Nordhorn, Stadt;6,33
+34560025;Wietmarschen;5,63
+34565401;Emlichheim;5,58
+34565402;Neuenhaus;5,48
+34565403;Schüttorf;5,9
+34565404;Uelsen;5,41
+34570002;Borkum, Stadt;8,74
+34570012;Jemgum;5,56
+34570013;Leer (Ostfriesland), Stadt;6,32
+34570014;Moormerland;6,47
+34570017;Ostrhauderfehn;5,63
+34570018;Rhauderfehn;5,52
+34570020;Uplengen;5,43
+34570021;Weener, Stadt;5,92
+34570022;Westoverledingen;5,53
+34570024;Bunde;5,87
+34575402;Hesel;5,65
+34575403;Jümme;5,53
+34579501;Insel Lütje Hörn, gemfr. Gebiet;-9999
+34580003;Dötlingen;5,81
+34580005;Ganderkesee;6,87
+34580007;Großenkneten;5,92
+34580009;Hatten;6,45
+34580010;Hude (Oldb);6,29
+34580013;Wardenburg;6,31
+34580014;Wildeshausen, Stadt;6,42
+34585401;Harpstedt;5,5
+34590003;Bad Essen;5,75
+34590004;Bad Iburg, Stadt;6,15
+34590005;Bad Laer;5,65
+34590006;Bad Rothenfelde;7,06
+34590008;Belm;5,75
+34590012;Bissendorf;5,55
+34590013;Bohmte;5,38
+34590014;Bramsche, Stadt;5,62
+34590015;Dissen am Teutoburger Wald, Stadt;6,05
+34590019;Georgsmarienhütte, Stadt;5,76
+34590020;Hagen am Teutoburger Wald;5,47
+34590021;Hasbergen;5,88
+34590022;Hilter am Teutoburger Wald;5,81
+34590024;Melle, Stadt;5,69
+34590029;Ostercappeln;5,47
+34590033;Wallenhorst;5,89
+34590034;Glandorf;5,43
+34595401;Artland;5,66
+34595402;Bersenbrück;5,5
+34595403;Fürstenau;4,79
+34595404;Neuenkirchen;4,78
+34600001;Bakum;5,5
+34600002;Damme, Stadt;5,89
+34600003;Dinklage, Stadt;5,89
+34600004;Goldenstedt;5,88
+34600005;Holdorf;5,81
+34600006;Lohne (Oldenburg), Stadt;6,27
+34600007;Neuenkirchen-Vörden;5,69
+34600008;Steinfeld (Oldenburg);5,6
+34600009;Vechta, Stadt;7,23
+34600010;Visbek;6,56
+34610001;Berne;5,29
+34610002;Brake (Unterweser), Stadt;5,04
+34610003;Butjadingen;5,3
+34610004;Elsfleth, Stadt;5,25
+34610005;Jade;5,5
+34610006;Lemwerder;5,95
+34610007;Nordenham, Stadt;5,32
+34610008;Ovelgönne;5,42
+34610009;Stadland;4,71
+34620005;Friedeburg;5,24
+34620007;Langeoog;10,75
+34620014;Spiekeroog;10,55
+34620019;Wittmund, Stadt;6,09
+34625401;Esens;6,24
+34625402;Holtriem;5,73
+40110000;Bremen, Stadt;7,75
+40120000;Bremerhaven, Stadt;5,58
+51110000;Düsseldorf, Stadt;9,24
+51120000;Duisburg, Stadt;5,84
+51130000;Essen, Stadt;6,72
+51140000;Krefeld, Stadt;6,66
+51160000;Mönchengladbach, Stadt;6,41
+51170000;Mülheim an der Ruhr, Stadt;6,5
+51190000;Oberhausen, Stadt;5,73
+51200000;Remscheid, Stadt;5,78
+51220000;Solingen, Klingenstadt;6,38
+51240000;Wuppertal, Stadt;6,1
+51540004;Bedburg-Hau;6,47
+51540008;Emmerich am Rhein, Stadt;5,96
+51540012;Geldern, Stadt;6,29
+51540016;Goch, Stadt;6,13
+51540020;Issum;6,33
+51540024;Kalkar, Stadt;5,94
+51540028;Kerken;6,34
+51540032;Kevelaer, Stadt;6,42
+51540036;Kleve, Stadt;6,62
+51540040;Kranenburg;6,5
+51540044;Rees, Stadt;6,04
+51540048;Rheurdt;6,29
+51540052;Straelen, Stadt;6,3
+51540056;Uedem;5,94
+51540060;Wachtendonk;6,5
+51540064;Weeze;6,23
+51580004;Erkrath, Fundort des Neanderthalers, Stadt;7
+51580008;Haan, Stadt;7,34
+51580012;Heiligenhaus, Stadt;6,47
+51580016;Hilden, Stadt;7,79
+51580020;Langenfeld (Rheinland), Stadt;7,76
+51580024;Mettmann, Stadt;7,11
+51580026;Monheim am Rhein, Stadt;7,97
+51580028;Ratingen, Stadt;7,78
+51580032;Velbert, Stadt;6,08
+51580036;Wülfrath, Stadt;6,36
+51620004;Dormagen, Stadt;7,35
+51620008;Grevenbroich, Stadt;6,73
+51620012;Jüchen, Stadt;6,41
+51620016;Kaarst, Stadt;8
+51620020;Korschenbroich, Stadt;7,22
+51620022;Meerbusch, Stadt;8,52
+51620024;Neuss, Stadt;7,35
+51620028;Rommerskirchen;7,03
+51660004;Brüggen, Burggemeinde;6,35
+51660008;Grefrath, Sport- und Freizeitgemeinde;6,2
+51660012;Kempen, Stadt;7,01
+51660016;Nettetal, Stadt;6,01
+51660020;Niederkrüchten;6,13
+51660024;Schwalmtal;6,08
+51660028;Tönisvorst, Stadt;6,96
+51660032;Viersen, Stadt;6,11
+51660036;Willich, Stadt;6,93
+51700004;Alpen;6,1
+51700008;Dinslaken, Stadt;6,3
+51700012;Hamminkeln, Stadt;6,19
+51700016;Hünxe;5,99
+51700020;Kamp-Lintfort, Stadt;6,05
+51700024;Moers, Stadt;6,26
+51700028;Neukirchen-Vluyn, Stadt;6,39
+51700032;Rheinberg, Stadt;6
+51700036;Schermbeck;6,18
+51700040;Sonsbeck;6,46
+51700044;Voerde (Niederrhein), Stadt;5,61
+51700048;Wesel, Stadt;5,98
+51700052;Xanten, Stadt;6,72
+53140000;Bonn, Stadt;9,09
+53150000;Köln, Stadt;9,39
+53160000;Leverkusen, Stadt;7,03
+53340002;Aachen, Stadt;8,04
+53340004;Alsdorf, Stadt;5,82
+53340008;Baesweiler, Stadt;5,82
+53340012;Eschweiler, Stadt;5,98
+53340016;Herzogenrath, Stadt;6,24
+53340020;Monschau, Stadt;5,77
+53340024;Roetgen, Tor zur Eifel;6,56
+53340028;Simmerath;5,84
+53340032;Stolberg (Rhld.), Kupferstadt;5,9
+53340036;Würselen, Stadt;6,65
+53580004;Aldenhoven;5,81
+53580008;Düren, Stadt;6,25
+53580012;Heimbach, Stadt;5,46
+53580016;Hürtgenwald;5,28
+53580020;Inden;5,83
+53580024;Jülich, Stadt;6,12
+53580028;Kreuzau;6,04
+53580032;Langerwehe;6,21
+53580036;Linnich, Stadt;5,6
+53580040;Merzenich;6,32
+53580044;Nideggen, Stadt;6,29
+53580048;Niederzier;5,94
+53580052;Nörvenich;5,92
+53580056;Titz;5,74
+53580060;Vettweiß;5,88
+53620004;Bedburg, Stadt;6,51
+53620008;Bergheim, Stadt;6,63
+53620012;Brühl, Stadt;8,47
+53620016;Elsdorf, Stadt;6,35
+53620020;Erftstadt, Stadt;7,39
+53620024;Frechen, Stadt;7,83
+53620028;Hürth, Stadt;8,51
+53620032;Kerpen, Kolpingstadt;7,24
+53620036;Pulheim, Stadt;8,31
+53620040;Wesseling, Stadt;7,71
+53660004;Bad Münstereifel, Stadt;5,94
+53660008;Blankenheim;5,01
+53660012;Dahlem;5,25
+53660016;Euskirchen, Stadt;6,51
+53660020;Hellenthal;5,05
+53660024;Kall;5,75
+53660028;Mechernich, Stadt;5,89
+53660032;Nettersheim;5,38
+53660036;Schleiden, Stadt;5,39
+53660040;Weilerswist;6,62
+53660044;Zülpich, Stadt;5,97
+53700004;Erkelenz, Stadt;6,34
+53700008;Gangelt;6,33
+53700012;Geilenkirchen, Stadt;5,98
+53700016;Heinsberg, Stadt;6,13
+53700020;Hückelhoven, Stadt;5,98
+53700024;Selfkant;6,22
+53700028;Übach-Palenberg, Stadt;5,77
+53700032;Waldfeucht;5,82
+53700036;Wassenberg, Stadt;6,17
+53700040;Wegberg, Stadt;6,03
+53740004;Bergneustadt, Stadt;5,6
+53740008;Engelskirchen;6,1
+53740012;Gummersbach, Stadt;5,93
+53740016;Hückeswagen, Schloss-Stadt;5,7
+53740020;Lindlar;6,29
+53740024;Marienheide;5,57
+53740028;Morsbach;5,31
+53740032;Nümbrecht;5,81
+53740036;Radevormwald, Stadt auf der Höhe;5,88
+53740040;Reichshof;5,39
+53740044;Waldbröl, Stadt;5,62
+53740048;Wiehl, Stadt;6,01
+53740052;Wipperfürth, Hansestadt;5,93
+53780004;Bergisch Gladbach, Stadt;8,12
+53780008;Burscheid, Stadt;6,64
+53780012;Kürten;6,81
+53780016;Leichlingen (Rheinland), Blütenstadt;7,08
+53780020;Odenthal;7,47
+53780024;Overath, Stadt;7,06
+53780028;Rösrath, Stadt;7,76
+53780032;Wermelskirchen, Stadt;6,36
+53820004;Alfter;7,8
+53820008;Bad Honnef, Stadt;7,87
+53820012;Bornheim, Stadt;7,69
+53820016;Eitorf;5,96
+53820020;Hennef (Sieg), Stadt;7,22
+53820024;Königswinter, Stadt;7,46
+53820028;Lohmar, Stadt;7,21
+53820032;Meckenheim, Stadt;7,26
+53820036;Much;6,25
+53820040;Neunkirchen-Seelscheid;6,84
+53820044;Niederkassel, Stadt;7,56
+53820048;Rheinbach, Stadt;7,31
+53820052;Ruppichteroth;5,93
+53820056;Sankt Augustin, Stadt;7,41
+53820060;Siegburg, Stadt;7,6
+53820064;Swisttal;6,56
+53820068;Troisdorf, Stadt;7,01
+53820072;Wachtberg;7,25
+53820076;Windeck;5,41
+55120000;Bottrop, Stadt;6,1
+55130000;Gelsenkirchen, Stadt;5,47
+55150000;Münster, Stadt;8,71
+55540004;Ahaus, Stadt;6,24
+55540008;Bocholt, Stadt;6,57
+55540012;Borken, Stadt;6,25
+55540016;Gescher, Glockenstadt;5,73
+55540020;Gronau (Westf.), Stadt;6,38
+55540024;Heek;5,72
+55540028;Heiden;5,86
+55540032;Isselburg, Stadt;5,92
+55540036;Legden;5,72
+55540040;Raesfeld;6,14
+55540044;Reken;5,89
+55540048;Rhede, Stadt;6,67
+55540052;Schöppingen;5,94
+55540056;Stadtlohn, Stadt;6,21
+55540060;Südlohn;5,93
+55540064;Velen, Stadt;5,67
+55540068;Vreden, Stadt;6,11
+55580004;Ascheberg;5,9
+55580008;Billerbeck, Stadt;6,22
+55580012;Coesfeld, Stadt;6,29
+55580016;Dülmen, Stadt;6,05
+55580020;Havixbeck;6,74
+55580024;Lüdinghausen, Stadt;6,16
+55580028;Nordkirchen;5,98
+55580032;Nottuln;6,42
+55580036;Olfen, Stadt;6,32
+55580040;Rosendahl;5,91
+55580044;Senden;6,42
+55620004;Castrop-Rauxel, Stadt;5,92
+55620008;Datteln, Stadt;5,66
+55620012;Dorsten, Stadt;5,81
+55620014;Gladbeck, Stadt;5,74
+55620016;Haltern am See, Stadt;6,64
+55620020;Herten, Stadt;5,71
+55620024;Marl, Stadt;6,09
+55620028;Oer-Erkenschwick, Stadt;5,6
+55620032;Recklinghausen, Stadt;5,85
+55620036;Waltrop, Stadt;5,95
+55660004;Altenberge;6,56
+55660008;Emsdetten, Stadt;6,09
+55660012;Greven, Stadt;6,47
+55660016;Hörstel, Stadt;5,5
+55660020;Hopsten;5,23
+55660024;Horstmar, Stadt der Burgmannshöfe;5,56
+55660028;Ibbenbüren, Stadt;5,88
+55660032;Ladbergen;5,83
+55660036;Laer;5,95
+55660040;Lengerich, Stadt;5,59
+55660044;Lienen;5,44
+55660048;Lotte;5,85
+55660052;Metelen;5,37
+55660056;Mettingen;5,74
+55660060;Neuenkirchen;5,94
+55660064;Nordwalde;6,3
+55660068;Ochtrup, Stadt;5,7
+55660072;Recke;5,26
+55660076;Rheine, Stadt;5,97
+55660080;Saerbeck, NRW-Klimakommune;6,06
+55660084;Steinfurt, Stadt;6,33
+55660088;Tecklenburg, Stadt;5,46
+55660092;Westerkappeln;5,73
+55660096;Wettringen;5,75
+55700004;Ahlen, Stadt;5,77
+55700008;Beckum, Stadt;5,64
+55700012;Beelen;5,54
+55700016;Drensteinfurt, Stadt;6,24
+55700020;Ennigerloh, Stadt;5,45
+55700024;Everswinkel;6,26
+55700028;Oelde, Stadt;5,59
+55700032;Ostbevern;6,42
+55700036;Sassenberg, Stadt;6,05
+55700040;Sendenhorst, Stadt;5,99
+55700044;Telgte, Stadt;6,83
+55700048;Wadersloh;5,54
+55700052;Warendorf, Stadt;6,21
+57110000;Bielefeld, Stadt;7,12
+57540004;Borgholzhausen, Stadt;5,45
+57540008;Gütersloh, Stadt;6,47
+57540012;Halle (Westf.), Stadt;5,91
+57540016;Harsewinkel, Die Mähdrescherstadt;5,93
+57540020;Herzebrock-Clarholz;6,03
+57540024;Langenberg;5,95
+57540028;Rheda-Wiedenbrück, Stadt;6,57
+57540032;Rietberg, Stadt;6,12
+57540036;Schloß Holte-Stukenbrock, Stadt;6,09
+57540040;Steinhagen;5,89
+57540044;Verl, Stadt;6,34
+57540048;Versmold, Stadt;5,62
+57540052;Werther (Westf.), Stadt;5,89
+57580004;Bünde, Stadt;5,67
+57580008;Enger, Widukindstadt;5,42
+57580012;Herford, Hansestadt;5,78
+57580016;Hiddenhausen;5,31
+57580020;Kirchlengern;5,19
+57580024;Löhne, Stadt;5,41
+57580028;Rödinghausen;5,15
+57580032;Spenge, Stadt;5,41
+57580036;Vlotho, Stadt;4,93
+57620004;Bad Driburg, Stadt;5,02
+57620008;Beverungen, Stadt;4,29
+57620012;Borgentreich, Orgelstadt;3,98
+57620016;Brakel, Stadt;4,71
+57620020;Höxter, Stadt;4,86
+57620024;Marienmünster, Stadt;4,29
+57620028;Nieheim, Stadt;4,28
+57620032;Steinheim, Stadt;4,77
+57620036;Warburg, Hansestadt;4,97
+57620040;Willebadessen, Stadt;4,46
+57660004;Augustdorf;5,38
+57660008;Bad Salzuflen, Stadt;5,93
+57660012;Barntrup, Stadt;4,62
+57660016;Blomberg, Stadt;4,96
+57660020;Detmold, Stadt;6,09
+57660024;Dörentrup;4,6
+57660028;Extertal;4,39
+57660032;Horn-Bad Meinberg, Stadt;5,68
+57660036;Kalletal;4,7
+57660040;Lage, Stadt;5,32
+57660044;Lemgo, Stadt;5,94
+57660048;Leopoldshöhe;5,99
+57660052;Lügde, Stadt der Osterräder;4,47
+57660056;Oerlinghausen, Stadt;5,96
+57660060;Schieder-Schwalenberg, Stadt;4,52
+57660064;Schlangen;5,19
+57700004;Bad Oeynhausen, Stadt;5,98
+57700008;Espelkamp, Stadt;5,3
+57700012;Hille;4,96
+57700016;Hüllhorst;5,22
+57700020;Lübbecke, Stadt;5,57
+57700024;Minden, Stadt;6,14
+57700028;Petershagen, Stadt;5,14
+57700032;Porta Westfalica, Stadt;5,54
+57700036;Preußisch Oldendorf, Stadt;5,36
+57700040;Rahden, Stadt;5,49
+57700044;Stemwede;4,97
+57740004;Altenbeken;4,84
+57740008;Bad Lippspringe, Stadt;6,15
+57740012;Borchen;5,49
+57740016;Büren, Stadt;4,68
+57740020;Delbrück, Stadt;5,77
+57740024;Hövelhof, Sennegemeinde;5,7
+57740028;Lichtenau, Stadt;4,67
+57740032;Paderborn, Stadt;6,69
+57740036;Salzkotten, Stadt;5,59
+57740040;Bad Wünnenberg, Stadt;4,72
+59110000;Bochum, Stadt;6,25
+59130000;Dortmund, Stadt;6,45
+59140000;Hagen, Stadt der FernUniversität;5,39
+59150000;Hamm, Stadt;5,75
+59160000;Herne, Stadt;5,71
+59540004;Breckerfeld, Hansestadt;5,8
+59540008;Ennepetal, Stadt der Kluterthöhle;5,61
+59540012;Gevelsberg, Stadt;5,73
+59540016;Hattingen, Stadt;6,22
+59540020;Herdecke, Stadt;6,16
+59540024;Schwelm, Stadt;5,75
+59540028;Sprockhövel, Stadt;6,35
+59540032;Wetter (Ruhr), Stadt;5,78
+59540036;Witten, Stadt;5,88
+59580004;Arnsberg, Stadt;5,31
+59580008;Bestwig;4,72
+59580012;Brilon, Stadt;5,19
+59580016;Eslohe (Sauerland);4,87
+59580020;Hallenberg, Stadt;4,47
+59580024;Marsberg, Stadt;4,88
+59580028;Medebach, Hansestadt;4,52
+59580032;Meschede, Kreis- und Hochschulstadt;5,05
+59580036;Olsberg, Stadt;5,23
+59580040;Schmallenberg, Stadt;5,22
+59580044;Sundern (Sauerland), Stadt;5,07
+59580048;Winterberg, Stadt;5,57
+59620004;Altena, Stadt;4,66
+59620008;Balve, Stadt;5,16
+59620012;Halver, Stadt;5,68
+59620016;Hemer, Stadt;5,59
+59620020;Herscheid;5,19
+59620024;Iserlohn, Stadt;5,69
+59620028;Kierspe, Stadt;5,29
+59620032;Lüdenscheid, Stadt;5,72
+59620036;Meinerzhagen, Stadt;5,55
+59620040;Menden (Sauerland), Stadt;5,63
+59620044;Nachrodt-Wiblingwerde;4,96
+59620048;Neuenrade, Stadt;5,3
+59620052;Plettenberg, Stadt;5
+59620056;Schalksmühle;5,32
+59620060;Werdohl, Stadt;4,91
+59660004;Attendorn, Hansestadt;6,17
+59660008;Drolshagen, Stadt;5,68
+59660012;Finnentrop;5,15
+59660016;Kirchhundem;4,94
+59660020;Lennestadt, Stadt;5,35
+59660024;Olpe, Stadt;6,32
+59660028;Wenden;5,69
+59700004;Bad Berleburg, Stadt;5,51
+59700008;Burbach;5,69
+59700012;Erndtebrück;5,17
+59700016;Freudenberg, Stadt;6,27
+59700020;Hilchenbach, Stadt;5,67
+59700024;Kreuztal, Stadt;5,92
+59700028;Bad Laasphe, Stadt;5,47
+59700032;Netphen, Stadt;6,14
+59700036;Neunkirchen;5,55
+59700040;Siegen, Universitätsstadt;6,62
+59700044;Wilnsdorf;6,11
+59740004;Anröchte;5,1
+59740008;Bad Sassendorf;6,33
+59740012;Ense;5,47
+59740016;Erwitte, Stadt;5,49
+59740020;Geseke, Stadt;5,44
+59740024;Lippetal;5,41
+59740028;Lippstadt, Stadt;5,98
+59740032;Möhnesee;5,98
+59740036;Rüthen, Stadt;4,72
+59740040;Soest, Stadt;6,09
+59740044;Warstein, Stadt;4,87
+59740048;Welver;5,22
+59740052;Werl, Stadt;5,7
+59740056;Wickede (Ruhr);5,53
+59780004;Bergkamen, Stadt;5,44
+59780008;Bönen;5,49
+59780012;Fröndenberg/Ruhr, Stadt;5,41
+59780016;Holzwickede;5,87
+59780020;Kamen, Stadt;5,76
+59780024;Lünen, Stadt;5,67
+59780028;Schwerte, Hansestadt an der Ruhr;5,81
+59780032;Selm, Stadt;5,84
+59780036;Unna, Stadt;5,99
+59780040;Werne, Stadt;5,94
+64110000;Darmstadt, Wissenschaftsstadt;9,56
+64120000;Frankfurt am Main, Stadt;10,58
+64130000;Offenbach am Main, Stadt;8,76
+64140000;Wiesbaden, Landeshauptstadt;9,21
+64310001;Abtsteinach;6,32
+64310002;Bensheim, Stadt;8,22
+64310003;Biblis;6,36
+64310004;Birkenau;6,08
+64310005;Bürstadt, Stadt;6,82
+64310006;Einhausen;7,4
+64310007;Fürth;6,02
+64310008;Gorxheimertal;6,14
+64310009;Grasellenbach;5,58
+64310010;Groß-Rohrheim;6,37
+64310011;Heppenheim (Bergstraße), Kreisstadt;8,11
+64310012;Hirschhorn (Neckar), Stadt;6,19
+64310013;Lampertheim, Stadt;6,77
+64310014;Lautertal (Odenwald);6,4
+64310015;Lindenfels, Stadt;5,95
+64310016;Lorsch, Karolingerstadt;7,61
+64310017;Mörlenbach;6,27
+64310018;Neckarsteinach, Stadt;6,59
+64310019;Rimbach;6,11
+64310020;Viernheim, Stadt;7,09
+64310021;Wald-Michelbach;5,57
+64310022;Zwingenberg, Stadt;8,04
+64319200;Michelbuch, gemfr. Gebiet;-9999
+64320001;Alsbach-Hähnlein;8,04
+64320002;Babenhausen, Stadt;7,02
+64320003;Bickenbach;8,45
+64320004;Dieburg, Stadt;8,81
+64320005;Eppertshausen;7,6
+64320006;Erzhausen;8,25
+64320007;Fischbachtal;6,9
+64320008;Griesheim, Stadt;8,86
+64320009;Groß-Bieberau, Stadt;7,17
+64320010;Groß-Umstadt, Stadt;7,31
+64320011;Groß-Zimmern;8
+64320012;Messel;7,87
+64320013;Modautal;7
+64320014;Mühltal;8,19
+64320015;Münster (Hessen);7,59
+64320016;Ober-Ramstadt, Stadt;7,49
+64320017;Otzberg;6,64
+64320018;Pfungstadt, Stadt;7,87
+64320019;Reinheim, Stadt;7,33
+64320020;Roßdorf;8,45
+64320021;Schaafheim;6,89
+64320022;Seeheim-Jugenheim;8,61
+64320023;Weiterstadt, Stadt;8,08
+64330001;Biebesheim am Rhein;7,25
+64330002;Bischofsheim;8,03
+64330003;Büttelborn;8,07
+64330004;Gernsheim, Schöfferstadt;7,36
+64330005;Ginsheim-Gustavsburg, Stadt;7,54
+64330006;Groß-Gerau, Stadt;8,47
+64330007;Kelsterbach, Stadt;9,62
+64330008;Mörfelden-Walldorf, Stadt;8,98
+64330009;Nauheim;8,26
+64330010;Raunheim, Stadt;8,78
+64330011;Riedstadt, Büchnerstadt;7,86
+64330012;Rüsselsheim am Main, Stadt;8,12
+64330013;Stockstadt am Rhein;7,19
+64330014;Trebur;7,79
+64340001;Bad Homburg v. d. Höhe, Stadt;9,95
+64340002;Friedrichsdorf, Stadt;9,25
+64340003;Glashütten;7,92
+64340004;Grävenwiesbach;6,13
+64340005;Königstein im Taunus, Stadt;10,07
+64340006;Kronberg im Taunus, Stadt;9,13
+64340007;Neu-Anspach, Stadt;7,98
+64340008;Oberursel (Taunus), Stadt;9,81
+64340009;Schmitten im Taunus;7,17
+64340010;Steinbach (Taunus), Stadt;7,79
+64340011;Usingen, Stadt;7,58
+64340012;Wehrheim;8,04
+64340013;Weilrod;6,51
+64350001;Bad Orb, Stadt;6,84
+64350002;Bad Soden-Salmünster, Stadt;6,26
+64350003;Biebergemünd;6,33
+64350004;Birstein;5,16
+64350005;Brachttal;5,53
+64350006;Bruchköbel, Stadt;7,38
+64350007;Erlensee, Stadt;7,45
+64350008;Flörsbachtal;5,08
+64350009;Freigericht;6,49
+64350010;Gelnhausen, Barbarossastadt, Kreisstadt;7,56
+64350011;Großkrotzenburg;7,52
+64350012;Gründau;6,88
+64350013;Hammersbach;6,59
+64350014;Hanau, Brüder-Grimm-Stadt;7,82
+64350015;Hasselroth;6,59
+64350016;Jossgrund;5,14
+64350017;Langenselbold, Stadt;7,28
+64350018;Linsengericht;6,73
+64350019;Maintal, Stadt;8,12
+64350020;Neuberg;7,06
+64350021;Nidderau, Stadt;7,24
+64350022;Niederdorfelden;7,16
+64350023;Rodenbach;7,14
+64350024;Ronneburg;6,45
+64350025;Schlüchtern, Stadt;5,77
+64350026;Schöneck;7,4
+64350027;Sinntal;4,77
+64350028;Steinau an der Straße, Brüder-Grimm-Stadt;5,47
+64350029;Wächtersbach, Stadt;6,16
+64359200;Gutsbezirk Spessart, gemfr. Gebiet;-9999
+64360001;Bad Soden am Taunus, Stadt;10,22
+64360002;Eppstein, Stadt;8,73
+64360003;Eschborn, Stadt;10,14
+64360004;Flörsheim am Main, Stadt;8,55
+64360005;Hattersheim am Main, Stadt;8,75
+64360006;Hochheim am Main, Stadt;8,61
+64360007;Hofheim am Taunus, Kreisstadt;9,03
+64360008;Kelkheim (Taunus), Stadt;9,35
+64360009;Kriftel;9,36
+64360010;Liederbach am Taunus;9,82
+64360011;Schwalbach am Taunus, Stadt;8,79
+64360012;Sulzbach (Taunus);9,81
+64370001;Bad König, Stadt;6,84
+64370003;Brensbach;6,1
+64370004;Breuberg, Stadt;6
+64370005;Brombachtal;5,48
+64370006;Erbach, Kreisstadt;6,49
+64370007;Fränkisch-Crumbach;6,08
+64370009;Höchst i. Odw.;6,3
+64370010;Lützelbach;5,61
+64370011;Michelstadt, Stadt;6,46
+64370012;Mossautal;5,34
+64370013;Reichelsheim (Odenwald);5,99
+64370016;Oberzent, Stadt;5,19
+64380001;Dietzenbach, Kreisstadt;8,45
+64380002;Dreieich, Stadt;8,75
+64380003;Egelsbach;8,78
+64380004;Hainburg;7,04
+64380005;Heusenstamm, Stadt;8,81
+64380006;Langen (Hessen), Stadt;8,83
+64380007;Mainhausen;7,59
+64380008;Mühlheim am Main, Stadt;8,3
+64380009;Neu-Isenburg, Stadt;9,48
+64380010;Obertshausen, Stadt;8,18
+64380011;Rodgau, Stadt;8,34
+64380012;Rödermark, Stadt;8,53
+64380013;Seligenstadt, Einhardstadt;7,92
+64390001;Aarbergen;5,71
+64390002;Bad Schwalbach, Kreisstadt;7,32
+64390003;Eltville am Rhein, Stadt;8,58
+64390004;Geisenheim, Hochschulstadt;7,69
+64390005;Heidenrod;5,96
+64390006;Hohenstein;5,94
+64390007;Hünstetten;6,72
+64390008;Idstein, Hochschulstadt;7,84
+64390009;Kiedrich;8,17
+64390010;Lorch, Stadt;5,75
+64390011;Niedernhausen;8,31
+64390012;Oestrich-Winkel, Stadt;8,19
+64390013;Rüdesheim am Rhein, Stadt;7,5
+64390014;Schlangenbad;7,92
+64390015;Taunusstein, Stadt;7,82
+64390016;Waldems;6,65
+64390017;Walluf;8,38
+64400001;Altenstadt;6,74
+64400002;Bad Nauheim, Stadt;8,22
+64400003;Bad Vilbel, Stadt;9,77
+64400004;Büdingen, Stadt;6,64
+64400005;Butzbach, Friedrich-Ludwig-Weidig-Stadt;7,2
+64400006;Echzell;6,22
+64400007;Florstadt, Stadt;6,37
+64400008;Friedberg (Hessen), Kreisstadt;7,93
+64400009;Gedern, Stadt;5,4
+64400010;Glauburg;6,03
+64400011;Hirzenhain;5,7
+64400012;Karben, Stadt;8,67
+64400013;Kefenrod;4,91
+64400014;Limeshain;6,25
+64400015;Münzenberg, Stadt;6,66
+64400016;Nidda, Stadt;6,04
+64400017;Niddatal, Stadt;7,11
+64400018;Ober-Mörlen;6,95
+64400019;Ortenberg, Stadt;5,51
+64400020;Ranstadt;6,27
+64400021;Reichelsheim (Wetterau), Stadt;6,47
+64400022;Rockenberg;6,25
+64400023;Rosbach v. d. Höhe, Stadt;8,36
+64400024;Wölfersheim;6,19
+64400025;Wöllstadt;7,48
+65310001;Allendorf (Lumda), Stadt;5,45
+65310002;Biebertal;6,36
+65310003;Buseck;6,5
+65310004;Fernwald;6,72
+65310005;Gießen, Universitätsstadt;8,18
+65310006;Grünberg, Stadt;5,74
+65310007;Heuchelheim a. d. Lahn;7,39
+65310008;Hungen, Stadt;5,73
+65310009;Langgöns;6,39
+65310010;Laubach, Stadt;5,5
+65310011;Lich, Stadt;6,87
+65310012;Linden, Stadt;7,8
+65310013;Lollar, Stadt;6,39
+65310014;Pohlheim, Stadt;6,88
+65310015;Rabenau;5,22
+65310016;Reiskirchen;6,05
+65310017;Staufenberg, Stadt;6,56
+65310018;Wettenberg;7,02
+65320001;Aßlar, Stadt;6,3
+65320002;Bischoffen;5,48
+65320003;Braunfels, Stadt;6,31
+65320004;Breitscheid;4,87
+65320005;Dietzhölztal;5,27
+65320006;Dillenburg, Oranienstadt;5,9
+65320007;Driedorf;4,96
+65320008;Ehringshausen;5,85
+65320009;Eschenburg;5,47
+65320010;Greifenstein;4,95
+65320011;Haiger, Stadt;5,65
+65320012;Herborn, Stadt;6,15
+65320013;Hohenahr;5,25
+65320014;Hüttenberg;6,12
+65320015;Lahnau;6,58
+65320016;Leun, Stadt;5,68
+65320017;Mittenaar;5,51
+65320018;Schöffengrund;5,62
+65320019;Siegbach;4,26
+65320020;Sinn;5,85
+65320021;Solms, Stadt;5,88
+65320022;Waldsolms;5,47
+65320023;Wetzlar, Stadt;7,17
+65330001;Beselich;5,49
+65330002;Brechen;5,75
+65330003;Bad Camberg, Stadt;6,97
+65330004;Dornburg;5,23
+65330005;Elbtal;5,81
+65330006;Elz;6,13
+65330007;Hadamar, Stadt;6,04
+65330008;Hünfelden;5,69
+65330009;Limburg a. d. Lahn, Kreisstadt;6,61
+65330010;Löhnberg;5,91
+65330011;Mengerskirchen, Marktflecken;5,07
+65330012;Merenberg, Marktflecken;5,41
+65330013;Runkel, Stadt;5,62
+65330014;Selters (Taunus);5,71
+65330015;Villmar, Marktflecken;5,52
+65330016;Waldbrunn (Westerwald);5,01
+65330017;Weilburg, Stadt;5,89
+65330018;Weilmünster, Marktflecken;5,4
+65330019;Weinbach;5,17
+65340001;Amöneburg, Stadt;5,74
+65340002;Angelburg;5,17
+65340003;Bad Endbach;5,13
+65340004;Biedenkopf, Stadt;5,38
+65340005;Breidenbach;5,16
+65340006;Cölbe;6,76
+65340007;Dautphetal;5,58
+65340008;Ebsdorfergrund;6,4
+65340009;Fronhausen;6,33
+65340010;Gladenbach, Stadt;5,91
+65340011;Kirchhain, Stadt;6,03
+65340012;Lahntal;6,35
+65340013;Lohra;5,52
+65340014;Marburg, Universitätsstadt;8,74
+65340015;Münchhausen;4,84
+65340016;Neustadt (Hessen), Stadt;5,13
+65340017;Rauschenberg, Stadt;5,44
+65340018;Stadtallendorf, Stadt;5,54
+65340019;Steffenberg;5,12
+65340020;Weimar (Lahn);7,02
+65340021;Wetter (Hessen), Stadt;5,57
+65340022;Wohratal;4,94
+65350001;Alsfeld, Stadt;5,61
+65350002;Antrifttal;4,43
+65350003;Feldatal;4,2
+65350004;Freiensteinau;4,27
+65350005;Gemünden (Felda);4,5
+65350006;Grebenau, Stadt;4,53
+65350007;Grebenhain;4,46
+65350008;Herbstein, Stadt;4,62
+65350009;Homberg (Ohm), Stadt;5,17
+65350010;Kirtorf, Stadt;4,71
+65350011;Lauterbach (Hessen), Kreisstadt;5,33
+65350012;Lautertal (Vogelsberg);4
+65350013;Mücke;5,15
+65350014;Romrod, Stadt;4,71
+65350015;Schlitz, Stadt;4,61
+65350016;Schotten, Stadt;5,51
+65350017;Schwalmtal;4,37
+65350018;Ulrichstein, Stadt;4,47
+65350019;Wartenberg;4,78
+66110000;Kassel, documenta-Stadt;6,77
+66310001;Bad Salzschlirf;5,38
+66310002;Burghaun, Marktgemeinde;5,08
+66310003;Dipperz;5,38
+66310004;Ebersburg;4,55
+66310005;Ehrenberg (Rhön);4,45
+66310006;Eichenzell;5,63
+66310007;Eiterfeld, Marktgemeinde;4,85
+66310008;Flieden;5,02
+66310009;Fulda, Stadt;6,73
+66310010;Gersfeld (Rhön), Stadt;5,23
+66310011;Großenlüder;5,15
+66310012;Hilders, Marktgemeinde;4,7
+66310013;Hofbieber;5,51
+66310014;Hosenfeld;4,42
+66310015;Hünfeld, Konrad-Zuse-Stadt;5,75
+66310016;Kalbach;4,54
+66310017;Künzell;6,32
+66310018;Neuhof;5,12
+66310019;Nüsttal;4,95
+66310020;Petersberg;6,56
+66310021;Poppenhausen (Wasserkuppe);4,68
+66310022;Rasdorf, Point-Alpha-Gemeinde;3,92
+66310023;Tann (Rhön), Stadt;4,77
+66320001;Alheim;4,56
+66320002;Bad Hersfeld, Kreisstadt;5,94
+66320003;Bebra, Stadt;5,11
+66320004;Breitenbach a. Herzberg;4,59
+66320005;Cornberg;4,23
+66320006;Friedewald;5,19
+66320007;Hauneck;4,88
+66320008;Haunetal;4,79
+66320009;Heringen (Werra), Stadt;4,7
+66320010;Hohenroda;4,18
+66320011;Kirchheim;4,92
+66320012;Ludwigsau;4,94
+66320013;Nentershausen;4,15
+66320014;Neuenstein;4,94
+66320015;Niederaula, Marktgemeinde;4,92
+66320016;Philippsthal (Werra), Marktgemeinde;4,6
+66320017;Ronshausen;4,74
+66320018;Rotenburg a. d. Fulda, Stadt;5,21
+66320019;Schenklengsfeld;4,54
+66320020;Wildeck;5
+66330001;Ahnatal;6,13
+66330002;Bad Karlshafen, Stadt;4,38
+66330003;Baunatal, Stadt;6,18
+66330004;Breuna;4,51
+66330005;Calden;5,24
+66330006;Bad Emstal;5,1
+66330007;Espenau;5,78
+66330008;Fuldabrück;6,1
+66330009;Fuldatal;6,06
+66330010;Grebenstein, Stadt;4,76
+66330011;Habichtswald;5,78
+66330012;Helsa;5,82
+66330013;Hofgeismar, Stadt;5,19
+66330014;Immenhausen, Stadt;5,03
+66330015;Kaufungen;6,26
+66330016;Liebenau, Stadt;4
+66330017;Lohfelden;6,38
+66330018;Naumburg, Stadt;4,37
+66330019;Nieste;5,46
+66330020;Niestetal;6,65
+66330022;Reinhardshagen;5,08
+66330023;Schauenburg;5,83
+66330024;Söhrewald;5,38
+66330025;Trendelburg, Stadt;4,13
+66330026;Vellmar, Stadt;6,54
+66330028;Wolfhagen, Hans-Staden-Stadt;5,02
+66330029;Zierenberg, Stadt;5,01
+66330030;Wesertal;4,38
+66339200;Gutsbezirk Reinhardswald, gemfr. Gebiet;-9999
+66340001;Borken (Hessen), Stadt;5,19
+66340002;Edermünde;5,47
+66340003;Felsberg, Stadt;4,94
+66340004;Frielendorf, Marktflecken;4,47
+66340005;Fritzlar, Dom- und Kaiserstadt;5,71
+66340006;Gilserberg;4,69
+66340007;Gudensberg, Stadt;5,8
+66340008;Guxhagen;5,36
+66340009;Homberg (Efze), Reformationsstadt, Kreisstadt;5,15
+66340010;Jesberg;4,32
+66340011;Knüllwald;4,59
+66340012;Körle;5,05
+66340013;Malsfeld;5,12
+66340014;Melsungen, Stadt;5,9
+66340015;Morschen;4,49
+66340016;Neuental;4,21
+66340017;Neukirchen, Stadt;4,76
+66340018;Niedenstein, Stadt;5,6
+66340019;Oberaula;4,75
+66340020;Ottrau;3,93
+66340021;Schrecksbach;4,47
+66340022;Schwalmstadt, Konfirmationsstadt;5,17
+66340023;Schwarzenborn, Stadt;6,61
+66340024;Spangenberg, Liebenbachstadt;4,61
+66340025;Wabern;5,31
+66340026;Willingshausen;4,88
+66340027;Bad Zwesten;5,36
+66350001;Allendorf (Eder);4,84
+66350002;Bad Arolsen, Stadt;5,34
+66350003;Bad Wildungen, Stadt;5,35
+66350004;Battenberg (Eder), Stadt;5,39
+66350005;Bromskirchen;4,93
+66350006;Burgwald;4,89
+66350007;Diemelsee;4,55
+66350008;Diemelstadt, Stadt;4,55
+66350009;Edertal, Nationalparkgemeinde;4,59
+66350010;Frankenau, Nationalparkstadt;4,26
+66350011;Frankenberg (Eder), Philipp-Soldan-Stadt;5,14
+66350012;Gemünden (Wohra), Stadt;4,56
+66350013;Haina (Kloster);4,32
+66350014;Hatzfeld (Eder), Stadt;4,26
+66350015;Korbach, Hansestadt, Kreisstadt;5,25
+66350016;Lichtenfels, Stadt;4,59
+66350017;Rosenthal, Stadt;4,44
+66350018;Twistetal;4,43
+66350019;Vöhl, Nationalparkgemeinde;4,28
+66350020;Volkmarsen, Stadt;4,36
+66350021;Waldeck, Nationalparkstadt;4,55
+66350022;Willingen (Upland);5,7
+66360001;Bad Sooden-Allendorf, Stadt;5,23
+66360002;Berkatal;4,08
+66360003;Eschwege, Kreisstadt;4,77
+66360004;Großalmerode, Stadt;4,64
+66360005;Herleshausen;4,42
+66360006;Hessisch Lichtenau, Stadt;5,04
+66360007;Meinhard;4,54
+66360008;Meißner;3,8
+66360009;Neu-Eichenberg;4,86
+66360010;Ringgau;4,1
+66360011;Sontra, Stadt;4,42
+66360012;Waldkappel, Stadt;4,18
+66360013;Wanfried, Stadt;4,68
+66360014;Wehretal;4,48
+66360015;Weißenborn;3,53
+66360016;Witzenhausen, Stadt;5,09
+66369200;Gutsbezirk Kaufunger Wald, gemfr. Gebiet;-9999
+71110000;Koblenz, Stadt;7,45
+71310007;Bad Neuenahr-Ahrweiler, Stadt;7,27
+71310070;Remagen, Stadt;6,76
+71310077;Sinzig, Stadt;6,13
+71310090;Grafschaft;6,39
+71315001;Adenau;5,12
+71315002;Altenahr;5,3
+71315003;Bad Breisig;6,01
+71315004;Brohltal;5,06
+71325003;Daaden-Herdorf;5,22
+71325006;Hamm (Sieg);5,04
+71325007;Kirchen (Sieg);5,43
+71325008;Wissen;5,02
+71325009;Betzdorf-Gebardshain;5,17
+71325010;Altenkirchen-Flammersfeld;5,25
+71330006;Bad Kreuznach, Stadt;6,56
+71335001;Bad Kreuznach;5,65
+71335006;Rüdesheim;5,73
+71335009;Kirner Land;5,1
+71335010;Nahe-Glan;5,27
+71335011;Langenlonsheim-Stromberg;6,09
+71340045;Idar-Oberstein, Stadt;4,81
+71345001;Baumholder;4,9
+71345002;Birkenfeld;4,88
+71345005;Herrstein-Rhaunen;4,49
+71355001;Cochem;5,35
+71355002;Kaisersesch;4,88
+71355003;Ulmen;5,1
+71355005;Zell (Mosel);4,89
+71370003;Andernach, Stadt;5,99
+71370068;Mayen, Stadt;5,82
+71370203;Bendorf, Stadt;6,16
+71375001;Pellenz;5,31
+71375002;Maifeld;5,4
+71375003;Vordereifel;4,85
+71375004;Mendig;5,5
+71375007;Vallendar;7,13
+71375008;Weißenthurm;5,99
+71375009;Rhein-Mosel;5,56
+71380045;Neuwied, Stadt;6,07
+71385001;Asbach;5,87
+71385002;Bad Hönningen;5,86
+71385003;Dierdorf;5,34
+71385004;Linz am Rhein;5,9
+71385005;Puderbach;5,01
+71385007;Unkel;6,67
+71385009;Rengsdorf-Waldbreitbach;5,53
+71400501;Boppard, Stadt;5,76
+71405003;Kastellaun;5,1
+71405004;Kirchberg (Hunsrück);4,91
+71405008;Simmern-Rheinböllen;5,42
+71405009;Hunsrück-Mittelrhein;5,26
+71410075;Lahnstein, Stadt;6,15
+71415003;Diez;5,79
+71415007;Nastätten;5,25
+71415009;Loreley;4,8
+71415010;Bad Ems-Nassau;5,35
+71415011;Aar-Einrich;5,25
+71435001;Bad Marienberg (Westerwald);5,45
+71435002;Hachenburg;5,39
+71435003;Höhr-Grenzhausen;5,68
+71435004;Montabaur;6,36
+71435005;Ransbach-Baumbach;5,69
+71435006;Rennerod;5
+71435007;Selters (Westerwald);5,12
+71435008;Wallmerod;5,17
+71435009;Westerburg;5,32
+71435010;Wirges;5,8
+72110000;Trier, Stadt;7,92
+72310134;Wittlich, Stadt;6,41
+72310502;Morbach;5,04
+72315001;Bernkastel-Kues;5,67
+72315006;Thalfang am Erbeskopf;5,18
+72315008;Wittlich-Land;5,65
+72315009;Traben-Trarbach;5,28
+72320018;Bitburg, Stadt;7,07
+72325001;Arzfeld;5,28
+72325005;Südeifel;6,55
+72325006;Prüm;5,51
+72325007;Speicher;5,92
+72325008;Bitburger Land;5,78
+72335001;Daun;5,26
+72335004;Kelberg;4,8
+72335006;Gerolstein;5,21
+72355001;Hermeskeil;5,52
+72355003;Konz;6,84
+72355004;Ruwer;6,43
+72355006;Schweich an der Römischen Weinstraße;6,88
+72355007;Trier-Land;6,57
+72355008;Saarburg-Kell;6,44
+73110000;Frankenthal (Pfalz), Stadt;7,12
+73120000;Kaiserslautern, Stadt;6,52
+73130000;Landau in der Pfalz, Stadt;7,8
+73140000;Ludwigshafen am Rhein, Stadt;7,31
+73150000;Mainz, Stadt;9,73
+73160000;Neustadt an der Weinstraße, Stadt;6,85
+73170000;Pirmasens, Stadt;4,62
+73180000;Speyer, Stadt;7,2
+73190000;Worms, Stadt;6,91
+73200000;Zweibrücken, Stadt;5,18
+73310003;Alzey, Stadt;6,59
+73315001;Alzey-Land;6,05
+73315002;Eich;6,06
+73315003;Monsheim;6,5
+73315005;Wöllstein;6,07
+73315006;Wörrstadt;7,1
+73315007;Wonnegau;6,54
+73320002;Bad Dürkheim, Stadt;7,5
+73320024;Grünstadt, Stadt;6,8
+73320025;Haßloch;6,68
+73325001;Deidesheim;6,9
+73325002;Freinsheim;6,97
+73325005;Lambrecht (Pfalz);5,59
+73325006;Wachenheim an der Weinstraße;7,05
+73325007;Leiningerland;6,12
+73335002;Eisenberg (Pfalz);5,91
+73335003;Göllheim;5,54
+73335004;Kirchheimbolanden;5,92
+73335006;Winnweiler;5,62
+73335007;Nordpfälzer Land;4,97
+73340007;Germersheim, Stadt;7,66
+73340501;Wörth am Rhein, Stadt;7,27
+73345001;Bellheim;6,53
+73345002;Hagenbach;6,72
+73345003;Jockgrim;6,89
+73345004;Kandel;6,86
+73345005;Lingenfeld;6,49
+73345006;Rülzheim;6,92
+73355001;Bruchmühlbach-Miesau;6,18
+73355002;Enkenbach-Alsenborn;5,86
+73355008;Ramstein-Miesenbach;7,01
+73355009;Weilerbach;7,05
+73355010;Otterbach-Otterberg;6,04
+73355011;Landstuhl;6,51
+73365008;Lauterecken-Wolfstein;4,88
+73365009;Oberes Glantal;5,92
+73365010;Kusel-Altenglan;5,33
+73375001;Annweiler am Trifels;6,02
+73375002;Bad Bergzabern;6,52
+73375003;Edenkoben;6,71
+73375004;Herxheim;6,75
+73375005;Landau-Land;6,41
+73375006;Maikammer;6,67
+73375007;Offenbach an der Queich;6,68
+73380004;Bobenheim-Roxheim;6,58
+73380005;Böhl-Iggelheim;6,72
+73380017;Limburgerhof;7,35
+73380019;Mutterstadt;6,93
+73380025;Schifferstadt, Stadt;7,04
+73385001;Dannstadt-Schauernheim;6,47
+73385004;Maxdorf;6,84
+73385006;Lambsheim-Heßheim;6,78
+73385007;Römerberg-Dudenhofen;7,11
+73385008;Rheinauen;6,88
+73390005;Bingen am Rhein, Stadt;7,34
+73390009;Budenheim;7,97
+73390030;Ingelheim am Rhein, Stadt;8,16
+73395001;Rhein-Nahe;6,26
+73395002;Bodenheim;8,23
+73395003;Gau-Algesheim;7,27
+73395006;Nieder-Olm;8,16
+73395007;Rhein-Selz;7,31
+73395008;Sprendlingen-Gensingen;6,45
+73405001;Dahner Felsenland;5,08
+73405002;Hauenstein;5,3
+73405003;Pirmasens-Land;4,55
+73405004;Rodalben;4,9
+73405006;Waldfischbach-Burgalben;5,13
+73405008;Zweibrücken-Land;5,01
+73405009;Thaleischweiler-Wallhalben;4,99
+81110000;Stuttgart, Landeshauptstadt;10,39
+81150003;Böblingen, Stadt;9,69
+81150028;Leonberg, Stadt;9,65
+81150029;Magstadt;8,76
+81150041;Renningen, Stadt;9,42
+81150042;Rutesheim, Stadt;8,84
+81150044;Schönaich;9,11
+81150045;Sindelfingen, Stadt;8,91
+81150050;Weil der Stadt, Stadt;8,6
+81150051;Weil im Schönbuch;8,71
+81150052;Weissach;8,67
+81155001;GVV Aidlingen/Grafenau;8,64
+81155002;GVV Gärtringen/Ehningen;9,13
+81155003;VVG der Stadt Herrenberg;8,93
+81155004;GVV Holzgerlingen;9,3
+81155005;GVV Oberes Gäu;8,01
+81155006;GVV Waldenbuch/Steinenbronn;8,82
+81160015;Denkendorf;8,67
+81160019;Esslingen am Neckar, Stadt;9,12
+81160047;Neuhausen auf den Fildern;9,03
+81160072;Wernau (Neckar), Stadt;8,49
+81160076;Aichwald;8,15
+81160077;Filderstadt, Stadt;9,37
+81160078;Leinfelden-Echterdingen, Stadt;10
+81160080;Ostfildern, Stadt;9,34
+81160081;Aichtal, Stadt;8,49
+81165001;VVG der Stadt Kirchheim unter Teck;8,5
+81165002;GVV Lenningen;7,12
+81165003;GVV Neckartenzlingen;8,17
+81165004;VVG der Stadt Neuffen;8,24
+81165005;VVG der Stadt Nürtingen;8,53
+81165006;GVV Plochingen;8,77
+81165007;GVV Reichenbach an der Fils;8,14
+81165008;VVG der Stadt Weilheim an der Teck;7,67
+81165009;GVV Wendlingen am Neckar;8,4
+81170010;Böhmenkirch;5,58
+81175001;VVG der Gemeinde Deggingen;6,82
+81175002;VVG der Stadt Ebersbach an der Fils;7,77
+81175003;GVV Eislingen-Ottenbach-Salach;7,56
+81175004;VVG der Stadt Geislingen an der Steige;6,79
+81175005;VVG der Stadt Göppingen;7,48
+81175006;GVV Mittleres Fils-Lautertal;7,07
+81175007;GVV Oberes Filstal;6,38
+81175008;GVV Östlicher Schurwald;7,19
+81175009;GVV Raum Bad Boll;7,24
+81175010;VVG der Stadt Uhingen;7,6
+81175011;GVV Voralb;7,02
+81180003;Asperg, Stadt;9,17
+81180011;Ditzingen, Stadt;9,1
+81180019;Gerlingen, Stadt;10,03
+81180021;Großbottwar, Stadt;7,55
+81180046;Kornwestheim, Stadt;9,28
+81180048;Ludwigsburg, Stadt;9,38
+81180050;Markgröningen, Stadt;8,47
+81180051;Möglingen;8,87
+81180060;Oberstenfeld;7,42
+81180076;Sachsenheim, Stadt;8,29
+81180080;Korntal-Münchingen, Stadt;9,16
+81180081;Remseck am Neckar, Stadt;8,85
+81185001;GVV Besigheim;7,97
+81185002;VVG der Stadt Bietigheim-Bissingen;8,95
+81185003;GVV Bönnigheim;7,73
+81185004;VVG der Stadt Freiberg am Neckar;8,91
+81185005;GVV Marbach am Neckar;8,45
+81185006;GVV Schwieberdingen-Hemmingen;8,83
+81185007;GVV Steinheim-Murr;8,08
+81185008;VVG der Stadt Vaihingen an der Enz;7,87
+81190001;Alfdorf;6,41
+81190020;Fellbach, Stadt;8,9
+81190041;Korb;8,47
+81190044;Murrhardt, Stadt;6,94
+81190061;Rudersberg;7,08
+81190079;Waiblingen, Stadt;8,68
+81190089;Berglen;7,27
+81190090;Remshalden;7,88
+81190091;Weinstadt, Stadt;8,51
+81190093;Kernen im Remstal;8,59
+81195001;VVG der Stadt Backnang;7,7
+81195002;GVV Plüderhausen-Urbach;7,8
+81195003;VVG der Stadt Schorndorf;8,15
+81195004;GVV Sulzbach;6,68
+81195005;VVG der Stadt Welzheim;6,91
+81195006;GVV Winnenden;8,39
+81210000;Heilbronn, Universitätsstadt;8,49
+81250007;Bad Wimpfen, Stadt;8
+81250039;Gundelsheim, Stadt;7,1
+81250058;Leingarten;8,05
+81250068;Neudenau, Stadt;6,83
+81250107;Wüstenrot;6,92
+81255001;VVG der Stadt Bad Friedrichshall;7,97
+81255002;VVG der Stadt Bad Rappenau;7,72
+81255003;VVG der Stadt Brackenheim;7,28
+81255004;VVG der Stadt Eppingen;6,68
+81255005;GVV Flein-Talheim;8,39
+81255006;VVG der Stadt Lauffen am Neckar;7,66
+81255007;VVG der Stadt Möckmühl;6,5
+81255008;VVG der Stadt Neckarsulm;7,97
+81255009;VVG der Stadt Neuenstadt am Kocher;7,12
+81255010;GVV Oberes Zabergäu;6,92
+81255011;VVG der Gemeinde Obersulm;7,31
+81255012;GVV Schozach-Bottwartal;8,08
+81255013;VVG der Stadt Schwaigern;7,16
+81255014;GVV Raum Weinsberg;8,14
+81260011;Bretzfeld;7,01
+81260072;Schöntal;5,09
+81265001;GVV Hohenloher Ebene;6,72
+81265002;GVV Krautheim;5,47
+81265003;VVG der Stadt Künzelsau;7,09
+81265004;GVV Mittleres Kochertal;6,42
+81265005;VVG der Stadt Öhringen;7,21
+81270008;Blaufelden;5,56
+81270052;Mainhardt;6,09
+81270075;Schrozberg, Stadt;5,77
+81275001;GVV Braunsbach-Untermünkheim;6,04
+81275002;VVG der Stadt Crailsheim;6,66
+81275003;GVV Fichtenau;5,51
+81275004;VVG der Stadt Gerabronn;5,62
+81275005;GVV Ilshofen-Vellberg;6,36
+81275006;GVV Limpurger Land;6,27
+81275007;GVV Oberes Bühlertal;6,14
+81275008;GVV Brettach/Jagst;6,07
+81275009;VVG der Stadt Schwäbisch Hall;7,46
+81280020;Creglingen, Stadt;5,53
+81280039;Freudenberg, Stadt;5
+81280064;Külsheim, Stadt;4,87
+81280082;Niederstetten, Stadt;5,49
+81280126;Weikersheim, Stadt;5,82
+81280131;Wertheim, Stadt;6,14
+81280139;Lauda-Königshofen, Stadt;5,34
+81285001;VVG der Stadt Bad Mergentheim;6,8
+81285002;VVG der Stadt Boxberg;5,15
+81285003;VVG der Stadt Grünsfeld;4,94
+81285004;VVG der Stadt Tauberbischofsheim;5,85
+81350010;Dischingen;5,54
+81350015;Gerstetten;6
+81350020;Herbrechtingen, Stadt;6,51
+81350025;Königsbronn;6,22
+81350032;Steinheim am Albuch;6,47
+81355001;VVG der Stadt Giengen an der Brenz;6,44
+81355002;VVG der Stadt Heidenheim an der Brenz;7,27
+81355003;GVV Sontheim-Niederstotzingen;6,16
+81360002;Abtsgmünd;6,23
+81360027;Gschwend;5,77
+81360042;Lorch, Stadt;7,25
+81360045;Neresheim, Stadt;5,98
+81360050;Oberkochen, Stadt;6,93
+81365001;VVG der Stadt Aalen;7,46
+81365002;VVG der Stadt Bopfingen;6,32
+81365003;VVG der Stadt Ellwangen (Jagst);6,55
+81365004;GVV Kapfenburg;6,22
+81365005;GVV Leintal-Frickenhofer Höhe;6,32
+81365006;GVV Rosenstein;6,58
+81365007;VVG der Stadt Schwäbisch Gmünd;7,12
+81365008;GVV Schwäbischer Wald;6,68
+81365009;GVV Tannhausen;5,63
+82110000;Baden-Baden, Stadt;7,83
+82120000;Karlsruhe, Stadt;8,46
+82150017;Ettlingen, Stadt;7,89
+82150046;Malsch;7,02
+82150047;Marxzell;6,35
+82150064;Östringen, Stadt;6,76
+82150084;Ubstadt-Weiher;6,66
+82150089;Walzbachtal;6,92
+82150090;Weingarten (Baden);7,54
+82150096;Karlsbad;7,33
+82150097;Kraichtal, Stadt;6,08
+82150101;Pfinztal;7,4
+82150102;Eggenstein-Leopoldshafen;8,06
+82150105;Linkenheim-Hochstetten;7,73
+82150106;Waghäusel, Stadt;7,04
+82150108;Rheinstetten, Stadt;7,75
+82150109;Stutensee, Stadt;7,87
+82150110;Waldbronn;7,94
+82155001;VVG der Gemeinde Bad Schönborn;7,64
+82155002;VVG der Stadt Bretten;7,24
+82155003;VVG der Stadt Bruchsal;7,39
+82155004;VVG der Gemeinde Graben-Neudorf;6,86
+82155005;VVG der Gemeinde Oberderdingen;6,84
+82155006;GVV Philippsburg;6,52
+82155007;VVG der Gemeinde Sulzfeld;6,58
+82160008;Bühlertal;6,82
+82160013;Forbach;5,26
+82160015;Gaggenau, Stadt;6,91
+82165001;GVV Nachbarschaftsverband Bischweier-Kuppenheim;7,12
+82165002;VVG der Stadt Bühl;6,96
+82165003;GVV Durmersheim;7,09
+82165004;VVG der Stadt Gernsbach;6,83
+82165005;VVG der Stadt Rastatt;7,18
+82165006;GVV Rheinmünster-Lichtenau;6,17
+82165007;VVG der Gemeinde Sinzheim;6,84
+82210000;Heidelberg, Stadt;10,02
+82220000;Mannheim, Universitätsstadt;8,39
+82250014;Buchen (Odenwald), Stadt;5,78
+82250060;Mudau;4,82
+82255001;GVV Hardheim-Walldürn;5,49
+82255002;VVG der Gemeinde Haßmersheim;6,4
+82255003;GVV Kleiner Odenwald;5,77
+82255004;VVG der Gemeinde Limbach;5,66
+82255005;VVG der Stadt Mosbach;6,6
+82255006;GVV Neckargerach-Waldbrunn;5,38
+82255007;GVV Osterburken;5,92
+82255008;GVV Schefflenztal;5,4
+82255009;GVV Seckachtal;5,24
+82260009;Brühl;7,55
+82260012;Dossenheim;9,14
+82260018;Eppelheim, Stadt;8,57
+82260028;Heddesheim;7,22
+82260036;Ilvesheim;7,82
+82260037;Ketsch;7,27
+82260038;Ladenburg, Stadt;7,92
+82260041;Leimen, Stadt;8,19
+82260060;Nußloch;8,2
+82260062;Oftersheim;7,4
+82260063;Plankstadt;7,4
+82260076;Sandhausen;8,13
+82260082;Schriesheim, Stadt;8,08
+82260084;Schwetzingen, Stadt;8,06
+82260095;Walldorf, Stadt;8,31
+82260096;Weinheim, Stadt;7,8
+82260103;St. Leon-Rot;7,59
+82260105;Edingen-Neckarhausen;7,43
+82260107;Hirschberg an der Bergstraße;7,65
+82265001;VVG der Stadt Eberbach;5,93
+82265002;GVV Elsenztal;6,34
+82265003;VVG der Stadt Hemsbach;7,28
+82265004;VVG der Stadt Hockenheim;7,31
+82265005;GVV Neckargemünd;7,35
+82265006;GVV Rauenberg;7,24
+82265007;GVV Schönau;5,96
+82265008;VVG der Stadt Sinsheim;6,91
+82265009;GVV Waibstadt;5,97
+82265010;VVG der Stadt Wiesloch;7,73
+82310000;Pforzheim, Stadt;7,36
+82350065;Schömberg;6,35
+82350080;Wildberg, Stadt;6,69
+82355001;VVG der Stadt Altensteig;6,35
+82355002;GVV Althengstett;7,39
+82355003;VVG der Stadt Bad Herrenalb;6,81
+82355004;VVG der Stadt Bad Liebenzell;7,44
+82355005;GVV Teinachtal;6,33
+82355006;VVG der Stadt Calw;7,1
+82355007;VVG der Stadt Nagold;7,47
+82355008;VVG der Stadt Bad Wildbad;6,34
+82360004;Birkenfeld;6,83
+82360028;Illingen;7,3
+82360030;Ispringen;6,98
+82360033;Knittlingen, Stadt;6,71
+82360046;Niefern-Öschelbronn;7,09
+82360070;Keltern;6,71
+82360071;Remchingen;6,9
+82360072;Straubenhardt;6,85
+82365001;GVV Heckengäu;7,99
+82365002;GVV Kämpfelbachtal;6,81
+82365003;VVG der Stadt Maulbronn;6,52
+82365004;VVG der Stadt Mühlacker;7,02
+82365005;VVG der Stadt Neuenbürg;6,75
+82365006;GVV Neulingen;6,83
+82365007;GVV Tiefenbronn;7,12
+82370002;Alpirsbach, Stadt;5,78
+82370004;Baiersbronn;6,54
+82370045;Loßburg;6
+82375001;GVV Dornstetten;6,2
+82375002;VVG der Stadt Freudenstadt;6,7
+82375003;VVG der Stadt Horb am Neckar;6,63
+82375005;VVG der Gemeinde Pfalzgrafenweiler;6,48
+83110000;Freiburg im Breisgau, Stadt;9,74
+83150068;Lenzkirch;6,36
+83150076;Neuenburg am Rhein, Stadt;7,96
+83150133;Vogtsburg im Kaiserstuhl, Stadt;6,93
+83155001;VVG der Stadt Bad Krozingen;8,76
+83155002;VVG der Stadt Breisach am Rhein;7,68
+83155003;GVV Dreisamtal;8,35
+83155004;VVG der Gemeinde Ehrenkirchen;7,84
+83155005;VVG der Gemeinde Gundelfingen;9,26
+83155006;VVG der Stadt Heitersheim;8,04
+83155007;GVV Hexental;9,72
+83155008;VVG der Gemeinde Hinterzarten;7,54
+83155009;GVV Kaiserstuhl-Tuniberg;7,54
+83155010;VVG der Stadt Löffingen;5,92
+83155011;GVV March-Umkirch;8,5
+83155012;GVV Müllheim-Badenweiler;7,94
+83155013;GVV St. Peter;7,23
+83155014;VVG der Gemeinde Schallstadt;8,28
+83155015;VVG der Gemeinde Schluchsee;7,53
+83155016;GVV Staufen-Münstertal;7,92
+83155017;VVG der Stadt Titisee-Neustadt;6,63
+83165001;GVV Denzlingen-Vörstetten-Reute;8,41
+83165002;GVV Elzach;6,4
+83165003;VVG der Stadt Emmendingen;7,6
+83165004;GVV Kenzingen-Herbolzheim;7,41
+83165005;GVV Nördlicher Kaiserstuhl;7,39
+83165006;VVG der Stadt Waldkirch;7,34
+83170005;Appenweier;6,52
+83170031;Friesenheim;6,68
+83170051;Hornberg, Stadt;5,24
+83170057;Kehl, Stadt;7,32
+83170141;Willstätt;6,76
+83170151;Neuried;6,29
+83170153;Rheinau, Stadt;6,16
+83175001;VVG der Stadt Achern;6,75
+83175002;VVG der Stadt Ettenheim;7,08
+83175003;VVG der Stadt Gengenbach;6,86
+83175004;VVG der Stadt Haslach im Kinzigtal;6,07
+83175005;VVG der Stadt Hausach;6,02
+83175006;GVV Kappelrodeck;6,21
+83175007;VVG der Stadt Lahr/Schwarzwald;6,8
+83175008;GVV Oberes Renchtal;5,92
+83175009;VVG der Stadt Oberkirch;6,54
+83175010;VVG der Stadt Offenburg;6,97
+83175011;VVG der Gemeinde Seelbach;6,34
+83175012;VVG der Gemeinde Schwanau;6,25
+83175013;VVG der Stadt Wolfach;6,08
+83175014;VVG der Stadt Zell am Harmersbach;6,26
+83179971;Rheinau, gemeindefreies Gebiet;-9999
+83250012;Dornhan, Stadt;5,59
+83255001;VVG der Gemeinde Dunningen;5,86
+83255002;VVG der Stadt Oberndorf am Neckar;5,97
+83255003;VVG der Stadt Rottweil;6,5
+83255004;VVG der Stadt Schiltach;5,81
+83255005;VVG der Stadt Schramberg;5,82
+83255006;VVG der Stadt Sulz am Neckar;6,23
+83255007;GVV Villingendorf;6,13
+83260003;Bad Dürrheim, Stadt;7,19
+83260005;Blumberg, Stadt;5,86
+83260031;Königsfeld im Schwarzwald;6,74
+83260052;St. Georgen im Schwarzwald, Stadt;5,82
+83260068;Vöhrenbach, Stadt;5,32
+83265001;GVV Donaueschingen;6,41
+83265002;VVG der Stadt Furtwangen im Schwarzwald;6,43
+83265003;GVV Raumschaft Triberg;5,54
+83265004;VVG der Stadt Villingen-Schwenningen;7,02
+83275001;GVV Donau-Heuberg;6,19
+83275002;GVV Heuberg;5,83
+83275003;GVV Immendingen-Geisingen;6,35
+83275004;VVG der Stadt Spaichingen;6,59
+83275005;VVG der Stadt Trossingen;7,19
+83275006;VVG der Stadt Tuttlingen;6,95
+83350035;Hilzingen;7,32
+83350063;Radolfzell am Bodensee, Stadt;8,15
+83350080;Tengen, Stadt;6,2
+83355001;VVG der Stadt Engen;7,17
+83355002;VVG der Gemeinde Gottmadingen;7,6
+83355003;GVV Höri;7,88
+83355004;VVG der Stadt Konstanz;9,89
+83355005;VVG der Stadt Singen (Hohentwiel);7,76
+83355006;VVG der Stadt Stockach;7,46
+83360014;Efringen-Kirchen;8,07
+83360084;Steinen;7,82
+83360087;Todtnau, Stadt;6,22
+83360091;Weil am Rhein, Stadt;8,58
+83360105;Grenzach-Wyhlen;8,39
+83360107;Kleines Wiesental;6,11
+83365001;VVG der Stadt Kandern;7,84
+83365003;VVG der Stadt Lörrach;8,68
+83365004;VVG der Stadt Rheinfelden (Baden);8,12
+83365005;VVG der Gemeinde Schliengen;8,68
+83365006;GVV Schönau im Schwarzwald;6,36
+83365007;VVG der Stadt Schopfheim;7,74
+83365008;GVV Vorderes Kandertal;8,46
+83365009;VVG der Stadt Zell im Wiesental;6,52
+83370002;Albbruck;6,89
+83370038;Görwihl;5,77
+83370062;Klettgau;6,76
+83370066;Laufenburg (Baden), Stadt;7,07
+83370106;Stühlingen, Stadt;6,46
+83370116;Wehr, Stadt;7,47
+83375001;VVG der Stadt Bonndorf im Schwarzwald;6,15
+83375002;GVV Jestetten;7,19
+83375003;GVV Küssaberg;7,22
+83375004;GVV Oberes Schlüchttal;5,88
+83375005;VVG der Stadt Bad Säckingen;7,56
+83375006;GVV St. Blasien;6,41
+83375007;VVG der Stadt Waldshut-Tiengen;7,21
+83375008;VVG der Gemeinde Wutöschingen;6,55
+84150014;Dettingen an der Erms;8,22
+84150019;Eningen unter Achalm;8,29
+84150059;Pfullingen, Stadt;8,11
+84150061;Reutlingen, Stadt;8,05
+84150073;Trochtelfingen, Stadt;5,74
+84150080;Wannweil;8,3
+84150091;Sonnenbühl;6,26
+84150092;Lichtenstein;7,29
+84150093;St. Johann;6,14
+84155001;VVG der Gemeinde Engstingen;6,58
+84155002;VVG der Stadt Metzingen;8,48
+84155003;VVG der Stadt Münsingen;6,26
+84155004;VVG der Gemeinde Pliezhausen;8,28
+84155005;VVG der Stadt Bad Urach;7,43
+84155006;GVV Zwiefalten-Hayingen;5,63
+84159971;Gutsbezirk Münsingen, gemeindefreies Gebiet;-9999
+84160009;Dettenhausen;8,65
+84160022;Kirchentellinsfurt;8,47
+84160023;Kusterdingen;8,7
+84160041;Tübingen, Universitätsstadt;10,3
+84160048;Ammerbuch;8,06
+84165001;GVV Steinlach-Wiesaz;7,87
+84165002;VVG der Stadt Mössingen;7,73
+84165003;VVG der Stadt Rottenburg am Neckar;7,85
+84170013;Burladingen, Stadt;5,63
+84170025;Haigerloch, Stadt;6,07
+84170054;Rosenfeld, Stadt;6,25
+84175001;VVG der Stadt Albstadt;6,65
+84175002;VVG der Stadt Balingen;7,05
+84175003;VVG der Gemeinde Bisingen;6,87
+84175004;VVG der Stadt Hechingen;7,02
+84175005;VVG der Stadt Meßstetten;5,7
+84175006;GVV Oberes Schlichemtal;6,34
+84175007;VVG der Gemeinde Winterlingen;5,3
+84210000;Ulm, Universitätsstadt;8,48
+84250039;Erbach, Stadt;7,31
+84250108;Schelklingen, Stadt;6,67
+84250141;Blaustein, Stadt;8,39
+84255001;VVG der Gemeinde Allmendingen;6,44
+84255002;VVG der Stadt Blaubeuren;6,95
+84255003;GVV Dietenheim;6,61
+84255004;VVG der Gemeinde Dornstadt;7
+84255005;VVG der Stadt Ehingen (Donau);7,08
+84255006;GVV Kirchberg-Weihungstal;6,87
+84255007;GVV Laichinger Alb;7,02
+84255008;GVV Langenau;7,01
+84255009;GVV Lonsee-Amstetten;6,74
+84255010;GVV Verwaltungsgemeinschaft Munderkingen;6,31
+84260134;Schemmerhofen;6,78
+84265001;GVV Bad Buchau;6,12
+84265002;VVG der Stadt Bad Schussenried;6,55
+84265003;VVG der Stadt Biberach an der Riß;7,75
+84265004;GVV Illertal;6,31
+84265005;VVG der Stadt Laupheim;7,28
+84265006;VVG der Stadt Ochsenhausen;6,34
+84265007;VVG der Stadt Riedlingen;5,97
+84265008;GVV Rot-Tannheim;5,98
+84265009;VVG der Gemeinde Schwendi;7,07
+84350035;Meckenbeuren;8,21
+84355001;GVV Eriskirch-Kressbronn am Bodensee-Langenargen;8,79
+84355002;VVG der Stadt Friedrichshafen;8,56
+84355003;GVV Markdorf;8,2
+84355004;GVV Meersburg;8,78
+84355005;GVV Salem;7,54
+84355006;VVG der Stadt Tettnang;8,29
+84355007;VVG der Stadt Überlingen;8,73
+84360008;Aulendorf, Stadt;6,97
+84360010;Bad Wurzach, Stadt;6,53
+84360049;Isny im Allgäu, Stadt;7,38
+84360052;Kißlegg;6,87
+84360094;Argenbühl;6,58
+84365001;GVV Altshausen;6,06
+84365002;VVG der Stadt Bad Waldsee;7,04
+84365003;GVV Gullen;7,67
+84365004;VVG der Stadt Leutkirch im Allgäu;6,81
+84365005;GVV Mittleres Schussental;8,62
+84365006;VVG der Gemeinde Vogt;7,01
+84365007;VVG der Stadt Wangen im Allgäu;7,66
+84365008;VVG der Gemeinde Wilhelmsdorf;7,02
+84365009;GVV Fronreute-Wolpertswende;6,96
+84370086;Ostrach;5,98
+84375001;GVV Gammertingen;5,46
+84375002;GVV Mengen;5,99
+84375003;VVG der Stadt Meßkirch;5,95
+84375004;VVG der Stadt Pfullendorf;6,54
+84375005;VVG der Stadt Bad Saulgau;6,49
+84375006;GVV Sigmaringen;6,35
+84375007;VVG der Gemeinde Stetten am kalten Markt;5,67
+91610000;Ingolstadt;9,16
+91620000;München, Landeshauptstadt;12,89
+91630000;Rosenheim;9,09
+91710111;Altötting, St;6,48
+91710112;Burghausen, St;6,94
+91710113;Burgkirchen a.d.Alz;6,12
+91710117;Garching a.d.Alz;5,94
+91710118;Haiming;6,57
+91710125;Neuötting, St;6,33
+91710127;Pleiskirchen;6,07
+91710131;Teising;5,3
+91710132;Töging a.Inn, St;6,29
+91710133;Tüßling, M;5,93
+91710137;Winhöring;5,73
+91715101;Emmerting (VGem);6,1
+91715102;Kirchweidach (VGem);5,87
+91715103;Marktl (VGem);6,02
+91715104;Reischach (VGem);5,66
+91715106;Unterneukirchen (VGem);6,17
+91720111;Ainring;7,48
+91720112;Anger;7,41
+91720114;Bad Reichenhall, GKSt;7,74
+91720115;Bayerisch Gmain;8,12
+91720116;Berchtesgaden, M;6,94
+91720117;Bischofswiesen;6,76
+91720118;Freilassing, St;7,49
+91720122;Laufen, St;7,03
+91720124;Marktschellenberg, M;6,89
+91720128;Piding;7,67
+91720129;Ramsau b.Berchtesgaden;6,48
+91720130;Saaldorf-Surheim;7,59
+91720131;Schneizlreuth;6,64
+91720132;Schönau a.Königssee;7,39
+91720134;Teisendorf, M;6,6
+91729452;Eck;-9999
+91729454;Schellenberger Forst;-9999
+91730111;Bad Heilbrunn;8,6
+91730112;Bad Tölz, St;9,29
+91730118;Dietramszell;9,31
+91730120;Egling;9,18
+91730123;Eurasburg;9,38
+91730124;Gaißach;8,71
+91730126;Geretsried, St;8,79
+91730130;Icking;10,58
+91730131;Jachenau;7,78
+91730134;Königsdorf;8,81
+91730135;Lenggries;8,55
+91730137;Münsing;11,15
+91730145;Wackersberg;9,43
+91730147;Wolfratshausen, St;10,02
+91735107;Benediktbeuern (VGem);8,75
+91735108;Kochel a.See (VGem);8,25
+91735109;Reichersbeuern (VGem);8,67
+91739451;Pupplinger Au;-9999
+91739452;Wolfratshauser Forst;-9999
+91740111;Altomünster, M;8,59
+91740113;Bergkirchen;9,85
+91740115;Dachau, GKSt;10,34
+91740118;Erdweg;8,86
+91740121;Haimhausen;11,28
+91740122;Hebertshausen;9,59
+91740126;Karlsfeld;11,58
+91740131;Markt Indersdorf, M;9,75
+91740135;Odelzhausen;9,18
+91740136;Petershausen;9,12
+91740137;Pfaffenhofen a.d.Glonn;8,2
+91740141;Röhrmoos;9,36
+91740143;Schwabhausen;9,26
+91740146;Sulzemoos;8,63
+91740147;Hilgertshausen-Tandern;7,72
+91740150;Vierkirchen;9,18
+91740151;Weichs;8,59
+91750111;Anzing;9,77
+91750115;Ebersberg, St;9,72
+91750118;Forstinning;10,04
+91750122;Grafing b.München, St;10,17
+91750123;Hohenlinden;8,76
+91750124;Kirchseeon, M;9,97
+91750127;Markt Schwaben, M;11,09
+91750132;Vaterstetten;12,13
+91750133;Pliening;10,82
+91750135;Poing;11,1
+91750137;Steinhöring;8,29
+91750139;Zorneding;10,87
+91755112;Aßling (VGem);8,43
+91755114;Glonn (VGem);9,55
+91759451;Anzinger Forst;-9999
+91759452;Ebersberger Forst;-9999
+91759453;Eglhartinger Forst;-9999
+91760112;Altmannstein, M;6,08
+91760114;Beilngries, St;7,35
+91760118;Buxheim;7,68
+91760120;Denkendorf;7,03
+91760121;Dollnstein, M;7,06
+91760123;Eichstätt, GKSt;8,08
+91760126;Gaimersheim, M;9,39
+91760129;Großmehring;9,05
+91760131;Hepberg;8,95
+91760132;Hitzhofen;7,42
+91760137;Kinding, M;6
+91760138;Kipfenberg, M;8,1
+91760139;Kösching, M;8,85
+91760143;Lenting;8,37
+91760148;Mörnsheim, M;5,13
+91760161;Stammham;7,85
+91760164;Titting, M;5,43
+91760166;Wellheim, M;5,85
+91760167;Wettstetten;9,11
+91765115;Eichstätt (VGem);6,2
+91765116;Eitensheim (VGem);7,75
+91765118;Nassenfels (VGem);7,14
+91765119;Pförring (VGem);7,17
+91769451;Haunstetter Forst;-9999
+91770113;Bockhorn;8,42
+91770115;Dorfen, St;8,52
+91770117;Erding, St;9,77
+91770118;Finsing;10,07
+91770119;Forstern;11,15
+91770120;Fraunberg;8,38
+91770123;Isen, M;8,34
+91770127;Lengdorf;7,98
+91770130;Moosinning;9,61
+91770137;Sankt Wolfgang;8,26
+91770139;Taufkirchen (Vils);8,09
+91775120;Pastetten (VGem);9,27
+91775121;Hörlkofen (VGem);8,96
+91775123;Oberding (VGem);9,89
+91775124;Oberneuching (VGem);9,7
+91775125;Steinkirchen (VGem);7,49
+91775126;Wartenberg (VGem);8,64
+91780116;Au i.d.Hallertau, M;8,12
+91780120;Eching;11,48
+91780122;Rudelzhausen;6,97
+91780123;Fahrenzhausen;9,4
+91780124;Freising, GKSt;10,72
+91780130;Hallbergmoos;11,31
+91780133;Hohenkammer;9,12
+91780136;Kirchdorf a.d.Amper;8,62
+91780137;Kranzberg;8,92
+91780138;Langenbach;9,14
+91780140;Marzling;9,93
+91780143;Moosburg a.d.Isar, St;8,74
+91780144;Nandlstadt, M;7,87
+91780145;Neufahrn b.Freising;11,23
+91785127;Allershausen (VGem);9,71
+91785129;Mauern (VGem);7,68
+91785130;Zolling (VGem);8,46
+91790113;Alling;10,49
+91790117;Egenhofen;8,38
+91790118;Eichenau;9,85
+91790119;Emmering;10,51
+91790121;Fürstenfeldbruck, GKSt;10,21
+91790123;Germering, GKSt;11,22
+91790126;Gröbenzell;11,43
+91790134;Maisach;9,86
+91790138;Moorenweis;8,35
+91790142;Olching;10,74
+91790145;Puchheim;10,92
+91790149;Türkenfeld;9,24
+91795131;Mammendorf (VGem);8,98
+91795132;Grafrath (VGem);9,76
+91800112;Bad Kohlgrub;8,08
+91800116;Farchant;8,74
+91800117;Garmisch-Partenkirchen, M;9,12
+91800118;Grainau;8,81
+91800122;Krün;8,54
+91800123;Mittenwald, M;8,14
+91800124;Murnau a.Staffelsee, M;9,72
+91800125;Oberammergau;8,42
+91800126;Oberau;8,26
+91800134;Uffing a.Staffelsee;8,51
+91800136;Wallgau;8,93
+91805133;Saulgrub (VGem);7,59
+91805135;Unterammergau (VGem);7,53
+91805136;Ohlstadt (VGem);8,62
+91805137;Seehausen a.Staffelsee (VGem);9,3
+91809451;Ettaler Forst;-9999
+91810113;Denklingen;7,6
+91810114;Dießen am Ammersee, M;9,09
+91810116;Egling a.d.Paar;7,62
+91810122;Geltendorf;8,8
+91810128;Kaufering, M;8,5
+91810130;Landsberg am Lech, GKSt;8,64
+91810132;Penzing;7,57
+91810144;Utting am Ammersee;9,49
+91810145;Weil;7,72
+91815138;Fuchstal (VGem);7,32
+91815139;Igling (VGem);7,3
+91815140;Prittriching (VGem);7,15
+91815141;Pürgen (VGem);8,17
+91815142;Reichling (VGem);7,4
+91815143;Schondorf a.Ammersee (VGem);10,2
+91815144;Windach (VGem);8,59
+91819451;Ammersee;-9999
+91820111;Bad Wiessee;10,66
+91820112;Bayrischzell;7,97
+91820114;Fischbachau;8,47
+91820116;Gmund a.Tegernsee;9,63
+91820119;Hausham;8,31
+91820120;Holzkirchen, M;10,38
+91820123;Irschenberg;8,6
+91820124;Kreuth;10
+91820125;Miesbach, St;8,88
+91820127;Otterfing;10,15
+91820129;Rottach-Egern;10,99
+91820131;Schliersee, M;9,45
+91820132;Tegernsee, St;9,74
+91820133;Valley;9,16
+91820134;Waakirchen;8,86
+91820136;Warngau;9,42
+91820137;Weyarn;9,13
+91830112;Ampfing;7,19
+91830113;Aschau a.Inn;6,68
+91830114;Buchbach, M;6,92
+91830119;Haag i.OB, M;7,41
+91830127;Mettenheim;6,55
+91830128;Mühldorf a.Inn, St;7,31
+91830135;Obertaufkirchen;7,24
+91830144;Schwindegg;7,14
+91830148;Waldkraiburg, St;6,45
+91835145;Heldenstein (VGem);6,85
+91835146;Gars a.Inn (VGem);6,49
+91835147;Reichertsheim (VGem);6,94
+91835148;Kraiburg a.Inn (VGem);6
+91835149;Neumarkt-Sankt Veit (VGem);5,7
+91835150;Oberbergkirchen (VGem);5,71
+91835151;Polling (VGem);5,68
+91835152;Rohrbach (VGem);5,75
+91835183;Maitenbeth (VGem);7,5
+91839451;Mühldorfer Hart;-9999
+91840112;Aschheim;11,86
+91840113;Baierbrunn;11,82
+91840114;Brunnthal;10,81
+91840118;Feldkirchen;12,03
+91840119;Garching b.München, St;12,89
+91840120;Gräfelfing;11,63
+91840121;Grasbrunn;11,73
+91840122;Grünwald;13,08
+91840123;Haar;10,94
+91840127;Höhenkirchen-Siegertsbrunn;11,75
+91840129;Hohenbrunn;11,85
+91840130;Ismaning;12,07
+91840131;Kirchheim b.München;11,82
+91840132;Neuried;12,24
+91840134;Oberhaching;12,13
+91840135;Oberschleißheim;11,05
+91840136;Ottobrunn;12,2
+91840137;Aying;10,31
+91840138;Planegg;11,79
+91840139;Pullach i.Isartal;11,68
+91840140;Putzbrunn;11,62
+91840141;Sauerlach;10,88
+91840142;Schäftlarn;11
+91840144;Straßlach-Dingharting;11,5
+91840145;Taufkirchen;9,19
+91840146;Neubiberg;13,84
+91840147;Unterföhring;12,02
+91840148;Unterhaching;12
+91840149;Unterschleißheim, St;11,86
+91849452;Forstenrieder Park;-9999
+91849454;Grünwalder Forst;-9999
+91849457;Perlacher Forst;-9999
+91850113;Aresing;6,13
+91850125;Burgheim, M;6,13
+91850127;Ehekirchen;6,2
+91850139;Karlshuld;7,8
+91850140;Karlskron;7,35
+91850149;Neuburg a.d.Donau, GKSt;7,85
+91850150;Oberhausen;7,54
+91850153;Rennertshofen, M;5,76
+91850158;Schrobenhausen, St;7,62
+91850163;Königsmoos;6,84
+91850168;Weichering;7,45
+91855154;Neuburg a.d.Donau (VGem);6,67
+91855155;Schrobenhausen (VGem);6,55
+91860113;Baar-Ebenhausen;8,27
+91860125;Gerolsbach;7,82
+91860128;Hohenwart, M;7,46
+91860132;Jetzendorf;7,63
+91860137;Manching, M;8,78
+91860139;Münchsmünster;6,8
+91860143;Pfaffenhofen a.d.Ilm, St;8,69
+91860146;Reichertshausen;7,35
+91860149;Rohrbach;7,39
+91860151;Scheyern;7,66
+91860152;Schweitenkirchen;8,1
+91860158;Vohburg a.d.Donau, St;7,72
+91860162;Wolnzach, M;7,57
+91865156;Geisenfeld (VGem);7,9
+91865157;Ilmmünster (VGem);7,49
+91865158;Reichertshofen (VGem);7,56
+91870113;Amerang;7,59
+91870114;Aschau i.Chiemgau;8,38
+91870116;Babensham;7,34
+91870117;Bad Aibling, St;9,21
+91870118;Bernau a.Chiemsee;8,46
+91870120;Brannenburg;9,07
+91870122;Bruckmühl, M;8,52
+91870124;Edling;7,65
+91870125;Eggstätt;7,73
+91870126;Eiselfing;7,91
+91870128;Bad Endorf, M;8,32
+91870129;Bad Feilnbach;8,53
+91870130;Feldkirchen-Westerham;8,87
+91870131;Flintsbach a.Inn;7,94
+91870132;Frasdorf;7,81
+91870134;Griesstätt;7,34
+91870137;Großkarolinenfeld;8,56
+91870142;Schechen;8,47
+91870148;Kiefersfelden;7,8
+91870150;Kolbermoor, St;8,74
+91870154;Neubeuern, M;8,38
+91870156;Nußdorf a.Inn;8,45
+91870157;Oberaudorf;8,19
+91870162;Prien a.Chiemsee, M;8,92
+91870163;Prutting;8,18
+91870165;Raubling;8,08
+91870167;Riedering;8,17
+91870168;Rimsting;8,55
+91870169;Rohrdorf;8,3
+91870172;Samerberg;8,31
+91870174;Söchtenau;7,48
+91870176;Soyen;7,47
+91870177;Stephanskirchen;8,66
+91870179;Tuntenhausen;8,37
+91870181;Vogtareuth;8,1
+91870182;Wasserburg a.Inn, St;8,24
+91875160;Breitbrunn a.Chiemsee (VGem);9,01
+91875162;Halfing (VGem);7,73
+91875165;Rott a.Inn (VGem);7,76
+91875184;Pfaffing (VGem);7,55
+91879451;Rotter Forst-Nord;-9999
+91879452;Rotter Forst-Süd;-9999
+91880113;Berg;11,37
+91880117;Andechs;9,4
+91880118;Feldafing;9,77
+91880120;Gauting;11,19
+91880121;Gilching;10,87
+91880124;Herrsching a.Ammersee;11,27
+91880126;Inning a.Ammersee;10,28
+91880127;Krailling;11,46
+91880132;Seefeld;10,62
+91880137;Pöcking;9,99
+91880139;Starnberg, St;11,29
+91880141;Tutzing;10,27
+91880144;Weßling;10,22
+91880145;Wörthsee;10,89
+91889451;Starnberger See;-9999
+91890111;Altenmarkt a.d.Alz;6,56
+91890114;Chieming;8,05
+91890115;Engelsberg;5,68
+91890118;Fridolfing;6,53
+91890119;Grabenstätt;7,46
+91890120;Grassau, M;7,73
+91890124;Inzell;7,74
+91890127;Kirchanschöring;6,6
+91890130;Nußdorf;7,08
+91890134;Palling;6,39
+91890135;Petting;6,66
+91890139;Reit im Winkl;8,07
+91890140;Ruhpolding;7,75
+91890141;Schleching;7,22
+91890142;Schnaitsee;7,08
+91890143;Seeon-Seebruck;7,76
+91890145;Siegsdorf;7,41
+91890148;Surberg;7,46
+91890149;Tacherting;6,04
+91890152;Tittmoning, St;6,21
+91890154;Traunreut, St;6,78
+91890155;Traunstein, GKSt;7,78
+91890157;Trostberg, St;6,19
+91890159;Übersee;7,55
+91890160;Unterwössen;7,76
+91895166;Bergen (VGem);7,39
+91895169;Marquartstein (VGem);7,57
+91895170;Obing (VGem);6,99
+91895173;Waging a.See (VGem);7,13
+91899451;Chiemsee (See);-9999
+91899452;Waginger See;-9999
+91900115;Bernried am Starnberger See;9,75
+91900130;Hohenpeißenberg;7,77
+91900138;Pähl;8,48
+91900139;Peißenberg, M;7,55
+91900140;Peiting, M;7,35
+91900141;Penzberg, St;8,52
+91900142;Polling;8,19
+91900144;Raisting;7,74
+91900148;Schongau, St;7,35
+91900157;Weilheim i.OB, St;8,91
+91900158;Wessobrunn;6,91
+91900159;Wielenbach;8,37
+91905174;Altenstadt (VGem);6,75
+91905175;Bernbeuren (VGem);6,23
+91905176;Habach (VGem);8,11
+91905177;Huglfing (VGem);7,98
+91905178;Rottenbuch (VGem);6,89
+91905179;Seeshaupt (VGem);8,89
+91905180;Steingaden (VGem);6,45
+92610000;Landshut;8,2
+92620000;Passau;8,03
+92630000;Straubing;6,64
+92710111;Aholming;5,52
+92710113;Auerbach;4,95
+92710116;Bernried;5,5
+92710119;Deggendorf, GKSt;7,04
+92710122;Grafling;5,36
+92710125;Hengersberg, M;6,12
+92710127;Iggensbach;5,14
+92710128;Künzing;4,7
+92710132;Metten, M;6,36
+92710138;Niederalteich;6,05
+92710140;Offenberg;5,66
+92710141;Osterhofen, St;5,59
+92710146;Plattling, St;6,46
+92710151;Stephansposching;5,32
+92710153;Winzer, M;5,23
+92715202;Lalling (VGem);4,87
+92715204;Oberpöring (VGem);4,78
+92715205;Moos (VGem);5,29
+92715206;Schöllnach (VGem);5,16
+92720118;Freyung, St;5,15
+92720120;Grafenau, St;5,09
+92720121;Grainet;4,4
+92720122;Haidmühle;4,42
+92720127;Hohenau;4,56
+92720129;Jandelsbrunn;4,23
+92720134;Mauth;4,13
+92720136;Neureichenau;4,71
+92720140;Ringelai;4,06
+92720141;Röhrnbach, M;4,73
+92720142;Saldenburg;4,66
+92720143;Sankt Oswald-Riedlhütte;4,51
+92720146;Neuschönau;4,54
+92720149;Spiegelau;4,45
+92720151;Waldkirchen, St;5,66
+92725211;Schönberg (VGem);4,81
+92725212;Hinterschmiding (VGem);4,34
+92725213;Thurmansbang (VGem);4,83
+92725214;Perlesreut (VGem);4,4
+92729451;Annathaler Wald;-9999
+92729452;Frauenberger u. Duschlberger Wald;-9999
+92729453;Graineter Wald;-9999
+92729455;Leopoldsreuter Wald;-9999
+92729456;Mauther Forst;-9999
+92729457;Philipppsreuter Wald;-9999
+92729458;Pleckensteiner Wald;-9999
+92729459;Sankt Oswald;-9999
+92729460;Schlichtenberger Wald;-9999
+92729461;Schönbrunner Wald;-9999
+92729463;Waldhäuserwald;-9999
+92730111;Abensberg, St;7,51
+92730116;Bad Abbach, M;7,66
+92730137;Kelheim, St;6,69
+92730147;Mainburg, St;7,2
+92730152;Neustadt a.d.Donau, St;7,46
+92730159;Painten, M;5,45
+92730164;Riedenburg, St;6,2
+92730165;Rohr i.NB, M;6,04
+92735215;Ihrlerstein (VGem);6,38
+92735216;Saal a.d.Donau (VGem);7,18
+92735217;Langquaid (VGem);6,32
+92735218;Siegenburg (VGem);6,32
+92735219;Mainburg (VGem);6,56
+92739451;Dürnbucher Forst;-9999
+92739452;Frauenforst;-9999
+92739453;Hacklberg;-9999
+92740111;Adlkofen;7,48
+92740113;Altdorf, M;7,09
+92740120;Bodenkirchen;6,1
+92740121;Buch a.Erlbach;7,87
+92740124;Eching;7,3
+92740126;Ergolding, M;7,61
+92740128;Essenbach, M;7,01
+92740134;Geisenhausen, M;7,18
+92740141;Hohenthann;6,13
+92740146;Kumhausen;7,29
+92740153;Neufahrn i.NB;6,38
+92740156;Niederaichbach;6,98
+92740172;Pfeffenhausen, M;6,24
+92740176;Rottenburg a.d.Laaber, St;6,22
+92740182;Tiefenbach;7,02
+92740184;Vilsbiburg, St;6,55
+92740185;Vilsheim;7,74
+92740194;Bruckberg;7,02
+92745220;Ergoldsbach (VGem);6,48
+92745221;Furth (VGem);6,92
+92745222;Wörth a.d.Isar (VGem);7,17
+92745223;Gerzen (VGem);6,11
+92745226;Altfraunhofen (VGem);6,55
+92745227;Velden (VGem);6,45
+92750111;Aicha vorm Wald;5,01
+92750114;Aldersbach;4,93
+92750116;Bad Füssing;7,41
+92750118;Breitenberg;5,1
+92750119;Büchlberg;5,45
+92750120;Eging a.See, M;5,47
+92750121;Fürstenstein;5,17
+92750122;Fürstenzell, M;5,88
+92750124;Bad Griesbach i.Rottal, St;6,45
+92750125;Haarbach;4,86
+92750126;Hauzenberg, St;5,31
+92750127;Hofkirchen, M;5,57
+92750128;Hutthurm, M;5,49
+92750130;Kirchham;6,14
+92750131;Kößlarn, M;5,18
+92750133;Neuburg a.Inn;6,15
+92750134;Neuhaus a.Inn;5,8
+92750135;Neukirchen vorm Wald;5,89
+92750137;Obernzell, M;5,73
+92750138;Ortenburg, M;5,21
+92750141;Pocking, St;6,09
+92750144;Ruderting;5,71
+92750145;Ruhstorf a.d.Rott, M;5,85
+92750146;Salzweg;5,91
+92750148;Sonnen;4,4
+92750149;Tettenweis;5,65
+92750150;Thyrnau;5,73
+92750151;Tiefenbach;5,72
+92750153;Untergriesbach, M;4,83
+92750154;Vilshofen an der Donau, St;5,71
+92750156;Wegscheid, M;5,2
+92750159;Windorf, M;5,04
+92755229;Tittling (VGem);5,46
+92755232;Aidenbach (VGem);5,64
+92755234;Rotthalmünster (VGem);5,5
+92760113;Arnbruck;4,82
+92760115;Bayerisch Eisenstein;5,23
+92760116;Bischofsmais;4,61
+92760117;Bodenmais, M;5,49
+92760118;Böbrach;4,58
+92760120;Drachselsried;4,77
+92760121;Frauenau;4,08
+92760122;Geiersthal;4,8
+92760126;Kirchberg i.Wald;4,49
+92760127;Kirchdorf i.Wald;4,3
+92760128;Kollnburg;4,36
+92760129;Langdorf;4,79
+92760130;Lindberg;4,54
+92760134;Patersdorf;5,08
+92760135;Prackenbach;4,53
+92760138;Regen, St;5,27
+92760139;Rinchnach;4,36
+92760143;Teisnach, M;5,35
+92760144;Viechtach, St;5,36
+92760148;Zwiesel, St;4,97
+92765238;Ruhmannsfelden (VGem);4,46
+92770111;Arnstorf, M;5,91
+92770114;Dietersburg;5,05
+92770116;Eggenfelden, St;5,84
+92770117;Egglham;5,2
+92770121;Gangkofen, M;5,38
+92770124;Hebertsfelden;5,3
+92770126;Johanniskirchen;5,29
+92770127;Julbach;5,39
+92770128;Kirchdorf a.Inn;5,35
+92770134;Mitterskirchen;5,53
+92770138;Pfarrkirchen, St;6,4
+92770139;Postmünster;5,77
+92770142;Roßbach;4,95
+92770144;Schönau;6,18
+92770145;Simbach a.Inn, St;5,79
+92770149;Triftern, M;5,25
+92770151;Unterdietfurt;5,22
+92770152;Wittibreut;4,59
+92770153;Wurmannsquick, M;4,94
+92770154;Zeilarn;5,2
+92775239;Falkenberg (VGem);5,03
+92775240;Massing (VGem);5,83
+92775241;Bad Birnbach (VGem);6
+92775243;Tann (VGem);5,15
+92775244;Ering (VGem);5,25
+92780118;Bogen, St;5,98
+92780121;Feldkirchen;5,52
+92780123;Geiselhöring, St;6,14
+92780129;Haibach;4,94
+92780141;Kirchroth;5,18
+92780143;Konzell;4,61
+92780144;Laberweinting;5,48
+92780146;Leiblfing;6,19
+92780148;Mallersdorf-Pfaffenberg, M;5,89
+92780167;Oberschneiding;5,61
+92780170;Parkstetten;6,2
+92780178;Rattenberg;4,27
+92780184;Sankt Englmar;5,67
+92780190;Steinach;6,98
+92780197;Wiesenfelden;5,12
+92785246;Stallwang (VGem);5,68
+92785248;Mitterfels (VGem);5,52
+92785249;Hunderdorf (VGem);5,27
+92785250;Rain (VGem);5,62
+92785252;Schwarzach (VGem);5,51
+92785256;Aiterhofen (VGem);6,08
+92785257;Straßkirchen (VGem);5,61
+92790112;Dingolfing, St;6,68
+92790113;Eichendorf, M;5,13
+92790115;Frontenhausen, M;6,44
+92790122;Landau a.d.Isar, St;6,37
+92790124;Loiching;6,3
+92790126;Marklkofen;6,28
+92790127;Mengkofen;6,31
+92790128;Moosthenning;6,7
+92790130;Niederviehbach;6,57
+92790132;Pilsting, M;5,78
+92790134;Reisbach, M;5,94
+92790135;Simbach, M;5,53
+92790137;Wallersdorf, M;6,01
+92795208;Mamming (VGem);6,27
+93610000;Amberg;6,36
+93620000;Regensburg;9,38
+93630000;Weiden i.d.OPf.;5,95
+93710111;Ammerthal;5,35
+93710113;Auerbach i.d.OPf., St;4,82
+93710118;Ebermannsdorf;4,98
+93710119;Edelsfeld;5,28
+93710120;Ensdorf;4,67
+93710121;Freihung, M;5,51
+93710122;Freudenberg;4,95
+93710127;Hirschau, St;4,98
+93710129;Hohenburg, M;4,47
+93710132;Kastl, M;5,08
+93710136;Kümmersbruck;6,11
+93710144;Poppenricht;5,54
+93710146;Rieden, M;5,19
+93710148;Schmidmühlen, M;4,89
+93710150;Schnaittenbach, St;4,62
+93710151;Sulzbach-Rosenberg, St;5,53
+93710154;Ursensollen;6,35
+93710156;Vilseck, St;5,95
+93715301;Hahnbach (VGem);5,44
+93715302;Königstein (VGem);5,09
+93715303;Neukirchen b.Sulzbach-R. (VGem);4,97
+93715304;Illschwang (VGem);4,89
+93719452;Eichen;-9999
+93720112;Arnschwang;4,57
+93720113;Arrach;4,65
+93720115;Blaibach;4,67
+93720116;Cham, St;5,74
+93720117;Chamerau;4,8
+93720124;Eschlkam, M;3,76
+93720126;Furth im Wald, St;4,68
+93720130;Grafenwiesen;4,39
+93720135;Hohenwarth;4,07
+93720137;Bad Kötzting, St;5,37
+93720138;Lam, M;4,32
+93720143;Miltach;5,37
+93720144;Neukirchen b.Hl.Blut, M;4,16
+93720146;Pemfling;4,89
+93720151;Rimbach;4,8
+93720153;Roding, St;6,38
+93720154;Rötz, St;5,1
+93720155;Runding;4,65
+93720157;Schönthal;4,39
+93720158;Schorndorf;5,14
+93720164;Traitsching;4,81
+93720168;Waffenbrunn;4,63
+93720171;Waldmünchen, St;4,94
+93720175;Willmering;5,89
+93720177;Zandt;5,28
+93720178;Lohberg;4,29
+93725308;Tiefenbach (VGem);4,02
+93725310;Stamsried (VGem);4,78
+93725312;Weiding (VGem);4,58
+93725313;Walderbach (VGem);5,31
+93725317;Wald (VGem);5,46
+93725318;Falkenstein (VGem);5,08
+93730112;Berching, St;6,47
+93730113;Berg b.Neumarkt i.d.OPf.;6,4
+93730115;Breitenbrunn, M;5,62
+93730119;Deining;6,63
+93730121;Dietfurt a.d.Altmühl, St;6,07
+93730126;Freystadt, St;6,51
+93730134;Hohenfels, M;6,13
+93730140;Lauterhofen, M;5,37
+93730143;Lupburg, M;6,28
+93730146;Mühlhausen;6,37
+93730147;Neumarkt i.d.OPf., GKSt;7,32
+93730151;Parsberg, St;6,61
+93730155;Postbauer-Heng, M;6,63
+93730156;Pyrbaum, M;6,1
+93730160;Seubersdorf i.d.OPf.;5,8
+93730167;Velburg, St;5,92
+93735321;Neumarkt i.d.OPf. (VGem);8,09
+93740111;Altenstadt a.d.Waldnaab;5,22
+93740118;Eslarn, M;4,25
+93740121;Floß, M;4,6
+93740122;Flossenbürg;3,81
+93740124;Grafenwöhr, St;5,62
+93740133;Luhe-Wildenau, M;5,02
+93740134;Mantel, M;5,33
+93740137;Moosbach, M;4,58
+93740139;Neustadt a.d.Waldnaab, St;4,85
+93740162;Vohenstrauß, St;4,95
+93740164;Waidhaus, M;4,41
+93740165;Waldthurn, M;4,18
+93740168;Windischeschenbach, St;4,54
+93745323;Neustadt a.d.Waldnaab (VGem);5,06
+93745324;Pressath (VGem);5,68
+93745325;Weiherhammer (VGem);5,27
+93745326;Kirchenthumbach (VGem);4,76
+93745327;Eschenbach i.d.OPf. (VGem);5,52
+93745329;Schirmitz (VGem);5,4
+93745330;Tännesberg (VGem);4,21
+93745331;Pleystein (VGem);4,2
+93749451;Heinersreuther Forst;-9999
+93749452;Manteler Forst;-9999
+93749458;Speinsharter Forst;-9999
+93750117;Barbing;7,14
+93750118;Beratzhausen, M;5,97
+93750119;Bernhardswald;6,3
+93750143;Hagelstadt;6,05
+93750148;Hemau, St;6,07
+93750161;Köfering;7,16
+93750165;Lappersdorf, M;7,48
+93750170;Mintraching;6,6
+93750174;Neutraubling, St;7,36
+93750175;Nittendorf, M;7,01
+93750179;Obertraubling;7,79
+93750180;Pentling;8,64
+93750181;Pettendorf;6,61
+93750183;Pfatter;5,62
+93750190;Regenstauf, M;6,87
+93750196;Schierling, M;6,82
+93750199;Sinzing;7,68
+93750204;Tegernheim;7,66
+93750205;Thalmassing;6,53
+93750208;Wenzenbach;7,31
+93750209;Wiesent;6,11
+93750213;Zeitlarn;7,16
+93755332;Kallmünz (VGem);5,72
+93755333;Laaber (VGem);6,11
+93755334;Pielenhofen-Wolfsegg (VGem);6,32
+93755335;Donaustauf (VGem);6,76
+93755336;Wörth a.d.Donau (VGem);6,26
+93755337;Alteglofsheim (VGem);6,29
+93755338;Sünching (VGem);5,56
+93759451;Forstmühler Forst;-9999
+93759452;Kreuther Forst;-9999
+93760116;Bodenwöhr;5,25
+93760117;Bruck i.d.OPf., M;5,26
+93760119;Burglengenfeld, St;6,79
+93760125;Fensterbach;5,03
+93760141;Maxhütte-Haidhof, St;6,62
+93760147;Neunburg vorm Wald, St;5,37
+93760149;Nittenau, St;5,68
+93760150;Wernberg-Köblitz, M;5,18
+93760151;Oberviechtach, St;4,86
+93760159;Schmidgaden;5,26
+93760161;Schwandorf, GKSt;6,09
+93760170;Teublitz, St;6,22
+93765339;Oberviechtach (VGem);3,98
+93765341;Nabburg (VGem);5,27
+93765342;Schwarzenfeld (VGem);5,47
+93765343;Pfreimd (VGem);5,11
+93765344;Schönsee (VGem);4,05
+93765345;Neunburg vorm Wald (VGem);4,21
+93765346;Wackersdorf (VGem);5,88
+93769455;Wolferlohe;-9999
+93770112;Bärnau, St;4,05
+93770116;Erbendorf, St;4,6
+93770118;Friedenfels;3,59
+93770119;Fuchsmühl, M;3,6
+93770127;Immenreuth;5,21
+93770131;Konnersreuth, M;3,87
+93770133;Kulmain;4,54
+93770139;Mähring, M;3,19
+93770142;Bad Neualbenreuth, M;3,85
+93770146;Plößberg, M;4,02
+93770154;Tirschenreuth, St;4,77
+93770157;Waldershof, St;4,59
+93770158;Waldsassen, St;4,43
+93775347;Mitterteich (VGem);4,43
+93775348;Kemnath (VGem);5,37
+93775349;Neusorg (VGem);4,29
+93775350;Krummennaab (VGem);4,08
+93775351;Wiesau (VGem);4,44
+94610000;Bamberg;7,66
+94620000;Bayreuth;7,11
+94630000;Coburg;6,38
+94640000;Hof;5,05
+94710111;Altendorf;6,35
+94710117;Bischberg;6,06
+94710119;Breitengüßbach;6,04
+94710123;Buttenheim, M;5,99
+94710131;Frensdorf;5,6
+94710137;Gundelsheim;6,55
+94710140;Hallstadt, St;6,58
+94710142;Heiligenstadt i.OFr., M;5,48
+94710145;Hirschaid, M;6,73
+94710150;Kemmern;5,9
+94710155;Litzendorf;5,84
+94710159;Memmelsdorf;5,81
+94710165;Oberhaid;5,42
+94710169;Pettstadt;5,54
+94710172;Pommersfelden;5,69
+94710174;Rattelsdorf, M;5,61
+94710185;Scheßlitz, St;5,25
+94710191;Stegaurach;6,4
+94710195;Strullendorf;6,03
+94710207;Viereth-Trunstadt;5,62
+94710208;Walsdorf;5,86
+94710214;Zapfendorf, M;5,77
+94710220;Schlüsselfeld, St;5,31
+94715401;Baunach (VGem);5,45
+94715403;Steinfeld (VGem);4,87
+94715407;Ebrach (VGem);4,98
+94715408;Burgebrach (VGem);5,68
+94715445;Lisberg (VGem);5,33
+94719452;Ebracher Forst;-9999
+94719453;Eichwald;-9999
+94719454;Geisberger Forst;-9999
+94719455;Hauptsmoor;-9999
+94719456;Koppenwinder Forst;-9999
+94719457;Lindach;-9999
+94719459;Semberg;-9999
+94719460;Steinachsrangen;-9999
+94719461;Winkelhofer Forst;-9999
+94719462;Zückshuter Forst;-9999
+94720111;Ahorntal;5
+94720116;Bad Berneck i.Fichtelgebirge, St;5,08
+94720119;Bindlach;5,84
+94720121;Bischofsgrün;5,05
+94720131;Eckersdorf;5,69
+94720138;Fichtelberg;4,31
+94720139;Gefrees, St;4,85
+94720143;Goldkronach, St;5,13
+94720150;Heinersreuth;6,13
+94720164;Mehlmeisel;5,29
+94720175;Pegnitz, St;5,9
+94720179;Pottenstein, St;4,96
+94720190;Speichersdorf;5,13
+94720197;Waischenfeld, St;5,03
+94720198;Warmensteinach;5,34
+94725412;Hollfeld (VGem);4,61
+94725413;Mistelgau (VGem);5,24
+94725414;Mistelbach (VGem);5,67
+94725415;Weidenberg (VGem);5,1
+94725416;Creußen (VGem);5,07
+94725417;Betzenstein (VGem);4,86
+94729451;Bischofsgrüner Forst;-9999
+94729453;Fichtelberg;-9999
+94729454;Forst Neustädtlein a.Forst;-9999
+94729456;Glashüttener Forst;-9999
+94729458;Heinersreuther Forst;-9999
+94729463;Neubauer Forst-Nord;-9999
+94729464;Prüll;-9999
+94729468;Veldensteinerforst;-9999
+94729469;Waidacher Forst;-9999
+94729470;Warmensteinacher Forst-Nord;-9999
+94730112;Ahorn;5,37
+94730120;Dörfles-Esbach;5,58
+94730121;Ebersdorf b.Coburg;5,26
+94730132;Großheirath;5,5
+94730138;Itzgrund;4,94
+94730141;Lautertal;5,93
+94730144;Meeder;5,56
+94730151;Neustadt b.Coburg, GKSt;5
+94730158;Bad Rodach, St;5,62
+94730159;Rödental, St;5,24
+94730165;Seßlach, St;4,92
+94730166;Sonnefeld;5,1
+94730170;Untersiemau;5,25
+94730174;Weidhausen b.Coburg;5,03
+94730175;Weitramsdorf;5,79
+94735418;Grub a.Forst (VGem);5,56
+94739452;Callenberger Forst-West;-9999
+94739453;Gellnhausen;-9999
+94739454;Köllnholz;-9999
+94740123;Eggolsheim, M;6,31
+94740124;Egloffstein, M;5,5
+94740126;Forchheim, GKSt;6,99
+94740129;Gößweinstein, M;4,97
+94740133;Hallerndorf;5,64
+94740134;Hausen;6,39
+94740135;Heroldsbach;7,2
+94740140;Igensdorf, M;6,18
+94740146;Langensendelbach;7,32
+94740154;Neunkirchen a.Brand, M;7,13
+94740156;Obertrubach;5,46
+94740161;Pretzfeld, M;5,52
+94740176;Wiesenttal, M;5,35
+94745420;Ebermannstadt (VGem);5,94
+94745422;Gosberg (VGem);5,59
+94745423;Kirchehrenbach (VGem);5,71
+94745425;Effeltrich (VGem);6,85
+94745426;Dormitz (VGem);6,96
+94745427;Gräfenberg (VGem);5,83
+94750112;Bad Steben, M;5,31
+94750113;Berg;4,12
+94750120;Döhlau;4,71
+94750128;Geroldsgrün;3,9
+94750136;Helmbrechts, St;4,45
+94750141;Köditz;5,06
+94750142;Konradsreuth;4,26
+94750154;Münchberg, St;4,55
+94750156;Naila, St;4,6
+94750158;Oberkotzau, M;4,72
+94750161;Regnitzlosau;4,31
+94750162;Rehau, St;4,32
+94750168;Schwarzenbach a.d.Saale, St;4,4
+94750169;Schwarzenbach a.Wald, St;4,05
+94750171;Selbitz, St;4,42
+94750175;Stammbach, M;4,93
+94750189;Zell im Fichtelgebirge, M;4,31
+94755428;Lichtenberg (VGem);4,26
+94755430;Feilitzsch (VGem);4,32
+94755431;Schauenstein (VGem);4,11
+94755432;Sparneck (VGem);3,9
+94759451;Forst Schwarzenbach a.Wald;-9999
+94759452;Gerlaser Forst;-9999
+94759453;Geroldsgrüner Forst;-9999
+94759454;Martinlamitzer Forst-Nord;-9999
+94760145;Kronach, St;5,9
+94760146;Küps, M;5,37
+94760152;Ludwigsstadt, St;4,48
+94760159;Nordhalben, M;4,13
+94760164;Pressig, M;4,64
+94760175;Steinbach a.Wald;4,68
+94760177;Steinwiesen, M;4,48
+94760178;Stockheim;4,6
+94760179;Tettau, M;4,44
+94760183;Marktrodach, M;5,28
+94760184;Wallenfels, St;4,08
+94760185;Weißenbrunn;4,85
+94760189;Wilhelmsthal;4,25
+94765433;Teuschnitz (VGem);4,3
+94765434;Mitwitz (VGem);4,84
+94769451;Birnbaum;-9999
+94769453;Langenbacher Forst;-9999
+94770121;Himmelkron;5,43
+94770128;Kulmbach, GKSt;5,8
+94770136;Mainleus, M;5,11
+94770139;Marktschorgast, M;4,36
+94770142;Neudrossenfeld;5,45
+94770143;Neuenmarkt;4,93
+94770148;Presseck, M;4,22
+94770157;Thurnau, M;5,16
+94770163;Wirsberg, M;5,04
+94775435;Stadtsteinach (VGem);4,87
+94775436;Marktleugast (VGem);4,37
+94775437;Untersteinach (VGem);4,9
+94775438;Kasendorf (VGem);4,44
+94775439;Trebgast (VGem);5,07
+94780111;Altenkunstadt;5,29
+94780116;Burgkunstadt, St;4,76
+94780120;Ebensfeld, M;5,63
+94780139;Lichtenfels, St;5,44
+94780145;Michelau i.OFr.;5,16
+94780165;Bad Staffelstein, St;6,37
+94780176;Weismain, St;5,01
+94785441;Redwitz a.d.Rodach (VGem);5,12
+94785446;Hochstadt-Marktzeuln (VGem);4,83
+94789451;Breitengüßbacher Forst;-9999
+94789453;Neuensorger Forst;-9999
+94790112;Arzberg, St;4,11
+94790129;Kirchenlamitz, St;3,88
+94790135;Marktleuthen, St;3,57
+94790136;Marktredwitz, GKSt;4,93
+94790145;Röslau;3,84
+94790150;Schönwald, St;4,15
+94790152;Selb, GKSt;4,39
+94790166;Weißenstadt, St;4,82
+94790169;Wunsiedel, St;4,65
+94795442;Thiersheim (VGem);4,15
+94795443;Schirnding (VGem);3,99
+94795444;Tröstau (VGem);4,71
+94799453;Kaiserhammer Forst-Ost;-9999
+94799455;Martinlamitzer Forst-Süd;-9999
+94799456;Meierhöfer Seite;-9999
+94799457;Neubauer Forst-Süd;-9999
+94799459;Tröstauer Forst-Ost;-9999
+94799460;Tröstauer Forst-West;-9999
+94799461;Vordorfer Forst;-9999
+94799462;Weißenstadter Forst-Nord;-9999
+94799463;Weißenstadter Forst-Süd;-9999
+95610000;Ansbach;6,68
+95620000;Erlangen;9,2
+95630000;Fürth;7,71
+95640000;Nürnberg;8,21
+95650000;Schwabach;7,11
+95710113;Arberg, M;5,23
+95710114;Aurach;5,77
+95710115;Bechhofen, M;5,45
+95710127;Burgoberbach;6,29
+95710130;Colmberg, M;5,88
+95710135;Dietenhofen, M;5,63
+95710136;Dinkelsbühl, GKSt;6,53
+95710139;Dürrwangen, M;7,23
+95710145;Feuchtwangen, St;6,43
+95710146;Flachslanden, M;5,6
+95710165;Heilsbronn, St;6,27
+95710166;Herrieden, St;6,2
+95710170;Langfurth;5,19
+95710171;Lehrberg, M;5,71
+95710174;Leutershausen, St;5,51
+95710175;Lichtenau, M;5,73
+95710177;Merkendorf, St;6,15
+95710180;Neuendettelsau;6,7
+95710183;Oberdachstetten;5,23
+95710190;Petersaurach;5,72
+95710193;Rothenburg ob der Tauber, GKSt;6,11
+95710196;Sachsen b.Ansbach;6,44
+95710199;Schnelldorf;5,68
+95710200;Schopfloch, M;5,18
+95710214;Wassertrüdingen, St;5,85
+95710226;Windsbach, St;5,59
+95715501;Rothenburg ob der Tauber (VGem);5,32
+95715502;Schillingsfürst (VGem);5,38
+95715504;Weihenzell (VGem);5,53
+95715506;Triesdorf (VGem);6,66
+95715507;Dentlein a.Forst (VGem);4,9
+95715508;Wilburgstetten (VGem);5,39
+95715509;Hesselberg (VGem);4,8
+95715538;Wolframs-Eschenbach (VGem);5,76
+95719451;Unterer Wald;-9999
+95720111;Adelsdorf;6,65
+95720115;Baiersdorf, St;8,15
+95720119;Bubenreuth;8,79
+95720121;Eckental, M;7,13
+95720130;Hemhofen;7,04
+95720131;Heroldsberg, M;7,8
+95720132;Herzogenaurach, St;8,13
+95720135;Höchstadt a.d.Aisch, St;6,71
+95720137;Kalchreuth;7,42
+95720142;Möhrendorf;8,49
+95720149;Röttenbach;6,98
+95720160;Wachenroth, M;5,33
+95720164;Weisendorf, M;7,13
+95725510;Höchstadt a.d.Aisch (VGem);5,55
+95725512;Aurachtal (VGem);7,3
+95725514;Uttenreuth (VGem);8,52
+95725539;Heßdorf (VGem);7,25
+95729451;Birkach;-9999
+95729452;Buckenhofer Forst;-9999
+95729453;Dormitzer Forst;-9999
+95729454;Erlenstegener Forst;-9999
+95729455;Forst Tennenlohe;-9999
+95729456;Geschaidt;-9999
+95729457;Kalchreuther Forst;-9999
+95729458;Kraftshofer Forst;-9999
+95729459;Mark;-9999
+95729460;Neunhofer Forst;-9999
+95730111;Ammerndorf, M;6,41
+95730114;Cadolzburg, M;6,84
+95730115;Großhabersdorf;6,08
+95730120;Langenzenn, St;6,54
+95730122;Oberasbach, St;7,46
+95730124;Puschendorf;6,63
+95730125;Roßtal, M;6,54
+95730127;Stein, St;7,48
+95730133;Wilhermsdorf, M;6,45
+95730134;Zirndorf, St;7,24
+95735517;Veitsbronn (VGem);6,73
+95735540;Obermichelbach-Tuchenbach (VGem);7,43
+95740112;Altdorf b.Nürnberg, St;7,02
+95740117;Burgthann;6,73
+95740123;Feucht, M;6,97
+95740132;Hersbruck, St;6,64
+95740135;Kirchensittenbach;6,05
+95740138;Lauf a.d.Pegnitz, St;7,28
+95740139;Leinburg;6,61
+95740140;Neuhaus a.d.Pegnitz, M;4,83
+95740141;Neunkirchen a.Sand;6,58
+95740146;Ottensoos;6,34
+95740147;Pommelsbrunn;6,12
+95740150;Reichenschwand;6,33
+95740152;Röthenbach a.d.Pegnitz, St;6,71
+95740154;Rückersdorf;7,75
+95740155;Schnaittach, M;6,43
+95740156;Schwaig b.Nürnberg;7,53
+95740157;Schwarzenbruck;7,31
+95740158;Simmelsdorf;5,8
+95740164;Winkelhaid;6,55
+95745527;Velden (VGem);4,93
+95745528;Happurg (VGem);5,65
+95745529;Henfenfeld (VGem);5,75
+95749451;Behringersdorfer Forst;-9999
+95749452;Brunn;-9999
+95749453;Engelthaler Forst;-9999
+95749454;Feuchter Forst;-9999
+95749455;Fischbach;-9999
+95749456;Forsthof;-9999
+95749457;Günthersbühler Forst;-9999
+95749458;Haimendorfer Forst;-9999
+95749460;Laufamholzer Forst;-9999
+95749461;Leinburg;-9999
+95749462;Rückersdorfer Forst;-9999
+95749463;Schönberg;-9999
+95749464;Winkelhaid;-9999
+95749465;Zerzabelshofer Forst;-9999
+95750112;Bad Windsheim, St;5,74
+95750116;Burghaslach, M;5,77
+95750119;Dietersheim;5,36
+95750121;Emskirchen, M;5,7
+95750135;Ipsheim, M;5,27
+95750145;Markt Erlbach, M;5,67
+95750153;Neustadt a.d.Aisch, St;5,97
+95750156;Obernzenn, M;5,11
+95755518;Scheinfeld (VGem);5,08
+95755519;Uffenheim (VGem);5,23
+95755520;Hagenbüchach-Wilhelmsdorf (VGem);6,17
+95755521;Diespeck (VGem);5,67
+95755522;Uehlfeld (VGem);5,57
+95755524;Burgbernheim (VGem);5,3
+95755525;Neuhof a.d.Zenn (VGem);4,97
+95759451;Osing;-9999
+95760111;Abenberg, St;6,28
+95760113;Allersberg, M;6,57
+95760117;Büchenbach;6,35
+95760121;Georgensgmünd;6,14
+95760122;Greding, St;6,11
+95760126;Heideck, St;5,74
+95760127;Hilpoltstein, St;6,53
+95760128;Kammerstein;6,13
+95760132;Schwanstetten, M;7,03
+95760137;Rednitzhembach;7,06
+95760141;Röttenbach;5,82
+95760142;Rohr;6,23
+95760143;Roth, St;6,5
+95760147;Spalt, St;5,6
+95760148;Thalmässing, M;5,67
+95760151;Wendelstein, M;7,3
+95769451;Abenberger Wald;-9999
+95769452;Dechenwald;-9999
+95769453;Forst Kleinschwarzenlohe;-9999
+95769454;Heidenberg;-9999
+95769455;Soos;-9999
+95770114;Muhr a.See;6,53
+95770136;Gunzenhausen, St;5,87
+95770148;Langenaltheim;4,37
+95770158;Pappenheim, St;4,93
+95770161;Pleinfeld, M;5,8
+95770162;Polsingen;5,13
+95770168;Solnhofen;4,87
+95770173;Treuchtlingen, St;5,55
+95770177;Weißenburg i.Bay., GKSt;5,95
+95775532;Gunzenhausen (VGem);5,63
+95775533;Altmühltal (VGem);5,08
+95775534;Ellingen (VGem);5,5
+95775535;Nennslingen (VGem);4,77
+95775536;Hahnenkamm (VGem);4,57
+96610000;Aschaffenburg;7,75
+96620000;Schweinfurt;6,23
+96630000;Würzburg;8,65
+96710111;Alzenau, St;7,21
+96710112;Bessenbach;6,05
+96710114;Karlstein a.Main;7
+96710119;Geiselbach;5,72
+96710120;Glattbach;7,44
+96710121;Goldbach, M;7,31
+96710122;Großostheim, M;6,99
+96710124;Haibach;7,15
+96710130;Hösbach, M;6,67
+96710133;Johannesberg;6,62
+96710134;Kahl a.Main;7,65
+96710136;Kleinostheim;7,12
+96710139;Laufach;6,4
+96710140;Mainaschaff;7,38
+96710143;Mömbris, M;5,97
+96710148;Rothenbuch;5,31
+96710150;Sailauf;6,12
+96710155;Stockstadt a.Main, M;7,18
+96710156;Waldaschaff;6,49
+96710157;Weibersbrunn;5,66
+96715602;Heigenbrücken (VGem);5,35
+96715603;Mespelbrunn (VGem);5,39
+96715604;Schöllkrippen (VGem);5,75
+96719451;Forst Hain i.Spessart;-9999
+96719453;Heinrichsthaler Forst;-9999
+96719456;Rohrbrunner Forst;-9999
+96719457;Rothenbucher Forst;-9999
+96719458;Sailaufer Forst;-9999
+96719459;Schöllkrippener Forst;-9999
+96719460;Waldaschaffer Forst;-9999
+96719461;Wiesener Forst;-9999
+96720112;Bad Bocklet, M;5,06
+96720113;Bad Brückenau, St;5,21
+96720114;Bad Kissingen, GKSt;6,3
+96720117;Burkardroth, M;4,14
+96720127;Hammelburg, St;4,87
+96720134;Motten;4,19
+96720135;Münnerstadt, St;4,68
+96720136;Nüdlingen;4,73
+96720139;Oberthulba, M;4,41
+96720140;Oerlenbach;4,65
+96720161;Wartmannsroth;4,73
+96720163;Wildflecken, M;3,95
+96720166;Zeitlofs, M;4,7
+96725606;Bad Brückenau (VGem);4,32
+96725607;Elfershausen (VGem);4,63
+96725608;Euerdorf (VGem);4,5
+96725609;Maßbach (VGem);4,48
+96729451;Dreistelzer Forst;-9999
+96729454;Forst Detter-Süd;-9999
+96729455;Geiersnest-Ost;-9999
+96729456;Geiersnest-West;-9999
+96729457;Großer Auersberg;-9999
+96729458;Kälberberg;-9999
+96729461;Mottener Forst-Süd;-9999
+96729462;Neuwirtshauser Forst;-9999
+96729463;Omerz u. Roter Berg;-9999
+96729464;Römershager Forst-Nord;-9999
+96729465;Römershager Forst-Ost;-9999
+96729466;Roßbacher Forst;-9999
+96729468;Waldfensterer Forst;-9999
+96730114;Bad Neustadt a.d.Saale, St;6,04
+96730117;Bischofsheim i.d.Rhön, St;4,29
+96730141;Bad Königshofen i.Grabfeld, St;5,15
+96730149;Oberelsbach, M;3,96
+96730162;Sandberg;3,85
+96735633;Mellrichstadt (VGem);4,83
+96735634;Bad Königshofen i.Grabfeld (VGem);4,23
+96735635;Bad Neustadt a.d.Saale (VGem);5,13
+96735637;Fladungen (VGem);4,24
+96735638;Heustreu (VGem);4,63
+96735639;Ostheim v.d.Rhön (VGem);4,66
+96735640;Saal a.d.Saale (VGem);4,39
+96739451;Bundorfer Forst;-9999
+96739452;Burgwallbacher Forst;-9999
+96739453;Forst Schmalwasser-Nord;-9999
+96739454;Forst Schmalwasser-Süd;-9999
+96739455;Mellrichstadter Forst;-9999
+96739456;Steinacher Forst r.d.Saale;-9999
+96739457;Sulzfelder Forst;-9999
+96739458;Weigler;-9999
+96740133;Eltmann, St;5,13
+96740147;Haßfurt, St;6,28
+96740159;Oberaurach;4,72
+96740163;Knetzgau;5,04
+96740164;Königsberg i.Bay., St;4,96
+96740171;Maroldsweisach, M;4,13
+96740187;Rauhenebrach;4,25
+96740195;Sand a.Main;5,33
+96740210;Untermerzbach;4,59
+96740221;Zeil a.Main, St;5,33
+96745610;Ebelsbach (VGem);5,25
+96745611;Ebern (VGem);5,05
+96745612;Hofheim i.UFr. (VGem);5,02
+96745613;Theres (VGem);5,19
+96750117;Dettelbach, St;5,8
+96750127;Geiselwind, M;5,3
+96750141;Kitzingen, GKSt;6,07
+96750144;Mainbernheim, St;5,36
+96750158;Prichsenstadt, St;4,62
+96750165;Schwarzach a.Main, M;5,45
+96755614;Wiesentheid (VGem);5,36
+96755615;Großlangheim (VGem);5,05
+96755616;Iphofen (VGem);5,58
+96755617;Kitzingen (VGem);5,33
+96755618;Marktbreit (VGem);5,42
+96755619;Volkach (VGem);5,94
+96760112;Amorbach, St;5,08
+96760117;Collenberg;5,24
+96760118;Dorfprozelten;5,05
+96760119;Eichenbühl;5,68
+96760121;Elsenfeld, M;6,68
+96760122;Erlenbach a.Main, St;6,29
+96760123;Eschau, M;5,38
+96760124;Faulbach;5,32
+96760125;Großheubach, M;5,98
+96760126;Großwallstadt;6,4
+96760131;Kirchzell, M;4,7
+96760134;Klingenberg a.Main, St;6,38
+96760136;Leidersbach;5,64
+96760139;Miltenberg, St;6,38
+96760140;Mömlingen;6,47
+96760144;Niedernberg;6,91
+96760145;Obernburg a.Main, St;6,77
+96760156;Schneeberg, M;5,07
+96760160;Sulzbach a.Main, M;6,64
+96760165;Weilbach, M;5,52
+96760169;Wörth a.Main, St;6,08
+96765626;Erftal (VGem);6,08
+96765627;Kleinheubach (VGem);6,04
+96765630;Kleinwallstadt (VGem);6,03
+96765631;Mönchberg (VGem);5,6
+96765632;Stadtprozelten (VGem);5,15
+96769452;Forstwald;-9999
+96769455;Hohe Wart;-9999
+96770114;Arnstein, St;5,27
+96770127;Eußenheim;4,27
+96770129;Frammersbach, M;5,22
+96770131;Gemünden a.Main, St;5,07
+96770148;Karlstadt, St;5,64
+96770154;Triefenstein, M;5,42
+96770155;Lohr a.Main, St;6,2
+96770157;Marktheidenfeld, St;6,35
+96770177;Rieneck, St;4,28
+96775620;Kreuzwertheim (VGem);5,54
+96775621;Marktheidenfeld (VGem);5,21
+96775622;Burgsinn (VGem);4,22
+96775623;Gemünden a.Main (VGem);4,4
+96775624;Lohr a.Main (VGem);4,68
+96775625;Zellingen (VGem);5,59
+96775656;Partenstein (VGem);5,06
+96779452;Burgjoß;-9999
+96779453;Forst Aura;-9999
+96779454;Forst Lohrerstraße;-9999
+96779455;Frammersbacher Forst;-9999
+96779456;Fürstl. Löwenstein'scher Park;-9999
+96779457;Haurain;-9999
+96779458;Herrnwald;-9999
+96779459;Langenprozeltener Forst;-9999
+96779461;Partensteiner Forst;-9999
+96779463;Ruppertshüttener Forst;-9999
+96780115;Bergrheinfeld;6,1
+96780123;Dittelbrunn;5,73
+96780128;Euerbach;5,74
+96780132;Geldersheim;5,26
+96780135;Gochsheim;5,52
+96780136;Grafenrheinfeld;5,8
+96780138;Grettstadt;5,13
+96780150;Kolitzheim;5,13
+96780160;Niederwerrn;6,02
+96780168;Poppenhausen;5,14
+96780170;Röthlein;5,46
+96780174;Schonungen;5,47
+96780176;Schwebheim;6,02
+96780178;Sennfeld;6,23
+96780181;Stadtlauringen, M;4,79
+96780186;Üchtelhausen;4,82
+96780190;Waigolshausen;4,89
+96780192;Wasserlosen;4,26
+96780193;Werneck, M;5,29
+96785642;Gerolzhofen (VGem);5,27
+96785643;Schwanfeld (VGem);5,18
+96789451;Bürgerwald;-9999
+96789452;Geiersberg;-9999
+96789453;Hundelshausen;-9999
+96789454;Nonnenkloster;-9999
+96789455;Stollbergerforst;-9999
+96789456;Vollburg;-9999
+96789457;Wustvieler Forst;-9999
+96790126;Eisingen;6,68
+96790134;Gaukönigshofen;5,02
+96790136;Gerbrunn;8,1
+96790142;Güntersleben;6,59
+96790143;Hausen b.Würzburg;5,25
+96790147;Höchberg, M;8,03
+96790155;Kleinrinderfeld;5,5
+96790156;Kürnach;7,18
+96790164;Neubrunn, M;4,88
+96790170;Ochsenfurt, St;6,19
+96790175;Randersacker, M;9,02
+96790176;Reichenberg, M;6,54
+96790180;Rimpar, M;6,6
+96790185;Rottendorf;7,49
+96790193;Theilheim;6,42
+96790194;Thüngersheim;6,53
+96790200;Leinach;6,16
+96790201;Unterpleichfeld;6,62
+96790202;Veitshöchheim;7,19
+96790204;Waldbrunn;6,4
+96790205;Waldbüttelbrunn;6,94
+96790209;Zell a.Main, M;7,69
+96795644;Aub (VGem);4,43
+96795645;Bergtheim (VGem);6,13
+96795646;Eibelstadt (VGem);6,79
+96795647;Estenfeld (VGem);6,6
+96795648;Giebelstadt (VGem);5,51
+96795649;Helmstadt (VGem);5,4
+96795650;Kirchheim (VGem);5,41
+96795651;Kist (VGem);6,03
+96795652;Margetshöchheim (VGem);6,88
+96795654;Röttingen (VGem);4,84
+96795655;Hettstadt (VGem);6,46
+96799451;Gramschatzer Wald;-9999
+96799452;Guttenberger Wald;-9999
+96799453;Irtenberger Wald;-9999
+97610000;Augsburg;8,48
+97620000;Kaufbeuren;6,85
+97630000;Kempten (Allgäu);7,18
+97640000;Memmingen;6,51
+97710112;Affing;6,91
+97710113;Aichach, St;7,53
+97710130;Friedberg, St;7,79
+97710140;Hollenbach;6,47
+97710141;Inchenhofen, M;7,07
+97710142;Kissing;7,91
+97710145;Merching;7,06
+97710158;Rehling;6,9
+97710160;Ried;6,8
+97715701;Aindling (VGem);6,61
+97715703;Kühbach (VGem);6,45
+97715704;Dasing (VGem);7,44
+97715705;Mering (VGem);8,26
+97715771;Pöttmes (VGem);6,46
+97720111;Adelsried;7,28
+97720115;Altenmünster;6,54
+97720117;Aystetten;7,8
+97720121;Biberbach, M;6,65
+97720125;Bobingen, St;7,64
+97720130;Diedorf, M;7,65
+97720131;Dinkelscherben, M;6,41
+97720141;Fischach, M;6,63
+97720145;Gablingen;7,33
+97720147;Gersthofen, St;7,71
+97720149;Graben;7,45
+97720159;Horgau;7,09
+97720163;Königsbrunn, St;7,83
+97720167;Kutzenhausen;6,32
+97720171;Langweid a.Lech;6,51
+97720177;Meitingen, M;7,09
+97720184;Neusäß, St;8,49
+97720200;Schwabmünchen, St;7,59
+97720202;Stadtbergen, St;7,64
+97720207;Thierhaupten, M;6,7
+97720215;Wehringen;7,08
+97720223;Zusmarshausen, M;6,54
+97725706;Nordendorf (VGem);6,65
+97725707;Welden (VGem);6,5
+97725708;Gessertshausen (VGem);6,84
+97725709;Stauden (VGem);5,85
+97725710;Großaitingen (VGem);7,18
+97725711;Lechfeld (VGem);7,82
+97725712;Langerringen (VGem);7,25
+97729451;Schmellerforst;-9999
+97730117;Bissingen, M;5,4
+97730122;Buttenwiesen;6,12
+97730125;Dillingen a.d.Donau, GKSt;6,57
+97730144;Lauingen (Donau), St;6,35
+97735713;Gundelfingen a.d.Donau (VGem);6,15
+97735714;Syrgenstein (VGem);6,09
+97735715;Wittislingen (VGem);5,71
+97735716;Höchstädt a.d.Donau (VGem);5,92
+97735718;Wertingen (VGem);6,33
+97735719;Holzheim (VGem);5,3
+97740116;Ursberg;5,74
+97740119;Bibertal;6,05
+97740121;Burgau, St;6,89
+97740122;Burtenbach, M;6,15
+97740135;Günzburg, GKSt;6,72
+97740144;Jettingen-Scheppach, M;6,47
+97740145;Kammeltal;5,4
+97740150;Krumbach (Schwaben), St;6,39
+97740155;Leipheim, St;6,81
+97740162;Neuburg a.d.Kammel, M;5,89
+97745727;Offingen (VGem);6,26
+97745728;Haldenwang (VGem);5,88
+97745729;Kötz (VGem);6,87
+97745730;Ichenhausen (VGem);6,5
+97745731;Krumbach (Schwaben) (VGem);5,66
+97745732;Thannhausen (VGem);6,35
+97745733;Ziemetshausen (VGem);5,36
+97749451;Ebershauser-Nattenhauser Wald;-9999
+97749452;Winzerwald;-9999
+97750115;Bellenberg;6,82
+97750129;Illertissen, St;7,06
+97750134;Nersingen;6,99
+97750135;Neu-Ulm, GKSt;8,83
+97750139;Elchingen;7,92
+97750149;Roggenburg;5,79
+97750152;Senden, St;7,89
+97750162;Vöhringen, St;7,12
+97750164;Weißenhorn, St;7,19
+97755739;Pfaffenhofen a.d.Roth (VGem);6,91
+97755740;Altenstadt (VGem);6,45
+97755741;Buch (VGem);6,05
+97759451;Auwald;-9999
+97759452;Oberroggenburger Wald;-9999
+97759454;Stoffenrieder Forst;-9999
+97759455;Unterroggenburger Wald;-9999
+97760111;Bodolz;8,57
+97760114;Heimenkirch, M;6,36
+97760116;Lindau (Bodensee), GKSt;8,81
+97760117;Lindenberg i.Allgäu, St;7,07
+97760120;Nonnenhorn;9,1
+97760122;Opfenbach;6,84
+97760125;Scheidegg, M;7,97
+97760128;Wasserburg (Bodensee);9,41
+97760129;Weiler-Simmerberg, M;6,74
+97760131;Hergatz;6,97
+97765735;Sigmarszell (VGem);7,75
+97765737;Argental (VGem);6,54
+97765738;Stiefenhofen (VGem);7,22
+97770129;Füssen, St;7,24
+97770130;Germaringen;6,69
+97770147;Lechbruck am See;7,14
+97770151;Marktoberdorf, St;6,94
+97770152;Mauerstetten;6,8
+97770153;Nesselwang, M;6,55
+97770159;Pfronten;7,39
+97770165;Ronsberg, M;6,01
+97770169;Schwangau;7,29
+97770173;Halblech;6,54
+97775748;Buchloe (VGem);7,64
+97775749;Pforzen (VGem);6,29
+97775751;Westendorf (VGem);6,31
+97775752;Biessenhofen (VGem);6,43
+97775753;Eggenthal (VGem);5,67
+97775754;Obergünzburg (VGem);5,96
+97775755;Unterthingau (VGem);6,55
+97775756;Seeg (VGem);6,21
+97775770;Roßhaupten (VGem);6,68
+97775772;Stötten a.Auerberg (VGem);5,7
+97780116;Bad Wörishofen, St;7,62
+97780123;Buxheim;7,39
+97780137;Ettringen;6,01
+97780168;Markt Rettenbach, M;5,36
+97780169;Markt Wald, M;5,15
+97780173;Mindelheim, St;6,92
+97780196;Sontheim;5,9
+97780204;Tussenhausen, M;6,57
+97785757;Ottobeuren (VGem);6,52
+97785758;Babenhausen (VGem);5,84
+97785759;Pfaffenhausen (VGem);5,62
+97785760;Kirchheim i.Schw. (VGem);5,74
+97785761;Boos (VGem);6,37
+97785762;Erkheim (VGem);5,85
+97785764;Türkheim (VGem);6,54
+97785765;Memmingerberg (VGem);6,5
+97785766;Dirlewang (VGem);5,73
+97785767;Illerwinkel (VGem);5,74
+97785768;Bad Grönenbach (VGem);6,63
+97789451;Ungerhauser Wald;-9999
+97790115;Asbach-Bäumenheim;6,24
+97790131;Donauwörth, GKSt;6,59
+97790147;Fremdingen;5,15
+97790155;Harburg (Schwaben), St;5,67
+97790169;Kaisheim, M;5,93
+97790178;Marxheim;5,74
+97790181;Mertingen;6,9
+97790185;Möttingen;6,31
+97790194;Nördlingen, GKSt;6,84
+97790196;Oberndorf a.Lech;6,04
+97790201;Rain, St;6,78
+97790218;Tapfheim;6,49
+97795720;Wallerstein (VGem);5,43
+97795721;Oettingen i.Bay. (VGem);5,34
+97795722;Ries (VGem);5,06
+97795723;Wemding (VGem);5,32
+97795724;Monheim (VGem);5,9
+97795725;Rain (VGem);5,54
+97799452;Dornstadt-Linkersbaindt;-9999
+97799453;Esterholz;-9999
+97800112;Altusried, M;6,66
+97800114;Betzigau;6,58
+97800115;Blaichach;6,67
+97800117;Buchenberg, M;6,56
+97800118;Burgberg i.Allgäu;7,08
+97800119;Dietmannsried, M;6,72
+97800120;Durach;7,17
+97800122;Haldenwang;6,67
+97800123;Bad Hindelang, M;7,22
+97800124;Immenstadt i.Allgäu, St;6,68
+97800125;Lauben;6,82
+97800128;Oy-Mittelberg;6,88
+97800132;Oberstaufen, M;7,96
+97800133;Oberstdorf, M;8,12
+97800137;Rettenberg;6,91
+97800139;Sonthofen, St;7,13
+97800140;Sulzberg, M;6,53
+97800143;Waltenhofen;7,13
+97800145;Wertach, M;6,68
+97800146;Wiggensbach, M;6,79
+97800147;Wildpoldsried;6,48
+97805742;Hörnergruppe (VGem);7,8
+97805745;Weitnau (VGem);6,21
+97809451;Kempter Wald;-9999
+100410100;Saarbrücken, Landeshauptstadt;6,71
+100410511;Friedrichsthal, Stadt;5,37
+100410512;Großrosseln;5,06
+100410513;Heusweiler;5,55
+100410514;Kleinblittersdorf;5,62
+100410515;Püttlingen, Stadt;5,51
+100410516;Quierschied;5,53
+100410517;Riegelsberg;5,94
+100410518;Sulzbach/ Saar, Stadt;5,71
+100410519;Völklingen, Stadt;5,49
+100420111;Beckingen;5,5
+100420112;Losheim am See;5,89
+100420113;Merzig, Kreisstadt;6,16
+100420114;Mettlach;6,28
+100420115;Perl;8,12
+100420116;Wadern, Stadt;5,35
+100420117;Weiskirchen;5,27
+100430111;Eppelborn;5,4
+100430112;Illingen;5,41
+100430113;Merchweiler;5,49
+100430114;Neunkirchen, Kreisstadt;5,74
+100430115;Ottweiler, Stadt;5,37
+100430116;Schiffweiler;5,36
+100430117;Spiesen-Elversberg;5,69
+100440111;Dillingen/ Saar, Stadt;5,72
+100440112;Lebach, Stadt;5,43
+100440113;Nalbach;5,52
+100440114;Rehlingen-Siersburg;5,69
+100440115;Saarlouis, Kreisstadt;6,62
+100440116;Saarwellingen;5,71
+100440117;Schmelz;5,45
+100440118;Schwalbach;5,92
+100440119;Überherrn;5,6
+100440120;Wadgassen;5,81
+100440121;Wallerfangen;5,88
+100440122;Bous;5,72
+100440123;Ensdorf;6,11
+100450111;Bexbach, Stadt;5,64
+100450112;Blieskastel, Stadt;5,66
+100450113;Gersheim;5,02
+100450114;Homburg, Kreisstadt;6,61
+100450115;Kirkel;6,23
+100450116;Mandelbachtal;5,66
+100450117;St. Ingbert, Stadt;6,3
+100460111;Freisen;4,86
+100460112;Marpingen;4,99
+100460113;Namborn;4,99
+100460114;Nohfelden;5,16
+100460115;Nonnweiler;5,08
+100460116;Oberthal;5,27
+100460117;St. Wendel, Kreisstadt;6,05
+100460118;Tholey;5,39
+110000000;Berlin, Stadt;7,67
+120510000;Brandenburg an der Havel, Stadt;5,88
+120520000;Cottbus/Chósebuz, Stadt;5,58
+120530000;Frankfurt (Oder), Stadt;5,41
+120540000;Potsdam, Stadt;7,85
+120600005;Ahrensfelde;7,87
+120600020;Bernau bei Berlin, Stadt;7,17
+120600052;Eberswalde, Stadt;5,93
+120600181;Panketal;7,66
+120600198;Schorfheide;5,97
+120600269;Wandlitz;7,12
+120600280;Werneuchen, Stadt;6,21
+120605003;Biesenthal-Barnim;5,72
+120605006;Joachimsthal (Schorfheide);5,23
+120605011;Britz-Chorin-Oderberg;4,72
+120610020;Bestensee;7,14
+120610112;Eichwalde;7,99
+120610217;Heidesee;6,33
+120610219;Heideblick;4,17
+120610260;Königs Wusterhausen, Stadt;6,69
+120610316;Lübben (Spreewald) / Lubin (Blota), Stadt;5,85
+120610320;Luckau, Stadt;4,7
+120610329;Märkische Heide/Markojska Góla;4,66
+120610332;Mittenwalde, Stadt;7,25
+120610433;Schönefeld;9,28
+120610444;Schulzendorf;7,97
+120610540;Wildau, Stadt;7,52
+120610572;Zeuthen;7,98
+120615108;Schenkenländchen;6,33
+120615113;Lieberose/Oberspreewald;4,72
+120615114;Unterspreewald;5,05
+120620092;Doberlug-Kirchhain, Stadt;4,71
+120620124;Elsterwerda, Stadt;5
+120620140;Finsterwalde, Stadt;5,1
+120620224;Herzberg (Elster), Stadt;5,24
+120620410;Röderland;4,7
+120620461;Schönewalde, Stadt;4,68
+120620469;Sonnewalde, Stadt;4,79
+120625031;Liebenwerda;4,87
+120625202;Elsterland;4,61
+120625205;Kleine Elster (Niederlausitz);4,51
+120625207;Plessa;4,56
+120625209;Schlieben;4,64
+120625211;Schradenland;4,48
+120630036;Brieselang;7,52
+120630056;Dallgow-Döberitz;8,43
+120630080;Falkensee, Stadt;8,4
+120630148;Ketzin/Havel, Stadt;5,89
+120630189;Milower Land;4,89
+120630208;Nauen, Stadt;6,65
+120630244;Premnitz, Stadt;4,89
+120630252;Rathenow, Stadt;5,21
+120630273;Schönwalde-Glien;6,7
+120630357;Wustermark;7,07
+120635302;Friesack;5,45
+120635306;Nennhausen;4,99
+120635309;Rhinow;4,71
+120640029;Altlandsberg, Stadt;6,83
+120640044;Bad Freienwalde (Oder), Stadt;4,81
+120640136;Fredersdorf-Vogelsdorf;7,43
+120640227;Hoppegarten;8,58
+120640274;Letschin;4,55
+120640317;Müncheberg, Stadt;5,69
+120640336;Neuenhagen bei Berlin;8,02
+120640380;Petershagen/Eggersdorf;7,55
+120640428;Rüdersdorf bei Berlin;5,95
+120640448;Seelow, Stadt;5
+120640472;Strausberg, Stadt;6,11
+120640512;Wriezen, Stadt;5,07
+120645403;Falkenberg-Höhe;4,79
+120645404;Golzow;4,46
+120645406;Lebus;5,13
+120645408;Märkische Schweiz;6,02
+120645412;Seelow-Land;4,83
+120645414;Barnim-Oderbruch;4,97
+120650036;Birkenwerder;7,28
+120650084;Fürstenberg/Havel, Stadt;4,86
+120650096;Glienicke/Nordbahn;8,45
+120650136;Hennigsdorf, Stadt;6,14
+120650144;Hohen Neuendorf, Stadt;8,09
+120650165;Kremmen, Stadt;6,03
+120650180;Leegebruch;7,46
+120650193;Liebenwalde, Stadt;4,99
+120650198;Löwenberger Land;5,2
+120650225;Mühlenbecker Land;7,54
+120650251;Oberkrämer;6,57
+120650256;Oranienburg, Stadt;6,63
+120650332;Velten, Stadt;6,53
+120650356;Zehdenick, Stadt;5,18
+120655502;Gransee und Gemeinden;5,07
+120660052;Calau/Kalawa, Stadt;4,85
+120660112;Großräschen/Ran, Stadt;4,83
+120660176;Lauchhammer, Stadt;4,97
+120660196;Lübbenau/Spreewald / Lubnjow/Blota, Stadt;4,94
+120660285;Schipkau;4,76
+120660296;Schwarzheide, Stadt;4,78
+120660304;Senftenberg/Zly Komorow, Stadt;5,35
+120660320;Vetschau/Spreewald / Wetošow/Blota, Stadt;4,77
+120665601;Altdöbern;4,64
+120665606;Ortrand;5,22
+120665607;Ruhland;5,08
+120670036;Beeskow, Stadt;5,67
+120670120;Eisenhüttenstadt, Stadt;5,42
+120670124;Erkner, Stadt;6,04
+120670137;Friedland, Stadt;4,96
+120670144;Fürstenwalde/Spree, Stadt;6,16
+120670201;Grünheide (Mark);7,32
+120670426;Rietz-Neuendorf;5,02
+120670440;Schöneiche bei Berlin;7,79
+120670481;Storkow (Mark), Stadt;5,81
+120670493;Tauche;4,49
+120670544;Woltersdorf;7,89
+120675701;Brieskow-Finkenheerd;5,83
+120675705;Neuzelle;5,06
+120675706;Odervorland;5,06
+120675707;Scharmützelsee;6,95
+120675708;Schlaubetal;6,19
+120675709;Spreenhagen;6,24
+120680117;Fehrbellin;6,27
+120680181;Heiligengrabe;4,68
+120680264;Kyritz, Stadt;4,94
+120680320;Neuruppin, Stadt;5,9
+120680353;Rheinsberg, Stadt;5,36
+120680468;Wittstock/Dosse, Stadt;4,97
+120680477;Wusterhausen/Dosse;4,91
+120685804;Lindow (Mark);5,23
+120685805;Neustadt (Dosse);4,76
+120685807;Temnitz;5,27
+120690017;Beelitz, Stadt;6,74
+120690020;Bad Belzig, Stadt;5,54
+120690249;Groß Kreutz (Havel);6,17
+120690304;Kleinmachnow;8,43
+120690306;Kloster Lehnin;5,99
+120690397;Michendorf;8,06
+120690454;Nuthetal;7,61
+120690590;Schwielowsee;8,07
+120690596;Seddiner See;5,58
+120690604;Stahnsdorf;7,41
+120690616;Teltow, Stadt;7,29
+120690632;Treuenbrietzen, Stadt;5,54
+120690656;Werder (Havel), Stadt;7,71
+120690665;Wiesenburg/Mark;5,16
+120695902;Beetzsee;4,9
+120695904;Brück;6,02
+120695910;Niemegk;5,22
+120695917;Wusterwitz;5,07
+120695918;Ziesar;4,78
+120700125;Groß Pankow (Prignitz);4,12
+120700149;Gumtow;4,26
+120700173;Karstädt;4,33
+120700296;Perleberg, Stadt;4,79
+120700302;Plattenburg;4,56
+120700316;Pritzwalk, Stadt;4,84
+120700424;Wittenberge, Stadt;5,07
+120705001;Bad Wilsnack/Weisen;4,95
+120705005;Lenzen-Elbtalaue;4,57
+120705006;Meyenburg;4,67
+120705009;Putlitz-Berge;4,44
+120710057;Drebkau/Drjowk, Stadt;4,87
+120710076;Forst (Lausitz)/Baršc (Lužyca), Stadt;4,82
+120710160;Guben, Stadt;6,46
+120710244;Kolkwitz/Golkojce;5,14
+120710301;Neuhausen/Spree / Kopance/Sprjewja;4,87
+120710337;Schenkendöbern/Derbno;4,36
+120710372;Spremberg/Grodk, Stadt;5,1
+120710408;Welzow/Wjelcej, Stadt;4,51
+120715101;Burg (Spreewald);6,09
+120715102;Döbern-Land;4,38
+120715107;Peitz;4,82
+120720002;Am Mellensee;5,47
+120720014;Baruth/Mark, Stadt;5,78
+120720017;Blankenfelde-Mahlow;8,04
+120720120;Großbeeren;7,63
+120720169;Jüterbog, Stadt;5,37
+120720232;Luckenwalde, Stadt;5,74
+120720240;Ludwigsfelde, Stadt;6,34
+120720297;Niedergörsdorf;4,8
+120720312;Nuthe-Urstromtal;5,39
+120720340;Rangsdorf;7,35
+120720426;Trebbin, Stadt;6
+120720477;Zossen, Stadt;6,22
+120725204;Dahme/Mark;4,63
+120730008;Angermünde, Stadt;5,55
+120730069;Boitzenburger Land;4,58
+120730384;Lychen, Stadt;4,86
+120730429;Nordwestuckermark;4,88
+120730452;Prenzlau, Stadt;5,45
+120730572;Templin, Stadt;5,66
+120730579;Uckerland;4,01
+120735051;Schwedt/Oder, Stadt;5,11
+120735303;Brüssow (Uckermark);4,7
+120735304;Gartz (Oder);4,68
+120735305;Gerswalde;4,75
+120735306;Gramzow;4,4
+130030000;Rostock, Hanse- und Universitätsstadt;6,7
+130040000;Schwerin, Landeshauptstadt;6,06
+130710027;Dargun, Stadt;4,89
+130710029;Demmin, Hansestadt;4,99
+130710033;Feldberger Seenlandschaft;5,32
+130710107;Neubrandenburg, Vier-Tore-Stadt;5,49
+130710110;Neustrelitz, Residenzstadt;5,6
+130710156;Waren (Müritz), Stadt;5,86
+130715151;Demmin-Land;4,48
+130715152;Friedland;5,71
+130715153;Malchin am Kummerower See;5,14
+130715154;Malchow;5,54
+130715155;Mecklenburgische Kleinseenplatte;5,19
+130715156;Neustrelitz-Land;4,67
+130715157;Neverin;4,87
+130715158;Penzliner Land;4,83
+130715159;Röbel-Müritz;5,1
+130715160;Seenlandschaft Waren;4,79
+130715161;Stargarder Land;5,05
+130715162;Stavenhagen;4,82
+130715163;Treptower Tollensewinkel;4,79
+130715164;Woldegk;4,61
+130720006;Bad Doberan, Stadt;6,46
+130720029;Dummerstorf;6,31
+130720036;Graal-Müritz, Ostseeheilbad;6,72
+130720043;Güstrow, Barlachstadt;5,55
+130720058;Kröpelin, Stadt;5,61
+130720060;Kühlungsborn, Ostseebad, Stadt;7,57
+130720074;Neubukow, Schliemannstadt;5,37
+130720091;Sanitz;7,04
+130720093;Satow;5,26
+130720106;Teterow, Bergringstadt;6,01
+130725251;Bad Doberan-Land;6,88
+130725252;Bützow-Land;5,04
+130725253;Carbäk;6,95
+130725254;Gnoien;5,06
+130725255;Güstrow-Land;4,97
+130725256;Krakow am See;5,09
+130725257;Laage;5,29
+130725258;Mecklenburgische Schweiz;4,81
+130725259;Neubukow-Salzhaff;5,92
+130725260;Rostocker Heide;6,15
+130725261;Schwaan;6
+130725262;Tessin;5,74
+130725263;Warnow-West;7,61
+130730011;Binz, Ostseebad;7,09
+130730035;Grimmen, Stadt;5,47
+130730055;Marlow, Stadt;5,43
+130730070;Putbus, Stadt;6,24
+130730080;Sassnitz, Stadt;5,62
+130730088;Stralsund, Hansestadt;5,83
+130730089;Süderholz;5,1
+130730105;Zingst, Ostseeheilbad;7,74
+130735351;Altenpleen;5,72
+130735352;Barth;5,87
+130735353;Bergen auf Rügen;5,49
+130735354;Darß/Fischland;8,02
+130735355;Franzburg-Richtenberg;4,95
+130735356;Miltzow;5,55
+130735357;Mönchgut-Granitz;7,12
+130735358;Niepars;5,78
+130735359;Nord-Rügen;5,32
+130735360;Recknitz-Trebeltal;5,07
+130735361;Ribnitz-Damgarten;5,78
+130735362;West-Rügen;5,82
+130740026;Grevesmühlen, Stadt;5,76
+130740035;Insel Poel, Ostseebad;5,87
+130740087;Wismar, Hansestadt;6
+130745451;Dorf Mecklenburg-Bad Kleinen;5,45
+130745452;Gadebusch;5,44
+130745453;Grevesmühlen-Land;5,5
+130745454;Klützer Winkel;6,51
+130745455;Lützow-Lübstorf;5,51
+130745456;Neuburg;5,39
+130745457;Neukloster-Warin;5,01
+130745458;Rehna;5,51
+130745459;Schönberger Land;6,39
+130750005;Anklam, Hansestadt;5,14
+130750039;Greifswald, Universitäts- und Hansestadt;6,41
+130750049;Heringsdorf, Ostseebad;7,21
+130750105;Pasewalk, Stadt;4,75
+130750130;Strasburg (Uckermark), Stadt;4,9
+130750136;Ueckermünde, Seebad, Stadt;5,31
+130755551;Am Peenestrom;5,43
+130755552;Am Stettiner Haff;4,86
+130755553;Anklam-Land;4,55
+130755554;Jarmen-Tutow;4,86
+130755555;Landhagen;5,88
+130755556;Löcknitz-Penkun;4,82
+130755557;Lubmin;6,15
+130755558;Peenetal/Loitz;4,58
+130755559;Torgelow-Ferdinandshof;4,85
+130755560;Uecker-Randow-Tal;4,21
+130755561;Usedom-Nord;6,36
+130755562;Usedom-Süd;6,64
+130755563;Züssow;4,77
+130760014;Boizenburg/Elbe, Stadt;5,87
+130760060;Hagenow, Stadt;5,33
+130760088;Lübtheen, Stadt;5,25
+130760090;Ludwigslust, Stadt;5,4
+130760108;Parchim, Stadt;5,53
+130765652;Boizenburg-Land;5,27
+130765654;Dömitz-Malliß;4,69
+130765655;Eldenburg Lübz;4,65
+130765656;Goldberg-Mildenitz;4,79
+130765657;Grabow;5,08
+130765658;Hagenow-Land;5,07
+130765659;Ludwigslust-Land;5,05
+130765660;Neustadt-Glewe;4,9
+130765662;Parchimer Umland;4,7
+130765663;Plau am See;5,33
+130765664;Sternberger Seenlandschaft;4,37
+130765665;Stralendorf;6,08
+130765666;Wittenburg;5,52
+130765667;Zarrentin;6,3
+130765668;Crivitz;5,82
+145110000;Chemnitz, Stadt;5,26
+145210010;Amtsberg;4,6
+145210020;Annaberg-Buchholz, Stadt;4,72
+145210035;Aue-Bad Schlema, Stadt;4,43
+145210110;Breitenbrunn/Erzgeb.;4,64
+145210130;Crottendorf;4,28
+145210150;Drebach;4,46
+145210160;Ehrenfriedersdorf, Stadt;4,58
+145210170;Eibenstock, Stadt;4,41
+145210200;Gelenau/Erzgeb.;4,68
+145210240;Großolbersdorf;4,26
+145210250;Großrückerswalde;4,17
+145210260;Grünhain-Beierfeld, Stadt;4,67
+145210290;Hohndorf;4,72
+145210310;Jahnsdorf/Erzgeb.;4,85
+145210320;Johanngeorgenstadt, Stadt;4,26
+145210330;Jöhstadt, Stadt;3,87
+145210355;Lauter-Bernsbach, Stadt;4,66
+145210370;Lößnitz, Stadt;4,05
+145210390;Marienberg, Stadt;4,61
+145210400;Mildenau;4,33
+145210410;Neukirchen/Erzgeb.;4,92
+145210440;Oberwiesenthal, Kurort, Stadt;4,64
+145210450;Oelsnitz/Erzgeb., Stadt;5,04
+145210460;Olbernhau, Stadt;4,72
+145210495;Pockau-Lengefeld, Stadt;4,56
+145210500;Raschau-Markersbach;5,06
+145210530;Schneeberg, Stadt;4,72
+145210540;Schönheide;4,57
+145210550;Schwarzenberg/Erzgeb., Stadt;4,98
+145210560;Sehmatal;4,54
+145210600;Stützengrün;4,39
+145210620;Thalheim/Erzgeb., Stadt;4,57
+145210630;Thermalbad Wiesenbad;4,39
+145210640;Thum, Stadt;4,61
+145210670;Wolkenstein, Stadt;4,66
+145215101;Bärenstein-Königswalde;4,42
+145215103;Burkhardtsdorf;4,65
+145215110;Geyer-Tannenberg;4,6
+145215115;Lugau;4,9
+145215130;Scheibenberg-Schlettau;4,52
+145215132;Kurort Seiffen - Deutschneudorf - Heidersdorf;4,36
+145215133;Stollberg/Erzgeb.;4,94
+145215138;Zschopau;4,74
+145215139;Zschorlau;4,75
+145215140;Zwönitz;4,37
+145215405;Wildenstein;4,33
+145220020;Augustusburg, Stadt;4,99
+145220035;Bobritzsch-Hilbersdorf;4,86
+145220050;Brand-Erbisdorf, Stadt;4,85
+145220070;Claußnitz;4,34
+145220080;Döbeln, Stadt;4,99
+145220110;Eppendorf;4,58
+145220120;Erlau;4,79
+145220140;Flöha, Stadt;5,01
+145220150;Frankenberg/Sa., Stadt, Garnisonsstadt;4,85
+145220170;Frauenstein, Stadt;4,64
+145220180;Freiberg, Stadt, Universitätsstadt;5,61
+145220190;Geringswalde, Stadt;4,45
+145220200;Großhartmannsdorf;4,9
+145220210;Großschirma, Stadt;4,91
+145220220;Großweitzschen;4,19
+145220230;Hainichen, Stadt;4,72
+145220240;Halsbrücke;5,08
+145220250;Hartha, Stadt;4,63
+145220260;Hartmannsdorf;5,26
+145220290;Königshain-Wiederau;4,56
+145220300;Kriebstein;4,38
+145220310;Leisnig, Stadt;4,64
+145220320;Leubsdorf;4,69
+145220330;Lichtenau;5,02
+145220350;Lunzenau, Stadt;4,51
+145220390;Mulda/Sa.;4,73
+145220400;Neuhausen/Erzgeb.;4,17
+145220420;Niederwiesa;5,13
+145220430;Oberschöna;4,62
+145220440;Oederan, Stadt;4,95
+145220460;Penig, Stadt;4,77
+145220470;Rechenberg-Bienenmühle;4,46
+145220480;Reinsberg;4,58
+145220500;Rossau;5,35
+145220510;Roßwein, Stadt;4,44
+145220540;Striegistal;4,04
+145220570;Waldheim, Stadt;4,64
+145220580;Wechselburg;4,92
+145225102;Burgstädt;4,88
+145225113;Lichtenberg-Weißenborn;4,9
+145225119;Mittweida;5,5
+145225123;Ostrau;4,82
+145225126;Rochlitz;4,69
+145225129;Sayda/Dorfchemnitz;4,67
+145230010;Adorf/Vogtl., Stadt;4,57
+145230020;Auerbach/Vogtl., Stadt;4,36
+145230030;Bad Brambach;3,92
+145230040;Bad Elster, Stadt;5,18
+145230090;Ellefeld;4,07
+145230100;Elsterberg, Stadt;4,21
+145230160;Klingenthal, Stadt;4,13
+145230170;Lengenfeld, Stadt;4,6
+145230200;Markneukirchen, Stadt;4,37
+145230245;Muldenhammer;4,26
+145230280;Neumark;5,05
+145230310;Pausa-Mühltroff, Stadt;4,27
+145230320;Plauen, Stadt;4,63
+145230330;Pöhl;4,46
+145230360;Rodewisch, Stadt;4,67
+145230365;Rosenbach/Vogtl.;4,62
+145230380;Steinberg;4,51
+145230450;Weischlitz;4,25
+145235107;Falkenstein;4,37
+145235120;Netzschkau-Limbach;4,55
+145235122;Oelsnitz/Vogtl., Bösenbrunn, Eichigt und Triebel/;4,34
+145235125;Reichenbach im Vogtland;4,57
+145235131;Schöneck/Mühlental;4,56
+145235134;Treuen/Neuensalz;4,65
+145235402;Jägerswald;4,18
+145240020;Callenberg;4,66
+145240060;Fraureuth;4,61
+145240070;Gersdorf;4,72
+145240080;Glauchau, Stadt;5,07
+145240090;Hartenstein, Stadt;4,9
+145240120;Hohenstein-Ernstthal, Stadt;4,95
+145240140;Langenbernsdorf;4,62
+145240150;Langenweißbach;4,74
+145240170;Lichtentanne;4,87
+145240200;Mülsen;4,8
+145240210;Neukirchen/Pleiße;4,86
+145240230;Oberlungwitz, Stadt;4,85
+145240250;Reinsdorf;5
+145240300;Werdau, Stadt;4,71
+145240310;Wildenfels, Stadt;4,83
+145240320;Wilkau-Haßlau, Stadt;5,11
+145240330;Zwickau, Stadt;5,2
+145245104;Crimmitschau-Dennheritz;4,78
+145245111;Kirchberg;4,63
+145245114;Limbach-Oberfrohna;5,04
+145245118;Meerane-Schönberg;4,9
+145245128;Rund um den Auersberg;4,68
+145245135;Waldenburg;4,9
+146120000;Dresden, Stadt;6,92
+146250010;Arnsdorf;5,23
+146250020;Bautzen / Budyšin, Stadt;5,26
+146250030;Bernsdorf, Stadt;5,16
+146250060;Burkau / Porchow;4,61
+146250090;Cunewalde;4,21
+146250100;Demitz-Thumitz;4,72
+146250110;Doberschau-Gaußig / Dobruša-Huska;5,09
+146250120;Elsterheide / Halštrowska Hola;5,33
+146250130;Elstra / Halštrow, Stadt;4,69
+146250150;Göda / Hodzij;4,89
+146250160;Großdubrau / Wulka Dubrawa;4,75
+146250200;Großröhrsdorf, Stadt;5,23
+146250220;Haselbachtal;5,08
+146250230;Hochkirch / Bukecy;4,24
+146250240;Hoyerswerda / Wojerecy, Stadt;4,87
+146250250;Kamenz / Kamjenc, Stadt;5,33
+146250280;Königswartha / Rakecy;3,92
+146250290;Kubschütz / Kubšicy;4,4
+146250310;Lauta, Stadt;5,16
+146250330;Lohsa / Laz;5,01
+146250340;Malschwitz / Malešecy;4,08
+146250380;Neukirch/Lausitz;4,98
+146250420;Oßling / Wóslink;4,86
+146250430;Ottendorf-Okrilla;5,78
+146250480;Radeberg, Stadt;5,77
+146250490;Radibor / Radwor;4,39
+146250525;Schirgiswalde-Kirschau, Stadt;4,71
+146250530;Schmölln-Putzkau;4,53
+146250550;Schwepnitz;4,73
+146250560;Sohland a. d. Spree;4,72
+146250570;Spreetal / Sprjewiny Dol;5,07
+146250590;Steinigtwolmsdorf;4,61
+146250600;Wachau;5,57
+146250610;Weißenberg / Wóspork, Stadt;4,73
+146250630;Wilthen, Stadt;4,39
+146250640;Wittichenau / Kulow, Stadt;5,25
+146255207;Bischofswerda;5,36
+146255211;Großharthau;5,09
+146255212;Großpostwitz/O.L.;4,97
+146255218;Königsbrück;5,18
+146255223;Neschwitz;4,37
+146255231;Pulsnitz;5,56
+146255501;Am Klosterwasser;4,74
+146260060;Boxberg/O.L. / Hamor;4,62
+146260085;Ebersbach-Neugersdorf, Stadt;4,54
+146260110;Görlitz, Stadt;4,79
+146260180;Herrnhut, Stadt;4,52
+146260245;Kottmar;4,42
+146260250;Krauschwitz i.d. O.L. / Krušwica;4,76
+146260280;Leutersdorf;4,32
+146260300;Markersdorf;4,65
+146260310;Mittelherwigsdorf;4,27
+146260370;Niesky, Stadt;5,36
+146260390;Oderwitz;4,54
+146260420;Ostritz, Stadt;4,19
+146260530;Seifhennersdorf, Stadt;4,31
+146260610;Zittau, Stadt;4,59
+146265203;Bad Muskau;4,75
+146265206;Bernstadt / Schönau-Berzdorf;4,37
+146265214;Großschönau-Hainewalde;4,07
+146265220;Löbau;4,62
+146265224;Neusalza-Spremberg;4,48
+146265227;Olbersdorf;4,64
+146265228;Oppach-Beiersdorf;4,35
+146265232;Reichenbach/O.L.;4,47
+146265233;Rietschen;5,15
+146265235;Rothenburg/O.L.;4,39
+146265237;Schleife;4,87
+146265242;Weißwasser/O.L.;4,84
+146265502;Diehsa;4,49
+146265503;Weißer Schöps/Neiße;4,64
+146270010;Coswig, Stadt;5,88
+146270020;Diera-Zehren;4,85
+146270030;Ebersbach;4,57
+146270050;Gröditz, Stadt;4,79
+146270060;Großenhain, Stadt;5,08
+146270070;Hirschstein;4,38
+146270080;Käbschütztal;4,81
+146270100;Klipphausen;5,41
+146270130;Lommatzsch, Stadt;4,57
+146270140;Meißen, Stadt;5,76
+146270150;Moritzburg;6,74
+146270170;Niederau;5,85
+146270180;Nossen, Stadt;4,82
+146270200;Priestewitz;4,76
+146270210;Radebeul, Stadt;6,63
+146270220;Radeburg, Stadt;5,61
+146270230;Riesa, Stadt;5,14
+146270260;Stauchitz;4,68
+146270270;Strehla, Stadt;5,22
+146270290;Thiendorf;5,45
+146270310;Weinböhla;6,51
+146270360;Zeithain;4,69
+146275225;Nünchritz;5,11
+146275234;Röderaue-Wülknitz;5,03
+146275238;Schönfeld;5,17
+146280050;Bannewitz;6,26
+146280060;Dippoldiswalde, Stadt;5,23
+146280100;Dürrröhrsdorf-Dittersbach;4,88
+146280110;Freital, Stadt;5,54
+146280130;Glashütte, Stadt;4,69
+146280160;Heidenau, Stadt;5,62
+146280190;Hohnstein, Stadt;4,62
+146280220;Kreischa;5,91
+146280260;Neustadt in Sachsen, Stadt;5,13
+146280300;Rabenau, Stadt;5,23
+146280360;Sebnitz, Stadt;4,71
+146280380;Stolpen, Stadt;5,42
+146280410;Wilsdruff, Stadt;5,96
+146285201;Altenberg;4,71
+146285202;Bad Gottleuba-Berggießhübel;5,24
+146285204;Bad Schandau;5,04
+146285209;Dohna-Müglitztal;5,44
+146285219;Königstein/Sächs. Schw.;4,74
+146285221;Lohmen/Stadt Wehlen;5,42
+146285229;Pirna;5,57
+146285230;Klingenberg;5,04
+146285240;Tharandt;5,92
+147130000;Leipzig, Stadt;6,44
+147290030;Bennewitz;5,12
+147290040;Böhlen, Stadt;5,45
+147290050;Borna, Stadt;4,9
+147290060;Borsdorf;5,96
+147290070;Brandis, Stadt;5,51
+147290080;Colditz, Stadt;4,62
+147290140;Frohburg, Stadt;4,97
+147290150;Geithain, Stadt;4,68
+147290160;Grimma, Stadt;5,13
+147290170;Groitzsch, Stadt;5,37
+147290190;Großpösna;5,68
+147290220;Kitzscher, Stadt;4,57
+147290245;Lossatal;4,84
+147290250;Machern;5,67
+147290260;Markkleeberg, Stadt;6,55
+147290270;Markranstädt, Stadt;6,03
+147290320;Neukieritzsch;4,99
+147290360;Regis-Breitingen, Stadt;4,79
+147290370;Rötha, Stadt;5,24
+147290380;Thallwitz;6,44
+147290400;Trebsen/Mulde, Stadt;4,68
+147290410;Wurzen, Stadt;5,19
+147290430;Zwenkau, Stadt;5,72
+147295301;Bad Lausick;5,23
+147295307;Naunhof;5,48
+147295308;Pegau;5,31
+147300020;Bad Düben, Stadt;5,04
+147300045;Belgern-Schildau, Stadt;4,62
+147300050;Cavertitz;4,68
+147300060;Dahlen, Stadt;4,5
+147300070;Delitzsch, Stadt;5,44
+147300080;Doberschütz;4,78
+147300110;Eilenburg, Stadt;5,4
+147300160;Laußig;4,75
+147300170;Liebschützberg;4,55
+147300180;Löbnitz;4,91
+147300190;Mockrehna;5,32
+147300200;Mügeln, Stadt;4,57
+147300210;Naundorf;4,47
+147300230;Oschatz, Stadt;5,1
+147300250;Rackwitz;5,46
+147300270;Schkeuditz, Stadt;5,79
+147300300;Taucha, Stadt;6,19
+147300330;Wermsdorf;4,63
+147300340;Wiedemar;4,87
+147305302;Beilrode;4,39
+147305303;Dommitzsch;4,36
+147305306;Krostitz;5,42
+147305311;Torgau;5,01
+147305601;Eilenburg-West;4,79
+150010000;Dessau-Roßlau, Stadt;5,48
+150020000;Halle (Saale), Stadt;5,92
+150030000;Magdeburg, Landeshauptstadt;5,75
+150810030;Arendsee (Altmark), Stadt;4,63
+150810135;Gardelegen, Hansestadt;4,81
+150810240;Kalbe (Milde), Stadt;4,23
+150810280;Klötze, Stadt;4,82
+150810455;Salzwedel, Hansestadt;4,92
+150815051;Beetzendorf-Diesdorf;4,37
+150820005;Aken (Elbe), Stadt;4,53
+150820015;Bitterfeld-Wolfen, Stadt;5,5
+150820180;Köthen (Anhalt), Stadt;5,1
+150820241;Muldestausee;5,79
+150820256;Osternienburger Land;4,51
+150820301;Raguhn-Jeßnitz, Stadt;5,21
+150820340;Sandersdorf-Brehna, Stadt;5,6
+150820377;Südliches Anhalt, Stadt;4,64
+150820430;Zerbst/Anhalt, Stadt;4,79
+150820440;Zörbig, Stadt;5,12
+150830040;Barleben;6,29
+150830270;Haldensleben, Stadt;5,31
+150830298;Hohe Börde;5,36
+150830390;Niedere Börde;4,88
+150830411;Oebisfelde-Weferlingen, Stadt;5,5
+150830415;Oschersleben (Bode), Stadt;5,13
+150830490;Sülzetal;5,03
+150830531;Wanzleben-Börde, Stadt;4,88
+150830565;Wolmirstedt, Stadt;5,49
+150835051;Elbe-Heide;4,96
+150835052;Flechtingen;4,7
+150835053;Obere Aller;4,52
+150835054;Westliche Börde;4,34
+150840130;Elsteraue;4,66
+150840235;Hohenmölsen, Stadt;5,05
+150840315;Lützen, Stadt;4,63
+150840355;Naumburg (Saale), Stadt;5,5
+150840490;Teuchern, Stadt;4,64
+150840550;Weißenfels, Stadt;5,24
+150840590;Zeitz, Stadt;4,86
+150845051;An der Finne;4,63
+150845052;Droyßiger-Zeitzer Forst;4,57
+150845053;Unstruttal;4,65
+150845054;Wethautal;4,86
+150850040;Ballenstedt, Stadt;5,04
+150850055;Blankenburg (Harz), Stadt;4,8
+150850110;Falkenstein/Harz, Stadt;4,79
+150850135;Halberstadt, Stadt;5,22
+150850145;Harzgerode, Stadt;4,91
+150850185;Huy;4,27
+150850190;Ilsenburg (Harz), Stadt;5,56
+150850227;Nordharz;4,81
+150850228;Oberharz am Brocken, Stadt;4,8
+150850230;Osterwieck, Stadt;4,68
+150850235;Quedlinburg, Welterbestadt;5,39
+150850330;Thale, Stadt;4,95
+150850370;Wernigerode, Stadt;5,73
+150855051;Vorharz;4,76
+150860005;Biederitz;5,7
+150860015;Burg, Stadt;5,17
+150860035;Elbe-Parey;4,79
+150860040;Genthin, Stadt;5,08
+150860055;Gommern, Stadt;4,88
+150860080;Jerichow, Stadt;4,65
+150860140;Möckern, Stadt;4,77
+150860145;Möser;5,79
+150870015;Allstedt, Stadt;4,67
+150870031;Arnstein, Stadt;4,53
+150870130;Eisleben, Lutherstadt;5,19
+150870165;Gerbstedt, Stadt;4,43
+150870220;Hettstedt, Stadt;4,92
+150870275;Mansfeld, Stadt;4,83
+150870370;Sangerhausen, Stadt;5,34
+150870386;Seegebiet Mansfelder Land;4,97
+150870412;Südharz;4,74
+150875051;Goldene Aue;4,85
+150875052;Mansfelder Grund-Helbra;4,8
+150880020;Bad Dürrenberg, Solestadt;5,42
+150880025;Bad Lauchstädt, Goethestadt;5,43
+150880065;Braunsbedra, Stadt;4,87
+150880150;Kabelsketal;5,5
+150880195;Landsberg, Stadt;5,96
+150880205;Leuna, Stadt;5,7
+150880216;Wettin-Löbejün, Stadt;4,86
+150880220;Merseburg, Stadt;5,46
+150880235;Mücheln (Geiseltal), Stadt;4,78
+150880295;Petersberg;5,5
+150880305;Querfurt, Stadt;4,73
+150880319;Salzatal;5,77
+150880330;Schkopau;5,36
+150880365;Teutschenthal;5,3
+150885051;Weida-Land;4,51
+150890015;Aschersleben, Stadt;5
+150890026;Barby, Stadt;4,83
+150890030;Bernburg (Saale), Stadt;5,18
+150890042;Bördeland;4,6
+150890055;Calbe (Saale), Stadt;5
+150890175;Hecklingen, Stadt;4,68
+150890195;Könnern, Stadt;4,66
+150890235;Nienburg (Saale), Stadt;4,56
+150890305;Schönebeck (Elbe), Stadt;5,14
+150890307;Seeland, Stadt;4,54
+150890310;Staßfurt, Stadt;4,78
+150895051;Egelner Mulde;4,6
+150895052;Saale-Wipper;4,91
+150900070;Bismark (Altmark), Stadt;4,44
+150900225;Havelberg, Hansestadt;4,56
+150900415;Osterburg (Altmark), Hansestadt;4,93
+150900535;Stendal, Hansestadt;5,23
+150900546;Tangerhütte, Stadt;4,78
+150900550;Tangermünde, Stadt;5,22
+150905051;Arneburg-Goldbeck;4,51
+150905052;Elbe-Havel-Land;4,49
+150905053;Seehausen (Altmark);4,41
+150910010;Annaburg, Stadt;4,32
+150910020;Bad Schmiedeberg, Stadt;4,78
+150910060;Coswig (Anhalt), Stadt;4,62
+150910110;Gräfenhainichen, Stadt;4,68
+150910145;Jessen (Elster), Stadt;5,03
+150910160;Kemberg, Stadt;4,76
+150910241;Oranienbaum-Wörlitz, Stadt;4,84
+150910375;Wittenberg, Lutherstadt;5,32
+150910391;Zahna-Elster, Stadt;4,64
+160510000;Erfurt, Stadt;6,48
+160520000;Gera, Stadt;5,13
+160530000;Jena, Stadt;7,04
+160540000;Suhl, Stadt;5,29
+160550000;Weimar, Stadt;6,52
+160610045;Heilbad Heiligenstadt, Stadt;5,69
+160610074;Niederorschel;4,87
+160610115;Leinefelde-Worbis, Stadt;5,21
+160610116;Am Ohmberg;4,78
+160610117;Sonnenstein;4,7
+160610118;Dingelstädt, Stadt;4,84
+160615001;Lindenberg/Eichsfeld;5,15
+160615006;Eichsfeld-Wipperaue;4,89
+160615008;Hanstein-Rusteberg;4,98
+160615009;Leinetal;5,15
+160615012;Uder;5,55
+160615013;Westerwald-Obereichsfeld;4,97
+160615014;Ershausen/Geismar;4,73
+160620005;Ellrich, Stadt;4,9
+160620041;Nordhausen, Stadt;5,31
+160620049;Sollstedt;4,51
+160620062;Hohenstein;4,06
+160620063;Werther;4,52
+160620065;Harztor;5,28
+160625053;Heringen/Helme, Stadt;4,89
+160625054;Bleicherode, Stadt;4,91
+160630004;Barchfeld-Immelborn;5,17
+160630076;Treffurt, Stadt;4,8
+160630078;Unterbreizbach;4,82
+160630082;Vacha, Stadt;5,11
+160630092;Wutha-Farnroda;5,01
+160630097;Gerstungen;5,28
+160630098;Hörselberg-Hainich;5,05
+160630099;Bad Liebenstein, Stadt;5,67
+160630101;Krayenberggemeinde;4,81
+160630103;Werra-Suhl-Tal, Stadt;5,08
+160630105;Eisenach, Stadt;5,72
+160635006;Hainich-Werratal;4,99
+160635051;Bad Salzungen, Stadt;5,39
+160635056;Geisa, Stadt;4,79
+160635057;Ruhla, Stadt;4,91
+160635059;Dermbach;4,75
+160640003;Bad Langensalza, Stadt;5,25
+160640014;Dünwald;7,11
+160640046;Mühlhausen/Thüringen, Stadt;5,14
+160640071;Unstruttal;4,86
+160640072;Menteroda;4,46
+160640073;Anrode;4,74
+160645001;Bad Tennstedt;5,01
+160645051;Herbsleben;5,48
+160645052;Südeichsfeld;4,9
+160645053;Vogtei;4,64
+160645054;Unstrut-Hainich;4,77
+160645055;Nottertal-Heilinger Höhen, Stadt;4,71
+160650003;Bad Frankenhausen/Kyffhäuser, Stadt;5,02
+160650032;Helbedündorf;4,3
+160650067;Sondershausen, Stadt;5,19
+160650085;Kyffhäuserland;4,85
+160650087;Roßleben-Wiehe, Stadt;4,68
+160650089;Greußen, Stadt;4,9
+160655002;Greußen;4,39
+160655052;Ebeleben, Stadt;4,74
+160655055;Artern, Stadt;4,51
+160655056;An der Schmücke, Stadt;4,64
+160660023;Floh-Seligenthal;4,95
+160660047;Oberhof, Stadt;5,47
+160660063;Schmalkalden, Stadt;5,15
+160660069;Steinbach-Hallenberg, Stadt;5,31
+160660074;Brotterode-Trusetal, Stadt;4,96
+160660092;Zella-Mehlis, Stadt;5,33
+160660093;Rhönblick;4,36
+160660094;Grabfeld;4,98
+160665005;Hohe Rhön;4,74
+160665013;Wasungen-Amt Sand;4,67
+160665014;Dolmar-Salzbrücke;4,77
+160665050;Meiningen, Stadt;5,34
+160665051;Breitungen/Werra;4,98
+160670019;Friedrichroda, Stadt;5,43
+160670029;Gotha, Stadt;5,5
+160670064;Bad Tabarz;5,61
+160670065;Tambach-Dietharz/Thür. Wald, Stadt;5,12
+160670072;Waltershausen, Stadt;5,25
+160670087;Nesse-Apfelstädt;5,68
+160670088;Hörsel;4,93
+160675007;Nesseaue;4,89
+160675012;Fahner Höhe;4,88
+160675050;Ohrdruf, Stadt;4,92
+160675052;Drei Gleichen;5,61
+160675053;Nessetal;4,93
+160675054;Georgenthal;4,88
+160680034;Kölleda, Stadt;5,46
+160680051;Sömmerda, Stadt;5,42
+160680058;Weißensee, Stadt;5,03
+160680063;Buttstädt;4,91
+160685002;Gera-Aue;5,46
+160685005;Kindelbrück;5,34
+160685006;Kölleda;4,96
+160685009;Straußfurt;5,36
+160685012;Gramme-Vippach;5,47
+160685050;Elxleben;5,66
+160690012;Eisfeld, Stadt;5,1
+160690024;Hildburghausen, Stadt;5,16
+160690042;Schleusegrund;4,77
+160690043;Schleusingen, Stadt;5,49
+160690053;Veilsdorf;4,17
+160690061;Masserberg;4,75
+160690062;Römhild, Stadt;5,11
+160695002;Feldstein;4,75
+160695004;Heldburger Unterland;4,67
+160695051;Auengrund;4,72
+160700004;Arnstadt, Stadt;5,87
+160700028;Amt Wachsenburg;5,48
+160700029;Ilmenau, Stadt;5,53
+160700048;Stadtilm, Stadt;5,14
+160700057;Geratal;5,27
+160700058;Großbreitenbach, Stadt;4,75
+160705002;Geratal/Plaue;5,3
+160705009;Riechheimer Berg;5,4
+160710001;Apolda, Stadt;5,39
+160710003;Bad Berka, Stadt;5,45
+160710008;Blankenhain, Stadt;5,35
+160710101;Ilmtal-Weinstraße;5,31
+160710103;Grammetal;5,88
+160715007;Kranichfeld;5,39
+160715008;Mellingen;5,87
+160715051;Bad Sulza, Stadt;5,14
+160715053;Am Ettersberg;5,45
+160720011;Lauscha, Stadt;4,69
+160720015;Schalkau, Stadt;4,92
+160720018;Sonneberg, Stadt;5,33
+160720019;Steinach, Stadt;4,75
+160720023;Frankenblick;4,96
+160720024;Föritztal;5,06
+160725051;Neuhaus am Rennweg, Stadt;5,14
+160730005;Bad Blankenburg, Stadt;5,11
+160730076;Rudolstadt, Stadt;5,57
+160730077;Saalfeld/Saale, Stadt;5,27
+160730106;Leutenberg, Stadt;4,73
+160730109;Uhlstädt-Kirchhasel;4,96
+160730111;Unterwellenborn;5,15
+160735005;Schiefergebirge;4,5
+160735012;Schwarzatal;5,01
+160735051;Kaulsdorf;4,73
+160735054;Königsee, Stadt;5,13
+160740044;Kahla, Stadt;5,31
+160745005;Heideland-Elstertal-Schkölen;4,75
+160745007;Hügelland/Täler;5,75
+160745011;Südliches Saaletal;5,94
+160745014;Hermsdorf;5,31
+160745015;Dornburg-Camburg;5,36
+160745050;Stadtroda, Stadt;5,52
+160745051;Bürgel, Stadt;5,32
+160745052;Eisenberg, Stadt;4,93
+160745053;Bad Klosterlausnitz;5,67
+160750046;Hirschberg, Stadt;4,92
+160750062;Bad Lobenstein, Stadt;5,34
+160750085;Pößneck, Stadt;5,4
+160750098;Schleiz, Stadt;5,38
+160750131;Gefell, Stadt;4,73
+160750132;Tanna, Stadt;4,93
+160750133;Wurzbach, Stadt;4,63
+160750134;Remptendorf;4,79
+160750135;Saalburg-Ebersdorf, Stadt;4,88
+160750136;Rosenthal am Rennsteig;4,78
+160755004;Seenplatte;4,65
+160755005;Oppurg;5,21
+160755011;Triptis;5,24
+160755013;Ranis-Ziegenrück;5,06
+160755050;Neustadt an der Orla, Stadt;5,32
+160760004;Berga/Elster, Stadt;4,74
+160760022;Greiz, Stadt;4,62
+160760061;Ronneburg, Stadt;4,77
+160760088;Harth-Pöllnitz;4,08
+160760089;Kraftsdorf;4,83
+160760092;Auma-Weidatal, Stadt;4,44
+160760093;Mohlsdorf-Teichwolframsdorf;4,52
+160765004;Wünschendorf/Elster;4,58
+160765006;Münchenbernsdorf;4,72
+160765008;Am Brahmetal;4,74
+160765051;Bad Köstritz, Stadt;4,98
+160765053;Weida, Stadt;4,62
+160765054;Zeulenroda-Triebes, Stadt;4,77
+160765056;Langenwetzendorf;4,54
+160770001;Altenburg, Stadt;5,16
+160770028;Lucka, Stadt;4,93
+160770032;Meuselwitz, Stadt;5,01
+160775004;Pleißenaue;4,86
+160775005;Rositz;4,57
+160775009;Oberes Sprottental;4,76
+160775050;Gößnitz, Stadt;4,86
+160775051;Nobitz;4,62
+160775052;Schmölln, Stadt;4,95
+Ende der Tabelle.;;

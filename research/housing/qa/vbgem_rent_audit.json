@@ -1,0 +1,63 @@
+{
+  "source": "https://deutschlandatlas.bund.de/fileadmin/Downloaddateien/HA26/Deutschlandatlas_VBGEM1222_HA26.csv",
+  "field": "preis_miet_best",
+  "unit": "EUR/m2",
+  "year": "2022",
+  "level": "Gemeindeverband: NOT uniform county-level data",
+  "count": 4600,
+  "with_rent": 4396,
+  "key_lengths": {
+    "8": 3615,
+    "9": 985
+  },
+  "sample": [
+    {
+      "regional_key_raw": "10010000",
+      "name": "Flensburg, Stadt",
+      "net_cold_rent_2022_eur_m2": 6.96
+    },
+    {
+      "regional_key_raw": "10020000",
+      "name": "Kiel, Landeshauptstadt",
+      "net_cold_rent_2022_eur_m2": 7.64
+    },
+    {
+      "regional_key_raw": "10030000",
+      "name": "L�beck, Hansestadt",
+      "net_cold_rent_2022_eur_m2": 7.47
+    },
+    {
+      "regional_key_raw": "10040000",
+      "name": "Neum�nster, Stadt",
+      "net_cold_rent_2022_eur_m2": 6.22
+    },
+    {
+      "regional_key_raw": "10510011",
+      "name": "Brunsb�ttel, Stadt",
+      "net_cold_rent_2022_eur_m2": 5.74
+    },
+    {
+      "regional_key_raw": "10510044",
+      "name": "Heide, Stadt",
+      "net_cold_rent_2022_eur_m2": 6.68
+    },
+    {
+      "regional_key_raw": "10515163",
+      "name": "Burg-St. Michaelisdonn",
+      "net_cold_rent_2022_eur_m2": 5.5
+    },
+    {
+      "regional_key_raw": "10515166",
+      "name": "Marne-Nordsee",
+      "net_cold_rent_2022_eur_m2": 5.92
+    }
+  ],
+  "discarded": [
+    [
+      4602,
+      "Ende der Tabelle.",
+      "",
+      ""
+    ]
+  ]
+}
