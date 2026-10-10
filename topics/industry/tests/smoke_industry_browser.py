@@ -40,6 +40,10 @@ def verify(browser,mobile=False):
     page.locator("#industryEventTimeline [data-id]").first.click()
     assert page.locator("#eventDetail").is_visible()
     assert page.locator("#eventDetail a[href^='https://']").count()>0
+    # Chronology click may enter a specific county; return to entire state
+    # before testing the state-wide UPM source search.
+    if page.locator("#industryBackState").is_visible():
+        page.locator("#industryBackState").click()
     page.locator('[data-dossier-tab="cases"]').click()
     assert page.locator("#eventList .industry-row").count()>0
     page.locator("#industryEventSearch").fill("UPM")
