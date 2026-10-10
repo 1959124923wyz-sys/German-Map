@@ -134,6 +134,17 @@
     "renewable_heat_new_2024_pct": 399,
     "renewable_heat_stock_2022_pct": 399
   },
+  "official_2024_count": 400,
+  "coverage_on_official_400_geometry": {
+    "asking_rent_2025_eur_m2": 400,
+    "disposable_income_2023_keur_person": 400,
+    "building_land_price_band_2024": 400,
+    "vacancy_2022_pct": 400,
+    "owner_occupier_2022_pct": 400,
+    "living_area_2022_m2_person": 400,
+    "renewable_heat_new_2024_pct": 400,
+    "renewable_heat_stock_2022_pct": 400
+  },
   "notes": [
     "No interpolation or name-based joins",
     "Different county boundary vintages",
