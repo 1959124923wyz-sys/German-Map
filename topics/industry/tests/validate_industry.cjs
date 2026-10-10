@@ -17,6 +17,12 @@ const r7c=JSON.parse(fs.readFileSync(path.join(root,'research/r7c-plant-closures
 const r7d=JSON.parse(fs.readFileSync(path.join(root,'research/r7d-2024-company-primary-audited.json'),'utf8'));
 const r7e=JSON.parse(fs.readFileSync(path.join(root,'research/r7e-2025-undercovered-sites.json'),'utf8'));
 const r8a=JSON.parse(fs.readFileSync(path.join(root,'research/r8a-2024-industry-backfill.json'),'utf8'));
+const r8b=JSON.parse(fs.readFileSync(path.join(root,'research/r8b-upm-bruchsal-primary.json'),'utf8'));
+const r8patch=JSON.parse(fs.readFileSync(path.join(root,'research/r8-implementation-patches.json'),'utf8'));
+assert.equal(r8b.events.length,1,'2024 UPM Bruchsal source-backed closure');
+assert.equal(r8b.events[0].jobs_affected,null,'Cross-country 59 cannot be assigned to Bruchsal site');
+assert.equal(Object.keys(r8patch.updates).length,3,'Three independent late implementation findings');
+assert.ok(Object.values(r8patch.updates).every(x=>x.confirmation_source_url.startsWith('https://')));
 assert.equal(r8a.events.length,10,'R8A source-backed factory and exclusion records');
 assert.equal(r8a.events.filter(e=>e.eligible_factory_marker).length,7);
 assert.equal(r8a.events.filter(e=>e.shared_program_id==='putzmeister_2024_two_german_factories_280' && e.eligible_factory_marker && e.jobs_affected!==null).length,0,'Putzmeister cross-site total never assigned to sites');
@@ -39,7 +45,7 @@ const r6Audit=JSON.parse(fs.readFileSync(path.join(root,'research/r6-dedup-audit
 assert.equal(r6.events.length,1,'R6 only genuinely new site');
 assert.equal(r7a.events.length,10,'R7A individually screened cases');
 assert.equal(r7b.events.length,11,'R7B retrospective events');
-for(const b of [r7a,r7b,r7c,r7d,r7e,r8a])for(const e of b.events){
+for(const b of [r7a,r7b,r7c,r7d,r7e,r8a,r8b])for(const e of b.events){
  if(e.eligible_factory_marker){
   assert.match(e.county_ags||'',/^\d{5}$/,'R7 site must have current AGS: '+e.event_id);
  }
@@ -91,10 +97,10 @@ assert.equal(r5c.manifest.sites,7);
 assert.equal(r5c.events.filter(e=>e.eligible_factory_marker===false).length,5,'R5C undecided/group/nonfactory excluded');
 assert.equal(r5b.events.filter(e=>e.eligible_factory_marker===false).length,2,'R5B groups are not map markers');
 assert.equal(r5a.events.filter(e=>e.eligible_factory_marker===false).length,2,'Exclude operators/multi-site');
-const rows=[...r1.events,...r23.events,...r4.events,...r5a.events,...r5b.events,...r5c.events,...r5d.events,...r6.events,...r7a.events,...r7b.events,...r7c.events,...r7d.events,...r7e.events,...r8a.events];
-assert.equal(rows.length,230);
-assert.equal(new Set(rows.map(e=>e.event_id)).size,230,'IDs unique');
-for(const [id,fix] of Object.entries({...r4.updates,...r7audit.updates})){
+const rows=[...r1.events,...r23.events,...r4.events,...r5a.events,...r5b.events,...r5c.events,...r5d.events,...r6.events,...r7a.events,...r7b.events,...r7c.events,...r7d.events,...r7e.events,...r8a.events,...r8b.events];
+assert.equal(rows.length,231);
+assert.equal(new Set(rows.map(e=>e.event_id)).size,231,'IDs unique');
+for(const [id,fix] of Object.entries({...r4.updates,...r7audit.updates,...r8patch.updates})){
  assert.ok(rows.some(e=>e.event_id===id),'patch target '+id);
  assert.ok((fix.source_url||rows.find(e=>e.event_id===id)?.source_url)?.startsWith('https://'),'patch citation '+id);
 }
@@ -129,6 +135,8 @@ assert.match(js,/r7c-plant-closures-offshoring.json/);
 assert.match(js,/r7d-2024-company-primary-audited.json/);
 assert.match(js,/r7e-2025-undercovered-sites.json/);
 assert.match(js,/r8a-2024-industry-backfill.json/);
+assert.match(js,/r8b-upm-bruchsal-primary.json/);
+assert.match(js,/r8-implementation-patches.json/);
 assert.match(js,/r7-legacy-identity-audit.json/);
 assert.match(js,/ags-crosswalk-402-to-400.json/);
 assert.match(js,/bkg_vg250_counties_2025_candidate.geojson/);
@@ -176,4 +184,4 @@ try{
  fs.writeFileSync(csv,fixture.replace('WZ2008_C','WZ2008_BC'));
  assert.throws(()=>execFileSync(process.execPath,[importer,'--input',csv,'--output',out],{stdio:'pipe'}));
 }finally{fs.rmSync(tmp,{recursive:true,force:true})}
-console.log('industry staging validation passed: 230 unique events; 400 canonical districts; official-CSV guardrail fixture.');
+console.log('industry staging validation passed: 231 unique events; 400 canonical districts; official-CSV guardrail fixture.');
