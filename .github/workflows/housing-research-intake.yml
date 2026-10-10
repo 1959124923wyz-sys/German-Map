@@ -36,10 +36,10 @@ jobs:
           import json,pathlib
           p=pathlib.Path('topics/housing/data/atlas-counties.json')
           j=json.loads(p.read_text())
-          assert len(j['counties'])==402
+          assert len(j['counties'])==400
           for key in ('asking_rent_2025_eur_m2','vacancy_2022_pct','owner_occupier_2022_pct'):
-              assert j['meta']['coverage_on_existing_402_map'][key]>=380
-          print('Housing baseline validated',j['meta']['coverage_on_existing_402_map'])
+              assert j['meta']['coverage_on_official_400_geometry'][key]==400
+          print('Housing baseline validated',j['meta']['coverage_on_official_400_geometry'])
           PY
       - name: Preserve only independently validated data on research branch
         run: |
