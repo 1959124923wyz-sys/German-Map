@@ -22,13 +22,34 @@ class Backbone{
   this.graph.add(id,part);
   this.official++;
  }
- setActive(groups){
-  const ids=new Set();
-  for(const g of groups)for(const {leg} of g.members||[])
-   ids.add(String(leg.route));
+ setActive(groups,picker){
+  const ids=new Set(),matched=new Map();
+  for(const g of groups)for(const member of g.members||[]){
+   const own=String(member.leg.route);
+   if(this.perRoute.has(own))ids.add(own);
+   // Observation route numbering often differs from the official
+   // infrastructure extraction; use REAL geographic coincidence instead.
+   for(const part of (member.parts||[]).slice(0,3)){
+    const xy=part.xy;
+    const points=[[xy[0],xy[1]],
+      [xy[Math.floor((xy.length/2-1)/2)*2],xy[Math.floor((xy.length/2-1)/2)*2+1]],
+      [xy[xy.length-2],xy[xy.length-1]]];
+    const routes=new Map();
+    for(const point of points){
+     const found=picker?.network.nearest(point,.75);
+     if(!found||found.d>.6*.6)continue;
+     const key=String(found.entry.route);
+     routes.set(key,(routes.get(key)||0)+1);
+    }
+    for(const [key,hits] of routes)
+     if(hits>=2)matched.set(key,(matched.get(key)||0)+1);
+   }
+  }
+  for(const [key,score] of matched)if(score>=1)ids.add(key);
   this.selectedRoutes=ids;
   this.active=[...ids].flatMap(id=>this.perRoute.get(id)||[]);
-  return {routes:ids.size,sections:this.active.length,all:this.all.length};
+  return {routes:ids.size,sections:this.active.length,all:this.all.length,
+    geographicMatches:matched.size};
  }
  // The stations at both ends of a city-pair corridor can be identified from
  // original stop records; they do not need to be guessed from route geometry.
