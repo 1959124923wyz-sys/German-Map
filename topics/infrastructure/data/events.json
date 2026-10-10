@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-10-10",
+  "coverage": "精选核实案例（非全国完整普查）",
+  "geocode_note": "除特定知名设施外，多数坐标是城镇或项目近似锚点，不是建筑测量坐标。",
+  "events": [
+    {
+      "id": "stuttgart21",
+      "state_iso": "DE-BW",
+      "city": "斯图加特",
+      "title": "斯图加特21：新车站分五期启用，工程费用预计145亿欧元",
+      "category": "delay",
+      "category_label": "工期延期",
+      "status": "in_progress",
+      "event_date": "2026-06-26",
+      "coordinates": {
+        "lat": 48.7824,
+        "lon": 9.1815,
+        "precision": "locality_approx"
+      },
+      "summary": "德国铁路2026年公布新分期安排：2027—2033年五个阶段逐步启用，项目估算总费用145亿欧元。不是全部功能在2027年启用。",
+      "sources": [
+        {
+          "url": "https://www.deutschebahn.com/de/presse/pressestart_zentrales_uebersicht/Stuttgart-21-Deutsche-Bahn-stellt-Inbetriebnahmeplan-neu-auf--13956556",
+          "role": "primary_or_reporting"
+        }
+      ]
+    },
+    {
+      "id": "gottenheim_soda",
+      "state_iso": "DE-BW",
+      "city": "Gottenheim",
+      "title": "一座桥建好近15年，却没有汽车驶过",
+      "category": "strange",
+      "category_label": "闲置工程",
+      "status": "unconnected",
+      "event_date": "2025-04-13",
+      "coordinates": {
+        "lat": 48.0502,
+        "lon": 7.7282,
+        "precision": "locality_approx"
+      },
+      "summary": "SWR报道：为B31 West连接工程准备的桥梁长期未接上规划道路，建造费用超过100万欧元。位置为Gottenheim市镇示意，不代表桥梁精确坐标。",
+      "sources": [
+        {
+          "url": "https://www.swr.de/swraktuell/baden-wuerttemberg/zur-sache-bw-schildbuergerstreich-wenn-steuergelder-fuer-infrastruktur-versickern-100.html",
+          "role": "primary_or_reporting"
+        }
+      ]
+    },
+    {
+      "id": "ber_airport",
+      "state_iso": "DE-BB",
+      "city": "舍讷费尔德",
+      "title": "柏林新机场：多年延期后于2020年才启用",
+      "category": "delay",
+      "category_label": "工期延期",
+      "status": "completed",
+      "event_date": "2020-10-31",
+      "coordinates": {
+        "lat": 52.3668,
+        "lon": 13.5034,
+        "precision": "facility_approx"
+      },
+      "summary": "柏林勃兰登堡机场T1航站楼2020年10月31日启用。本事件是已完工历史工程，不能标为仍在烂尾。",
+      "sources": [
+        {
+          "url": "https://corporate.berlin-airport.de/de/unternehmen-presse/historie/flughafen-berlin-brandenburg-willy-brandt.html",
+          "role": "primary_or_reporting"
+        }
+      ]
+    },
+    {
+      "id": "carola_bridge",
+      "state_iso": "DE-SN",
+      "city": "德累斯顿",
+      "title": "卡罗拉大桥2024年凌晨部分坍塌",
+      "category": "bridge",
+      "category_label": "桥梁故障",
+      "status": "replacement",
+      "event_date": "2024-09-11",
+      "coordinates": {
+        "lat": 51.0584,
+        "lon": 13.755,
+        "precision": "locality_approx"
+      },
+      "summary": "2024年9月11日凌晨发生桥梁C段坍塌，无人员伤亡。2026年萨克森州检方公开结案说明，研究报告指向预应力钢材应力腐蚀。",
+      "sources": [
+        {
+          "url": "https://medienservice.sachsen.de/medien/news/1098593",
+          "role": "primary_or_reporting"
+        }
+      ]
+    },
+    {
+      "id": "rahmede",
+      "state_iso": "DE-NW",
+      "city": "吕登沙伊德",
+      "title": "A45大桥封闭四年，2025年底终于恢复高速公路通行",
+      "category": "bridge",
+      "category_label": "桥梁故障",
+      "status": "partly_open",
+      "event_date": "2025-12-22",
+      "coordinates": {
+        "lat": 51.2293,
+        "lon": 7.6293,
+        "precision": "locality_approx"
+      },
+      "summary": "Rahmede旧桥2021年12月因严重损坏关闭，2025年12月22日新桥第一部分开放恢复A45连续通行，第二部分仍施工。",
+      "sources": [
+        {
+          "url": "https://www.autobahn.de/aktuelles/aktuell/a45-talbruecke-rahmede-nach-nur-zwei-jahren-bauzeit-freigegeben-1",
+          "role": "primary_or_reporting"
+        }
+      ]
+    },
+    {
+      "id": "opera_cologne",
+      "state_iso": "DE-NW",
+      "city": "科隆",
+      "title": "科隆歌剧院翻修14年，成本估算接近15亿欧元",
+      "category": "cost",
+      "category_label": "投资超支",
+      "status": "completed",
+      "event_date": "2026-09-14",
+      "coordinates": {
+        "lat": 50.9377,
+        "lon": 6.9536,
+        "precision": "facility_approx"
+      },
+      "summary": "2012年启动的歌剧院与剧院翻修项目，在2026年9月重新开放；近15亿欧元为建造与融资成本合计，不能当作纯施工费。",
+      "sources": [
+        {
+          "url": "https://www.tagesschau.de/inland/regional/nordrheinwestfalen/wdr-wiedereroeffnung-koelner-buehnen-warum-die-sanierung-zum-desaster-wurde-100.html",
+          "role": "primary_or_reporting"
+        }
+      ]
+    },
+    {
+      "id": "elbphilharmonie",
+      "state_iso": "DE-HH",
+      "city": "汉堡",
+      "title": "易北爱乐音乐厅：建设成本远超最初预算",
+      "category": "cost",
+      "category_label": "投资超支",
+      "status": "completed",
+      "event_date": "2017-01-11",
+      "coordinates": {
+        "lat": 53.5413,
+        "lon": 9.984,
+        "precision": "facility_approx"
+      },
+      "summary": "德国联邦财政部记录，2017年1月11日开放的音乐厅，最终建造费用超过最初7700万欧元预算的十倍；已经正常运营。",
+      "sources": [
+        {
+          "url": "https://www.bundesfinanzministerium.de/Content/DE/Bilderstrecken/Sondermarken/Programm_2017/Briefmarken_Programm_2017/1701_Elbphilharmonie.html",
+          "role": "primary_or_reporting"
+        }
+      ]
+    },
+    {
+      "id": "speyer_b9",
+      "state_iso": "DE-RP",
+      "city": "施派尔",
+      "title": "B9公路桥发现预应力钢材损伤，2026年紧急封路",
+      "category": "bridge",
+      "category_label": "桥梁故障",
+      "status": "closed",
+      "event_date": "2026-09-19",
+      "coordinates": {
+        "lat": 49.3362,
+        "lon": 8.4281,
+        "precision": "locality_approx"
+      },
+      "summary": "B9绕城路2026年9月因桥梁损伤实施封闭，交通部门持续公布检查与应急支撑安排；示意点并非桥梁实测坐标。",
+      "sources": [
+        {
+          "url": "https://lbm.rlp.de/grossprojekte/regionale-projekte/b-9-/-l-528-vollsperrung-der-umgehung-speyer",
+          "role": "primary_or_reporting"
+        }
+      ]
+    },
+    {
+      "id": "bonn_nord",
+      "state_iso": "DE-NW",
+      "city": "波恩",
+      "title": "A565北桥发现结构损伤，2026年全面封闭",
+      "category": "bridge",
+      "category_label": "桥梁故障",
+      "status": "closed",
+      "event_date": "2026-06-03",
+      "coordinates": {
+        "lat": 50.7633,
+        "lon": 7.0852,
+        "precision": "locality_approx"
+      },
+      "summary": "1967年建成的北桥左岸引桥承重结构出现严重问题。2026年6月3日全桥封闭，左岸引桥需拆除重建。",
+      "sources": [
+        {
+          "url": "https://www.autobahn.de/planen-bauen/projekt/sperrung-bonner-nordbruecke",
+          "role": "primary_or_reporting"
+        }
+      ]
+    },
+    {
+      "id": "holzhausen_lift",
+      "state_iso": "DE-NW",
+      "city": "Bad Holzhausen",
+      "title": "多年不能正常使用的火车站电梯，最后被拆掉",
+      "category": "access",
+      "category_label": "公共服务",
+      "status": "unavailable",
+      "event_date": "2026-10-06",
+      "coordinates": {
+        "lat": 52.2865,
+        "lon": 8.5485,
+        "precision": "locality_approx"
+      },
+      "summary": "WDR于2026年10月6日报道，Bad Holzhausen车站电梯多年无法可靠使用，已被拆除；当时没有可用的替代无障碍通道。",
+      "sources": [
+        {
+          "url": "https://www1.wdr.de/nrw/ostwestfalen-lippe/kreis-minden-luebbecke/bahnhof-barrierefrei-db-bad-holzhausen-100.amp",
+          "role": "primary_or_reporting"
+        }
+      ]
+    },
+    {
+      "id": "elsfleth_hunte",
+      "state_iso": "DE-NI",
+      "city": "Elsfleth",
+      "title": "铁路活动桥连续遭船舶撞击，被迫使用不能开启的临时桥",
+      "category": "bridge",
+      "category_label": "桥梁故障",
+      "status": "temporary",
+      "event_date": "2024-02-25",
+      "coordinates": {
+        "lat": 53.2331,
+        "lon": 8.4667,
+        "precision": "locality_approx"
+      },
+      "summary": "2024年2月和7月两次船舶碰撞使桥梁及临时桥损坏。铁路已用固定临时桥恢复运行，但海船航道通行受到限制，正推进可开启新桥。",
+      "sources": [
+        {
+          "url": "https://www.deutschebahn.com/de/presse/presse-regional/pr-hamburg-de/aktuell/presseinformationen-regional/Baustart-fuer-neue-Huntebruecke-Elsfleth--13886132",
+          "role": "primary_or_reporting"
+        }
+      ]
+    }
+  ]
+}
