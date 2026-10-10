@@ -21,6 +21,7 @@ STATES={"Baden-Württemberg":"DE-BW","Bayern":"DE-BY","Berlin":"DE-BE",
 "Mecklenburg-Vorpommern":"DE-MV","Niedersachsen":"DE-NI","Nordrhein-Westfalen":"DE-NW",
 "Rheinland-Pfalz":"DE-RP","Saarland":"DE-SL","Sachsen":"DE-SN","Sachsen-Anhalt":"DE-ST",
 "Schleswig-Holstein":"DE-SH","Thüringen":"DE-TH"}
+AGS_STATE_PREFIX={"DE-SH":"01","DE-HH":"02","DE-NI":"03","DE-HB":"04","DE-NW":"05","DE-HE":"06","DE-RP":"07","DE-BW":"08","DE-BY":"09","DE-SL":"10","DE-BE":"11","DE-BB":"12","DE-MV":"13","DE-SN":"14","DE-ST":"15","DE-TH":"16"}
 PREFIXES=("kreisfreie stadt ","kfr stadt ","kfr. stadt ","stadtkreis ",
 "landeshauptstadt ","hansestadt ","stadt ","landkreis ","landkr ","landkr. ","lk ","kreis ")
 SUFFIXES=(", kreisfreie stadt",", hansestadt",", landeshauptstadt",", stadt")
@@ -81,11 +82,20 @@ def main():
     source_total=sum(x["features"] for x in raw)
     shapes=json.loads((ROOT/"data/germany-counties.geojson").read_text())["features"]
     geometry=[]
+    seen_ags=set()
     for i,f in enumerate(shapes):
         p=f["properties"];st=STATES.get(p["state"])
         if not st:raise RuntimeError("Unexpected geometry state "+str(p["state"]))
+        # AGS is a top-level GeoJSON Feature.id, NOT properties.AGS.
+        source_ags=str(f.get("id") or "").strip()
+        ags=source_ags.zfill(5) if source_ags.isdigit() and len(source_ags) in (4,5) else source_ags
+        if not re.fullmatch(r"\d{5}",ags):
+            raise RuntimeError("County geometry missing verifiable 5-digit AGS at index "+str(i)+": "+repr(source_ags))
+        if ags[:2]!=AGS_STATE_PREFIX[st]:raise RuntimeError("AGS/state mismatch: "+ags+" "+st)
+        if ags in seen_ags:raise RuntimeError("Duplicate AGS "+ags)
+        seen_ags.add(ags)
         geometry.append(dict(shape_index=i,name=p["name"],state_iso=st,
-            district_type=p["districtType"],kfz=p.get("kfz"),
+            district_type=p["districtType"],kfz=p.get("kfz"),ags=ags,
             class_=classify_shape(p["districtType"])))
     by_name=collections.defaultdict(list)
     for g in geometry:by_name[(g["state_iso"],simplify(g["name"]))].append(g)
@@ -104,7 +114,8 @@ def main():
                 "geometry_district_type":g["district_type"],"kfz_NOT_AGS":g["kfz"],
                 "join_method":"explicit_same_state_type_and_alias" if aliased!=sname
                     else "same_state_exact_normalized_name_type",
-                "source_implied_type":expected_type,"official_AGS":None})
+                "source_implied_type":expected_type,"official_AGS":g["ags"],
+                "AGS_from_historical_geometry_not_revalidated_current":True})
         else:
             siblings=[v["name"] for v in geometry if v["state_iso"]==state]
             suggestions=difflib.get_close_matches(rawlabel,siblings,n=3,cutoff=.34)
@@ -124,12 +135,17 @@ def main():
     assert matched_count+unmatched_count==source_total
     assert not any(x["source_implied_type"] and
       x["source_implied_type"]!=classify_shape(x["geometry_district_type"]) for x in matched)
-    assert not any(x["official_AGS"] for x in matched)
+    assert all(re.fullmatch(r"\d{5}",x["official_AGS"]) for x in matched)
     result={"source_data_year":"2025-09",
         "status":"CANDIDATE_TYPE_SAFE_NAME_JOIN_NOT_OFFICIAL_AGS",
         "polygon_file":"data/germany-counties.geojson",
-        "polygon_has_AGS":False,
-        "join_safety":"same state + exact normalized name; source rural/urban type must agree; only curated distinct aliases",
+        "polygon_has_AGS":True,
+        "ags_verified_by":"GeoJSON top-level Feature.id, checked 402 codes unique and 16 state numeric prefixes",
+        "geometry_blob_sha":"d4fb08f16444b40b462ba26beb4d4c97cf236888",
+        "matching_upstream":"https://github.com/m-ad/geofeatures-ags-germany/blob/master/geojson/counties.json",
+        "upstream_same_blob_sha_confirmed":True,
+        "ags_2026_currency":"UNVERIFIED: historical AGS source may predate 2025 boundary changes; current BKG WFS probe timed out",
+        "join_safety":"same state + exact normalized name + administrative type; AGS from the exact same historic GeoJSON Feature.id; 2025 administrative validity not yet certified",
         "geometry_count":len(geometry),"source_groups":len(raw),
         "matched_source_groups":len(matched),
         "matched_unique_county_polygons":len(grouped),
