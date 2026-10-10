@@ -16,6 +16,22 @@ assert.equal(ags.features.length,402);
 assert.equal(new Set(ags.features.map(e=>e.canonical_ags)).size,400);
 assert.equal(ags.canonical_remaps['03156'],'03152');
 assert.equal(ags.canonical_remaps['16056'],'16063');
+for(const batch of [r5a,r5b,r5c,r5d]){
+ const siteRows=batch.events.filter(e=>e.eligible_factory_marker===true);
+ assert.equal(batch.manifest.county_ags_assigned,siteRows.length,'site AGS audited');
+ for(const e of siteRows){
+  assert.match(e.county_ags||'',/^\d{5}$/,'AGS required for '+e.event_id);
+  assert.ok(ags.features.some(g=>g.canonical_ags===e.county_ags),'county AGS belongs to current national crosswalk: '+e.event_id);
+ }
+}
+const indexed=[...r5a.events,...r5b.events,...r5c.events,...r5d.events];
+const byEvent=Object.fromEntries(indexed.map(e=>[e.event_id,e]));
+assert.equal(byEvent.R5_PI_KAR.county_ags,'08212','Karlsruhe city, NOT Karlsruhe Landkreis');
+assert.equal(byEvent.R5B_KRA_KAR.county_ags,'08212','Karlsruhe city not rural district');
+assert.equal(byEvent.R5C_ENO_OBE.county_ags,'08215','Oberderdingen in Karlsruhe rural district');
+assert.equal(byEvent.R5D_BSH_BRE.county_ags,'08215','Bretten in Karlsruhe rural district');
+assert.equal(byEvent.R5C_OSR_SCH.county_ags,'09772','Schwabmünchen in Landkreis Augsburg, not Augsburg city');
+assert.equal(byEvent.R5D_RW_POC.county_ags,'09275','Pocking in Landkreis Passau, not Passau city');
 assert.equal(r1.events.length,61,'R1 input count');
 assert.equal(r23.events.length,38,'R2+R3 input count');
 assert.equal(r23.events.filter(x=>x.batch==='R2').length,15);
