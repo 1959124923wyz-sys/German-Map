@@ -1,0 +1,60 @@
+{
+  "status": "CANDIDATE_400_KREISE_NOT_OFFICIAL_BKG_CURRENT_GEOMETRY",
+  "source": "data/germany-counties.geojson",
+  "source_geometry_provenance": "https://github.com/m-ad/geofeatures-ags-germany/blob/master/geojson/counties.json",
+  "old_count": 402,
+  "new_count": 400,
+  "mergers": [
+    {
+      "obsolete_ags": "03156",
+      "surviving_ags": "03152",
+      "effective_date": "2016-11-01",
+      "reason": "Niedersachsen: Osterode am Harz district abolished and merged into Göttingen",
+      "official_verification_source": "https://www.statistik.niedersachsen.de/presse/zahl-der-kreise-und-gemeinden-in-niedersachsen-geht-zurueck-148228.html",
+      "area_input_approx_degrees_sq": [
+        0.0824239,
+        0.1442635
+      ],
+      "merged_area_approx_degrees_sq": 0.2266874
+    },
+    {
+      "obsolete_ags": "16056",
+      "surviving_ags": "16063",
+      "effective_date": "2021-07-01",
+      "reason": "Thüringen: Eisenach lost independent district status and joined Wartburgkreis",
+      "official_verification_source": "https://www.eisenach.de/rathaus/fusion-der-stadt-eisenach/",
+      "area_input_approx_degrees_sq": [
+        0.0131097,
+        0.1664794
+      ],
+      "merged_area_approx_degrees_sq": 0.179589
+    }
+  ],
+  "difference_in_total_individual_polygon_area_degrees_sq": 0.0,
+  "legacy_polygons_with_invalid_topology": [
+    "08435",
+    "09776",
+    "12051",
+    "12069",
+    "06436",
+    "13074",
+    "13072",
+    "13075",
+    "13073",
+    "03452",
+    "03402",
+    "03455",
+    "10045",
+    "15085",
+    "15087",
+    "01054",
+    "01055",
+    "01056"
+  ],
+  "legacy_invalid_count": 18,
+  "only_merger_target_shapes_repaired_with_make_valid": [],
+  "national_topology_union_not_attempted": "Legacy non-target polygons have invalid topology; original features outside two mergers preserved exactly",
+  "scope_limitation": "Only two independently verified historical mergers applied; other current borders, cadastral accuracy and corrections not independently checked",
+  "not_for_main_site_without_approval": true,
+  "new_geojson": "topics/infrastructure/research/germany-counties-mergers-candidate.geojson"
+}
