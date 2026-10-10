@@ -63,3 +63,14 @@
  .housing-map-caption small{font-size:8px}
  .housing-controls{padding:9px}
 }
+/* Local official evidence is deliberately collapsed to keep base map uncluttered. */
+.housing-extra{border:1px solid #324758;background:#192530;border-radius:8px;padding:0;margin:3px 0 5px;min-width:0}
+.housing-extra[hidden],#landPriceBand[hidden]{display:none!important}
+.housing-extra summary{cursor:pointer;padding:9px 10px;color:#d3e2eb;font-size:10.5px;font-weight:650}
+.housing-extra[open]{padding-bottom:9px}
+.housing-extra p{padding:0 10px;margin:7px 0;color:#9db3c0;font-size:9.5px;line-height:1.55}
+.housing-extra a{display:block;margin:7px 10px;color:#89c4e8;font-size:9.5px;overflow-wrap:anywhere}
+.housing-archive-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:3px 9px}
+.housing-archive-grid>div{background:#223340;border:1px solid #304757;border-radius:5px;padding:6px 4px}
+.housing-archive-grid small{display:block;font-size:8px;color:#9aafbc}
+.housing-archive-grid b{font-size:11px;font-variant-numeric:tabular-nums;color:#e6f0f5}
