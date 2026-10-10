@@ -106,10 +106,50 @@ class Backbone{
   }
   return group._officialPath||null;
  }
- // Green click with no match is still a railway. Follow a connected physical
- // branch, not a tiny individual original geometry element.
+ // At a switch/junction, continue along the straightest VERIFIED official
+ // track within the same DB line number. The original degree=2-only walk
+ // stopped prematurely at every siding, creating tiny clickable pieces.
+ walkPhysical(route,point,maxKm=135){
+  const hit=this.graph.nearest(route,point);
+  if(!hit)return null;
+  const initial=hit.edge,seen=new Set([initial]),parts=[initial.part];
+  let km=initial.length;
+  const tangent=(edge,node)=>{
+   const xy=edge.part.xy,a=xy.length-2;
+   const start=edge.nodes[0]===node;
+   const dx=start?xy[2]-xy[0]:xy[a-2]-xy[a];
+   const dy=start?xy[3]-xy[1]:xy[a-1]-xy[a+1];
+   const mag=Math.hypot(dx,dy)||1;return [dx/mag,dy/mag];
+  };
+  function extend(node,inbound){
+   for(let hops=0;hops<900&&km<maxKm;hops++){
+    const back=tangent(inbound,node);
+    const choices=node.adj
+     .filter(([,edge])=>!seen.has(edge)&&edge.length>0)
+     .map(([other,edge])=>{
+       const forward=tangent(edge,node);
+       const alignment=-(back[0]*forward[0]+back[1]*forward[1]);
+       return {other,edge,alignment};
+     }).filter(c=>c.alignment>.32&&km+c.edge.length<=maxKm)
+     .sort((a,b)=>b.alignment-a.alignment);
+    if(!choices.length)break;
+    // Two equally plausible diverging official tracks are not the same
+    // corridor. Never guess an entirely different branch at a major fork.
+    if(choices.length>1&&
+       choices[0].alignment-choices[1].alignment<.075)break;
+    const chosen=choices[0];
+    seen.add(chosen.edge);parts.push(chosen.edge.part);
+    km+=chosen.edge.length;inbound=chosen.edge;node=chosen.other;
+   }
+  }
+  extend(initial.nodes[0],initial);
+  extend(initial.nodes[1],initial);
+  return {parts,km};
+ }
+ // Green click with no match follows a longer continuous official railway
+ // through unambiguous switches, then stops at measured colour transitions.
  unobserved(route,point){
-  const walked=this.graph.walk(route,point,115,900);
+  const walked=this.walkPhysical(route,point,135);
   return {unobserved:true,route:String(route),
     parts:walked?.parts?.length?walked.parts:this.perRoute.get(String(route))?.slice(0,1)||[]};
  }

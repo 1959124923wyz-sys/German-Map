@@ -81,6 +81,51 @@ def run(browser,mobile=False):
 
 
     if not mobile:
+        colour_report=page.evaluate("""()=>{
+          const api=window.__RAILWAY_OVERVIEW__,map=api.getMap();
+          let checked=0,mixed=0,compact=0,attempts=0,clicked=0,same=0;
+          const examples=[],mismatches=[];
+          for(const group of api.getCityCorridors().filter(g=>g.members.length>=2).slice(0,85)){
+            const runs=api.getColourRuns(group);
+            checked++;
+            const grades=new Set(runs.map(r=>r.grade));
+            if(grades.size<2)continue;
+            mixed++;
+            const eligible=runs.filter(r=>r.members.length>=2&&r.grade>0);
+            compact+=eligible.length;
+            if(examples.length<7)examples.push({from:group.cityFrom,to:group.cityTo,
+              grades:runs.map(r=>r.grade),pieces:runs.map(r=>r.members.length)});
+            for(const run of eligible.slice(0,2)){
+              // Click on the rendered observed curve rather than an
+              // adjacent parallel official track during the national test.
+              const source=run.members.find(x=>x.grade===run.grade)||run.members[0];
+              const piece=source.parts[Math.floor(source.parts.length/2)];
+              const v=piece.xy;
+              const idx=Math.floor((v.length/2-1)/2)*2;
+              const j=Math.min(v.length-2,idx+2);
+              // Real user clicks a stroke interior, not a shared station
+              // vertex that also belongs to a different-colour neighbour.
+              const ll=map.unproject(L.point((v[idx]+v[j])/2,(v[idx+1]+v[j+1])/2),9);
+              api.clickPoint(ll);attempts++;
+              const current=api.getCurrentColourRun();
+              if(current){
+                clicked++;
+                if(current===run)same++;
+                else mismatches.push({from:group.cityFrom,to:group.cityTo,
+                  target:run.grade,selected:current.grade,correctRoute:
+                  run.route===current.route,targetLength:run.parts.length,
+                  currentLength:current.parts.length});
+              }
+            }
+          }
+          return {checked,mixed,compact,attempts,clicked,same,examples,mismatches};
+        }""")
+        print('REAL SAME-COLOUR RUN AUDIT:',colour_report,flush=True)
+        assert colour_report["mixed"]>=1,colour_report
+        assert colour_report["compact"]>=1,colour_report
+        assert colour_report["same"]>=1,colour_report
+
+    if not mobile:
         path_report=page.evaluate("""()=>{
           const api=window.__RAILWAY_OVERVIEW__;
           const chosen=api.getCityCorridors().filter(g=>g.members.length>=2);

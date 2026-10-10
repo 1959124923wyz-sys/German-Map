@@ -7,7 +7,7 @@ const path=require('node:path');
 const vm=require('node:vm');
 const root=path.resolve(__dirname,'..');
 const context=vm.createContext({window:{}});
-for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js','rail-service-groups.js','rail-city-corridors.js','rail-continuity.js','rail-picker.js']){
+for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js','rail-service-groups.js','rail-city-corridors.js','rail-continuity.js','rail-picker.js','rail-color-runs.js']){
   const source=fs.readFileSync(path.join(root,'js',name),'utf8');
   vm.runInContext(source,context,{filename:name,timeout:10000});
 }
@@ -237,5 +237,64 @@ const total=whole.reduce((n,p)=>n+(p.maxX-p.minX),0);
 assert.ok(total>=11.9,'highlight must span from city A to city B, not only the green gap');
 assert.equal(network.full(observedGap),whole,'verified full route cached per corridor');
 
+
+
+// The user's two sketches: A--same RED--RED--GREEN--B must select the entire
+// contiguous red stretch from either red piece, and ONLY green from green.
+const shade=context.window.Railway07ColorRuns;
+const colorObs=(from,to,start,end,late,gr)=>{
+ const l=leg(from,to,[start,end],late,2,'7000');
+ const m=math.metrics(l,'both',100);
+ return {leg:l,m,grade:gr,parts:[part(start,end)]};
+};
+const sr1=colorObs('A','X',100,104,45,2);
+const sr2=colorObs('X','Y',104,108,43,2);
+const sg=colorObs('Y','B',108,112,8,0);
+const colouredGroup={
+ startStation:'A',endStation:'B',cityFrom:'A',cityTo:'B',
+ serviceName:'RE7',members:[sr1,sr2,sg],grade:2
+};
+const fakeDB={full:()=>[part(100,104),part(104,108),part(108,112)]};
+const runs=shade.forCorridor(colouredGroup,fakeDB);
+assert.equal(runs.length,2,'adjacent identically coloured records are one clickable run');
+assert.deepEqual(Array.from(runs,x=>x.grade),[2,0]);
+const rA=shade.findRun(runs,[102,baseY],2,2.5);
+const rX=shade.findRun(runs,[106,baseY],2,2.5);
+const rB=shade.findRun(runs,[110,baseY],0,2.5);
+assert.strictEqual(rA,rX,'either red section must highlight the same complete red run');
+assert.notStrictEqual(rA,rB,'a differently coloured section must select separately');
+assert.ok(rA.parts.reduce((n,p)=>n+p.maxX-p.minX,0)>7.5);
+assert.ok(rB.parts.reduce((n,p)=>n+p.maxX-p.minX,0)>2.8);
+assert.equal(rA.members.length,2);
+assert.equal(rA.m.onTime,56);
+assert.equal(rB.m.onTime,92);
+assert.equal(colouredGroup.members.length,3,'original observed records unchanged');
+// An unobserved middle GREEN gap cannot magically contribute two new samples.
+const missingGroup={...colouredGroup,members:[sr1,sr2],_colorRuns:null};
+const noDataRuns=shade.forCorridor(missingGroup,fakeDB);
+assert.ok(noDataRuns.some(x=>x.grade===0&&x.m.onTime===null),
+ 'green without timetable samples stays selectable and numeric KPI missing');
+
+
+// A railway siding joining at X must not truncate the A--B green selection
+// when the straight physical continuation is unambiguous.
+const switches=new context.window.Railway07Continuity.Backbone();
+switches.add('8100',part(100,104));
+switches.add('8100',part(104,108));
+switches.add('8100',part(108,112));
+switches.add('8100',geom.shape([104,baseY,104,baseY+4]));
+const trunk=switches.walkPhysical('8100',[101,baseY],20);
+assert.ok(trunk.parts.length>=3,'a minor turnout must not fragment the main track');
+assert.equal(trunk.parts.includes(switches.perRoute.get('8100')[3]),false,
+ 'a siding must not be mistaken for the A--B trunk');
+// Green A--RED middle--GREEN B must form 3 physical click regions.
+const fakeRisk=[colorObs('X','Y',104,108,45,2)];
+const sourceCut=shade.forOfficial(switches.unobserved('8100',[105,baseY]),fakeRisk);
+const gA=shade.findRun(sourceCut,[101,baseY],0,3);
+const gB=shade.findRun(sourceCut,[111,baseY],0,3);
+assert.ok(gA&&gB&&gA!==gB,
+ 'green must be split into two separate runs by a measured red section');
+assert.ok(gA.unobserved&&gB.unobserved&&gA.m.onTime===null,
+ 'missing-data green cannot inherit the red interval statistics');
 
 console.log('PASS railway pure geometry, weighted rates, branches, km gaps and pooled counts');

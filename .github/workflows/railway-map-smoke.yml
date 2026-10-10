@@ -31,6 +31,7 @@ jobs:
           node --check topics/railway/js/rail-service-groups.js
           node --check topics/railway/js/rail-city-corridors.js
           node --check topics/railway/js/rail-continuity.js
+          node --check topics/railway/js/rail-color-runs.js
           node topics/railway/tests/unit_core.cjs
           python scripts/validate_site_assets.py
           node --check topics/railway/js/station-zh.js
