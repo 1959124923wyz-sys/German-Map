@@ -60,7 +60,7 @@ jobs:
           scripts=[src.split('?',1)[0] for src in re.findall(r'<script src="([^"]+)"', h)]
           # Verify actual required assets rather than pinning an obsolete
           # number of script tags whenever UI/data modules are separated.
-          required={'js/states.js','data/data-core.js','overview.js','js/station-zh.js','js/rail-geometry.js','js/rail-analysis.js','js/rail-bridge.js','js/rail-picker.js'}
+          required={'js/states.js','data/data-core.js','overview.js','js/station-zh.js','js/rail-geometry.js','js/rail-analysis.js','js/rail-bridge.js','js/rail-picker.js','js/rail-service-groups.js'}
           assert required <= set(scripts), (required-set(scripts))
           assert len(scripts)==len(set(scripts)), 'Duplicate railway script inclusion'
           external=[u for u in scripts if u.startswith('https://')]
@@ -80,6 +80,7 @@ jobs:
           node --check topics/railway/js/rail-analysis.js
           node --check topics/railway/js/rail-bridge.js
           node --check topics/railway/js/rail-picker.js
+          node --check topics/railway/js/rail-service-groups.js
           node topics/railway/tests/unit_core.cjs
           python scripts/validate_site_assets.py
           node --check topics/railway/js/station-zh.js
