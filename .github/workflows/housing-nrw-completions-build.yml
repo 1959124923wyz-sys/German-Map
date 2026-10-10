@@ -1,0 +1,39 @@
+name: Housing research - NRW county completions series
+on:
+  push:
+    branches:
+      - research/housing-crisis-20261010
+    paths:
+      - 'research/housing/build_nrw_completions.py'
+      - '.github/workflows/housing-nrw-completions-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: housing-nrw-completions-build
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/housing-crisis-20261010
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Extract NRW county/year completed new housing dwellings from verified original
+        run: python research/housing/build_nrw_completions.py
+      - name: Preserve checked county time series
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/housing/data/nrw_new_residential_completions_2015_2025.csv
+          git add research/housing/qa/nrw_new_residential_completions_audit.json
+          git add topics/housing/data/nrw-new-home-completions.json
+          if ! git diff --cached --quiet; then
+            git commit -m "housing data: 53 NRW counties official 2015-2025 new residential units [skip ci]"
+            git pull --rebase origin research/housing-crisis-20261010
+            git push origin HEAD:research/housing-crisis-20261010
+          fi
