@@ -6,13 +6,15 @@
   "canonical_ags_distinct": 400,
   "canonical_remaps": {
     "16056": "16063",
-    "03156": "03152"
+    "03156": "03159",
+    "03152": "03159"
   },
   "remap_sources": {
     "16056": "https://www.wartburgkreis.de/landratsamt/medien/medieninformationen/stadt-eisenach-und-wartburgkreis-gehen-gemeinsam-empfang-des-landrates-anlaesslich-der-fusion-auf-der-wartburg",
-    "03156": "https://www.statistik.niedersachsen.de/presse/zahl-der-kreise-und-gemeinden-in-niedersachsen-geht-zurueck-148228.html"
+    "03156": "https://genesis.destatis.de/datenbank/online/statistic/12411/table/12411-0016",
+    "03152": "https://genesis.destatis.de/datenbank/online/statistic/12411/table/12411-0016"
   },
-  "limitations": "Historical GADM geometry is NOT current BKG geometry. Mapping two retired AGS codes prevents statistical duplication but does NOT update shapes. Compare against BKG VG250 for precise polygons before official release.",
+  "limitations": "Historical GADM geometry is NOT current BKG geometry. Mapping two retired AGS codes prevents statistical duplication but does NOT update shapes. Compare against BKG VG250 for precise polygons before official release. Corrected 03152 and 03156 -> 03159 using official Destatis 2025 district table and documented 2016 merger. The geometry is still legacy.",
   "features": [
     {
       "legacy_ags": "08425",
@@ -1672,11 +1674,11 @@
     },
     {
       "legacy_ags": "03152",
-      "canonical_ags": "03152",
+      "canonical_ags": "03159",
       "legacy_name": "Göttingen",
       "legacy_state": "Niedersachsen",
       "districtType": "Landkreis",
-      "status": "retained_from_base_geofeatures"
+      "status": "historical_district_merged_into_2016_new_Goettingen_03159"
     },
     {
       "legacy_ags": "03151",
@@ -1832,11 +1834,11 @@
     },
     {
       "legacy_ags": "03156",
-      "canonical_ags": "03152",
+      "canonical_ags": "03159",
       "legacy_name": "Osterode am Harz",
       "legacy_state": "Niedersachsen",
       "districtType": "Landkreis",
-      "status": "historical_district_merged"
+      "status": "historical_district_merged_into_2016_new_Goettingen_03159"
     },
     {
       "legacy_ags": "03157",
