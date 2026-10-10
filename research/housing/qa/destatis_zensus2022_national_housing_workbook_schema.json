@@ -1,0 +1,2239 @@
+{
+  "url": "https://www.destatis.de/static/DE/zensus/gitterdaten/Regionaltabelle_Gebaeude_Wohnungen.xlsx",
+  "landing": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Zensus2022/_inhalt.html",
+  "publisher": "Statistische Ämter des Bundes und der Länder",
+  "territorial_date": "2022-05-15",
+  "license": "Data Licence Germany Attribution 2.0",
+  "bytes": 21451209,
+  "sha256": "82da8578a4657e20752b436a756ed27846c77f96e3f7333bdea7f4fe29a8b551",
+  "note": "No county extraction yet. Some rows aggregate municipalities/associations/counties and MUST NOT be summed as if independent.",
+  "sheets": {
+    "Titel GWZ": {
+      "rows": 1,
+      "cols": 1,
+      "first_20_rows": []
+    },
+    "Impressum": {
+      "rows": 24,
+      "cols": 3,
+      "first_20_rows": [
+        {
+          "row": 1,
+          "cells": [
+            "",
+            "Impressum",
+            ""
+          ]
+        },
+        {
+          "row": 2,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 3,
+          "cells": [
+            "",
+            "Ergebnisse des Zensus 2022 - Gebäude- und Wohnungszählung",
+            ""
+          ]
+        },
+        {
+          "row": 4,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 5,
+          "cells": [
+            "",
+            "Erscheinungsfolge: einmalig",
+            ""
+          ]
+        },
+        {
+          "row": 6,
+          "cells": [
+            "",
+            "Korrektur am 22.8.2024: Änderung der Bezeichnung \"Amtlicher Gemeindeschlüssel (AGS)\" in \"Amtlicher Regionalsch",
+            ""
+          ]
+        },
+        {
+          "row": 7,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 8,
+          "cells": [
+            "",
+            "Herausgeber",
+            ""
+          ]
+        },
+        {
+          "row": 9,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 10,
+          "cells": [
+            "",
+            "Statistische Ämter des Bundes und der Länder, \nvertreten durch die Präsidentin des Statistischen Bundesamtes",
+            ""
+          ]
+        },
+        {
+          "row": 11,
+          "cells": [
+            "",
+            "Statistisches Bundesamt",
+            ""
+          ]
+        },
+        {
+          "row": 12,
+          "cells": [
+            "",
+            "Gustav-Stresemann-Ring 11",
+            ""
+          ]
+        },
+        {
+          "row": 13,
+          "cells": [
+            "",
+            "65189 Wiesbaden",
+            ""
+          ]
+        },
+        {
+          "row": 14,
+          "cells": [
+            "",
+            "Deutschland",
+            ""
+          ]
+        },
+        {
+          "row": 15,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 16,
+          "cells": [
+            "",
+            "Ihr Kontakt zu uns:",
+            ""
+          ]
+        },
+        {
+          "row": 17,
+          "cells": [
+            "",
+            "www.zensus2022.de/kontakt",
+            ""
+          ]
+        },
+        {
+          "row": 18,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 19,
+          "cells": [
+            "",
+            "Umsatzsteuer-Identifikationsnummer: DE 206511374",
+            ""
+          ]
+        },
+        {
+          "row": 20,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ]
+    },
+    "Erläuterungen zur Methodik": {
+      "rows": 284,
+      "cols": 3,
+      "first_20_rows": [
+        {
+          "row": 1,
+          "cells": [
+            "",
+            "Erläuterungen zur Methodik",
+            ""
+          ]
+        },
+        {
+          "row": 2,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 3,
+          "cells": [
+            "1",
+            "Allgemeine Informationen",
+            ""
+          ]
+        },
+        {
+          "row": 4,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 5,
+          "cells": [
+            "",
+            "Basis der Auswertung sind die Ergebnisse des Zensus 2022 mit Stichtag 15.Mai 2022",
+            ""
+          ]
+        },
+        {
+          "row": 6,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 7,
+          "cells": [
+            "",
+            "Für die Wahrung der Geheimhaltung nach § 16 Bundesstatistikgesetz (BStatG) wird für Auswertungen, die ausschli",
+            ""
+          ]
+        },
+        {
+          "row": 8,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 9,
+          "cells": [
+            "",
+            "Weiterführende methodische Informationen zum Zensusmodell und zur Geheimhaltung unter:",
+            ""
+          ]
+        },
+        {
+          "row": 10,
+          "cells": [
+            "",
+            "www.zensus2022.de",
+            ""
+          ]
+        },
+        {
+          "row": 11,
+          "cells": [
+            "",
+            "https://www.zensus2022.de/DE/Zensusdatenbank/Geheimhaltung.html",
+            ""
+          ]
+        },
+        {
+          "row": 12,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 13,
+          "cells": [
+            "2",
+            "Zeichenerklärung",
+            ""
+          ]
+        },
+        {
+          "row": 14,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 15,
+          "cells": [
+            "",
+            "–     = Genau Null oder auf Null geändert",
+            ""
+          ]
+        },
+        {
+          "row": 16,
+          "cells": [
+            "",
+            "( )   = Aussagewert eingeschränkt, da der Zahlenwert statistisch relativ unsicher ist",
+            ""
+          ]
+        },
+        {
+          "row": 17,
+          "cells": [
+            "",
+            ".     = Zahlenwert unbekannt oder geheim",
+            ""
+          ]
+        },
+        {
+          "row": 18,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 19,
+          "cells": [
+            "",
+            "Abweichungen in den Summen durch das angewandte Geheimhaltungsverfahren.",
+            ""
+          ]
+        },
+        {
+          "row": 20,
+          "cells": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ]
+    },
+    "Gebäude ": {
+      "rows": 12781,
+      "cols": 50,
+      "first_20_rows": [
+        {
+          "row": 1,
+          "cells": [
+            "Zensus 2022 - Ausgewählte Zensusergebnisse zu Gebäuden zum Stichtag 15. Mai 2022",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 2,
+          "cells": [
+            "Gebäude mit Wohnraum nach Art des Gebäudes, Baujahr, Eigentumsform, Heizungstyp, Energieträger, Zahl der Wohnu",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 3,
+          "cells": [
+            "Amtlicher \nRegionalschlüssel (ARS)",
+            "Name",
+            "Regionalebene",
+            "Gebäude mit Wohnraum",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 4,
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 5,
+          "cells": [
+            "",
+            "",
+            "",
+            "insgesamt",
+            "Art des Gebäudes",
+            "",
+            "",
+            "",
+            "Baujahr (Jahrzehnte)",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 6,
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "Gebäude mit Wohnraum",
+            "",
+            "",
+            "",
+            "vor 1919",
+            "1919-1949",
+            "1950-1959",
+            "1960-1969",
+            "1970-1979",
+            "1980-1989",
+            "1990-1999",
+            "2000-2009"
+          ]
+        },
+        {
+          "row": 7,
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "Wohngebäude",
+            "",
+            "",
+            "sonstige Gebäude\nmit Wohnraum",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 8,
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "zusammen",
+            "Wohngebäude (ohne Wohnheime)",
+            "Wohnheime",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 9,
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 10,
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 11,
+          "cells": [
+            "00",
+            "Deutschland",
+            "Bund",
+            "19957268",
+            "19488974",
+            "19474168",
+            "14808",
+            "468292",
+            "2606832",
+            "2345905",
+            "2058471",
+            "2606400",
+            "2586697",
+            "2015547",
+            "2434957",
+            "1770195"
+          ]
+        },
+        {
+          "row": 12,
+          "cells": [
+            "01",
+            "Schleswig-Holstein",
+            "Land",
+            "866852",
+            "847102",
+            "846632",
+            "466",
+            "19748",
+            "97579",
+            "80203",
+            "88136",
+            "128447",
+            "122529",
+            "86513",
+            "103115",
+            "82675"
+          ]
+        },
+        {
+          "row": 13,
+          "cells": [
+            "01001",
+            "Flensburg, Stadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "17984",
+            "17706",
+            "17679",
+            "30",
+            "275",
+            "2400",
+            "2140",
+            "2195",
+            "2794",
+            "2198",
+            "1422",
+            "1586",
+            "1851"
+          ]
+        },
+        {
+          "row": 14,
+          "cells": [
+            "010010000000",
+            "Flensburg, Stadt",
+            "Gemeinde",
+            "17984",
+            "17706",
+            "17679",
+            "30",
+            "275",
+            "2400",
+            "2140",
+            "2195",
+            "2794",
+            "2198",
+            "1422",
+            "1586",
+            "1851"
+          ]
+        },
+        {
+          "row": 15,
+          "cells": [
+            "01002",
+            "Kiel, Landeshauptstadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "38247",
+            "37680",
+            "37608",
+            "70",
+            "565",
+            "3953",
+            "8362",
+            "6275",
+            "5665",
+            "3481",
+            "3877",
+            "2401",
+            "2457"
+          ]
+        },
+        {
+          "row": 16,
+          "cells": [
+            "010020000000",
+            "Kiel, Landeshauptstadt",
+            "Gemeinde",
+            "38247",
+            "37680",
+            "37608",
+            "70",
+            "565",
+            "3953",
+            "8362",
+            "6275",
+            "5665",
+            "3481",
+            "3877",
+            "2401",
+            "2457"
+          ]
+        },
+        {
+          "row": 17,
+          "cells": [
+            "01003",
+            "Lübeck, Hansestadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "45664",
+            "44890",
+            "44834",
+            "54",
+            "777",
+            "7783",
+            "8136",
+            "6662",
+            "7944",
+            "3558",
+            "2688",
+            "3075",
+            "3315"
+          ]
+        },
+        {
+          "row": 18,
+          "cells": [
+            "010030000000",
+            "Lübeck, Hansestadt",
+            "Gemeinde",
+            "45664",
+            "44890",
+            "44834",
+            "54",
+            "777",
+            "7783",
+            "8136",
+            "6662",
+            "7944",
+            "3558",
+            "2688",
+            "3075",
+            "3315"
+          ]
+        },
+        {
+          "row": 19,
+          "cells": [
+            "01004",
+            "Neumünster, Stadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "19715",
+            "19390",
+            "19378",
+            "12",
+            "326",
+            "1542",
+            "2903",
+            "3067",
+            "4046",
+            "2400",
+            "1636",
+            "1866",
+            "1225"
+          ]
+        },
+        {
+          "row": 20,
+          "cells": [
+            "010040000000",
+            "Neumünster, Stadt",
+            "Gemeinde",
+            "19715",
+            "19390",
+            "19378",
+            "12",
+            "326",
+            "1542",
+            "2903",
+            "3067",
+            "4046",
+            "2400",
+            "1636",
+            "1866",
+            "1225"
+          ]
+        }
+      ]
+    },
+    "Wohnungen": {
+      "rows": 12781,
+      "cols": 92,
+      "first_20_rows": [
+        {
+          "row": 1,
+          "cells": [
+            "Zensus 2022 - Ausgewählte Zensusergebnisse zu Wohnungen zum Stichtag 15. Mai 2022",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 2,
+          "cells": [
+            "Wohnungen nach Art des Gebäudes, Gebäudegrößen, Baujahr und Eigentumsform des Gebäudes, Heizungstyp und Energi",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 3,
+          "cells": [
+            "Amtlicher \nRegionalschlüssel (ARS)",
+            "Name",
+            "Regionalebene",
+            "Wohnungen in Gebäuden mit Wohnraum",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 4,
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 5,
+          "cells": [
+            "",
+            "",
+            "",
+            "insgesamt",
+            "Gebäude mit Wohnraum",
+            "",
+            "",
+            "",
+            "Zahl der Wohnungen im Gebäude",
+            "",
+            "",
+            "",
+            "",
+            "Baujahr (Jahrzehnte)",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 6,
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "Wohnungen in Wohngebäuden",
+            "",
+            "",
+            "in sonstigen Gebäuden\nmit Wohnraum",
+            "1 Wohnung",
+            "2 Wohnungen",
+            "3 - 6 Wohnungen",
+            "7 - 12 Wohnungen",
+            "13 und mehr Wohnungen",
+            "vor 1919",
+            "1919-1949",
+            "1950-1959"
+          ]
+        },
+        {
+          "row": 7,
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 8,
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "zusammen",
+            "in Wohngebäuden \n(ohne Wohnheime)",
+            "in Wohnheimen",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 9,
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 10,
+          "cells": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 11,
+          "cells": [
+            "00",
+            "Deutschland",
+            "Bund",
+            "43106589",
+            "42197376",
+            "41806829",
+            "390550",
+            "909210",
+            "13503722",
+            "5567652",
+            "9694349",
+            "8460218",
+            "5880644",
+            "5689238",
+            "4430609",
+            "4942942"
+          ]
+        },
+        {
+          "row": 12,
+          "cells": [
+            "01",
+            "Schleswig-Holstein",
+            "Land",
+            "1540371",
+            "1507353",
+            "1496876",
+            "10476",
+            "33020",
+            "689365",
+            "136273",
+            "290387",
+            "257139",
+            "167207",
+            "187152",
+            "134541",
+            "167041"
+          ]
+        },
+        {
+          "row": 13,
+          "cells": [
+            "01001",
+            "Flensburg, Stadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "53561",
+            "53049",
+            "52287",
+            "761",
+            "514",
+            "11776",
+            "1927",
+            "13420",
+            "17092",
+            "9344",
+            "10829",
+            "5612",
+            "7534"
+          ]
+        },
+        {
+          "row": 14,
+          "cells": [
+            "010010000000",
+            "Flensburg, Stadt",
+            "Gemeinde",
+            "53561",
+            "53049",
+            "52287",
+            "761",
+            "514",
+            "11776",
+            "1927",
+            "13420",
+            "17092",
+            "9344",
+            "10829",
+            "5612",
+            "7534"
+          ]
+        },
+        {
+          "row": 15,
+          "cells": [
+            "01002",
+            "Kiel, Landeshauptstadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "138600",
+            "136577",
+            "132746",
+            "3828",
+            "2023",
+            "23634",
+            "3910",
+            "23748",
+            "54912",
+            "32389",
+            "24738",
+            "22646",
+            "25107"
+          ]
+        },
+        {
+          "row": 16,
+          "cells": [
+            "010020000000",
+            "Kiel, Landeshauptstadt",
+            "Gemeinde",
+            "138600",
+            "136577",
+            "132746",
+            "3828",
+            "2023",
+            "23634",
+            "3910",
+            "23748",
+            "54912",
+            "32389",
+            "24738",
+            "22646",
+            "25107"
+          ]
+        },
+        {
+          "row": 17,
+          "cells": [
+            "01003",
+            "Lübeck, Hansestadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "121193",
+            "119410",
+            "118205",
+            "1204",
+            "1784",
+            "30665",
+            "6634",
+            "28386",
+            "34546",
+            "20965",
+            "19384",
+            "16992",
+            "17078"
+          ]
+        },
+        {
+          "row": 18,
+          "cells": [
+            "010030000000",
+            "Lübeck, Hansestadt",
+            "Gemeinde",
+            "121193",
+            "119410",
+            "118205",
+            "1204",
+            "1784",
+            "30665",
+            "6634",
+            "28386",
+            "34546",
+            "20965",
+            "19384",
+            "16992",
+            "17078"
+          ]
+        },
+        {
+          "row": 19,
+          "cells": [
+            "01004",
+            "Neumünster, Stadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "42000",
+            "41403",
+            "41255",
+            "147",
+            "600",
+            "14888",
+            "2286",
+            "10558",
+            "10267",
+            "4006",
+            "4575",
+            "5537",
+            "7026"
+          ]
+        },
+        {
+          "row": 20,
+          "cells": [
+            "010040000000",
+            "Neumünster, Stadt",
+            "Gemeinde",
+            "42000",
+            "41403",
+            "41255",
+            "147",
+            "600",
+            "14888",
+            "2286",
+            "10558",
+            "10267",
+            "4006",
+            "4575",
+            "5537",
+            "7026"
+          ]
+        }
+      ]
+    },
+    "Erläuterung zu CSV-Tabellen": {
+      "rows": 168,
+      "cols": 4,
+      "first_20_rows": [
+        {
+          "row": 1,
+          "cells": [
+            "",
+            "Erläuterung zu CSV-Tabellen",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 2,
+          "cells": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 3,
+          "cells": [
+            "",
+            "Für die Weiterverarbeitung stellen wir die Inhalte der Layout-Tabellen auch in strukturierter Form ohne Format",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 4,
+          "cells": [
+            "",
+            "Für die weitere Verwendung der Daten finden Sie Copyright-Informationen im Impressum.",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 5,
+          "cells": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 6,
+          "cells": [
+            "",
+            "CSV-Gebäude",
+            "Ergebnisse des Zensus 2022 Tabelle Gebäude nach ausgewählten Merkmalen",
+            ""
+          ]
+        },
+        {
+          "row": 7,
+          "cells": [
+            "",
+            "CSV-Wohnungen",
+            "Ergebnisse des Zensus 2022 Tabelle Wohnungen nach ausgewählten Merkmalen",
+            ""
+          ]
+        },
+        {
+          "row": 8,
+          "cells": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 9,
+          "cells": [
+            "",
+            "Zeilenaufbau",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 10,
+          "cells": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 11,
+          "cells": [
+            "",
+            "– Erste Zeile:",
+            "Kopfzeile/Header \nSie beschreibt die Inhalte des jeweiligen Elements. Hier werden keine Umlaute verwendet und ",
+            ""
+          ]
+        },
+        {
+          "row": 12,
+          "cells": [
+            "",
+            "– Weitere Zeilen:",
+            "Datenzeilen\nSie enthalten die in der Kopfzeile benannten Metadaten (Beschreibungen, gegebenenfalls mit Umlaute",
+            ""
+          ]
+        },
+        {
+          "row": 13,
+          "cells": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 14,
+          "cells": [
+            "",
+            "Spaltenaufbau",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 15,
+          "cells": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 16,
+          "cells": [
+            "",
+            "Gebäude: ",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 17,
+          "cells": [
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "row": 18,
+          "cells": [
+            "",
+            "– Berichtszeitpunkt:",
+            "Zensusergebnis zum Stichtag 15.05.2022 (Format JJJJMMTT)",
+            ""
+          ]
+        },
+        {
+          "row": 19,
+          "cells": [
+            "",
+            "– _RS",
+            "Amtlicher Regionalschlüssel (ARS)",
+            ""
+          ]
+        },
+        {
+          "row": 20,
+          "cells": [
+            "",
+            "– Name",
+            "Name der regionalen Einheit",
+            ""
+          ]
+        }
+      ]
+    },
+    "CSV-Gebäude": {
+      "rows": 12764,
+      "cols": 51,
+      "first_20_rows": [
+        {
+          "row": 1,
+          "cells": [
+            "Berichtszeitpunkt",
+            "_RS",
+            "Name",
+            "Regionalebene",
+            "GEBAEUDEART_SYS_1",
+            "GEBAEUDEART_SYS_11",
+            "GEBAEUDEART_SYS_111",
+            "GEBAEUDEART_SYS_112",
+            "GEBAEUDEART_SYS_12",
+            "BAUJAHR_10JA__01",
+            "BAUJAHR_10JA__02",
+            "BAUJAHR_10JA__03",
+            "BAUJAHR_10JA__04",
+            "BAUJAHR_10JA__05",
+            "BAUJAHR_10JA__06",
+            "BAUJAHR_10JA__07"
+          ]
+        },
+        {
+          "row": 2,
+          "cells": [
+            "20220515",
+            "00",
+            "Deutschland",
+            "Bund",
+            "19957268",
+            "19488974",
+            "19474168",
+            "14808",
+            "468292",
+            "2606832",
+            "2345905",
+            "2058471",
+            "2606400",
+            "2586697",
+            "2015547",
+            "2434957"
+          ]
+        },
+        {
+          "row": 3,
+          "cells": [
+            "20220515",
+            "01",
+            "Schleswig-Holstein",
+            "Land",
+            "866852",
+            "847102",
+            "846632",
+            "466",
+            "19748",
+            "97579",
+            "80203",
+            "88136",
+            "128447",
+            "122529",
+            "86513",
+            "103115"
+          ]
+        },
+        {
+          "row": 4,
+          "cells": [
+            "20220515",
+            "01001",
+            "Flensburg, Stadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "17984",
+            "17706",
+            "17679",
+            "30",
+            "275",
+            "2400",
+            "2140",
+            "2195",
+            "2794",
+            "2198",
+            "1422",
+            "1586"
+          ]
+        },
+        {
+          "row": 5,
+          "cells": [
+            "20220515",
+            "010010000000",
+            "Flensburg, Stadt",
+            "Gemeinde",
+            "17984",
+            "17706",
+            "17679",
+            "30",
+            "275",
+            "2400",
+            "2140",
+            "2195",
+            "2794",
+            "2198",
+            "1422",
+            "1586"
+          ]
+        },
+        {
+          "row": 6,
+          "cells": [
+            "20220515",
+            "01002",
+            "Kiel, Landeshauptstadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "38247",
+            "37680",
+            "37608",
+            "70",
+            "565",
+            "3953",
+            "8362",
+            "6275",
+            "5665",
+            "3481",
+            "3877",
+            "2401"
+          ]
+        },
+        {
+          "row": 7,
+          "cells": [
+            "20220515",
+            "010020000000",
+            "Kiel, Landeshauptstadt",
+            "Gemeinde",
+            "38247",
+            "37680",
+            "37608",
+            "70",
+            "565",
+            "3953",
+            "8362",
+            "6275",
+            "5665",
+            "3481",
+            "3877",
+            "2401"
+          ]
+        },
+        {
+          "row": 8,
+          "cells": [
+            "20220515",
+            "01003",
+            "Lübeck, Hansestadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "45664",
+            "44890",
+            "44834",
+            "54",
+            "777",
+            "7783",
+            "8136",
+            "6662",
+            "7944",
+            "3558",
+            "2688",
+            "3075"
+          ]
+        },
+        {
+          "row": 9,
+          "cells": [
+            "20220515",
+            "010030000000",
+            "Lübeck, Hansestadt",
+            "Gemeinde",
+            "45664",
+            "44890",
+            "44834",
+            "54",
+            "777",
+            "7783",
+            "8136",
+            "6662",
+            "7944",
+            "3558",
+            "2688",
+            "3075"
+          ]
+        },
+        {
+          "row": 10,
+          "cells": [
+            "20220515",
+            "01004",
+            "Neumünster, Stadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "19715",
+            "19390",
+            "19378",
+            "12",
+            "326",
+            "1542",
+            "2903",
+            "3067",
+            "4046",
+            "2400",
+            "1636",
+            "1866"
+          ]
+        },
+        {
+          "row": 11,
+          "cells": [
+            "20220515",
+            "010040000000",
+            "Neumünster, Stadt",
+            "Gemeinde",
+            "19715",
+            "19390",
+            "19378",
+            "12",
+            "326",
+            "1542",
+            "2903",
+            "3067",
+            "4046",
+            "2400",
+            "1636",
+            "1866"
+          ]
+        },
+        {
+          "row": 12,
+          "cells": [
+            "20220515",
+            "01051",
+            "Dithmarschen",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "52486",
+            "50925",
+            "50907",
+            "17",
+            "1559",
+            "8465",
+            "5479",
+            "5675",
+            "8310",
+            "6794",
+            "4742",
+            "5951"
+          ]
+        },
+        {
+          "row": 13,
+          "cells": [
+            "20220515",
+            "010510011011",
+            "Brunsbüttel, Stadt",
+            "Gemeinde",
+            "4224",
+            "4142",
+            "4140",
+            "–",
+            "84",
+            "532",
+            "387",
+            "400",
+            "689",
+            "745",
+            "563",
+            "473"
+          ]
+        },
+        {
+          "row": 14,
+          "cells": [
+            "20220515",
+            "010510044044",
+            "Heide, Stadt",
+            "Gemeinde",
+            "6690",
+            "6505",
+            "6492",
+            "9",
+            "182",
+            "797",
+            "857",
+            "990",
+            "1443",
+            "797",
+            "538",
+            "553"
+          ]
+        },
+        {
+          "row": 15,
+          "cells": [
+            "20220515",
+            "010515163",
+            "Burg-St. Michaelisdonn",
+            "Gemeindeverband",
+            "6556",
+            "6337",
+            "6340",
+            "–",
+            "215",
+            "1324",
+            "780",
+            "599",
+            "907",
+            "846",
+            "531",
+            "715"
+          ]
+        },
+        {
+          "row": 16,
+          "cells": [
+            "20220515",
+            "010515163003",
+            "Averlak",
+            "Gemeinde",
+            "260",
+            "251",
+            "251",
+            "–",
+            "6",
+            "84",
+            "38",
+            "20",
+            "23",
+            "33",
+            "22",
+            "16"
+          ]
+        },
+        {
+          "row": 17,
+          "cells": [
+            "20220515",
+            "010515163010",
+            "Brickeln",
+            "Gemeinde",
+            "86",
+            "84",
+            "84",
+            "–",
+            "–",
+            "17",
+            "19",
+            "3",
+            "10",
+            "7",
+            "–",
+            "15"
+          ]
+        },
+        {
+          "row": 18,
+          "cells": [
+            "20220515",
+            "010515163012",
+            "Buchholz",
+            "Gemeinde",
+            "399",
+            "381",
+            "381",
+            "–",
+            "17",
+            "89",
+            "46",
+            "18",
+            "42",
+            "49",
+            "41",
+            "73"
+          ]
+        },
+        {
+          "row": 19,
+          "cells": [
+            "20220515",
+            "010515163016",
+            "Burg (Dithmarschen)",
+            "Gemeinde",
+            "1668",
+            "1612",
+            "1614",
+            "–",
+            "52",
+            "255",
+            "211",
+            "158",
+            "257",
+            "232",
+            "120",
+            "179"
+          ]
+        },
+        {
+          "row": 20,
+          "cells": [
+            "20220515",
+            "010515163022",
+            "Dingen",
+            "Gemeinde",
+            "281",
+            "275",
+            "275",
+            "–",
+            "10",
+            "41",
+            "18",
+            "21",
+            "46",
+            "32",
+            "38",
+            "29"
+          ]
+        }
+      ]
+    },
+    "CSV-Wohnungen": {
+      "rows": 12440,
+      "cols": 93,
+      "first_20_rows": [
+        {
+          "row": 1,
+          "cells": [
+            "Berichtszeitpunkt",
+            "_RS",
+            "Name",
+            "Regionalebene",
+            "GEBAEUDEART_SYS_1",
+            "GEBAEUDEART_SYS_11",
+            "GEBAEUDEART_SYS_111",
+            "GEBAEUDEART_SYS_112",
+            "GEBAEUDEART_SYS_12",
+            "ZAHLWOHNGN_HHG__1",
+            "ZAHLWOHNGN_HHG__2",
+            "ZAHLWOHNGN_HHG__3",
+            "ZAHLWOHNGN_HHG__4",
+            "ZAHLWOHNGN_HHG__5",
+            "BAUJAHR_10JA__01",
+            "BAUJAHR_10JA__02"
+          ]
+        },
+        {
+          "row": 2,
+          "cells": [
+            "20220515",
+            "00",
+            "Deutschland",
+            "Bund",
+            "43106589",
+            "42197376",
+            "41806829",
+            "390550",
+            "909210",
+            "13503722",
+            "5567652",
+            "9694349",
+            "8460218",
+            "5880644",
+            "5689238",
+            "4430609"
+          ]
+        },
+        {
+          "row": 3,
+          "cells": [
+            "20220515",
+            "01",
+            "Schleswig-Holstein",
+            "Land",
+            "1540371",
+            "1507353",
+            "1496876",
+            "10476",
+            "33020",
+            "689365",
+            "136273",
+            "290387",
+            "257139",
+            "167207",
+            "187152",
+            "134541"
+          ]
+        },
+        {
+          "row": 4,
+          "cells": [
+            "20220515",
+            "01001",
+            "Flensburg, Stadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "53561",
+            "53049",
+            "52287",
+            "761",
+            "514",
+            "11776",
+            "1927",
+            "13420",
+            "17092",
+            "9344",
+            "10829",
+            "5612"
+          ]
+        },
+        {
+          "row": 5,
+          "cells": [
+            "20220515",
+            "010010000000",
+            "Flensburg, Stadt",
+            "Gemeinde",
+            "53561",
+            "53049",
+            "52287",
+            "761",
+            "514",
+            "11776",
+            "1927",
+            "13420",
+            "17092",
+            "9344",
+            "10829",
+            "5612"
+          ]
+        },
+        {
+          "row": 6,
+          "cells": [
+            "20220515",
+            "01002",
+            "Kiel, Landeshauptstadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "138600",
+            "136577",
+            "132746",
+            "3828",
+            "2023",
+            "23634",
+            "3910",
+            "23748",
+            "54912",
+            "32389",
+            "24738",
+            "22646"
+          ]
+        },
+        {
+          "row": 7,
+          "cells": [
+            "20220515",
+            "010020000000",
+            "Kiel, Landeshauptstadt",
+            "Gemeinde",
+            "138600",
+            "136577",
+            "132746",
+            "3828",
+            "2023",
+            "23634",
+            "3910",
+            "23748",
+            "54912",
+            "32389",
+            "24738",
+            "22646"
+          ]
+        },
+        {
+          "row": 8,
+          "cells": [
+            "20220515",
+            "01003",
+            "Lübeck, Hansestadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "121193",
+            "119410",
+            "118205",
+            "1204",
+            "1784",
+            "30665",
+            "6634",
+            "28386",
+            "34546",
+            "20965",
+            "19384",
+            "16992"
+          ]
+        },
+        {
+          "row": 9,
+          "cells": [
+            "20220515",
+            "010030000000",
+            "Lübeck, Hansestadt",
+            "Gemeinde",
+            "121193",
+            "119410",
+            "118205",
+            "1204",
+            "1784",
+            "30665",
+            "6634",
+            "28386",
+            "34546",
+            "20965",
+            "19384",
+            "16992"
+          ]
+        },
+        {
+          "row": 10,
+          "cells": [
+            "20220515",
+            "01004",
+            "Neumünster, Stadt",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "42000",
+            "41403",
+            "41255",
+            "147",
+            "600",
+            "14888",
+            "2286",
+            "10558",
+            "10267",
+            "4006",
+            "4575",
+            "5537"
+          ]
+        },
+        {
+          "row": 11,
+          "cells": [
+            "20220515",
+            "010040000000",
+            "Neumünster, Stadt",
+            "Gemeinde",
+            "42000",
+            "41403",
+            "41255",
+            "147",
+            "600",
+            "14888",
+            "2286",
+            "10558",
+            "10267",
+            "4006",
+            "4575",
+            "5537"
+          ]
+        },
+        {
+          "row": 12,
+          "cells": [
+            "20220515",
+            "01051",
+            "Dithmarschen",
+            "Stadtkreis/kreisfreie Stadt/Landkreis",
+            "72132",
+            "69974",
+            "69594",
+            "382",
+            "2158",
+            "44648",
+            "7467",
+            "12263",
+            "4972",
+            "2782",
+            "11648",
+            "7258"
+          ]
+        },
+        {
+          "row": 13,
+          "cells": [
+            "20220515",
+            "010510011011",
+            "Brunsbüttel, Stadt",
+            "Gemeinde",
+            "6702",
+            "6547",
+            "6550",
+            "–",
+            "151",
+            "3519",
+            "406",
+            "1665",
+            "890",
+            "222",
+            "822",
+            "552"
+          ]
+        },
+        {
+          "row": 14,
+          "cells": [
+            "20220515",
+            "010510044044",
+            "Heide, Stadt",
+            "Gemeinde",
+            "12416",
+            "12076",
+            "11736",
+            "343",
+            "336",
+            "5052",
+            "1191",
+            "3287",
+            "1672",
+            "1215",
+            "1432",
+            "1320"
+          ]
+        },
+        {
+          "row": 15,
+          "cells": [
+            "20220515",
+            "010515163",
+            "Burg-St. Michaelisdonn",
+            "Gemeindeverband",
+            "8007",
+            "7731",
+            "7702",
+            "26",
+            "279",
+            "5823",
+            "823",
+            "1058",
+            "199",
+            "105",
+            "1645",
+            "974"
+          ]
+        },
+        {
+          "row": 16,
+          "cells": [
+            "20220515",
+            "010515163003",
+            "Averlak",
+            "Gemeinde",
+            "294",
+            "291",
+            "291",
+            "–",
+            "6",
+            "241",
+            "21",
+            "31",
+            "–",
+            "–",
+            "105",
+            "41"
+          ]
+        },
+        {
+          "row": 17,
+          "cells": [
+            "20220515",
+            "010515163010",
+            "Brickeln",
+            "Gemeinde",
+            "100",
+            "98",
+            "98",
+            "–",
+            "–",
+            "81",
+            "11",
+            "12",
+            "–",
+            "–",
+            "28",
+            "20"
+          ]
+        },
+        {
+          "row": 18,
+          "cells": [
+            "20220515",
+            "010515163012",
+            "Buchholz",
+            "Gemeinde",
+            "471",
+            "450",
+            "450",
+            "–",
+            "20",
+            "360",
+            "46",
+            "59",
+            "10",
+            "–",
+            "111",
+            "56"
+          ]
+        },
+        {
+          "row": 19,
+          "cells": [
+            "20220515",
+            "010515163016",
+            "Burg (Dithmarschen)",
+            "Gemeinde",
+            "2260",
+            "2185",
+            "2168",
+            "15",
+            "77",
+            "1392",
+            "269",
+            "463",
+            "90",
+            "44",
+            "342",
+            "302"
+          ]
+        },
+        {
+          "row": 20,
+          "cells": [
+            "20220515",
+            "010515163022",
+            "Dingen",
+            "Gemeinde",
+            "299",
+            "293",
+            "293",
+            "–",
+            "10",
+            "268",
+            "20",
+            "9",
+            "3",
+            "–",
+            "47",
+            "22"
+          ]
+        }
+      ]
+    }
+  }
+}
