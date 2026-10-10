@@ -1,0 +1,41 @@
+name: Housing research - GREIX and existing rents intake
+on:
+  push:
+    branches:
+      - research/housing-crisis-20261010
+    paths:
+      - 'research/housing/probe_secondary.py'
+      - '.github/workflows/housing-secondary-intake.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: housing-secondary-intake
+  cancel-in-progress: false
+
+jobs:
+  greix-and-existing-rents:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/housing-crisis-20261010
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install workbook parser
+        run: python -m pip install --quiet openpyxl
+      - name: Preserve original public datasets and validate metadata
+        run: python research/housing/probe_secondary.py
+      - name: Commit source originals, SHA256, verified local rent rows
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/housing/raw research/housing/qa/greix_workbook_structure.json research/housing/qa/vbgem_rent_audit.json research/housing/qa/secondary_raw_manifest.json research/housing/data/vbgem_existing_rents_2022.csv
+          if ! git diff --cached --quiet; then
+            git commit -m "housing data: archive GREIX Q2 2026 and 2022 Zensus existing rents [skip ci]"
+            git push origin HEAD:research/housing-crisis-20261010
+          fi
