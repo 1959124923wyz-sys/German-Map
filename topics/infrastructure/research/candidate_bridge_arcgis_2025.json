@@ -1,7 +1,7 @@
 {
   "status": "candidate_geocoded_subset_not_full_BASt",
   "snapshot_claim": "2025-09",
-  "retrieved_utc": "2026-10-10T08:15:43.147166+00:00",
+  "retrieved_utc": "2026-10-10T08:16:09.395983+00:00",
   "origin": "Third-party ArcGIS republishing of BASt federal-road bridge data",
   "source_url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Br%C3%BCckenstatistik_Deutschland/FeatureServer/0",
   "official_bast_source": "https://www.govdata.de/suche/daten/bruckenstatistik",
