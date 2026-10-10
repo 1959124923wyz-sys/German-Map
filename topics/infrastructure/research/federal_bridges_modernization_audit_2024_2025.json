@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "verified_national_background_not_a_state_rating",
+  "asof": "2026-10-10",
+  "entries": [
+    {
+      "id": "federal_2025_stock",
+      "period": "2025-05-06",
+      "unit": "physical_bridges_vs_substructures",
+      "scope": "Bundesautobahnen + Bundesstraßen",
+      "value": {
+        "physical_bridges_approx": 40300,
+        "substructures_approx": 52600
+      },
+      "source": "https://www.bmv.de/SharedDocs/DE/Artikel/StB/brueckenmodernisierung.html",
+      "interpretation": "一座桥可有多个Teilbauwerke；比较2025-09 ArcGIS 52,553条应按分段而非实体桥计"
+    },
+    {
+      "id": "road_2021_stock_audit",
+      "period": "2021-09",
+      "unit": "Teilbauwerke",
+      "scope": "federal motorway and B-road bridge structural stock",
+      "value": {
+        "motorway": 27915,
+        "federal_road": 24471,
+        "total": 52386
+      },
+      "source": "https://www.bundesrechnungshof.de/SharedDocs/Pressemitteilungen/DE/2025/brueckenmodernisierung.html",
+      "interpretation": "2021年基线，不能当2025年现存的精确分母"
+    },
+    {
+      "id": "federal_2024_renovation_priority",
+      "period": "2024",
+      "unit": "Teilbauwerke",
+      "scope": "autobahn modernization priority programme only",
+      "value": {
+        "planned_2024": 280,
+        "qualifying_actual_2024": 69,
+        "percent_of_2024_target_met": 24.64,
+        "cumulative_2024_target_fulfilled_pct_approx": 40
+      },
+      "source": "https://www.bundesrechnungshof.de/SharedDocs/Pressemitteilungen/DE/2025/brueckenmodernisierung.html",
+      "interpretation": "2024的69是符合专项计划标准的分段改造，不是当年全部桥梁改造数量；40%为截至2024年计划累计完成率，二者不应混用"
+    },
+    {
+      "id": "federal_2024_total_modernized",
+      "period": "2024",
+      "unit": "Teilbauwerke",
+      "scope": "motorway modernized structures across all types",
+      "value": {
+        "completed_substructures": 212,
+        "modernized_area_sqm": 395000
+      },
+      "source": "https://www.bundestag.de/presse/hib/kurzmeldungen-1121492",
+      "interpretation": "2024全部翻修数量高于专项优先计划合格翻修数量69，不存在矛盾"
+    },
+    {
+      "id": "federal_2025_forecast",
+      "period": "2025 forecast published Nov 2025",
+      "unit": "Teilbauwerke",
+      "scope": "motorway modernization all types",
+      "value": {
+        "expected_substructures_2025_approx": 170,
+        "expected_area_sqm_approx": 200000
+      },
+      "source": "https://www.bundestag.de/presse/hib/kurzmeldungen-1121492",
+      "interpretation": "预估非最终2025实际值，不得当作已完成"
+    }
+  ],
+  "do_not_use_for_choropleth": true
+}
