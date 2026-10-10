@@ -77,6 +77,17 @@ def run(browser,mobile=False):
     assert s["selectedCounty"] is not None and s["selectedCounty"].startswith("07"),s
     assert "行政区编码" in page.locator("#coverage").inner_text()
     assert "中位数" not in page.locator("#description").inner_text()
+    # Brandenburg: 18 county source; all residential/nonresidential new-build
+    # accounting must remain separate from NRW/Bavaria 'new residential' data.
+    page.locator("#stateJump").select_option("12")
+    assert page.evaluate("GermanHousingResearch.state().brandenburgReady") is True
+    page.locator("#topRank .housing-rank-row").first.click()
+    assert page.locator("#brandenburgCompletions").is_visible()
+    assert page.locator("#nrwCompletions").is_hidden()
+    assert page.locator("#bavariaCompletions").is_hidden()
+    page.locator("#brandenburgCompletions summary").click()
+    assert "2025" in page.locator("#brandenburgHistory").inner_text()
+    assert "非住宅建筑" in page.locator("#brandenburgHistory").inner_text()
     page.locator("#stateJump").select_option("09")
     assert page.evaluate("GermanHousingResearch.state().focusState")=="09"
     assert page.evaluate("GermanHousingResearch.state().bavariaReady") is True
