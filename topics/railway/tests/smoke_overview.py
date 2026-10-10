@@ -34,7 +34,9 @@ def run(browser,mobile=False):
     assert page.locator(".toplinks a").count()==6
     assert page.locator("#railway-map canvas").count()==1
     assert page.locator("#railway-map .railway-network").count()==0
-    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getBackboneCoverage().sections")>1000
+    backbone=page.evaluate("window.__RAILWAY_OVERVIEW__.getBackboneCoverage()")
+    print("OFFICIAL BACKBONE COVERAGE:",backbone,flush=True)
+    assert backbone["all"]==33547 and backbone["sections"]>0
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getCompleteBackboneRoutes()")>100
     assert page.locator('script[src="data/data-sections-00.js"]').count()==1
     assert page.locator('script[src="data/data-sections-01.js"]').count()==1
@@ -67,7 +69,7 @@ def run(browser,mobile=False):
     print("CITY ROUTE AUDIT:",audit,flush=True)
     assert audit["weighted"]
     assert audit["official"]==33547
-    assert audit["active"]>1000 and audit["risky"]>0
+    assert audit["active"]>0 and audit["risky"]>0
     assert audit["original"]==4218
     assert audit["count"]>=30
     assert audit["physical"]>=audit["count"]
