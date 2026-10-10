@@ -1,0 +1,67 @@
+name: Finance 08 - BKG 2025 County Geometry (Research Only)
+on:
+  push:
+    branches: [research/finance-regional-expansion-20261010]
+    paths:
+      - 'research/finance/regional-expansion/build_bkg2025_geometry.py'
+      - '.github/workflows/finance-bkg2025-geojson.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: finance08-bkg2025-geojson
+  cancel-in-progress: false
+jobs:
+  extract-and-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install geometry libraries (only in research job)
+        run: pip install "shapely>=2,<3" "pyproj>=3,<4"
+      - name: Extract 2025 official county geometries, verify source SHA and atlas codes
+        id: geo
+        continue-on-error: true
+        run: |
+          set +e
+          python research/finance/regional-expansion/build_bkg2025_geometry.py > /tmp/finance08_bkg2025_geo.log 2>&1
+          result=$?
+          cat /tmp/finance08_bkg2025_geo.log
+          mkdir -p research/finance/regional-expansion/derived/bkg2025/
+          EXIT_CODE=$result python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path('research/finance/regional-expansion/derived/bkg2025/county_geometry_run_status.json')
+          logs=Path('/tmp/finance08_bkg2025_geo.log').read_text(encoding='utf-8',errors='replace')
+          x=int(os.environ['EXIT_CODE'])
+          p.write_text(json.dumps({'verified':x==0,'exit_code':x,'notes':logs[-2600:],
+              'status':'validated_research_geometry' if x==0 else 'failed_not_published'},indent=2)+'\n',encoding='utf-8')
+          PY
+          exit $result
+      - name: Commit only county research geometry and QA files
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/finance/regional-expansion/derived/bkg2025/
+          if ! git diff --cached --quiet; then
+            git commit -m "data(finance): 2025 official BKG simplified 400 county geometry (research only)"
+            git pull --rebase origin research/finance-regional-expansion-20261010
+            git push origin HEAD:research/finance-regional-expansion-20261010
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: finance08-bkg2025-zip-original
+          path: /tmp/finance08-bkg-geo2025/bkg2025_original.zip
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Require verified geometry after diagnosis saved
+        if: always()
+        run: test "${{ steps.geo.outcome }}" = success
