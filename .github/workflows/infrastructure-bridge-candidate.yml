@@ -40,18 +40,27 @@ jobs:
           assert d['missing_state_feature_count']>=0
           assert all(s['condition_bad']<=s['condition_valid']<=s['features'] for s in d['states'])
           assert all(s['area_condition_bad_m2']<=s['area_condition_valid_m2'] for s in d['states'])
+          counties=json.loads(Path('topics/infrastructure/research/candidate_bridge_counties_arcgis_2025.json').read_text())
+          assert counties['not_for_score'] is True and counties['do_not_use_for_choropleth'] is True
+          missing=sum(counties['missing_county_name_by_state'].values())
+          assert sum(r['features'] for r in counties['counties'])+missing==d['attributed_state_feature_count']
+          assert all(r['poor_features']<=r['features'] for r in counties['counties'])
+          assert len(counties['counties'])>=100
+          print('PASS',len(counties['counties']),'county source-label groups with controlled missingness')
           print('PASS 16-state geocoded subset, missing state attribution accounted, no extrapolation, denominator integrity')
           PY
       - uses: actions/upload-artifact@v4
         with:
           name: bast-geocoded-bridge-candidate
-          path: topics/infrastructure/research/candidate_bridge_arcgis_2025.json
+          path: |
+            topics/infrastructure/research/candidate_bridge_arcgis_2025.json
+            topics/infrastructure/research/candidate_bridge_counties_arcgis_2025.json
           if-no-files-found: error
       - name: Commit candidate snapshot to isolated feature branch
         run: |
           git config user.name 'german-map-research-bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add topics/infrastructure/research/candidate_bridge_arcgis_2025.json
+          git add topics/infrastructure/research/candidate_bridge_arcgis_2025.json topics/infrastructure/research/candidate_bridge_counties_arcgis_2025.json
           if git diff --cached --quiet; then
             echo 'Candidate identical to prior snapshot'
           else
