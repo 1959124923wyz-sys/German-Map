@@ -109,7 +109,8 @@ function centre(member){
  if(!parts.length)return null;
  const a=parts[Math.floor(parts.length/2)].xy;
  const i=Math.floor((a.length/2-1)/2)*2;
- return [a[i],a[i+1]];
+ const j=Math.min(i+2,a.length-2);
+ return [(a[i]+a[j])/2,(a[i+1]+a[j+1])/2];
 }
 function aggregate(members){
  if(!members.length)return {
@@ -133,7 +134,8 @@ function decorate(runs,observations,group=null){
   const pt=centre(item);if(!pt)continue;
   let best=null,d=Infinity;
   for(const run of runs){
-   if(item.grade!==run.grade)continue;
+   // Both directions belong to the same physical railway even when their
+   // independently measured delay grades differ. Include all actual counts.
    const q=closestOnParts(pt,run.parts);
    if(q<d){d=q;best=run;}
   }
@@ -199,7 +201,10 @@ function forCorridor(group,backbone){
 function forOfficial(official,rawRisk){
  const indexes=indexItems(rawRisk.filter(x=>x.grade>0));
  const cuts=samplePath(official.parts,indexes);
- const runs=decorate(cuts,rawRisk,null);
+ // An arbitrary official track may run alongside a measured route.  Risk
+ // locations determine the colour boundary only; they cannot supply
+ // statistics to an unverified, possibly parallel no-data track.
+ const runs=decorate(cuts,[],null);
  for(const r of runs)r.route=official.route;
  return runs;
 }
