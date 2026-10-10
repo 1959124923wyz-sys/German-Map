@@ -1,0 +1,485 @@
+{
+  "source": "https://genesis.destatis.de/genesisWS/downloads/00/tables/22971-0080_00.csv",
+  "table": "22971-0080",
+  "table_dates": [
+    "31.01.2025"
+  ],
+  "dimension_headers_total_col": 86,
+  "exact_3_dimension_totals": [
+    "Insgesamt",
+    "Insgesamt",
+    "Insgesamt"
+  ],
+  "county_keys": 400,
+  "numerical": 394,
+  "nulls": 6,
+  "rounded_subtotal": 474690,
+  "legacy_or_deprecated_codes": [
+    {
+      "id": "05313",
+      "name": "Aachen, kreisfreie Stadt (bis 20.10.2009)",
+      "count": null
+    },
+    {
+      "id": "05354",
+      "name": "Aachen, Landkreis (bis 20.10.2009)",
+      "count": null
+    },
+    {
+      "id": "15370",
+      "name": "Altmarkkreis Salzwedel (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "15151",
+      "name": "Anhalt-Zerbst, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "14171",
+      "name": "Annaberg, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "15352",
+      "name": "Aschersleben-Staßfurt, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "14191",
+      "name": "Aue-Schwarzenberg, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "13051",
+      "name": "Bad Doberan, Landkreis (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "14272",
+      "name": "Bautzen, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "15153",
+      "name": "Bernburg, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "15154",
+      "name": "Bitterfeld, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "15355",
+      "name": "Bördekreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "15256",
+      "name": "Burgenlandkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "14161",
+      "name": "Chemnitz, kreisfreie Stadt (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "14173",
+      "name": "Chemnitzer Land, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "14374",
+      "name": "Delitzsch, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "13052",
+      "name": "Demmin, Landkreis (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "15101",
+      "name": "Dessau, kreisfreie Stadt (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "14375",
+      "name": "Döbeln, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "14262",
+      "name": "Dresden, kreisfreie Stadt (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "16056",
+      "name": "Eisenach, kreisfreie Stadt (bis 30.06.2021)",
+      "count": null
+    },
+    {
+      "id": "14177",
+      "name": "Freiberg, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "14263",
+      "name": "Görlitz, kreisfreie Stadt (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "03152",
+      "name": "Göttingen, Landkreis (bis 31.10.2016)",
+      "count": null
+    },
+    {
+      "id": "13001",
+      "name": "Greifswald, kreisfreie Stadt (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "13053",
+      "name": "Güstrow, Landkreis (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "15357",
+      "name": "Halberstadt, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "15202",
+      "name": "Halle (Saale), kreisfreie Stadt (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "03201",
+      "name": "Hannover, kreisfreie Stadt (bis 31.10.2001)",
+      "count": null
+    },
+    {
+      "id": "03253",
+      "name": "Hannover, Landkreis (bis 31.10.2001)",
+      "count": null
+    },
+    {
+      "id": "14264",
+      "name": "Hoyerswerda, kreisfreie Stadt (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "15358",
+      "name": "Jerichower Land, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "14292",
+      "name": "Kamenz, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "15159",
+      "name": "Köthen, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "14365",
+      "name": "Leipzig, kreisfreie Stadt (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "14379",
+      "name": "Leipziger Land, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "14286",
+      "name": "Löbau-Zittau, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "13054",
+      "name": "Ludwigslust, Landkreis (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "15303",
+      "name": "Magdeburg, kreisfreie Stadt (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "15260",
+      "name": "Mansfelder Land, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "13055",
+      "name": "Mecklenburg-Strelitz, Landkreis (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "14280",
+      "name": "Meißen, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "15261",
+      "name": "Merseburg-Querfurt, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "14181",
+      "name": "Mittlerer Erzgebirgskreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "14182",
+      "name": "Mittweida, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "14383",
+      "name": "Muldentalkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "13056",
+      "name": "Müritz, Landkreis (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "13002",
+      "name": "Neubrandenburg, kreisfreie Stadt (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "14284",
+      "name": "Niederschlesischer Oberlausitzkreis (b.31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "13057",
+      "name": "Nordvorpommern, Landkreis (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "13058",
+      "name": "Nordwestmecklenburg, Landkreis (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "15362",
+      "name": "Ohrekreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "03156",
+      "name": "Osterode am Harz, Landkreis (bis 31.10.2016)",
+      "count": null
+    },
+    {
+      "id": "13059",
+      "name": "Ostvorpommern, Landkreis (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "13060",
+      "name": "Parchim, Landkreis (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "14166",
+      "name": "Plauen, kreisfreie Stadt (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "15364",
+      "name": "Quedlinburg, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "14285",
+      "name": "Riesa-Großenhain, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "13061",
+      "name": "Rügen, Landkreis (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "15265",
+      "name": "Saalkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "14287",
+      "name": "Sächsische Schweiz, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "15266",
+      "name": "Sangerhausen, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "15367",
+      "name": "Schönebeck, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "15363",
+      "name": "Stendal, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "14188",
+      "name": "Stollberg, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "13005",
+      "name": "Stralsund, kreisfreie Stadt (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "14389",
+      "name": "Torgau-Oschatz, Landkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "13062",
+      "name": "Uecker-Randow, Landkreis (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "14178",
+      "name": "Vogtlandkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "15268",
+      "name": "Weißenfels, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "14290",
+      "name": "Weißeritzkreis (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "15369",
+      "name": "Wernigerode, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "13006",
+      "name": "Wismar, kreisfreie Stadt (bis 03.09.2011)",
+      "count": null
+    },
+    {
+      "id": "15171",
+      "name": "Wittenberg, Landkreis (bis 30.06.2007)",
+      "count": null
+    },
+    {
+      "id": "14167",
+      "name": "Zwickau, kreisfreie Stadt (bis 31.07.2008)",
+      "count": null
+    },
+    {
+      "id": "14193",
+      "name": "Zwickauer Land, Landkreis (bis 31.07.2008)",
+      "count": null
+    }
+  ],
+  "saxony_checks": [
+    {
+      "id": "14511",
+      "destatis_national_2025": 260,
+      "saxony_2025": 260,
+      "difference": 0
+    },
+    {
+      "id": "14521",
+      "destatis_national_2025": 35,
+      "saxony_2025": 35,
+      "difference": 0
+    },
+    {
+      "id": "14522",
+      "destatis_national_2025": 105,
+      "saxony_2025": 105,
+      "difference": 0
+    },
+    {
+      "id": "14523",
+      "destatis_national_2025": 45,
+      "saxony_2025": 45,
+      "difference": 0
+    },
+    {
+      "id": "14524",
+      "destatis_national_2025": 100,
+      "saxony_2025": 100,
+      "difference": 0
+    },
+    {
+      "id": "14612",
+      "destatis_national_2025": 1635,
+      "saxony_2025": 1635,
+      "difference": 0
+    },
+    {
+      "id": "14625",
+      "destatis_national_2025": 60,
+      "saxony_2025": 60,
+      "difference": 0
+    },
+    {
+      "id": "14626",
+      "destatis_national_2025": 70,
+      "saxony_2025": 70,
+      "difference": 0
+    },
+    {
+      "id": "14627",
+      "destatis_national_2025": 455,
+      "saxony_2025": 455,
+      "difference": 0
+    },
+    {
+      "id": "14628",
+      "destatis_national_2025": 140,
+      "saxony_2025": 140,
+      "difference": 0
+    },
+    {
+      "id": "14713",
+      "destatis_national_2025": 3645,
+      "saxony_2025": 3645,
+      "difference": 0
+    },
+    {
+      "id": "14729",
+      "destatis_national_2025": 90,
+      "saxony_2025": 90,
+      "difference": 0
+    },
+    {
+      "id": "14730",
+      "destatis_national_2025": 250,
+      "saxony_2025": 250,
+      "difference": 0
+    }
+  ],
+  "saxony_differences": 0,
+  "warnings": [
+    "This is JAN 2025 rather than 2026",
+    "Do not sum country-nationality or sex disaggregated counts",
+    "5-person disclosure-rounded counts; excluded categories of homelessness"
+  ]
+}
