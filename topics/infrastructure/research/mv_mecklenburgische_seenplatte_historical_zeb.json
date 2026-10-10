@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "scope": "substate",
+  "state_iso": "DE-MV",
+  "published": "2024-11-20",
+  "source_url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/62712/zustand_ausbau_und_instandhaltung_von_strassen_radwegen_und_bruecken_im_landkreis_mecklenburgische_seenplatte.pdf",
+  "source_document": "Landtag M-V Drucksache 8/4178",
+  "quality": "official original",
+  "caveats": [
+    "不同年份：县道2016、联邦一般公路2020、州道2021、桥梁2024议会答复；绝不可合并成2025县级指标",
+    "Neustrelitz公路管理区涵盖Mecklenburgische Seenplatte和Vorpommern-Greifswald两个县，其800/1000公里ZEB不是单个县统计",
+    "2016县道并非标准ZEB，‘不再可用’一档文字含需要降速通过，不等于法律上的禁止通行"
+  ],
+  "tables": [
+    {
+      "geography": "Neustrelitz Straßenbauamt（两个县合并）",
+      "asset": "Bundesstraßen",
+      "year": 2020,
+      "network_length_km_approx": 800,
+      "measure": "ZEB Gebrauchszustand",
+      "class_pct": {
+        "very_good": 2.7,
+        "good": 83.1,
+        "moderate": 12.6,
+        "critical": 1.6
+      },
+      "source_page": 8
+    },
+    {
+      "geography": "Neustrelitz Straßenbauamt（两个县合并）",
+      "asset": "Landesstraßen",
+      "year": 2021,
+      "network_length_km_approx": 1000,
+      "measure": "ZEB Gebrauchszustand",
+      "class_pct": {
+        "very_good": 5.6,
+        "good": 67.4,
+        "moderate": 23.1,
+        "critical": 3.9
+      },
+      "source_page": 8
+    },
+    {
+      "geography": "Mecklenburgische Seenplatte Landkreis",
+      "asset": "Kreisstraßen",
+      "year": 2016,
+      "measure": "county engineering/visual usability survey NOT ZEB",
+      "network_length_km": 1000,
+      "class_km": {
+        "fully_usable": 119.8,
+        "usable": 158.1,
+        "restricted_usable": 325.9,
+        "very_restricted_usable": 260.1,
+        "extremely_difficult_usable": 136.1
+      },
+      "source_page": 9
+    },
+    {
+      "geography": "Mecklenburgische Seenplatte Landkreis",
+      "asset": "Kreisstraße bridges",
+      "year": 2024,
+      "measure": "DIN1076 Zustandsnote≥3.0",
+      "total_bridges": 43,
+      "poor_bridges": 3,
+      "source_page": 9
+    },
+    {
+      "geography": "Mecklenburgische Seenplatte Landkreis",
+      "asset": "federal/state-road bridges inspected in this county",
+      "year": 2024,
+      "measure": "DIN1076 number poor, denominator unreported",
+      "poor_bridges": 2,
+      "total_bridges": null,
+      "source_page": 8
+    }
+  ],
+  "named_poor_county_bridges": [
+    {
+      "name": "Mühlenbachbrücke",
+      "road": "MSE 67",
+      "locality": "Wolkow",
+      "status_asof_2024": "replacement_planned"
+    },
+    {
+      "name": "Grabenbrücke",
+      "road": "MSE 20",
+      "locality": "Canow",
+      "status_asof_2024": "replacement_during_2024"
+    },
+    {
+      "name": "Mühlenbachbrücke",
+      "road": "MSE 93",
+      "locality": "Bergfeld",
+      "status_asof_2024": "replacement_planned"
+    }
+  ]
+}
