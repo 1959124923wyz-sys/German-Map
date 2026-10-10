@@ -7,7 +7,7 @@ const path=require('node:path');
 const vm=require('node:vm');
 const root=path.resolve(__dirname,'..');
 const context=vm.createContext({window:{}});
-for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js','rail-service-groups.js','rail-city-corridors.js','rail-continuity.js','rail-picker.js']){
+for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js','rail-service-groups.js','rail-city-corridors.js','rail-continuity.js','rail-picker.js','rail-color-runs.js']){
   const source=fs.readFileSync(path.join(root,'js',name),'utf8');
   vm.runInContext(source,context,{filename:name,timeout:10000});
 }
@@ -237,5 +237,42 @@ const total=whole.reduce((n,p)=>n+(p.maxX-p.minX),0);
 assert.ok(total>=11.9,'highlight must span from city A to city B, not only the green gap');
 assert.equal(network.full(observedGap),whole,'verified full route cached per corridor');
 
+
+
+// The user's two sketches: A--same RED--RED--GREEN--B must select the entire
+// contiguous red stretch from either red piece, and ONLY green from green.
+const shade=context.window.Railway07ColorRuns;
+const colorObs=(from,to,start,end,late,gr)=>{
+ const l=leg(from,to,[start,end],late,2,'7000');
+ const m=math.metrics(l,'both',100);
+ return {leg:l,m,grade:gr,parts:[part(start,end)]};
+};
+const sr1=colorObs('A','X',100,104,45,2);
+const sr2=colorObs('X','Y',104,108,43,2);
+const sg=colorObs('Y','B',108,112,8,0);
+const colouredGroup={
+ startStation:'A',endStation:'B',cityFrom:'A',cityTo:'B',
+ serviceName:'RE7',members:[sr1,sr2,sg],grade:2
+};
+const fakeDB={full:()=>[part(100,104),part(104,108),part(108,112)]};
+const runs=shade.forCorridor(colouredGroup,fakeDB);
+assert.equal(runs.length,2,'adjacent identically coloured records are one clickable run');
+assert.deepEqual(Array.from(runs,x=>x.grade),[2,0]);
+const rA=shade.findRun(runs,[102,baseY],2,2.5);
+const rX=shade.findRun(runs,[106,baseY],2,2.5);
+const rB=shade.findRun(runs,[110,baseY],0,2.5);
+assert.strictEqual(rA,rX,'either red section must highlight the same complete red run');
+assert.notStrictEqual(rA,rB,'a differently coloured section must select separately');
+assert.ok(rA.parts.reduce((n,p)=>n+p.maxX-p.minX,0)>7.5);
+assert.ok(rB.parts.reduce((n,p)=>n+p.maxX-p.minX,0)>3.5);
+assert.equal(rA.members.length,2);
+assert.equal(rA.m.onTime,56);
+assert.equal(rB.m.onTime,92);
+assert.equal(colouredGroup.members.length,3,'original observed records unchanged');
+// An unobserved middle GREEN gap cannot magically contribute two new samples.
+const missingGroup={...colouredGroup,members:[sr1,sr2]};
+const noDataRuns=shade.forCorridor(missingGroup,fakeDB);
+assert.ok(noDataRuns.some(x=>x.grade===0&&x.m.onTime===null),
+ 'green without timetable samples stays selectable and numeric KPI missing');
 
 console.log('PASS railway pure geometry, weighted rates, branches, km gaps and pooled counts');
