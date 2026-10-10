@@ -1,0 +1,66 @@
+name: Industry R7 BKG county boundaries research only
+on:
+  push:
+    branches:
+      - research/industry-r7-evidence-20261010
+    paths:
+      - .github/workflows/industry-r7-bkg-research.yml
+      - topics/industry/scripts/try_bkg_vg250_counties.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: industry-r7-bkg-candidate
+  cancel-in-progress: false
+
+jobs:
+  fetch-verify-save:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/industry-r7-evidence-20261010
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile source
+        run: python -m py_compile topics/industry/scripts/try_bkg_vg250_counties.py
+      - name: Fetch current county geometries and verify AGS
+        id: acquire
+        shell: bash
+        run: |
+          set +e
+          mkdir -p research-output
+          python topics/industry/scripts/try_bkg_vg250_counties.py --out topics/industry/data/bkg_vg250_counties_2025_candidate.geojson >research-output/bkg_fetch.log 2>&1
+          rc=$?
+          cat research-output/bkg_fetch.log
+          echo "exit_status=$rc" >> "$GITHUB_OUTPUT"
+          exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: industry-r7-bkg-acquisition-log
+          path: research-output/
+          retention-days: 60
+      - name: Preserve only verified BKG candidate on research branch
+        if: steps.acquire.outputs.exit_status == '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add topics/industry/data/bkg_vg250_counties_2025_candidate.geojson
+          if git diff --cached --quiet; then
+            echo "Identical validated county geometry already saved"
+          else
+            git commit -m "data(industry): preserve verified 2025 BKG 400-Kreis geodata candidate [skip ci]"
+            git push origin HEAD:research/industry-r7-evidence-20261010
+          fi
+      - name: Final result
+        run: |
+          if [ "${{ steps.acquire.outputs.exit_status }}" != "0" ]; then
+            echo "Official BKG geography still NOT acquired; only research logs exist."
+            exit 1
+          fi
