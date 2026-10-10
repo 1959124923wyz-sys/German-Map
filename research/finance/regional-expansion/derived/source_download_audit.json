@@ -1,0 +1,23 @@
+[
+  {
+    "name": "integrierte_schulden_2024.xlsx",
+    "url": "https://www.statistikportal.de/sites/default/files/2025-12/Integrierte_Schulden_der_Gemeinden_und_Gemeindeverbaende_2024_Tabellenband_0.xlsx",
+    "sha256": "8712ff40e0a2dba71bc43c6a6fa720cdc847dd913e077c876aef5bc79e25198f",
+    "bytes": 8026315,
+    "verified": true
+  },
+  {
+    "name": "atlas_ha26_municipality_2024.csv",
+    "url": "https://deutschlandatlas.bund.de/fileadmin/Downloaddateien/HA26/Deutschlandatlas_GEM1224_HA26.csv",
+    "sha256": "28c8eb2423288222c3b1a757c42833a812833b124a09b33680b56ad90e465c99",
+    "bytes": 482953,
+    "verified": true
+  },
+  {
+    "name": "atlas_ha26_county_2023.csv",
+    "url": "https://deutschlandatlas.bund.de/fileadmin/Downloaddateien/HA26/Deutschlandatlas_KRS1222_HA26.csv",
+    "sha256": "c05b3ee80df70172e76834e9023c0db49a28eaf074eeb77073dac30a6792fc97",
+    "bytes": 30758,
+    "verified": true
+  }
+]

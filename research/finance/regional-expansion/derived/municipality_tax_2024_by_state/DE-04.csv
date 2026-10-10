@@ -1,0 +1,3 @@
+ags8,county_ags5,name_de,state_code,year,tax_capacity_eur_per_capita,value_status,source_id
+04011000,04011,"Bremen, Stadt",04,2024,228.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+04012000,04012,"Bremerhaven, Stadt",04,2024,28.1,published_numeric,DE_ATLAS_HA26_GEM_2024

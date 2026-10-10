@@ -1,0 +1,7 @@
+{
+  "independent_cities_count": 102,
+  "city_integrated_debt_year": 2024,
+  "city_tax_capacity_year": 2024,
+  "city_core_cash_credit_year": 2023,
+  "warning": "Different definitions and years; do not add or call these metrics a single fiscal risk score."
+}
