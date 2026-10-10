@@ -24,3 +24,14 @@
 - GitHub: https://github.com/1959124923wyz-sys/German-Map/pull/37
 - 支线 `feature/industry-contraction-map-20261010`
 - 此文档 `topics/industry/research/R5_HANDOFF.md`
+
+## 第二阶段：来源与覆盖审计已提交
+- 新增 `R5_REGIONALATLAS_SOURCE_AUDIT.md`：找到Regionalatlas AI0704（制造业就业占比）、AI0405（制造业受雇岗位人口密度）及公开GIS接口，明确不能直接作为就业人数下降率。
+- 新增 `R5_COVERAGE_AUDIT.json`：117条记录逐州、逐年、逐实施状态统计及83条厂址定位待办；这些待办不是83家缺失企业，而是还未核到**精确厂门坐标**的已有记录。
+- 新增 `destatis_42111_national_2024_2025.csv`：官方全国两年制造业就业/场所数参考点，来源直接保留GENESIS表号，供以后检查县市合计。
+- 当前17个地域分组包括16州与3条跨州/不确定州的集团记录；集团项目不渲染为县级红点。
+- `R5_COVERAGE_AUDIT.json`中仍存在十条从鲁尔早期继承的中文自由状态文本；正式发布的统一状态枚举需另加映射，不能直接原样用于“已完成关厂数量”汇总。
+
+## 数据抓取现实限制
+- 本轮探索的公开黑森Hessen CSV数据源只含黑森，且本会话下载返回403；没有将它当成已获取的全国面板。
+- 官方GIS接口仅定位成功，未完成全国县级逐年实体数据验收；不能宣称全国县级就业变化完成。
