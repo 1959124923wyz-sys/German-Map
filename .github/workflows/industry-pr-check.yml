@@ -17,4 +17,5 @@ jobs:
         run: |
           node --check topics/industry/topic.js
           node topics/industry/tests/validate_industry.cjs
+          node topics/industry/tests/smoke_industry_data.cjs
           python scripts/validate_site_assets.py
