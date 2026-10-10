@@ -84,7 +84,7 @@ def run(browser,mobile=False):
         colour_report=page.evaluate("""()=>{
           const api=window.__RAILWAY_OVERVIEW__,map=api.getMap();
           let checked=0,mixed=0,compact=0,attempts=0,clicked=0,same=0;
-          const examples=[];
+          const examples=[],mismatches=[];
           for(const group of api.getCityCorridors().filter(g=>g.members.length>=2).slice(0,85)){
             const runs=api.getColourRuns(group);
             checked++;
@@ -108,10 +108,17 @@ def run(browser,mobile=False):
               const ll=map.unproject(L.point((v[idx]+v[j])/2,(v[idx+1]+v[j+1])/2),9);
               api.clickPoint(ll);attempts++;
               const current=api.getCurrentColourRun();
-              if(current){clicked++;if(current===run)same++;}
+              if(current){
+                clicked++;
+                if(current===run)same++;
+                else mismatches.push({from:group.cityFrom,to:group.cityTo,
+                  target:run.grade,selected:current.grade,correctRoute:
+                  run.route===current.route,targetLength:run.parts.length,
+                  currentLength:current.parts.length});
+              }
             }
           }
-          return {checked,mixed,compact,attempts,clicked,same,examples};
+          return {checked,mixed,compact,attempts,clicked,same,examples,mismatches};
         }""")
         print('REAL SAME-COLOUR RUN AUDIT:',colour_report,flush=True)
         assert colour_report["mixed"]>=1,colour_report
