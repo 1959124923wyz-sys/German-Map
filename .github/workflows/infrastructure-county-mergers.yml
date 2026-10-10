@@ -1,0 +1,38 @@
+name: Infrastructure updated 400-county geometry candidate
+on:
+  push:
+    branches: [feature/infrastructure-map-phase1]
+    paths:
+      - 'topics/infrastructure/research/scripts/correct_county_mergers.py'
+      - '.github/workflows/infrastructure-county-mergers.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: infrastructure-county-mergers
+  cancel-in-progress: false
+jobs:
+  geometry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/infrastructure-map-phase1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install Shapely for topological union
+        run: pip install 'shapely>=2,<3'
+      - name: Apply only officially verified administrative mergers
+        run: python topics/infrastructure/research/scripts/correct_county_mergers.py
+      - name: Commit derivative 400-county geography to isolated research directory
+        run: |
+          git config user.name 'german-map-research-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/infrastructure/research/germany-counties-mergers-candidate.geojson topics/infrastructure/research/germany-counties-mergers-candidate-audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "research: preserve 400-county merger-corrected geometry candidate and source audit"
+            git pull --rebase origin feature/infrastructure-map-phase1
+            git push origin HEAD:feature/infrastructure-map-phase1
+          fi
