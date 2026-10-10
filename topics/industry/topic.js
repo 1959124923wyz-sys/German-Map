@@ -58,9 +58,9 @@ function cleanCity(e){
  return raw;
 }
 function getCounty(e){
- if(e.county_label)return findCounty(String(e.county_label),e.state_iso);
+ if(e.county_label||e.county_name)return findCounty(String(e.county_label||e.county_name),e.state_iso);
  const raw=cleanCity(e);
- if(!raw)return null;
+ if(!raw||e.eligible_factory_marker===false)return null;
  const district=COUNTY_HINTS[raw]||raw;
  return findCounty(district,e.state_iso,raw);
 }
@@ -194,16 +194,23 @@ function selectCounty(f){
 async function start(){
  const sources=['../../data/germany-counties.geojson','../../data/germany-states.geojson',
    'research/r1-events.json','research/r2-r3-events.json','../../data/geocode_cache.json',
-   'data/county-employment.json'];
+   'data/county-employment.json','research/r4-events-and-updates.json'];
  const results=await Promise.all(sources.map(async src=>{
   const r=await fetch(src,{cache:'no-store'});if(!r.ok)throw Error(src+': HTTP '+r.status);return r.json();
  }));
- const [counties,states,r1,r2,geocache,metric]=results;
+ const [counties,states,r1,r2,geocache,metric,r4]=results;
  if(!Array.isArray(counties.features)||counties.features.length!==402||!Array.isArray(states.features)||states.features.length!==16)
   throw Error('官方边界记录数量异常');
- if(r1.events.length!==61||r2.events.length!==38)throw Error('事件档案数量异常');
+ if(r1.events.length!==61||r2.events.length!==38||r4.events.length!==18)throw Error('事件档案数量异常');
  app.features=counties.features;app.countyGeo=counties;app.metric=metric;
- app.events=[...r1.events.map(e=>normalize(e,'R1')),...r2.events.map(e=>normalize(e,e.batch||'R2'))];
+ const allRaw=[...r1.events,...r2.events,...r4.events];
+ const patches=r4.updates||{};
+ for(const [id,patch] of Object.entries(patches)){
+  const original=allRaw.find(e=>e.event_id===id);
+  if(!original)throw Error('找不到需修订的事件 '+id);
+  Object.assign(original,patch);
+ }
+ app.events=allRaw.map(e=>normalize(e,e.batch||'R1'));
  const ids=new Set();for(const e of app.events){if(!e.id||ids.has(e.id)||!e.url)throw Error('事件重复ID或缺失来源 '+e.id);ids.add(e.id);}
  app.map=L.map('industry-map',{zoomControl:true,preferCanvas:true,minZoom:5,maxZoom:14}).fitBounds(POLYGON_BOUNDS);
  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
