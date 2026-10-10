@@ -293,25 +293,31 @@ function mergeGroups(groups,graph,allObservations,config={}){
    const left=rows[i],candidates=[];
    for(let j=i+1;j<rows.length;j++){
     const right=rows[j],gap=right.span[0]-left.span[1];
+    if(left.route==='5900')debug.bamberg={gap,left:left.span,right:right.span,stage:'consider'};
     if(gap>cap)break;
     if(gap<.12)continue; // overlapping opposite-direction observations
     debug.withinGap++;
     if(next.has(left.g)||prev.has(right.g))continue;
     // A known grade in the intervening km range is not an unknown gap.
     if(allObservations.some(o=>String(o.leg.route)===left.route&&o.grade!==left.g.grade&&
-       o.leg.km_range?.[0]<right.span[0]-.05&&o.leg.km_range?.[1]>left.span[1]+.05))
+       o.leg.km_range?.[0]<right.span[0]-.05&&o.leg.km_range?.[1]>left.span[1]+.05)){
+       if(left.route==='5900')debug.bamberg.stage='grade-conflict';
        continue;
+    }
     debug.unblocked++;
     const anchors=bestAnchors(left.g,right.g);
-    if(!anchors)continue;
+    if(!anchors){if(left.route==='5900')debug.bamberg.stage='no-anchors';continue;}
     const straight=Math.hypot(anchors[0][0]-anchors[1][0],anchors[0][1]-anchors[1][1])*
       kmPerPixel((anchors[0][1]+anchors[1][1])/2);
-    if(straight>cap*1.1+1||Math.abs(gap-straight)>Math.max(8,gap*.9))continue;
+    if(straight>cap*1.1+1||Math.abs(gap-straight)>Math.max(8,gap*.9)){
+     if(left.route==='5900')Object.assign(debug.bamberg,{stage:'far-anchors',straight});continue;
+    }
     debug.near++;
     if(checks++>=capItems)break;
     debug.tries++;
     const bridge=graph.find(left.route,...anchors,Math.min(cap,gap*2+3));
     if(bridge)debug.paths++;
+    if(left.route==='5900')Object.assign(debug.bamberg,{stage:bridge?'path-found':'no-official-path',straight,actualRoute:graph.resolveRoute(left.route,...anchors),failure:{...graph.reasons},bridgeKm:bridge?.km});
     if(bridge&&bridge.km<=Math.max(3,gap*2.2+2))
       candidates.push({right,bridge});
    }
