@@ -131,7 +131,11 @@ class RouteGraph{
  }
  find(route,from,to,maxKm=MAX_GAP){
   const resolved=this.resolveRoute(route,from,to);
-  if(resolved===false){this.reasons.noRoute++;return null;}
+  // At major stations several equally near official infrastructure labels
+  // can be present. A long, geographically separated pair may still be
+  // verified by a strictly bounded path in the complete physical graph.
+  const spanKm=Math.hypot(from[0]-to[0],from[1]-to[1])*kmPerPixel((from[1]+to[1])/2);
+  if(resolved===false&&spanKm<6){this.reasons.noRoute++;return null;}
   const actual=resolved||GLOBAL;
   const r=this.routes.get(actual);
   if(!r){this.reasons.noRoute++;return null;}
