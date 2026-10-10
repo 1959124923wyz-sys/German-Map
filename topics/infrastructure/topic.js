@@ -82,10 +82,10 @@
     }
     d.forEach(v=>{
       const pct=100*v.bad/v.total;
-      h+='<div class="evidence-card"><strong>'+escapeHtml(v.scope)+'</strong><p>DIN状态≥3.0：'+v.bad+' / '+(v.total_approx?'约':'')+v.total+'，'+(v.total_approx?'约':'')+fmt(pct,1)+'%</p><small>'+v.year+'年 · 管理范围有别，勿跨州直接合并</small>'+anchor(v.source,'资料来源')+'</div>';
+      h+='<div class="evidence-card"><strong>'+escapeHtml(v.scope)+'</strong><p>DIN状态≥3.0：'+v.bad+' / '+(v.total_approx?'约':'')+v.total+'，'+(v.total_approx?'约':'')+fmt(pct,1)+'%</p><small>'+v.year+'年 · 管理范围有别，勿跨州直接合并</small>'+(v.source_quality==='needs_exact_report'?'<small>⚠ 来源文件待二次核验，不能用于正式州际排名</small>':'')+anchor(v.source,'资料来源')+'</div>';
     });
     road.forEach(v=>{
-      h+='<div class="evidence-card"><strong>'+escapeHtml(v.scope)+' · '+escapeHtml(v.metric)+'</strong><p>'+(v.approx?'约':'')+fmt(v.value_pct,1)+'% · '+v.year+'年</p><small>'+escapeHtml(v.definition)+'</small>'+anchor(v.source,'资料来源')+'</div>';
+      h+='<div class="evidence-card"><strong>'+escapeHtml(v.scope)+' · '+escapeHtml(v.metric)+'</strong><p>'+(v.approx?'约':'')+fmt(v.value_pct,1)+'% · '+v.year+'年</p><small>'+escapeHtml(v.definition)+'</small>'+(v.source_quality==='needs_exact_report'?'<small>⚠ 来源文件待二次核验，不能用于正式州际排名</small>':'')+anchor(v.source,'资料来源')+'</div>';
     });
     if(!x && !d.length && !road.length)h+='<div class="metric-sub">目前没有已整理的桥梁／道路地方样本；无数据不等于设施完好。</div>';
     return h;
