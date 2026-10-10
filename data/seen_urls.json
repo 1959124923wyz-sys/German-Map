@@ -38,5 +38,10 @@
     "seen_at": "2026-10-08T11:21:47.867930+00:00",
     "final": true,
     "included": false
+  },
+  "https://www.berlin.de/polizei/polizeimeldungen/2026/pressemitteilung.1723869.php": {
+    "seen_at": "2026-10-10T11:18:04.497914+00:00",
+    "final": true,
+    "included": false
   }
 }

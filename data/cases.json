@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-10-10T04:48:44Z",
+    "generated_at": "2026-10-10T11:18:10Z",
     "window_days": 90,
     "scope": "Germany",
-    "case_count": 581,
-    "geocoded_count": 580,
+    "case_count": 582,
+    "geocoded_count": 581,
     "category_counts": {
       "homicide": 42,
-      "violence": 72,
+      "violence": 73,
       "robbery": 79,
       "sexual": 7,
       "property": 381
@@ -18,6 +18,31 @@
     "disclaimer": "Public-source monitor, not an official or exhaustive crime register. Locations reflect the most precise place publicly reported; Fundort means body-discovery location and may not be the crime scene."
   },
   "cases": [
+    {
+      "id": "2026-10-10-violence-berlin-9522c2e2d4",
+      "event_date": "2026-10-10",
+      "publication_date": "2026-10-10",
+      "city": "Berlin",
+      "state": "Berlin",
+      "location": "Mitte",
+      "geocode_address": "Mitte, Berlin, Germany",
+      "precision": "district",
+      "location_type": "Tatort / reported location",
+      "status": "confirmed",
+      "offense": "Messer-/Stichangriff",
+      "subcategory": "Messer-/Stichangriff",
+      "category": "violence",
+      "category_label": "严重暴力",
+      "severity": 4,
+      "summary": "柏林警方公开通报的严重暴力案件：Mann durch Messerstiche verletzt",
+      "source_agency": "Polizei Berlin",
+      "source_url": "https://www.berlin.de/polizei/polizeimeldungen/2026/pressemitteilung.1723875.php",
+      "lat": 52.5178855,
+      "lon": 13.4040601,
+      "date_confidence": "publication_date",
+      "privacy_protected": false,
+      "geocode_precision": "district"
+    },
     {
       "id": "2026-10-08-property-c374403df2",
       "event_date": "2026-10-08",
