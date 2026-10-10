@@ -1,0 +1,37 @@
+name: Finance 08 - 2025 Official BKG AGS Research
+on:
+  push:
+    branches: [research/finance-regional-expansion-20261010]
+    paths:
+      - 'research/finance/regional-expansion/build_bkg2025_ags.py'
+      - '.github/workflows/finance-bkg2025-ags.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: finance08-bkg2025-research
+  cancel-in-progress: false
+jobs:
+  verify-geography:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download checksum-verified official 2025 VG250 county boundaries and reconcile 2024 debt codes
+        run: python research/finance/regional-expansion/build_bkg2025_ags.py
+      - name: Commit only research AGS and audit; never website or main
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/finance/regional-expansion/derived/bkg2025/
+          if git diff --cached --quiet; then echo "No changed official geography indices"
+          else
+            git commit -m "data(finance): verify 2025 BKG district AGS and historical geometry gaps"
+            git push origin HEAD:research/finance-regional-expansion-20261010
+          fi
