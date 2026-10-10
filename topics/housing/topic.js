@@ -7,6 +7,7 @@
  const metrics = {
   asking_rent_2025_eur_m2:{label:'2025年新租挂牌净冷租金',year:'2025',unit:'欧元/㎡',dec:2,source:'atlas',interpret:'互联网挂牌中重新出租住房的净冷租金，不是所有租房家庭正在支付的实际租金。'},
   vacancy_2022_pct:{label:'2022年住宅空置率',year:'2022',unit:'%',dec:1,source:'atlas',interpret:'全部空置住宅中的部分住宅可能并不适合出租；较高空置率不表示当地没有住房结构性问题。'},
+  disposable_income_2023_keur_person:{label:'2023年人均可支配收入',year:'2023',unit:'千欧元/人·年',dec:2,source:'atlas',interpret:'这是地区所有私人家庭的平均可支配收入按全体居民折算，不是租房家庭收入，也不是工资中位数。不能将2023年此指标与2025年新租挂牌租金直接计算所谓住房负担率。'},
   owner_occupier_2022_pct:{label:'2022年自住住房家庭占比',year:'2022',unit:'%',dec:1,source:'atlas',interpret:'统计对象是住在自有房屋的家庭，不是市场租赁住房比例，也不是各地住房可负担性评分。'},
   living_area_2022_m2_person:{label:'2022年人均居住面积',year:'2022',unit:'㎡/人',dec:1,source:'atlas',interpret:'住房建筑面积分配的统计观察，受人口结构、住宅类型及统计口径影响。'},
   homes_per_1000_people_2025:{label:'2025年千人住宅存量',year:'2025',unit:'套/千人',dec:1,source:'stock',interpret:'以2025年住宅套数除以当地居民人数的比率；不是人均住房套数，也不能直接计算“住房缺口”。'},
