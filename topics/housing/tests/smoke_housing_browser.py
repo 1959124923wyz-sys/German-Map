@@ -56,6 +56,19 @@ def run(browser,mobile=False):
     page.locator("#stateJump").select_option("09")
     assert page.evaluate("GermanHousingResearch.state().focusState")=="09"
     assert page.evaluate("GermanHousingResearch.state().selectedCounty") is None
+    # State-specific evidence: no pseudo-national construction/homelessness overlay.
+    page.locator("#stateJump").select_option("05")
+    page.locator("#topRank .housing-rank-row").first.click()
+    assert page.locator("#nrwCompletions").is_visible(),"NRW local source must be available"
+    assert page.locator("#landPriceBand").is_visible(),"2024 land price is an ordinal band"
+    page.locator("#nrwCompletions summary").click()
+    assert "2025" in page.locator("#nrwHistory").inner_text()
+    page.locator("#stateJump").select_option("14")
+    page.locator("#topRank .housing-rank-row").first.click()
+    assert page.locator("#saxonyDetails").is_visible(),"Saxony official 13-county series must be available"
+    assert page.locator("#nrwCompletions").is_hidden(),"NRW history must not leak into Sachsen"
+    page.locator("#saxonyDetails summary").click()
+    assert "2026" in page.locator("#saxonyHistory").inner_text()
     page.locator("#resetView").click()
     assert page.evaluate("GermanHousingResearch.state().focusState") is None
     assert page.evaluate("GermanHousingResearch.state().selectedCounty") is None
