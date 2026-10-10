@@ -33,7 +33,7 @@
 .finance-list-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:11px;border-top:1px solid #293845;margin-bottom:5px;flex:0 0 auto}
 .finance-list-heading strong{font-size:11px;font-weight:700;color:#e2ebf1}
 .finance-list-heading span{font-size:9px;color:#90a4b3;white-space:nowrap}
-.finance-case-list{display:grid;gap:0;overflow:auto;overscroll-behavior:contain;min-height:90px;flex:1 1 auto}
+.finance-case-list{display:grid;grid-auto-rows:max-content;align-content:start;gap:0;overflow:auto;overscroll-behavior:contain;min-height:90px;flex:1 1 auto}
 .finance-case{display:block;width:100%;text-align:left;background:transparent;color:#dfebf2;border:0;border-bottom:1px solid #293743;padding:9px 5px;cursor:pointer}
 .finance-case:hover,.finance-case.selected{background:#213140}
 .finance-case-title{font-size:11px;font-weight:640;line-height:1.5;overflow-wrap:anywhere}
@@ -139,8 +139,10 @@
 
 /* 08 / compact state-first interaction: one persistent choropleth, one toggle. */
 .finance-workspace{grid-template-columns:minmax(0,1fr) minmax(350px,29vw)}
-.finance-controls{padding:14px 17px;background:#141e28;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.finance-event-toggle{display:flex;align-items:center;gap:10px;color:#eff5f9;font-size:13px;font-weight:650;cursor:pointer;min-width:0}
+.finance-controls{padding:12px 17px;background:#141e28;display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.finance-event-toggle{display:flex;align-items:center;gap:8px;color:#eff5f9;font-size:13px;font-weight:650;cursor:pointer;min-width:0}
+.finance-event-toggle span{white-space:nowrap;flex:0 0 auto}
+.finance-event-toggle small{margin-left:auto}
 .finance-event-toggle input{accent-color:#70b4e2;width:17px;height:17px;margin:0;flex:none;cursor:pointer}
 .finance-event-toggle small{font-size:10px;color:#93aabc;font-weight:400;white-space:nowrap}
 .finance-reset{padding:7px 10px;border-radius:7px;font-size:11px}
@@ -180,7 +182,7 @@
 .finance-detail p,.finance-detail a{font-size:11px}
 .finance-detail details{border-top:1px solid #385064;margin-top:10px;padding-top:8px}
 .finance-detail details summary{cursor:pointer;color:#a6d1e9;font-size:11px}
-.finance-map-wrap .leaflet-tooltip.finance-event-tooltip{max-width:270px;white-space:normal;padding:10px 12px;background:#13222d;border-color:#5c8395}
+.finance-map-wrap .leaflet-tooltip.finance-event-tooltip{width:260px;max-width:calc(100vw - 24px);white-space:normal;overflow-wrap:break-word;word-break:normal;padding:10px 12px;background:#13222d;border-color:#5c8395}
 .finance-event-tooltip strong{display:block;font-size:12px;color:#f3f7fb;margin-bottom:5px}
 .finance-event-tooltip div{font-size:11px;color:#cedee9;line-height:1.5}
 .finance-event-tooltip small{display:block;margin-top:6px;font-size:9px;color:#94abb9}
@@ -203,10 +205,9 @@ footer{display:none}
 }
 
 /* Direct state-to-state navigation: not a three-layer map mode switch. */
-.finance-state-actions{display:flex;align-items:center;gap:7px;min-width:0;flex:0 1 auto}
+.finance-state-actions{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px;min-width:0;width:100%}
 .finance-state-label{font-size:10px;color:#9bafbf;white-space:nowrap}
-.finance-state-jump{min-width:125px;max-width:185px;flex:0 1 160px;background:#172533;color:#f0f6fb;border:1px solid #395669;border-radius:7px;padding:7px 9px;font:inherit;font-size:11px;cursor:pointer}
+.finance-state-jump{width:100%;min-width:0;max-width:none;background:#172533;color:#f0f6fb;border:1px solid #395669;border-radius:7px;padding:7px 9px;font:inherit;font-size:11px;cursor:pointer}
 .finance-state-jump:focus-visible{outline:2px solid #74b9e7;outline-offset:2px}
 .finance-state-actions .finance-reset{flex:0 0 auto}
-@media(max-width:1160px){.finance-state-label{display:none}.finance-state-jump{max-width:150px}}
-@media(max-width:560px){.finance-state-actions{gap:5px}.finance-state-jump{min-width:96px;max-width:118px;padding:7px 4px;font-size:10px}.finance-state-actions .finance-reset{padding:7px 6px}}
+@media(max-width:560px){.finance-state-actions{gap:5px}.finance-state-jump{min-width:0;max-width:none;padding:7px 4px;font-size:10px}.finance-state-actions .finance-reset{padding:7px 6px}}
