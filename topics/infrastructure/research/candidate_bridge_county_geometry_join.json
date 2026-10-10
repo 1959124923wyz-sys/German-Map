@@ -2,8 +2,13 @@
   "source_data_year": "2025-09",
   "status": "CANDIDATE_TYPE_SAFE_NAME_JOIN_NOT_OFFICIAL_AGS",
   "polygon_file": "data/germany-counties.geojson",
-  "polygon_has_AGS": false,
-  "join_safety": "same state + exact normalized name; source rural/urban type must agree; only curated distinct aliases",
+  "polygon_has_AGS": true,
+  "ags_verified_by": "GeoJSON top-level Feature.id, checked 402 codes unique and 16 state numeric prefixes",
+  "geometry_blob_sha": "d4fb08f16444b40b462ba26beb4d4c97cf236888",
+  "matching_upstream": "https://github.com/m-ad/geofeatures-ags-germany/blob/master/geojson/counties.json",
+  "upstream_same_blob_sha_confirmed": true,
+  "ags_2026_currency": "UNVERIFIED: historical AGS source may predate 2025 boundary changes; current BKG WFS probe timed out",
+  "join_safety": "same state + exact normalized name + administrative type; AGS from the exact same historic GeoJSON Feature.id; 2025 administrative validity not yet certified",
   "geometry_count": 402,
   "source_groups": 438,
   "matched_source_groups": 388,
@@ -35,7 +40,8 @@
       "kfz_NOT_AGS": "BH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "12051",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -54,7 +60,8 @@
       "kfz_NOT_AGS": "CT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "12052",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -73,7 +80,8 @@
       "kfz_NOT_AGS": "FA",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "12053",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -92,7 +100,8 @@
       "kfz_NOT_AGS": "BR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12060",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -111,7 +120,8 @@
       "kfz_NOT_AGS": "DS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12061",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -130,7 +140,8 @@
       "kfz_NOT_AGS": "EE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12062",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -149,7 +160,8 @@
       "kfz_NOT_AGS": "HV",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12063",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -168,7 +180,8 @@
       "kfz_NOT_AGS": "MO",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12064",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -187,7 +200,8 @@
       "kfz_NOT_AGS": "OE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12065",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -206,7 +220,8 @@
       "kfz_NOT_AGS": "OL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12066",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -225,7 +240,8 @@
       "kfz_NOT_AGS": "OS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12067",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -244,7 +260,8 @@
       "kfz_NOT_AGS": "OR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12068",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -263,7 +280,8 @@
       "kfz_NOT_AGS": "PM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12069",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -282,7 +300,8 @@
       "kfz_NOT_AGS": "PI",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12070",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -301,7 +320,8 @@
       "kfz_NOT_AGS": "SN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12071",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -320,7 +340,8 @@
       "kfz_NOT_AGS": "TF",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12072",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -339,7 +360,8 @@
       "kfz_NOT_AGS": "UK",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "12073",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BB",
@@ -358,7 +380,8 @@
       "kfz_NOT_AGS": "PT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "12054",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -377,7 +400,8 @@
       "kfz_NOT_AGS": "AD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08425",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -396,7 +420,8 @@
       "kfz_NOT_AGS": "BB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08211",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -415,7 +440,8 @@
       "kfz_NOT_AGS": "BR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08426",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -434,7 +460,8 @@
       "kfz_NOT_AGS": "BD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08435",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -453,7 +480,8 @@
       "kfz_NOT_AGS": "BH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08315",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -472,7 +500,8 @@
       "kfz_NOT_AGS": "BL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08115",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -491,7 +520,8 @@
       "kfz_NOT_AGS": "CL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08235",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -510,7 +540,8 @@
       "kfz_NOT_AGS": "EM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08316",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -529,7 +560,8 @@
       "kfz_NOT_AGS": "EZ",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08236",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -548,7 +580,8 @@
       "kfz_NOT_AGS": "ES",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08116",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -567,7 +600,8 @@
       "kfz_NOT_AGS": "FB",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08311",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -586,7 +620,8 @@
       "kfz_NOT_AGS": "FB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08311",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -605,7 +640,8 @@
       "kfz_NOT_AGS": "FE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08237",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -624,7 +660,8 @@
       "kfz_NOT_AGS": "GP",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08117",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -643,7 +680,8 @@
       "kfz_NOT_AGS": "HD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08221",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -662,7 +700,8 @@
       "kfz_NOT_AGS": "HH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08135",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -681,7 +720,8 @@
       "kfz_NOT_AGS": "HB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "08121",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -700,7 +740,8 @@
       "kfz_NOT_AGS": "HL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08126",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -719,7 +760,8 @@
       "kfz_NOT_AGS": "KN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08335",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -738,7 +780,8 @@
       "kfz_NOT_AGS": "SU",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "08111",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -757,7 +800,8 @@
       "kfz_NOT_AGS": "LD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08118",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -776,7 +820,8 @@
       "kfz_NOT_AGS": "LR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08336",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -795,7 +840,8 @@
       "kfz_NOT_AGS": "MT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08128",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -814,7 +860,8 @@
       "kfz_NOT_AGS": "MN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08222",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -833,7 +880,8 @@
       "kfz_NOT_AGS": "NO",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08225",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -852,7 +900,8 @@
       "kfz_NOT_AGS": "OR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08317",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -871,7 +920,8 @@
       "kfz_NOT_AGS": "OA",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08136",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -890,7 +940,8 @@
       "kfz_NOT_AGS": "PO",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08231",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -909,7 +960,8 @@
       "kfz_NOT_AGS": "RS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08216",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -928,7 +980,8 @@
       "kfz_NOT_AGS": "RV",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08436",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -947,7 +1000,8 @@
       "kfz_NOT_AGS": "RM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08119",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -966,7 +1020,8 @@
       "kfz_NOT_AGS": "RU",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08415",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -985,7 +1040,8 @@
       "kfz_NOT_AGS": "RN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08226",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -1004,7 +1060,8 @@
       "kfz_NOT_AGS": "RT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08325",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -1023,7 +1080,8 @@
       "kfz_NOT_AGS": "SB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08326",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -1042,7 +1100,8 @@
       "kfz_NOT_AGS": "SH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08127",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -1061,7 +1120,8 @@
       "kfz_NOT_AGS": "SG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08437",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -1080,7 +1140,8 @@
       "kfz_NOT_AGS": "TT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08327",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -1099,7 +1160,8 @@
       "kfz_NOT_AGS": "TB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08416",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -1118,7 +1180,8 @@
       "kfz_NOT_AGS": "UM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08421",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -1137,7 +1200,8 @@
       "kfz_NOT_AGS": "WL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08337",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BW",
@@ -1156,7 +1220,8 @@
       "kfz_NOT_AGS": "ZL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "08417",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1175,7 +1240,8 @@
       "kfz_NOT_AGS": "AF",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09771",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1194,7 +1260,8 @@
       "kfz_NOT_AGS": "AT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09171",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1213,7 +1280,8 @@
       "kfz_NOT_AGS": "AS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09371",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1232,7 +1300,8 @@
       "kfz_NOT_AGS": "AN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09571",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1251,7 +1320,8 @@
       "kfz_NOT_AGS": "AL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09671",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1270,7 +1340,8 @@
       "kfz_NOT_AGS": "AG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09772",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1289,7 +1360,8 @@
       "kfz_NOT_AGS": "BK",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09672",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1308,7 +1380,8 @@
       "kfz_NOT_AGS": "BW",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09173",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1327,7 +1400,8 @@
       "kfz_NOT_AGS": "BM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09471",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1346,7 +1420,8 @@
       "kfz_NOT_AGS": "BY",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09472",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1365,7 +1440,8 @@
       "kfz_NOT_AGS": "BL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09172",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1384,7 +1460,8 @@
       "kfz_NOT_AGS": "CA",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09372",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1403,7 +1480,8 @@
       "kfz_NOT_AGS": "CL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09473",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1422,7 +1500,8 @@
       "kfz_NOT_AGS": "DC",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09174",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1441,7 +1520,8 @@
       "kfz_NOT_AGS": "DG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09271",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1460,7 +1540,8 @@
       "kfz_NOT_AGS": "DD",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09773",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1479,7 +1560,8 @@
       "kfz_NOT_AGS": "DL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09279",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1498,7 +1580,8 @@
       "kfz_NOT_AGS": "DR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09779",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1517,7 +1600,8 @@
       "kfz_NOT_AGS": "EE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09175",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1536,7 +1620,8 @@
       "kfz_NOT_AGS": "EC",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09176",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1555,7 +1640,8 @@
       "kfz_NOT_AGS": "ED",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09177",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1574,7 +1660,8 @@
       "kfz_NOT_AGS": "EH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09572",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1593,7 +1680,8 @@
       "kfz_NOT_AGS": "FR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09474",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1612,7 +1700,8 @@
       "kfz_NOT_AGS": "FE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09178",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1631,7 +1720,8 @@
       "kfz_NOT_AGS": "FG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09272",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1650,7 +1740,8 @@
       "kfz_NOT_AGS": "FF",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09179",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1669,7 +1760,8 @@
       "kfz_NOT_AGS": "FL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09573",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1688,7 +1780,8 @@
       "kfz_NOT_AGS": "GP",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09180",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1707,7 +1800,8 @@
       "kfz_NOT_AGS": "GN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09774",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1726,7 +1820,8 @@
       "kfz_NOT_AGS": "HB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09674",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1745,7 +1840,8 @@
       "kfz_NOT_AGS": "HL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09475",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1764,7 +1860,8 @@
       "kfz_NOT_AGS": "KE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09273",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1783,7 +1880,8 @@
       "kfz_NOT_AGS": "KT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09675",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1802,7 +1900,8 @@
       "kfz_NOT_AGS": "KO",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09476",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1821,7 +1920,8 @@
       "kfz_NOT_AGS": "KB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09477",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1840,7 +1940,8 @@
       "kfz_NOT_AGS": "LL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09181",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1859,7 +1960,8 @@
       "kfz_NOT_AGS": "LH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09274",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1878,7 +1980,8 @@
       "kfz_NOT_AGS": "LC",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09478",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1897,7 +2000,8 @@
       "kfz_NOT_AGS": "LN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09776",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1916,7 +2020,8 @@
       "kfz_NOT_AGS": "MS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09677",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1935,7 +2040,8 @@
       "kfz_NOT_AGS": "ME",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09182",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1954,7 +2060,8 @@
       "kfz_NOT_AGS": "ML",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09676",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1973,7 +2080,8 @@
       "kfz_NOT_AGS": "MI",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09183",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -1992,7 +2100,8 @@
       "kfz_NOT_AGS": "MU",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09184",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2011,7 +2120,8 @@
       "kfz_NOT_AGS": "NU",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09775",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2030,7 +2140,8 @@
       "kfz_NOT_AGS": "NS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09185",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2049,7 +2160,8 @@
       "kfz_NOT_AGS": "NO",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09373",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2068,7 +2180,8 @@
       "kfz_NOT_AGS": "NA",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09575",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2087,7 +2200,8 @@
       "kfz_NOT_AGS": "NW",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09374",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2106,7 +2220,8 @@
       "kfz_NOT_AGS": "NL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09574",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2125,7 +2240,8 @@
       "kfz_NOT_AGS": "OE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09780",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2144,7 +2260,8 @@
       "kfz_NOT_AGS": "OT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09777",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2163,7 +2280,8 @@
       "kfz_NOT_AGS": "PL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09275",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2182,7 +2300,8 @@
       "kfz_NOT_AGS": "PI",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09186",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2201,7 +2320,8 @@
       "kfz_NOT_AGS": "RE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09276",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2220,7 +2340,8 @@
       "kfz_NOT_AGS": "RL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09375",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2239,7 +2360,8 @@
       "kfz_NOT_AGS": "RG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09673",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2258,7 +2380,8 @@
       "kfz_NOT_AGS": "RH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09187",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2277,7 +2400,8 @@
       "kfz_NOT_AGS": "RT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09576",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2296,7 +2420,8 @@
       "kfz_NOT_AGS": "RI",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09277",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2315,7 +2440,8 @@
       "kfz_NOT_AGS": "SD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09376",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2334,7 +2460,8 @@
       "kfz_NOT_AGS": "SL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09678",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2353,7 +2480,8 @@
       "kfz_NOT_AGS": "SA",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09188",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2372,7 +2500,8 @@
       "kfz_NOT_AGS": "SB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09278",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2391,7 +2520,8 @@
       "kfz_NOT_AGS": "TR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09377",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2410,7 +2540,8 @@
       "kfz_NOT_AGS": "TA",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09189",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2429,7 +2560,8 @@
       "kfz_NOT_AGS": "UT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09778",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2448,7 +2580,8 @@
       "kfz_NOT_AGS": "WS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09190",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2467,7 +2600,8 @@
       "kfz_NOT_AGS": "WG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09577",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2486,7 +2620,8 @@
       "kfz_NOT_AGS": "WF",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09479",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2505,7 +2640,8 @@
       "kfz_NOT_AGS": "WR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "09679",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2524,7 +2660,8 @@
       "kfz_NOT_AGS": "AM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09361",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2543,7 +2680,8 @@
       "kfz_NOT_AGS": "AN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09561",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2562,7 +2700,8 @@
       "kfz_NOT_AGS": "AL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09661",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2581,7 +2720,8 @@
       "kfz_NOT_AGS": "AG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09761",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2600,7 +2740,8 @@
       "kfz_NOT_AGS": "BM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09461",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2619,7 +2760,8 @@
       "kfz_NOT_AGS": "BY",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09462",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2638,7 +2780,8 @@
       "kfz_NOT_AGS": "CL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09463",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2657,7 +2800,8 @@
       "kfz_NOT_AGS": "EL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09562",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2676,7 +2820,8 @@
       "kfz_NOT_AGS": "FL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09563",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2695,7 +2840,8 @@
       "kfz_NOT_AGS": "HL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09464",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2714,7 +2860,8 @@
       "kfz_NOT_AGS": "IG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09161",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2733,7 +2880,8 @@
       "kfz_NOT_AGS": "KU",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09762",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2752,7 +2900,8 @@
       "kfz_NOT_AGS": "KM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09763",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2771,7 +2920,8 @@
       "kfz_NOT_AGS": "LH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09261",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2790,7 +2940,8 @@
       "kfz_NOT_AGS": "MM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09764",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2809,7 +2960,8 @@
       "kfz_NOT_AGS": "MU",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09162",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2828,7 +2980,8 @@
       "kfz_NOT_AGS": "NR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09564",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2847,7 +3000,8 @@
       "kfz_NOT_AGS": "PL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09262",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2866,7 +3020,8 @@
       "kfz_NOT_AGS": "RL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09362",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2885,7 +3040,8 @@
       "kfz_NOT_AGS": "RH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09163",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2904,7 +3060,8 @@
       "kfz_NOT_AGS": "SH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09565",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2923,7 +3080,8 @@
       "kfz_NOT_AGS": "SL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09662",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2942,7 +3100,8 @@
       "kfz_NOT_AGS": "ST",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09263",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2961,7 +3120,8 @@
       "kfz_NOT_AGS": "WO",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09363",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-BY",
@@ -2980,7 +3140,8 @@
       "kfz_NOT_AGS": "WR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "09663",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HB",
@@ -2999,7 +3160,8 @@
       "kfz_NOT_AGS": "BR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "04011",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3018,7 +3180,8 @@
       "kfz_NOT_AGS": "HC",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "06434",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3037,7 +3200,8 @@
       "kfz_NOT_AGS": "DR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "06411",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3056,7 +3220,8 @@
       "kfz_NOT_AGS": "FM",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "06412",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3075,7 +3240,8 @@
       "kfz_NOT_AGS": "KL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "06611",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3094,7 +3260,8 @@
       "kfz_NOT_AGS": "WE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "06414",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3113,7 +3280,8 @@
       "kfz_NOT_AGS": "LD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "06532",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3132,7 +3300,8 @@
       "kfz_NOT_AGS": "BR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "06431",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3151,7 +3320,8 @@
       "kfz_NOT_AGS": "DD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "06432",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3170,7 +3340,8 @@
       "kfz_NOT_AGS": "FL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "06631",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3189,7 +3360,8 @@
       "kfz_NOT_AGS": "GE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "06531",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3208,7 +3380,8 @@
       "kfz_NOT_AGS": "GG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "06433",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3227,7 +3400,8 @@
       "kfz_NOT_AGS": "HR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "06632",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3246,7 +3420,8 @@
       "kfz_NOT_AGS": "KL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "06633",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3265,7 +3440,8 @@
       "kfz_NOT_AGS": "LW",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "06533",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3284,7 +3460,8 @@
       "kfz_NOT_AGS": "MB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "06534",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3303,7 +3480,8 @@
       "kfz_NOT_AGS": "OF",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "06438",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3322,7 +3500,8 @@
       "kfz_NOT_AGS": "WF",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "06635",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3341,7 +3520,8 @@
       "kfz_NOT_AGS": "MK",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "06435",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3360,7 +3540,8 @@
       "kfz_NOT_AGS": "MT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "06436",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3379,7 +3560,8 @@
       "kfz_NOT_AGS": "OE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "06437",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3398,7 +3580,8 @@
       "kfz_NOT_AGS": "RT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "06439",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3417,7 +3600,8 @@
       "kfz_NOT_AGS": "SE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "06634",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3436,7 +3620,8 @@
       "kfz_NOT_AGS": "VG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "06535",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3455,7 +3640,8 @@
       "kfz_NOT_AGS": "WM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "06636",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HE",
@@ -3474,7 +3660,8 @@
       "kfz_NOT_AGS": "WT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "06440",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-HH",
@@ -3493,7 +3680,8 @@
       "kfz_NOT_AGS": "HM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "02000",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-MV",
@@ -3512,7 +3700,8 @@
       "kfz_NOT_AGS": "LP",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "13076",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-MV",
@@ -3531,7 +3720,8 @@
       "kfz_NOT_AGS": "MS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "13071",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-MV",
@@ -3550,7 +3740,8 @@
       "kfz_NOT_AGS": "NR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "13074",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-MV",
@@ -3569,7 +3760,8 @@
       "kfz_NOT_AGS": "RL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "13072",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-MV",
@@ -3588,7 +3780,8 @@
       "kfz_NOT_AGS": "VG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "13075",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-MV",
@@ -3607,7 +3800,8 @@
       "kfz_NOT_AGS": "VR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "13073",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-MV",
@@ -3626,7 +3820,8 @@
       "kfz_NOT_AGS": "RL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "13003",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-MV",
@@ -3645,7 +3840,8 @@
       "kfz_NOT_AGS": "SH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "13004",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3664,7 +3860,8 @@
       "kfz_NOT_AGS": "AM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03451",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3683,7 +3880,8 @@
       "kfz_NOT_AGS": "AR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03452",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3702,7 +3900,8 @@
       "kfz_NOT_AGS": "BA",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03101",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3721,7 +3920,8 @@
       "kfz_NOT_AGS": "CL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03351",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3740,7 +3940,8 @@
       "kfz_NOT_AGS": "CO",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03453",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3759,7 +3960,8 @@
       "kfz_NOT_AGS": "CX",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03352",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3778,7 +3980,8 @@
       "kfz_NOT_AGS": "DL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03401",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3797,7 +4000,8 @@
       "kfz_NOT_AGS": "DE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03251",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3816,7 +4020,8 @@
       "kfz_NOT_AGS": "ED",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03402",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3835,7 +4040,8 @@
       "kfz_NOT_AGS": "ES",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03454",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3854,7 +4060,8 @@
       "kfz_NOT_AGS": "FI",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03455",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3873,7 +4080,8 @@
       "kfz_NOT_AGS": "GF",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03151",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3892,7 +4100,8 @@
       "kfz_NOT_AGS": "GS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03153",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3911,7 +4120,8 @@
       "kfz_NOT_AGS": "GB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03456",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3930,7 +4140,8 @@
       "kfz_NOT_AGS": "GT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03152",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3949,7 +4160,8 @@
       "kfz_NOT_AGS": "HP",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03252",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3968,7 +4180,8 @@
       "kfz_NOT_AGS": "HR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03353",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -3987,7 +4200,8 @@
       "kfz_NOT_AGS": "HD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03358",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4006,7 +4220,8 @@
       "kfz_NOT_AGS": "HL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03154",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4025,7 +4240,8 @@
       "kfz_NOT_AGS": "HH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03254",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4044,7 +4260,8 @@
       "kfz_NOT_AGS": "HZ",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03255",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4063,7 +4280,8 @@
       "kfz_NOT_AGS": "LE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03457",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4082,7 +4300,8 @@
       "kfz_NOT_AGS": "LD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03354",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4101,7 +4320,8 @@
       "kfz_NOT_AGS": "LN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03355",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4120,7 +4340,8 @@
       "kfz_NOT_AGS": "NE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03256",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4139,7 +4360,8 @@
       "kfz_NOT_AGS": "NR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03155",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4158,7 +4380,8 @@
       "kfz_NOT_AGS": "OT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03356",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4177,7 +4400,8 @@
       "kfz_NOT_AGS": "PI",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03157",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4196,7 +4420,8 @@
       "kfz_NOT_AGS": "HA",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03241",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4215,7 +4440,8 @@
       "kfz_NOT_AGS": "RT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03357",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4234,7 +4460,8 @@
       "kfz_NOT_AGS": "SL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03102",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4253,7 +4480,8 @@
       "kfz_NOT_AGS": "SH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03257",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4272,7 +4500,8 @@
       "kfz_NOT_AGS": "SA",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03359",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4291,7 +4520,8 @@
       "kfz_NOT_AGS": "UL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03360",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4310,7 +4540,8 @@
       "kfz_NOT_AGS": "VC",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03460",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4329,7 +4560,8 @@
       "kfz_NOT_AGS": "VR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03361",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4348,7 +4580,8 @@
       "kfz_NOT_AGS": "WS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03461",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4367,7 +4600,8 @@
       "kfz_NOT_AGS": "WH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03405",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4386,7 +4620,8 @@
       "kfz_NOT_AGS": "WB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03158",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NI",
@@ -4405,7 +4640,8 @@
       "kfz_NOT_AGS": "WL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "03103",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4424,7 +4660,8 @@
       "kfz_NOT_AGS": "BE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05711",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4443,7 +4680,8 @@
       "kfz_NOT_AGS": "BC",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05911",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4462,7 +4700,8 @@
       "kfz_NOT_AGS": "BN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05314",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4481,7 +4720,8 @@
       "kfz_NOT_AGS": "BR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05554",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4500,7 +4740,8 @@
       "kfz_NOT_AGS": "BT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05512",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4519,7 +4760,8 @@
       "kfz_NOT_AGS": "CE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05558",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4538,7 +4780,8 @@
       "kfz_NOT_AGS": "DD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05913",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4557,7 +4800,8 @@
       "kfz_NOT_AGS": "DI",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05112",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4576,7 +4820,8 @@
       "kfz_NOT_AGS": "DR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05358",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4595,7 +4840,8 @@
       "kfz_NOT_AGS": "DS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05111",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4614,7 +4860,8 @@
       "kfz_NOT_AGS": "ER",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05954",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4633,7 +4880,8 @@
       "kfz_NOT_AGS": "ES",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05113",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4652,7 +4900,8 @@
       "kfz_NOT_AGS": "EK",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05366",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4671,7 +4920,8 @@
       "kfz_NOT_AGS": "GL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05513",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4690,7 +4940,8 @@
       "kfz_NOT_AGS": "GT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05754",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4709,7 +4960,8 @@
       "kfz_NOT_AGS": "HG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05914",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4728,7 +4980,8 @@
       "kfz_NOT_AGS": "HM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05915",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4747,7 +5000,8 @@
       "kfz_NOT_AGS": "HI",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05370",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4766,7 +5020,8 @@
       "kfz_NOT_AGS": "HF",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05758",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4785,7 +5040,8 @@
       "kfz_NOT_AGS": "HR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05916",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4804,7 +5060,8 @@
       "kfz_NOT_AGS": "HC",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05958",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4823,7 +5080,8 @@
       "kfz_NOT_AGS": "HX",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05762",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4842,7 +5100,8 @@
       "kfz_NOT_AGS": "KV",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05154",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4861,7 +5120,8 @@
       "kfz_NOT_AGS": "KF",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05114",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4880,7 +5140,8 @@
       "kfz_NOT_AGS": "KO",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05315",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4899,7 +5160,8 @@
       "kfz_NOT_AGS": "LV",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05316",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4918,7 +5180,8 @@
       "kfz_NOT_AGS": "LP",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05766",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4937,7 +5200,8 @@
       "kfz_NOT_AGS": "MT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05158",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4956,7 +5220,8 @@
       "kfz_NOT_AGS": "ML",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05770",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4975,7 +5240,8 @@
       "kfz_NOT_AGS": "MK",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05962",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -4994,7 +5260,8 @@
       "kfz_NOT_AGS": "MG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05116",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5013,7 +5280,8 @@
       "kfz_NOT_AGS": "MR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05117",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5032,7 +5300,8 @@
       "kfz_NOT_AGS": "MN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05515",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5051,7 +5320,8 @@
       "kfz_NOT_AGS": "OK",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05374",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5070,7 +5340,8 @@
       "kfz_NOT_AGS": "OE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05119",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5089,7 +5360,8 @@
       "kfz_NOT_AGS": "OP",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05966",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5108,7 +5380,8 @@
       "kfz_NOT_AGS": "PD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05774",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5127,7 +5400,8 @@
       "kfz_NOT_AGS": "RC",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05562",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5146,7 +5420,8 @@
       "kfz_NOT_AGS": "RM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05120",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5165,7 +5440,8 @@
       "kfz_NOT_AGS": "RE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05362",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5184,7 +5460,8 @@
       "kfz_NOT_AGS": "RN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05162",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5203,7 +5480,8 @@
       "kfz_NOT_AGS": "RS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05382",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5222,7 +5500,8 @@
       "kfz_NOT_AGS": "RB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05378",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5241,7 +5520,8 @@
       "kfz_NOT_AGS": "SW",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05970",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5260,7 +5540,8 @@
       "kfz_NOT_AGS": "SO",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05974",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5279,7 +5560,8 @@
       "kfz_NOT_AGS": "SL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05122",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5298,7 +5580,8 @@
       "kfz_NOT_AGS": "SF",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05566",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5317,7 +5600,8 @@
       "kfz_NOT_AGS": "AC",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05334",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5336,7 +5620,8 @@
       "kfz_NOT_AGS": "UN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05978",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5355,7 +5640,8 @@
       "kfz_NOT_AGS": "VE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05166",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5374,7 +5660,8 @@
       "kfz_NOT_AGS": "WR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05570",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5393,7 +5680,8 @@
       "kfz_NOT_AGS": "WS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05170",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-NW",
@@ -5412,7 +5700,8 @@
       "kfz_NOT_AGS": "WP",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "05124",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5431,7 +5720,8 @@
       "kfz_NOT_AGS": "AR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07131",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5450,7 +5740,8 @@
       "kfz_NOT_AGS": "AT",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07132",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5469,7 +5760,8 @@
       "kfz_NOT_AGS": "AW",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07331",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5488,7 +5780,8 @@
       "kfz_NOT_AGS": "BD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07332",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5507,7 +5800,8 @@
       "kfz_NOT_AGS": "BK",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07133",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5526,7 +5820,8 @@
       "kfz_NOT_AGS": "BW",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07231",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5545,7 +5840,8 @@
       "kfz_NOT_AGS": "BR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07134",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5564,7 +5860,8 @@
       "kfz_NOT_AGS": "CZ",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07135",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5583,7 +5880,8 @@
       "kfz_NOT_AGS": "DN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07333",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5602,7 +5900,8 @@
       "kfz_NOT_AGS": "EB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07232",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5621,7 +5920,8 @@
       "kfz_NOT_AGS": "GR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07334",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5640,7 +5940,8 @@
       "kfz_NOT_AGS": "FA",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "07311",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5659,7 +5960,8 @@
       "kfz_NOT_AGS": "KL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "07312",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5678,7 +5980,8 @@
       "kfz_NOT_AGS": "KO",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "07111",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5697,7 +6000,8 @@
       "kfz_NOT_AGS": "MI",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "07315",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5716,7 +6020,8 @@
       "kfz_NOT_AGS": "NW",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "07316",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5735,7 +6040,8 @@
       "kfz_NOT_AGS": "PR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "07317",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5754,7 +6060,8 @@
       "kfz_NOT_AGS": "SE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "07318",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5773,7 +6080,8 @@
       "kfz_NOT_AGS": "TI",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "07211",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5792,7 +6100,8 @@
       "kfz_NOT_AGS": "WR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "07319",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5811,7 +6120,8 @@
       "kfz_NOT_AGS": "ZE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "07320",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5830,7 +6140,8 @@
       "kfz_NOT_AGS": "KU",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07336",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5849,7 +6160,8 @@
       "kfz_NOT_AGS": "MB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07339",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5868,7 +6180,8 @@
       "kfz_NOT_AGS": "MK",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07137",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5887,7 +6200,8 @@
       "kfz_NOT_AGS": "NU",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07138",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5906,7 +6220,8 @@
       "kfz_NOT_AGS": "RH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07140",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5925,7 +6240,8 @@
       "kfz_NOT_AGS": "RN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07141",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5944,7 +6260,8 @@
       "kfz_NOT_AGS": "RZ",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07338",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5963,7 +6280,8 @@
       "kfz_NOT_AGS": "SW",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07337",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -5982,7 +6300,8 @@
       "kfz_NOT_AGS": "SD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07340",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -6001,7 +6320,8 @@
       "kfz_NOT_AGS": "TS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07235",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -6020,7 +6340,8 @@
       "kfz_NOT_AGS": "VL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07233",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-RP",
@@ -6039,7 +6360,8 @@
       "kfz_NOT_AGS": "WS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "07143",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6058,7 +6380,8 @@
       "kfz_NOT_AGS": "LB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "01003",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6077,7 +6400,8 @@
       "kfz_NOT_AGS": "DT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "01051",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6096,7 +6420,8 @@
       "kfz_NOT_AGS": "HL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "01053",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6115,7 +6440,8 @@
       "kfz_NOT_AGS": "NR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "01054",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6134,7 +6460,8 @@
       "kfz_NOT_AGS": "OT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "01055",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6153,7 +6480,8 @@
       "kfz_NOT_AGS": "PN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "01056",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6172,7 +6500,8 @@
       "kfz_NOT_AGS": "PO",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "01057",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6191,7 +6520,8 @@
       "kfz_NOT_AGS": "RE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "01058",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6210,7 +6540,8 @@
       "kfz_NOT_AGS": "SF",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "01059",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6229,7 +6560,8 @@
       "kfz_NOT_AGS": "SG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "01060",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6248,7 +6580,8 @@
       "kfz_NOT_AGS": "SE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "01061",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6267,7 +6600,8 @@
       "kfz_NOT_AGS": "SO",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "01062",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6286,7 +6620,8 @@
       "kfz_NOT_AGS": "KE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "01002",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6305,7 +6640,8 @@
       "kfz_NOT_AGS": "FE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "01001",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SH",
@@ -6324,7 +6660,8 @@
       "kfz_NOT_AGS": "NU",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "01004",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SL",
@@ -6343,7 +6680,8 @@
       "kfz_NOT_AGS": "MW",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "10042",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SL",
@@ -6362,7 +6700,8 @@
       "kfz_NOT_AGS": "NU",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "10043",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SL",
@@ -6381,7 +6720,8 @@
       "kfz_NOT_AGS": "SA",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "10044",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SL",
@@ -6400,7 +6740,8 @@
       "kfz_NOT_AGS": "SW",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "10046",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SL",
@@ -6419,7 +6760,8 @@
       "kfz_NOT_AGS": "SB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "10041",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SL",
@@ -6438,7 +6780,8 @@
       "kfz_NOT_AGS": "SP",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "10045",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SN",
@@ -6457,7 +6800,8 @@
       "kfz_NOT_AGS": "CE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "14511",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SN",
@@ -6476,7 +6820,8 @@
       "kfz_NOT_AGS": "DE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "14612",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SN",
@@ -6495,7 +6840,8 @@
       "kfz_NOT_AGS": "EZ",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "14521",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SN",
@@ -6514,7 +6860,8 @@
       "kfz_NOT_AGS": "BU",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "14625",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SN",
@@ -6533,7 +6880,8 @@
       "kfz_NOT_AGS": "GR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "14626",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SN",
@@ -6552,7 +6900,8 @@
       "kfz_NOT_AGS": "LL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "14729",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SN",
@@ -6571,7 +6920,8 @@
       "kfz_NOT_AGS": "MI",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "14627",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SN",
@@ -6590,7 +6940,8 @@
       "kfz_NOT_AGS": "MT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "14522",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SN",
@@ -6609,7 +6960,8 @@
       "kfz_NOT_AGS": "NR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "14730",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SN",
@@ -6628,7 +6980,8 @@
       "kfz_NOT_AGS": "SS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "14628",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SN",
@@ -6647,7 +7000,8 @@
       "kfz_NOT_AGS": "ZI",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "14524",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SN",
@@ -6666,7 +7020,8 @@
       "kfz_NOT_AGS": "LL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "14713",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-SN",
@@ -6685,7 +7040,8 @@
       "kfz_NOT_AGS": "VG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "14523",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6704,7 +7060,8 @@
       "kfz_NOT_AGS": "AS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "15081",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6723,7 +7080,8 @@
       "kfz_NOT_AGS": "AB",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "15082",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6742,7 +7100,8 @@
       "kfz_NOT_AGS": "BG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "15084",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6761,7 +7120,8 @@
       "kfz_NOT_AGS": "BR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "15083",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6780,7 +7140,8 @@
       "kfz_NOT_AGS": "DR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "15001",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6799,7 +7160,8 @@
       "kfz_NOT_AGS": "HA",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "15002",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6818,7 +7180,8 @@
       "kfz_NOT_AGS": "HR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "15085",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6837,7 +7200,8 @@
       "kfz_NOT_AGS": "JL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "15086",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6856,7 +7220,8 @@
       "kfz_NOT_AGS": "MG",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "15003",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6875,7 +7240,8 @@
       "kfz_NOT_AGS": "MS",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "15087",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6894,7 +7260,8 @@
       "kfz_NOT_AGS": "SL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "15088",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6913,7 +7280,8 @@
       "kfz_NOT_AGS": "SZ",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "15089",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6932,7 +7300,8 @@
       "kfz_NOT_AGS": "SE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "15090",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-ST",
@@ -6951,7 +7320,8 @@
       "kfz_NOT_AGS": "WT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "15091",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -6970,7 +7340,8 @@
       "kfz_NOT_AGS": "ES",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "16056",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -6989,7 +7360,8 @@
       "kfz_NOT_AGS": "EF",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "16051",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7008,7 +7380,8 @@
       "kfz_NOT_AGS": "GR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "16052",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7027,7 +7400,8 @@
       "kfz_NOT_AGS": "IK",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "16070",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7046,7 +7420,8 @@
       "kfz_NOT_AGS": "JN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "16053",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7065,7 +7440,8 @@
       "kfz_NOT_AGS": "SR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "16073",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7084,7 +7460,8 @@
       "kfz_NOT_AGS": "KF",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "16065",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7103,7 +7480,8 @@
       "kfz_NOT_AGS": "SM",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "16066",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7122,7 +7500,8 @@
       "kfz_NOT_AGS": "AL",
       "join_method": "explicit_same_state_type_and_alias",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "16077",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7141,7 +7520,8 @@
       "kfz_NOT_AGS": "EC",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "16061",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7160,7 +7540,8 @@
       "kfz_NOT_AGS": "GT",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "16067",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7179,7 +7560,8 @@
       "kfz_NOT_AGS": "GE",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "16076",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7198,7 +7580,8 @@
       "kfz_NOT_AGS": "HL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "16069",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7217,7 +7600,8 @@
       "kfz_NOT_AGS": "NR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "16062",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7236,7 +7620,8 @@
       "kfz_NOT_AGS": "SD",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "16068",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7255,7 +7640,8 @@
       "kfz_NOT_AGS": "SN",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "16072",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7274,7 +7660,8 @@
       "kfz_NOT_AGS": "WL",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "rural",
-      "official_AGS": null
+      "official_AGS": "16071",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7293,7 +7680,8 @@
       "kfz_NOT_AGS": "SH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "16074",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7312,7 +7700,8 @@
       "kfz_NOT_AGS": "SO",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "16075",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7331,7 +7720,8 @@
       "kfz_NOT_AGS": "SU",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "16054",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7350,7 +7740,8 @@
       "kfz_NOT_AGS": "UH",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "16064",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7369,7 +7760,8 @@
       "kfz_NOT_AGS": "WR",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": null,
-      "official_AGS": null
+      "official_AGS": "16063",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     },
     {
       "iso": "DE-TH",
@@ -7388,7 +7780,8 @@
       "kfz_NOT_AGS": "WI",
       "join_method": "same_state_exact_normalized_name_type",
       "source_implied_type": "urban",
-      "official_AGS": null
+      "official_AGS": "16055",
+      "AGS_from_historical_geometry_not_revalidated_current": true
     }
   ],
   "unmatched": [
