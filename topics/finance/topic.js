@@ -136,7 +136,7 @@
       throw Error('市镇数据不符合源文件校验');
      const byCounty=new Map();
      for(const r of data.municipal){
-      if(!/^\\d{8}$/.test(r[0])||r[0].slice(0,2)!==prefix||!Number.isFinite(r[2])||r[2]<0)
+      if(!/^\d{8}$/.test(r[0])||r[0].slice(0,2)!==prefix||!Number.isFinite(r[2])||r[2]<0)
        throw Error('非法市镇值或编码');
       const code=r[0].slice(0,5);
       if(!byCounty.has(code))byCounty.set(code,[]);
