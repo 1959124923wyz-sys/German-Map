@@ -53,6 +53,37 @@ def run(browser,mobile=False):
     assert page.locator("#railway-map canvas").count()==2
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getNetworkGeometryCount()")==33547
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getGraphEdgeCount()")==33547
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getOfficialPickCount()")==33547
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getSpatialBucketCount()")>0
+    # Regression: an actual DB InfraGO rail around Berlin must respond to a
+    # click even when the selected service has no observations on that track.
+    # Reject a fabricated zero percent; both KPIs must be honest dashes.
+    if not mobile:
+        green=page.evaluate("""() => {
+          const api=window.__RAILWAY_OVERVIEW__,map=api.getMap();
+          const seen=new Set();
+          let tries=0;
+          for(const entries of api.getOfficialPickEntries().values()){
+            for(const entry of entries){
+              if(seen.has(entry))continue;seen.add(entry);
+              const xy=entry.part.xy;
+              const x=(xy[0]+xy[2])/2,y=(xy[1]+xy[3])/2;
+              const ll=map.unproject(L.point(x,y),9);
+              if(ll.lat<52.3||ll.lat>52.9||ll.lng<12.75||ll.lng>13.95)continue;
+              if(++tries>2000) return null;
+              api.clickPoint(ll);
+              if(api.getSelected()?.unobserved)return {
+                route:api.getSelected().route,lat:ll.lat,lng:ll.lng,tries
+              };
+            }
+          }
+          return null;
+        }""")
+        assert green,'Berlin region must have clickable no-data official rails'
+        assert page.locator("#detail .detail-grid b").all_inner_texts()==["—","—"]
+        assert "暂无可比观测" in page.locator("#detail").inner_text()
+        print("PASS Berlin official green rail selectable:",green,flush=True)
+
     # This was the actual nationwide no-data gap reported by the user:
     # Erlangen km 23.504 -> Forchheim km 38.289 on observed route 5900.
     # Both ends have real observations, the missing center must not contribute
