@@ -27,6 +27,8 @@ def run(browser,mobile=False):
     print(label,"initial",state)
     assert state["countyShapes"]==400
     assert state["stockReady"] is True
+    assert state["structureReady"] is True
+    assert page.locator("#housingDossier").is_hidden()
     assert page.locator("#housingMap .leaflet-control-zoom-in").count()==1
     assert page.locator("#stateJump option").count()==17
     assert len(page.locator("#quickStats .housing-quick-card").all())==4
@@ -34,6 +36,7 @@ def run(browser,mobile=False):
     assert "中位数" in page.locator("#description").inner_text()
     assert "2025" in page.locator("#legend").inner_text()
     assert "欧元" in page.locator("#value").inner_text()
+    assert page.locator("#housingNationalHint").is_visible()
     assert page.locator("main .housing-rank-row").count()==8
     assert page.locator("#housingMetric option").count()==15
     assert page.evaluate("GermanHousingResearch.state().censusReady") is True
@@ -71,6 +74,16 @@ def run(browser,mobile=False):
     assert page.evaluate("GermanHousingResearch.state().focusState")=="07"
     assert page.locator("#stateJump").input_value()=="07"
     assert "欧元" in page.locator("#value").inner_text()
+    assert page.locator("#housingDossier").is_visible()
+    page.locator('[data-dossier-tab="structure"]').click()
+    assert "2022住房普查" in page.locator("#housingStructureCoverage").inner_text()
+    assert page.locator("#housingStructure .dossier-metrics").count()==0
+    assert page.locator("#housingStructure>div").count()==6
+    assert "租金" in page.locator("#housingStructure").inner_text()
+    page.locator('[data-dossier-tab="districts"]').click()
+    page.locator("#housingCountySearch").fill("07111")
+    assert page.locator("#housingCountyResults .dossier-entry").count()>=0
+    page.locator("#housingCountySearch").fill("")
     row=page.locator("#topRank .housing-rank-row").first
     row.click()
     s=page.evaluate("GermanHousingResearch.state()")
@@ -80,7 +93,9 @@ def run(browser,mobile=False):
     # Corrected 2025 Berlin borough data: Berlin itself is ONE Kreis 11000.
     page.locator("#stateJump").select_option("11")
     assert page.evaluate("GermanHousingResearch.state().berlinBoroughReady") is True
+    page.locator('[data-dossier-tab="districts"]').click()
     page.locator("#topRank .housing-rank-row").first.click()
+    page.locator('[data-dossier-tab="archive"]').click()
     assert page.locator("#berlinBoroughCompletions").is_visible()
     assert page.locator("#bavariaCompletions").is_hidden()
     assert page.locator("#brandenburgCompletions").is_hidden()
@@ -92,7 +107,9 @@ def run(browser,mobile=False):
     # accounting must remain separate from NRW/Bavaria 'new residential' data.
     page.locator("#stateJump").select_option("12")
     assert page.evaluate("GermanHousingResearch.state().brandenburgReady") is True
+    page.locator('[data-dossier-tab="districts"]').click()
     page.locator("#topRank .housing-rank-row").first.click()
+    page.locator('[data-dossier-tab="archive"]').click()
     assert page.locator("#brandenburgCompletions").is_visible()
     assert page.locator("#nrwCompletions").is_hidden()
     assert page.locator("#bavariaCompletions").is_hidden()
@@ -102,7 +119,9 @@ def run(browser,mobile=False):
     page.locator("#stateJump").select_option("09")
     assert page.evaluate("GermanHousingResearch.state().focusState")=="09"
     assert page.evaluate("GermanHousingResearch.state().bavariaReady") is True
+    page.locator('[data-dossier-tab="districts"]').click()
     page.locator("#topRank .housing-rank-row").first.click()
+    page.locator('[data-dossier-tab="archive"]').click()
     assert page.locator("#bavariaCompletions").is_visible(),"Bavaria official 2025 district source should appear only on Bavarian county"
     assert page.locator("#nrwCompletions").is_hidden()
     page.locator("#bavariaCompletions summary").click()
@@ -112,13 +131,17 @@ def run(browser,mobile=False):
     assert page.evaluate("GermanHousingResearch.state().selectedCounty") is None
     # State-specific evidence: no pseudo-national construction/homelessness overlay.
     page.locator("#stateJump").select_option("05")
+    page.locator('[data-dossier-tab="districts"]').click()
     page.locator("#topRank .housing-rank-row").first.click()
+    page.locator('[data-dossier-tab="archive"]').click()
     assert page.locator("#nrwCompletions").is_visible(),"NRW local source must be available"
     assert page.locator("#landPriceBand").is_visible(),"2024 land price is an ordinal band"
     page.locator("#nrwCompletions summary").click()
     assert "2025" in page.locator("#nrwHistory").inner_text()
     page.locator("#stateJump").select_option("14")
+    page.locator('[data-dossier-tab="districts"]').click()
     page.locator("#topRank .housing-rank-row").first.click()
+    page.locator('[data-dossier-tab="archive"]').click()
     assert page.locator("#saxonyDetails").is_visible(),"Saxony official 13-county series must be available"
     assert page.locator("#nrwCompletions").is_hidden(),"NRW history must not leak into Sachsen"
     page.locator("#saxonyDetails summary").click()
@@ -127,6 +150,8 @@ def run(browser,mobile=False):
     assert page.evaluate("GermanHousingResearch.state().focusState") is None
     assert page.evaluate("GermanHousingResearch.state().selectedCounty") is None
     assert page.locator("#stateJump").input_value()==""
+    assert page.locator("#housingDossier").is_hidden()
+    assert page.locator("#housingNationalHint").is_visible()
     assert not errors,errors
     page.screenshot(path=f"/tmp/housing-research-{label}.png",full_page=True)
     if mobile:

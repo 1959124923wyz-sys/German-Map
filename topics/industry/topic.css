@@ -42,3 +42,10 @@
  .industry-sidebar .safety-panel{overflow:visible}
  .industry-footer{line-height:1.4}
 }
+
+/* Country → state → county; production records stay out of the national first view. */
+.industry-state-picker{display:flex;gap:8px;align-items:center;margin:8px 0 0;color:#a9bdcb;font-size:10px}
+.industry-state-picker select{min-width:0;flex:1;background:#162634;border:1px solid #3d5466;color:#e4edf4;border-radius:6px;padding:8px;font-size:11px}
+.industry-sidebar #industryBackState,.housing-summary #housingBackState{color:#c5dce8;border:1px solid #446173;background:#203746;border-radius:6px;padding:5px 8px;font-size:10px;cursor:pointer}
+.industry-sidebar #industryNationalArchive .industry-list{padding:0 8px}
+.industry-sidebar .dossier-entry{color:#e2ebf2}

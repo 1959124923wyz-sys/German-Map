@@ -7,7 +7,8 @@
 <meta name="description" content="德国16州非官方基础设施试验评分、铁路设施实测数据、不同口径桥梁与道路证据，以及带来源的工程事件。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css?v=clean1">
-<link rel="stylesheet" href="topic.css?v=i1">
+<link rel="stylesheet" href="topic.css?v=i2">
+<link rel="stylesheet" href="../../css/region-dossier.css?v=1">
 </head>
 <body>
 <header><div class="header-main">
@@ -38,6 +39,9 @@
     <label class="infra-toggle"><input type="checkbox" id="showEvents"> 显示工程事件点</label>
     <button type="button" id="resetView" title="返回德国全国">全国</button>
    </div>
+   <label class="infra-state-picker" for="infraStateJump">定位联邦州
+    <select id="infraStateJump"><option value="">全国 · 选择联邦州</option></select>
+   </label>
    <label class="infra-filter" id="filterWrap" hidden>事件类型
     <select id="eventCategory"><option value="all">全部类型</option><option value="bridge">桥梁损坏</option><option value="delay">工期延期</option><option value="cost">投资超支</option><option value="strange">闲置工程</option><option value="access">公共交通</option><option value="school">学校建筑</option><option value="facility">市政设施</option></select>
    </label>
@@ -52,16 +56,36 @@
     <div class="area-stat"><b id="statB">—</b><small id="statBLabel">试验排名</small></div>
     <div class="area-stat"><b id="statC">—</b><small id="statCLabel">精选事件</small></div>
    </div>
-   <div id="indicatorDetail" class="infra-evidence" hidden></div>
    <div id="eventDetail" class="infra-event-detail" hidden></div>
-   <section id="stateRanking" class="rank-section">
-    <div class="rank-head"><strong>16州状态指数</strong><span>低分优先 · 点击定位</span></div>
+   <div id="infraDossier" class="region-dossier" hidden>
+    <div class="dossier-heading"><strong>联邦州资料室</strong><small>设施 · 桥梁 · 项目</small></div>
+    <div class="dossier-tabs">
+     <button data-dossier-tab="facilities">设施四项</button>
+     <button data-dossier-tab="bridges">桥梁县市</button>
+     <button data-dossier-tab="projects">工程档案</button>
+    </div>
+    <div data-dossier-pane="facilities" class="dossier-pane">
+     <div id="indicatorDetail" class="infra-evidence" hidden></div>
+    </div>
+    <div data-dossier-pane="bridges" class="dossier-pane" hidden>
+     <p class="dossier-note">2025年联邦公路桥梁结构单元（Teilbauwerke）研究样本，非德国全部桥梁。DIN状态≥3.0并不等同于承载TLI IV/V。按AGS列出，不进行综合安全排名。</p>
+     <div id="bridgeStateSummary" class="dossier-metrics"></div>
+     <input id="bridgeCountySearch" class="dossier-search" type="search" placeholder="查找县市或5位AGS" aria-label="查找桥梁县市">
+     <div id="bridgeCountyList" class="dossier-scroll"></div>
+     <a href="https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Br%C3%BCckenstatistik_Deutschland/FeatureServer/0" target="_blank" rel="noopener noreferrer">桥梁数据来源与覆盖范围 ↗</a>
+    </div>
+    <div data-dossier-pane="projects" class="dossier-pane" hidden>
+     <p class="dossier-note">精选个案：时间、实施状态和坐标精度分别标注，不代表本州工程总数；勾选“显示工程事件点”才在地图上叠加。</p>
+     <section id="eventSection" hidden>
+      <div class="infra-list-heading"><strong>项目事件 · 选编</strong><span id="eventCount"></span></div>
+      <div id="eventList" class="infra-event-list"></div>
+     </section>
+    </div>
+   </div>
+   <details id="stateRanking" class="dossier-national" >
+    <summary>浏览16州试验指标列表</summary>
     <div id="rankList" class="rank-list"></div>
-   </section>
-   <section id="eventSection" hidden>
-    <div class="infra-list-heading"><strong>项目事件 · 选编</strong><span id="eventCount"></span></div>
-    <div id="eventList" class="infra-event-list"></div>
-   </section>
+   </details>
   </section>
   <details class="infra-method">
    <summary>数据来源与重要限制</summary>
@@ -78,6 +102,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="../../js/core/place-names-zh.js?v=clean1"></script>
 <script src="../../js/layers/city-labels.js?v=clean1"></script>
-<script src="topic.js?v=i1"></script>
+<script src="../../js/core/region-dossier.js?v=1"></script>
+<script src="topic.js?v=i2"></script>
 </body>
 </html>

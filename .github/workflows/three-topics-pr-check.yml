@@ -9,6 +9,8 @@ on:
       - '.github/workflows/three-topics-pr-check.yml'
       - 'index.html'
       - 'css/map.css'
+      - 'css/region-dossier.css'
+      - 'js/core/region-dossier.js'
   push:
     branches: [main]
     paths:
@@ -16,6 +18,8 @@ on:
       - 'topics/infrastructure/**'
       - 'topics/housing/**'
       - '.github/workflows/three-topics-pr-check.yml'
+      - 'css/region-dossier.css'
+      - 'js/core/region-dossier.js'
 permissions:
   contents: read
 
@@ -27,6 +31,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check JS and source records for industrial/infrastructure topics
         run: |
+          node --check js/core/region-dossier.js
           node --check topics/industry/topic.js
           node --check topics/infrastructure/topic.js
           node --check topics/housing/topic.js
@@ -47,6 +52,8 @@ jobs:
                   if other != name:
                       assert f'href="../{other}/"' in page
               assert page.count('aria-current="page"')==1
+              assert 'region-dossier.js' in page and 'region-dossier.css' in page
+              assert 'data-dossier-tab=' in page
           for p in [Path('index.html'),*(Path('topics')/n/'index.html' for n in ('drugs','environment','immigration','railway','finance'))]:
               html=p.read_text(encoding='utf-8')
               for topic in names:

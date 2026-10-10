@@ -5,7 +5,8 @@
 <meta name="description" content="德国工业收缩重大事件：县市区域底图、重点工厂关闭与裁员，附公告状态和来源。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css?v=clean1">
-<link rel="stylesheet" href="topic.css?v=industry1">
+<link rel="stylesheet" href="topic.css?v=industry2">
+<link rel="stylesheet" href="../../css/region-dossier.css?v=1">
 </head><body>
 <header><div class="header-main">
  <div class="titleblock"><div class="title">德国工业衰退地图</div><div class="header-meta">2023—2026年工业事件 · 400县研究样本</div></div>
@@ -30,9 +31,12 @@
  <aside class="industry-sidebar">
   <div class="controls">
    <div class="control-row"><strong>显示</strong>
-    <label><input type="checkbox" id="showMarkers" checked>重大企业新闻</label>
+    <label><input type="checkbox" id="showMarkers">显示重大企业事件点</label>
     <button type="button" id="viewGermany">全国</button>
    </div>
+   <label class="industry-state-picker" for="industryStateJump">联邦州
+    <select id="industryStateJump" aria-label="定位联邦州"><option value="">全国 · 选择联邦州</option></select>
+   </label>
   </div>
   <section class="safety-panel" aria-live="polite">
    <div class="safety-head"><strong>区域数据</strong><span class="safety-hint">点击地图选取区域</span></div>
@@ -45,7 +49,33 @@
    </div>
    <div id="methodNote" class="area-note">地区颜色目前反映已收录重大工业收缩事件数量，尚非官方工业就业降幅；未收录不代表未发生。</div>
    <div id="eventDetail" class="industry-detail" hidden></div>
-   <div class="rank-section"><div class="rank-head"><strong>重点企业事件</strong><span id="listCount">—</span></div><div class="industry-list" id="eventList"></div></div>
+   <p id="industryNationalHint" class="dossier-intro">点击地图中的县域先进入所属联邦州，查看更多企业、实施状态和来源资料。再次点击县市查看本地事件。</p>
+   <div id="industryDossier" class="region-dossier" hidden>
+    <div class="dossier-heading"><strong id="industryDossierName">地区工业资料室</strong><button id="industryBackState" type="button" hidden>返回联邦州</button></div>
+    <div class="dossier-tabs">
+     <button data-dossier-tab="overview">地区概况</button>
+     <button data-dossier-tab="cases">企业档案</button>
+     <button data-dossier-tab="status">实施进展</button>
+    </div>
+    <div data-dossier-pane="overview" class="dossier-pane">
+     <div class="dossier-metrics" id="industryStateMetrics"></div>
+     <p class="dossier-note">样本仅包含研究已收录且可追溯的事件；工厂关闭、减产、生产线停产及公告分别核对，不能汇总为实际失业人数或地区就业下降率。</p>
+    </div>
+    <div data-dossier-pane="cases" class="dossier-pane" hidden>
+     <p class="dossier-note">点击企业查看其公告、执行状态、岗位口径、来源及地点精度；多数标点不是精确厂门地址。</p>
+     <input id="industryEventSearch" class="dossier-search" type="search" placeholder="按企业、城市或事件查找" aria-label="查找工业事件">
+     <div class="rank-head"><strong>企业事件</strong><span id="listCount">—</span></div>
+     <div class="industry-list dossier-scroll" id="eventList"></div>
+    </div>
+    <div data-dossier-pane="status" class="dossier-pane" hidden>
+     <div id="industryStatusSummary" class="dossier-metrics"></div>
+     <div id="industryStatusList" class="dossier-scroll"></div>
+    </div>
+   </div>
+   <details class="dossier-national" id="industryNationalArchive">
+    <summary>展开全国工业事件研究档案</summary>
+    <div id="industryNationalList" class="industry-list dossier-scroll"></div>
+   </details>
   </section>
   <details class="incident-drawer" id="researchDetails">
    <summary>统计口径与资料限制</summary>
@@ -57,5 +87,6 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="../../js/core/place-names-zh.js?v=clean1"></script>
 <script src="../../js/layers/city-labels.js?v=clean1"></script>
-<script src="topic.js?v=industry1"></script>
+<script src="../../js/core/region-dossier.js?v=1"></script>
+<script src="topic.js?v=industry2"></script>
 </body></html>

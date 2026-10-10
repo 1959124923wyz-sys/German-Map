@@ -8,7 +8,8 @@
 <title>德国住房危机地图 · German-Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css">
-<link rel="stylesheet" href="topic.css">
+<link rel="stylesheet" href="topic.css?v=h2">
+<link rel="stylesheet" href="../../css/region-dossier.css?v=1">
 </head>
 <body>
 <header>
@@ -67,16 +68,44 @@
    <div class="housing-big" id="value">正在读取数据</div>
    <div class="housing-description" id="description">选择一个地区查看详细指标</div>
    <div class="housing-coverage" id="coverage">—</div>
-   <div class="housing-side-grid" id="quickStats"></div>
-   <div class="housing-note" id="landPriceBand" hidden></div>
-   <details class="housing-extra" id="nrwCompletions" hidden><summary>北威州 · 2015—2025年新建住宅竣工</summary><div id="nrwHistory"></div></details>
-   <details class="housing-extra" id="bavariaCompletions" hidden><summary>巴伐利亚州 · 2025年住宅竣工</summary><div id="bavariaHistory"></div></details>
-   <details class="housing-extra" id="brandenburgCompletions" hidden><summary>勃兰登堡州 · 2024—2025年竣工住房</summary><div id="brandenburgHistory"></div></details>
-   <details class="housing-extra" id="berlinBoroughCompletions" hidden><summary>柏林 · 12行政区2024—2025年竣工住房</summary><div id="berlinBoroughHistory"></div></details>
-   <details class="housing-extra" id="saxonyDetails" hidden><summary>萨克森 · 2022—2026安置无住房人员</summary><div id="saxonyHistory"></div></details>
+   <p class="dossier-intro" id="housingNationalHint">选择地图中的联邦州，开启当地的租金结构、住房供应与县市对照档案。</p>
+   <div id="housingDossier" class="region-dossier" hidden>
+    <div class="dossier-heading"><strong>地区住房资料室</strong><button type="button" id="housingBackState" hidden>返回联邦州</button></div>
+    <div class="dossier-tabs">
+     <button data-dossier-tab="overview">住房概况</button>
+     <button data-dossier-tab="structure">租住结构</button>
+     <button data-dossier-tab="districts">县市对照</button>
+     <button data-dossier-tab="archive">地方资料</button>
+    </div>
+    <div data-dossier-pane="overview" class="dossier-pane">
+     <div class="housing-side-grid" id="quickStats"></div>
+     <p class="dossier-note">州级数据为县市指标的简单中位数，不是人口加权平均；只用于粗略观察区域内部差异。</p>
+    </div>
+    <div data-dossier-pane="structure" class="dossier-pane" hidden>
+     <p class="dossier-note">Zensus 2022官方住房普查。租金价位档的分母为已支付租金的住房；建筑所有权比例分母为住宅套数。市镇及合作社持有建筑中的住房，不等于享有补贴的社会住房。</p>
+     <div id="housingStructure" class="dossier-metrics"></div>
+     <p id="housingStructureCoverage" class="dossier-note"></p>
+     <a href="https://www.destatis.de/static/DE/zensus/gitterdaten/Regionaltabelle_Gebaeude_Wohnungen.xlsx" target="_blank" rel="noopener noreferrer">Zensus 2022住房普查来源 ↗</a>
+    </div>
+    <div data-dossier-pane="districts" class="dossier-pane" hidden>
+     <label for="housingCountySearch">按县市名称或五位AGS查找</label>
+     <input id="housingCountySearch" type="search" class="dossier-search" placeholder="查找县市">
+     <div id="housingCountyResults" class="dossier-scroll"></div>
+     <section class="housing-rank" id="rankBox"><div class="housing-rank-head"><strong>当前指标前八名</strong><small>同年份，同口径</small></div><div id="topRank"></div></section>
+    </div>
+    <div data-dossier-pane="archive" class="dossier-pane" hidden>
+     <p class="dossier-note">这里存放仅覆盖部分州或特定县市的官方历史数据，不冒充全国同年份的可比图层。</p>
+     <div class="housing-note" id="landPriceBand" hidden></div>
+     <details class="housing-extra" id="nrwCompletions" hidden><summary>北威州 · 2015—2025年新建住宅竣工</summary><div id="nrwHistory"></div></details>
+     <details class="housing-extra" id="bavariaCompletions" hidden><summary>巴伐利亚州 · 2025年住宅竣工</summary><div id="bavariaHistory"></div></details>
+     <details class="housing-extra" id="brandenburgCompletions" hidden><summary>勃兰登堡州 · 2024—2025年竣工住房</summary><div id="brandenburgHistory"></div></details>
+     <details class="housing-extra" id="berlinBoroughCompletions" hidden><summary>柏林 · 12行政区2024—2025年竣工住房</summary><div id="berlinBoroughHistory"></div></details>
+     <details class="housing-extra" id="saxonyDetails" hidden><summary>萨克森 · 2022—2026安置无住房人员</summary><div id="saxonyHistory"></div></details>
+    </div>
+   </div>
    <div class="housing-note" id="interpretNote"></div>
    <div class="housing-source"><strong>数据出处</strong><a id="sourceLink" target="_blank" rel="noopener noreferrer" href="https://deutschlandatlas.bund.de/service/daten-herunterladen/aktuelle-downloaddaten/aktuelle-downloaddateien">Deutschlandatlas 原始统计 ↗</a><div id="sourceCredit"></div></div>
-   <section class="housing-rank" id="rankBox"><div class="housing-rank-head"><strong>县市数值排序</strong><small>相同指标与统计年份</small></div><div id="topRank"></div></section>
+
   </section>
   <details class="housing-method">
    <summary>数据说明与局限</summary>
@@ -97,6 +126,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="../../js/core/place-names-zh.js"></script>
 <script src="../../js/layers/city-labels.js"></script>
-<script src="topic.js"></script>
+<script src="../../js/core/region-dossier.js?v=1"></script>
+<script src="topic.js?v=h2"></script>
 </body>
 </html>

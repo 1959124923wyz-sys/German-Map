@@ -74,3 +74,12 @@
 .housing-archive-grid>div{background:#223340;border:1px solid #304757;border-radius:5px;padding:6px 4px}
 .housing-archive-grid small{display:block;font-size:8px;color:#9aafbc}
 .housing-archive-grid b{font-size:11px;font-variant-numeric:tabular-nums;color:#e6f0f5}
+
+.housing-summary .region-dossier{flex:0 0 auto}
+.housing-summary .dossier-national{flex:0 0 auto}
+.housing-summary .dossier-metrics{margin-top:9px}
+.housing-summary .dossier-pane label{font-size:10px;color:#a7bcc9}
+.housing-summary .dossier-pane>a{display:block;margin:9px 0;color:#89c4e8;font-size:10px}
+.housing-summary .housing-source[hidden],.housing-summary .housing-note[hidden]{display:none!important}
+.housing-summary .housing-archive-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:540px){.housing-summary .housing-archive-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
