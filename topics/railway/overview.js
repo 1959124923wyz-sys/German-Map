@@ -58,10 +58,17 @@ const CanvasLayer=L.Layer.extend({
   // 1. Complete actual DB railway geometry, including unsampled spans.
   // Different observation groups may change colour but cannot cut the rail.
   if(view.networkReady){
+   // Underlying source geometry guarantees physical national continuity even
+   // when no September observation exists anywhere on that DB route.
+   ctx.beginPath();
+   for(const part of view.backbone.all)if(visible(part,v))drawPath(ctx,part,v);
+   ctx.strokeStyle=COLORS.green;ctx.globalAlpha=.28;
+   ctx.lineWidth=m.getZoom()<7?1:1.4;ctx.stroke();
+   // Passenger-relevant infrastructure is the dominant continuous GREEN line.
    ctx.beginPath();
    for(const part of view.backbone.active)if(visible(part,v))drawPath(ctx,part,v);
-   ctx.strokeStyle=COLORS.green;ctx.globalAlpha=.9;
-   ctx.lineWidth=m.getZoom()<7?1.55:2.05;ctx.stroke();
+   ctx.strokeStyle=COLORS.green;ctx.globalAlpha=.95;
+   ctx.lineWidth=m.getZoom()<7?1.8:2.3;ctx.stroke();
   }
   // 2. Genuine observed orange/red intervals only, never extrapolate a
   // missing station pair or recolour an unmeasured bridge.
