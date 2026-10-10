@@ -18,7 +18,7 @@ const CELL=64, NATION=[[47.05,5.45],[55.15,15.65]];
 const {REF_ZOOM,WORLD,officialPart,observedParts,actualBounds,currentViewport,visible,drawPath,unproject,segmentDist}=window.Railway07Geometry;
 // Fixed 100-observation inclusion threshold (not a user-facing filter).
 const view={service:'REGIONAL',metric:'both',minimum:100,selected:null,links:[],
-  rendered:[],groups:[],ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,networkParts:[],grid:new Map(),map:null,
+  rendered:[],groups:[],bridgePaths:[],bridged:0,bridgeGraph:new window.Railway07Bridge.RouteGraph(),ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,networkParts:[],grid:new Map(),map:null,
   baseLayer:null,observedLayer:null,repaints:0};
 const cache=new Map();
 const fmt=n=>Number(n).toLocaleString('zh-CN');
@@ -62,6 +62,13 @@ const CanvasLayer=L.Layer.extend({
    ctx.strokeStyle=COLORS.green;ctx.globalAlpha=.53;
    ctx.lineWidth=m.getZoom()<7?.9:1.1;ctx.stroke();
   }else{
+   // Genuine DB InfraGO curves bridge observational gaps, but stay faint
+   // green; unknown observations never inherit their neighbours' red grade.
+   if(view.bridgePaths.length){
+    ctx.beginPath();
+    for(const p of view.bridgePaths)if(visible(p,v))drawPath(ctx,p,v);
+    ctx.strokeStyle=COLORS.green;ctx.globalAlpha=.75;ctx.lineWidth=1.8;ctx.stroke();
+   }
    const widths=[1.65,2.25,2.65];
    const colors=[COLORS.green,COLORS.orange,COLORS.red];
    for(let grade=0;grade<3;grade++){
@@ -138,7 +145,11 @@ function buildNetwork(){
  const batch=()=>{
   const until=Math.min(cursor+950,sections.length);
   for(;cursor<until;cursor++){
-   const p=officialPart(sections[cursor]);if(p)view.networkParts.push(p);
+   const p=officialPart(sections[cursor]);
+   if(p){
+    view.networkParts.push(p);
+    view.bridgeGraph.add(sections[cursor][0],p);
+   }
   }
   if(cursor<sections.length){
    if(cursor===950)$('#mapStatus').textContent='';
@@ -146,6 +157,8 @@ function buildNetwork(){
   }else{
    view.networkReady=true;view.baseLayer.schedule();
    if(view.tiles)$('#mapStatus').textContent='';
+   // Observations may have loaded before the official graph.
+   if(view.links.length)recalc();
   }
  };
  requestAnimationFrame(batch);
@@ -215,6 +228,51 @@ function element(parent,tag,value,className){
  if(className)item.className=className;
  parent.appendChild(item);return item;
 }
+// Extract physical endpoint names from the undirected station chain rather
+// than trusting arbitrary first/last reverse-direction observation order.
+function corridorStations(members){
+ const edges=new Map();
+ for(const m of members){
+  const leg=m.leg,a=leg.from_station,b=leg.to_station,km=leg.km_range;
+  if(!a||!b||a===b||!Array.isArray(km)||km.length!==2)continue;
+  const id=[a,b].sort().join('\u0000')+'|'+km.map(Number).sort((x,y)=>x-y).join(',');
+  if(!edges.has(id))edges.set(id,{a,b,low:Math.min(...km),high:Math.max(...km)});
+ }
+ const unique=[...edges.values()];
+ if(!unique.length)return [members[0].leg.from_station,members[members.length-1].leg.to_station];
+ const comp=[],pending=new Set(unique);
+ while(pending.size){
+  const seed=pending.values().next().value,pieces=[seed];pending.delete(seed);
+  const nodes=new Set([seed.a,seed.b]);let changed=true;
+  while(changed){changed=false;
+   for(const edge of [...pending]){
+    if(nodes.has(edge.a)||nodes.has(edge.b)){
+     pending.delete(edge);pieces.push(edge);nodes.add(edge.a);nodes.add(edge.b);changed=true;
+    }
+   }
+  }
+  pieces.sort((a,b)=>a.low-b.low);
+  const degree=new Map();
+  for(const e of pieces){degree.set(e.a,(degree.get(e.a)||0)+1);degree.set(e.b,(degree.get(e.b)||0)+1);}
+  const lowEdge=pieces[0],highEdge=pieces[pieces.length-1];
+  const termini=[...degree].filter(x=>x[1]===1).map(x=>x[0]);
+  let low=lowEdge.a,high=highEdge.b;
+  if(pieces.length>1){
+   const next=pieces[1],prev=pieces[pieces.length-2];
+   low=[lowEdge.a,lowEdge.b].find(x=>x!==next.a&&x!==next.b)||low;
+   high=[highEdge.a,highEdge.b].find(x=>x!==prev.a&&x!==prev.b)||high;
+  }else{
+   const original=members.find(m=>(m.leg.from_station===lowEdge.a&&m.leg.to_station===lowEdge.b)||
+     (m.leg.from_station===lowEdge.b&&m.leg.to_station===lowEdge.a));
+   if(original){low=original.leg.from_station;high=original.leg.to_station;}
+  }
+  if(termini.length===2&&!termini.includes(low))low=termini[0];
+  if(termini.length===2&&!termini.includes(high))high=termini.find(x=>x!==low)||termini[1];
+  comp.push({min:lowEdge.low,low,high});
+ }
+ comp.sort((a,b)=>a.min-b.min);
+ return [comp[0].low,comp[comp.length-1].high];
+}
 function showDetail(){
  const box=$('#detail');box.replaceChildren();
  const o=view.selected;
@@ -226,10 +284,12 @@ function showDetail(){
  box.classList.remove('empty');
  const {m,grade:g,members}=o;
  const first=members[0].leg,last=members[members.length-1].leg;
- const title=stationZh(first.from_station)+' → '+stationZh(last.to_station);
+ const [startStation,endStation]=corridorStations(members);
+ const title=stationZh(startStation)+' → '+stationZh(endStation);
  element(box,'span',g===2?'● 晚点或取消较多':g===1?'● 需要关注':'● 表现相对较好','grade');
  element(box,'h3',title);
- if(members.length>1)element(box,'p','连续区段 · '+members.length+' 个站间区间','corridor-count');
+ if(members.length>1||o.bridges)
+  element(box,'p','连续区段 · '+members.length+' 个有观测站间'+(o.bridges?' · '+o.bridges+' 处观测缺口':''),'corridor-count');
  const grid=element(box,'div','','detail-grid');
  for(const [value,label] of [[pct(m.onTime),'准点率（晚点不足6分钟）'],
   [pct(m.cancel),'停靠取消标记率']]){
@@ -246,7 +306,12 @@ function showDetail(){
  }
  element(more,'p','线路 '+first.route+' · 有效到站 '+fmt(m.nArrival)+' 次 · 计划站间配对 '+fmt(m.nPlanned)+' 次');
  element(more,'p','晚点率 '+pct(m.late)+'（至少6分钟）；相邻区间可能重复观测同一趟车。');
- element(more,'p','原始站名：'+first.from_station+' → '+last.to_station,'original-stations');
+ if(o.bridges){
+  const verified=o.bridges-(o.schematicBridges||0);
+  if(verified)element(more,'p','沿 DB InfraGO 官方轨道曲线核实连接 '+verified+' 处；没有给缺失区段补造统计数据。');
+  if(o.schematicBridges)element(more,'p','另有 '+o.schematicBridges+' 处约定的连续统计走廊，依据同线路公里范围及两端实际轨道位置归并；中间缺少可追踪的完整轨道路径，仅保留原有绿色底网，不补画假线路或假准点率。');
+ }
+ element(more,'p','原始站名：'+startStation+' → '+endStation,'original-stations');
  box.append(more);
 }
 
@@ -288,6 +353,9 @@ function addToGrid(o){
 function rebuildIndex(){
  view.grid.clear();
  for(const o of view.rendered)addToGrid(o);
+ // Hit-testing also works on the real geometry of a visual-only bridge.
+ for(const g of view.groups)for(const p of g.bridgeParts||[])
+  addToGrid({parts:[p],group:g,bridge:true});
 }
 function pickAt(latlng){
  if(!view.rendered.length)return;
@@ -323,7 +391,15 @@ function recalc(){
   items.push({leg,m,parts,bounds:actualBounds(parts),grade:grade(m)});
  }
  view.rendered=items;
- view.groups=buildCorridors(items);
+ const measured=buildCorridors(items);
+ if(view.networkReady){
+  const combined=window.Railway07Bridge.mergeGroups(measured,view.bridgeGraph,items);
+  view.groups=combined.groups;
+  view.bridged=combined.bridged;view.bridgeDiagnostics=combined.debug;
+ }else{
+  view.groups=measured;view.bridged=0;
+ }
+ view.bridgePaths=view.groups.flatMap(g=>g.bridgeParts||[]);
  view.selected=previous?(view.groups.find(g=>g.members.some(x=>x.leg===previous))||null):null;
  rebuildIndex();
  // The research dashboard retains all overall counts; the map stays focused on picked segments.
@@ -334,7 +410,7 @@ function recalc(){
 
 async function chooseService(){
  const id=++view.ticket,service=view.service;
- view.selected=null;view.links=[];view.rendered=[];view.groups=[];view.grid.clear();
+ view.selected=null;view.links=[];view.rendered=[];view.groups=[];view.bridgePaths=[];view.bridged=0;view.grid.clear();
  view.observedLayer.schedule();status('正在读取 '+labels[service]+' 的观测…');
  try{
   const data=await Promise.all(sources[service].map(async k=>[k,await loadData(k)]));
@@ -377,10 +453,11 @@ try{
   getMap:()=>view.map,getNetworkGeometryCount:()=>view.networkParts.length,
   getNetworkReady:()=>view.networkReady,getStatesReady:()=>view.statesReady,
   getCountiesReady:()=>view.countiesReady,getRendered:()=>view.rendered,
-  getCorridors:()=>view.groups,
+  getCorridors:()=>view.groups,getBridgedCount:()=>view.bridged,
+  getBridgeDiagnostics:()=>view.bridgeDiagnostics,getBridgeFailureCounts:()=>view.bridgeGraph.reasons,getBridgedGeometryCount:()=>view.bridgePaths.length,getGraphEdgeCount:()=>view.bridgeGraph.edges,
   getRepaintCount:()=>view.repaints,getCanvasCount:()=>document.querySelectorAll('.railway-canvas').length,
   getSpatialBucketCount:()=>view.grid.size,
-  clickPoint:ll=>pickAt(L.latLng(ll)),stationZh
+  clickPoint:ll=>pickAt(L.latLng(ll)),stationZh,corridorStations
  });
  chooseService();
 }catch(e){

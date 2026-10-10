@@ -52,6 +52,25 @@ def run(browser,mobile=False):
     assert page.locator("#railway-map .segment-hit").count()==0
     assert page.locator("#railway-map canvas").count()==2
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getNetworkGeometryCount()")==33547
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getGraphEdgeCount()")==33547
+    # This was the actual nationwide no-data gap reported by the user:
+    # Erlangen km 23.504 -> Forchheim km 38.289 on observed route 5900.
+    # Both ends have real observations, the missing center must not contribute
+    # to either statistic or be drawn as a fabricated track curve.
+    assert page.evaluate("""() => {
+      const app=window.__RAILWAY_OVERVIEW__;
+      const groups=app.getCorridors().filter(g=>String(g.members[0].leg.route)==='5900');
+      if(groups.length!==1||groups[0].members.length!==6||
+         groups[0].bridges!==1||groups[0].schematicBridges!==1)return false;
+      const [start,end]=app.corridorStations(groups[0].members);
+      const g=groups[0];
+      return start==='Fürth (Bay) Hbf'&&end==='Bamberg'
+        && Math.abs(g.m.onTime-(100-100*1252/8379))<.02
+        && g.bridgeParts.length===0;
+    }"""),'Bamberg–Erlangen corridor must pool only observed data'
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getBridgedCount()")>=40
+    print('Official railway corridor bridges:',
+      page.evaluate("window.__RAILWAY_OVERVIEW__.getBridgedCount()"),flush=True)
     assert page.locator("#minimum").count()==0
     assert page.locator(".mini-stats").count()==0
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getMinimum()")==100
