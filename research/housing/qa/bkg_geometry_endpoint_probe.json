@@ -1,0 +1,153 @@
+{
+  "source_layer": "https://tigis.bkg.bund.de/hosting/rest/services/hh_veink_ZA2026/MapServer/5",
+  "count": 400,
+  "service_name": "Verfügbares Einkommen privater Haushalte je Einwohner/-in im Jahr 2023 in 1.000 €",
+  "service_description": "",
+  "copyright_text": "",
+  "spatial_reference": null,
+  "geometry_type": "esriGeometryPolygon",
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "domain": null
+    },
+    {
+      "name": "Shape",
+      "type": "esriFieldTypeGeometry",
+      "alias": "Shape",
+      "domain": null
+    },
+    {
+      "name": "GF",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "GF",
+      "domain": null
+    },
+    {
+      "name": "Gebietskennziffer",
+      "type": "esriFieldTypeInteger",
+      "alias": "Gebietskennziffer",
+      "domain": null
+    },
+    {
+      "name": "GEN",
+      "type": "esriFieldTypeString",
+      "alias": "GEN",
+      "length": 60,
+      "domain": null
+    },
+    {
+      "name": "BEZ",
+      "type": "esriFieldTypeString",
+      "alias": "BEZ",
+      "length": 60,
+      "domain": null
+    },
+    {
+      "name": "name",
+      "type": "esriFieldTypeString",
+      "alias": "name",
+      "length": 8000,
+      "domain": null
+    },
+    {
+      "name": "hh_veink",
+      "type": "esriFieldTypeDouble",
+      "alias": "hh_veink",
+      "domain": null
+    },
+    {
+      "name": "Shape_Length",
+      "type": "esriFieldTypeDouble",
+      "alias": "Shape_Length",
+      "domain": null
+    },
+    {
+      "name": "Shape_Area",
+      "type": "esriFieldTypeDouble",
+      "alias": "Shape_Area",
+      "domain": null
+    },
+    {
+      "name": "Field",
+      "type": "esriFieldTypeInteger",
+      "alias": "Field",
+      "domain": null
+    }
+  ],
+  "sample_features": [
+    {
+      "attributes": {
+        "OBJECTID": 1,
+        "GF": 4,
+        "Gebietskennziffer": 1001,
+        "GEN": "Flensburg",
+        "BEZ": "Kreisfreie Stadt",
+        "name": "Flensburg, Stadt",
+        "hh_veink": 22.77,
+        "Shape_Length": 42061.86682292442,
+        "Shape_Area": 49392065.45405499,
+        "Field": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 2,
+        "GF": 4,
+        "Gebietskennziffer": 1002,
+        "GEN": "Kiel",
+        "BEZ": "Kreisfreie Stadt",
+        "name": "Kiel, Landeshauptstadt",
+        "hh_veink": 24.71,
+        "Shape_Length": 100036.88137964217,
+        "Shape_Area": 112929489.5301163,
+        "Field": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 3,
+        "GF": 4,
+        "Gebietskennziffer": 1003,
+        "GEN": "Lübeck",
+        "BEZ": "Kreisfreie Stadt",
+        "name": "Lübeck, Hansestadt",
+        "hh_veink": 25.8,
+        "Shape_Length": 146462.53440206562,
+        "Shape_Area": 211765023.9371204,
+        "Field": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 4,
+        "GF": 4,
+        "Gebietskennziffer": 1004,
+        "GEN": "Neumünster",
+        "BEZ": "Kreisfreie Stadt",
+        "name": "Neumünster, Stadt",
+        "hh_veink": 24.72,
+        "Shape_Length": 54232.859489402705,
+        "Shape_Area": 71681928.90079498,
+        "Field": null
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 5,
+        "GF": 4,
+        "Gebietskennziffer": 1051,
+        "GEN": "Dithmarschen",
+        "BEZ": "Kreis",
+        "name": "Dithmarschen",
+        "hh_veink": 29.56,
+        "Shape_Length": 247774.76829151597,
+        "Shape_Area": 1414451957.125041,
+        "Field": null
+      }
+    }
+  ],
+  "source_notice": "BKG official 2024 VG250 geographic boundary; copyright must be fully attributed for republishing."
+}
