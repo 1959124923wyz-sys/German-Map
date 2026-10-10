@@ -1,0 +1,73 @@
+name: Finance 08 - Branch Validation
+on:
+  pull_request:
+    paths:
+      - 'topics/finance/**'
+      - 'research/finance/a/**'
+      - 'research/finance/b/**'
+      - '.github/workflows/finance-pr-check.yml'
+  push:
+    branches:
+      - feature/finance-08-a-b-20261009
+      - release/finance-08-unified-20261010
+    paths:
+      - 'topics/finance/**'
+      - 'research/finance/a/**'
+      - 'research/finance/b/**'
+      - '.github/workflows/finance-pr-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  finance-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify local raw-data generators and source contracts
+        run: |
+          python topics/finance/data/build_finance.py
+          python topics/finance/data/build_finance_history.py
+          python topics/finance/data/build_finance_integrated.py
+          python topics/finance/tests/validate_finance.py
+          python topics/finance/tests/validate_finance_history.py
+          python topics/finance/tests/validate_finance_integrated.py
+      - name: Validate browser script syntax
+        run: |
+          node --check topics/finance/topic.js
+          node --check topics/finance/data/finance-data.js
+          node --check topics/finance/data/finance-history.js
+          node --check topics/finance/data/finance-integrated.js
+      - name: Require reproducible datasets and clean generated artifacts
+        run: |
+          git diff --exit-code -- topics/finance/data/finance-data.js topics/finance/data/finance-history.js topics/finance/data/finance-integrated.js
+
+  finance-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install offline Leaflet and Chromium
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts leaflet@1.9.4
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Exercise Finance 08 in a real browser
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/finance-http.log 2>&1 &
+          sleep 2
+          python topics/finance/tests/smoke_finance_browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: finance08-browser-screenshots
+          path: /tmp/finance08-*.png
+          if-no-files-found: warn
+
