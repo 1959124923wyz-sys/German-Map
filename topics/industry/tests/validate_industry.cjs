@@ -125,6 +125,16 @@ assert.match(js,/r7d-2024-company-primary-audited.json/);
 assert.match(js,/r7e-2025-undercovered-sites.json/);
 assert.match(js,/r7-legacy-identity-audit.json/);
 assert.match(js,/ags-crosswalk-402-to-400.json/);
+assert.match(js,/bkg_vg250_counties_2025_candidate.geojson/);
+const geo=JSON.parse(fs.readFileSync(path.join(root,'data/bkg_vg250_counties_2025_candidate.geojson'),'utf8'));
+assert.equal(geo.features.length,400,'BKG map polygons exactly 400 modern Kreise');
+assert.equal(new Set(geo.features.map(e=>e.id)).size,400,'BKG map unique canonical AGS');
+assert.deepEqual([...new Set(geo.features.map(e=>e.id))].sort(),[...new Set(ags.features.map(e=>e.canonical_ags))].sort(),'Official geodata codes match 402->400 reference');
+assert.equal(geo._provenance.publisher,'Bundesamt für Kartographie und Geodäsie');
+assert.equal(geo._provenance.effective_date,'2024-12-31');
+assert.ok(geo.features.every(f=>['Polygon','MultiPolygon'].includes(f.geometry?.type)),'BKG valid polygon type');
+assert.equal(geo.features.find(f=>f.id==='03159').properties.name,'Göttingen');
+assert.equal(geo.features.find(f=>f.id==='16063').properties.name,'Wartburgkreis');
 assert.match(js,/new Set\(counties.features.map\(stateKey\)\).size!==400/);
 const grouped=r5b.events.filter(e=>e.shared_program_id);
 for(const e of grouped){
