@@ -56,6 +56,7 @@
      <button data-dossier-tab="overview">地区概况</button>
      <button data-dossier-tab="cases">企业档案</button>
      <button data-dossier-tab="status">实施进展</button>
+     <button data-dossier-tab="timeline">年份脉络</button>
     </div>
     <div data-dossier-pane="overview" class="dossier-pane">
      <div class="dossier-metrics" id="industryStateMetrics"></div>
@@ -70,6 +71,10 @@
     <div data-dossier-pane="status" class="dossier-pane" hidden>
      <div id="industryStatusSummary" class="dossier-metrics"></div>
      <div id="industryStatusList" class="dossier-scroll"></div>
+    </div>
+    <div data-dossier-pane="timeline" class="dossier-pane" hidden>
+     <p class="dossier-note">以下按档案记录日期／公告时间排列，并非工厂实际关闭日期。同一年内的计划、执行证据、跨厂联合方案分别核验；不累加计划岗位为实际失业。</p>
+     <div id="industryEventTimeline" class="industry-timeline-list"></div>
     </div>
    </div>
    <details class="dossier-national" id="industryNationalArchive">
@@ -88,5 +93,5 @@
 <script src="../../js/core/place-names-zh.js?v=clean1"></script>
 <script src="../../js/layers/city-labels.js?v=clean1"></script>
 <script src="../../js/core/region-dossier.js?v=1"></script>
-<script src="topic.js?v=industry2"></script>
+<script src="topic.js?v=industry3"></script>
 </body></html>
