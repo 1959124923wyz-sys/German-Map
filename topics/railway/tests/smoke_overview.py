@@ -96,7 +96,10 @@ def run(browser,mobile=False):
             if(examples.length<7)examples.push({from:group.cityFrom,to:group.cityTo,
               grades:runs.map(r=>r.grade),pieces:runs.map(r=>r.members.length)});
             for(const run of eligible.slice(0,2)){
-              const piece=run.parts[Math.floor(run.parts.length/2)];
+              // Click on the rendered observed curve rather than an
+              // adjacent parallel official track during the national test.
+              const source=run.members.find(x=>x.grade===run.grade)||run.members[0];
+              const piece=source.parts[Math.floor(source.parts.length/2)];
               const v=piece.xy;
               const idx=Math.floor((v.length/2-1)/2)*2;
               const ll=map.unproject(L.point(v[idx],v[idx+1]),9);
