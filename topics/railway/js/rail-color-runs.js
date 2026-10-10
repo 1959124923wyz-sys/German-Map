@@ -104,13 +104,18 @@ function closestOnParts(point,parts){
  }
  return d;
 }
-function centre(member){
- const parts=member.parts||[];
- if(!parts.length)return null;
- const a=parts[Math.floor(parts.length/2)].xy;
- const i=Math.floor((a.length/2-1)/2)*2;
- const j=Math.min(i+2,a.length-2);
- return [(a[i]+a[j])/2,(a[i+1]+a[j+1])/2];
+function samples(member){
+ const out=[];
+ for(const part of member.parts||[]){
+  const a=part.xy;
+  if(a.length<4)continue;
+  const i=Math.floor((a.length/2-1)/2)*2;
+  const j=Math.min(i+2,a.length-2);
+  out.push([a[0],a[1]],
+   [(a[i]+a[j])/2,(a[i+1]+a[j+1])/2],
+   [a[a.length-2],a[a.length-1]]);
+ }
+ return out;
 }
 function aggregate(members){
  if(!members.length)return {
@@ -131,15 +136,16 @@ function decorate(runs,observations,group=null){
  // so the displayed denominators never multiply when a track is sampled.
  const apportioned=new Map(runs.map(x=>[x,[]]));
  for(const item of observations||[]){
-  const pt=centre(item);if(!pt)continue;
+  const pts=samples(item);if(!pts.length)continue;
   let best=null,d=Infinity;
   for(const run of runs){
-   // Both directions belong to the same physical railway even when their
-   // independently measured delay grades differ. Include all actual counts.
-   const q=closestOnParts(pt,run.parts);
+   // Use source endpoints and midpoint, not only the centre of a long stop
+   // link, which may straddle the boundary of a physical colour component.
+   // Opposite directions on the same track contribute to the same denominator.
+   const q=Math.min(...pts.map(pt=>closestOnParts(pt,run.parts)));
    if(q<d){d=q;best=run;}
   }
-  if(best&&d<4)apportioned.get(best).push(item);
+  if(best&&d<5)apportioned.get(best).push(item);
  }
  runs.forEach((run,i)=>{
   const members=apportioned.get(run);
