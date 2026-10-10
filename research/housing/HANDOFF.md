@@ -47,3 +47,20 @@ python research/housing/build_stock_proxy.py
 - 检查以上四个成功 run 和 `research/housing/qa/*`；
 - 不更改 `main`、共享底图文件或其他地图模块；仅此分支继续追加；
 - 每一新批必须：源码+原始出处+核验+记录状态，远端确认 commit/Action 成功，再更新本交接文档。
+
+
+## ✅ 第二阶段追加（2026-10-10，本条经远端校验）
+
+### 住房危机地图独立可运行原型
+
+- `topics/housing/index.html`、`topic.css`、`topic.js`：沿用全站深色导航、Leaflet + OpenStreetMap 左图右栏，默认地图是**2025挂牌租金**。下拉九个彼此独立的指标、点击县市、联邦州下拉、全国复位、县市排行榜和原始出处链接均已建立。没有合成危机评分，也没有把事件“数量为零”误当无危机。
+- 自动 Chromium 桌面/手机回归：[Run 38037812213（PASS）](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38037812213)，校验402地图图形、399实际租金单元、16州选择、九种指标、缺失逻辑、住房存量交叉层、县市点击和复位；截图上传为该run的artifact。后续还有包含萨克森历史资料面板的回归重跑，以最新成功 run 为准。
+- 注意：**分支原型尚未合并 main，也没有宣称已在公众 GitHub Pages 上线**。本仓库长期主站运行路径仍由主分支管理。
+
+### 萨克森2022—2026官方安置无住房人员
+
+- [州统计局原始出处](https://www.statistik.sachsen.de/html/untergebrachte-wohnungslose-personen.html)，[原始2026县市 XLSX](https://www.statistik.sachsen.de/download/soziales/statistik-sachsen_untergebrachte_wohnungslose_kreise.xlsx)，[2022—2026年连续时间序列 XLSX](https://www.statistik.sachsen.de/download/soziales/statistik-sachsen_zr_untergebrachte_wohnungslose.xlsx)。原表与SHA256目录：`research/housing/raw/saxony_homeless_*.xlsx`、`research/housing/qa/saxony_homeless_workbook_layout.json`。
+- 官方工作簿采集 [Run 38037868308（PASS）](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38037868308)，五年系列抽取与当年原表核对 [Run 38037938196（PASS）](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38037938196)。
+- 已交付 `research/housing/data/saxony_official_homeless_2022_2026.csv`、`topics/housing/data/saxony-homeless-counties.json`、`research/housing/qa/saxony_homeless_audit.json`。
+- 全州13个县市的2026年1月31日受安置无住房人数经保密取整共计 **5590人**，与州统计局当年官方全州总数5590一致；每县均有2022—2026五期记录，共65个县·年观测。严格标注“仅萨克森13县、并非德国全国、仅受安置人员、保密5人取整、地区聚合不保证完全可加”。
+- 页面只在点击萨克森真实县市时显示可折叠五年记录，其他州完全不展示萨克森数值，不做虚假的全国无住房地图。
