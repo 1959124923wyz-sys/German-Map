@@ -8,7 +8,9 @@
     "research_only": 5,
     "source": "Eurofound ERM individual evidence pages, filtered and dated",
     "excluded_duplicate": "ERM 204395 (B.PRO) is an alternative entry for the SAME Oberderdingen ENOXX 180-position industrial unit closure as ERM 204191; not a separate site event",
-    "policy": "Potential closures, uncertain bankruptcies, non-manufacturing service offshore shifts, and unknown site-allocation group cuts are retained in research only, not mapped as factory decline."
+    "policy": "Potential closures, uncertain bankruptcies, non-manufacturing service offshore shifts, and unknown site-allocation group cuts are retained in research only, not mapped as factory decline.",
+    "county_ags_assigned": 7,
+    "county_ags_source": "German-Map/data/germany-counties.geojson feature.id plus individually sourced Landkreis/Stadtkreis. Historic district remaps handled by published AGS crosswalk."
   },
   "events": [
     {
@@ -32,7 +34,9 @@
       "caveat": "关闭由公司/工会通报，数字是大于100而非精确100；不得作为精确岗位数加总",
       "relocation_destination": "",
       "first_collected": "2026-10-10",
-      "batch": "R5C"
+      "batch": "R5C",
+      "county_ags": "03455",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5C_FRE_PLU",
@@ -55,7 +59,9 @@
       "caveat": "80岗含直接裁撤50、退休和不补招30；冷室压铸业务拟转上海和美国；不是整个厂关闭",
       "relocation_destination": "China; United States",
       "first_collected": "2026-10-10",
-      "batch": "R5C"
+      "batch": "R5C",
+      "county_ags": "08119",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5C_GUE_VIL",
@@ -78,7 +84,9 @@
       "caveat": "公司重组继续营业；减员102为计划差额，不能标为永久关厂",
       "relocation_destination": "",
       "first_collected": "2026-10-10",
-      "batch": "R5C"
+      "batch": "R5C",
+      "county_ags": "08326",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5C_ENO_OBE",
@@ -101,7 +109,9 @@
       "caveat": "同一公告另有ERM B.PRO 204395，已建立dedupe排除标志，不将两条独立入库；企业其他餐饮物流业务保留",
       "relocation_destination": "",
       "first_collected": "2026-10-10",
-      "batch": "R5C"
+      "batch": "R5C",
+      "county_ags": "08215",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5C_WIT_PFO",
@@ -124,7 +134,9 @@
       "caveat": "ERM在地区栏混列Pforzheim、Kieselbronn、Remchingen，正文230均明确指Pforzheim；不要再分给另两地",
       "relocation_destination": "",
       "first_collected": "2026-10-10",
-      "batch": "R5C"
+      "batch": "R5C",
+      "county_ags": "08231",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5C_WEB_WOL",
@@ -147,7 +159,9 @@
       "caveat": "岗位减少主要靠39人自愿离职、退休及个人离职，不等于60人被公司强制裁员；生产继续",
       "relocation_destination": "",
       "first_collected": "2026-10-10",
-      "batch": "R5C"
+      "batch": "R5C",
+      "county_ags": "09173",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5C_OSR_SCH",
@@ -170,7 +184,9 @@
       "caveat": "约210金属制造岗位拟削减，另60 LED荧光粉岗位提供雷根斯堡转岗机会；不把全部270视为解雇",
       "relocation_destination": "Regensburg, Germany (60 offered transfers)",
       "first_collected": "2026-10-10",
-      "batch": "R5C"
+      "batch": "R5C",
+      "county_ags": "09772",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5C_BASF_SERV",
