@@ -37,3 +37,9 @@
 - 建立 `scripts/probe_regionalstatistik_genesis.py`、自动保存的研究工作流 `.github/workflows/industry-r8-genesis-probe.yml`。
 - 已真实写入 `topics/industry/research/R8_GENESIS_API_PROBE.json`，三项调用均**HTTP 401**，官方服务器JSON明确报 `Code=15`，德语信息“您无权调用此服务或请求头信息不完整以致无法识别凭证”。本轮访客账号 `GAST/GAST` 不是有效的数据访问凭证，需注册获认证后再提取；不把401冒充成功下载。
 - 研究程序完整保存URL、查询参数、HTTP状态和响应片段，不保存/公开个人认证密钥；没有生成任何就业人数、没有改动生产 `county-employment.json`。下一位研究者优先寻找免认证BA官方下载CSV或按官方流程申请API token，不要继续使用匿名GAST盲试。
+
+## R8补充：BA替代官方来源的公开出版物路径（尚未下载400县表）
+- 德国联邦就业局官方 https://statistik.arbeitsagentur.de/DE/Navigation/Statistiken/Fachstatistiken/Beschaeftigung/Beschaeftigungsverhaeltnisse/Beschaeftigungsverhaeltnisse-Nav.html 明确将“**Regionalreport über Beschäftigte - Kreise und Agenturen für Arbeit (Quartalszahlen und Zeitreihen)**”列为县/就业局辖区季度时间序列，并明确包括“**Bestand、Arbeitsort、Wirtschaftszweige**”等维度。这是逃离Regionaldatenbank匿名REST 401的优先替代线索，**不能在尚未实际打开Excel及WZ分项前声称有2019/2025同口径400县纯C**。
+- 联邦就业局https://statistik.arbeitsagentur.de/DE/Navigation/Statistiken/Themen-im-Fokus/Wirtschaftszweige/Wirtschaftszweige-Nav.html 声明交互“Branchen im Fokus”支持德国、各州、各县CSV导出；按WZ2008-C筛选2019与2025同月同工作地口径仍需操作/下载验证。
+- BA就业界定与2025行业分类变化须留意官方方法页：https://statistik.arbeitsagentur.de/DE/Navigation/Grundlagen/Methodik-Qualitaet/Methodische-Hinweise/Uebergreifend/Methodische-Hinweise-Uebergreifend-Nav.html 。对于2019—2025同口径年份均优先使用统一WZ2008-C，不能混用WZ2025或简单社保合计。
+- 当前BA出版页经搜索接口跳转生成含会话变量的URL，在此工具环境无法可靠直接批量下载；**数据尚未成功取得**，待下一阶段检查独立Excel、官方CSV链接或申请访问。对应来源仅构成下载路线，不是实际指标。
