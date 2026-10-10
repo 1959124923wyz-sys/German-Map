@@ -8,7 +8,7 @@
 <meta name="description" content="德国2025年地方财政收支地图，州级涂色、莱法州12座非县辖市数据与核实过的财政紧缩事件。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css?v=clean1">
-<link rel="stylesheet" href="topic.css?v=f3">
+<link rel="stylesheet" href="topic.css?v=f4">
 </head>
 <body>
 <header>
@@ -46,6 +46,14 @@
     <label class="finance-checkbox" id="eventsControl"><input id="showEvents" type="checkbox">在地图叠加事件 <span>县域示意点</span></label>
     <button type="button" id="resetView" class="finance-reset" title="回到全国财政收支地图">全国视图</button>
    </div>
+   <label class="finance-period" id="stateMetricWrap">全国指标
+    <select id="stateMetric" aria-label="全国财政地图统计指标">
+     <option value="balance-2025">2025 人均财政收支</option>
+     <option value="integrated-2024">2024 人均综合债务</option>
+     <option value="integrated-2023">2023 人均综合债务</option>
+     <option value="integrated-2022">2022 人均综合债务</option>
+    </select>
+   </label>
    <label class="finance-period" id="rpPeriodWrap" hidden>地区与时期
   <select id="rpPeriod" aria-label="莱法州财政数据时期及主体">
    <option value="2025-full-cities">2025全年 · 12城市</option>
@@ -61,7 +69,7 @@
    <div class="area-metric" id="metricValue">点击地图查看人均收支</div>
    <div class="finance-coverage" id="coverageNote">城市州缺少这一市镇财政统计口径，以灰色显示。</div>
    <div class="area-grid">
-    <div class="area-stat"><b id="countState">13 / 16</b><small>州级收支数据</small></div>
+    <div class="area-stat"><b id="countState">13 / 16</b><small id="countStateLabel">州级收支数据</small></div>
     <div class="area-stat"><b id="countMapped">72</b><small>事件地图候选</small></div>
     <div class="area-stat"><b id="countArchive">170</b><small>完整研究档案</small></div>
    </div>
@@ -100,7 +108,8 @@
   <details class="finance-method">
    <summary>数据来源与统计口径</summary>
    <p>全国涂色：2025年13个非城市州辖内市镇及联合体（核心与附属预算）人均财政收支。柏林、汉堡、不来梅无同口径数据，灰色不代表零赤字。</p>
-   <p>莱法州详细层：2025全年12座非县辖市，以及2025/2026上半年城市、2026上半年24个县政府本级财政收支。全年与半年不可直接比较，县本级与城市预算不能混作统一排名。</p><p>借款历史：2021—2025年13个非城市州市镇借款存量，投资借款与短期流动性借款分别列示，单位亿欧元；不是综合债务，也不是人均数值。</p>
+   <p>莱法州详细层：2025全年12座非县辖市，以及2025/2026上半年城市、2026上半年24个县政府本级财政收支。全年与半年不可直接比较，县本级与城市预算不能混作统一排名。</p><p>综合债务地图：2022—2024年13个非城市州辖内市镇综合债务（人均），包含核心预算、附属预算和按持股关系分摊的市属企业债务；2025年短期借款、投资借款是另一种统计口径，均与2025年财政收支流量分开显示。2023、2024年人均人口基准存在变化，不应将简单差值当官方同比增长率。</p>
+   <p>借款历史：2021—2025年13个非城市州辖内市镇借款存量，投资借款与短期流动性借款分别列示，单位亿欧元；不是综合债务，也不是人均数值。</p>
    <p>财政事件：170条研究记录，72条满足初步上图条件。县域数字是关联记录数量，圆点使用历史县界近似中心，不是具体设施坐标；已批准不等于执行，已撤销不等于仍在持续。</p>
    <p>金额有不同性质，不得直接加总。专题不是地方政府破产风险预测模型。资料核实截至2026-10-09，完整出处见每条记录和<a href="README.md">研究说明</a>。</p>
   </details>
@@ -112,6 +121,7 @@
 <script src="../../js/layers/city-labels.js?v=clean1"></script>
 <script src="data/finance-data.js?v=f1"></script>
 <script src="data/finance-history.js?v=h1"></script>
-<script src="topic.js?v=f3"></script>
+<script src="data/finance-integrated.js?v=r10"></script>
+<script src="topic.js?v=f4"></script>
 </body>
 </html>

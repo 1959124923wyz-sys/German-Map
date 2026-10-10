@@ -3,14 +3,37 @@
  const $ = id => document.getElementById(id);
  const D = window.GermanFinance08Data;
  const H = window.GermanFinance08History;
+ const I = window.GermanFinance08Integrated;
  const escapeHTML = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const STATUSES={effective:'已生效/执行中（未必仍持续）',completed:'已经完成（可能是历史）',reversed:'已撤销或解除',withdrawn:'已撤回',adopted:'已批准、未证实执行',announced:'已宣布',proposed:'仅提议',rejected:'被否决',under_review:'审议或核查中'};
  const CAT={budget:'预算及监管',facilities:'公共设施及文化',transit:'公共交通',investment:'公共投资',staffing:'人事编制',taxfees:'税费',other:'其他'};
  const MODE={state:'2025年地方财政人均收支 · 13个非城市州',rp:'2025年莱法州12个非县辖市人均财政收支',events:'财政事件 · 县域汇总锚点'};
- const initial={mode:'state',showEvents:false,category:'all',status:'all',archive:false,selected:null,county:null,limit:8,rpPeriod:'2025-full-cities'};
+ const initial={mode:'state',showEvents:false,category:'all',status:'all',archive:false,selected:null,county:null,limit:8,rpPeriod:'2025-full-cities',stateMetric:'balance-2025',focusState:null};
  let view={...initial}, map, statesLayer, countiesLayer, bubblesLayer;
  let stateRows=new Map(D.states.map(x=>[x.id,x])), cityRows=new Map(D.cities.map(x=>[x.id,x]));
  const debtRows=new Map(H.states.map(x=>[x.id,x]));
+ const integratedRows=new Map(I.states.map(x=>[x.id,x]));
+ const isIntegrated=()=>view.stateMetric.startsWith('integrated-');
+ const metricYear=()=>view.stateMetric.split('-')[1];
+ const selectedStateValue=id=>{
+  if(isIntegrated())return integratedRows.get(id)?.per_capita_eur[metricYear()]??null;
+  return stateRows.get(id)?.value??null;
+ };
+ const selectedStateSource=id=>isIntegrated()?I.meta.source:stateRows.get(id)?.source;
+ const selectedStateLabel=()=>isIntegrated()?metricYear()+'年人均综合债务':'2025年人均财政收支';
+ const selectedStateNote=()=>isIntegrated()
+  ? '综合市镇债务包括预算与按持股比例分摊的市属企业债务；不是城市/州政府破产风险，也不同于2025年短期借款。'
+  : '2025年非城市州辖内地方政府人均收支差额；不能把事件样本数当作财政困难程度。';
+ const stateMetricText=value=>value==null?'无同口径数据':isIntegrated()?number(value)+' 欧元/人':money(value);
+ const integratedColor=value=>{
+  if(value==null||!Number.isFinite(value))return '#82909a';
+  if(value<3000)return '#c3dfdf';
+  if(value<4000)return '#95bfce';
+  if(value<4500)return '#6d9fbf';
+  if(value<5000)return '#4c81af';
+  if(value<6000)return '#345f92';
+  return '#27476b';
+ };
  const regionalRows=new Map(H.regional.map(x=>[x.period+'|'+x.scope+'|'+x.id,x]));
  const regionOptions={
   '2025-full-cities':{label:'2025全年 · 12座非县辖市',scope:'city',period:'2025-full',count:12},
@@ -25,7 +48,11 @@
  const money=n=>n===null||n===undefined?'无数据':(n>0?'+':'')+number(n)+' 欧元/人';
  function color(x){if(x===null||x===undefined||!Number.isFinite(x))return '#82909a'; if(x>=0)return '#6a9f8e';if(x< -550)return '#963f41';if(x< -450)return '#ae5957';if(x< -350)return '#c27666';if(x< -250)return '#d3997b';if(x< -150)return '#e0b597';return '#edd4b4'}
  function showStatus(msg,delay=false){$('mapStatus').textContent=msg;$('mapStatus').hidden=!msg;}
- function stateStyle(feature){const v=stateRows.get(feature.properties?.id)?.value;return{color:'#51616b',weight:1.0,fillColor:color(v),fillOpacity:0.8}}
+ function stateStyle(feature){
+  const id=feature.properties?.id, value=selectedStateValue(id);
+  return {color:id===view.focusState?'#f4f8fa':'#51616b',weight:id===view.focusState?2:1,
+   fillColor:isIntegrated()?integratedColor(value):color(value),fillOpacity:.8};
+ }
  function regionalRow(id){
   if(view.rpPeriod==='2025-full-cities')return cityRows.get(id);
   const q=regionOptions[view.rpPeriod];
@@ -41,7 +68,14 @@
   if(stateId&&!row){$('loanDrawer').hidden=true;return;}
   $('loanScope').textContent=row?'所选州':'13州合计';
   const rows=H.meta.years.map((y,i)=>'<tr><td>'+y+'</td><td>'+billion(data.cash[i])+'</td><td>'+billion(data.investment[i])+'</td></tr>').join('');
-  $('loanHistory').innerHTML='<div class="finance-loan-totals"><div><small>2025短期借款</small><strong>'+billion(data.cash[4])+'</strong></div><div><small>2025投资借款</small><strong>'+billion(data.investment[4])+'</strong></div></div>'+
+  const integrated=stateId?integratedRows.get(stateId):null;
+  const integratedInfo=integrated&&integrated.per_capita_eur['2024']!=null
+   ? '<div class="finance-loan-integrated"><strong>综合地方债务（欧元/人）</strong>'+
+     '<div class="finance-loan-integrated-grid">'+I.meta.years.map(y=>'<span><small>'+y+'</small><b>'+
+        number(integrated.per_capita_eur[String(y)])+'</b></span>').join('')+'</div>'+
+     '<p>含按比例分摊的市属企业债务；与下方借款存量不可相加。'+
+     '<a target="_blank" rel="noopener noreferrer" href="'+escapeHTML(I.meta.source)+'">Destatis原始表 ↗</a></p></div>':'';
+  $('loanHistory').innerHTML=integratedInfo+'<div class="finance-loan-totals"><div><small>2025短期借款</small><strong>'+billion(data.cash[4])+'</strong></div><div><small>2025投资借款</small><strong>'+billion(data.investment[4])+'</strong></div></div>'+
    '<table><thead><tr><th>年末</th><th>短期借款</th><th>投资借款</th></tr></thead><tbody>'+rows+'</tbody></table>'+
    '<p>存量金额（非人均）；不同州规模不能据此直接排名。2024年债务承接等政策可能影响历史变化。'+
    '<a target="_blank" rel="noopener noreferrer" href="'+escapeHTML(H.meta.source_debt)+'">2026地方财政报告（表9、10） ↗</a></p>';
@@ -64,22 +98,32 @@
   }
  }
  function resetArea(){
-  if(view.mode==='state')displayArea('全国（13个非城市州）','2025年地方政府人均财政收支','3个城市州无同口径值，以灰色表示。');
-  else if(view.mode==='rp'){
+  if(view.mode==='state'){
+   const year=metricYear();
+   displayArea('德国 · 13个非城市州',isIntegrated()?year+'年人均综合地方债务':'2025年地方政府人均财政收支',
+     isIntegrated()?'综合市镇债务含企业分摊；3个城市州不适用，灰色不是零。':'3个城市州无同口径值，以灰色表示。');
+  }else if(view.mode==='rp'){
    const o=regionOptions[view.rpPeriod];
-   displayArea('莱茵兰-普法尔茨州 · '+o.count+'地区',o.label, o.scope==='county_budget_only'?'县政府本级收支，不含下属市镇。':'仅非县辖市；全年和半年不可直接比较。');
-  }else displayArea('德国 · 县域财政事件','72条地图候选（精选案例）','事件圆点为县域中心示意，不是具体设施位置。');
-  renderLoanHistory(null);
+   displayArea('莱茵兰-普法尔茨州 · '+o.count+'地区',o.label,
+    o.scope==='county_budget_only'?'县政府本级收支，不含下属市镇。':'仅非县辖市；全年和半年不可直接比较。');
+  }else displayArea('德国 · 县域财政事件','72条地图候选（精选案例）',
+   '事件圆点为县域中心示意，不是具体设施位置。');
+  renderLoanHistory(view.mode==='state'?view.focusState:null);
  }
+
  function renderLegend(){
-  const notes={
-   state:'2025年非城市州地方政府人均财政收支',
-   rp:regionOptions[view.rpPeriod].label+'；其他区域不涂色',
-   events:'数字表示县域关联记录数，非设施定位'
-  };
   if(view.mode==='events'){
    $('legend').innerHTML='<div class="legend-title">财政事件 · 县域汇总</div>'+
     '<div class="finance-legend-note">圆点是关联记录数量，位置不是具体设施坐标。</div>';
+   return;
+  }
+  if(view.mode==='state'&&isIntegrated()){
+   const ramp=['#c3dfdf','#95bfce','#6d9fbf','#4c81af','#345f92','#27476b'];
+   $('legend').innerHTML='<div class="legend-title">综合市镇债务 · '+metricYear()+' · 欧元/人</div>'+
+    '<div class="finance-legend-scale" style="grid-template-columns:repeat(6,1fr)">'+ramp.map(c=>'<span style="background:'+c+'"></span>').join('')+'</div>'+
+    '<div class="finance-legend-labels"><span>&lt;3000</span><span>4000</span><span>5000</span><span>≥6000</span></div>'+
+    '<div class="finance-legend-empty"><i></i>城市州：不适用</div>'+
+    '<div class="finance-legend-note">蓝色仅代表债务数值大小，不等于财政破产风险。</div>';
    return;
   }
   const colors=['#963f41','#ae5957','#c27666','#d3997b','#e0b597','#edd4b4','#6a9f8e'];
@@ -87,7 +131,7 @@
    '<div class="finance-legend-scale">'+colors.map(c=>'<span style="background:'+c+'"></span>').join('')+'</div>'+
    '<div class="finance-legend-labels"><span>−550 以下</span><span>−350</span><span>−150</span><span>盈余 ≥ 0</span></div>'+
    '<div class="finance-legend-empty"><i></i>灰色：无同口径数据</div>'+
-   '<div class="finance-legend-note">'+escapeHTML(notes[view.mode])+'</div>';
+   '<div class="finance-legend-note">'+(view.mode==='rp'?escapeHTML(regionOptions[view.rpPeriod].label+'；其他地区不涂色'):'2025年非城市州地方政府财政收支')+'</div>';
  }
  function caseSource(row){
   const a=[['原始来源',row.source],['补充来源',row.source2]].filter(x=>/^https:\/\//.test(x[1]));
@@ -144,27 +188,48 @@
     .addTo(bubblesLayer);
   }
  }
- function renderMap(){
-  if(!map||!stateGeo||!countyGeo)return;
-  if(statesLayer)map.removeLayer(statesLayer);
-  if(countiesLayer)map.removeLayer(countiesLayer);
-  statesLayer=null;countiesLayer=null;
-  if(view.mode==='state'){
-   statesLayer=L.geoJSON(stateGeo,{style:stateStyle,onEachFeature:(f,layer)=>{
-    const row=stateRows.get(f.properties?.id);
-    layer.bindTooltip(escapeHTML(f.properties?.name)+' · '+(row&&row.value!==null?escapeHTML(money(row.value)):'无同口径值'));
-    layer.on('click',()=>{view.county=null;renderList();displayArea(f.properties?.name||'',row?money(row.value):'无同口径值','2025年非城市州辖内地方政府人均财政收支；不能与事件数量解释为因果。',row?.source);renderLoanHistory(f.properties?.id)})
-   }}).addTo(map);
-  }else{
-   countiesLayer=L.geoJSON(countyGeo,{style:f=>view.mode==='rp'?cityStyle(f):{color:'#647e8a',weight:.65,fillColor:'#a9c5d3',fillOpacity:.05},onEachFeature:(f,layer)=>{
-    allCountyShapes.set(f.id,layer);
+ function displaySelectedState(id,name){
+  view.focusState=id;
+  displayArea(name||integratedRows.get(id)?.name||id,stateMetricText(selectedStateValue(id)),
+   selectedStateNote(),selectedStateSource(id));
+  renderLoanHistory(id);
+  if(statesLayer)statesLayer.setStyle(stateStyle);
+ }
+ function buildMapLayers(){
+  // Exactly once per boot: cached county geometry is shared across all three views.
+  statesLayer=L.geoJSON(stateGeo,{style:stateStyle,onEachFeature:(feature,layer)=>{
+   const id=feature.properties?.id,name=feature.properties?.name||id;
+   layer.bindTooltip('');
+   layer.on('mouseover',()=>layer.setTooltipContent(escapeHTML(name)+' · '+escapeHTML(stateMetricText(selectedStateValue(id)))));
+   layer.on('click',()=>{
+    view.county=null;renderList();displaySelectedState(id,name);
+   });
+  }});
+  countiesLayer=L.geoJSON(countyGeo,{
+   style:feature=>view.mode==='rp'?cityStyle(feature):{color:'#647e8a',weight:.65,fillColor:'#a9c5d3',fillOpacity:.05},
+   onEachFeature:(feature,layer)=>{
+    allCountyShapes.set(feature.id,layer);
     layer.on('click',()=>{
-     const row=regionalRow(f.id);
+     const row=regionalRow(feature.id);
      view.county=null;renderList();
-     displayArea(f.properties?.name||'县级地区',view.mode==='rp'?(row?money(row.value):'该层无数据'):'县级AGS '+f.id,
-      view.mode==='rp'?regionalDetailNote(row):'事件以县域近似中心显示，不代表设施精确位置。',row?.source)
-    })
-   }}).addTo(map);
+     displayArea(feature.properties?.name||'县级地区',
+      view.mode==='rp'?(row?money(row.value):'该层无数据'):'县级AGS '+feature.id,
+      view.mode==='rp'?regionalDetailNote(row):'事件以县域近似中心显示，不代表设施精确位置。',row?.source);
+    });
+   }
+  });
+ }
+ function renderMap(){
+  if(!map||!statesLayer||!countiesLayer)return;
+  if(view.mode==='state'){
+   if(map.hasLayer(countiesLayer))map.removeLayer(countiesLayer);
+   if(!map.hasLayer(statesLayer))statesLayer.addTo(map);
+   statesLayer.setStyle(stateStyle);
+  }else{
+   if(map.hasLayer(statesLayer))map.removeLayer(statesLayer);
+   if(!map.hasLayer(countiesLayer))countiesLayer.addTo(map);
+   countiesLayer.setStyle(f=>view.mode==='rp'?cityStyle(f):
+    {color:'#647e8a',weight:.65,fillColor:'#a9c5d3',fillOpacity:.05});
   }
   renderLegend();renderMarkers();
  }
@@ -173,16 +238,17 @@
   const wasEvents=view.mode==='events';
   if(mode==='events'&&!wasEvents){view.overlayBeforeEvents=view.showEvents;view.showEvents=true;}
   else if(wasEvents&&mode!=='events')view.showEvents=Boolean(view.overlayBeforeEvents);
-  view.mode=mode;view.selected=null;view.county=null;view.limit=8;
+  view.mode=mode;view.selected=null;view.county=null;view.focusState=null;view.limit=8;
   $('showEvents').checked=view.showEvents;
   $('eventsControl').hidden=mode==='events';
   $('rpPeriodWrap').hidden=mode!=='rp';
+  $('stateMetricWrap').hidden=mode!=='state';
   document.querySelectorAll('[data-mode]').forEach(el=>{
    const active=el.dataset.mode===mode;
    el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));
   });
   const mapGuides={
-   state:['地方财政收支 · 2025','13个非城市州 · 点击州查看人均收支'],
+   state:[isIntegrated()?'综合地方债务 · '+metricYear():'地方财政收支 · 2025','13个非城市州 · 点击州查看人均数值'],
    rp:['莱法州财政收支',regionOptions[view.rpPeriod].label+' · 点击地图查看'],
    events:['地方财政事件','县域汇总点，不是设施精确位置']
   };
@@ -201,6 +267,20 @@
  function setupUI(){
   document.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=>selectMode(el.dataset.mode)));
   $('showEvents').addEventListener('change',()=>{view.showEvents=$('showEvents').checked;renderMarkers()});
+  $('stateMetric').addEventListener('change',()=>{
+   const value=$('stateMetric').value;
+   if(!['balance-2025','integrated-2024','integrated-2023','integrated-2022'].includes(value))return;
+   view.stateMetric=value;view.selected=null;
+   $('sectionTitle').textContent=selectedStateLabel();
+   $('countStateLabel').textContent=isIntegrated()?'综合债务数据':'州级收支数据';
+   $('mapGuideTitle').textContent=isIntegrated()?'综合地方债务 · '+metricYear():'地方财政收支 · 2025';
+   $('mapGuideNote').textContent='13个非城市州 · 点击州查看人均数值';
+   renderMap();
+   if(view.focusState){
+    const layer=statesLayer.getLayers().find(l=>l.feature?.properties?.id===view.focusState);
+    displaySelectedState(view.focusState,layer?.feature?.properties?.name);
+   }else resetArea();
+  });
   $('rpPeriod').addEventListener('change',()=>{
    const v=$('rpPeriod').value;
    if(!regionOptions[v])return;
@@ -208,7 +288,7 @@
    $('mapGuideNote').textContent=regionOptions[v].label+' · 点击地图查看';
    resetArea();renderMap();renderList();
   });
-  $('resetView').addEventListener('click',()=>{view.archive=false;view.showEvents=false;view.overlayBeforeEvents=false;view.category='all';view.status='all';$('category').value='all';$('status').value='all';view.rpPeriod='2025-full-cities';$('rpPeriod').value=view.rpPeriod;toggleArchive();selectMode('state')});
+  $('resetView').addEventListener('click',()=>{view.archive=false;view.showEvents=false;view.overlayBeforeEvents=false;view.category='all';view.status='all';$('category').value='all';$('status').value='all';view.rpPeriod='2025-full-cities';$('rpPeriod').value=view.rpPeriod;view.stateMetric='balance-2025';$('stateMetric').value=view.stateMetric;toggleArchive();selectMode('state')});
   $('category').addEventListener('change',updateFilters);$('status').addEventListener('change',updateFilters);
   $('showMapCases').addEventListener('click',()=>{view.archive=false;view.limit=8;toggleArchive();renderList();renderMarkers()});
   $('showAllCases').addEventListener('click',()=>{view.archive=true;view.limit=8;toggleArchive();renderList();renderMarkers()});
@@ -219,6 +299,7 @@
  async function boot(){
   if(!D||D.cases.length!==170||readyCases.length!==72)throw Error('财政数据不完整或版本不匹配');
   if(!H||H.states.length!==13||H.regional.length!==72||H.totals.cash[4]!==38587)throw Error('历史财政数据不完整');
+  if(!I||I.states.length!==16||I.meta.years.length!==3)throw Error('综合地方债务数据不完整');
   setupUI();resetArea();renderList();renderLegend();
   map=L.map('finance-map',{zoomSnap:.25,minZoom:5,maxZoom:13,zoomControl:true,preferCanvas:true});map.fitBounds(withinBounds);
   const tile=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'});
@@ -232,7 +313,7 @@
   const countyIds=new Set(cf.features.map(f=>f.id));
   const unmatched=readyCases.filter(r=>!countyIds.has(r.county));
   if(unmatched.length)throw Error('地图候选县级AGS没有匹配的边界：'+unmatched.map(x=>x.id).join(','));
-  for(const f of cf.features){const lyr=L.geoJSON(f);const first=lyr.getLayers()[0];if(first)allCountyShapes.set(f.id,first)}
+  buildMapLayers();
   renderMap();showStatus('');
  }
  document.addEventListener('DOMContentLoaded',()=>{boot().catch(err=>{console.error(err);showStatus('财政专题加载失败：'+err.message+'。可查看研究档案和来源说明。')})});

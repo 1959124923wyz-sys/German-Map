@@ -127,3 +127,12 @@
 .finance-loan-history a{display:block;color:#98cbea;margin-top:4px;overflow-wrap:anywhere}
 @media(max-width:960px){.finance-loan-drawer[open]{max-height:none}}
 @media(max-width:560px){.finance-period{align-items:flex-start}.finance-period select{max-width:70%;width:70%}}
+
+/* Finance 08 / R10: retain identical compact select treatment for national indicators. */
+.finance-state-metric{display:flex;gap:8px}
+.finance-loan-integrated{margin-bottom:12px;border-bottom:1px solid #334c5b;padding-bottom:10px}
+.finance-loan-integrated>strong{font-size:10.5px;color:#dceaf2}
+.finance-loan-integrated-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:7px 0}
+.finance-loan-integrated-grid span{display:flex;flex-direction:column;gap:3px;padding:7px 8px;background:#21374a;border-radius:6px}
+.finance-loan-integrated-grid small{font-size:9px;color:#a7bdc8}
+.finance-loan-integrated-grid b{font-size:15px;color:#f2f7fb;font-variant-numeric:tabular-nums}

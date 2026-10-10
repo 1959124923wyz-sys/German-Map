@@ -76,6 +76,8 @@ jobs:
           node --check topics/finance/topic.js
           node --check topics/finance/data/finance-data.js
           node --check topics/finance/data/finance-history.js
+          node --check topics/finance/data/finance-integrated.js
+          python topics/finance/tests/validate_finance_integrated.py
           python topics/finance/tests/validate_finance_history.py
           python topics/finance/tests/validate_finance.py
           grep -Fq 'href="topics/finance/"' index.html
