@@ -1,0 +1,140 @@
+{
+  "official_csv": {
+    "2024": "https://deutschlandatlas.bund.de/fileadmin/Downloaddateien/HA26/Deutschlandatlas_KRS1224_HA26.csv",
+    "2022": "https://deutschlandatlas.bund.de/fileadmin/Downloaddateien/HA26/Deutschlandatlas_KRS1222_HA26.csv"
+  },
+  "source_csv_headers": {
+    "2024": {
+      "header_line": 1,
+      "header": [
+        "regionalschlüssel",
+        "kreisname",
+        "fl_suv",
+        "fl_landw",
+        "ifl_wald",
+        "bev_binw",
+        "bev_ausw",
+        "bev_u18",
+        "bev_18_65",
+        "bev_ue65",
+        "bev_ausl",
+        "preis_miet",
+        "preis_baul",
+        "fl_wohn",
+        "heiz_wohn",
+        "bquali_unifh",
+        "bquali_mabschl",
+        "bquali_oabschl",
+        "erw_wachs",
+        "erw_mini",
+        "erw_minineben",
+        "teilz_insg",
+        "teilz_w",
+        "teilz_m",
+        "erw_bip",
+        "alq",
+        "hh_veink",
+        "schulden",
+        "elterng_v",
+        "grusi_insg",
+        "grusi_w",
+        "grusi_m",
+        "sozsich",
+        "energie_wind",
+        "energie_solar",
+        "energie_bio",
+        "auto",
+        "pfl_ambu",
+        "pfl_stat",
+        "pfl_geld",
+        "schule_oabschl",
+        "kbetr_u3",
+        "kbetr_ue3",
+        "kbetr_ue6",
+        "kbtr_pks",
+        "kinder_bg",
+        "straft",
+        "einbr"
+      ],
+      "rows": 400,
+      "unparsed_examples": [
+        [
+          402,
+          [
+            "Ende der Tabelle.",
+            "",
+            ""
+          ]
+        ]
+      ]
+    },
+    "2022": {
+      "header_line": 1,
+      "header": [
+        "regionalschlüssel",
+        "kreisname",
+        "ko_kasskred",
+        "mitgl_sportv",
+        "ew_sportv",
+        "wahl_beteil",
+        "wohn_eigen",
+        "wohn_leer",
+        "heiz_wohn_best",
+        "erw_vol",
+        "eauto",
+        "v_harzt",
+        "v_karzt"
+      ],
+      "rows": 400,
+      "unparsed_examples": [
+        [
+          402,
+          [
+            "Ende der Tabelle.",
+            "",
+            ""
+          ]
+        ]
+      ]
+    }
+  },
+  "geo_crosswalk": {
+    "2024": {
+      "not_in_project_map": [
+        "03159"
+      ],
+      "not_in_atlas": [
+        "03152",
+        "03156",
+        "16056"
+      ],
+      "raw_count": 400,
+      "map_count": 402
+    },
+    "2022": {
+      "not_in_project_map": [
+        "03159"
+      ],
+      "not_in_atlas": [
+        "03152",
+        "03156",
+        "16056"
+      ],
+      "raw_count": 400,
+      "map_count": 402
+    }
+  },
+  "coverage": {
+    "asking_rent_2025_eur_m2": 399,
+    "vacancy_2022_pct": 399,
+    "owner_occupier_2022_pct": 399,
+    "living_area_2022_m2_person": 399,
+    "renewable_heat_new_2024_pct": 399,
+    "renewable_heat_stock_2022_pct": 399
+  },
+  "notes": [
+    "No interpolation or name-based joins",
+    "Different county boundary vintages",
+    "The project map contains 402 historical features; null means missing/unjoined, not zero"
+  ]
+}
