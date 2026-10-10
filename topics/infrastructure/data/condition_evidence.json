@@ -62,7 +62,9 @@
       "bad": 16,
       "total": 424,
       "threshold": "Zustandsnote ≥ 3.0",
-      "source": "https://www.strassen-mv.de/de/bruecken/zustand/"
+      "source": "https://www.strassen-mv.de/de/bruecken/zustand/",
+      "source_quality": "verified_original",
+      "source_check": "梅前州道路管理官方2026年5月图表提供全部六级桥梁状态及424/308个分段分母。"
     },
     {
       "iso": "DE-MV",
@@ -72,7 +74,9 @@
       "bad": 28,
       "total": 308,
       "threshold": "Zustandsnote ≥ 3.0",
-      "source": "https://www.strassen-mv.de/de/bruecken/zustand/"
+      "source": "https://www.strassen-mv.de/de/bruecken/zustand/",
+      "source_quality": "verified_original",
+      "source_check": "梅前州道路管理官方2026年5月图表提供全部六级桥梁状态及424/308个分段分母。"
     },
     {
       "iso": "DE-NW",
@@ -133,7 +137,9 @@
       "metric": "路面结构存在养护需求",
       "value_pct": 65,
       "definition": "ZEB警戒值或阈值以上路面",
-      "source": "https://mil.brandenburg.de/mil/de/presse/detail/~21-09-2026-erhaltungsprogramm-fuer-landesstrassen"
+      "source": "https://mil.brandenburg.de/mil/de/presse/detail/~21-09-2026-erhaltungsprogramm-fuer-landesstrassen",
+      "source_quality": "verified_original",
+      "source_check": "勃兰登堡州交通部2026年9月公布2023年ZEB州道结构养护需求占约65%。"
     },
     {
       "iso": "DE-NI",
@@ -151,7 +157,9 @@
       "metric": "最差路面结构等级占比",
       "value_pct": 23.2,
       "definition": "分级与下萨克森比较之前需校验",
-      "source": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/LBVSH/Presse/2025/Pressemitteilungen/250909_Erhaltungsprogramm-Landesstrassen?nn=eceb6018-4b4f-493a-8821-6d2333bc069e"
+      "source": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/LBVSH/Presse/2025/Pressemitteilungen/250909_Erhaltungsprogramm-Landesstrassen?nn=eceb6018-4b4f-493a-8821-6d2333bc069e",
+      "source_quality": "verified_original",
+      "source_check": "石荷州LBV SH于2025年9月公布：州道最差路面物质状态类别占23.2%，2021年27%；不等于使用性能等级。"
     },
     {
       "iso": "DE-BY",
