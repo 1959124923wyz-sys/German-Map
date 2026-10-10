@@ -27,6 +27,8 @@ def test_one(browser,url,mode=None):
     elif "drugs" in url:
         target="#drug-map"
         page.wait_for_function("()=>document.querySelectorAll('#state-index-list button').length===16",timeout=45000)
+        # Drug homepage intentionally collapses the nationwide ranking by default.
+        page.locator("#national-states > summary").click()
         page.locator("#state-index-list button").filter(has_text="巴伐利亚州").click()
         assert "巴伐利亚州" in page.locator("#region-heading").inner_text()
     else:
