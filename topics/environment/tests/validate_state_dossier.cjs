@@ -1,0 +1,23 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..');
+const src=fs.readFileSync(path.join(root,'data/records.js'),'utf8');
+const start=src.indexOf('Object.freeze(')+14,end=src.lastIndexOf(')');
+const rows=JSON.parse(src.slice(start,end));
+const counts=rows.reduce((a,e)=>(e.state?(a[e.state]=(a[e.state]||0)+1):0,a),{});
+const named=rows.filter(e=>e.state);
+assert.equal(rows.length,154);
+assert.equal(named.length,73);
+assert.equal(Object.keys(counts).length,11);
+assert.equal(rows.length-named.length,81);
+assert.equal(new Set(rows.map(e=>e.id)).size,154);
+assert.ok(named.every(x=>x.sources.length>0&&x.sources.every(v=>/^https:\/\//.test(v.url))));
+const app=fs.readFileSync(path.join(root,'topic.js'),'utf8');
+const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+for(const state of Object.keys(counts))assert.ok(app.includes("'"+state+"'"),'unmapped sourced state: '+state);
+assert.ok(app.includes('archivedInState=iso=>ALL.filter(e=>STATE_CODES[e.state]===iso)'));
+assert.ok(app.includes('if(!state.showPoints)return;'));
+for(const id of ['showEnvPoints','envStateJump','envStateDossier','envStateEvidence'])
+ assert.ok(html.includes('id="'+id+'"'),id);
+assert.ok(html.includes('region-dossier.js'));
+console.log('PASS environment archive: 154 total; 73 explicitly state-mapped across 11 states, 81 not fabricated onto states; default map glyphs disabled');
