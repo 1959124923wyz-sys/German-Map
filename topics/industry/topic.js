@@ -101,13 +101,16 @@ function countyStyle(feature){
   const p=Number(official.change_pct);
   return {color:'#869ca9',weight:0.65,fillColor:p<=-20?'#9e3439':p<=-10?'#cb5c4c':p<=-2?'#e9976a':p<2?'#e8ded1':'#cde1d9',fillOpacity:0.72};
  }
+ // When ANY official county series is present, NEVER mix it with sampled news-count colors.
+ if(app.metric&&Object.keys(app.metric.records||{}).length>0)
+  return {color:'#869ca9',weight:0.65,fillColor:'#e3e5e7',fillOpacity:0.72};
  const n=regionEntries(feature).filter(e=>e.isMajor).length;
  return {color:'#79909c',weight:0.65,fillColor:colorByCount(n),fillOpacity:0.8};
 }
 function createLegend(){
  const official=app.metric&&Object.keys(app.metric.records||{}).length>0;
  const legend=official
- ? [['工业就业降幅≥20%','#9e3439'],['下降10%—20%','#cb5c4c'],['下降2%—10%','#e9976a'],['基本稳定','#e8ded1'],['就业增长','#cde1d9']]
+ ? [['工业就业降幅≥20%','#9e3439'],['下降10%—20%','#cb5c4c'],['下降2%—10%','#e9976a'],['基本稳定','#e8ded1'],['就业增长','#cde1d9'],['无同口径统计数据','#e3e5e7']]
  : [['未收录重大事件','#e6e8e8'],['1条重大事件','#fbe2c8'],['2条重大事件','#f6b780'],['3条重大事件','#e4825d'],['4条及以上','#bc4945']];
  $('legend').innerHTML='<div class="industry-legend"><strong>'+(official?'制造业就业变化':'已登记工业收缩事件')+'</strong>'
   +legend.map(([label,color])=>'<div class="swatch-row"><i class="industry-swatch" style="background:'+color+'"></i>'+label+'</div>').join('')
