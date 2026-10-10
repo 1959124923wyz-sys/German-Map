@@ -26,7 +26,7 @@ assert states['DE-HE']['per_capita_eur']['2024'] == 6291
 assert states['DE-BB']['per_capita_eur']['2024'] == 2587
 assert '1001 million' in data['meta']['limits']
 page = (ROOT / 'topics/finance/index.html').read_text(encoding='utf-8')
-assert 'finance-integrated.js' in page and 'id="stateMetric"' in page
+assert 'finance-integrated.js' in page and 'id="loanDrawer"' in page
 script = (ROOT / 'topics/finance/topic.js').read_text(encoding='utf-8')
-assert 'GermanFinance08Integrated' in script and 'stateMetric' in script
+assert 'GermanFinance08Integrated' in script and 'renderLoanHistory' in script and 'integrated.per_capita_eur' in script
 print('PASS: 16 state codes, 39 observations, no fabricated city-state debt, official values/source, UI references')
