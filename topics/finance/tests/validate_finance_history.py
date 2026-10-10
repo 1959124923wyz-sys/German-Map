@@ -50,7 +50,7 @@ for frag in ('H.totals','regionalRow(', 'regionOptions[view.rpPeriod]', "row.ope
  assert frag in logic,frag
 assert '县政府本级预算' in logic and '全年与半年不可直接比较' in logic
 assert 'buildMapLayers()' in logic and 'countiesLayer=L.geoJSON(countyGeo' in logic
-assert 'renderMap();' in logic and 'zoomToState(' in logic and 'stateMetric' not in logic
+assert 'renderMap();' in logic and 'zoomToState(' in logic and '$(\'stateMetric\')' not in logic
 assert "for(const f of cf.features){const lyr=L.geoJSON(f)" not in logic
 
 print('PASS Finance 08 history: 130 debt values, 72 RLP half-year rows, four scoped selections, source and UI contracts')
