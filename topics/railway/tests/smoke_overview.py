@@ -53,6 +53,37 @@ def run(browser,mobile=False):
     assert page.locator("#railway-map canvas").count()==2
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getNetworkGeometryCount()")==33547
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getGraphEdgeCount()")==33547
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getOfficialPickCount()")==33547
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getSpatialBucketCount()")>0
+    # Regression: an actual DB InfraGO rail around Berlin must respond to a
+    # click even when the selected service has no observations on that track.
+    # Reject a fabricated zero percent; both KPIs must be honest dashes.
+    if not mobile:
+        green=page.evaluate("""() => {
+          const api=window.__RAILWAY_OVERVIEW__,map=api.getMap();
+          const seen=new Set();
+          let tries=0;
+          for(const entries of api.getOfficialPickEntries().values()){
+            for(const entry of entries){
+              if(seen.has(entry))continue;seen.add(entry);
+              const xy=entry.part.xy;
+              const x=(xy[0]+xy[2])/2,y=(xy[1]+xy[3])/2;
+              const ll=map.unproject(L.point(x,y),9);
+              if(ll.lat<52.3||ll.lat>52.9||ll.lng<12.75||ll.lng>13.95)continue;
+              if(++tries>2000) return null;
+              api.clickPoint(ll);
+              if(api.getSelected()?.unobserved)return {
+                route:api.getSelected().route,lat:ll.lat,lng:ll.lng,tries
+              };
+            }
+          }
+          return null;
+        }""")
+        assert green,'Berlin region must have clickable no-data official rails'
+        assert page.locator("#detail .detail-grid b").all_inner_texts()==["—","—"]
+        assert "暂无可比观测" in page.locator("#detail").inner_text()
+        print("PASS Berlin official green rail selectable:",green,flush=True)
+
     # This was the actual nationwide no-data gap reported by the user:
     # Erlangen km 23.504 -> Forchheim km 38.289 on observed route 5900.
     # Both ends have real observations, the missing center must not contribute
@@ -71,6 +102,62 @@ def run(browser,mobile=False):
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getBridgedCount()")>=40
     print('Official railway corridor bridges:',
       page.evaluate("window.__RAILWAY_OVERVIEW__.getBridgedCount()"),flush=True)
+    if not mobile:
+        # Observed green is a real measured selection, not the same thing as
+        # clicking the unobserved network underlay.
+        observed_green=page.evaluate("""() => {
+          const api=window.__RAILWAY_OVERVIEW__,map=api.getMap();
+          for(const item of api.getRendered().filter(x=>x.grade===0).slice(0,350)){
+            const v=item.parts[0].xy;
+            if(v.length<4)continue;
+            const ll=map.unproject(L.point((v[0]+v[2])/2,(v[1]+v[3])/2),9);
+            api.clickPoint(ll);
+            const current=api.getSelected();
+            if(current&&!current.unobserved&&current.grade===0)
+              return {from:item.leg.from_station,to:item.leg.to_station};
+          }
+          return null;
+        }""")
+        assert observed_green,'Observed green must still show measured numbers'
+        numbers=page.locator("#detail .detail-grid b").all_inner_texts()
+        assert len(numbers)==2 and all(v.endswith("%") for v in numbers),numbers
+        print("PASS selectable measured green:",observed_green,flush=True)
+
+    if not mobile:
+        re4=page.evaluate("""() => {
+          const app=window.__RAILWAY_OVERVIEW__;
+          const sample=app.getServiceCorridors().filter(g=>
+            g.members.some(m=>String(m.leg.route)==='6107' &&
+             /Wustermark|Elstal/.test(m.leg.from_station+' '+m.leg.to_station)) &&
+            g.members.some(m=>String(m.leg.route)==='6179' &&
+             /Berlin-Staaken|Berlin-Spandau/.test(m.leg.from_station+' '+m.leg.to_station)));
+          return {joined:app.getServiceBridgedCount(),groupCount:app.getServiceCorridors().length,
+            re4:sample.map(g=>({label:g.serviceName,count:g.members.length,percent:g.m.onTime}))};
+        }""")
+        print("Cross-infrastructure RE4 corridor audit:",re4,flush=True)
+        assert re4["joined"]>=1 and re4["groupCount"]<700
+        assert len(re4["re4"])==1 and re4["re4"][0]["label"]=="RE4"
+        assert re4["re4"][0]["count"]>=4
+        # Click Wustermark's short RE4 subsegment; the displayed detail must
+        # contain its longer service corridor, not an isolated 2-stop card.
+        picked_re4=page.evaluate("""() => {
+          const api=window.__RAILWAY_OVERVIEW__,map=api.getMap();
+          for(const item of api.getRendered().filter(x=>String(x.leg.route)==='6107' &&
+            /Wustermark|Elstal/.test(x.leg.from_station+' '+x.leg.to_station))){
+            const v=item.parts[0].xy;
+            const ll=map.unproject(L.point((v[0]+v[2])/2,(v[1]+v[3])/2),9);
+            api.clickPoint(ll);
+            const g=api.getSelected();
+            if(g?.serviceName==='RE4'&&g.members.some(x=>String(x.leg.route)==='6179'))
+              return {size:g.members.length,onTime:g.m.onTime};
+          }
+          return null;
+        }""")
+        assert picked_re4 and picked_re4["size"]>=4,picked_re4
+        assert "RE4" in page.locator("#detail h3").inner_text()
+        print("PASS Wustermark–Berlin RE4 pooled click:",picked_re4,flush=True)
+
+
     assert page.locator("#minimum").count()==0
     assert page.locator(".mini-stats").count()==0
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getMinimum()")==100
@@ -162,6 +249,16 @@ def run(browser,mobile=False):
         loaded(page,"LONG",10)
         page.locator('[data-service="OTHER"]').click()
         loaded(page,"OTHER",100)
+        # Switching service datasets must not erase the independent official
+        # green track index used around Berlin.
+        again=page.evaluate("""({lat,lng}) => {
+          const api=window.__RAILWAY_OVERVIEW__;
+          api.clickPoint([lat,lng]);
+          const selected=api.getSelected();
+          return !!selected&&(selected.unobserved||selected.members?.length>0);
+        }""",green)
+        assert again is True
+
         page.locator('[data-service="REGIONAL"]').click()
         loaded(page,"REGIONAL",500)
         assert page.evaluate("window.__RAILWAY_OVERVIEW__.getVisible()")==regional

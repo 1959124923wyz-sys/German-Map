@@ -111,6 +111,28 @@ class RouteGraph{
   }
   return best;
  }
+ // Select a connected official track run around an unobserved green click.
+ // Stop at ambiguous junctions, route changes and capped travel distance.
+ // Every displayed part still comes verbatim from DB InfraGO.
+ walk(route,point,maxKm=22,maxParts=140){
+  const hit=this.nearest(route,point);
+  if(!hit)return null;
+  const seen=new Set([hit.edge]),parts=[hit.edge.part];
+  let km=hit.edge.length;
+  const traverse=node=>{
+   for(let steps=0;steps<maxParts&&km<maxKm;steps++){
+    const choices=node.adj.filter(([,edge])=>!seen.has(edge));
+    if(choices.length!==1)break;
+    const [other,edge]=choices[0];
+    if(km+edge.length>maxKm)break;
+    km+=edge.length;seen.add(edge);parts.push(edge.part);
+    node=other;
+   }
+  };
+  traverse(hit.edge.nodes[0]);
+  traverse(hit.edge.nodes[1]);
+  return {route:String(route),parts,km};
+ }
  // Certain published observation links refer to a different DB route label
  // than the later infrastructure extract. Reconcile only through identical
  // geographic curves, never by guessing a numerical ID.
@@ -224,17 +246,26 @@ function reverseCoords(points){
  const out=[];for(let i=points.length-2;i>=0;i-=2)out.push(points[i],points[i+1]);
  return out;
 }
-function ends(group){
- const first=group.members[0],last=group.members[group.members.length-1];
+// Use actual physical geometry at the LOW/HIGH km boundary, rather than
+// the first/last item in array order (which may be a reversed direction).
+function ends(group,side){
+ const entries=group.members.map(m=>({
+  member:m,range:m.leg.km_range
+ })).filter(x=>Array.isArray(x.range)&&x.range.length===2&&x.range.every(Number.isFinite));
+ if(!entries.length)return [];
+ const boundary=side==='high'
+  ?Math.max(...entries.flatMap(x=>x.range))
+  :Math.min(...entries.flatMap(x=>x.range));
+ const candidates=entries.filter(({range})=>
+  Math.abs((side==='high'?Math.max(...range):Math.min(...range))-boundary)<.3);
  const out=[];
- for(const m of [first,last])for(const p of m.parts||[]){
-  const a=p.xy;
-  out.push([a[0],a[1]],[a[a.length-2],a[a.length-1]]);
+ for(const {member} of candidates.slice(0,12))for(const p of member.parts||[]){
+  const a=p.xy;out.push([a[0],a[1]],[a[a.length-2],a[a.length-1]]);
  }
  return out;
 }
 function bestAnchors(a,b){
- const ax=ends(a),bx=ends(b);let best=null,dist=Infinity;
+ const ax=ends(a,'high'),bx=ends(b,'low');let best=null,dist=Infinity;
  for(const x of ax)for(const y of bx){
   const d=(x[0]-y[0])**2+(x[1]-y[1])**2;
   if(d<dist){dist=d;best=[x,y];}
@@ -324,7 +355,7 @@ function mergeGroups(groups,graph,allObservations,config={}){
    for(let j=i+1;j<rows.length;j++){
     const right=rows[j],gap=right.span[0]-left.span[1];
     if(gap>cap)break;
-    if(gap<.12)continue; // overlapping opposite-direction observations
+    if(gap<-.08)continue; // disallow km overlap; allow exactly touching physical sections
     debug.withinGap++;
     if(next.has(left.g)||prev.has(right.g))continue;
     // A known grade in the intervening km range is not an unknown gap.
@@ -349,7 +380,7 @@ function mergeGroups(groups,graph,allObservations,config={}){
     // both measured ends landing on official railway curves. Keep a single
     // corridor for statistics only, without ever drawing an invented path.
     // The unchanged low-opacity official network remains visible in the gap.
-    if(!bridge&&gap<=20&&straight>=2&&
+    if(!bridge&&gap>.12&&gap<=20&&straight>=2&&
       Math.abs(straight-gap)<=Math.max(4,gap*.3)){
        const a=graph.nearest(GLOBAL,anchors[0]),b=graph.nearest(GLOBAL,anchors[1]);
        if(a&&b&&a.d<.35**2&&b.d<.35**2){

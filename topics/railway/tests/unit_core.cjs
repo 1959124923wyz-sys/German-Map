@@ -7,7 +7,7 @@ const path=require('node:path');
 const vm=require('node:vm');
 const root=path.resolve(__dirname,'..');
 const context=vm.createContext({window:{}});
-for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js']){
+for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js','rail-service-groups.js','rail-picker.js']){
   const source=fs.readFileSync(path.join(root,'js',name),'utf8');
   vm.runInContext(source,context,{filename:name,timeout:10000});
 }
@@ -62,6 +62,11 @@ const baseY=45000;
 const part=(from,to,dy=0)=>geom.shape([from,baseY+dy,to,baseY+dy]);
 net.add('100',part(100,105));
 net.add('100',part(105,110));
+const highlighted=net.walk('100',[104,baseY],10);
+assert.ok(highlighted);
+assert.equal(highlighted.parts.length,2,'official same-route adjacent sections form one green highlight');
+assert.equal(highlighted.route,'100');
+assert.equal(net.walk('9999',[104,baseY]),null,'unknown line cannot be invented');
 const connection=net.find('100',[104,baseY],[106,baseY],5);
 assert.ok(connection&&connection.parts.length>=1,'official source route should bridge');
 assert.ok(connection.km>0&&connection.km<2);
@@ -89,6 +94,19 @@ assert.ok(merged.groups[0].bridgeKm>0);
 assert.equal(merged.groups[0].members.length,2);
 assert.equal(merged.groups[0].m.late,44.5);
 assert.equal(merged.groups[0].m.cancel,5);
+// Previously the old gap>=.12 rule dropped *exactly adjoining* km sections,
+// leaving false breaks where the station labels did not match.
+const touchA=leg('Station A','Station B',[0,5],45,5);
+const touchB=leg('Station B variant','Station C',[5,10],44,5);
+const touchRows=[
+ {leg:touchA,grade:2,parts:[part(100,104)],m:math.metrics(touchA,'both')},
+ {leg:touchB,grade:2,parts:[part(105,110)],m:math.metrics(touchB,'both')}
+];
+const touching=bridge.mergeGroups(math.buildCorridors(touchRows),net,touchRows);
+assert.equal(touching.groups.length,1,'adjacent km chain remains one corridor');
+assert.equal(touching.groups[0].members.length,2);
+assert.equal(touching.groups[0].m.late,44.5);
+
 // Two directions on the same physical km interval become one corridor with
 // pooled *counted* arrivals, not an average of printed percentages.
 const groupedOpposite=bridge.mergeGroups(
@@ -103,5 +121,57 @@ const conflicting={leg:leg('E','F',[5.2,5.8],3,1),grade:0,m:{},parts:[part(104,1
 assert.equal(bridge.mergeGroups(math.buildCorridors([f(m1),f(m2)]),net,[...observed,conflicting]).bridged,0);
 const distant=leg('Q','R',[75,85],43,5);
 assert.equal(bridge.mergeGroups(math.buildCorridors([f(m1),f(distant)]),net,observed).bridged,0);
+
+
+// Regress the former clickable-only-observations bug: even with no usable
+// stop data, the official low-opacity green rail should select as no-data.
+const select=context.window.Railway07Picker;
+const locator=new select.RailwayPicker();
+const virgin=geom.shape([100,baseY+10,110,baseY+10]);
+locator.addNetwork('6081',virgin);
+let result=locator.hit([105,baseY+10],9);
+assert.equal(result.kind,'network');
+assert.equal(result.route,'6081');
+assert.equal(locator.network.items,1);
+const measured=geom.shape([100,baseY,110,baseY]);
+const measuredEntry={parts:[measured],group:{route:'6081',m:{onTime:83}}};
+locator.replaceObserved([measuredEntry],[]);
+result=locator.hit([105,baseY],9);
+assert.equal(result.kind,'observed');
+assert.equal(result.group.m.onTime,83);
+result=locator.hit([105,baseY+10],9);
+assert.equal(result.kind,'network','unobserved green section remains selectable');
+locator.replaceObserved([],[]);
+assert.equal(locator.observed.items,0);
+assert.equal(locator.network.items,1,'switching a filter cannot erase official rail picking');
+assert.equal(locator.hit([105,baseY+10],9).kind,'network');
+assert.equal(locator.hit([105,baseY+100],9),null,'blank map must not trigger a rail');
+const seen=new Set();
+locator.network.nearest([105,baseY+10],2);
+assert.equal(locator.network.items,1);
+
+
+// The RE4 train service crosses DB infrastructure 6107 -> 6179 at Berlin:
+// clicking either measured part must select the same longer *service* corridor.
+const svc=context.window.Railway07ServiceGroups;
+const makeLine=(route,from,to,start,end,hint,late)=>{
+ const track=leg(from,to,[0,5],late,1,route);
+ track.label_hints=[[hint,150]];
+ return {leg:track,grade:math.grade(math.metrics(track,'both'),'both'),
+  parts:[part(start,end)],m:math.metrics(track,'both')};
+};
+const west=makeLine('6107','Wustermark','Elstal',100,104,'RE4',32);
+const east=makeLine('6179','Berlin-Staaken','Berlin-Spandau',106,110,'RE4',12);
+const services=svc.joinServiceCorridors(math.buildCorridors([west,east]),net,'both');
+assert.equal(services.joined,1);
+assert.equal(services.corridors.length,1);
+assert.equal(services.corridors[0].serviceName,'RE4');
+assert.equal(services.corridors[0].members.length,2);
+assert.equal(services.corridors[0].m.late,22);
+assert.equal(services.corridors[0].gradeVariation,true);
+assert.equal(services.map.get(services.corridors[0]),undefined);
+const other=makeLine('6179','Berlin-Staaken','Berlin-Spandau',106,110,'RE6',12);
+assert.equal(svc.joinServiceCorridors(math.buildCorridors([west,other]),net,'both').joined,0,
+ 'Different service labels must not be joined just for appearance');
 
 console.log('PASS railway pure geometry, weighted rates, branches, km gaps and pooled counts');
