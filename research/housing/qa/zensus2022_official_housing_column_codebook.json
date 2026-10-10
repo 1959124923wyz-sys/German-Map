@@ -1,0 +1,852 @@
+{
+  "source": "https://www.destatis.de/static/DE/zensus/gitterdaten/Regionaltabelle_Gebaeude_Wohnungen.xlsx",
+  "year": 2022,
+  "rows": {
+    "dwellings": {
+      "GEBAEUDEART_SYS_1": {
+        "column": 4,
+        "labels": [
+          "Wohnungen in Gebäuden mit Wohnraum",
+          "insgesamt"
+        ]
+      },
+      "GEBAEUDEART_SYS_11": {
+        "column": 5,
+        "labels": [
+          "Gebäude mit Wohnraum",
+          "Wohnungen in Wohngebäuden",
+          "zusammen"
+        ]
+      },
+      "GEBAEUDEART_SYS_111": {
+        "column": 6,
+        "labels": [
+          "in Wohngebäuden \n(ohne Wohnheime)"
+        ]
+      },
+      "GEBAEUDEART_SYS_112": {
+        "column": 7,
+        "labels": [
+          "in Wohnheimen"
+        ]
+      },
+      "GEBAEUDEART_SYS_12": {
+        "column": 8,
+        "labels": [
+          "in sonstigen Gebäuden\nmit Wohnraum"
+        ]
+      },
+      "ZAHLWOHNGN_HHG__1": {
+        "column": 9,
+        "labels": [
+          "Zahl der Wohnungen im Gebäude",
+          "1 Wohnung"
+        ]
+      },
+      "ZAHLWOHNGN_HHG__2": {
+        "column": 10,
+        "labels": [
+          "2 Wohnungen"
+        ]
+      },
+      "ZAHLWOHNGN_HHG__3": {
+        "column": 11,
+        "labels": [
+          "3 - 6 Wohnungen"
+        ]
+      },
+      "ZAHLWOHNGN_HHG__4": {
+        "column": 12,
+        "labels": [
+          "7 - 12 Wohnungen"
+        ]
+      },
+      "ZAHLWOHNGN_HHG__5": {
+        "column": 13,
+        "labels": [
+          "13 und mehr Wohnungen"
+        ]
+      },
+      "BAUJAHR_10JA__01": {
+        "column": 14,
+        "labels": [
+          "Baujahr (Jahrzehnte)",
+          "vor 1919"
+        ]
+      },
+      "BAUJAHR_10JA__02": {
+        "column": 15,
+        "labels": [
+          "1919-1949"
+        ]
+      },
+      "BAUJAHR_10JA__03": {
+        "column": 16,
+        "labels": [
+          "1950-1959"
+        ]
+      },
+      "BAUJAHR_10JA__04": {
+        "column": 17,
+        "labels": [
+          "1960-1969"
+        ]
+      },
+      "BAUJAHR_10JA__05": {
+        "column": 18,
+        "labels": [
+          "1970-1979"
+        ]
+      },
+      "BAUJAHR_10JA__06": {
+        "column": 19,
+        "labels": [
+          "1980-1989"
+        ]
+      },
+      "BAUJAHR_10JA__07": {
+        "column": 20,
+        "labels": [
+          "1990-1999"
+        ]
+      },
+      "BAUJAHR_10JA__08": {
+        "column": 21,
+        "labels": [
+          "2000-2009"
+        ]
+      },
+      "BAUJAHR_10JA__09": {
+        "column": 22,
+        "labels": [
+          "2010-2015"
+        ]
+      },
+      "BAUJAHR_10JA__10": {
+        "column": 23,
+        "labels": [
+          "2016 und später"
+        ]
+      },
+      "EIGENTUM__1": {
+        "column": 24,
+        "labels": [
+          "Eigentumsform des Gebäudes",
+          "Gemeinschaft von \nWohnungseigentümern/-innen"
+        ]
+      },
+      "EIGENTUM__2": {
+        "column": 25,
+        "labels": [
+          "Privatperson/-en"
+        ]
+      },
+      "EIGENTUM__3": {
+        "column": 26,
+        "labels": [
+          "Wohnungs-genossenschaft"
+        ]
+      },
+      "EIGENTUM__4": {
+        "column": 27,
+        "labels": [
+          "Kommune oder kommunales\nWohnungs-\nunternehmen"
+        ]
+      },
+      "EIGENTUM__5": {
+        "column": 28,
+        "labels": [
+          "Privatwirtschaftliches \nWohnungs-\nunternehmen"
+        ]
+      },
+      "EIGENTUM__6": {
+        "column": 29,
+        "labels": [
+          "anderes privatwirtschaftliches\nUnternehmen"
+        ]
+      },
+      "EIGENTUM__7": {
+        "column": 30,
+        "labels": [
+          "Bund oder Land"
+        ]
+      },
+      "EIGENTUM__8": {
+        "column": 31,
+        "labels": [
+          "Organisation ohne\nErwerbszweck"
+        ]
+      },
+      "HEIZTYP__1": {
+        "column": 32,
+        "labels": [
+          "Heizungsart",
+          "Fernheizung\n(Fernwärme)"
+        ]
+      },
+      "HEIZTYP__2": {
+        "column": 33,
+        "labels": [
+          "Etagenheizung"
+        ]
+      },
+      "HEIZTYP__3": {
+        "column": 34,
+        "labels": [
+          "Blockheizung"
+        ]
+      },
+      "HEIZTYP__4": {
+        "column": 35,
+        "labels": [
+          "Zentral-\nheizung"
+        ]
+      },
+      "HEIZTYP__5": {
+        "column": 36,
+        "labels": [
+          "Einzel- oder Mehrraumöfen\n(auch Nachtspeicherheizung)"
+        ]
+      },
+      "HEIZTYP__6": {
+        "column": 37,
+        "labels": [
+          "keine Heizung im Gebäude oder \nin den Wohnungen"
+        ]
+      },
+      "ENERGIETRAEGER__1": {
+        "column": 38,
+        "labels": [
+          "Energieträger der Heizung",
+          "Gas"
+        ]
+      },
+      "ENERGIETRAEGER__2": {
+        "column": 39,
+        "labels": [
+          "Heizöl"
+        ]
+      },
+      "ENERGIETRAEGER__3": {
+        "column": 40,
+        "labels": [
+          "Holz, Holzpellets"
+        ]
+      },
+      "ENERGIETRAEGER__4": {
+        "column": 41,
+        "labels": [
+          "Biomasse (ohne Holz), Biogas"
+        ]
+      },
+      "ENERGIETRAEGER__5": {
+        "column": 42,
+        "labels": [
+          "Solar-/Geothermie, Wärmepumpen"
+        ]
+      },
+      "ENERGIETRAEGER__6": {
+        "column": 43,
+        "labels": [
+          "Strom (ohne Wärmepumpe)"
+        ]
+      },
+      "ENERGIETRAEGER__7": {
+        "column": 44,
+        "labels": [
+          "Kohle"
+        ]
+      },
+      "NERGIETRAEGER__8": {
+        "column": 45,
+        "labels": [
+          "Fernwärme (verschiedene Energieträger)"
+        ]
+      },
+      "ENERGIETRAEGER__9": {
+        "column": 46,
+        "labels": [
+          "kein Energieträger (keine Heizung)"
+        ]
+      },
+      "NUTZUNG__01": {
+        "column": 47,
+        "labels": [
+          "Art der Wohnungsnutzung",
+          "von Eigentümer/-in bewohnt"
+        ]
+      },
+      "NUTZUNG__02": {
+        "column": 48,
+        "labels": [
+          "zu Wohnzwecken vermietet \n(auch mietfrei)"
+        ]
+      },
+      "NUTZUNG__03": {
+        "column": 49,
+        "labels": [
+          "privat genutzte Ferien- oder Freizeitwohnung"
+        ]
+      },
+      "NUTZUNG__04": {
+        "column": 50,
+        "labels": [
+          "leerstehend"
+        ]
+      },
+      "MIETE_EURM2_2__01": {
+        "column": 51,
+        "labels": [
+          "Durchschnittliche Nettokaltmiete in … EUR je Quadratmeter",
+          "unter 4 €/m²"
+        ]
+      },
+      "MIETE_EURM2_2__02": {
+        "column": 52,
+        "labels": [
+          "4 - unter 6 €/m²"
+        ]
+      },
+      "MIETE_EURM2_2__03": {
+        "column": 53,
+        "labels": [
+          "6 - unter 8 €/m²"
+        ]
+      },
+      "MIETE_EURM2_2__04": {
+        "column": 54,
+        "labels": [
+          "8 - unter 10 €/m²"
+        ]
+      },
+      "MIETE_EURM2_2__05": {
+        "column": 55,
+        "labels": [
+          "10 - unter 12 €/m²"
+        ]
+      },
+      "MIETE_EURM2_2__06": {
+        "column": 56,
+        "labels": [
+          "12 - unter 14 €/m²"
+        ]
+      },
+      "MIETE_EURM2_2__07": {
+        "column": 57,
+        "labels": [
+          "14 - unter 16 €/m²"
+        ]
+      },
+      "MIETE_EURM2_2__08": {
+        "column": 58,
+        "labels": [
+          "16 - unter 18 €/m²"
+        ]
+      },
+      "MIETE_EURM2_2__09": {
+        "column": 59,
+        "labels": [
+          "18 - unter 20 €/m²"
+        ]
+      },
+      "MIETE_EURM2_2__10": {
+        "column": 60,
+        "labels": [
+          "20 €/m² und mehr"
+        ]
+      },
+      "WOHNFLAECHE_20S__01": {
+        "column": 61,
+        "labels": [
+          "Fläche der Wohnung (20 m²-Intervalle)",
+          "unter 40"
+        ]
+      },
+      "WOHNFLAECHE_20S__02": {
+        "column": 62,
+        "labels": [
+          "40 - 59"
+        ]
+      },
+      "WOHNFLAECHE_20S__03": {
+        "column": 63,
+        "labels": [
+          "60 - 79"
+        ]
+      },
+      "WOHNFLAECHE_20S__04": {
+        "column": 64,
+        "labels": [
+          "80 - 99"
+        ]
+      },
+      "WOHNFLAECHE_20S__05": {
+        "column": 65,
+        "labels": [
+          "100 - 119"
+        ]
+      },
+      "WOHNFLAECHE_20S__06": {
+        "column": 66,
+        "labels": [
+          "120 - 139"
+        ]
+      },
+      "WOHNFLAECHE_20S__07": {
+        "column": 67,
+        "labels": [
+          "140 - 159"
+        ]
+      },
+      "WOHNFLAECHE_20S__08": {
+        "column": 68,
+        "labels": [
+          "160 - 179"
+        ]
+      },
+      "WOHNFLAECHE_20S__09": {
+        "column": 69,
+        "labels": [
+          "180 - 199"
+        ]
+      },
+      "WOHNFLAECHE_20S__10": {
+        "column": 70,
+        "labels": [
+          "200 und mehr"
+        ]
+      },
+      "RAUMANZAHL__01": {
+        "column": 71,
+        "labels": [
+          "Zahl der Räume",
+          "1 Raum"
+        ]
+      },
+      "RAUMANZAHL__02": {
+        "column": 72,
+        "labels": [
+          "2 Räume"
+        ]
+      },
+      "RAUMANZAHL__03": {
+        "column": 73,
+        "labels": [
+          "3 Räume"
+        ]
+      },
+      "RAUMANZAHL__04": {
+        "column": 74,
+        "labels": [
+          "4 Räume"
+        ]
+      },
+      "RAUMANZAHL__05": {
+        "column": 75,
+        "labels": [
+          "5 Räume"
+        ]
+      },
+      "RAUMANZAHL__06": {
+        "column": 76,
+        "labels": [
+          "6 Räume"
+        ]
+      },
+      "RAUMANZAHL__07": {
+        "column": 77,
+        "labels": [
+          "7 und mehr Räume"
+        ]
+      },
+      "QMMIETE": {
+        "column": 78,
+        "labels": [
+          "Wohnungen in Wohngebäuden (ohne Wohnheime)",
+          "durchschn. Nettokaltmiete pro Quadratmeter (€)"
+        ]
+      },
+      "LEQ": {
+        "column": 79,
+        "labels": [
+          "Leerstands-\nquote (%)"
+        ]
+      },
+      "ETQ": {
+        "column": 80,
+        "labels": [
+          "Eigentümer-\nquote (%)"
+        ]
+      },
+      "FLAECHE": {
+        "column": 81,
+        "labels": [
+          "Wohnfläche je Wohnung (m²)"
+        ]
+      },
+      "LEERSTAND_INSGESAMT": {
+        "column": 82,
+        "labels": [
+          "Leerstehende Wohnungen in Gebäuden mit Wohnraum",
+          "insgesamt"
+        ]
+      },
+      "LEERSTAND_DAUER__1": {
+        "column": 83,
+        "labels": [
+          "Dauer des Leerstands",
+          "seit weniger als 3 Monaten"
+        ]
+      },
+      "LEERSTAND_DAUER__2": {
+        "column": 84,
+        "labels": [
+          "seit 3 bis unter 6 Monaten"
+        ]
+      },
+      "LEERSTAND_DAUER__3": {
+        "column": 85,
+        "labels": [
+          "seit 6 bis unter 12 Monaten"
+        ]
+      },
+      "LEERSTAND_DAUER__4": {
+        "column": 86,
+        "labels": [
+          "seit 12 Monaten oder länger"
+        ]
+      },
+      "LEERSTAND_GRUND__1": {
+        "column": 87,
+        "labels": [
+          "Grund des Leerstands",
+          "innerhalb von 3 Monaten für den Bezug verfügbar"
+        ]
+      },
+      "LEERSTAND_GRUND__2": {
+        "column": 88,
+        "labels": [
+          "laufende bzw. geplante Baumaßnahmen"
+        ]
+      },
+      "LEERSTAND_GRUND__3": {
+        "column": 89,
+        "labels": [
+          "geplanter Abriss oder Rückbau"
+        ]
+      },
+      "LEERSTAND_GRUND__4": {
+        "column": 90,
+        "labels": [
+          "Verkauf des Gebäudes oder der Wohnung"
+        ]
+      },
+      "LEERSTAND_GRUND__5": {
+        "column": 91,
+        "labels": [
+          "künftige Selbstnutzung"
+        ]
+      },
+      "LEERSTAND_GRUND__6": {
+        "column": 92,
+        "labels": [
+          "sonstiger Grund"
+        ]
+      }
+    },
+    "buildings": {
+      "GEBAEUDEART_SYS_1": {
+        "column": 4,
+        "labels": [
+          "Gebäude mit Wohnraum",
+          "insgesamt"
+        ]
+      },
+      "GEBAEUDEART_SYS_11": {
+        "column": 5,
+        "labels": [
+          "Art des Gebäudes",
+          "Gebäude mit Wohnraum",
+          "Wohngebäude",
+          "zusammen"
+        ]
+      },
+      "GEBAEUDEART_SYS_111": {
+        "column": 6,
+        "labels": [
+          "Wohngebäude (ohne Wohnheime)"
+        ]
+      },
+      "GEBAEUDEART_SYS_112": {
+        "column": 7,
+        "labels": [
+          "Wohnheime"
+        ]
+      },
+      "GEBAEUDEART_SYS_12": {
+        "column": 8,
+        "labels": [
+          "sonstige Gebäude\nmit Wohnraum"
+        ]
+      },
+      "BAUJAHR_10JA__01": {
+        "column": 9,
+        "labels": [
+          "Baujahr (Jahrzehnte)",
+          "vor 1919"
+        ]
+      },
+      "BAUJAHR_10JA__02": {
+        "column": 10,
+        "labels": [
+          "1919-1949"
+        ]
+      },
+      "BAUJAHR_10JA__03": {
+        "column": 11,
+        "labels": [
+          "1950-1959"
+        ]
+      },
+      "BAUJAHR_10JA__04": {
+        "column": 12,
+        "labels": [
+          "1960-1969"
+        ]
+      },
+      "BAUJAHR_10JA__05": {
+        "column": 13,
+        "labels": [
+          "1970-1979"
+        ]
+      },
+      "BAUJAHR_10JA__06": {
+        "column": 14,
+        "labels": [
+          "1980-1989"
+        ]
+      },
+      "BAUJAHR_10JA__07": {
+        "column": 15,
+        "labels": [
+          "1990-1999"
+        ]
+      },
+      "BAUJAHR_10JA__08": {
+        "column": 16,
+        "labels": [
+          "2000-2009"
+        ]
+      },
+      "BAUJAHR_10JA__09": {
+        "column": 17,
+        "labels": [
+          "2010-2015"
+        ]
+      },
+      "BAUJAHR_10JA__10": {
+        "column": 18,
+        "labels": [
+          "2016 und später"
+        ]
+      },
+      "EIGENTUM__1": {
+        "column": 19,
+        "labels": [
+          "Eigentumsform des Gebäudes",
+          "Gemeinschaft von \nWohnungseigentümern/-innen"
+        ]
+      },
+      "EIGENTUM__2": {
+        "column": 20,
+        "labels": [
+          "Privatperson/-en"
+        ]
+      },
+      "EIGENTUM__3": {
+        "column": 21,
+        "labels": [
+          "Wohnungs-\ngenossenschaft"
+        ]
+      },
+      "EIGENTUM__4": {
+        "column": 22,
+        "labels": [
+          "Kommune oder kommunales\nWohnungs-\nunternehmen"
+        ]
+      },
+      "EIGENTUM__5": {
+        "column": 23,
+        "labels": [
+          "Privatwirtschaftliches \nWohnungs-\nunternehmen"
+        ]
+      },
+      "EIGENTUM__6": {
+        "column": 24,
+        "labels": [
+          "anderes privatwirtschaftliches\nUnternehmen"
+        ]
+      },
+      "EIGENTUM__7": {
+        "column": 25,
+        "labels": [
+          "Bund oder Land"
+        ]
+      },
+      "EIGENTUM__8": {
+        "column": 26,
+        "labels": [
+          "Organisation ohne\nErwerbszweck"
+        ]
+      },
+      "HEIZTYP__1": {
+        "column": 27,
+        "labels": [
+          "Heizungsart",
+          "Fernheizung\n(Fernwärme)"
+        ]
+      },
+      "HEIZTYP__2": {
+        "column": 28,
+        "labels": [
+          "Etagenheizung"
+        ]
+      },
+      "HEIZTYP__3": {
+        "column": 29,
+        "labels": [
+          "Blockheizung"
+        ]
+      },
+      "HEIZTYP__4": {
+        "column": 30,
+        "labels": [
+          "Zentral-\nheizung"
+        ]
+      },
+      "HEIZTYP__5": {
+        "column": 31,
+        "labels": [
+          "Einzel- oder Mehrraumöfen\n(auch Nachtspeicher-\nheizung)"
+        ]
+      },
+      "HEIZTYP__6": {
+        "column": 32,
+        "labels": [
+          "keine Heizung im Gebäude\noder in den Wohnungen"
+        ]
+      },
+      "ENERGIETRAEGER__1": {
+        "column": 33,
+        "labels": [
+          "Energieträger der Heizung",
+          "Gas"
+        ]
+      },
+      "ENERGIETRAEGER__2": {
+        "column": 34,
+        "labels": [
+          "Heizöl"
+        ]
+      },
+      "ENERGIETRAEGER__3": {
+        "column": 35,
+        "labels": [
+          "Holz, Holzpellets"
+        ]
+      },
+      "ENERGIETRAEGER__4": {
+        "column": 36,
+        "labels": [
+          "Biomasse (ohne Holz), Biogas"
+        ]
+      },
+      "ENERGIETRAEGER__5": {
+        "column": 37,
+        "labels": [
+          "Solar-/Geothermie, Wärmepumpen"
+        ]
+      },
+      "ENERGIETRAEGER__6": {
+        "column": 38,
+        "labels": [
+          "Strom (ohne Wärmepumpe)"
+        ]
+      },
+      "ENERGIETRAEGER__7": {
+        "column": 39,
+        "labels": [
+          "Kohle"
+        ]
+      },
+      "ENERGIETRAEGER__8": {
+        "column": 40,
+        "labels": [
+          "Fernwärme (verschiedene Energieträger)"
+        ]
+      },
+      "ENERGIETRAEGER__9": {
+        "column": 41,
+        "labels": [
+          "kein Energieträger (keine Heizung)"
+        ]
+      },
+      "ZAHLWOHNGN_HHG__1": {
+        "column": 42,
+        "labels": [
+          "Zahl der Wohnungen im Gebäude",
+          "1 Wohnung"
+        ]
+      },
+      "ZAHLWOHNGN_HHG__2": {
+        "column": 43,
+        "labels": [
+          "2 Wohnungen"
+        ]
+      },
+      "ZAHLWOHNGN_HHG__3": {
+        "column": 44,
+        "labels": [
+          "3 - 6 Wohnungen"
+        ]
+      },
+      "ZAHLWOHNGN_HHG__4": {
+        "column": 45,
+        "labels": [
+          "7 - 12 Wohnungen"
+        ]
+      },
+      "ZAHLWOHNGN_HHG__5": {
+        "column": 46,
+        "labels": [
+          "13 und mehr Wohnungen"
+        ]
+      },
+      "GEBTYPBAUWEISE__1": {
+        "column": 47,
+        "labels": [
+          "Gebäudetyp-Bauweise",
+          "freistehendes Haus"
+        ]
+      },
+      "GEBTYPBAUWEISE__2": {
+        "column": 48,
+        "labels": [
+          "Doppelhaushälfte"
+        ]
+      },
+      "GEBTYPBAUWEISE__3": {
+        "column": 49,
+        "labels": [
+          "gereihtes Haus"
+        ]
+      },
+      "GEBTYPBAUWEISE__4": {
+        "column": 50,
+        "labels": [
+          "anderer Gebäudetyp"
+        ]
+      }
+    }
+  }
+}
