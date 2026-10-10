@@ -45,11 +45,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/housing/raw/deutschlandatlas_krs2024_ha26.csv research/housing/raw/deutschlandatlas_krs2022_ha26.csv
+          git add research/housing/qa/ha26_raw_manifest.json
           git add research/housing/data/deutschlandatlas_ha26_housing_counties.csv
           git add research/housing/qa/ha26_join_audit.json
           git add topics/housing/data/atlas-counties.json
           if ! git diff --cached --quiet; then
             git commit -m "housing data: verified official Deutschlandatlas HA26 county metrics [skip ci]"
+            git pull --rebase origin research/housing-crisis-20261010
             git push origin HEAD:research/housing-crisis-20261010
           else
             echo "No changes to preserve"
