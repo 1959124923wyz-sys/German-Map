@@ -10,6 +10,10 @@ const r5a=JSON.parse(fs.readFileSync(path.join(root,'research/r5a-eurofound-site
 const r5b=JSON.parse(fs.readFileSync(path.join(root,'research/r5b-manufacturing-cases.json'),'utf8'));
 const r5c=JSON.parse(fs.readFileSync(path.join(root,'research/r5c-screened-manufacturing.json'),'utf8'));
 const r5d=JSON.parse(fs.readFileSync(path.join(root,'research/r5d-2025-factory-closures.json'),'utf8'));
+const r6=JSON.parse(fs.readFileSync(path.join(root,'research/r6-events.json'),'utf8'));
+const r6Audit=JSON.parse(fs.readFileSync(path.join(root,'research/r6-dedup-audit.json'),'utf8'));
+assert.equal(r6.events.length,1,'R6 only genuinely new site');
+assert.equal(r6Audit.excluded_duplicates,10,'Ten already represented factsheets rejected');
 const employment=JSON.parse(fs.readFileSync(path.join(root,'data/county-employment.json'),'utf8'));
 const crosswalk=JSON.parse(fs.readFileSync(path.join(root,'data/county_ags_crosswalk.json'),'utf8'));
 assert.equal(crosswalk.records.length,402,'402 county AGS source geometry crosswalk');
@@ -52,9 +56,9 @@ assert.equal(r5c.manifest.sites,7);
 assert.equal(r5c.events.filter(e=>e.eligible_factory_marker===false).length,5,'R5C undecided/group/nonfactory excluded');
 assert.equal(r5b.events.filter(e=>e.eligible_factory_marker===false).length,2,'R5B groups are not map markers');
 assert.equal(r5a.events.filter(e=>e.eligible_factory_marker===false).length,2,'Exclude operators/multi-site');
-const rows=[...r1.events,...r23.events,...r4.events,...r5a.events,...r5b.events,...r5c.events,...r5d.events];
-assert.equal(rows.length,173);
-assert.equal(new Set(rows.map(e=>e.event_id)).size,173,'IDs unique');
+const rows=[...r1.events,...r23.events,...r4.events,...r5a.events,...r5b.events,...r5c.events,...r5d.events,...r6.events];
+assert.equal(rows.length,174);
+assert.equal(new Set(rows.map(e=>e.event_id)).size,174,'IDs unique');
 for(const [id,fix] of Object.entries(r4.updates)){
  assert.ok(rows.some(e=>e.event_id===id),'patch target '+id);
  assert.ok((fix.source_url||rows.find(e=>e.event_id===id)?.source_url)?.startsWith('https://'),'patch citation '+id);
