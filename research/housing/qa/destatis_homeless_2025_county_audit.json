@@ -14,6 +14,9 @@
   "numerical": 394,
   "nulls": 6,
   "rounded_subtotal": 474690,
+  "destatis_published_national_2025": 474700,
+  "national_check_difference": -10,
+  "destatis_published_national_source": "https://www.destatis.de/DE/Presse/Pressemitteilungen/2025/07/PD25_246_229.html",
   "legacy_or_deprecated_codes": [
     {
       "id": "05313",
