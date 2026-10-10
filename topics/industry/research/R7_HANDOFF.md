@@ -16,3 +16,12 @@
 - 历史402个GeoJSON多边形依旧只是402→400 AGS映射，BKG现行县界几何尚未拿到。
 - 下一步：逐条核验R7A/R7B的工厂状态和重复，继续从官方/ERM查漏，整合R7加载和CI并创建Draft PR（以旧工业支线为base，不触碰main）；官方统计数据必须有完整来源、下载与同口径核验才能发布。
 - 证据来源直接在每条JSON `source_url`。技术信息参考 `topics/industry/research/R5_HANDOFF.md` 和 `topics/industry/README.md`。
+
+## R7C 阶段及遗留记录纠错（已提交）
+
+- R7C 7条有来源的具体生产设施档案，提交 `9647e43d08eb8087920e9ef3707f57c331b93eed`：Kabel Premium Pulp & Paper Hagen 420、Daikin Güglingen 200（仅部分转产捷克）、Rohrwerk Maxhütte Sulzbach-Rosenberg 300已报停、Schlaraffia Bochum 171、Oventrop Brilon 185（装配转波兰但其他德国业务保留）、Britax Römer Leipheim 216、Reemtsma Langenhagen 600。Reemtsma ERM表头2025-03-24与网页引证新闻2026-03-24有冲突，暂按可见新闻日期登记，并要求以后独立纠错；该厂2027计划不等于已关。
+- 新文件 `research/r7-legacy-identity-audit.json`，提交 `ca23b8eaf5b8620b0d6a86c497f834da3036d4b9`。纠正旧Eberswalder Wurstwaren的实际工厂位于**Britz（Barnim，AGS12060）**而非招聘会所在Eberswalde市。Eurofound EWN 203947、原RBB资料指向同一厂和约500员工，因此只修正现有ID；Varta Nördlingen约350岗位已在R1记录，亦不新建重复事件。保留原R1源档未直接覆盖，通过R7补丁加载。
+- R7A 10 + R7B 11 + R7C 7 = **新增28独立研究条目**，加上原R1–R6 174，已保存总数 **202**。其中12（R7A/B）+7（R7C）=19新增厂址/生产活动标点候选；其余9为其他业务或不宜画关厂点的隔离记录。不可将202说成202家关闭的工厂。
+- 已在独立R7支线更新前端 `topic.js`、`tests/validate_industry.cjs`、`tests/smoke_industry_data.cjs` 对202事件批次严格校验；最终通过状态应在Draft PR [#42](https://github.com/1959124923wyz-sys/German-Map/pull/42) 最新CI读取。
+- 官方BA仅有行业可选的交互数据库，未通过可信方式实收全国400县双年度纯WZ-C工作地数字。发现BKG的现行免费VG250县界公开GeoPackage/Shape/WFS，另BKG在线ArcGIS图层允许GeoJSON，但仍**没有下载和导入合格400县几何**。研究必须区分来源已找到与数据已下载。
+- R7支线PR #42 base=原工业支线而不是main，不能自动合并或部署。
