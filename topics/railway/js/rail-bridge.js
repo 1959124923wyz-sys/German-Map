@@ -126,11 +126,12 @@ class RouteGraph{
   if(!common.length)return null;
   // Official geometry may contain several parallel track records; accept
   // only a clearly closest physical alignment for both ends.
-  if(common.length>1&&common[1][1]<common[0][1]*1.5+.003)return null;
+  if(common.length>1&&common[1][1]<common[0][1]*1.5+.003)return false;
   return common[0][0];
  }
  find(route,from,to,maxKm=MAX_GAP){
   const resolved=this.resolveRoute(route,from,to);
+  if(resolved===false){this.reasons.noRoute++;return null;}
   const actual=resolved||GLOBAL;
   const r=this.routes.get(actual);
   if(!r){this.reasons.noRoute++;return null;}
