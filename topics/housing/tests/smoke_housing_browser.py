@@ -79,7 +79,8 @@ def run(browser,mobile=False):
     # 400-county Zensus indicator and not automatically loaded nationwide.
     assert page.evaluate("GermanHousingResearch.state().greixReady") is False
     page.locator('[data-dossier-tab="rent-series"]').click()
-    assert "暂无GREIX" in page.locator("#greixCity").inner_text()
+    page.wait_for_function("GermanHousingResearch.state().greixReady===true",timeout=30000)
+    assert "本州暂无GREIX" in page.locator("#greixCity").inner_text()
     page.locator("#stateJump").select_option("01")
     page.locator('[data-dossier-tab="rent-series"]').click()
     page.wait_for_function("GermanHousingResearch.state().greixReady===true",timeout=30000)
