@@ -42,6 +42,9 @@ def check(browser, mobile=False):
     assert page.evaluate("()=>window.__IMMIGRATION_MAP_V13__.getPane('immigration-city-labels').style.pointerEvents") == "none"
     if not mobile: assert page.locator("#immigration-map .crime-city-label").count() >= 6
     assert page.locator("#state-list button").count()==16
+    assert page.locator("#azrStateDrawer").is_visible()
+    assert page.locator("#azrStateDrawer").get_attribute("open") is None
+    assert page.locator("#state-list").is_hidden()
     assert page.locator("#national-value").inner_text()=="14,070,225"
     page.locator("#population-year").select_option("2018")
     assert page.locator("#national-value").inner_text()=="10,915,455"
@@ -50,10 +53,22 @@ def check(browser, mobile=False):
     assert page.locator("#national-value").inner_text()=="14.9%"
     assert page.locator("#population-year").is_disabled()
     page.locator("#population-metric").select_option("count")
+    page.locator("#azrStateDrawer > summary").click()
+    assert page.locator("#state-list").is_visible()
     print("TRANSLATION_DIAGNOSTIC",page.evaluate("()=>({loaded:!!window.GermanPlaceNames,value:window.GermanPlaceNames?.translate('Berlin'),county:window.GermanPlaceNames?.byAGS('01001','Flensburg'),stateText:document.querySelector('#state-list')?.innerText?.slice(0,240),errors:[]})"),flush=True)
     page.locator("#state-list").get_by_text("柏林").click()
     assert "994,590" in page.locator("#region-value").inner_text()
     assert page.locator("#trend-chart polyline").count()==1
+    assert page.locator("#azrAnnualRows .azr-annual-entry").count()==8
+    assert page.locator("#azrAnnualDrawer").get_attribute("open") is None
+    page.locator("#azrAnnualDrawer > summary").click()
+    firstYear=page.locator("#azrAnnualRows .azr-annual-entry").first
+    firstYear.click()
+    assert page.locator("#population-year").input_value()=="2018"
+    assert page.locator("#azrAnnualRows .azr-annual-entry").first.get_attribute("aria-pressed")=="true"
+    assert "登记差额" in page.locator("#azrAnnualRows .azr-annual-entry").last.inner_text()
+    page.locator("#azrAnnualRows .azr-annual-entry").last.click()
+    assert page.locator("#region-value").inner_text()=="994,590"
     page.locator("#back-country").click()
     page.locator("#state-list").get_by_text("石勒苏益格－荷尔斯泰因州").click()
     assert page.locator("#county-list button").count()==15
