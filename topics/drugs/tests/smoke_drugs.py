@@ -25,7 +25,7 @@ def main():
             page.wait_for_function(
                 "() => document.getElementById('county-count').textContent.includes('/')",
                 timeout=45000)
-            count = page.locator('#county-count').inner_text()
+            count = page.locator('#county-count').text_content()
             assert not errors, errors
             assert re.search(r'\d+ / \d+', count), count
             assert page.locator('.leaflet-pane svg path').count() > 200, ('SVG paths:', page.locator('.leaflet-pane svg path').count())
@@ -270,8 +270,25 @@ def main():
             assert page.locator('#region-navigator').is_visible()
             assert page.locator('#state-panel').count() == 0
             assert not errors, errors
+            # Mobile first viewport: maps/legend and one headline metric,
+            # while the long lists remain accessible but not expanded.
+            mobile = browser.new_page(viewport={"width":390,"height":844}, device_scale_factor=1)
+            mobile_errors=[]
+            mobile.on("pageerror",lambda e:mobile_errors.append(str(e)))
+            mobile.goto(URL,wait_until="domcontentloaded",timeout=45000)
+            mobile.wait_for_function("() => document.querySelector('#county-count')?.textContent.includes('/')",timeout=45000)
+            assert mobile.locator('#national-drug-summary .metricbox.wide').is_visible()
+            assert not mobile.locator('#national-states').get_attribute('open')
+            assert not mobile.locator('#national-extras').get_attribute('open')
+            assert mobile.locator('#drug-map .leaflet-control-zoom-in').count()==1
+            assert mobile.evaluate("document.documentElement.scrollWidth <= innerWidth + 3"), 'mobile must not scroll horizontally'
+            mobile.locator('#national-states > summary').click()
+            assert mobile.locator('#state-index-list button').count()==16
+            mobile.screenshot(path='/tmp/germany-crime-map-drugs-mobile-clean.png',full_page=True)
+            assert not mobile_errors,mobile_errors
+            mobile.close()
             print('PASS drug map smoke:', count, 'states', first, second,
-                  'county click, EUDA 13 stations, 6 drugs, tab switch and return')
+                  'county click, clean collapsed overview, mobile, EUDA 13 stations, 6 drugs, tab switch and return')
         finally:
             browser.close()
 
