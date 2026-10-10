@@ -1,0 +1,147 @@
+{
+  "dataset": "integrated_2023_2024_stable_unit_panel",
+  "report_years": [
+    2023,
+    2024
+  ],
+  "stable_units": 11867,
+  "unit_classes": {
+    "municipality": 10743,
+    "county_administration": 294,
+    "joint_administration": 830
+  },
+  "per_capita_population_vintages": {
+    "2023": "published_2023_06_30",
+    "2024": "published_2024_06_30"
+  },
+  "valid_for_annual_growth_rates": false,
+  "valid_for_cross_class_county_aggregation": false,
+  "source_workbook_sha256_2023": "af5b3e0ff66cd30f7566721028e57374bce2bffd1b1cb0fe3a870344b3bb53d0",
+  "source_workbook_sha256_2024": "8712ff40e0a2dba71bc43c6a6fa720cdc847dd913e077c876aef5bc79e25198f",
+  "state_coverage": [
+    {
+      "state_code": "01",
+      "entities_2023": 1198,
+      "entities_2024": 1198,
+      "stable_original_identifiers": 1198,
+      "2023_only": 0,
+      "2024_only": 0,
+      "legal_name_or_form_changed_review": 2
+    },
+    {
+      "state_code": "03",
+      "entities_2023": 1092,
+      "entities_2024": 1092,
+      "stable_original_identifiers": 1092,
+      "2023_only": 0,
+      "2024_only": 0,
+      "legal_name_or_form_changed_review": 1
+    },
+    {
+      "state_code": "05",
+      "entities_2023": 427,
+      "entities_2024": 427,
+      "stable_original_identifiers": 427,
+      "2023_only": 0,
+      "2024_only": 0,
+      "legal_name_or_form_changed_review": 0
+    },
+    {
+      "state_code": "06",
+      "entities_2023": 442,
+      "entities_2024": 442,
+      "stable_original_identifiers": 442,
+      "2023_only": 0,
+      "2024_only": 0,
+      "legal_name_or_form_changed_review": 2
+    },
+    {
+      "state_code": "07",
+      "entities_2023": 2454,
+      "entities_2024": 2454,
+      "stable_original_identifiers": 2454,
+      "2023_only": 0,
+      "2024_only": 0,
+      "legal_name_or_form_changed_review": 124
+    },
+    {
+      "state_code": "08",
+      "entities_2023": 1136,
+      "entities_2024": 1136,
+      "stable_original_identifiers": 1136,
+      "2023_only": 0,
+      "2024_only": 0,
+      "legal_name_or_form_changed_review": 1
+    },
+    {
+      "state_code": "09",
+      "entities_2023": 2438,
+      "entities_2024": 2438,
+      "stable_original_identifiers": 2438,
+      "2023_only": 0,
+      "2024_only": 0,
+      "legal_name_or_form_changed_review": 0
+    },
+    {
+      "state_code": "10",
+      "entities_2023": 58,
+      "entities_2024": 58,
+      "stable_original_identifiers": 58,
+      "2023_only": 0,
+      "2024_only": 0,
+      "legal_name_or_form_changed_review": 0
+    },
+    {
+      "state_code": "12",
+      "entities_2023": 478,
+      "entities_2024": 478,
+      "stable_original_identifiers": 478,
+      "2023_only": 0,
+      "2024_only": 0,
+      "legal_name_or_form_changed_review": 0
+    },
+    {
+      "state_code": "13",
+      "entities_2023": 808,
+      "entities_2024": 806,
+      "stable_original_identifiers": 806,
+      "2023_only": 2,
+      "2024_only": 0,
+      "legal_name_or_form_changed_review": 3
+    },
+    {
+      "state_code": "14",
+      "entities_2023": 434,
+      "entities_2024": 434,
+      "stable_original_identifiers": 434,
+      "2023_only": 0,
+      "2024_only": 0,
+      "legal_name_or_form_changed_review": 13
+    },
+    {
+      "state_code": "15",
+      "entities_2023": 247,
+      "entities_2024": 247,
+      "stable_original_identifiers": 247,
+      "2023_only": 0,
+      "2024_only": 0,
+      "legal_name_or_form_changed_review": 0
+    },
+    {
+      "state_code": "16",
+      "entities_2023": 684,
+      "entities_2024": 664,
+      "stable_original_identifiers": 657,
+      "2023_only": 27,
+      "2024_only": 7,
+      "legal_name_or_form_changed_review": 1
+    }
+  ],
+  "status": "research_only_not_published",
+  "cautions": [
+    "stable official identifier is not proof of population comparability",
+    "do not sum municipalities, joint administrations and counties",
+    "additional verification needed for entity mergers and ownership changes",
+    "not a nationwide county-level integrated debt series"
+  ]
+}
