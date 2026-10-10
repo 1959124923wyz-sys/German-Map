@@ -1,0 +1,64 @@
+name: Industry R8 national regional manufacturing table acquisition
+on:
+  push:
+    branches: [research/industry-r8-official-data-20261010]
+    paths:
+      - .github/workflows/industry-r8-regional-data.yml
+      - topics/industry/scripts/acquire_regionalstatistik_raw.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+concurrency:
+  group: industry-r8-regional-table
+  cancel-in-progress: false
+
+jobs:
+  raw-candidate-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/industry-r8-official-data-20261010
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Syntax verification
+        run: python -m py_compile topics/industry/scripts/acquire_regionalstatistik_raw.py
+      - name: Fetch official CSV without publishing unvalidated county metric
+        id: acquire
+        shell: bash
+        run: |
+          mkdir -p research-output
+          set +e
+          python topics/industry/scripts/acquire_regionalstatistik_raw.py >research-output/official-regional-download.log 2>&1
+          result=$?
+          set -e
+          cat research-output/official-regional-download.log
+          echo "exit_code=$result" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: industry-r8-regionalstatistik-acquisition
+          path: |
+            research-output/
+            topics/industry/research/R8_regionalstatistik_download_manifest.json
+          retention-days: 60
+      - name: Archive RAW CSV and provenance to research branch only
+        if: steps.acquire.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/industry/research/R8_regionalstatistik_42111-02-03-4_00_raw.csv topics/industry/research/R8_regionalstatistik_download_manifest.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'research(industry): archive raw regional table, unapproved for map [skip ci]'
+          git pull --rebase origin research/industry-r8-official-data-20261010
+          git push origin HEAD:research/industry-r8-official-data-20261010
+      - name: Report failure honestly
+        if: steps.acquire.outputs.exit_code != '0'
+        run: |
+          echo 'National regional statistical CSV NOT acquired; no values published.'
+          exit 1
