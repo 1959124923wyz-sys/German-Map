@@ -77,7 +77,7 @@
    '<div class="housing-scale">'+colors.map(c=>'<i style="background:'+c+'"></i>').join('')+'</div>'+
    '<div class="housing-legend-labels"><span>'+safe(isNum(low)?fmt(low,m.dec):'—')+'</span>'+
    '<span>由浅至深：数值升高</span><span>'+safe(isNum(high)?fmt(high,m.dec):'—')+'</span></div>'+
-   '<div style="font-size:9px;margin-top:7px;color:#aabac4"><i style="background:'+gray+';display:inline-block;width:10px;height:8px"></i> 灰色：缺失／旧行政边界不匹配</div>';
+   '<div style="font-size:9px;margin-top:7px;color:#aabac4"><i style="background:'+gray+';display:inline-block;width:10px;height:8px"></i> 灰色：该指标缺失或不可比较</div>';
  }
  function overview(ids,key){const v=ids.map(id=>metricValue(id,key)).filter(isNum).sort((a,b)=>a-b);return med(v)}
  function renderQuick(region){
@@ -209,8 +209,8 @@
    const [atlas,states,counties]=await Promise.all([
     readJson('data/atlas-counties.json'),
     readJson('../../data/germany-states.geojson'),
-    readJson('../../data/germany-counties-display.geojson')]);
-   if(atlas.counties.length!==402||counties.features.length!==402||states.features.length!==16)throw new Error('地区文件覆盖与校验快照不符');
+    readJson('data/germany-counties-2024.geojson')]);
+   if(atlas.counties.length!==400||counties.features.length!==400||states.features.length!==16)throw new Error('地区文件覆盖与校验快照不符');
    byid=new Map(atlas.counties.map(d=>[ags(d.id),{...d}]));
    sourceMeta=atlas.meta;
    if([...byid.values()].filter(d=>isNum(d.asking_rent_2025_eur_m2)).length<390)throw new Error('全国县级租金覆盖不足');
