@@ -62,9 +62,9 @@ def main() -> None:
         parser = References()
         parser.feed(railway.read_text(encoding='utf-8'))
         scripts = [urlsplit(ref).path for kind, ref in parser.assets if kind == 'script']
-        a, b, c, d, e = ('js/rail-geometry.js', 'js/rail-analysis.js', 'js/rail-service-groups.js', 'js/rail-picker.js', 'overview.js')
-        assert all(p in scripts for p in (a, b, c, d, e))
-        assert scripts.index(a) < scripts.index(b) < scripts.index(c) < scripts.index(d) < scripts.index(e), scripts
+        a, b, c, d, e, f = ('js/rail-geometry.js', 'js/rail-analysis.js', 'js/rail-service-groups.js', 'js/rail-city-corridors.js', 'js/rail-picker.js', 'overview.js')
+        assert all(p in scripts for p in (a, b, c, d, e, f))
+        assert scripts.index(a) < scripts.index(b) < scripts.index(c) < scripts.index(d) < scripts.index(e) < scripts.index(f), scripts
     print(f'SUCCESS {len(PAGES)} published pages, {checks} local dependencies verified')
 
 
