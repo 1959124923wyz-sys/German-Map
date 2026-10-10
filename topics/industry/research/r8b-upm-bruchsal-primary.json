@@ -1,0 +1,42 @@
+{
+  "manifest": {
+    "batch": "R8B",
+    "records": 1,
+    "site_records": 1,
+    "expected_total_after_import": 231,
+    "source": "UPM primary releases August 2024 and 2024 audited annual reporting",
+    "separate_from": [
+      "UPM Hürth newsprint",
+      "UPM Nordland Dörpen PM3",
+      "UPM Raflatac Kaltenkirchen",
+      "UPM Ettringen"
+    ],
+    "careful_jobs": "59 across Germany & Finland, 21 Finland, unknown pure Bruchsal factory jobs"
+  },
+  "events": [
+    {
+      "event_id": "R8B_UPM_BRU",
+      "company": "UPM Biocomposites",
+      "city": "Bruchsal",
+      "state_iso": "DE-BW",
+      "county_name": "Karlsruhe",
+      "county_ags": "08215",
+      "event_date": "2024-08-26",
+      "event_type": "plant_closure",
+      "implementation_status": "reported_completed",
+      "jobs_affected": null,
+      "headline_zh": "UPM确认永久关闭德国Bruchsal生物复合材料生产厂，2024年末结束业务；跨芬德两国总计59岗不可分厂",
+      "source_url": "https://www.upm.com/fi/ajankohtaista/tiedotteet/2024/08/muutosneuvottelut-paatokseen-upm-lopettaa-biokomposiittiliiketoiminnan-2024-loppuun-mennessa/",
+      "confirmation_source_url": "https://www.upm.com/siteassets/investors/reports-and-presentations/2024/en/ixbrl-viewer3.htm",
+      "source_type": "company_primary_and_2024_annual_report",
+      "verification": "UPM_direct_2024-08-26_announcement_and_2024_annual_report_2026-10-10",
+      "jobs_basis": "cross_country_59_total_21_fi_not_assignable_to_germany_site",
+      "eligible_factory_marker": true,
+      "location_precision": "verified_Bruchsal_municipality_and_county_only_not_factory_gate",
+      "batch": "R8B",
+      "first_collected": "2026-10-10",
+      "caveat": "芬兰Lahti及德国Bruchsal两国共59岗；芬兰21岗，但不得未经职能细分把差额38直接视为Bruchsal净失业。UPM 2024年报确认生物复合材料业务已关闭，而非整个UPM集团退出。",
+      "shared_program_id": "upm_biocomposites_finland_germany_2024_59"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+name: Industry R8 official GENESIS POST API evidence
+on:
+  push:
+    branches: [research/industry-r8-official-data-20261010]
+    paths:
+      - .github/workflows/industry-r8-genesis-probe.yml
+      - topics/industry/scripts/probe_regionalstatistik_genesis.py
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: industry-r8-genesis-probe
+  cancel-in-progress: false
+jobs:
+  probe-save:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: research/industry-r8-official-data-20261010, persist-credentials: true}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Validate Python
+        run: python -m py_compile topics/industry/scripts/probe_regionalstatistik_genesis.py
+      - name: Probe original GENESIS server using documented POST protocol
+        run: python topics/industry/scripts/probe_regionalstatistik_genesis.py
+      - name: Save official API diagnostic only, no unverifiable county figures
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/industry/research/R8_GENESIS_API_PROBE.json
+          if git diff --cached --quiet; then
+            echo 'No changed diagnosis'
+          else
+            git commit -m 'research(industry): archive official GENESIS table POST diagnostics [skip ci]'
+            git pull --rebase origin research/industry-r8-official-data-20261010
+            git push origin HEAD:research/industry-r8-official-data-20261010
+          fi

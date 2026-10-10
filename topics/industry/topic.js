@@ -125,7 +125,8 @@ function createLegend(){
  : [['未收录重大事件','#e6e8e8'],['1条重大事件','#fbe2c8'],['2条重大事件','#f6b780'],['3条重大事件','#e4825d'],['4条及以上','#bc4945']];
  $('legend').innerHTML='<div class="industry-legend"><strong>'+(official?'制造业就业变化':'已登记工业收缩事件')+'</strong>'
   +legend.map(([label,color])=>'<div class="swatch-row"><i class="industry-swatch" style="background:'+color+'"></i>'+label+'</div>').join('')
-  +'<div class="mini-note">'+(official?'同口径就业人数；详见统计说明':'研究样本数量，不代表地区真实工业收缩率或全面普查')+'</div></div>';
+  +'<div class="mini-note">'+(official?'同口径就业人数；详见统计说明':'研究样本数量，不代表地区真实工业收缩率或全面普查')+'</div>'
+  +'<div class="mini-note">县界：© BKG (2026), dl-de/by-2-0 · 2024-12-31官方区划，非工厂门址</div></div>';
 }
 function getMapPoint(e,county,geocache){
  if(Number.isFinite(Number(e.lat))&&Number.isFinite(Number(e.lon))&&e.lat!==null&&e.lon!==null)
@@ -170,6 +171,7 @@ function detail(e){
   +'<p>事件：'+esc(e.event_type)+'<br>状态：'+esc(e.implementation_status)+'<br>涉及岗位：'+(e.jobs===null?'未取得可单独归属数字':esc(e.jobs)+'（'+esc(e.jobs_basis||'报告值')+'）')+'</p>'
   +(e.relocation_destination?'<p>转移去向：'+esc(e.relocation_destination)+'</p>':'')
   +(e.note?'<p>'+esc(e.note)+'</p>':'')
+  +(e.confirmation_source_url?'<p><a target="_blank" rel="noopener noreferrer" href="'+esc(e.confirmation_source_url)+'">查看后续执行确认资料 ↗</a></p>':'')
   +'<p>'+openSource(e)+'</p>'
   +'<div class="disclaimer">'+esc(e.point?.precision||'位置未核实，不在地图标点')+'；计划影响人数≠已经失业人数。'+(e.shared_program_id?' 关联计划：'+esc(e.shared_program_id):'')+'</div>';
 }
@@ -206,27 +208,29 @@ function selectCounty(f){
  app.selectedCounty=stateKey(f);app.selectedEvent=null;renderSummary();
 }
 async function start(){
- const sources=['../../data/germany-counties.geojson','../../data/germany-states.geojson',
+ const sources=['data/bkg_vg250_counties_2025_candidate.geojson','../../data/germany-states.geojson',
    'research/r1-events.json','research/r2-r3-events.json','../../data/geocode_cache.json',
    'data/county-employment.json','research/r4-events-and-updates.json','research/r5a-eurofound-sites.json','research/r5b-manufacturing-cases.json','data/ags-crosswalk-402-to-400.json','research/r5c-screened-manufacturing.json','research/r5d-2025-factory-closures.json','research/r6-events.json',
    'research/r7a-screened-2026-events.json','research/r7b-2025-retrospective.json',
    'research/r7-legacy-identity-audit.json','research/r7c-plant-closures-offshoring.json',
-   'research/r7d-2024-company-primary-audited.json','research/r7e-2025-undercovered-sites.json'];
+   'research/r7d-2024-company-primary-audited.json','research/r7e-2025-undercovered-sites.json','research/r8a-2024-industry-backfill.json',
+   'research/r8b-upm-bruchsal-primary.json','research/r8-implementation-patches.json'];
  const results=await Promise.all(sources.map(async src=>{
   const r=await fetch(src,{cache:'no-store'});if(!r.ok)throw Error(src+': HTTP '+r.status);return r.json();
  }));
- const [counties,states,r1,r2,geocache,metric,r4,r5a,r5b,agsCrosswalk,r5c,r5d,r6,r7a,r7b,r7audit,r7c,r7d,r7e]=results;
- if(!Array.isArray(counties.features)||counties.features.length!==402||!Array.isArray(states.features)||states.features.length!==16)
+ const [counties,states,r1,r2,geocache,metric,r4,r5a,r5b,agsCrosswalk,r5c,r5d,r6,r7a,r7b,r7audit,r7c,r7d,r7e,r8a,r8b,r8patch]=results;
+ if(!Array.isArray(counties.features)||counties.features.length!==400||!Array.isArray(states.features)||states.features.length!==16)
   throw Error('官方边界记录数量异常');
- if(r1.events.length!==61||r2.events.length!==38||r4.events.length!==18||r5a.events.length!==10||r5b.events.length!==16||r5c.events.length!==12||r5d.events.length!==18||r6.events.length!==1||r7a.events.length!==10||r7b.events.length!==11||r7c.events.length!==7||r7d.events.length!==13||r7e.events.length!==5)throw Error('事件档案数量异常');
+ if(r1.events.length!==61||r2.events.length!==38||r4.events.length!==18||r5a.events.length!==10||r5b.events.length!==16||r5c.events.length!==12||r5d.events.length!==18||r6.events.length!==1||r7a.events.length!==10||r7b.events.length!==11||r7c.events.length!==7||r7d.events.length!==13||r7e.events.length!==5||r8a.events.length!==10||r8b.events.length!==1)throw Error('事件档案数量异常');
  if(agsCrosswalk.features.length!==402||agsCrosswalk.canonical_ags_distinct!==400)throw Error('地区AGS对照表无效');
  const agsIds=new Set(counties.features.map(f=>f.id));
- if(agsIds.size!==402||[...agsIds].some(id=>!/^\d{5}$/.test(id)))throw Error('县市AGS缺失/重复');
+ if(agsIds.size!==400||[...agsIds].some(id=>!/^\d{5}$/.test(id)))throw Error('县市AGS缺失/重复');
+ if(counties._provenance?.publisher!=='Bundesamt für Kartographie und Geodäsie'||counties._provenance?.feature_count!==400)throw Error('BKG官方县界数据无来源或未验收');
  app.agsRemap=agsCrosswalk.canonical_remaps;
  if(new Set(counties.features.map(stateKey)).size!==400)throw Error('现行县市AGS数量不符');
  app.features=counties.features;app.countyGeo=counties;app.metric=metric;
- const allRaw=[...r1.events,...r2.events,...r4.events,...r5a.events,...r5b.events,...r5c.events,...r5d.events,...r6.events,...r7a.events,...r7b.events,...r7c.events,...r7d.events,...r7e.events];
- const patches={...(r4.updates||{}),...(r7audit.updates||{})};
+ const allRaw=[...r1.events,...r2.events,...r4.events,...r5a.events,...r5b.events,...r5c.events,...r5d.events,...r6.events,...r7a.events,...r7b.events,...r7c.events,...r7d.events,...r7e.events,...r8a.events,...r8b.events];
+ const patches={...(r4.updates||{}),...(r7audit.updates||{}),...(r8patch.updates||{})};
  for(const [id,patch] of Object.entries(patches)){
   const original=allRaw.find(e=>e.event_id===id);
   if(!original)throw Error('找不到需修订的事件 '+id);
