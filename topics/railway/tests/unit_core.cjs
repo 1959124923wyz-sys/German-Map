@@ -7,7 +7,7 @@ const path=require('node:path');
 const vm=require('node:vm');
 const root=path.resolve(__dirname,'..');
 const context=vm.createContext({window:{}});
-for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js']){
+for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js','rail-picker.js']){
   const source=fs.readFileSync(path.join(root,'js',name),'utf8');
   vm.runInContext(source,context,{filename:name,timeout:10000});
 }
@@ -103,5 +103,33 @@ const conflicting={leg:leg('E','F',[5.2,5.8],3,1),grade:0,m:{},parts:[part(104,1
 assert.equal(bridge.mergeGroups(math.buildCorridors([f(m1),f(m2)]),net,[...observed,conflicting]).bridged,0);
 const distant=leg('Q','R',[75,85],43,5);
 assert.equal(bridge.mergeGroups(math.buildCorridors([f(m1),f(distant)]),net,observed).bridged,0);
+
+
+// Regress the former clickable-only-observations bug: even with no usable
+// stop data, the official low-opacity green rail should select as no-data.
+const select=context.window.Railway07Picker;
+const locator=new select.RailwayPicker();
+const virgin=geom.shape([100,baseY+10,110,baseY+10]);
+locator.addNetwork('6081',virgin);
+let result=locator.hit([105,baseY+10],9);
+assert.equal(result.kind,'network');
+assert.equal(result.route,'6081');
+assert.equal(locator.network.items,1);
+const measured=geom.shape([100,baseY,110,baseY]);
+const measuredEntry={parts:[measured],group:{route:'6081',m:{onTime:83}}};
+locator.replaceObserved([measuredEntry],[]);
+result=locator.hit([105,baseY],9);
+assert.equal(result.kind,'observed');
+assert.equal(result.group.m.onTime,83);
+result=locator.hit([105,baseY+10],9);
+assert.equal(result.kind,'network','unobserved green section remains selectable');
+locator.replaceObserved([],[]);
+assert.equal(locator.observed.items,0);
+assert.equal(locator.network.items,1,'switching a filter cannot erase official rail picking');
+assert.equal(locator.hit([105,baseY+10],9).kind,'network');
+assert.equal(locator.hit([105,baseY+100],9),null,'blank map must not trigger a rail');
+const seen=new Set();
+locator.network.nearest([105,baseY+10],2);
+assert.equal(locator.network.items,1);
 
 console.log('PASS railway pure geometry, weighted rates, branches, km gaps and pooled counts');
