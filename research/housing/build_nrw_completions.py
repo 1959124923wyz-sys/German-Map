@@ -46,10 +46,14 @@ def main():
         rec=(key,y)
         if rec in years:raise ValueError(f"Duplicate county-year row {rec}")
         years[rec]=d;names[key]=row[2].strip()
-    ids=sorted({key for key,y in years if y==latest})
-    if len(ids)!=53:
-        print("NRW 2025 INPUT county rows:",[(x,names[x],years[(x,latest)]["new_dwellings_in_residential_buildings"]) for x in ids],flush=True)
-        raise ValueError(f"NRW 2025 county count expected 53, got {len(ids)}")
+    all_ids=sorted({key for key,y in years if y==latest})
+    discontinued=sorted(k for k in all_ids if years[(k,latest)]["new_dwellings_in_residential_buildings"] is None)
+    # NRW still includes Aachen City/County (superseded by Städteregion Aachen,
+    # 05334) as two historical empty series. They are NOT two extra Kreise.
+    if discontinued!=["05313","05354"]:
+        raise ValueError(f"Unexpected 2025 suppressed/obsolete regions: {discontinued}")
+    ids=[k for k in all_ids if k not in discontinued]
+    if len(ids)!=53:raise ValueError(f"NRW active county count expected 53, got {len(ids)}")
     assert states[latest]["new_dwellings_in_residential_buildings"]==31237
     sum_dwellings=sum(years[(key,latest)]["new_dwellings_in_residential_buildings"] for key in ids)
     if sum_dwellings!=31237:raise ValueError(f"County sum {sum_dwellings} not equal state 31237")
@@ -86,7 +90,7 @@ def main():
     qa={"source":URL,"counties_2025":len(ids),"observations":len(years),
         "year_span":[min(y for _,y in years),max(y for _,y in years)],
         "state_2025":states[latest],"sum_county_2025":sum_dwellings,
-        "nrw_counties":ids,"2015_2025_row_count":sum(len(x["values_by_year"]) for x in rows),
+        "retired_aachen_rows_omitted":discontinued,"nrw_counties":ids,"2015_2025_row_count":sum(len(x["values_by_year"]) for x in rows),
         "category_examples":dict(categories.most_common(9)),
         "matched_current_map":len([i for i in ids if i in atlas_ids]),
         "warnings":[payload["meta"]["metric"],payload["meta"]["limitations"]]}
