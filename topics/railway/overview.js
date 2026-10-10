@@ -208,6 +208,7 @@ const metrics=leg=>window.Railway07Analysis.metrics(leg,view.metric,view.minimum
 const grade=m=>window.Railway07Analysis.grade(m,view.metric);
 const attention=m=>window.Railway07Analysis.attention(m,view.metric);
 const buildCorridors=items=>window.Railway07Analysis.buildCorridors(items);
+const shadeRuns=window.Railway07ColorRuns;
 
 function fillLegend(){
  const thresholds=['晚点 / 取消标记','','晚点 ≥25% 或取消 ≥4%','晚点 ≥40% 或取消 ≥8%'];
@@ -288,8 +289,10 @@ function showDetail(){
  }
  box.classList.remove('empty');
  if(o.unobserved){
-  element(box,'span','● 此处暂无可比观测','grade');
-  element(box,'h3','官方铁路线路 '+o.route);
+  element(box,'span','● 绿色连续区段 · 暂无可比观测','grade');
+  element(box,'h3',o.cityFrom&&o.cityTo?
+    stationZh(o.cityFrom)+' → '+stationZh(o.cityTo):
+    '官方铁路线路 '+o.route);
   const grid=element(box,'div','','detail-grid');
   for(const label of ['准点率（晚点不足6分钟）','停靠取消标记率']){
    const cell=element(grid,'div','');
@@ -307,9 +310,13 @@ function showDetail(){
  const from=o.cityFrom||startStation,to=o.cityTo||endStation;
  const prefix=o.serviceName&&!o.serviceName.startsWith('DB ')?o.serviceName+' · ':'';
  const title=prefix+stationZh(from)+' → '+stationZh(to);
- element(box,'span','● 城市间整体观测','grade');
+ const colorNames=['绿色','橙色','红色'];
+ element(box,'span',o.shadeRun?'● '+colorNames[g]+'连续区段'+
+  (o.colorTotal?' · '+(o.colorIndex+1)+'/'+o.colorTotal:''):
+  '● 城市间整体观测','grade');
  element(box,'h3',title);
- if(members.length>1)element(box,'p','城市间走廊 · '+o.observedEdges+' 个实际观测站间','corridor-count');
+ if(members.length>1)element(box,'p',(o.shadeRun?'同色区段':'城市间走廊')+
+  ' · '+o.observedEdges+' 个实际观测站间','corridor-count');
  const grid=element(box,'div','','detail-grid');
  for(const [value,label] of [[pct(m.onTime),'准点率（晚点不足6分钟）'],
   [pct(m.cancel),'停靠取消标记率']]){
@@ -357,45 +364,75 @@ function updateHotspots(){
 }
 
 function rebuildIndex(){
+ // The index is only the click locator.  Official green remains separately
+ // indexed; the visual display and original numerical data are unchanged.
  view.picker.replaceObserved(view.groups.map(g=>({parts:g.parts,group:g})),[]);
 }
-// Clicking either measured colour or the intervening GREEN official curve
-// returns the SAME city-to-city statistical corridor when geographically
-// justified by station routes, otherwise an explicitly no-data rail.
-function selectCorridor(group){
- const official=view.networkReady?view.backbone.full(group):null;
- view.selected=official?.length?{...group,parts:official}:group;
+function selectShade(run){
+ if(!run)return;
+ view.selected=run;
  showDetail();view.observedLayer.schedule();
 }
+function selectCorridor(group,point=null,preferred=null){
+ const runs=view.networkReady?
+  shadeRuns.forCorridor(group,view.backbone):[group];
+ let chosen;
+ if(point)chosen=shadeRuns.findRun(runs,point,preferred,8);
+ if(!chosen){
+  chosen=preferred!==null?runs.find(x=>x.grade===preferred):null;
+  if(!chosen)chosen=runs.reduce((a,b)=>
+   !a||b.grade>a.grade?b:a,null);
+ }
+ selectShade(chosen||group);
+}
 function nearbyCityCorridor(route,point){
- const sections=view.groups.filter(g=>g.members.some(m=>String(m.leg.route)===route));
- let best=null,dist=Infinity;
+ const sections=view.groups.filter(g=>g.members.some(m=>
+  String(m.leg.route)===String(route)));
+ let best=null,d=Infinity;
  for(const group of sections){
-  const b=group.bounds,margin=70; // evaluate actual curves only below
+  const b=group.bounds,margin=12;
   if(point[0]<b.minX-margin||point[0]>b.maxX+margin||
      point[1]<b.minY-margin||point[1]>b.maxY+margin)continue;
   for(const p of group.parts){
    const xy=p.xy;
    for(let i=2;i<xy.length;i+=2){
-    const d=segmentDist(point[0],point[1],
-      xy[i-2],xy[i-1],xy[i],xy[i+1]);
-    if(d<dist){dist=d;best=group;}
+    const q=segmentDist(point[0],point[1],xy[i-2],xy[i-1],xy[i],xy[i+1]);
+    if(q<d){d=q;best=group;}
    }
   }
  }
- // A missing 10-20 km interval can still belong to a measured corridor;
- // never match a distant unrelated branch across a large junction.
- return dist<70*70?best:null;
+ return d<12*12?best:null;
+}
+function observedRiskAt(point){
+ // The displayed red layer is on top of orange and green. Use the SAME
+ // precedence to decide which contiguous segment a click refers to.
+ const index=shadeRuns.indexItems(view.drawnObserved);
+ return index[2].nearest(point,1.6)?2:
+   index[1].nearest(point,1.6)?1:0;
 }
 function pickAt(latlng){
  const p=view.map.project(latlng,REF_ZOOM),pt=[p.x,p.y];
  const hit=view.picker.hit(pt,view.map.getZoom());
  if(!hit)return;
- if(hit.kind==='observed'){selectCorridor(hit.group);return;}
+ const gradeAt=observedRiskAt(pt);
+ if(hit.kind==='observed'){
+  selectCorridor(hit.group,pt,gradeAt);
+  return;
+ }
  const candidate=nearbyCityCorridor(hit.route,pt);
- if(candidate){selectCorridor(candidate);return;}
- view.selected=view.backbone.unobserved(hit.route,pt);
- showDetail();view.observedLayer.schedule();
+ if(candidate){
+  const runs=shadeRuns.forCorridor(candidate,view.backbone);
+  const chosen=shadeRuns.findRun(runs,pt,gradeAt,3.5);
+  if(chosen){selectShade(chosen);return;}
+ }
+ // No observed statistics on the clicked official track. Its uninterrupted
+ // GREEN portion still selects as a whole, stopping at real orange/red runs.
+ const official=view.backbone.unobserved(hit.route,pt);
+ const candidates=view.drawnObserved.filter(x=>x.grade>0);
+ const runs=shadeRuns.forOfficial(official,candidates);
+ const chosen=shadeRuns.findRun(runs,pt,0,4);
+ if(chosen){selectShade(chosen);return;}
+ view.selected=official;showDetail();view.observedLayer.schedule();
 }
 function recalc(){
  const previous=view.selected?.members?.[0]?.leg||null,items=[];
@@ -413,7 +450,10 @@ function recalc(){
  const displayed=new Set(view.groups.flatMap(g=>g.members));
  view.drawnObserved=items.filter(item=>displayed.has(item));
  refreshBackbone();
- view.selected=previous?(view.groups.find(g=>g.members.some(x=>x.leg===previous))||null):null;
+ // A service/category change invalidates cached per-grade runs.  Preserve
+ // selection by physical observation identity only when it remains available.
+ const restored=previous?view.groups.find(g=>g.members.some(x=>x.leg===previous)):null;
+ view.selected=restored||null;
  // Never leave the old infrastructure-loading toast after passenger data loads.
  const mapStatus=$('#mapStatus');
  if(mapStatus.textContent.includes('客运运行线路加载中'))mapStatus.textContent='';
@@ -424,7 +464,7 @@ function recalc(){
 }
 async function chooseService(){
  const id=++view.ticket,service=view.service;
- view.selected=null;view.links=[];view.rendered=[];view.groups=[];view.hiddenCorridors=0;view.picker.replaceObserved([],[]);
+ view.selected=null;view.links=[];view.rendered=[];view.groups=[];view.drawnObserved=[];view.hiddenCorridors=0;view.picker.replaceObserved([],[]);
  view.observedLayer.schedule();status('正在读取 '+labels[service]+' 的观测…');
  try{
   const data=await Promise.all(sources[service].map(async k=>[k,await loadData(k)]));
@@ -465,6 +505,8 @@ try{
   getOfficialPickCount:()=>view.picker.network.items,getCompleteBackboneRoutes:()=>view.backbone.perRoute.size,
   getOfficialPickEntries:()=>view.picker.network.cells,getDrawnObserved:()=>view.drawnObserved,
   getVerifiedCorridorPaths:()=>view.backbone.verified,
+  getColourRuns:g=>shadeRuns.forCorridor(g,view.backbone),
+  getCurrentColourRun:()=>view.selected?.shadeRun?view.selected:null,
   traceVerifiedCorridor:g=>view.backbone.full(g),
   getRepaintCount:()=>view.repaints,
   getCanvasCount:()=>document.querySelectorAll('.railway-canvas').length,
