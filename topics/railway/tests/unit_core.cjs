@@ -70,7 +70,8 @@ assert.ok(net.find('200',[104,baseY],[106,baseY],5),'observed route alias must b
 const duplicate=new bridge.RouteGraph();duplicate.add('100',part(100,110));duplicate.add('200',part(100,110));
 assert.equal(duplicate.find('300',[104,baseY],[106,baseY],5),null,'ambiguous coincident DB alignments must be rejected');
 const m1=leg('A','B',[0,5],45,5),m2=leg('C','D',[6,11],44,5);
-const f=x=>({leg:x,grade:2,parts:[part(x===m1?100:106,x===m1?104:110)],m:math.metrics(x,'both')});
+const reverse=leg('B','A',[0,5],20,1);
+const f=x=>({leg:x,grade:2,parts:[part((x===m1||x===reverse)?100:106,(x===m1||x===reverse)?104:110)],m:math.metrics(x,'both')});
 const observed=[f(m1),f(m2)];
 const singles=math.buildCorridors(observed);
 assert.equal(singles.length,2);
@@ -84,7 +85,6 @@ assert.equal(merged.groups[0].m.late,44.5);
 assert.equal(merged.groups[0].m.cancel,5);
 // Two directions on the same physical km interval become one corridor with
 // pooled *counted* arrivals, not an average of printed percentages.
-const reverse=leg('B','A',[0,5],20,1);
 const groupedOpposite=bridge.mergeGroups(
  math.buildCorridors([f(m1),f(reverse)]),net,[f(m1),f(reverse)]);
 assert.equal(groupedOpposite.groups.length,1);
