@@ -4,7 +4,7 @@
 (()=>{
 'use strict';
 const {shape,actualBounds}=window.Railway07Geometry;
-const STEP=.15,CELL=8,MAX_GAP=25,MAX_SNAP=1.15;
+const STEP=.15,CELL=8,MAX_GAP=25,MAX_SNAP=1.15,GLOBAL='__PHYSICAL_NETWORK__';
 const nodeKey=(x,y)=>Math.round(x/STEP)+','+Math.round(y/STEP);
 const cellKey=(x,y)=>Math.floor(x/CELL)+','+Math.floor(y/CELL);
 const kmPerPixel=(y)=>{
@@ -50,6 +50,9 @@ class RouteGraph{
  add(route,part){
   if(route===undefined||route===null||!part?.xy||part.xy.length<4)return;
   const key=String(route);
+  // A separate exact-geometry graph allows bounded traversals over official
+  // routing-number discontinuities, without inventing any connector points.
+  if(key!==GLOBAL)this.add(GLOBAL,part);
   let r=this.routes.get(key);
   if(!r){r={nodes:new Map(),cells:new Map(),edges:[]};this.routes.set(key,r);}
   const xy=part.xy;
@@ -60,7 +63,7 @@ class RouteGraph{
    return n;
   });
   const edge={part,nodes,length:length(xy)};
-  r.edges.push(edge);this.edges++;
+  r.edges.push(edge);if(key!==GLOBAL)this.edges++;
   if(nodes[0]!==nodes[1]){
    nodes[0].adj.push([nodes[1],edge,0]);
    nodes[1].adj.push([nodes[0],edge,1]);
@@ -72,8 +75,10 @@ class RouteGraph{
    const k=x+','+y;
    if(!r.cells.has(k))r.cells.set(k,[]);
    r.cells.get(k).push(edge);
-   if(!this.allCells.has(k))this.allCells.set(k,[]);
-   this.allCells.get(k).push({route:key,edge});
+   if(key!==GLOBAL){
+    if(!this.allCells.has(k))this.allCells.set(k,[]);
+    this.allCells.get(k).push({route:key,edge});
+   }
   }
  }
  nearest(route,pt){
@@ -125,11 +130,13 @@ class RouteGraph{
   return common[0][0];
  }
  find(route,from,to,maxKm=MAX_GAP){
-  const actual=this.resolveRoute(route,from,to);
-  const r=actual&&this.routes.get(actual);
+  const resolved=this.resolveRoute(route,from,to);
+  const actual=resolved||GLOBAL;
+  const r=this.routes.get(actual);
   if(!r){this.reasons.noRoute++;return null;}
   const a=this.nearest(actual,from),b=this.nearest(actual,to);
-  if(!a||!b){this.reasons.noSnap++;return null;}
+  // Avoid attaching a measured leg to a nearby unrelated parallel line.
+  if(!a||!b||(actual===GLOBAL&&(a.d>.35**2||b.d>.35**2))){this.reasons.noSnap++;return null;}
   const distance=Math.hypot(from[0]-to[0],from[1]-to[1]);
   if(distance>maxKm/Math.min(kmPerPixel(from[1]),kmPerPixel(to[1]))+5){this.reasons.far++;return null;}
   // Same original source element: trace its REAL curve between projections.
@@ -142,7 +149,7 @@ class RouteGraph{
    coords.push(...end.point);
    const path=al<=bl?shape(coords):shape(coords.reverse===undefined?coords:reverseCoords(coords));
    const km=length(path.xy);
-   if(km<=maxKm){this.reasons.success++;return {parts:[path],km};}
+   if(km<=maxKm){this.reasons.success++;return {parts:[path],km,crossRoute:actual===GLOBAL};}
    this.reasons.sameEdgeTooLong++;return null;
   }
   // Dijkstra from both endpoints of the snapped source section. Per-route
@@ -177,7 +184,11 @@ class RouteGraph{
    }
   }
   if(!goal||score>maxKm){this.reasons.noPath++;return null;}
-  if(score>distance*kmPerPixel((from[1]+to[1])/2)*2.2+3){this.reasons.ratio++;return null;}
+  const straightKm=distance*kmPerPixel((from[1]+to[1])/2);
+  // Cross-number routing gets an especially strict detour cap.
+  if(score>straightKm*(actual===GLOBAL?1.42:2.2)+(actual===GLOBAL?1.5:3)){
+   this.reasons.ratio++;return null;
+  }
   const chain=[];let n=goal,start=null;
   while(n){
    const p=prev.get(n);if(!p)return null;
@@ -187,7 +198,7 @@ class RouteGraph{
   if(!start)return null;
   chain.reverse();
   this.reasons.success++;
-  return {parts:[start,...chain,goals.get(goal).part],km:score};
+  return {parts:[start,...chain,goals.get(goal).part],km:score,crossRoute:actual===GLOBAL};
  }
 }
 function reverseCoords(points){
