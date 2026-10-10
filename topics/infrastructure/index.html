@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0c1117">
+<title>德国基础设施状况地图 · German-Map</title>
+<meta name="description" content="德国16州基础设施状态试验指数、铁路设施实测数据、不同口径桥梁与道路证据，以及带来源的工程事件。">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="../../css/map.css?v=clean1">
+<link rel="stylesheet" href="topic.css?v=i1">
+</head>
+<body>
+<header><div class="header-main">
+ <div class="titleblock"><div class="title">德国基础设施地图</div><div class="header-meta">16州状态试验指数 · 工程事件档案</div></div>
+ <nav class="modebar" aria-label="德国地图专题切换">
+  <a class="modebtn" href="../../index.html">暴力犯罪</a>
+  <a class="modebtn" href="../../index.html?mode=property">财产犯罪</a>
+  <a class="modebtn" href="../drugs/">毒品问题</a>
+  <a class="modebtn" href="../immigration/">移民人口</a>
+  <a class="modebtn" href="../environment/">环保争议</a>
+  <a class="modebtn" href="../railway/">铁路运行</a>
+  <a class="modebtn" href="../finance/">地方财政</a>
+  <a class="modebtn active" aria-current="page" href="./">基础设施</a>
+ </nav>
+</div></header>
+<main class="infra-workspace">
+ <section class="mapwrap" aria-label="16州基础设施状态地图">
+  <div id="infra-map"></div>
+  <div class="infra-map-caption"><strong>基础设施综合试验指数 · 16州</strong><small>颜色越深表示试验指数越低。点击州查看证据。</small></div>
+  <div id="mapStatus" class="mapstatus" role="status">正在载入16州数据…</div>
+  <div id="legend" class="legend" aria-label="地图评分颜色图例"></div>
+ </section>
+ <aside class="infra-sidebar" aria-label="州统计及新闻资料">
+  <div class="infra-controls">
+   <div class="infra-toprow">
+    <label class="infra-toggle"><input type="checkbox" id="showEvents"> 显示工程事件点</label>
+    <button type="button" id="resetView" title="返回德国全国">全国</button>
+   </div>
+   <label class="infra-filter" id="filterWrap" hidden>事件类型
+    <select id="eventCategory"><option value="all">全部类型</option><option value="bridge">桥梁损坏</option><option value="delay">工期延期</option><option value="cost">投资超支</option><option value="strange">闲置工程</option><option value="access">公共服务</option></select>
+   </label>
+  </div>
+  <section class="safety-panel infra-panel">
+   <div class="safety-head"><strong id="panelHeading">16州试验指数</strong><span class="safety-hint">点击地图查看细节</span></div>
+   <div class="area-title"><div class="area-name" id="areaName">德国全国</div><span class="risk-badge mid" id="coverageBadge">试验评分</span></div>
+   <div class="infra-mainmetric" id="metricValue">—</div>
+   <p class="infra-note" id="metricNote">含铁路设施、车站、光纤覆盖率及供电可靠性；暂不包含全国桥梁和路面。</p>
+   <div class="area-grid infra-kpis">
+    <div class="area-stat"><b id="statA">16</b><small id="statALabel">州覆盖</small></div>
+    <div class="area-stat"><b id="statB">—</b><small id="statBLabel">试验排名</small></div>
+    <div class="area-stat"><b id="statC">—</b><small id="statCLabel">精选事件</small></div>
+   </div>
+   <div id="indicatorDetail" class="infra-evidence" hidden></div>
+   <div id="eventDetail" class="infra-event-detail" hidden></div>
+   <section id="stateRanking" class="rank-section">
+    <div class="rank-head"><strong>16州状态指数</strong><span>低分优先 · 点击定位</span></div>
+    <div id="rankList" class="rank-list"></div>
+   </section>
+   <section id="eventSection" hidden>
+    <div class="infra-list-heading"><strong>项目事件 · 选编</strong><span id="eventCount"></span></div>
+    <div id="eventList" class="infra-event-list"></div>
+   </section>
+  </section>
+  <details class="infra-method">
+   <summary>数据来源与重要限制</summary>
+   <p>涂色为2026年10月10日保存的16州试验指数（分数越高越好），铁路线路状态权重35%、车站15%、FTTB/H光纤30%、停电时长20%；并非德国官方“综合基建破败指数”。</p>
+   <p>铁路设施状态的原始分数越小越好。该试验指数尚未纳入桥梁、路面、学校和排水管网，因此不可据此排名这些设施的维护质量。</p>
+   <p>电力SAIDI按运营商所在州归属的机制可能导致跨州偏差，因此这版旧试验排名应谨慎解读，后续宜改成以真实设施检查为核心的修订模型。</p>
+   <p>高速公路桥梁TLI IV/V是承载能力等级，不是DIN 1076桥梁状况分级；道路ZEB各州检测年份、阈值不一。缺失数据从不填零，也不用于本版综合分。</p>
+   <p>工程点位是经筛选的部分案例，不代表全国工程事件总量。多数坐标为城镇近似锚点；历史已完工、当前封闭与计划建设不能混同。</p>
+   <p>官方统计与新闻出处逐条见州详情和事件详情。完整方法说明请参阅<a href="README.md">研究说明</a>。</p>
+  </details>
+ </aside>
+</main>
+<footer><span>16州试验指数 · 非官方基建安全排名 · 数据截至2026-10-10</span><span>© OpenStreetMap contributors · Leaflet</span></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="../../js/core/place-names-zh.js?v=clean1"></script>
+<script src="../../js/layers/city-labels.js?v=clean1"></script>
+<script src="topic.js?v=i1"></script>
+</body>
+</html>
