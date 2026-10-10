@@ -19,7 +19,7 @@ def verify(browser,mobile=False):
     page.goto(BASE,wait_until="domcontentloaded",timeout=45000)
     page.wait_for_function("window.__FINANCE_UI__ && document.getElementById('mapStatus').hidden",timeout=45000)
     assert page.locator("#finance-map .leaflet-control-zoom-in").count()==1
-    assert page.locator(".modebar a.modebtn").count()==7
+    assert page.locator(".modebar a.modebtn").count()==10
     api="window.__FINANCE_UI__"
     assert page.evaluate(f"{api}.getMode()")=="balance-2025"
     assert page.locator("[data-mode]").count()==0

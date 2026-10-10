@@ -1,0 +1,88 @@
+name: Launch 09-10-11 Topics
+on:
+  pull_request:
+    paths:
+      - 'topics/industry/**'
+      - 'topics/infrastructure/**'
+      - 'topics/housing/**'
+      - 'research/housing/HANDOFF.md'
+      - '.github/workflows/three-topics-pr-check.yml'
+      - 'index.html'
+      - 'css/map.css'
+  push:
+    branches: [main]
+    paths:
+      - 'topics/industry/**'
+      - 'topics/infrastructure/**'
+      - 'topics/housing/**'
+      - '.github/workflows/three-topics-pr-check.yml'
+permissions:
+  contents: read
+
+jobs:
+  source-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check JS and source records for industrial/infrastructure topics
+        run: |
+          node --check topics/industry/topic.js
+          node --check topics/infrastructure/topic.js
+          node --check topics/housing/topic.js
+          node topics/industry/tests/validate_industry.cjs
+          node topics/industry/tests/smoke_industry_data.cjs
+          node topics/infrastructure/tests/validate_data.cjs
+          python scripts/validate_site_assets.py
+          python - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          names=('industry','infrastructure','housing')
+          for name in names:
+              path=Path('topics')/name/'index.html'
+              page=path.read_text(encoding='utf-8')
+              assert 'href="../finance/"' in page
+              assert "<nav" in page and "德国地图" in page
+              for other in names:
+                  if other != name:
+                      assert f'href="../{other}/"' in page
+              assert page.count('aria-current="page"')==1
+          for p in [Path('index.html'),*(Path('topics')/n/'index.html' for n in ('drugs','environment','immigration','railway','finance'))]:
+              html=p.read_text(encoding='utf-8')
+              for topic in names:
+                  assert f'href="{"topics/" if p.name=="index.html" and p.parent==Path(".") else "../"}{topic}/"' in html,(p,topic)
+          print("PASS 10-topic site navigation")
+          PY
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install local Leaflet + Chromium
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts leaflet@1.9.4
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Run 3 topics on real desktop/mobile browser
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/three-topics-http.log 2>&1 &
+          sleep 2
+          python topics/industry/tests/smoke_industry_browser.py
+          python topics/infrastructure/tests/smoke_browser.py
+          python topics/housing/tests/smoke_housing_browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: launch-09-10-11-browser-screenshots
+          path: |
+            /tmp/industry-release-*.png
+            /tmp/infrastructure-phase1-*.png
+            /tmp/housing-research-*.png
+          if-no-files-found: warn

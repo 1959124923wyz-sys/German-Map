@@ -1,0 +1,3 @@
+year,geography,table,industrial_scope,establishments,employed_persons,source_url,limitations
+2024,Germany,42111-0001,manufacturing_aggregate_reported_by_GENESIS,22347,5540101,https://genesis.destatis.de/datenbank/online/statistic/42111/table/42111-0001/search/s/NDIxMTE%3D,Preliminary source-transcribed national series; check table filter and reporting threshold before use
+2025,Germany,42111-0001,manufacturing_aggregate_reported_by_GENESIS,22086,5433048,https://genesis.destatis.de/datenbank/online/statistic/42111/table/42111-0001/search/s/NDIxMTE%3D,Preliminary source-transcribed national series; check table filter and reporting threshold before use

@@ -1,0 +1,32 @@
+{
+  "manifest": {
+    "batch": "R8 execution follow-ups",
+    "date": "2026-10-10",
+    "purpose": "Keep original Eurofound factsheet as event source, attach later implementation proof in separate patch; never count new reports as new factories",
+    "updated_ids": [
+      "R8A_UPM_HUR",
+      "R8A_UPM_DOR",
+      "R8A_SOL_DRE"
+    ]
+  },
+  "updates": {
+    "R8A_UPM_HUR": {
+      "implementation_status": "reported_completed",
+      "confirmed_implementation": "2024-08",
+      "confirmation_source_url": "https://www.upm.com/siteassets/investors/reports-and-presentations/2024/en/ixbrl-viewer3.htm",
+      "caveat": "UPM 2024官方年度报告明确Hürth新闻纸厂已于2024年8月停止生产；原2024年5月公告135岗为当时受影响岗位，不应称全部实际失业。"
+    },
+    "R8A_UPM_DOR": {
+      "implementation_status": "reported_completed",
+      "confirmed_implementation": "2024-12",
+      "confirmation_source_url": "https://www.upm.com/siteassets/investors/reports-and-presentations/2024/en/ixbrl-viewer3.htm",
+      "caveat": "UPM 2024年度报告明确Nordland Papier Dörpen PM3纸机于2024年12月停止生产，厂内其他纸机/业务并未整体关闭；2024年劳资社会计划目标避免强制裁员。原210为宣布数字，2024年8月公司披露Hürth+PM3合计338岗位为更新口径，不能再简单相加旧135+210为完成失业量。"
+    },
+    "R8A_SOL_DRE": {
+      "implementation_status": "confirmed_closed_activity",
+      "confirmed_implementation": "2024-11",
+      "confirmation_source_url": "https://www.heise.de/news/Solarwatt-Neue-Strategie-nach-Rueckzug-aus-Modulproduktion-10008399.html",
+      "caveat": "2024年11月后续报道确认德累斯顿光伏组件制造已停，2024年底储能制造也结束；但研发、检验、解决方案业务仍存，非公司全部关闭。190为原工厂调整，后续全球400人方案不能叠加。"
+    }
+  }
+}

@@ -9,6 +9,10 @@ on:
       - 'topics/environment/**'
       - 'topics/railway/**'
       - 'topics/finance/**'
+      - 'topics/industry/**'
+      - 'topics/infrastructure/**'
+      - 'topics/housing/**'
+      - 'research/housing/HANDOFF.md'
       - 'research/finance/**'
       - 'scripts/validate_site_assets.py'
       - 'js/layers/city-labels.js'
@@ -104,6 +108,22 @@ jobs:
           python topics/finance/tests/validate_finance_integrated.py
           python topics/finance/tests/validate_finance_regional.py
           python topics/finance/data/build_finance_municipal.py --verify
+          # 09/10/11: all independent topic source checks; public site must
+          # retain real source/provenance and the same lone Pages deployment.
+          node --check topics/industry/topic.js
+          node --check topics/infrastructure/topic.js
+          node --check topics/housing/topic.js
+          node topics/industry/tests/validate_industry.cjs
+          node topics/industry/tests/smoke_industry_data.cjs
+          node topics/infrastructure/tests/validate_data.cjs
+          test -s topics/housing/data/germany-counties-2024.geojson
+          test -s topics/housing/data/atlas-counties.json
+          test -s research/housing/HANDOFF.md
+          grep -Fq 'href="topics/industry/"' index.html
+          grep -Fq 'href="topics/infrastructure/"' index.html
+          grep -Fq 'href="topics/housing/"' index.html
+          grep -Fq 'topics/finance/' index.html
+
           node topics/railway/tests/unit_core.cjs
           python scripts/validate_site_assets.py
           node --check topics/railway/js/station-zh.js

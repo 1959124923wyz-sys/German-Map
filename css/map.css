@@ -177,3 +177,8 @@ footer{flex:0 0 34px;border-top:1px solid var(--line);padding:7px 18px;color:var
 .site-method[open]{max-height:min(34vh,240px);overflow:auto}
 .site-method p{margin:0;padding:5px 12px;font-size:10px;line-height:1.55;color:#a8b6c2}
 @media(max-width:920px){.site-method[open]{max-height:none}}
+
+/* Ten-topic navigation: keep every topic reachable without growing fixed-height map headers. */
+.header-main .modebar{min-width:0;max-width:100%;flex:0 1 auto;overscroll-behavior-x:contain}
+.header-main .modebar .modebtn{padding:6px 8px;flex:0 0 auto}
+@media(max-width:1100px){.header-main{flex-wrap:wrap}.header-main .modebar{flex:1 1 100%;width:100%;max-width:100%;min-width:0}}
