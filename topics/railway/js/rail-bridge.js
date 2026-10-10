@@ -74,8 +74,8 @@ class RouteGraph{
     if(d<dist){dist=d;nearest=node;}
    }
    if(nearest)return nearest;
-   const key=ix+','+iy,node={key,xy:[x,y],adj:[]};
-   r.nodes.set(key,node);return node;
+   const nodeId=ix+','+iy,node={key:nodeId,xy:[x,y],adj:[]};
+   r.nodes.set(nodeId,node);return node;
   };
   const nodes=[getNode(xy[0],xy[1]),getNode(xy[xy.length-2],xy[xy.length-1])];
   const edge={part,nodes,length:length(xy)};
