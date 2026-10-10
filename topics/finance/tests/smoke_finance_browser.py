@@ -48,6 +48,7 @@ def verify(browser, mobile: bool = False):
     assert page.locator("#rpPeriodWrap").is_visible()
     page.locator("#rpPeriod").select_option("2026-H1-counties")
     assert "24县政府本级" in page.locator("#mapGuideNote").inner_text()
+    assert "2026上半年" in page.locator("#sectionTitle").inner_text()
 
     page.locator('[data-mode="events"]').click()
     page.wait_for_function("document.querySelectorAll('.finance-bubble-inner').length >= 30")

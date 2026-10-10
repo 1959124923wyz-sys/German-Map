@@ -100,11 +100,11 @@
  function resetArea(){
   if(view.mode==='state'){
    const year=metricYear();
-   displayArea('德国 · 13个非城市州',isIntegrated()?year+'年人均综合地方债务':'2025年地方政府人均财政收支',
+   displayArea('德国 · 13个非城市州','点击州查看人均数值',
      isIntegrated()?'综合市镇债务含企业分摊；3个城市州不适用，灰色不是零。':'3个城市州无同口径值，以灰色表示。');
   }else if(view.mode==='rp'){
    const o=regionOptions[view.rpPeriod];
-   displayArea('莱茵兰-普法尔茨州 · '+o.count+'地区',o.label,
+   displayArea('莱茵兰-普法尔茨州 · '+o.count+'地区','点击地图查看人均收支',
     o.scope==='county_budget_only'?'县政府本级收支，不含下属市镇。':'仅非县辖市；全年和半年不可直接比较。');
   }else displayArea('德国 · 县域财政事件','72条地图候选（精选案例）',
    '事件圆点为县域中心示意，不是具体设施位置。');
@@ -254,7 +254,7 @@
   };
   $('mapGuideTitle').textContent=mapGuides[mode][0];
   $('mapGuideNote').textContent=mapGuides[mode][1];
-  $('sectionTitle').textContent=MODE[mode];
+  $('sectionTitle').textContent=mode==='state'?selectedStateLabel():mode==='rp'?'莱法州 · '+regionOptions[view.rpPeriod].label:MODE[mode];
   resetArea();renderMap();renderList();
   if(map&&stateGeo){
    map.stop();
@@ -286,6 +286,7 @@
    const v=$('rpPeriod').value;
    if(!regionOptions[v])return;
    view.rpPeriod=v;view.selected=null;view.county=null;view.limit=8;
+   $('sectionTitle').textContent='莱法州 · '+regionOptions[v].label;
    $('mapGuideNote').textContent=regionOptions[v].label+' · 点击地图查看';
    resetArea();renderMap();renderList();
   });
