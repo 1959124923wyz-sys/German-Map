@@ -34,6 +34,12 @@ def verify(browser,mobile=False):
     assert "本范围可溯源" in page.locator("#industryStateMetrics").inner_text()
     page.locator('[data-dossier-tab="status"]').click()
     assert page.locator("#industryStatusSummary").is_visible()
+    page.locator('[data-dossier-tab="timeline"]').click()
+    assert page.locator("#industryEventTimeline .industry-timeline-year").count()>0
+    assert page.locator("#industryEventTimeline .industry-timeline-year").first.get_attribute("open") is not None
+    page.locator("#industryEventTimeline [data-id]").first.click()
+    assert page.locator("#eventDetail").is_visible()
+    assert page.locator("#eventDetail a[href^='https://']").count()>0
     page.locator('[data-dossier-tab="cases"]').click()
     assert page.locator("#eventList .industry-row").count()>0
     page.locator("#industryEventSearch").fill("UPM")
@@ -41,6 +47,19 @@ def verify(browser,mobile=False):
     page.locator("#industryEventSearch").fill("")
     page.locator("#eventList .industry-row").first.click()
     assert page.locator("#eventDetail").is_visible()
+    # A multisite plan's linked files must remain distinct; never sum 280 jobs
+    # into both Putzmeister factories or mistake one source for actual lay-offs.
+    page.locator("#industryStateJump").select_option("DE-HE")
+    page.locator('[data-dossier-tab="cases"]').click()
+    page.locator("#industryEventSearch").fill("Putzmeister")
+    assert page.locator("#eventList .industry-row").count()>=1
+    page.locator("#eventList .industry-row").first.click()
+    assert page.locator("#industryLinkedEvents").count()==0
+    assert page.locator(".industry-linked-events [data-id]").count()>=2
+    assert "岗位数字不能直接相加" in page.locator(".industry-linked-events").inner_text()
+    page.locator(".industry-linked-events [data-id]").first.click()
+    assert page.locator("#eventDetail").is_visible()
+    assert page.locator("#eventDetail a[href^='https://']").count()>0
     assert page.locator("#eventDetail a[href^='https://']").count()>0
     page.locator("#viewGermany").click()
     assert page.locator("#areaName").inner_text()=="德国全国"
