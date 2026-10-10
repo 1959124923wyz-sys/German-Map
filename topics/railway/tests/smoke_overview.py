@@ -22,7 +22,7 @@ with sync_playwright() as p:
     response=page.goto(BASE,wait_until="domcontentloaded",timeout=60000)
     assert response and response.status==200
     loaded(page,"REGIONAL",500)
-    assert page.locator(".toplinks a").count()==6
+    assert page.locator(".toplinks a").count()>=7 and page.locator('a[href="../finance/"]').count()==1
     assert page.locator("#service [data-service]").count()==3
     assert page.locator("#metric [data-metric]").count()==3
     assert page.locator("#cities .city").count()>=8
