@@ -61,7 +61,7 @@ def num(value):
 def summarize(rows, expected):
     stats = defaultdict(lambda:dict(features=0,condition_valid=0,condition_bad=0,
       area_condition_valid_m2=0.0,area_condition_bad_m2=0.0,
-      condition_missing=0,area_missing_or_invalid=0,tli_valid=0,tli_bad=0,
+      condition_missing=0,area_missing_or_invalid=0,tli_valid=0,tli_bad=0,raw_tenths_grade_count=0,
       inspections_year_present=0,county_present=0))
     unknown = defaultdict(int)
     missing_state = 0
@@ -85,7 +85,16 @@ def summarize(rows, expected):
         t["features"]+=1
         if a.get("kreis"):t["county_present"]+=1
         if num(a.get("jahr_letzte_hauptpruefung")) is not None:t["inspections_year_present"]+=1
-        z=num(a.get("zn"))
+        raw_grade=num(a.get("zn"))
+        # ArcGIS numeric field appears to drop decimal point for non-whole values:
+        # 11 -> 1.1, 23 -> 2.3. Hypothesis only until BASt original is matched.
+        z=raw_grade
+        if raw_grade is not None and 10<=raw_grade<=40 and raw_grade.is_integer():
+            z=raw_grade/10
+            t["raw_tenths_grade_count"]+=1
+        elif raw_grade is not None and raw_grade>4:
+            raise RuntimeError("Unrecognized condition-grade encoding "+repr(raw_grade))
+
         listing=str(a.get("teil_der_bast_liste") or "NULL")[:80]
         listed_grade_present[listing][0]+=1
         if z is not None and 1<=z<=4:listed_grade_present[listing][1]+=1
@@ -160,8 +169,9 @@ def main():
       "raw_grade_diagnostics":grade_gaps,
       "invalid_grade_top_values":invalid_zn,
       "source_list_membership_grade_coverage":listing_coverage,
-      "quality_verdict":"NOT SUITABLE for representative interstate DIN comparison without official stock calibration; high condition-missing fraction",
+      "quality_verdict":"ArcGIS integer-tenths encoding provisionally corrected; source calibration and full BASt coverage not yet proven",
       "do_not_use_for_choropleth":True,
+      "grade_decoding_hypothesis":"ArcGIS raw 11 treated provisionally as DIN 1.1, 23 as DIN 2.3; must cross-check official BASt export",
       "attributed_state_feature_count":expected-unattributed,
       "missing_state_feature_count":unattributed,
       "attributed_state_feature_pct":round(100*(expected-unattributed)/expected,3),
