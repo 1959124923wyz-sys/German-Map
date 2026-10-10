@@ -46,7 +46,7 @@ function reversed(p){
  return shape(b);
 }
 class RouteGraph{
- constructor(){this.routes=new Map();this.edges=0;this.reasons={noRoute:0,noSnap:0,far:0,sameEdgeTooLong:0,noPath:0,ratio:0,success:0};}
+ constructor(){this.routes=new Map();this.allCells=new Map();this.edges=0;this.reasons={noRoute:0,noSnap:0,far:0,sameEdgeTooLong:0,noPath:0,ratio:0,success:0};}
  add(route,part){
   if(route===undefined||route===null||!part?.xy||part.xy.length<4)return;
   const key=String(route);
@@ -72,6 +72,8 @@ class RouteGraph{
    const k=x+','+y;
    if(!r.cells.has(k))r.cells.set(k,[]);
    r.cells.get(k).push(edge);
+   if(!this.allCells.has(k))this.allCells.set(k,[]);
+   this.allCells.get(k).push({route:key,edge});
   }
  }
  nearest(route,pt){
@@ -90,9 +92,43 @@ class RouteGraph{
   }
   return best;
  }
+ // Certain published observation links refer to a different DB route label
+ // than the later infrastructure extract. Reconcile only through identical
+ // geographic curves, never by guessing a numerical ID.
+ resolveRoute(observedRoute,from,to){
+  const direct=String(observedRoute);
+  if(this.routes.has(direct)&&this.nearest(direct,from)&&this.nearest(direct,to))return direct;
+  const options=pt=>{
+   const [x,y]=pt,cx=Math.floor(x/CELL),cy=Math.floor(y/CELL);
+   const seen=new Set(),matches=new Map();
+   for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++){
+    for(const {route,edge} of this.allCells.get((cx+dx)+','+(cy+dy))||[]){
+     if(seen.has(edge))continue;seen.add(edge);
+     if(x<edge.part.minX-.5||x>edge.part.maxX+.5||
+        y<edge.part.minY-.5||y>edge.part.maxY+.5)continue;
+     const hit=closest(edge.part.xy,x,y);
+     if(hit.d>.5**2)continue;
+     if(!matches.has(route)||hit.d<matches.get(route))matches.set(route,hit.d);
+    }
+   }
+   return matches;
+  };
+  const a=options(from),b=options(to),common=[];
+  for(const [route,dist] of a){
+   if(b.has(route))common.push([route,dist+b.get(route)]);
+  }
+  common.sort((x,y)=>x[1]-y[1]);
+  if(!common.length)return null;
+  // Official geometry may contain several parallel track records; accept
+  // only a clearly closest physical alignment for both ends.
+  if(common.length>1&&common[1][1]<common[0][1]*1.5+.003)return null;
+  return common[0][0];
+ }
  find(route,from,to,maxKm=MAX_GAP){
-  const r=this.routes.get(String(route));if(!r){this.reasons.noRoute++;if(!this.reasons.examples)this.reasons.examples=[];if(this.reasons.examples.length<12)this.reasons.examples.push({missing:String(route),available:[...this.routes.keys()].slice(0,5),size:this.routes.size});return null;}
-  const a=this.nearest(route,from),b=this.nearest(route,to);
+  const actual=this.resolveRoute(route,from,to);
+  const r=actual&&this.routes.get(actual);
+  if(!r){this.reasons.noRoute++;return null;}
+  const a=this.nearest(actual,from),b=this.nearest(actual,to);
   if(!a||!b){this.reasons.noSnap++;return null;}
   const distance=Math.hypot(from[0]-to[0],from[1]-to[1]);
   if(distance>maxKm/Math.min(kmPerPixel(from[1]),kmPerPixel(to[1]))+5){this.reasons.far++;return null;}
