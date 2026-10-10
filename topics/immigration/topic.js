@@ -82,6 +82,22 @@ function renderTrend(){
  poly.setAttribute('points',p.map(v=>v.join(',')).join(' '));poly.setAttribute('fill','none');poly.setAttribute('stroke','#83c4e9');poly.setAttribute('stroke-width','2.6');
  poly.setAttribute('stroke-linecap','round');poly.setAttribute('stroke-linejoin','round');svg.append(poly);
  p.forEach(q=>{const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');dot.setAttribute('cx',q[0]);dot.setAttribute('cy',q[1]);dot.setAttribute('r','2.5');dot.setAttribute('fill','#bce7fa');svg.append(dot);});
+ // Expose every previously chart-only historical AZR state-year record as a
+ // selectable official value; deltas are register changes, NOT immigration flows.
+ const archive=$('azrAnnualRows');archive.replaceChildren();
+ app.trend.years.forEach((year,i)=>{
+  const button=document.createElement('button');button.type='button';button.className='azr-annual-entry';
+  button.setAttribute('aria-pressed',String(year===app.year));
+  const val=x.values[i],delta=i===0?null:val-x.values[i-1];
+  const label=document.createElement('span'),value=document.createElement('strong'),change=document.createElement('small');
+  label.textContent=year+'年';value.textContent=format(val);
+  change.textContent=delta===null?'序列起始年':(delta>=0?'+':'')+format(delta)+' · 较上年登记差额';
+  button.append(label,value,change);
+  button.addEventListener('click',()=>{
+   app.year=year;app.metric='count';refreshAll();
+  });
+  archive.append(button);
+ });
 }
 function renderState(){
  if(!app.selected){renderCountry();return;}

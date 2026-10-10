@@ -55,3 +55,15 @@ body{overflow:hidden;display:flex;flex-direction:column}a{color:#9fd2f1;text-dec
 .compact-method{margin:10px 0 6px;border:1px solid #344454;border-radius:7px;background:#1a2732;color:#a9c3d6;font-size:10px}
 .compact-method>summary{padding:7px 9px;cursor:pointer;list-style:revert;font-size:10px}
 .compact-method .bottom-note{margin:0;padding:0 10px 8px;line-height:1.55}
+
+/* 05: keep national 16-state roster and all eight AZR state-year facts opt-in. */
+.azr-state-drawer,.azr-annual-drawer{border:1px solid #364b5d;border-radius:7px;background:#182936;margin:10px 0}
+.azr-state-drawer summary,.azr-annual-drawer summary{padding:10px;cursor:pointer;color:#bad1e0;font-size:11px}
+.azr-state-drawer .region-list{margin:4px 8px 10px}
+.azr-annual-rows{display:grid;gap:4px;margin:5px 9px}
+.azr-annual-entry{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;border:1px solid #354e60;background:#213441;color:#e5edf3;border-radius:5px;padding:7px 9px;cursor:pointer;font-size:11px}
+.azr-annual-entry[aria-pressed="true"]{border-color:#91c6e7;background:#28506b}
+.azr-annual-entry strong{font-variant-numeric:tabular-nums}
+.azr-annual-entry small{color:#acc5d1;font-size:9px;text-align:right}
+.azr-annual-drawer>.note{padding:0 9px 10px;font-size:10px;line-height:1.5;color:#aac0cc}
+@media(max-width:530px){.azr-annual-entry{flex-wrap:wrap}.azr-annual-entry small{flex:0 0 100%;text-align:left}}
