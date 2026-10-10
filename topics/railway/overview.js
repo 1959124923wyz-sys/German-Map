@@ -17,7 +17,7 @@ const NATION=[[47.05,5.45],[55.15,15.65]];
 const {REF_ZOOM,WORLD,officialPart,observedParts,actualBounds,currentViewport,visible,drawPath,unproject,segmentDist}=window.Railway07Geometry;
 // Fixed 100-observation inclusion threshold (not a user-facing filter).
 const view={service:'REGIONAL',metric:'both',minimum:100,selected:null,links:[],
-  rendered:[],groups:[],hiddenCorridors:0,physicalEdges:0,ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,map:null,backbone:new window.Railway07Continuity.Backbone(),drawnObserved:[],
+  rendered:[],groups:[],riskIndexes:null,hiddenCorridors:0,physicalEdges:0,ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,map:null,backbone:new window.Railway07Continuity.Backbone(),drawnObserved:[],
   observedLayer:null,picker:new window.Railway07Picker.RailwayPicker(),repaints:0};
 const cache=new Map();
 const fmt=n=>Number(n).toLocaleString('zh-CN');
@@ -406,9 +406,10 @@ function nearbyCityCorridor(route,point){
 function observedRiskAt(point){
  // The displayed red layer is on top of orange and green. Use the SAME
  // precedence to decide which contiguous segment a click refers to.
- const index=shadeRuns.indexItems(view.drawnObserved);
- return index[2].nearest(point,1.6)?2:
-   index[1].nearest(point,1.6)?1:0;
+ const index=view.riskIndexes;
+ if(!index)return 0;
+ return index[2].nearest(point,1.25)?2:
+   index[1].nearest(point,1.25)?1:0;
 }
 function pickAt(latlng){
  const p=view.map.project(latlng,REF_ZOOM),pt=[p.x,p.y];
@@ -449,6 +450,7 @@ function recalc(){
  view.physicalEdges=result.physicalEdges;
  const displayed=new Set(view.groups.flatMap(g=>g.members));
  view.drawnObserved=items.filter(item=>displayed.has(item));
+ view.riskIndexes=shadeRuns.indexItems(view.drawnObserved);
  refreshBackbone();
  // A service/category change invalidates cached per-grade runs.  Preserve
  // selection by physical observation identity only when it remains available.
@@ -464,7 +466,7 @@ function recalc(){
 }
 async function chooseService(){
  const id=++view.ticket,service=view.service;
- view.selected=null;view.links=[];view.rendered=[];view.groups=[];view.drawnObserved=[];view.hiddenCorridors=0;view.picker.replaceObserved([],[]);
+ view.selected=null;view.links=[];view.rendered=[];view.groups=[];view.drawnObserved=[];view.riskIndexes=null;view.hiddenCorridors=0;view.picker.replaceObserved([],[]);
  view.observedLayer.schedule();status('正在读取 '+labels[service]+' 的观测…');
  try{
   const data=await Promise.all(sources[service].map(async k=>[k,await loadData(k)]));
