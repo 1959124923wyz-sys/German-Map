@@ -1,5 +1,5 @@
 /* Public railway city-to-city overview.
- * Group real passenger stop observations along one named train service into
+ * Group real passenger stop observations along one physical DB route into
  * corridors between hubs, major cities or genuine branch terminals.
  * The 33,547 official infrastructure parts stay in the research model but
  * must NOT become stray green routes on this public map.
@@ -38,7 +38,7 @@ const HUBS=[
 ];
 const KNOWN=Array.from(new Set([...HUBS,...Object.keys(window.GermanRailStations?.city||{})]))
  .sort((a,b)=>b.length-a.length);
-const MAX_EDGES=45, MAX_PATH_KM=115, MIN_VISIBLE_KM=8;
+const MAX_EDGES=45, MAX_PATH_KM=115, MIN_VISIBLE_KM=12;
 const stationKey=name=>String(name||'').trim().replace(/\s+/g,' ').toLowerCase();
 function cityName(raw){
  const name=String(raw||'').trim();
@@ -62,7 +62,7 @@ function keyOf(item,label){
  const leg=item.leg,km=leg.km_range||[];
  const names=[stationKey(leg.from_station),stationKey(leg.to_station)].sort();
  const range=km.length===2?km.map(Number).sort((a,b)=>a-b).map(x=>x.toFixed(2)).join(':'):'?';
- return [label,leg.route,...names,range].join('|');
+ return [leg.route,...names,range].join('|');
 }
 function measuredKm(edge){
  const r=edge.members[0].leg.km_range;
@@ -81,16 +81,17 @@ function summarise(edgeChain,label,metric,from,to){
  const cancel=nPlanned?100*cancelCount/nPlanned:null;
  const m={nArrival,nPlanned,late,cancel,onTime:late===null?null:100-late};
  const km=edgeChain.reduce((n,e)=>n+measuredKm(e),0);
+ const activeName=dominantLabel({members});
  return {members,parts,bounds:actualBounds(parts),grade:grade(m,metric),m,
   cityFrom:cityName(from),cityTo:cityName(to),
-  startStation:from,endStation:to,serviceName:label,km,
+  startStation:from,endStation:to,serviceName:activeName||'',km,
   observedEdges:edgeChain.length,
   coveredEdges:edgeChain,bridgeParts:[],bridges:0};
 }
 function buildCityCorridors(items,metric='both'){
  const physical=new Map();
  for(const item of items){
-  const label=legLabel(item),leg=item.leg;
+  const label=String(item.leg.route),leg=item.leg;
   if(!leg.from_station||!leg.to_station||
      stationKey(leg.from_station)===stationKey(leg.to_station))continue;
   const id=keyOf(item,label);
@@ -153,9 +154,9 @@ function buildCityCorridors(items,metric='both'){
  // Main-map display rules: don't clutter the map with little station leads
  // or duplicated same-city local track geometry. Keep all source observations
  // in memory for later analysis.
- const visibleGroups=corridors.filter(g=>g.km>=MIN_VISIBLE_KM ||
-   (g.cityFrom!==g.cityTo&&g.km>=3.5&&
-     (isHub(g.startStation)||isHub(g.endStation))));
+ const visibleGroups=corridors.filter(g=>g.cityFrom!==g.cityTo&&
+   (g.km>=MIN_VISIBLE_KM||
+    (g.km>=8&&isHub(g.startStation)&&isHub(g.endStation))));
  const visibleSet=new Set(visibleGroups);
  for(const group of corridors)for(const member of group.members){
   if(visibleSet.has(group))byItem.set(member,group);
