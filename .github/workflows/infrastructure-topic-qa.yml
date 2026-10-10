@@ -1,0 +1,29 @@
+name: infrastructure-topic-qa
+on:
+  push:
+    branches: [feature/infrastructure-map-phase1]
+    paths:
+      - 'topics/infrastructure/**'
+      - '.github/workflows/infrastructure-topic-qa.yml'
+      - 'index.html'
+  pull_request:
+    paths:
+      - 'topics/infrastructure/**'
+      - '.github/workflows/infrastructure-topic-qa.yml'
+      - 'index.html'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: node --check topics/infrastructure/topic.js
+      - name: Validate data and model constraints
+        run: node topics/infrastructure/tests/validate_data.cjs
+      - name: Validate linked site assets
+        run: python scripts/validate_site_assets.py
