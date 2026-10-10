@@ -81,7 +81,8 @@
       "total": 7314,
       "threshold": "Zustandsnote ≥ 3.0",
       "source": "https://www.landtag.nrw.de/portal/WWW/dokumentenarchiv/Dokument/MMD18-19040.pdf",
-      "source_check": "来源为前期研究交接中的议会材料入口，合并前须复核文件号"
+      "source_check": "前期工作记录提及州议会答复，文件号及分母需在合并前再次核实；不参与排行",
+      "source_quality": "needs_exact_report"
     },
     {
       "iso": "DE-RP",
@@ -141,7 +142,7 @@
       "metric": "最差路面结构等级占比",
       "value_pct": 23.2,
       "definition": "分级与下萨克森比较之前需校验",
-      "source": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/LBVSH/Startseite"
+      "source": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/LBVSH/Presse/2025/Pressemitteilungen/250909_Erhaltungsprogramm-Landesstrassen?nn=eceb6018-4b4f-493a-8821-6d2333bc069e"
     },
     {
       "iso": "DE-BY",
@@ -150,7 +151,9 @@
       "metric": "路面材料状态良好占比",
       "value_pct": 44,
       "definition": "不能解释为其余56%已不可通车",
-      "source": "https://www.stmb.bayern.de/"
+      "source": "https://www.stmb.bayern.de/",
+      "source_quality": "needs_exact_report",
+      "source_check": "已保留前期调查数值，但原始报告精确页码尚待维护组复核，不用于排名"
     },
     {
       "iso": "DE-ST",
@@ -160,12 +163,14 @@
       "value_pct": 45,
       "approx": true,
       "definition": "不同阈值/年份，不参与州际总体排名",
-      "source": "https://lsbb.sachsen-anhalt.de/"
+      "source": "https://lsbb.sachsen-anhalt.de/",
+      "source_quality": "needs_exact_report",
+      "source_check": "已保留前期调查数值，但原始报告精确页码尚待维护组复核，不用于排名"
     }
   ],
   "national": {
     "municipal_investment_backlog_eur_billion_2025": 231.2,
     "kind": "KfW市政调查全国推估，不属于16州实测设施状态",
-    "source": "https://www.kfw.de/"
+    "source": "https://www.kfw.de/%C3%9Cber-die-KfW/Newsroom/Aktuelles/Pressemitteilungen-Details_897920.html"
   }
 }
