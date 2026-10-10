@@ -37,6 +37,15 @@ for(const r of evidence.din_bridge_samples){
 for(const r of evidence.road_state_samples){
   assert(ids.has(r.iso)&&r.year>=2018&&r.value_pct>=0&&r.value_pct<=100,'road metric');
 }
+assert((evidence.additional_facility_evidence||[]).length>=8,'new verified cross-domain evidence missing');
+const sx=evidence.din_bridge_samples.filter(r=>r.iso==='DE-SN');
+assert(sx.length===2,'Saxony official bridge tables missing');
+for(const r of sx){
+  assert(r.source_quality==='verified_original' && r.source_page===3,'official Saxony bridge provenance');
+  assert(r.classes_count.length===6 && r.classes_count.reduce((a,b)=>a+b,0)===r.total,'bridge condition classes must sum to same denominator');
+  assert(r.classes_count[4]+r.classes_count[5]===r.bad,'3.0–4.0 subtotal must match poor count');
+}
+assert(evidence.additional_facility_evidence.filter(e=>e.iso==='DE-BE').length>=5,'Berlin bridge master plan evidence missing');
 assert(events.events.length>=22,'event archive unexpectedly truncated');
 const mappedStates=new Set(events.events.map(e=>e.state_iso));
 assert(mappedStates.size===16,'event coverage dropped below 16 states');
