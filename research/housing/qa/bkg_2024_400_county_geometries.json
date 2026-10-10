@@ -1,0 +1,28 @@
+{
+  "source": "https://tigis.bkg.bund.de/hosting/rest/services/hh_veink_ZA2026/MapServer/5",
+  "sha256_official_download": "1e0eb566784a1c1156724c5cd799996312225d36191011c3252df032c2ef4d1f",
+  "download_bytes": 10170454,
+  "on_disk_output_bytes": 10176473,
+  "districts": 400,
+  "match": 400,
+  "missing": [],
+  "unexpected": [],
+  "geometry_types": {
+    "Polygon": 334,
+    "MultiPolygon": 66
+  },
+  "old_project_map_count": 402,
+  "old_project_map_unmatched": [
+    "03152",
+    "03156",
+    "16056"
+  ],
+  "new_official_county_present": true,
+  "attribution": "© BKG (2026) dl-de/by-2-0, Datenquellen: https://sgx.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_vg_nuts.pdf",
+  "license_url": "https://www.govdata.de/dl-de/by-2-0",
+  "notes": [
+    "Maps can now show all 400 official HA26 counties, versus only 399 of 402 older polygons",
+    "Independent geometry is housing-specific and does not alter existing crime/finance maps",
+    "The year 2022 indicators can be shown on 2024 county polygons with disclosure of geographic vintage"
+  ]
+}
