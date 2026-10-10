@@ -88,7 +88,16 @@ class Backbone{
    const routePath=this.graph.find(route,a,b,Math.min(170,Math.max(10,direct*1.75+8)));
    if(!routePath?.parts?.length||routePath.km<direct*.85)continue;
    const penalty=routePath.km/direct;
-   if(!best||penalty<best.penalty)best={path:routePath,penalty};
+   // A city-end station segment contributes *two* geometry endpoints. A
+   // shortest-only ranking often chose the inner endpoints on either side
+   // of a data gap, illuminating just the missing 2-km fragment instead of
+   // the whole A--B corridor. Prefer the longest physically plausible path
+   // whenever competing paths have comparable detour ratios.
+   if(!best||
+     (routePath.km>best.path.km*1.01 &&
+       penalty<=best.penalty*1.12+.04)||
+     (penalty<best.penalty*.83))
+    best={path:routePath,penalty};
   }
   if(best){
    group._officialPath=best.path.parts;
