@@ -371,8 +371,10 @@ function pickAt(latlng){
  const point=view.map.project(latlng,REF_ZOOM);
  const match=view.picker.hit([point.x,point.y],view.map.getZoom());
  if(!match)return;
+ const official=match.kind==='network'
+  ?view.bridgeGraph.walk(match.route,[point.x,point.y],22):null;
  view.selected=match.kind==='observed'?(view.serviceGroupMap.get(match.group)||match.group):{
-  unobserved:true,route:match.route,parts:[match.part]
+  unobserved:true,route:match.route,parts:official?.parts?.length?official.parts:[match.part]
  };
  showDetail();
  view.observedLayer.schedule();
