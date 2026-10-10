@@ -1,0 +1,39 @@
+name: Infrastructure 402-county AGS bridge pilot
+on:
+  push:
+    branches: [feature/infrastructure-map-phase1]
+    paths:
+      - 'topics/infrastructure/research/scripts/aggregate_bridge_county_ags.py'
+      - '.github/workflows/infrastructure-county-ags.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: infrastructure-county-ags
+  cancel-in-progress: false
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/infrastructure-map-phase1
+      - name: Derive AGS-indexed DIN inspection pilot with missingness audit
+        run: python topics/infrastructure/research/scripts/aggregate_bridge_county_ags.py
+      - name: Commit separate candidate (never overwrite official state score)
+        run: |
+          git config user.name 'german-map-research-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/infrastructure/research/candidate_bridge_county_ags_2025.json
+          if ! git diff --cached --quiet; then
+            git commit -m "research: checkpoint AGS county pilot, 4-way missingness, bridge-area weighting"
+            git pull --rebase origin feature/infrastructure-map-phase1
+            git push origin HEAD:feature/infrastructure-map-phase1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: infrastructure-ags-county-candidate
+          path: topics/infrastructure/research/candidate_bridge_county_ags_2025.json
+          if-no-files-found: warn
