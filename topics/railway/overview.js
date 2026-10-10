@@ -364,9 +364,12 @@ function updateHotspots(){
 }
 
 function rebuildIndex(){
- // The index is only the click locator.  Official green remains separately
- // indexed; the visual display and original numerical data are unchanged.
- view.picker.replaceObserved(view.groups.map(g=>({parts:g.parts,group:g})),[]);
+ // Give each source-coloured curve its own precise locator, but map it to the
+ // maximal physical run in its CITY corridor on click.  A single group-wide
+ // geometry hit was incorrectly choosing neighbouring tracks at junctions.
+ view.picker.replaceObserved(view.drawnObserved
+  .map(item=>({parts:item.parts,group:view.memberToGroup?.get(item),grade:item.grade}))
+  .filter(x=>x.group),[]);
 }
 function selectShade(run){
  if(!run)return;
@@ -448,6 +451,7 @@ function recalc(){
  const result=window.Railway07Cities.buildCityCorridors(items,view.metric);
  view.groups=result.corridors;view.hiddenCorridors=result.hidden;
  view.physicalEdges=result.physicalEdges;
+ view.memberToGroup=result.byItem;
  const displayed=new Set(view.groups.flatMap(g=>g.members));
  view.drawnObserved=items.filter(item=>displayed.has(item));
  view.riskIndexes=shadeRuns.indexItems(view.drawnObserved);
