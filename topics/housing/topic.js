@@ -21,7 +21,7 @@
  let selectedCounty=null, focusState=null, metric='asking_rent_2025_eur_m2';
  let stateFeatures=[], countyFeatures=[], byid=new Map(), countyShapes=new Map();
  let stockReady=false, breaks=[], sortedAll=[];
- let saxonyRows=new Map();
+ let saxonyRows=new Map(), nrwRows=new Map();
  const COUNTRY=[[47.2,5.5],[55.3,15.5]];
  const sourceURL = {
   atlas:'https://deutschlandatlas.bund.de/service/daten-herunterladen/aktuelle-downloaddaten/aktuelle-downloaddateien',
@@ -101,6 +101,25 @@
    '<p class="housing-note">本范围暂无可比较的县级记录</p>';
   $('topRank').querySelectorAll('[data-id]').forEach(el=>el.addEventListener('click',()=>chooseCounty(el.dataset.id)));
  }
+ function renderLandPrice(region){
+  const el=$('landPriceBand');
+  const v=region.scope==='county'?byid.get(region.ids[0])?.building_land_price_band_2024:null;
+  el.hidden=!v;
+  if(!v)return;
+  const nice=String(v).replace(/^(\\d+) bis unter (\\d+)$/,'$1—不足$2').replace(/^(\\d+) und mehr$/,'≥$1').replace(/^unter (\\d+)$/,'低于$1');
+  el.textContent='2024年住宅建筑用地价格等级：'+nice+' 欧元/㎡（用于一、两户型住宅的中等地段；官方县级表仅给区间，非精确价格）';
+ }
+ function renderNRW(region){
+  const panel=$('nrwCompletions');
+  const row=region.scope==='county'?nrwRows.get(region.ids[0]):null;
+  panel.hidden=!row;
+  if(!row)return;
+  const years=Object.entries(row.values_by_year).sort((a,b)=>b[0].localeCompare(a[0]));
+  $('nrwHistory').innerHTML='<div class="housing-archive-grid">'+years.map(([year,x])=>
+   '<div><small>'+safe(year)+'</small><b>'+safe(isNum(x.new_dwellings_in_residential_buildings)?fmt(x.new_dwellings_in_residential_buildings,0)+'套':'无数据')+'</b></div>').join('')+'</div>'+
+   '<p>仅北威州53个县市，统计新建住宅建筑竣工住房套数，不含改建扩建及非住宅建筑中的全部新增住房，绝非德国所有竣工住宅。不同年份县界须注意行政调整。</p>'+
+   '<a target="_blank" rel="noopener noreferrer" href="https://www.landesdatenbank.nrw.de/ldbnrwws/downloader/00/tables/31121-06i_00.csv">IT.NRW 官方31121-06i原始CSV ↗</a>';
+ }
  function renderSaxony(region){
   const panel=$('saxonyDetails');
   const row=region.scope==='county'?saxonyRows.get(region.ids[0]):null;
@@ -126,6 +145,8 @@
   $('sourceLink').textContent=(metrics[metric].source==='atlas'?'Deutschlandatlas HA26 官网':'第三方县级再发布与来源说明')+' ↗';
   $('sourceCredit').textContent=s.credit;
   renderQuick(region);
+  renderLandPrice(region);
+  renderNRW(region);
   renderSaxony(region);
   updateRanks(region.ids);
  }
@@ -212,6 +233,11 @@
     if(saxony.counties.length!==13)throw new Error('Saxony county-series coverage changed');
     saxonyRows=new Map(saxony.counties.map(row=>[row.id,row]));
    }catch(err){console.warn('Saxony county detail unavailable',err)}
+   try{
+    const nrw=await readJson('data/nrw-new-home-completions.json');
+    if(nrw.counties.length!==53)throw new Error('NRW official 2025 Kreis coverage changed');
+    nrwRows=new Map(nrw.counties.map(row=>[row.id,row]));
+   }catch(err){console.warn('NRW local construction detail unavailable',err)}
    makeLayers(states,counties);
    paint();
    const valid=sortedAll.length;
