@@ -71,7 +71,7 @@ def verify(browser,mobile=False):
     assert page.locator("#caseList button").first.get_attribute("title")
     # A map circle's hover contains a short real event description and a
     # reminder this is a county aggregation, not a fabricated facility pin.
-    page.evaluate("window.__FINANCE_UI__.eventMarkers()[0].openTooltip()")
+    page.evaluate("()=>{window.__FINANCE_UI__.eventMarkers()[0].openTooltip();return true}")
     tooltip=page.locator(".finance-event-tooltip").first
     assert tooltip.is_visible()
     assert "点击查看" in tooltip.inner_text()
