@@ -46,7 +46,7 @@
   <section class="detail" id="detail" aria-live="polite"><h3>点击地图查看区段</h3></section>
   <details class="hotspots" id="hotspots"><summary>查看高关注区段</summary><div id="hotList" class="hot-list"></div></details>
   <details class="method"><summary>数据来源与统计口径</summary>
-   <p>后台固定使用至少100次有效观测。仅展示实际有观测的城市间线路；没有足够观测的基础设施轨道不展示。</p>
+   <p>后台固定使用至少100次有效观测。公开地图默认隐藏不足12公里的短线路，但两端是明确枢纽的8公里以上城市连接仍保留。隐藏只是视觉筛选，不代表运行正常；完整原始资料仍可在研究页面查阅。</p>
    <p>2026年9月 DB Timetables API 历史停站数据，经 Piet Brömmel 汇编；轨道依据 DB InfraGO 官方线路几何及公里标匹配。</p>
    <p>综合关注：到站晚点≥6分钟的比例≥40%，或者到发停靠取消标记比例≥8%时标红；≥25%或≥4%时标橙。阈值仅用于地图展示，不是德国铁路官方评级。</p>
    <p>区域列车合并 RE 与 RB，长途涵盖 ICE／IC／EC／FLX，其他运营商聚合 HLB、BRB、ERB、NWB、OE。按同一列车线路标记和站名连通关系，将各站间观察合并为城市间走廊；其他运营商数据与 RB／RE 在服务归属上可能重叠，不可跨类别求和。</p>
