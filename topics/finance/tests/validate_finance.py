@@ -37,7 +37,7 @@ check('page loads its own data',"data/finance-data.js" in (FIN/'index.html').rea
 check('stats/source language',"非县辖市" in (FIN/'index.html').read_text() and "不代表设施地址" in (FIN/'index.html').read_text())
 page=(FIN/'index.html').read_text(encoding='utf-8')
 app=(FIN/'topic.js').read_text(encoding='utf-8')
-check('single fixed balance choropleth',all('data-mode="'+x+'"' not in page for x in ('state','rp','events')) and 'id="stateMetric"' not in page and "getMode:()=> 'balance-2025'" in app)
+check('original default balance preserved with optional source-distinct historical layers',all('data-mode="'+x+'"' not in page for x in ('state','rp','events')) and 'id="stateMetric"' not in page and "getMode:()=>view.metric" in app)
 check('event overlays opt-in', 'id="showEvents" type="checkbox"' in page and 'showEvents:false' in app)
 check('advanced research controls collapsed', '<details class="finance-drawer"' in page)
 check('simplified event list and archive switch retained',all('id="'+x+'"' in page for x in ('caseList','showMapCases','showAllCases','loadMore')))
