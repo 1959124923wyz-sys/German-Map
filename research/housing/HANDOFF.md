@@ -159,3 +159,54 @@ python research/housing/build_stock_proxy.py
 5. 可深入普查的建成年份、租金价位段、能源与房屋拥有主体等89+47源字段；需要继续做单位解释、跨指标一致性审计，避免把加总过的多口径分组当作独立住房数量。
 
 **恢复**：从远端 `research/housing-crisis-20261010` 检出，先读本文第四阶段；工作簿位于 `research/housing/raw/destatis_zensus_2022_regional_housing_national.xlsx`；运行 `build_destatis_zensus_counties.py` + `probe_zensus_column_labels.py` + `build_zensus_housing_indicators.py` 即可完全复建新的400县级指标；使用 `topics/housing/tests/smoke_housing_browser.py` 及CI验证。所有批次仍坚持源文件、SHA256、代码、QA、分支提交的保全原则。
+
+## ✅ 第五阶段追加：2022租金价位/住房产权结构，巴伐利亚2025竣工县级实证（2026-10-10）
+
+**本阶段关键两组数据均经过 GitHub Actions 完整校验并成功远端提交，新增Bavaria地图侧栏亦通过桌面/手机真实浏览器回归，main仍未改动。** 此节为当前最新研究断点，上文仍保留研究进度历史。
+
+### A. 2022全国住房普查深度颗粒度：租金分档、建筑业主类型、住房年龄
+
+- 一手来源仍为2022全国Zensus普查原始区域表 `research/housing/raw/destatis_zensus_2022_regional_housing_national.xlsx`；原始字段定义严格对照 `research/housing/qa/zensus2022_official_housing_column_codebook.json`，非推测。
+- 解析 `research/housing/build_zensus_rent_owners.py`；输出：
+  - `topics/housing/data/zensus2022-county-rent-owner-distribution.json`
+  - `research/housing/data/zensus2022_rent_band_and_building_ownership_400_counties.csv`
+  - `research/housing/qa/zensus2022_rent_band_owner_building_age_audit.json`
+- 核验流程 [run 38042675359 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38042675359)。全德400县的县级记录全保留，字段有效县数各有差别：
+  - **2022年存量租约每㎡净冷租金≥12欧元的分档占比：364/400县有可靠数值，36县的若干价格分档受普查保密规则影响**，无原始值处是null，**不能推算或硬填零**。样例：慕尼黑市52.18%、柏林市7.55%、弗伦斯堡市2.99%，均为**2022年**存量租约样本，不是2025年互联网挂牌租金，也**不是家庭收入租金负担率**。
+  - **建筑业主为市镇或市属住房企业**的住宅套数占总住房的比例：400/400县；**住宅合作社业主持有住房**：393/400县；**州联邦政府名下建筑中的住宅**：397/400县；**私人住房公司持有建筑内住宅**：400/400县；**住宅建于2016年及以后的住房比例**：400/400县。
+  - **关键口径**：Zensus的 `EIGENTUM__1…8` 表示住房所在**建筑的所有权主体类别**，**不能当作产权人自住比例**，更不能把市镇/合作社所有的住宅直接称作“社会保障房/社会住房”。
+  - 原始价格档 `MIETE_EURM2_2__01…10`、建成年份档 `BAUJAHR_10JA__01…10` 已保留。保密扰动下分类合计与原始总数每县可有十余套差异；QA记录最大差异：租金类别14、建筑所有权16、住房建成年份16。
+- 本阶段仅将详细数据库保存与备份，**不额外堆叠到默认地图UI**，维持地方财政式简洁默认视图。
+
+### B. 巴伐利亚州2025年全部96县住宅竣工数据（北威州以外新增完整一州）
+
+- 发现并取得巴伐利亚州统计局2025年报告原始XLSX，`F2200C 202500`：
+  `https://www.statistik.bayern.de/mam/produkte/veroffentlichungen/statistische_berichte/f2200c_202500.xlsx`
+  文件 **151,044字节**，SHA256 `aff0c61f6983038ac10694cc2d0cc6f61acaa12c38c16fd4a43f54af4637985b`，备份 `research/housing/raw/bavaria_f2200c_202500_official.xlsx`。
+- 首次取得 [run 38042767100 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38042767100)，原表结构审计 [run 38042829300 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38042829300)，列位与原始页眉位于 `research/housing/qa/bavaria_2025_construction_district_table_layout.json`。
+- 原始四张分页县级表 `Kreisübersicht Tab4 S14-S15…S20-S21`，`research/housing/build_bavaria_2025_completions.py` 将官方3位县编码精确添加邦州前缀 `09` 转为5位AGS，与官方县界**96/96逐一匹配**；原始表个别重复州内地区汇总行须一致才允许通过。
+- 全州 **2025年新建住宅建筑中竣工住房39,204套**，七行政区官方合计逐项等于96县合计：Oberbayern 13,211；Niederbayern 5,108；Oberpfalz 4,431；Oberfranken 2,563；Mittelfranken 4,915；Unterfranken 3,244；Schwaben 5,732。
+- **2025年全部建筑活动中竣工的住房47,359套**，等于巴伐利亚州统计局官方2025公布总数。39,204是其中“新建住宅建筑”一类；**绝不能把39,204 + 47,359相加**。
+- QA构建 [run 38042951457 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38042951457)；已经保存：
+  - `topics/housing/data/bavaria-new-home-completions-2025.json`
+  - `research/housing/data/bavaria_2025_residential_completions_96_counties.csv`
+  - `research/housing/qa/bavaria_2025_96_district_completions_audit.json`。
+- 与此前 **北威州53县2025新建住宅竣工**相加，现有**149/400县（2州）**2025县级实证，但由于来源与统计年份不同的全国静态表（仅2023全国400县），**不得伪造2025全国可比色阶或对151个缺省县补0**。
+- 新房与全部竣工分别统计的城市实证：慕尼黑市 `09162` 新住宅建筑竣工**3,960套**，全部竣工**4,324套**，可在当前分支数据检验。
+
+### C. 巴伐利亚2025年县市地图信息面板与前端验收
+
+- `topics/housing/index.html`、`topic.js` 增加一个**仅在点击巴伐利亚州96县市时出现**的折叠面板，展示同县“新建住宅建筑竣工住房”与“全部建筑活动竣工住房”、来源链接和双统计口径。点击其它州如北威州面板自动隐藏。
+- **默认地图仍是2025德国400县挂牌净冷租金**，2023全国竣工仍独立可选；巴伐利亚2025结果不替换2023全国同年份图层，仍保持仅一项下拉指标与低干扰侧栏布局。
+- Chromium全套desktop+mobile回归，含巴伐利亚侧栏、官方来源、与北威州附录不交叉、其他15指标及州县联动：
+  [run 38043047338 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38043047338)。
+
+### D. 恢复/下一步研究
+
+1. 未完成的高优先任务：**德国其它14个州2025年县级竣工**（已拥有NRW 53县、Bayern 96县），以及2026全国400县受安置无住房者（现有全国2025=394县有数值，2026有全国总数和萨克森13县）。
+2. 可继续批量开掘 `https://www.statistikportal.de/` 的州统计局地区2025 Baufertigstellungen 开放CSV/XLSX，重点人口众多的Baden-Württemberg、Hessen、Niedersachsen、Sachsen、Hamburg、Berlin等；优先独立批次，必须核对县级AGS、行业统计类别、州/地区总数。
+3. 利用本阶段Zensus 2022全国400县“市镇住房企业、住宅合作社、私人房地产公司持有住房占比”开展社会住房结构研究，但不要将所有市属住房简单标成有租金补贴的Socialwohnungen。
+4. 市场租金压力可同时呈现2022存量租约分档与2025新挂牌价格，但差异因时间/样本口径不同，不可冒充2022—2025时间序列纯涨幅。
+5. 所有2025逐州统计必须保留官方报告原始文件与出处、SHA256和严格QA；县界不同年份应记录且单独灰色，不得编造数值。
+
+**恢复步骤**：检出 `research/housing-crisis-20261010`，读取 `research/housing/HANDOFF.md` 最后阶段；运行 `python research/housing/build_zensus_rent_owners.py`、`python research/housing/build_bavaria_2025_completions.py`；以CI成功记录和 `research/housing/qa/` 为最终证据。**该分支未合并主站、非公开生产上线版本。**
