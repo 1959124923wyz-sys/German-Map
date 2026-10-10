@@ -26,8 +26,21 @@
   const PHASE_LABELS = {retired:'历史退役',awarded:'招标中标',ordered:'监管命令',scheduled:'未来退出计划'};
   const ACTION_LABELS = {traffic:'交通干扰',energy:'能源干扰',sabotage:'设施破坏',culture:'文化设施',construction:'工程冲击'};
   const GERMANY = L.latLngBounds([[47.05,5.45],[55.15,15.65]]);
-  const state = {mode:'all',selected:null,limit:18};
+  const state = {mode:'all',selected:null,selectedState:null,showPoints:false,limit:18};
   let group=null, map=null, rows=[], activeMarkers=new Map(), tilesLoaded=false;
+  let dossier=null,stateShapes=new Map(),stateNames=new Map();
+  // The 73 independently state-identified records are not the complete
+  // 154-record environmental archive; anchored federal policy points should
+  // not be silently assigned to Berlin based on their map coordinates.
+  const STATE_CODES=Object.freeze({
+   'Baden-Württemberg':'DE-BW','Bayern':'DE-BY','Berlin':'DE-BE','Brandenburg':'DE-BB',
+   'Bremen':'DE-HB','Hamburg':'DE-HH','Hessen':'DE-HE','Mecklenburg-Vorpommern':'DE-MV',
+   'Niedersachsen':'DE-NI','Nordrhein-Westfalen':'DE-NW','Rheinland-Pfalz':'DE-RP',
+   'Saarland':'DE-SL','Sachsen':'DE-SN','Sachsen-Anhalt':'DE-ST',
+   'Schleswig-Holstein':'DE-SH','Thüringen':'DE-TH'
+  });
+  const archivedInState=iso=>ALL.filter(e=>STATE_CODES[e.state]===iso);
+  const localStateName=iso=>window.GermanPlaceNames?.translate(stateNames.get(iso)||iso)||stateNames.get(iso)||iso;
 
   function validData() {
     if (!Array.isArray(ALL) || ALL.length !== 154) throw Error('环保事件来源数据不完整');
@@ -94,6 +107,7 @@
   function renderMarkers() {
     if(!map) return;
     group.clearLayers(); activeMarkers=new Map();
+    if(!state.showPoints)return;
     const coLoc=new Map();
     for(const e of rows) {
       const p=e.coordinates;
@@ -151,16 +165,68 @@
   }
   function selectRecord(id,fly) {
     const e=rows.find(v=>v.id===id);
+    if(e&&!state.showPoints){state.showPoints=true;$('showEnvPoints').checked=true;}
     state.selected=e?e.id:null;
     detail(e||null);
     $('summaryPanel').classList.toggle('has-selection',!!e);
-    $('areaName').textContent=e?cityName(e):'德国全国';
+    $('areaName').textContent=e?cityName(e):(state.selectedState?localStateName(state.selectedState):'德国全国');
     $('kindBadge').textContent=e?kind(e):'专题概览';
     $('areaMetric').textContent=e?(e.actor||'事件主体未确定')+' · '+e.date:'政策、直接行动和电厂退出的可核查记录';
     if(e&&fly&&map) map.setView([e.coordinates.lat,e.coordinates.lon],Math.max(8,map.getZoom()),{animate:false});
     renderMarkers();
     for(const node of $('entries').querySelectorAll('[data-id]'))
       node.classList.toggle('selected',node.dataset.id===state.selected);
+  }
+  function renderStateDossier(){
+    const iso=state.selectedState;
+    if(!iso)return;
+    const records=archivedInState(iso);
+    const sources=new Set(records.flatMap(e=>e.sources||[]).map(r=>r.url));
+    const counted=(mode)=>records.filter(e=>primaryClass(e)===mode).length;
+    $('envStateHeading').textContent=localStateName(iso)+' · 环保地方资料室';
+    $('envStateStats').innerHTML=[
+     ['明确州归属的记录',records.length+'条'],
+     ['直接行动／扰动',counted('archive')+'条'],
+     ['能源设施资料',counted('facility')+'条'],
+     ['引用来源（去重URL）',sources.size+'条']
+    ].map(([label,val])=>'<div><small>'+esc(label)+'</small><b>'+esc(val)+'</b></div>').join('');
+    $('envStateCaveat').textContent='全库154条中有'+ALL.filter(e=>STATE_CODES[e.state]).length+
+     '条明确登记联邦州；其余包括国家政策、无法据字段归属的设施与项目，不能从地图锚点位置反推所属州。'+
+     (records.length?'本页只展示本州已归属档案，不能代表该州环保事件总量。':'本州暂无明确州归属的档案，并非没有环保行动或设施。');
+    const q=$('envStateSearch').value.trim().toLocaleLowerCase();
+    const matches=records.filter(e=>[e.title,e.actor,e.city,e.summary,e.id].some(x=>String(x||'').toLocaleLowerCase().includes(q)))
+      .sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+    const brief=e=>'<button type="button" class="dossier-entry" data-env-id="'+esc(e.id)+'"><strong>'+esc(e.title)+'</strong>'+
+     '<small>'+esc(e.date)+' · '+esc(cityName(e))+' · '+esc(kind(e))+'</small></button>';
+    $('envStateList').innerHTML=matches.slice(0,90).map(brief).join('')||
+     '<p class="dossier-note">本范围暂无匹配事件；缺失不是零。</p>';
+    $('envStateEvidence').innerHTML=matches.slice(0,90).map(e=>
+     '<div class="env-region-evidence"><strong>'+esc(e.title)+'</strong><p>'+esc(e.outcome||e.measured_impact||e.status_label||'原始记录未公布可确认结果')+'</p>'+
+     '<small>'+esc(e.limits||e.verification||'具体后续以来源为准')+'</small>'+
+     (e.sources?.find(x=>/^https:\/\//.test(x.url))?
+       '<a target="_blank" rel="noopener noreferrer" href="'+esc(e.sources.find(x=>/^https:\/\//.test(x.url)).url)+'">核查原始资料 ↗</a>':'')+
+     '</div>').join('')||
+     '<p class="dossier-note">当前没有归属于本州的可审计结果。</p>';
+    $('envStateList').querySelectorAll('[data-env-id]').forEach(b=>b.addEventListener('click',()=>{
+     state.mode='all';state.selected=null;render();selectRecord(b.dataset.envId,true);
+    }));
+  }
+  function selectState(iso){
+   if(!iso||!STATE_CODES||!stateNames.has(iso))return;
+   state.selectedState=iso;state.selected=null;
+   $('envStateJump').value=iso;
+   $('envStateSearch').value='';
+   dossier.show(true);
+   const layer=stateShapes.get(iso);
+   if(layer)map.fitBounds(layer.getBounds(),{padding:[22,22],maxZoom:8,animate:false});
+   render();
+  }
+  function resetState(){
+   state.selectedState=null;state.selected=null;
+   $('envStateJump').value='';
+   dossier.show(false);
+   map.fitBounds(GERMANY,{padding:[14,14],animate:false});
+   render();
   }
   function rank() {
     const byCity=new Map();
@@ -207,7 +273,7 @@
     $('resultScope').textContent='点选查看详情';
     $('listHint').textContent=NOTES[state.mode];
     $('summaryPanel').classList.toggle('has-selection',!!selected);
-    $('areaName').textContent=selected?cityName(selected):'德国全国';
+    $('areaName').textContent=selected?cityName(selected):(state.selectedState?localStateName(state.selectedState):'德国全国');
     $('kindBadge').textContent=selected?kind(selected):'专题概览';
     $('areaMetric').textContent=selected?selected.actor+' · '+selected.date:'政策、直接行动和电厂退出的可核查记录';
     document.querySelectorAll('[data-mode]').forEach(b=>{
@@ -216,6 +282,7 @@
       b.setAttribute('aria-pressed',String(active));
     });
     legend();detail(selected);rank();renderEntries();renderMarkers();
+    if(state.selectedState)renderStateDossier();
   }
 
   function initMap() {
@@ -253,14 +320,30 @@
     fetch('../../data/germany-states.geojson',{cache:'force-cache'})
       .then(r=>{if(!r.ok)throw Error('State geography '+r.status);return r.json();})
       .then(g=>{if(!Array.isArray(g.features)||g.features.length!==16)throw Error('Invalid 16-state geometry');
-        L.geoJSON(g,{pane:'environmentStates',interactive:false,
-          style:()=>({color:'#273c50',weight:1.45,opacity:.77,fill:false})}).addTo(map);})
+        L.geoJSON(g,{pane:'environmentStates',interactive:true,
+          style:()=>({color:'#273c50',weight:1.45,opacity:.77,fillColor:'#fff',fillOpacity:.012}),
+          onEachFeature:(feature,layer)=>{
+           const iso=feature.properties?.id;
+           stateShapes.set(iso,layer);
+           stateNames.set(iso,feature.properties?.name||iso);
+           layer.on('click',()=>selectState(iso));
+          }
+        }).addTo(map);
+        const sorted=[...stateNames].sort((a,b)=>localStateName(a[0]).localeCompare(localStateName(b[0]),'zh'));
+        $('envStateJump').insertAdjacentHTML('beforeend',sorted.map(([id])=>'<option value="'+esc(id)+'">'+esc(localStateName(id))+'</option>').join(''));
+       })
       .catch(e=>console.warn('Optional state outlines unavailable:',e));
     window.__ENVIRONMENT_MAP__={map,getRows:()=>rows,getMode:()=>state.mode,
       getSelected:()=>state.selected,getMarkerCount:()=>activeMarkers.size,
+      getState:()=>state.selectedState,getStateAssigned:()=>ALL.filter(e=>STATE_CODES[e.state]).length,
+      selectState,resetState,
       getMarkers:()=>activeMarkers,getAll:()=>ALL,selectRecord};
   }
   function wire() {
+    dossier=window.GermanRegionDossier.mount('envStateDossier');
+    $('showEnvPoints').addEventListener('change',e=>{state.showPoints=e.target.checked;renderMarkers()});
+    $('envStateJump').addEventListener('change',e=>e.target.value?selectState(e.target.value):resetState());
+    $('envStateSearch').addEventListener('input',renderStateDossier);
     for (const b of document.querySelectorAll('[data-mode]')) {
       b.onclick=()=>{
         state.mode=b.dataset.mode;
