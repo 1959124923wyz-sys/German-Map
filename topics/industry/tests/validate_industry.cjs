@@ -49,7 +49,10 @@ assert.match(js,/r4-events-and-updates.json/);
 assert.match(js,/r5a-eurofound-sites.json/);
 assert.match(js,/r5b-manufacturing-cases.json/);
 const grouped=r5b.events.filter(e=>e.shared_program_id);
-for(const e of grouped)assert.equal(e.jobs_affected,null,'group layoffs must not be distributed to sites');
+for(const e of grouped){
+ if(e.jobs_affected!==null)assert.equal(e.jobs_basis,'site_planned_or_reported_positions_non_additive','only independently allocated site figures allowed '+e.event_id);
+}
+assert.equal(r5b.events.filter(e=>e.shared_program_id==='thermo_fisher_2026_160_two_sites').reduce((sum,e)=>sum+e.jobs_affected,0),160,'Thermo Fisher combined figure only once');
 assert.match(js,/Object.assign\(original,patch\)/);
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 for(const tag of ['industry-map','legend','eventList','eventDetail','showMarkers','areaName'])
