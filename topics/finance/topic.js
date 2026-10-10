@@ -174,6 +174,13 @@
   if(view.focusState&&map.getZoom()>=6.5){
    if(!map.hasLayer(countiesLayer))countiesLayer.addTo(map);
    countiesLayer.setStyle(countyStyle);
+   // Transparent county geometries outside the focused state must not steal
+   // clicks meant for a neighbouring state in the persistent choropleth.
+   countiesLayer.eachLayer(layer=>{
+    const selectable=String(layer.feature?.id||'').startsWith(AGS[view.focusState]||'!!');
+    const element=layer.getElement();
+    if(element)element.style.pointerEvents=selectable?'auto':'none';
+   });
   }else if(map.hasLayer(countiesLayer))map.removeLayer(countiesLayer);
  }
  function zoomToState(id,name){
