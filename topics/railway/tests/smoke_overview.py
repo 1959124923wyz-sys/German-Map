@@ -31,7 +31,8 @@ def run(browser,mobile=False):
     response=page.goto(BASE,wait_until="domcontentloaded",timeout=60000)
     assert response and response.status==200
     loaded(page,"REGIONAL",500)
-    assert page.locator(".toplinks a").count()==7
+    assert page.locator(".toplinks a").count()>=8
+    assert page.locator('.toplinks a[href="../infrastructure/"]').count()==1
     assert page.locator("#railway-map canvas").count()==1
     assert page.locator("#railway-map .railway-network").count()==0
     backbone=page.evaluate("window.__RAILWAY_OVERVIEW__.getBackboneCoverage()")

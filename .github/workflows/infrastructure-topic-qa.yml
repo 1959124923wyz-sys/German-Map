@@ -1,0 +1,57 @@
+name: infrastructure-topic-qa
+on:
+  push:
+    branches: [feature/infrastructure-map-phase1]
+    paths:
+      - 'topics/infrastructure/**'
+      - '.github/workflows/infrastructure-topic-qa.yml'
+      - 'index.html'
+  pull_request:
+    paths:
+      - 'topics/infrastructure/**'
+      - '.github/workflows/infrastructure-topic-qa.yml'
+      - 'index.html'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: node --check topics/infrastructure/topic.js
+      - name: Validate data and model constraints
+        run: node topics/infrastructure/tests/validate_data.cjs
+      - name: Validate linked site assets
+        run: python scripts/validate_site_assets.py
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install local Leaflet and Chromium
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts leaflet@1.9.4
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Exercise infrastructure map at desktop and mobile sizes
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/infrastructure-http.log 2>&1 &
+          sleep 2
+          python topics/infrastructure/tests/smoke_browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: infrastructure-map-browser-screenshots
+          path: /tmp/infrastructure-phase1-*.png
+          if-no-files-found: warn

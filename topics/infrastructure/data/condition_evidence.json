@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-10",
+  "notes": [
+    "指标必须按scope/road_class/inspection_system分别展示，不可直接合成16州桥梁状态评分",
+    "同一源TLI IV/V为高速公路桥梁承载等级，不能写成DIN 1076桥梁状态评分≥3.0",
+    "北威州2026年DIN比例与2025年IHK高速公路TLI比例的管理机构和技术含义均不同",
+    "BASt原始桥梁全国逐件提取尚未通过校验，未发布所谓全国桥梁排行"
+  ],
+  "tli_motorway_2025": {
+    "scope": "联邦高速公路桥梁分段",
+    "metric": "TLI_IV_V",
+    "meaning": "承载等级IV/V份额，不是结构外观评分",
+    "source": "https://www.ihk-nrw.de/blueprint/servlet/resource/blob/6495714/8cb78e052a38723b1e54731b48a44581/ihk-nrw-bru-cken2025-online-data.pdf",
+    "states": [
+      {
+        "iso": "DE-NW",
+        "bad": 1849,
+        "total": 6152,
+        "percent": 30.1
+      },
+      {
+        "iso": "DE-BW",
+        "bad": 384,
+        "total": 2008,
+        "percent": 19.1
+      },
+      {
+        "iso": "DE-HE",
+        "bad": 438,
+        "total": 2417,
+        "percent": 18.1
+      },
+      {
+        "iso": "DE-NI",
+        "bad": 448,
+        "total": 2876,
+        "percent": 15.6
+      },
+      {
+        "iso": "DE-RP",
+        "bad": 271,
+        "total": 1925,
+        "percent": 14.1
+      },
+      {
+        "iso": "DE-BY",
+        "bad": 526,
+        "total": 5368,
+        "percent": 9.8
+      }
+    ],
+    "source_page": 4,
+    "verified_original": "2026-10-10"
+  },
+  "din_bridge_samples": [
+    {
+      "iso": "DE-MV",
+      "scope": "联邦一般公路桥梁分段",
+      "year": 2026,
+      "inspection": "DIN_1076",
+      "bad": 16,
+      "total": 424,
+      "threshold": "Zustandsnote ≥ 3.0",
+      "source": "https://www.strassen-mv.de/de/bruecken/zustand/",
+      "source_quality": "verified_original",
+      "source_check": "梅前州道路管理官方2026年5月图表提供全部六级桥梁状态及424/308个分段分母。"
+    },
+    {
+      "iso": "DE-MV",
+      "scope": "州道桥梁分段",
+      "year": 2026,
+      "inspection": "DIN_1076",
+      "bad": 28,
+      "total": 308,
+      "threshold": "Zustandsnote ≥ 3.0",
+      "source": "https://www.strassen-mv.de/de/bruecken/zustand/",
+      "source_quality": "verified_original",
+      "source_check": "梅前州道路管理官方2026年5月图表提供全部六级桥梁状态及424/308个分段分母。"
+    },
+    {
+      "iso": "DE-NW",
+      "scope": "Straßen.NRW管辖联邦一般公路/州道/少量县道桥梁分段",
+      "year": 2026,
+      "inspection": "DIN_1076",
+      "bad": 295,
+      "total": 7314,
+      "threshold": "Zustandsnote ≥ 3.0",
+      "source": "https://www.landtag.nrw.de/portal/WWW/dokumentenarchiv/Dokument/MMD18-19040.pdf",
+      "source_check": "州议会第18/19040号正式答复第1页披露Straßen.NRW管辖7314个桥梁分段；第2页确认295个评分3.0及以上。分母包括少量县道、不包括Autobahn GmbH管理高速桥梁。",
+      "source_quality": "verified_original",
+      "source_page": 2
+    },
+    {
+      "iso": "DE-RP",
+      "scope": "联邦高速公路桥梁",
+      "year": 2026,
+      "inspection": "DIN_1076",
+      "bad": 151,
+      "total": 1936,
+      "threshold": "Zustandsnote ≥ 3.0",
+      "source": "https://www.swr.de/swraktuell/rheinland-pfalz/faq-baufaellig-einsturzgefaehrdet-so-steht-es-um-die-bruecken-in-rlp-100.html",
+      "source_quality": "secondary_2026_report",
+      "source_check": "SWR地区综合报道，分道路管理主体展示；与2021市镇历史样本不得跨期求和"
+    },
+    {
+      "iso": "DE-RP",
+      "scope": "联邦一般公路+州道+县道桥梁",
+      "year": 2026,
+      "inspection": "DIN_1076",
+      "bad": 243,
+      "total": 5700,
+      "total_approx": true,
+      "threshold": "Zustandsnote ≥ 3.0",
+      "source": "https://www.swr.de/swraktuell/rheinland-pfalz/faq-baufaellig-einsturzgefaehrdet-so-steht-es-um-die-bruecken-in-rlp-100.html",
+      "source_quality": "secondary_2026_report",
+      "source_check": "SWR地区综合报道，分道路管理主体展示；与2021市镇历史样本不得跨期求和"
+    },
+    {
+      "iso": "DE-RP",
+      "scope": "市镇桥梁历史样本",
+      "year": 2021,
+      "inspection": "DIN_1076",
+      "bad": 1382,
+      "total": 6579,
+      "threshold": "Zustandsnote ≥ 3.0",
+      "source": "https://www.swr.de/swraktuell/rheinland-pfalz/faq-baufaellig-einsturzgefaehrdet-so-steht-es-um-die-bruecken-in-rlp-100.html",
+      "source_quality": "secondary_2026_report",
+      "source_check": "SWR地区综合报道，分道路管理主体展示；与2021市镇历史样本不得跨期求和"
+    }
+  ],
+  "road_state_samples": [
+    {
+      "iso": "DE-BB",
+      "year": 2023,
+      "scope": "州道",
+      "metric": "路面结构存在养护需求",
+      "value_pct": 65,
+      "definition": "ZEB警戒值或阈值以上路面",
+      "source": "https://mil.brandenburg.de/mil/de/presse/detail/~21-09-2026-erhaltungsprogramm-fuer-landesstrassen",
+      "source_quality": "verified_original",
+      "source_check": "勃兰登堡州交通部2026年9月公布2023年ZEB州道结构养护需求占约65%。"
+    },
+    {
+      "iso": "DE-NI",
+      "year": 2025,
+      "scope": "州道",
+      "metric": "最差路面类别占比",
+      "value_pct": 21.4,
+      "definition": "ZEB州级检测，具体边界待与其他州统一校验",
+      "source": "https://www.landtag-niedersachsen.de/parlamentsdokumente/niederschriften_ausschuesse/19_wp/afwauv/087_AfWVBuD_13.03.2026.pdf"
+    },
+    {
+      "iso": "DE-SH",
+      "year": 2025,
+      "scope": "州道",
+      "metric": "最差路面结构等级占比",
+      "value_pct": 23.2,
+      "definition": "分级与下萨克森比较之前需校验",
+      "source": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/LBVSH/Presse/2025/Pressemitteilungen/250909_Erhaltungsprogramm-Landesstrassen?nn=eceb6018-4b4f-493a-8821-6d2333bc069e",
+      "source_quality": "verified_original",
+      "source_check": "石荷州LBV SH于2025年9月公布：州道最差路面物质状态类别占23.2%，2021年27%；不等于使用性能等级。"
+    },
+    {
+      "iso": "DE-BY",
+      "year": 2024,
+      "scope": "州道",
+      "metric": "路面材料状态良好占比",
+      "value_pct": 44,
+      "definition": "不能解释为其余56%已不可通车",
+      "source": "https://www.stmb.bayern.de/",
+      "source_quality": "needs_exact_report",
+      "source_check": "已保留前期调查数值，但原始报告精确页码尚待维护组复核，不用于排名"
+    },
+    {
+      "iso": "DE-ST",
+      "year": 2022,
+      "scope": "州道",
+      "metric": "超过严重干预阈值的路面比例",
+      "value_pct": 45,
+      "approx": true,
+      "definition": "不同阈值/年份，不参与州际总体排名",
+      "source": "https://lsbb.sachsen-anhalt.de/",
+      "source_quality": "needs_exact_report",
+      "source_check": "已保留前期调查数值，但原始报告精确页码尚待维护组复核，不用于排名"
+    }
+  ],
+  "national": {
+    "municipal_investment_backlog_eur_billion_2025": 231.2,
+    "kind": "KfW市政调查全国推估，不属于16州实测设施状态",
+    "source": "https://www.kfw.de/%C3%9Cber-die-KfW/Newsroom/Aktuelles/Pressemitteilungen-Details_897920.html"
+  }
+}
