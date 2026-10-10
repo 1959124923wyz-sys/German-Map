@@ -44,3 +44,15 @@ python -m http.server 8765
 - 2026年9月后BioNTech马尔堡、伊达尔-奥伯施泰因计划关厂的实施确定性提高；补充CureVac图宾根候选，但集团跨国820人的合计数字**不得**写为图宾根当地岗位损失。
 - 按来源独立记录证据类型，未来可改为严格按照资方、工会、政府和Eurofound渠道等级进行筛选。
 - 自动测试/浏览器模拟仅代表网页启动和数据内审通过，不等于工业历史统计已完成或已人工核查所有117家企业。
+
+## R5A—R5D长期研究工程更新（2026-10-10）
+
+R1—R4原117条之外，另独立提交R5A 10条、R5B 16条、R5C 12条、R5D 18条，合计**173条唯一事件ID**。它们包含已关闭、待实施、已缩产及研究隔离记录，**不能称为173家已倒闭厂**。R5C筛出了公司服务部门外迁、投资者不确定的关厂风险、以及重复ERM表单（ENOXX/B.PRO），不予地图红点。R5D重回2025年大型关厂、两地工厂和跨厂大重组，按厂精确分配时分开记录、不可分配的人数保留null。
+
+- 新增数据：`research/r5a-eurofound-sites.json`、`research/r5b-manufacturing-cases.json`、`research/r5c-screened-manufacturing.json`、`research/r5d-2025-factory-closures.json`，均已提交现支线且载入地图。
+- 新增官方来源登记：`research/official-source-verification.json`；其中BA县市就业数据库及ETR县级报告入口已核实，但**尚未取得、核验、上传全国WZ-C 2019至2025就业原始数字**。
+- 原始几何数据 `data/germany-counties.geojson` 包含**402个历史县界**和5位AGS；已核验其中两个撤销的县级单位。新增 `data/ags-crosswalk-402-to-400.json` 映射到400个现行县级AGS；注意这种映射不代表县界形状已更新至2026年。
+- R5A—R5D中可单厂定位的**46条记录已落地县级5位AGS**；极易误判的 Karlsruhe Stadtkreis (`08212`) 与 Landkreis (`08215`)，Augsburg Stadt/Landkreis、Passau Stadt/Landkreis 等均在测试中明确区分。
+- 新增 `scripts/build_county_employment.cjs`：仅接受官方可核的WZ2008-C纯制造业、工作地、2019与同口径比较年份原始CSV；保密/缺失不冒充0，拒绝B+C混合。测试只使用明确标注的虚构夹具，永不发布到地图数据。
+- 新增 `tests/smoke_industry_data.cjs`：在Node环境模拟完整页面启动，检查173事件、402历史/400现行县、地图使用“已登记事件”而非假装就业降幅。CI已将其纳入。
+- 接班时优先阅读 `research/HANDOFF.md` 和 Draft PR #37；后续应按官方BA县级工作地WZ-C就业数据、工厂精确坐标和地理几何更新推进，而非继续增加不必要的复杂前景图层。
