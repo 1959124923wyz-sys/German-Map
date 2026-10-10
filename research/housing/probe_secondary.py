@@ -44,9 +44,12 @@ def workbook_report(path):
     return report
 
 def municipal_rents(raw):
-    txt=raw.decode("utf-8-sig",errors="replace")
-    if "preis_miet_best" not in txt:
+    try:
+        txt=raw.decode("utf-8-sig")
+    except UnicodeError:
         txt=raw.decode("cp1252")
+    if "preis_miet_best" not in txt:
+        raise ValueError("Missing 2022 rent indicator in decoded CSV")
     rows=csv.reader(io.StringIO(txt),delimiter=";")
     hdr=[h.strip().lstrip("\ufeff").lower() for h in next(rows)]
     print("VBGEM HEAD",hdr)
