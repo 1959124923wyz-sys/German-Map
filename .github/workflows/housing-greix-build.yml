@@ -1,0 +1,38 @@
+name: Housing research - GREIX monthly nominal time series
+on:
+  push:
+    branches:
+      - research/housing-crisis-20261010
+    paths:
+      - 'research/housing/build_greix.py'
+      - '.github/workflows/housing-greix-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: housing-greix-build
+  cancel-in-progress: false
+jobs:
+  city-series:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/housing-crisis-20261010
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --quiet openpyxl
+      - run: python research/housing/build_greix.py
+      - name: Preserve checked GREIX monthly panel
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/housing/data/greix_nominal_monthly_city_series.csv
+          git add research/housing/qa/greix_nominal_audit.json
+          git add topics/housing/data/greix-city-series.json
+          if ! git diff --cached --quiet; then
+            git commit -m "housing data: checked GREIX monthly nominal city rent series [skip ci]"
+            git push origin HEAD:research/housing-crisis-20261010
+          fi
