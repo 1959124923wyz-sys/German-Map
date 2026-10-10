@@ -7,7 +7,9 @@
     "sites_displayable": 16,
     "research_only": 0,
     "source": "Eurofound European Restructuring Monitor factsheets individually inspected",
-    "warning": "Cross-site aggregate numbers stored only in group IDs; not duplicated to factory rows. Execution status not inferred from scheduled date."
+    "warning": "Cross-site aggregate numbers stored only in group IDs; not duplicated to factory rows. Execution status not inferred from scheduled date.",
+    "county_ags_assigned": 14,
+    "county_ags_source": "German-Map/data/germany-counties.geojson feature.id plus individually sourced Landkreis/Stadtkreis. Historic district remaps handled by published AGS crosswalk."
   },
   "events": [
     {
@@ -30,7 +32,9 @@
       "shared_program_id": "",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "05114",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_CRA_HER",
@@ -52,7 +56,9 @@
       "shared_program_id": "haus_cramer_herford_paderborn_220",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "05758",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_CRA_PAD",
@@ -74,7 +80,9 @@
       "shared_program_id": "haus_cramer_herford_paderborn_220",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "05774",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_NOV_WEH",
@@ -96,7 +104,9 @@
       "shared_program_id": "",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "08336",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_KRA_KAR",
@@ -118,7 +128,9 @@
       "shared_program_id": "",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "08212",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_MAN_OFF",
@@ -140,7 +152,9 @@
       "shared_program_id": "",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "06413",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_WEI_MON",
@@ -162,7 +176,9 @@
       "shared_program_id": "",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "05334",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_TFI_BRE",
@@ -184,7 +200,9 @@
       "shared_program_id": "thermo_fisher_2026_160_two_sites",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "04011",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_TFI_LAN",
@@ -206,7 +224,9 @@
       "shared_program_id": "thermo_fisher_2026_160_two_sites",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "06435",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_STR_STR",
@@ -228,7 +248,9 @@
       "shared_program_id": "",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "09263",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_BOR_GAR",
@@ -250,7 +272,9 @@
       "shared_program_id": "boryszew_two_sites_430",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "15081",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_BOR_IDA",
@@ -272,7 +296,9 @@
       "shared_program_id": "boryszew_two_sites_430",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "07134",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_GUH_ALB",
@@ -294,7 +320,9 @@
       "shared_program_id": "guehring_zollernalb_sigmaringen_300",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "08417",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_GUH_SIG",
@@ -316,7 +344,9 @@
       "shared_program_id": "guehring_zollernalb_sigmaringen_300",
       "location_precision": "county_reference_not_factory_gate",
       "verification": "erm_factsheet_individually_reviewed_2026-10-10",
-      "batch": "R5B"
+      "batch": "R5B",
+      "county_ags": "08437",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5B_EUR_MULTI",
