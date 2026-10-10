@@ -376,7 +376,7 @@
    try{
     const structure=await readJson('data/zensus2022-county-rent-owner-distribution.json');
     if(structure.counties.length!==400 || structure.meta.counties!==400 ||
-       structure.meta.not_income_based!==true)throw Error('2022住房所有权与租金分档来源不符合核验');
+       !String(structure.meta.not_income_based||'').includes('Wohnkostenbelastungsquote'))throw Error('2022住房所有权与租金分档来源不符合核验');
     structureRows=new Map(structure.counties.map(r=>[ags(r.id),r]));
     if(structureRows.size!==400)throw Error('2022住房分档AGS未唯一匹配');
    }catch(err){console.warn('Zensus 2022 housing structure unavailable',err)}
