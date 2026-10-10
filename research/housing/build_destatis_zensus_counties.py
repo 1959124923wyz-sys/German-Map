@@ -78,7 +78,7 @@ def main():
              "sheets":{}}
     audit={"source":URL,"expected_2024_AGS_count":400,"sheets":{}}
     for dest,name in SHEETS.items():
-        v=collect(wb[name],expected);audit["sheets"][dest]=v["audit"]
+        v=collect(wb[name],expected);audit["sheets"][dest]={**v["audit"],"column_codes":v["columns"],"sample_flensburg":next(x for x in v["items"] if x["id"]=="01001")["values"],"sample_berlin":next(x for x in v["items"] if x["id"]=="11000")["values"]}
         payload["sheets"][dest]={"columns":v["columns"],"counties":v["items"]}
         OUT.mkdir(parents=True,exist_ok=True)
         csvpath=OUT/f"zensus2022_official_400_counties_{dest}.csv"
