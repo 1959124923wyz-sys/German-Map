@@ -1,0 +1,65 @@
+name: Industry R8 BKG official geometry acquisition
+on:
+  push:
+    branches: [research/industry-r8-official-data-20261010]
+    paths:
+      - .github/workflows/industry-r8-bkg-acquire.yml
+      - topics/industry/scripts/try_bkg_vg250_counties.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: research-industry-r8-bkg
+  cancel-in-progress: false
+
+jobs:
+  fetch-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/industry-r8-official-data-20261010
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Syntax validation
+        run: python -m py_compile topics/industry/scripts/try_bkg_vg250_counties.py
+      - name: Official BKG candidate
+        id: collect
+        shell: bash
+        run: |
+          mkdir -p research-output
+          set +e
+          python topics/industry/scripts/try_bkg_vg250_counties.py --out topics/industry/data/bkg_vg250_counties_2025_candidate.geojson > research-output/bkg-r8.log 2>&1
+          status=$?
+          set -e
+          cat research-output/bkg-r8.log
+          echo "rc=$status" >> "$GITHUB_OUTPUT"
+      - name: Preserve diagnostic artifact on all outcomes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bkg-r8-2025-attempt-logs
+          path: research-output/
+          retention-days: 60
+      - name: Save verified candidate ONLY to research branch
+        if: steps.collect.outputs.rc == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/industry/data/bkg_vg250_counties_2025_candidate.geojson
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(industry): verified BKG VG250 2025 400 county candidate [skip ci]'
+          git pull --rebase origin research/industry-r8-official-data-20261010
+          git push origin HEAD:research/industry-r8-official-data-20261010
+      - name: Fail visibly if not acquired
+        if: steps.collect.outputs.rc != '0'
+        run: |
+          echo 'WARNING: BKG 400-county polygon dataset not acquired or failed validation; production data untouched.'
+          exit 1
