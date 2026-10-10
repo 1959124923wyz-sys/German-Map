@@ -8,7 +8,7 @@
 <meta name="description" content="德国2025年地方财政收支地图，州级涂色、莱法州12座非县辖市数据与核实过的财政紧缩事件。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css?v=clean1">
-<link rel="stylesheet" href="topic.css?v=f8">
+<link rel="stylesheet" href="topic.css?v=f9">
 </head>
 <body>
 <header>
@@ -49,6 +49,13 @@
     </select>
     <button type="button" id="resetView" class="finance-reset" title="缩放至德国全境">全国</button>
    </div>
+   <label class="finance-layer-picker" for="metricLayer"><span>地图指标</span>
+    <select id="metricLayer" aria-label="选择可比范围与年份明确的财政地图指标">
+     <option value="balance-2025">2025年州级财政收支</option>
+     <option value="core-2023">2023年县域核心预算债务</option>
+     <option value="city-2024">2024年非县辖市综合债务</option>
+    </select>
+   </label>
   </div>
   <section class="safety-panel finance-summary" aria-live="polite">
    <div class="safety-head"><strong id="sectionTitle">2025年人均地方财政收支</strong><span class="safety-hint">点击州放大查看</span></div>
@@ -74,6 +81,17 @@
    <details id="regionalDebtDrawer" class="finance-loan-drawer finance-regional-debt" hidden>
     <summary>该县市历史债务资料 <span>2023—2024</span></summary>
     <div id="regionalDebtInfo" class="finance-loan-history"></div>
+   </details>
+   <details id="municipalDrawer" class="finance-loan-drawer finance-muni-drawer" hidden>
+    <summary>2024年市镇债务和税收能力 <span id="municipalCount">—</span></summary>
+    <div class="finance-loan-history">
+     <p>市镇本身的综合债务与税收能力分开显示，均为2024年人均数值，不是县级财政合计。所列市镇归属按2024年AGS识别，地图不假称拥有2024年市镇边界。</p>
+     <label class="finance-muni-search-label" for="municipalSearch">查找市镇
+      <input type="search" id="municipalSearch" placeholder="市镇名称或八位行政代码" autocomplete="off">
+     </label>
+     <div id="municipalList" class="finance-muni-list"></div>
+     <div class="finance-muni-source"><a href="https://www.statistikportal.de/sites/default/files/2025-12/Integrierte_Schulden_der_Gemeinden_und_Gemeindeverbaende_2024_Tabellenband_0.xlsx" target="_blank" rel="noopener noreferrer">官方综合债务原始表 ↗</a></div>
+    </div>
    </details>
    <section id="eventPanel" class="finance-event-panel" hidden>
     <div class="finance-list-heading"><strong id="listHeading">地方财政事件</strong><span id="visibleCount">72条</span></div>
@@ -110,7 +128,8 @@
    <summary>数据来源与统计口径</summary>
    <p>底色固定为2025年13个非城市州地方政府的人均财政收支差额；3个城市州无可比口径，以灰色显示。</p>
    <p>点击州可查看债务和借款，进一步点击县市可查询2023年县域核心预算债务；其中102个非县辖市另有2024年综合债务。两者统计对象与年份不同，不作为2025年财政赤字或同口径排名。</p>
-   <p>2023县级核心预算数据共398条，其中392条有数值、6条缺失；2024独立市综合债务覆盖102市。2026年哈瑙行政区划调整与历史资料不直接对应。</p>
+   <p>2023县级核心预算数据共398条，其中392条有数值、6条缺失；2024独立市综合债务覆盖102市。现在可在“地图指标”切换查看各自县级图层，灰色区域不代表零债务。</p>
+   <p>2024年10,750个市镇的综合债务与税收能力按所属县市查阅；2024年县市、市镇统计边界不能直接套用2026年新版边界（尤其哈瑙），因此不制作伪精确的市镇多边形热力图。</p>
    <p>事件是定向调查样本，圆点在县域概略中心，不代表设施地址，也不能据事件数量判断财政风险。完整方法及来源见<a href="README.md">研究说明</a>。</p>
   </details>
  </aside>
