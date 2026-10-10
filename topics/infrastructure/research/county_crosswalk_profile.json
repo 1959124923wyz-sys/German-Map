@@ -1,0 +1,933 @@
+{
+  "dataset": "German-Map existing Germany county boundary versus BASt ArcGIS source county name",
+  "geojson_source": "data/germany-counties.geojson",
+  "bast_candidate_source": "topics/infrastructure/research/candidate_bridge_counties_arcgis_2025.json",
+  "geometry_feature_count": 402,
+  "geometry_property_keys": {
+    "name": 402,
+    "districtType": 402,
+    "state": 402,
+    "kfz": 402
+  },
+  "geometry_property_samples": {
+    "name": [
+      "Alb-Donau-Kreis",
+      "Böblingen",
+      "Baden-Baden",
+      "Biberach",
+      "Bodenseekreis"
+    ],
+    "districtType": [
+      "Landkreis",
+      "Landkreis",
+      "Stadtkreis",
+      "Landkreis",
+      "Landkreis"
+    ],
+    "state": [
+      "Baden-Württemberg",
+      "Baden-Württemberg",
+      "Baden-Württemberg",
+      "Baden-Württemberg",
+      "Baden-Württemberg"
+    ],
+    "kfz": [
+      "AD",
+      "BL",
+      "BB",
+      "BR",
+      "BD"
+    ]
+  },
+  "geometry_first_features": [
+    {
+      "name": "Alb-Donau-Kreis",
+      "districtType": "Landkreis",
+      "state": "Baden-Württemberg",
+      "kfz": "AD"
+    },
+    {
+      "name": "Böblingen",
+      "districtType": "Landkreis",
+      "state": "Baden-Württemberg",
+      "kfz": "BL"
+    },
+    {
+      "name": "Baden-Baden",
+      "districtType": "Stadtkreis",
+      "state": "Baden-Württemberg",
+      "kfz": "BB"
+    },
+    {
+      "name": "Biberach",
+      "districtType": "Landkreis",
+      "state": "Baden-Württemberg",
+      "kfz": "BR"
+    },
+    {
+      "name": "Bodenseekreis",
+      "districtType": "Landkreis",
+      "state": "Baden-Württemberg",
+      "kfz": "BD"
+    },
+    {
+      "name": "Breisgau-Hochschwarzwald",
+      "districtType": "Landkreis",
+      "state": "Baden-Württemberg",
+      "kfz": "BH"
+    },
+    {
+      "name": "Calw",
+      "districtType": "Landkreis",
+      "state": "Baden-Württemberg",
+      "kfz": "CL"
+    },
+    {
+      "name": "Emmendingen",
+      "districtType": "Landkreis",
+      "state": "Baden-Württemberg",
+      "kfz": "EM"
+    },
+    {
+      "name": "Enzkreis",
+      "districtType": "Landkreis",
+      "state": "Baden-Württemberg",
+      "kfz": "EZ"
+    },
+    {
+      "name": "Esslingen",
+      "districtType": "Landkreis",
+      "state": "Baden-Württemberg",
+      "kfz": "ES"
+    },
+    {
+      "name": "Freiburg im Breisgau",
+      "districtType": "Stadtkreis",
+      "state": "Baden-Württemberg",
+      "kfz": "FB"
+    },
+    {
+      "name": "Freudenstadt",
+      "districtType": "Landkreis",
+      "state": "Baden-Württemberg",
+      "kfz": "FE"
+    }
+  ],
+  "bast_source_county_groups": 438,
+  "bast_distinct_source_label_count": 406,
+  "top_source_labels_by_state": {
+    "DE-BB": [
+      {
+        "source_label": "Brandenburg an der Havel",
+        "features": 21
+      },
+      {
+        "source_label": "Cottbus",
+        "features": 42
+      },
+      {
+        "source_label": "Frankfurt (Oder)",
+        "features": 43
+      },
+      {
+        "source_label": "Landkreis Barnim",
+        "features": 117
+      },
+      {
+        "source_label": "Landkreis Dahme-Spreewald",
+        "features": 164
+      },
+      {
+        "source_label": "Landkreis Elbe-Elster",
+        "features": 49
+      },
+      {
+        "source_label": "Landkreis Havelland",
+        "features": 77
+      },
+      {
+        "source_label": "Landkreis Märkisch-Oderland",
+        "features": 114
+      },
+      {
+        "source_label": "Landkreis Oberhavel",
+        "features": 90
+      },
+      {
+        "source_label": "Landkreis Oberspreewald-Lausitz",
+        "features": 152
+      },
+      {
+        "source_label": "Landkreis Oder-Spree",
+        "features": 140
+      },
+      {
+        "source_label": "Landkreis Ostprignitz-Ruppin",
+        "features": 61
+      },
+      {
+        "source_label": "Landkreis Potsdam-Mittelmark",
+        "features": 246
+      },
+      {
+        "source_label": "Landkreis Prignitz",
+        "features": 89
+      },
+      {
+        "source_label": "Landkreis Spree-Neiße",
+        "features": 118
+      }
+    ],
+    "DE-BE": [
+      {
+        "source_label": "Für Berlin nicht vorhanden!",
+        "features": 235
+      }
+    ],
+    "DE-BW": [
+      {
+        "source_label": "Alb-Donau-Kreis",
+        "features": 110
+      },
+      {
+        "source_label": "Baden-Baden",
+        "features": 63
+      },
+      {
+        "source_label": "Biberach",
+        "features": 178
+      },
+      {
+        "source_label": "Bodenseekreis",
+        "features": 170
+      },
+      {
+        "source_label": "Breisgau-Hochschwarzwald",
+        "features": 216
+      },
+      {
+        "source_label": "Böblingen",
+        "features": 167
+      },
+      {
+        "source_label": "Calw",
+        "features": 38
+      },
+      {
+        "source_label": "Emmendingen",
+        "features": 115
+      },
+      {
+        "source_label": "Enzkreis",
+        "features": 58
+      },
+      {
+        "source_label": "Esslingen",
+        "features": 219
+      },
+      {
+        "source_label": "Freiburg",
+        "features": 2
+      },
+      {
+        "source_label": "Freiburg im Breisgau",
+        "features": 59
+      },
+      {
+        "source_label": "Freudenstadt",
+        "features": 82
+      },
+      {
+        "source_label": "Göppingen",
+        "features": 158
+      },
+      {
+        "source_label": "Heidelberg",
+        "features": 55
+      }
+    ],
+    "DE-BY": [
+      {
+        "source_label": "Landkreis Aichach-Friedberg",
+        "features": 109
+      },
+      {
+        "source_label": "Landkreis Altötting",
+        "features": 112
+      },
+      {
+        "source_label": "Landkreis Amberg-Sulzbach",
+        "features": 140
+      },
+      {
+        "source_label": "Landkreis Ansbach",
+        "features": 204
+      },
+      {
+        "source_label": "Landkreis Aschaffenburg",
+        "features": 157
+      },
+      {
+        "source_label": "Landkreis Augsburg",
+        "features": 153
+      },
+      {
+        "source_label": "Landkreis Bad Kissingen",
+        "features": 102
+      },
+      {
+        "source_label": "Landkreis Bad Tölz-Wolfratshausen",
+        "features": 178
+      },
+      {
+        "source_label": "Landkreis Bamberg",
+        "features": 231
+      },
+      {
+        "source_label": "Landkreis Bayreuth",
+        "features": 166
+      },
+      {
+        "source_label": "Landkreis Berchtesgadener Land",
+        "features": 279
+      },
+      {
+        "source_label": "Landkreis Cham",
+        "features": 133
+      },
+      {
+        "source_label": "Landkreis Coburg",
+        "features": 111
+      },
+      {
+        "source_label": "Landkreis Dachau",
+        "features": 82
+      },
+      {
+        "source_label": "Landkreis Deggendorf",
+        "features": 136
+      }
+    ],
+    "DE-HB": [
+      {
+        "source_label": "Bremen",
+        "features": 257
+      },
+      {
+        "source_label": "Cuxhaven",
+        "features": 19
+      }
+    ],
+    "DE-HE": [
+      {
+        "source_label": "Göttingen",
+        "features": 2
+      },
+      {
+        "source_label": "Hochtaunuskreis",
+        "features": 95
+      },
+      {
+        "source_label": "KFR. STADT WORMS",
+        "features": 8
+      },
+      {
+        "source_label": "Kreisfreie Stadt Darmstadt",
+        "features": 56
+      },
+      {
+        "source_label": "Kreisfreie Stadt Frankfurt Main",
+        "features": 330
+      },
+      {
+        "source_label": "Kreisfreie Stadt Kassel",
+        "features": 42
+      },
+      {
+        "source_label": "Kreisfreie Stadt Offenbach",
+        "features": 26
+      },
+      {
+        "source_label": "Kreisfreie Stadt Wiesbaden",
+        "features": 112
+      },
+      {
+        "source_label": "Lahn - Dill - Kreis",
+        "features": 240
+      },
+      {
+        "source_label": "Landkreis Bergstrasse",
+        "features": 186
+      },
+      {
+        "source_label": "Landkreis Darmstadt - Dieburg",
+        "features": 159
+      },
+      {
+        "source_label": "Landkreis Fulda",
+        "features": 279
+      },
+      {
+        "source_label": "Landkreis Gießen",
+        "features": 263
+      },
+      {
+        "source_label": "Landkreis Groß - Gerau",
+        "features": 169
+      },
+      {
+        "source_label": "Landkreis Hersfeld-Rotenburg",
+        "features": 251
+      }
+    ],
+    "DE-HH": [
+      {
+        "source_label": "Hamburg",
+        "features": 217
+      }
+    ],
+    "DE-MV": [
+      {
+        "source_label": "Kreis Herzogtum Lauenburg",
+        "features": 2
+      },
+      {
+        "source_label": "Landkreis Ludwigslust-Parchim",
+        "features": 178
+      },
+      {
+        "source_label": "Landkreis Mecklenburgische Seenplatte",
+        "features": 140
+      },
+      {
+        "source_label": "Landkreis Nordwestmecklenburg",
+        "features": 167
+      },
+      {
+        "source_label": "Landkreis Rostock",
+        "features": 155
+      },
+      {
+        "source_label": "Landkreis Vorpommern-Greifswald",
+        "features": 149
+      },
+      {
+        "source_label": "Landkreis Vorpommern-Rügen",
+        "features": 140
+      },
+      {
+        "source_label": "Lüchow-Dannenberg",
+        "features": 2
+      },
+      {
+        "source_label": "Mecklenburg Vorpommern",
+        "features": 3
+      },
+      {
+        "source_label": "Rostock, Hansestadt",
+        "features": 25
+      },
+      {
+        "source_label": "Schwerin, Landeshauptstadt",
+        "features": 25
+      }
+    ],
+    "DE-NI": [
+      {
+        "source_label": "Ammerland",
+        "features": 79
+      },
+      {
+        "source_label": "Aurich",
+        "features": 56
+      },
+      {
+        "source_label": "Braunschweig",
+        "features": 126
+      },
+      {
+        "source_label": "Braunschweig (ehem. RegBez)",
+        "features": 2
+      },
+      {
+        "source_label": "Bremen",
+        "features": 49
+      },
+      {
+        "source_label": "Bundesrepublik Deutschland",
+        "features": 2
+      },
+      {
+        "source_label": "Celle",
+        "features": 41
+      },
+      {
+        "source_label": "Cloppenburg",
+        "features": 118
+      },
+      {
+        "source_label": "Cuxhaven",
+        "features": 142
+      },
+      {
+        "source_label": "Delmenhorst",
+        "features": 44
+      },
+      {
+        "source_label": "Diepholz",
+        "features": 124
+      },
+      {
+        "source_label": "Emden",
+        "features": 23
+      },
+      {
+        "source_label": "Emsland",
+        "features": 319
+      },
+      {
+        "source_label": "Friesland",
+        "features": 71
+      },
+      {
+        "source_label": "Gifhorn",
+        "features": 66
+      }
+    ],
+    "DE-NW": [
+      {
+        "source_label": "Bielefeld",
+        "features": 161
+      },
+      {
+        "source_label": "Bochum",
+        "features": 138
+      },
+      {
+        "source_label": "Bonn",
+        "features": 155
+      },
+      {
+        "source_label": "Borken",
+        "features": 210
+      },
+      {
+        "source_label": "Bottrop",
+        "features": 45
+      },
+      {
+        "source_label": "Bundesrepublik Deutschland",
+        "features": 6
+      },
+      {
+        "source_label": "Coesfeld",
+        "features": 146
+      },
+      {
+        "source_label": "Dortmund",
+        "features": 267
+      },
+      {
+        "source_label": "Duisburg",
+        "features": 235
+      },
+      {
+        "source_label": "Düren",
+        "features": 156
+      },
+      {
+        "source_label": "Düsseldorf",
+        "features": 142
+      },
+      {
+        "source_label": "Ennepe-Ruhr-Kreis",
+        "features": 102
+      },
+      {
+        "source_label": "Essen",
+        "features": 135
+      },
+      {
+        "source_label": "Euskirchen",
+        "features": 180
+      },
+      {
+        "source_label": "Gelsenkirchen",
+        "features": 101
+      }
+    ],
+    "DE-RP": [
+      {
+        "source_label": "AHRWEILER",
+        "features": 186
+      },
+      {
+        "source_label": "ALTENKIRCHEN",
+        "features": 68
+      },
+      {
+        "source_label": "ALZEY-WORMS",
+        "features": 103
+      },
+      {
+        "source_label": "BAD DÜRKHEIM",
+        "features": 165
+      },
+      {
+        "source_label": "BAD KREUZNACH",
+        "features": 116
+      },
+      {
+        "source_label": "BERNKASTEL-WITTLICH",
+        "features": 218
+      },
+      {
+        "source_label": "BIRKENFELD",
+        "features": 82
+      },
+      {
+        "source_label": "COCHEM-ZELL",
+        "features": 81
+      },
+      {
+        "source_label": "DONNERSBERGKREIS",
+        "features": 127
+      },
+      {
+        "source_label": "EIFELKREIS BITBURG-PRÜM",
+        "features": 209
+      },
+      {
+        "source_label": "GERMERSHEIM",
+        "features": 147
+      },
+      {
+        "source_label": "KAISERSLAUTERN",
+        "features": 145
+      },
+      {
+        "source_label": "KFR. STADT FRANKENTHAL (PFALZ)",
+        "features": 55
+      },
+      {
+        "source_label": "KFR. STADT KAISERSLAUTERN",
+        "features": 49
+      },
+      {
+        "source_label": "KFR. STADT KOBLENZ",
+        "features": 101
+      }
+    ],
+    "DE-SH": [
+      {
+        "source_label": "Hamburg",
+        "features": 3
+      },
+      {
+        "source_label": "Hansestadt Lübeck",
+        "features": 85
+      },
+      {
+        "source_label": "Kreis Dithmarschen",
+        "features": 90
+      },
+      {
+        "source_label": "Kreis Herzogtum Lauenburg",
+        "features": 121
+      },
+      {
+        "source_label": "Kreis Nordfriesland",
+        "features": 69
+      },
+      {
+        "source_label": "Kreis Ostholstein",
+        "features": 190
+      },
+      {
+        "source_label": "Kreis Pinneberg",
+        "features": 67
+      },
+      {
+        "source_label": "Kreis Plön",
+        "features": 90
+      },
+      {
+        "source_label": "Kreis Rendsburg-Eckernförde",
+        "features": 228
+      },
+      {
+        "source_label": "Kreis Schleswig-Flensburg",
+        "features": 115
+      },
+      {
+        "source_label": "Kreis Segeberg",
+        "features": 144
+      },
+      {
+        "source_label": "Kreis Steinburg",
+        "features": 125
+      },
+      {
+        "source_label": "Kreis Stormarn",
+        "features": 164
+      },
+      {
+        "source_label": "Landeshauptstadt Kiel",
+        "features": 84
+      },
+      {
+        "source_label": "Stadt Flensburg",
+        "features": 41
+      }
+    ],
+    "DE-SL": [
+      {
+        "source_label": "Bundesrepublik Deutschland",
+        "features": 6
+      },
+      {
+        "source_label": "Landkreis Merzig-Wadern",
+        "features": 97
+      },
+      {
+        "source_label": "Landkreis Neunkirchen",
+        "features": 82
+      },
+      {
+        "source_label": "Landkreis Saarlouis",
+        "features": 141
+      },
+      {
+        "source_label": "Landkreis St. Wendel",
+        "features": 133
+      },
+      {
+        "source_label": "Regionalverband Saarbruecken",
+        "features": 199
+      },
+      {
+        "source_label": "Saarland",
+        "features": 1
+      },
+      {
+        "source_label": "Saarpfalz-Kreis",
+        "features": 116
+      },
+      {
+        "source_label": "TRIER-SAARBURG",
+        "features": 1
+      }
+    ],
+    "DE-SN": [
+      {
+        "source_label": "Chemnitz, kreisfreie Stadt",
+        "features": 83
+      },
+      {
+        "source_label": "Dresden, kreisfreie Stadt",
+        "features": 102
+      },
+      {
+        "source_label": "Erzgebirgskreis",
+        "features": 187
+      },
+      {
+        "source_label": "Landkreis Bautzen",
+        "features": 242
+      },
+      {
+        "source_label": "Landkreis Görlitz",
+        "features": 190
+      },
+      {
+        "source_label": "Landkreis Leipzig",
+        "features": 194
+      },
+      {
+        "source_label": "Landkreis Meißen",
+        "features": 169
+      },
+      {
+        "source_label": "Landkreis Mittelsachsen",
+        "features": 232
+      },
+      {
+        "source_label": "Landkreis Nordsachsen",
+        "features": 111
+      },
+      {
+        "source_label": "Landkreis Sächsische Schweiz-Osterzgebirge",
+        "features": 93
+      },
+      {
+        "source_label": "Landkreis Zwickau",
+        "features": 211
+      },
+      {
+        "source_label": "Leipzig, kreisfreie Stadt",
+        "features": 81
+      },
+      {
+        "source_label": "Saalekreis",
+        "features": 9
+      },
+      {
+        "source_label": "Vogtlandkreis",
+        "features": 211
+      }
+    ],
+    "DE-ST": [
+      {
+        "source_label": "Altmarkkreis Salzwedel",
+        "features": 41
+      },
+      {
+        "source_label": "Anhalt-Bitterfeld",
+        "features": 90
+      },
+      {
+        "source_label": "Burgenlandkreis",
+        "features": 170
+      },
+      {
+        "source_label": "Börde",
+        "features": 216
+      },
+      {
+        "source_label": "Dessau-Rosslau, Stadt",
+        "features": 52
+      },
+      {
+        "source_label": "Halle (Saale), Stadt",
+        "features": 24
+      },
+      {
+        "source_label": "Harz",
+        "features": 169
+      },
+      {
+        "source_label": "Jerichower Land",
+        "features": 91
+      },
+      {
+        "source_label": "Magdeburg, Landeshauptstadt",
+        "features": 20
+      },
+      {
+        "source_label": "Mansfeld-Südharz",
+        "features": 150
+      },
+      {
+        "source_label": "Saalekreis",
+        "features": 227
+      },
+      {
+        "source_label": "Salzlandkreis",
+        "features": 159
+      },
+      {
+        "source_label": "Stendal",
+        "features": 64
+      },
+      {
+        "source_label": "Wittenberg",
+        "features": 116
+      }
+    ],
+    "DE-TH": [
+      {
+        "source_label": "EISENACH, STADT",
+        "features": 54
+      },
+      {
+        "source_label": "ERFURT, STADT",
+        "features": 79
+      },
+      {
+        "source_label": "GERA, STADT",
+        "features": 38
+      },
+      {
+        "source_label": "ILM-KREIS",
+        "features": 111
+      },
+      {
+        "source_label": "JENA, STADT",
+        "features": 21
+      },
+      {
+        "source_label": "KREIS SAALFELD-RUDOLSTADT",
+        "features": 88
+      },
+      {
+        "source_label": "KYFFHAEUSERKREIS",
+        "features": 68
+      },
+      {
+        "source_label": "LANDKR.SCHMALKALDEN-MEININGEN",
+        "features": 98
+      },
+      {
+        "source_label": "LANDKREIS ALTENBURG",
+        "features": 81
+      },
+      {
+        "source_label": "LANDKREIS EICHSFELD",
+        "features": 97
+      },
+      {
+        "source_label": "LANDKREIS GOTHA",
+        "features": 98
+      },
+      {
+        "source_label": "LANDKREIS GREIZ",
+        "features": 54
+      },
+      {
+        "source_label": "LANDKREIS HILDBURGHAUSEN",
+        "features": 81
+      },
+      {
+        "source_label": "LANDKREIS NORDHAUSEN",
+        "features": 109
+      },
+      {
+        "source_label": "LANDKREIS SOEMMERDA",
+        "features": 89
+      }
+    ]
+  },
+  "mode": "PROFILE_ONLY_NO_UNVERIFIED_JOINS",
+  "source_label_examples": {
+    "Hamburg": 3,
+    "Bundesrepublik Deutschland": 3,
+    "Stendal": 2,
+    "Landkreis Main-Spessart": 2,
+    "Landkreis Neu-Ulm": 2,
+    "Main-Tauber-Kreis": 2,
+    "Mannheim": 2,
+    "Ravensburg": 2,
+    "Ulm": 2,
+    "Bremen": 2,
+    "Cuxhaven": 2,
+    "Göttingen": 2,
+    "KFR. STADT WORMS": 2,
+    "Landkreis Hersfeld-Rotenburg": 2,
+    "Landkreis Kassel": 2,
+    "Landkreis Waldeck-Frankenberg": 2,
+    "Rheingau - Taunus - Kreis": 2,
+    "Werra-Meißner-Kreis": 2,
+    "Kreis Herzogtum Lauenburg": 2,
+    "Lüchow-Dannenberg": 2,
+    "Grafschaft Bentheim": 2,
+    "Holzminden": 2,
+    "Osnabrück": 2,
+    "Schaumburg": 2,
+    "Steinfurt": 2,
+    "Landkreis St. Wendel": 2,
+    "TRIER-SAARBURG": 2,
+    "Saalekreis": 2,
+    "Vogtlandkreis": 2,
+    "Mansfeld-Südharz": 2
+  }
+}
