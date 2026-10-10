@@ -27,7 +27,7 @@
  let selectedCounty=null, focusState=null, metric='asking_rent_2025_eur_m2';
  let stateFeatures=[], countyFeatures=[], byid=new Map(), countyShapes=new Map();
  let stockReady=false, homelessReady=false, completionsReady=false, censusReady=false, breaks=[], sortedAll=[];
- let saxonyRows=new Map(), nrwRows=new Map();
+ let saxonyRows=new Map(), nrwRows=new Map(), bavariaRows=new Map();
  const COUNTRY=[[47.2,5.5],[55.3,15.5]];
  const sourceURL = {
   atlas:'https://deutschlandatlas.bund.de/service/daten-herunterladen/aktuelle-downloaddaten/aktuelle-downloaddateien',
@@ -132,6 +132,20 @@
    '<p>仅北威州53个县市，统计新建住宅建筑竣工住房套数，不含改建扩建及非住宅建筑中的全部新增住房，绝非德国所有竣工住宅。不同年份县界须注意行政调整。</p>'+
    '<a target="_blank" rel="noopener noreferrer" href="https://www.landesdatenbank.nrw.de/ldbnrwws/downloader/00/tables/31121-06i_00.csv">IT.NRW 官方31121-06i原始CSV ↗</a>';
  }
+ function renderBavaria(region){
+  const panel=$('bavariaCompletions');
+  const row=region.scope==='county'?bavariaRows.get(region.ids[0]):null;
+  panel.hidden=!row;
+  if(!row)return;
+  const vals=[
+    ['2025年新建住宅建筑中竣工住房',row.completed_dwellings_new_residential_buildings_2025],
+    ['2025年全部建筑措施竣工住房',row.completed_dwellings_all_measures_2025]
+  ];
+  $('bavariaHistory').innerHTML='<div class="housing-archive-grid">'+vals.map(([label,n])=>
+    '<div><small>'+safe(label)+'</small><b>'+safe(isNum(n)?fmt(n,0)+'套':'无可比数据')+'</b></div>').join('')+'</div>'+
+    '<p>仅巴伐利亚州96县市 · 2025年。新建住宅建筑中竣工的住房与全部建筑措施中竣工的住房是不同统计对象，不能相加。与北威州53县来源互补，目前绝不声称2025全国各县均有此统计。</p>'+
+    '<a target="_blank" rel="noopener noreferrer" href="https://www.statistik.bayern.de/mam/produkte/veroffentlichungen/statistische_berichte/f2200c_202500.xlsx">巴伐利亚统计局 F2200C 202500原始表 ↗</a>';
+ }
  function renderSaxony(region){
   const panel=$('saxonyDetails');
   const row=region.scope==='county'?saxonyRows.get(region.ids[0]):null;
@@ -159,6 +173,7 @@
   renderQuick(region);
   renderLandPrice(region);
   renderNRW(region);
+  renderBavaria(region);
   renderSaxony(region);
   updateRanks(region.ids);
  }
@@ -291,13 +306,18 @@
     if(nrw.counties.length!==53)throw new Error('NRW official 2025 Kreis coverage changed');
     nrwRows=new Map(nrw.counties.map(row=>[row.id,row]));
    }catch(err){console.warn('NRW local construction detail unavailable',err)}
+   try{
+    const bavaria=await readJson('data/bavaria-new-home-completions-2025.json');
+    if(bavaria.counties.length!==96 || bavaria.meta.counties!==96)throw new Error('Bavaria 2025 official county coverage changed');
+    bavariaRows=new Map(bavaria.counties.map(row=>[row.id,row]));
+   }catch(err){console.warn('Bavaria county 2025 completion detail not available',err)}
    makeLayers(states,counties);
    paint();
    const valid=sortedAll.length;
    $('mapStatus').textContent=valid+'处县级地图区域已载入；'+(stockReady?'含核验住房存量':'住房存量层暂不可用');
    $('mapStatus').classList.add('ok');
    window.GermanHousingResearch=Object.freeze({
-     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,countyShapes:countyShapes.size}),
+     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,countyShapes:countyShapes.size}),
      metrics:Object.keys(metrics)
    });
   }catch(err){
