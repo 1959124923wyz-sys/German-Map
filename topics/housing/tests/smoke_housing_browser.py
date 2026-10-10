@@ -77,6 +77,17 @@ def run(browser,mobile=False):
     assert s["selectedCounty"] is not None and s["selectedCounty"].startswith("07"),s
     assert "行政区编码" in page.locator("#coverage").inner_text()
     assert "中位数" not in page.locator("#description").inner_text()
+    # Corrected 2025 Berlin borough data: Berlin itself is ONE Kreis 11000.
+    page.locator("#stateJump").select_option("11")
+    assert page.evaluate("GermanHousingResearch.state().berlinBoroughReady") is True
+    page.locator("#topRank .housing-rank-row").first.click()
+    assert page.locator("#berlinBoroughCompletions").is_visible()
+    assert page.locator("#bavariaCompletions").is_hidden()
+    assert page.locator("#brandenburgCompletions").is_hidden()
+    page.locator("#berlinBoroughCompletions summary").click()
+    assert "2025" in page.locator("#berlinBoroughHistory").inner_text()
+    assert "11,027" in page.locator("#berlinBoroughHistory").inner_text()
+    assert page.locator("#berlinBoroughHistory .housing-archive-grid>div").count()==12
     # Brandenburg: 18 county source; all residential/nonresidential new-build
     # accounting must remain separate from NRW/Bavaria 'new residential' data.
     page.locator("#stateJump").select_option("12")
