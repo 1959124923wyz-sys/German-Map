@@ -34,10 +34,10 @@ check('city metric 12 only',len(obj['cities'])==12 and len({x['id'] for x in obj
 check('no city state filled as zero',all(x['value'] is None for x in obj['states'] if x['id'] in ('DE-BE','DE-HH','DE-HB')))
 check('money amount_kind preserved',all(r['amount'] is None or r['amount_kind'] for r in cases))
 check('page loads its own data',"data/finance-data.js" in (FIN/'index.html').read_text())
-check('stats/source language',"非县辖市" in (FIN/'index.html').read_text() and "不是具体" in (FIN/'index.html').read_text())
+check('stats/source language',"非县辖市" in (FIN/'index.html').read_text() and "不代表设施地址" in (FIN/'index.html').read_text())
 page=(FIN/'index.html').read_text(encoding='utf-8')
 app=(FIN/'topic.js').read_text(encoding='utf-8')
-check('compact 3-map-mode navigation',all('data-mode="'+x+'"' in page for x in ('state','rp','events')))
+check('single fixed balance choropleth',all('data-mode="'+x+'"' not in page for x in ('state','rp','events')) and 'id="stateMetric"' not in page and "return 'balance-2025'" in app)
 check('event overlays opt-in', 'id="showEvents" type="checkbox"' in page and 'showEvents:false' in app)
 check('advanced research controls collapsed', '<details class="finance-drawer"' in page)
 check('simplified event list and archive switch retained',all('id="'+x+'"' in page for x in ('caseList','showMapCases','showAllCases','loadMore')))
@@ -53,3 +53,5 @@ if lookup.exists():
  check('all map candidates belong to 2025 county code list',all(r['county'] in ids for r in maps))
 
 print('SUCCESS: finance data and page contract passed')
+check('state drilldown and county outlines', 'zoomToState(' in app and 'renderCountyOutline()' in app)
+check('event preview hover and opt-in', 'finance-event-tooltip' in app and 'id="eventPanel"' in page and 'preview(r.description)' in app)
