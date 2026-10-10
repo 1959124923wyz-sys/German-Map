@@ -82,6 +82,16 @@ assert.ok(merged.groups[0].bridgeKm>0);
 assert.equal(merged.groups[0].members.length,2);
 assert.equal(merged.groups[0].m.late,44.5);
 assert.equal(merged.groups[0].m.cancel,5);
+// Two directions on the same physical km interval become one corridor with
+// pooled *counted* arrivals, not an average of printed percentages.
+const reverse=leg('B','A',[0,5],20,1);
+const groupedOpposite=bridge.mergeGroups(
+ math.buildCorridors([f(m1),f(reverse)]),net,[f(m1),f(reverse)]);
+assert.equal(groupedOpposite.groups.length,1);
+assert.equal(groupedOpposite.groups[0].members.length,2);
+assert.equal(groupedOpposite.groups[0].m.late,32.5);
+assert.equal(groupedOpposite.groups[0].m.cancel,3);
+
 // A higher-risk measured interval in the missing range cannot be hidden.
 const conflicting={leg:leg('E','F',[5.2,5.8],3,1),grade:0,m:{},parts:[part(104,106)]};
 assert.equal(bridge.mergeGroups(math.buildCorridors([f(m1),f(m2)]),net,[...observed,conflicting]).bridged,0);
