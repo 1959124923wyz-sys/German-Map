@@ -8,7 +8,7 @@
 <meta name="description" content="德国2025年地方财政收支地图，州级涂色、莱法州12座非县辖市数据与核实过的财政紧缩事件。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css?v=clean1">
-<link rel="stylesheet" href="topic.css?v=f7">
+<link rel="stylesheet" href="topic.css?v=f8">
 </head>
 <body>
 <header>
@@ -71,6 +71,10 @@
     </label>
     <p id="districtHint">有数据的县市可点击查询；其他地区不填补数值。</p>
    </section>
+   <details id="regionalDebtDrawer" class="finance-loan-drawer finance-regional-debt" hidden>
+    <summary>该县市历史债务资料 <span>2023—2024</span></summary>
+    <div id="regionalDebtInfo" class="finance-loan-history"></div>
+   </details>
    <section id="eventPanel" class="finance-event-panel" hidden>
     <div class="finance-list-heading"><strong id="listHeading">地方财政事件</strong><span id="visibleCount">72条</span></div>
     <p class="finance-event-hint">将鼠标移至事件上快速预览，点击查看来源与详情。</p>
@@ -105,7 +109,8 @@
   <details class="finance-method">
    <summary>数据来源与统计口径</summary>
    <p>底色固定为2025年13个非城市州地方政府的人均财政收支差额；3个城市州无可比口径，以灰色显示。</p>
-   <p>点击州可查看债务、借款数据；莱法州另有12市和24县本级部分财政资料，统计主体与时期分开呈现。</p>
+   <p>点击州可查看债务和借款，进一步点击县市可查询2023年县域核心预算债务；其中102个非县辖市另有2024年综合债务。两者统计对象与年份不同，不作为2025年财政赤字或同口径排名。</p>
+   <p>2023县级核心预算数据共398条，其中392条有数值、6条缺失；2024独立市综合债务覆盖102市。2026年哈瑙行政区划调整与历史资料不直接对应。</p>
    <p>事件是定向调查样本，圆点在县域概略中心，不代表设施地址，也不能据事件数量判断财政风险。完整方法及来源见<a href="README.md">研究说明</a>。</p>
   </details>
  </aside>
@@ -117,6 +122,7 @@
 <script src="data/finance-data.js?v=f1"></script>
 <script src="data/finance-history.js?v=h1"></script>
 <script src="data/finance-integrated.js?v=r10"></script>
-<script src="topic.js?v=f6"></script>
+<script src="data/finance-regional-evidence.js?v=r24"></script>
+<script src="topic.js?v=f8"></script>
 </body>
 </html>

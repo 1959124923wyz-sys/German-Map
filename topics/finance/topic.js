@@ -4,6 +4,7 @@
  const D = window.GermanFinance08Data;
  const H = window.GermanFinance08History;
  const I = window.GermanFinance08Integrated;
+ const R = window.GermanFinance08Regional;
  const escapeHTML = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const STATUSES={effective:'已生效/执行中（未必仍持续）',completed:'已经完成（可能是历史）',reversed:'已撤销或解除',withdrawn:'已撤回',adopted:'已批准、未证实执行',announced:'已宣布',proposed:'仅提议',rejected:'被否决',under_review:'审议或核查中'};
  const CAT={budget:'预算及监管',facilities:'公共设施及文化',transit:'公共交通',investment:'公共投资',staffing:'人事编制',taxfees:'税费',other:'其他'};
@@ -12,6 +13,8 @@
  let stateRows=new Map(D.states.map(x=>[x.id,x])), cityRows=new Map(D.cities.map(x=>[x.id,x]));
  const debtRows=new Map(H.states.map(x=>[x.id,x]));
  const integratedRows=new Map(I.states.map(x=>[x.id,x]));
+ const countyDebtRows=new Map((R?.counties||[]).map(x=>[x.id,x]));
+ const independentCityDebtRows=new Map((R?.cities||[]).map(x=>[x.id,x]));
  // Public map always shows the 2025 municipal financing balance. The
  // historic debt series is preserved exclusively in the state drilldown.
  const selectedStateValue=id=>stateRows.get(id)?.value??null;
@@ -64,6 +67,26 @@
    '<p>存量金额（非人均）；不同州规模不能据此直接排名。2024年债务承接等政策可能影响历史变化。'+
    '<a target="_blank" rel="noopener noreferrer" href="'+escapeHTML(H.meta.source_debt)+'">2026地方财政报告（表9、10） ↗</a></p>';
  }
+ function renderRegionalDebt(code){
+  const drawer=$('regionalDebtDrawer'),body=$('regionalDebtInfo');
+  const core=countyDebtRows.get(code),city=independentCityDebtRows.get(code);
+  drawer.open=false;
+  drawer.hidden=!(core||city);
+  if(!core&&!city){body.innerHTML='';return;}
+  const coreHtml=core
+   ? '<div class="finance-history-item"><small>2023年县域市镇及联合体核心预算债务</small><strong>'+
+      (core.value===null?'未公布':number(core.value)+' 欧元/人')+'</strong></div>'
+   : '';
+  const cityHtml=city
+   ? '<div class="finance-history-item"><small>2024年非县辖市综合地方债务</small><strong>'+
+      number(city.integrated2024)+' 欧元/人</strong></div>'
+   : '';
+  const countyLink=core?'<a href="'+escapeHTML(R.meta.county_source)+'" target="_blank" rel="noopener noreferrer">2023年官方区域统计原表 ↗</a>':'';
+  const cityLink=city?'<a href="'+escapeHTML(R.meta.city_source)+'" target="_blank" rel="noopener noreferrer">2024年官方综合债务原表 ↗</a>':'';
+  body.innerHTML=coreHtml+cityHtml+
+   '<p>2023年数据为县域内市镇与联合体核心预算债务，不是县政府本级债务；2024年数据仅为非县辖市综合债务，包含其分摊的企业债务。年份、主体、范围不一致，不可相加或计算同比。无数据不等于零。历史行政边界未强行投射为2026年值。</p>'+
+   countyLink+cityLink;
+ }
  function regionalDetailNote(row){
   const opt=regionOptions[view.rpPeriod];
   if(!row)return opt.label+'；该地区无同口径数据。';
@@ -81,6 +104,8 @@
  function resetArea(){
   displayArea('德国 · 全国','点击联邦州查看财政收支','2025年 · 欧元/人');
   $('districtPanel').hidden=true;
+  $('regionalDebtDrawer').hidden=true;
+  $('regionalDebtDrawer').open=false;
   $('loanDrawer').hidden=true;
   $('sectionTitle').textContent='2025年人均地方财政收支';
  }
@@ -194,12 +219,15 @@
   const changed=view.focusState!==id;
   view.county=null;view.currentCounty=null;view.selected=null;view.limit=8;
   if(changed)$('loanDrawer').open=false;
+  $('regionalDebtDrawer').hidden=true;
+  $('regionalDebtDrawer').open=false;
   // Preserve national colour, event visibility and current archive settings;
   // switching states is a one-click operation, not a reset-to-Germany flow.
   displaySelectedState(id,name||layer.feature?.properties?.name);
   $('sectionTitle').textContent='2025年人均地方财政收支';
   $('districtPanel').hidden=id!=='DE-RP';
   $('districtHint').textContent='点击县市边界查看地方数据；仅已公开的统计地区有数值。';
+  $('mapGuideNote').textContent='点击县市查看历史债务；右侧详情区分统计年份';
   $('stateJump').value=id;
   if(countyDisplayedFor!==id&&countiesLayer){
    // Release the old county hitboxes BEFORE painting the next state's
@@ -224,8 +252,22 @@
    displayArea(name,money(row.value),regionalDetailNote(row));
    $('sectionTitle').textContent=regionOptions[view.rpPeriod].label;
   }else{
-   displayArea(name,'暂无该县可比财政数据','地图底色仍表示该州2025年财政收支');
+   const core=countyDebtRows.get(feature.id);
+   const city=independentCityDebtRows.get(feature.id);
+   if(core&&core.value!==null){
+    displayArea(name,number(core.value)+' 欧元/人',
+     '2023年 · 县域市镇及联合体核心预算债务；不是2025年赤字，也不含市属企业综合债务。');
+    $('sectionTitle').textContent='2023年县域核心预算债务';
+   }else if(city){
+    displayArea(name,number(city.integrated2024)+' 欧元/人',
+     '2024年 · 非县辖市综合地方债务；与州级2025年财政收支不同指标。');
+    $('sectionTitle').textContent='2024年非县辖市综合地方债务';
+   }else{
+    displayArea(name,'暂无该县可比财政数据','地图底色仍表示该州2025年财政收支；未发布数据不得填0。');
+    $('sectionTitle').textContent='县市历史财政资料';
+   }
   }
+  renderRegionalDebt(feature.id);
   renderLoanHistory(view.focusState);
   statesLayer.setStyle(stateStyle);
  }
@@ -256,6 +298,7 @@
   view.limit=8;view.rpPeriod='2025-full-cities';
   $('rpPeriod').value=view.rpPeriod;
   resetArea();renderList();
+  $('mapGuideNote').textContent='点击州放大，查看该州财政数据';
   map?.stop();map?.fitBounds(withinBounds,{padding:[12,12],animate:false});
   renderMap();
  }
@@ -298,6 +341,9 @@
   if(!D||D.cases.length!==170||readyCases.length!==72)throw Error('财政数据不完整或版本不匹配');
   if(!H||H.states.length!==13||H.regional.length!==72||H.totals.cash[4]!==38587)throw Error('历史财政数据不完整');
   if(!I||I.states.length!==16||I.meta.years.length!==3)throw Error('综合地方债务数据不完整');
+  if(!R||R.counties.length!==398||R.cities.length!==102||
+     R.counties.filter(x=>Number.isFinite(x.value)).length!==392)
+    throw Error('县市历史债务资料不完整');
   setupUI();resetArea();renderList();renderLegend();
   map=L.map('finance-map',{zoomSnap:.25,minZoom:5,maxZoom:13,zoomControl:true,preferCanvas:true});
   window.__FINANCE_MAP__=map;
@@ -333,7 +379,9 @@
    stateLayer:()=>statesLayer,
    eventMarkers:()=>bubblesLayer.getLayers(),
    selectedCounties:()=>countiesLayer?.getLayers().map(l=>l.feature?.id)||[],
-   countyRenderer:()=>countiesLayer?.getLayers()[0]?.getElement()?.tagName||null
+   countyRenderer:()=>countiesLayer?.getLayers()[0]?.getElement()?.tagName||null,
+   historicalCore:id=>countyDebtRows.get(id)?.value??null,
+   historicalCity:id=>independentCityDebtRows.get(id)?.integrated2024??null
   });
   renderMap();showStatus('');
  }

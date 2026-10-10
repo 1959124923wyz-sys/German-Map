@@ -66,6 +66,13 @@ def verify(browser,mobile=False):
     page.evaluate("(id)=>window.__FINANCE_UI__.selectCounty(id)",city["id"])
     assert page.locator("#areaName").inner_text() not in ("德国 · 全国","莱茵兰-普法尔茨")
     assert "欧元/人" in page.locator("#metricValue").inner_text()
+    # One contextual archive only; RP's current-year balance stays primary.
+    assert page.locator("#regionalDebtDrawer").is_visible()
+    assert not page.locator("#regionalDebtDrawer").get_attribute("open")
+    page.locator("#regionalDebtDrawer > summary").click()
+    assert "2023年县域" in page.locator("#regionalDebtInfo").inner_text()
+    assert "2024年非县辖市" in page.locator("#regionalDebtInfo").inner_text()
+    assert page.locator("#regionalDebtInfo a[href^='https://']").count()==2
     page.locator("#rpPeriod").select_option("2026-H1-counties")
     assert page.evaluate(f"{api}.stateFill('DE-RP')")==national_style
 
@@ -103,6 +110,27 @@ def verify(browser,mobile=False):
     assert page.evaluate(f"{api}.getFocusState()")=="DE-RP"
     assert page.locator("#districtPanel").is_visible()
     assert page.evaluate(f"{api}.selectedCounties().every(x=>String(x).startsWith('07'))")
+
+    # Independent test location: Kiel's two distinct real fiscal sources.
+    # No national recolouring, no adding enterprise debt to county core budget.
+    page.locator("#stateJump").select_option("DE-SH")
+    assert page.locator("#regionalDebtDrawer").is_hidden()
+    page.evaluate("()=>window.__FINANCE_UI__.selectCounty('01002')")
+    assert page.locator("#regionalDebtDrawer").is_visible()
+    assert page.evaluate(f"{api}.historicalCore('01002')")==2217
+    assert 5165 < page.evaluate(f"{api}.historicalCity('01002')") < 5166
+    assert "2023" in page.locator("#sectionTitle").inner_text()
+    assert "2,217" in page.locator("#metricValue").inner_text()
+    assert "2025" in page.locator("#legend").inner_text()
+    page.locator("#regionalDebtDrawer > summary").click()
+    facts=page.locator("#regionalDebtInfo").inner_text()
+    assert "2023年县域" in facts and "2024年非县辖市" in facts
+    assert "5,165.6" in facts
+    # Missing city-core record remains missing, never zero.
+    assert page.evaluate(f"{api}.historicalCore('08111')") is None
+    page.locator("#stateJump").select_option("DE-RP")
+    assert page.locator("#regionalDebtDrawer").is_hidden()
+    assert page.evaluate(f"{api}.stateFill('DE-RP')")==national_style
 
     # Event checkbox only adds/removes geographic markers and sidebar events.
     page.locator("#showEvents").check()
