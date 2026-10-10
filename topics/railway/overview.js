@@ -18,7 +18,7 @@ const CELL=64, NATION=[[47.05,5.45],[55.15,15.65]];
 const {REF_ZOOM,WORLD,officialPart,observedParts,actualBounds,currentViewport,visible,drawPath,unproject,segmentDist}=window.Railway07Geometry;
 // Fixed 100-observation inclusion threshold (not a user-facing filter).
 const view={service:'REGIONAL',metric:'both',minimum:100,selected:null,links:[],
-  rendered:[],groups:[],ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,networkParts:[],grid:new Map(),map:null,
+  rendered:[],groups:[],bridgePaths:[],bridged:0,bridgeGraph:new window.Railway07Bridge.RouteGraph(),ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,networkParts:[],grid:new Map(),map:null,
   baseLayer:null,observedLayer:null,repaints:0};
 const cache=new Map();
 const fmt=n=>Number(n).toLocaleString('zh-CN');
@@ -62,6 +62,13 @@ const CanvasLayer=L.Layer.extend({
    ctx.strokeStyle=COLORS.green;ctx.globalAlpha=.53;
    ctx.lineWidth=m.getZoom()<7?.9:1.1;ctx.stroke();
   }else{
+   // Genuine DB InfraGO curves bridge observational gaps, but stay faint
+   // green; unknown observations never inherit their neighbours' red grade.
+   if(view.bridgePaths.length){
+    ctx.beginPath();
+    for(const p of view.bridgePaths)if(visible(p,v))drawPath(ctx,p,v);
+    ctx.strokeStyle=COLORS.green;ctx.globalAlpha=.75;ctx.lineWidth=1.8;ctx.stroke();
+   }
    const widths=[1.65,2.25,2.65];
    const colors=[COLORS.green,COLORS.orange,COLORS.red];
    for(let grade=0;grade<3;grade++){
@@ -138,7 +145,11 @@ function buildNetwork(){
  const batch=()=>{
   const until=Math.min(cursor+950,sections.length);
   for(;cursor<until;cursor++){
-   const p=officialPart(sections[cursor]);if(p)view.networkParts.push(p);
+   const p=officialPart(sections[cursor]);
+   if(p){
+    view.networkParts.push(p);
+    view.bridgeGraph.add(sections[cursor][0],p);
+   }
   }
   if(cursor<sections.length){
    if(cursor===950)$('#mapStatus').textContent='';
@@ -146,6 +157,8 @@ function buildNetwork(){
   }else{
    view.networkReady=true;view.baseLayer.schedule();
    if(view.tiles)$('#mapStatus').textContent='';
+   // Observations may have loaded before the official graph.
+   if(view.links.length)recalc();
   }
  };
  requestAnimationFrame(batch);
@@ -229,7 +242,8 @@ function showDetail(){
  const title=stationZh(first.from_station)+' → '+stationZh(last.to_station);
  element(box,'span',g===2?'● 晚点或取消较多':g===1?'● 需要关注':'● 表现相对较好','grade');
  element(box,'h3',title);
- if(members.length>1)element(box,'p','连续区段 · '+members.length+' 个站间区间','corridor-count');
+ if(members.length>1||o.bridges)
+  element(box,'p','连续区段 · '+members.length+' 个有观测站间'+(o.bridges?' · '+o.bridges+' 处轨道连接':''),'corridor-count');
  const grid=element(box,'div','','detail-grid');
  for(const [value,label] of [[pct(m.onTime),'准点率（晚点不足6分钟）'],
   [pct(m.cancel),'停靠取消标记率']]){
@@ -246,6 +260,7 @@ function showDetail(){
  }
  element(more,'p','线路 '+first.route+' · 有效到站 '+fmt(m.nArrival)+' 次 · 计划站间配对 '+fmt(m.nPlanned)+' 次');
  element(more,'p','晚点率 '+pct(m.late)+'（至少6分钟）；相邻区间可能重复观测同一趟车。');
+ if(o.bridges)element(more,'p','依 DB InfraGO 原始轨道几何连接 '+o.bridges+' 处（约'+o.bridgeKm.toFixed(1)+' 公里）；连接部分没有参与准点及取消率计算。');
  element(more,'p','原始站名：'+first.from_station+' → '+last.to_station,'original-stations');
  box.append(more);
 }
@@ -288,6 +303,9 @@ function addToGrid(o){
 function rebuildIndex(){
  view.grid.clear();
  for(const o of view.rendered)addToGrid(o);
+ // Hit-testing also works on the real geometry of a visual-only bridge.
+ for(const g of view.groups)for(const p of g.bridgeParts||[])
+  addToGrid({parts:[p],group:g,bridge:true});
 }
 function pickAt(latlng){
  if(!view.rendered.length)return;
@@ -323,7 +341,15 @@ function recalc(){
   items.push({leg,m,parts,bounds:actualBounds(parts),grade:grade(m)});
  }
  view.rendered=items;
- view.groups=buildCorridors(items);
+ const measured=buildCorridors(items);
+ if(view.networkReady){
+  const combined=window.Railway07Bridge.mergeGroups(measured,view.bridgeGraph,items);
+  view.groups=combined.groups;
+  view.bridged=combined.bridged;
+ }else{
+  view.groups=measured;view.bridged=0;
+ }
+ view.bridgePaths=view.groups.flatMap(g=>g.bridgeParts||[]);
  view.selected=previous?(view.groups.find(g=>g.members.some(x=>x.leg===previous))||null):null;
  rebuildIndex();
  // The research dashboard retains all overall counts; the map stays focused on picked segments.
@@ -334,7 +360,7 @@ function recalc(){
 
 async function chooseService(){
  const id=++view.ticket,service=view.service;
- view.selected=null;view.links=[];view.rendered=[];view.groups=[];view.grid.clear();
+ view.selected=null;view.links=[];view.rendered=[];view.groups=[];view.bridgePaths=[];view.bridged=0;view.grid.clear();
  view.observedLayer.schedule();status('正在读取 '+labels[service]+' 的观测…');
  try{
   const data=await Promise.all(sources[service].map(async k=>[k,await loadData(k)]));
@@ -377,7 +403,8 @@ try{
   getMap:()=>view.map,getNetworkGeometryCount:()=>view.networkParts.length,
   getNetworkReady:()=>view.networkReady,getStatesReady:()=>view.statesReady,
   getCountiesReady:()=>view.countiesReady,getRendered:()=>view.rendered,
-  getCorridors:()=>view.groups,
+  getCorridors:()=>view.groups,getBridgedCount:()=>view.bridged,
+  getBridgedGeometryCount:()=>view.bridgePaths.length,getGraphEdgeCount:()=>view.bridgeGraph.edges,
   getRepaintCount:()=>view.repaints,getCanvasCount:()=>document.querySelectorAll('.railway-canvas').length,
   getSpatialBucketCount:()=>view.grid.size,
   clickPoint:ll=>pickAt(L.latLng(ll)),stationZh
