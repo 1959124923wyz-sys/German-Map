@@ -219,3 +219,20 @@ footer{display:none}
 .finance-history-item small{font-size:10px;line-height:1.4;color:#9eb7c6}
 .finance-history-item strong{font-size:17px;color:#f0f6fa;font-variant-numeric:tabular-nums}
 .finance-regional-debt .finance-loan-history p{margin-top:10px}
+
+/* Lightweight historical layer switch; keep the 2025 national screen calm. */
+.finance-layer-picker{display:grid;grid-template-columns:74px minmax(0,1fr);align-items:center;gap:9px;margin:9px 0 1px;color:#a8bfce;font-size:10px}
+.finance-layer-picker select{width:100%;min-width:0;background:#172735;color:#e2ecf2;border:1px solid #3b5669;border-radius:6px;padding:7px 8px;font-size:11px;line-height:1.3;cursor:pointer}
+.finance-layer-picker select:focus-visible,.finance-muni-search-label input:focus-visible{outline:2px solid #8bbad7;outline-offset:2px}
+.finance-muni-drawer{margin-bottom:10px}
+.finance-muni-search-label{display:flex;flex-direction:column;gap:4px;color:#aabfcb;font-size:10px;margin:12px 0 8px}
+.finance-muni-search-label input{width:100%;min-width:0;background:#152632;color:#e4eef3;border:1px solid #456276;border-radius:6px;padding:8px 9px;font:inherit;font-size:11px}
+.finance-muni-list{max-height:290px;overflow-y:auto;overscroll-behavior:contain}
+.finance-muni-row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #314352;font-size:10px}
+.finance-muni-row>div:first-child{min-width:0;flex:1}
+.finance-muni-row strong{display:block;font-weight:650;color:#e4edf2;line-height:1.5;overflow-wrap:anywhere}
+.finance-muni-row small{display:block;color:#9cb2bf;font-size:9px;line-height:1.45}
+.finance-muni-values{text-align:right;flex:0 0 140px;min-width:0}
+.finance-muni-values b{display:block;color:#bee3da;font-size:11px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.finance-muni-source a{display:block;margin-top:10px;font-size:10px;overflow-wrap:anywhere}
+@media(max-width:560px){.finance-layer-picker{grid-template-columns:62px minmax(0,1fr);gap:7px}.finance-muni-values{flex-basis:132px}}

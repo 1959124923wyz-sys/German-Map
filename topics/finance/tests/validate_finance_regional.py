@@ -45,7 +45,7 @@ def main():
     assert 'id="regionalDebtDrawer"' in page and 'finance-regional-evidence.js' in page
     assert 'id="showEvents" type="checkbox"' in page and 'showEvents:false' in app
     assert "renderRegionalDebt(feature.id)" in app
-    assert "getMode:()=> 'balance-2025'" in app
+    assert "getMode:()=>view.metric" in app
     assert "2023年县域" in app and "2024年非县辖市" in app
     assert "2025年" in page and "不作为2025年" in page
     print("PASS R24: 398 county rows (392 numeric, 6 missing), 102 independent cities; reproducible and detail-only")

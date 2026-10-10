@@ -132,6 +132,43 @@ def verify(browser,mobile=False):
     assert page.locator("#regionalDebtDrawer").is_hidden()
     assert page.evaluate(f"{api}.stateFill('DE-RP')")==national_style
 
+    # R24 national data must actually be exposed as source-distinct maps.
+    # Default remains the same 2025 state-balance choropleth.
+    assert page.locator("#metricLayer").input_value()=="balance-2025"
+    page.locator("#resetView").click()
+    page.locator("#metricLayer").select_option("core-2023")
+    assert page.evaluate(f"{api}.getMode()")=="core-2023"
+    assert "2023" in page.locator("#legend").inner_text()
+    assert page.evaluate(f"{api}.coloredCountyCount()")>=380
+    assert page.evaluate(f"{api}.hasCountyDetail()")
+    assert "2023" in page.locator("#mapGuideTitle").inner_text()
+    page.evaluate(f"{api}.selectCounty('01002')")
+    assert "2,217" in page.locator("#metricValue").inner_text()
+    page.locator("#municipalDrawer").wait_for(state="visible")
+    page.wait_for_function("document.getElementById('municipalCount')?.textContent.includes('个市镇')",timeout=30000)
+    assert page.evaluate(f"{api}.municipalStateLoaded('01')")
+    page.locator("#municipalDrawer summary").click()
+    assert "01002000" in page.locator("#municipalList").inner_text()
+    assert "5,165.6" in page.locator("#municipalList").inner_text()
+    page.locator("#municipalSearch").fill("01002000")
+    assert page.locator("#finance-map").is_visible()
+    assert page.locator("#municipalList .finance-muni-row").count()==1
+    page.locator("#municipalSearch").fill("does-not-exist")
+    assert "没有匹配" in page.locator("#municipalList").inner_text()
+    page.locator("#municipalSearch").fill("")
+
+    page.locator("#metricLayer").select_option("city-2024")
+    assert page.evaluate(f"{api}.getMode()")=="city-2024"
+    assert "2024" in page.locator("#legend").inner_text()
+    assert page.evaluate(f"{api}.coloredCountyCount()")>=95
+    page.evaluate(f"{api}.selectCounty('01002')")
+    assert "5,165.6" in page.locator("#metricValue").inner_text()
+    page.locator("#metricLayer").select_option("balance-2025")
+    assert page.evaluate(f"{api}.getMode()")=="balance-2025"
+    assert page.evaluate(f"{api}.stateFill('DE-RP')")==national_style
+    page.locator("#resetView").click()
+    assert "2025" in page.locator("#legend").inner_text()
+
     # Event checkbox only adds/removes geographic markers and sidebar events.
     page.locator("#showEvents").check()
     page.wait_for_function("window.__FINANCE_UI__.eventCount()>=30")

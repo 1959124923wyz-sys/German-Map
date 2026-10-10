@@ -1,0 +1,219 @@
+ags8,county_ags5,name_de,state_code,year,tax_capacity_eur_per_capita,value_status,source_id
+15001000,15001,"Dessau-Roßlau, Stadt",15,2024,1060.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15002000,15002,"Halle (Saale), Stadt",15,2024,982.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15003000,15003,"Magdeburg, Landeshauptstadt",15,2024,1094.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15081026,15081,"Apenburg-Winterfeld, Flecken",15,2024,1145.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15081030,15081,"Arendsee (Altmark), Stadt",15,2024,1008.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15081045,15081,Beetzendorf,15,2024,779.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+15081095,15081,Dähre,15,2024,730.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15081105,15081,"Diesdorf, Flecken",15,2024,959.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15081135,15081,"Gardelegen, Hansestadt",15,2024,1029.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15081225,15081,Jübar,15,2024,1897.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15081240,15081,"Kalbe (Milde), Stadt",15,2024,1420.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15081280,15081,"Klötze, Stadt",15,2024,1016.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15081290,15081,Kuhfelde,15,2024,648.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15081440,15081,Rohrberg,15,2024,720,published_numeric,DE_ATLAS_HA26_GEM_2024
+15081455,15081,"Salzwedel, Hansestadt",15,2024,1130.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15081545,15081,Wallstawe,15,2024,1414.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15082005,15082,"Aken (Elbe), Stadt",15,2024,991.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15082015,15082,"Bitterfeld-Wolfen, Stadt",15,2024,1514.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15082180,15082,"Köthen (Anhalt), Stadt",15,2024,929.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+15082241,15082,Muldestausee,15,2024,760.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15082256,15082,Osternienburger Land,15,2024,792.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15082301,15082,"Raguhn-Jeßnitz, Stadt",15,2024,892.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15082340,15082,"Sandersdorf-Brehna, Stadt",15,2024,2577.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15082377,15082,"Südliches Anhalt, Stadt",15,2024,1247.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15082430,15082,"Zerbst/Anhalt, Stadt",15,2024,1015,published_numeric,DE_ATLAS_HA26_GEM_2024
+15082440,15082,"Zörbig, Stadt",15,2024,836.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083020,15083,Altenhausen,15,2024,834,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083025,15083,Am Großen Bruch,15,2024,790.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083030,15083,Angern,15,2024,1237,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083035,15083,Ausleben,15,2024,721.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083040,15083,Barleben,15,2024,3770.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083060,15083,Beendorf,15,2024,663.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083115,15083,Bülstringen,15,2024,2146.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083120,15083,Burgstall,15,2024,910.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083125,15083,Calvörde,15,2024,1075,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083130,15083,Colbitz,15,2024,915.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083190,15083,Eilsleben,15,2024,955.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083205,15083,Erxleben,15,2024,1081.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083230,15083,Flechtingen,15,2024,1266.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083245,15083,"Gröningen, Stadt",15,2024,933.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083270,15083,"Haldensleben, Stadt",15,2024,1176.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083275,15083,Harbke,15,2024,674.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083298,15083,Hohe Börde,15,2024,1234.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083320,15083,Hötensleben,15,2024,1081.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083323,15083,Ingersleben,15,2024,944.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083355,15083,"Kroppenstedt, Stadt",15,2024,810.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083361,15083,Loitsche-Heinrichsberg,15,2024,2783.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083390,15083,Niedere Börde,15,2024,1060.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083411,15083,"Oebisfelde-Weferlingen, Stadt",15,2024,994.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083415,15083,"Oschersleben (Bode), Stadt",15,2024,1069.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083440,15083,Rogätz,15,2024,1306.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083485,15083,Sommersdorf,15,2024,806,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083490,15083,Sülzetal,15,2024,2630.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083505,15083,Ummendorf,15,2024,731.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083515,15083,Völpke,15,2024,2999.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083531,15083,"Wanzleben-Börde, Stadt",15,2024,985.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083535,15083,Wefensleben,15,2024,851.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083557,15083,Westheide,15,2024,854.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083565,15083,"Wolmirstedt, Stadt",15,2024,899.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15083580,15083,Zielitz,15,2024,2175.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084012,15084,An der Poststraße,15,2024,1146.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084013,15084,Meineweh,15,2024,2927.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084015,15084,"Bad Bibra, Stadt",15,2024,1030.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084025,15084,Balgstädt,15,2024,735.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084115,15084,Droyßig,15,2024,841.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084125,15084,"Eckartsberga, Stadt",15,2024,650.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084130,15084,Elsteraue,15,2024,1387.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084132,15084,Finne,15,2024,569.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084133,15084,Finneland,15,2024,916.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084135,15084,"Freyburg (Unstrut), Stadt",15,2024,1102.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084150,15084,Gleina,15,2024,1020.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084170,15084,Goseck,15,2024,769.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084207,15084,Gutenborn,15,2024,1543.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084235,15084,"Hohenmölsen, Stadt",15,2024,1316.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084246,15084,Kaiserpfalz,15,2024,954.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084250,15084,Karsdorf,15,2024,783.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084275,15084,Kretzschau,15,2024,1174,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084282,15084,Lanitz-Hassel-Tal,15,2024,692.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084285,15084,"Laucha an der Unstrut, Stadt",15,2024,1600.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084315,15084,"Lützen, Stadt",15,2024,2870.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084335,15084,Mertendorf,15,2024,1727.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084341,15084,Molauer Land,15,2024,1303.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084355,15084,"Naumburg (Saale), Stadt",15,2024,865.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084360,15084,"Nebra (Unstrut), Stadt",15,2024,636.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084375,15084,"Osterfeld, Stadt",15,2024,1534.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084442,15084,Schnaudertal,15,2024,857.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084445,15084,Schönburg,15,2024,1880.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084470,15084,"Stößen, Stadt",15,2024,833.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084490,15084,"Teuchern, Stadt",15,2024,857.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084550,15084,"Weißenfels, Stadt",15,2024,1102.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084560,15084,Wethau,15,2024,1062.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084565,15084,Wetterzeube,15,2024,839.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15084590,15084,"Zeitz, Stadt",15,2024,1157.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085040,15085,"Ballenstedt, Stadt",15,2024,1037.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085055,15085,"Blankenburg (Harz), Stadt",15,2024,851.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085090,15085,Ditfurt,15,2024,957.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085110,15085,"Falkenstein/Harz, Stadt",15,2024,1158.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085125,15085,Groß Quenstedt,15,2024,728.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085135,15085,"Halberstadt, Stadt",15,2024,1006.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085140,15085,Harsleben / Harschlewe,15,2024,935.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085145,15085,"Harzgerode, Stadt",15,2024,1117.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085160,15085,Hedersleben,15,2024,918.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085185,15085,Huy,15,2024,788.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085190,15085,"Ilsenburg (Harz), Stadt",15,2024,1103.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085227,15085,Nordharz,15,2024,796.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085228,15085,"Oberharz am Brocken, Stadt",15,2024,973.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085230,15085,"Osterwieck, Stadt",15,2024,1259.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085235,15085,"Quedlinburg, Welterbestadt",15,2024,938.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085285,15085,"Schwanebeck, Stadt",15,2024,1389.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085287,15085,Selke-Aue,15,2024,1350.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085330,15085,"Thale, Stadt",15,2024,947.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085365,15085,"Wegeleben, Stadt",15,2024,1035.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15085370,15085,"Wernigerode, Stadt",15,2024,1239.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15086005,15086,Biederitz,15,2024,924.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15086015,15086,"Burg, Stadt",15,2024,1233.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15086035,15086,Elbe-Parey,15,2024,659.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15086040,15086,"Genthin, Stadt",15,2024,1087.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15086055,15086,"Gommern, Stadt",15,2024,1239.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15086080,15086,"Jerichow, Stadt",15,2024,833.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15086140,15086,"Möckern, Stadt",15,2024,1126.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15086145,15086,Möser,15,2024,973.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087010,15087,Ahlsdorf,15,2024,527.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087015,15087,"Allstedt, Stadt",15,2024,892.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087031,15087,"Arnstein, Stadt",15,2024,830.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087045,15087,Benndorf,15,2024,568.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087055,15087,Berga,15,2024,1737.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087070,15087,Blankenheim,15,2024,551.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087075,15087,Bornstedt,15,2024,501.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087101,15087,Brücken-Hackpfüffel,15,2024,493.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087125,15087,Edersleben,15,2024,938.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087130,15087,"Eisleben, Lutherstadt",15,2024,951.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087165,15087,"Gerbstedt, Stadt",15,2024,993.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087205,15087,Helbra,15,2024,1221.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087210,15087,Hergisdorf,15,2024,528.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087220,15087,"Hettstedt, Stadt",15,2024,736,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087250,15087,"Kelbra (Kyffhäuser), Stadt",15,2024,697.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087260,15087,Klostermansfeld,15,2024,973.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087275,15087,"Mansfeld, Stadt",15,2024,836.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087370,15087,"Sangerhausen, Stadt",15,2024,880.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087386,15087,Seegebiet Mansfelder Land,15,2024,987.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087412,15087,Südharz,15,2024,1271.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087440,15087,Wallhausen,15,2024,1712.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+15087470,15087,Wimmelburg,15,2024,781,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088020,15088,"Bad Dürrenberg, Solestadt",15,2024,745.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088025,15088,"Bad Lauchstädt, Goethestadt",15,2024,911.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088030,15088,Barnstädt,15,2024,876,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088065,15088,"Braunsbedra, Stadt",15,2024,885.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088100,15088,Farnstädt,15,2024,2539.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088150,15088,Kabelsketal,15,2024,1967.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088195,15088,"Landsberg, Stadt",15,2024,2445.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088205,15088,"Leuna, Stadt",15,2024,6547.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088216,15088,"Wettin-Löbejün, Stadt",15,2024,983.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088220,15088,"Merseburg, Stadt",15,2024,837.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088235,15088,"Mücheln (Geiseltal), Stadt",15,2024,816.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088250,15088,Nemsdorf-Göhrendorf,15,2024,1315.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088265,15088,Obhausen,15,2024,1015.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088295,15088,Petersberg,15,2024,909,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088305,15088,"Querfurt, Stadt",15,2024,1001,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088319,15088,Salzatal,15,2024,1092.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088330,15088,Schkopau,15,2024,3022.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088340,15088,"Schraplau, Stadt",15,2024,763.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088355,15088,Steigra,15,2024,1384.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15088365,15088,Teutschenthal,15,2024,1184.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089005,15089,"Alsleben (Saale), Stadt",15,2024,2044.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089015,15089,"Aschersleben, Stadt",15,2024,1044.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089026,15089,"Barby, Stadt",15,2024,947,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089030,15089,"Bernburg (Saale), Stadt",15,2024,1524.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089041,15089,Bördeaue,15,2024,963.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089042,15089,Bördeland,15,2024,1243.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089043,15089,Börde-Hakel,15,2024,645.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089045,15089,Borne,15,2024,1534.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089055,15089,"Calbe (Saale), Stadt",15,2024,914.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089075,15089,"Egeln, Stadt",15,2024,1179,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089130,15089,Giersleben,15,2024,724,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089165,15089,"Güsten, Stadt",15,2024,959.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089175,15089,"Hecklingen, Stadt",15,2024,877.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089185,15089,Ilberstedt,15,2024,1741.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089195,15089,"Könnern, Stadt",15,2024,1124.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089235,15089,"Nienburg (Saale), Stadt",15,2024,1103.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089245,15089,Plötzkau,15,2024,761,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089305,15089,"Schönebeck (Elbe), Stadt",15,2024,966,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089307,15089,"Seeland, Stadt",15,2024,1158,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089310,15089,"Staßfurt, Stadt",15,2024,1025.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15089365,15089,Wolmirsleben,15,2024,762.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090003,15090,Aland,15,2024,665.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090007,15090,Altmärkische Höhe,15,2024,1313.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090008,15090,Altmärkische Wische,15,2024,741.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090010,15090,"Arneburg, Stadt",15,2024,3827.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090070,15090,"Bismark (Altmark), Stadt",15,2024,977.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090135,15090,Eichstedt (Altmark),15,2024,1323,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090180,15090,Goldbeck,15,2024,1063.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090220,15090,Hassel,15,2024,951.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090225,15090,"Havelberg, Hansestadt",15,2024,775.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090245,15090,Hohenberg-Krusemark,15,2024,1053.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090270,15090,Iden,15,2024,790.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090285,15090,Kamern,15,2024,569.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090310,15090,Klietz,15,2024,701.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090415,15090,"Osterburg (Altmark), Hansestadt",15,2024,1323.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090435,15090,Rochau,15,2024,889.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090445,15090,"Sandau (Elbe), Stadt",15,2024,818.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090485,15090,Schollene,15,2024,571.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090500,15090,Schönhausen (Elbe),15,2024,667.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090520,15090,"Seehausen (Altmark), Hansestadt",15,2024,974.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090535,15090,"Stendal, Hansestadt",15,2024,894.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090546,15090,"Tangerhütte, Stadt",15,2024,908.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090550,15090,"Tangermünde, Stadt",15,2024,1040.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090610,15090,"Werben (Elbe), Hansestadt",15,2024,673,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090631,15090,Wust-Fischbeck,15,2024,949.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15090635,15090,Zehrental,15,2024,591.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15091010,15091,"Annaburg, Stadt",15,2024,767.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+15091020,15091,"Bad Schmiedeberg, Stadt",15,2024,736.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+15091060,15091,"Coswig (Anhalt), Stadt",15,2024,1146.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15091110,15091,"Gräfenhainichen, Stadt",15,2024,912.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+15091145,15091,"Jessen (Elster), Stadt",15,2024,1243.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15091160,15091,"Kemberg, Stadt",15,2024,813.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+15091241,15091,"Oranienbaum-Wörlitz, Stadt",15,2024,932.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15091375,15091,"Wittenberg, Lutherstadt",15,2024,1197.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+15091391,15091,"Zahna-Elster, Stadt",15,2024,1347.6,published_numeric,DE_ATLAS_HA26_GEM_2024

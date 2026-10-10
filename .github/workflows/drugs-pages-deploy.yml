@@ -103,6 +103,7 @@ jobs:
           python topics/finance/tests/validate_finance_history.py
           python topics/finance/tests/validate_finance_integrated.py
           python topics/finance/tests/validate_finance_regional.py
+          python topics/finance/data/build_finance_municipal.py --verify
           node topics/railway/tests/unit_core.cjs
           python scripts/validate_site_assets.py
           node --check topics/railway/js/station-zh.js

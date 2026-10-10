@@ -1,0 +1,426 @@
+ags8,county_ags5,name_de,state_code,year,tax_capacity_eur_per_capita,value_status,source_id
+06411000,06411,"Darmstadt, Wissenschaftsstadt",06,2024,1922.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06412000,06412,"Frankfurt am Main, Stadt",06,2024,4684.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06413000,06413,"Offenbach am Main, Stadt",06,2024,1355.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06414000,06414,"Wiesbaden, Landeshauptstadt",06,2024,2451.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431001,06431,Abtsteinach,06,2024,1759.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431002,06431,"Bensheim, Stadt",06,2024,1974.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431003,06431,Biblis,06,2024,1422,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431004,06431,Birkenau,06,2024,1246.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431005,06431,"Bürstadt, Stadt",06,2024,1338.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431006,06431,Einhausen,06,2024,1352.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431007,06431,Fürth,06,2024,1334.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431008,06431,Gorxheimertal,06,2024,1001.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431009,06431,Grasellenbach,06,2024,1077.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431010,06431,Groß-Rohrheim,06,2024,1951.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431011,06431,"Heppenheim (Bergstraße), Kreisstadt",06,2024,2192.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431012,06431,"Hirschhorn (Neckar), Stadt",06,2024,1783.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431013,06431,"Lampertheim, Stadt",06,2024,1424.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431014,06431,Lautertal (Odenwald),06,2024,1193.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431015,06431,"Lindenfels, Stadt",06,2024,944.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431016,06431,"Lorsch, Karolingerstadt",06,2024,1560.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431017,06431,Mörlenbach,06,2024,1167.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431018,06431,"Neckarsteinach, Stadt",06,2024,1290.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431019,06431,Rimbach,06,2024,1344.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431020,06431,"Viernheim, Stadt",06,2024,1547.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431021,06431,Wald-Michelbach,06,2024,1145.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431022,06431,"Zwingenberg, Stadt",06,2024,1524.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06431200,06431,"Michelbuch, gemfr. Gebiet",06,2024,,published_missing_sentinel,DE_ATLAS_HA26_GEM_2024
+06432001,06432,Alsbach-Hähnlein,06,2024,1933.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432002,06432,"Babenhausen, Stadt",06,2024,1626.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432003,06432,Bickenbach,06,2024,2088.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432004,06432,"Dieburg, Stadt",06,2024,2419.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432005,06432,Eppertshausen,06,2024,1666.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432006,06432,Erzhausen,06,2024,1328.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432007,06432,Fischbachtal,06,2024,1151.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432008,06432,"Griesheim, Stadt",06,2024,1622.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432009,06432,"Groß-Bieberau, Stadt",06,2024,1329.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432010,06432,"Groß-Umstadt, Stadt",06,2024,1618.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432011,06432,Groß-Zimmern,06,2024,1214.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432012,06432,Messel,06,2024,1339.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432013,06432,Modautal,06,2024,1547.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432014,06432,Mühltal,06,2024,1759.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432015,06432,Münster (Hessen),06,2024,1263.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432016,06432,"Ober-Ramstadt, Stadt",06,2024,1241.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432017,06432,Otzberg,06,2024,1227.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432018,06432,"Pfungstadt, Stadt",06,2024,1402.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432019,06432,"Reinheim, Stadt",06,2024,1369.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432020,06432,Roßdorf,06,2024,1844.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432021,06432,Schaafheim,06,2024,1274.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432022,06432,Seeheim-Jugenheim,06,2024,1393.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06432023,06432,"Weiterstadt, Stadt",06,2024,1962,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433001,06433,Biebesheim am Rhein,06,2024,2091.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433002,06433,Bischofsheim,06,2024,1426.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433003,06433,Büttelborn,06,2024,1629.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433004,06433,"Gernsheim, Schöfferstadt",06,2024,2844.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433005,06433,"Ginsheim-Gustavsburg, Stadt",06,2024,1364.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433006,06433,"Groß-Gerau, Stadt",06,2024,1818.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433007,06433,"Kelsterbach, Stadt",06,2024,2075.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433008,06433,"Mörfelden-Walldorf, Stadt",06,2024,1851.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433009,06433,Nauheim,06,2024,1465.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433010,06433,"Raunheim, Stadt",06,2024,2261.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433011,06433,"Riedstadt, Büchnerstadt",06,2024,1220,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433012,06433,"Rüsselsheim am Main, Stadt",06,2024,1669.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433013,06433,Stockstadt am Rhein,06,2024,1421,published_numeric,DE_ATLAS_HA26_GEM_2024
+06433014,06433,Trebur,06,2024,1456.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06434001,06434,"Bad Homburg v. d. Höhe, Stadt",06,2024,3688.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06434002,06434,"Friedrichsdorf, Philipp-Reis-Stadt",06,2024,2122.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06434003,06434,Glashütten,06,2024,1767.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06434004,06434,Grävenwiesbach,06,2024,1177.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06434005,06434,"Königstein im Taunus, Stadt",06,2024,2344.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06434006,06434,"Kronberg im Taunus, Stadt",06,2024,3472.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06434007,06434,"Neu-Anspach, Stadt",06,2024,1850.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06434008,06434,"Oberursel (Taunus), Stadt",06,2024,2527.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06434009,06434,Schmitten im Taunus,06,2024,1528.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06434010,06434,"Steinbach (Taunus), Stadt",06,2024,1265.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06434011,06434,"Usingen, Stadt",06,2024,1625.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06434012,06434,Wehrheim,06,2024,1627.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06434013,06434,Weilrod,06,2024,1288.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435001,06435,"Bad Orb, Stadt",06,2024,1772.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435002,06435,"Bad Soden-Salmünster, Stadt",06,2024,1263,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435003,06435,Biebergemünd,06,2024,5292.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435004,06435,Birstein,06,2024,1519.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435005,06435,Brachttal,06,2024,1214.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435006,06435,"Bruchköbel, Stadt",06,2024,1431.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435007,06435,"Erlensee, Stadt",06,2024,1389,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435008,06435,Flörsbachtal,06,2024,1463.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435009,06435,Freigericht,06,2024,1307.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435010,06435,"Gelnhausen, Barbarossastadt, Kreisstadt",06,2024,1934.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435011,06435,Großkrotzenburg,06,2024,2110.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435012,06435,Gründau,06,2024,1847.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435013,06435,Hammersbach,06,2024,1315.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435014,06435,"Hanau, Brüder-Grimm-Stadt",06,2024,1856.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435015,06435,Hasselroth,06,2024,1375.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435016,06435,Jossgrund,06,2024,1879.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435017,06435,"Langenselbold, Stadt",06,2024,1890.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435018,06435,Linsengericht,06,2024,1680.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435019,06435,"Maintal, Stadt",06,2024,1573.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435020,06435,Neuberg,06,2024,1267.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435021,06435,"Nidderau, Stadt",06,2024,1823.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435022,06435,Niederdorfelden,06,2024,1712.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435023,06435,Rodenbach,06,2024,1324.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435024,06435,Ronneburg,06,2024,1228.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435025,06435,"Schlüchtern, Stadt",06,2024,2086.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435026,06435,Schöneck,06,2024,1484.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435027,06435,Sinntal,06,2024,1145.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435028,06435,"Steinau an der Straße, Brüder-Grimm-Stadt",06,2024,1242.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435029,06435,"Wächtersbach, Stadt",06,2024,1454.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06435200,06435,"Gutsbezirk Spessart, gemfr. Gebiet",06,2024,,published_missing_sentinel,DE_ATLAS_HA26_GEM_2024
+06436001,06436,"Bad Soden am Taunus, Stadt",06,2024,1776.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06436002,06436,"Eppstein, Stadt",06,2024,1519.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06436003,06436,"Eschborn, Stadt",06,2024,14637.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06436004,06436,"Flörsheim am Main, Stadt",06,2024,1675.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06436005,06436,"Hattersheim am Main, Stadt",06,2024,1874.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06436006,06436,"Hochheim am Main, Stadt",06,2024,1973.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06436007,06436,"Hofheim am Taunus, Kreisstadt",06,2024,2201.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06436008,06436,"Kelkheim (Taunus), Stadt",06,2024,1720.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06436009,06436,Kriftel,06,2024,1994.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06436010,06436,Liederbach am Taunus,06,2024,1810.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06436011,06436,"Schwalbach am Taunus, Stadt",06,2024,3447.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06436012,06436,Sulzbach (Taunus),06,2024,4641.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06437001,06437,"Bad König, Stadt",06,2024,1113.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06437003,06437,Brensbach,06,2024,1185,published_numeric,DE_ATLAS_HA26_GEM_2024
+06437004,06437,"Breuberg, Stadt",06,2024,1707.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06437005,06437,Brombachtal,06,2024,1013.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06437006,06437,"Erbach, Kreisstadt",06,2024,1364.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06437007,06437,Fränkisch-Crumbach,06,2024,1271.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06437009,06437,Höchst i. Odw.,06,2024,1150.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06437010,06437,Lützelbach,06,2024,1057.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06437011,06437,"Michelstadt, Stadt",06,2024,1633.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06437012,06437,Mossautal,06,2024,1135.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06437013,06437,Reichelsheim (Odenwald),06,2024,1235.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06437016,06437,"Oberzent, Stadt",06,2024,1201.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06438001,06438,"Dietzenbach, Kreisstadt",06,2024,1501.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06438002,06438,"Dreieich, Stadt",06,2024,2579.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06438003,06438,Egelsbach,06,2024,1743,published_numeric,DE_ATLAS_HA26_GEM_2024
+06438004,06438,Hainburg,06,2024,1241,published_numeric,DE_ATLAS_HA26_GEM_2024
+06438005,06438,"Heusenstamm, Stadt",06,2024,1788.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06438006,06438,"Langen (Hessen), Stadt",06,2024,1822.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06438007,06438,Mainhausen,06,2024,2002.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06438008,06438,"Mühlheim am Main, Stadt",06,2024,1363.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06438009,06438,"Neu-Isenburg, Hugenotten- und Waldenserstadt",06,2024,4208.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06438010,06438,"Obertshausen, Stadt",06,2024,1669.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06438011,06438,"Rodgau, Stadt",06,2024,1679.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06438012,06438,"Rödermark, Stadt",06,2024,1570,published_numeric,DE_ATLAS_HA26_GEM_2024
+06438013,06438,"Seligenstadt, Einhardstadt",06,2024,1842.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439001,06439,Aarbergen,06,2024,996.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439002,06439,"Bad Schwalbach, Kreisstadt",06,2024,1053.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439003,06439,"Eltville am Rhein, Stadt",06,2024,1969.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439004,06439,"Geisenheim, Hochschulstadt",06,2024,2026.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439005,06439,Heidenrod,06,2024,1595.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439006,06439,Hohenstein,06,2024,1285.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439007,06439,Hünstetten,06,2024,1421,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439008,06439,"Idstein, Hochschulstadt",06,2024,1676,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439009,06439,Kiedrich,06,2024,1672.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439010,06439,"Lorch, Stadt",06,2024,1026.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439011,06439,Niedernhausen,06,2024,1404.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439012,06439,"Oestrich-Winkel, Stadt",06,2024,1240.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439013,06439,"Rüdesheim am Rhein, Stadt",06,2024,1293.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439014,06439,Schlangenbad,06,2024,1470.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439015,06439,"Taunusstein, Stadt",06,2024,1659.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439016,06439,Waldems,06,2024,1587.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06439017,06439,Walluf,06,2024,2604,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440001,06440,Altenstadt,06,2024,1433.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440002,06440,"Bad Nauheim, Stadt",06,2024,1581.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440003,06440,"Bad Vilbel, Stadt",06,2024,2538,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440004,06440,"Büdingen, Stadt",06,2024,1326.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440005,06440,"Butzbach, Friedrich-Ludwig-Weidig-Stadt",06,2024,1357.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440006,06440,Echzell,06,2024,1218.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440007,06440,"Florstadt, Stadt",06,2024,1259.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440008,06440,"Friedberg (Hessen), Kreisstadt",06,2024,1527.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440009,06440,"Gedern, Stadt",06,2024,1470.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440010,06440,Glauburg,06,2024,1292.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440011,06440,Hirzenhain,06,2024,1075,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440012,06440,"Karben, Stadt",06,2024,1691.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440013,06440,Kefenrod,06,2024,1160.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440014,06440,Limeshain,06,2024,1329.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440015,06440,"Münzenberg, Stadt",06,2024,1319.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440016,06440,"Nidda, Stadt",06,2024,1670.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440017,06440,"Niddatal, Stadt",06,2024,1167.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440018,06440,Ober-Mörlen,06,2024,1608.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440019,06440,"Ortenberg, Stadt",06,2024,1077.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440020,06440,Ranstadt,06,2024,1245.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440021,06440,"Reichelsheim (Wetterau), Stadt",06,2024,1240.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440022,06440,Rockenberg,06,2024,1480.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440023,06440,"Rosbach v. d. Höhe, Stadt",06,2024,2009,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440024,06440,Wölfersheim,06,2024,1612.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06440025,06440,Wöllstadt,06,2024,1187.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531001,06531,"Allendorf (Lumda), Stadt",06,2024,1171.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531002,06531,Biebertal,06,2024,1202.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531003,06531,Buseck,06,2024,1335.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531004,06531,Fernwald,06,2024,1865.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531005,06531,"Gießen, Universitätsstadt",06,2024,1519.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531006,06531,"Grünberg, Stadt",06,2024,1188.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531007,06531,Heuchelheim a. d. Lahn,06,2024,1880.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531008,06531,"Hungen, Stadt",06,2024,1272.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531009,06531,Langgöns,06,2024,1725.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531010,06531,"Laubach, Stadt",06,2024,1086.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531011,06531,"Lich, Stadt",06,2024,1471.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531012,06531,"Linden, Stadt",06,2024,1408.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531013,06531,"Lollar, Stadt",06,2024,1161,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531014,06531,"Pohlheim, Stadt",06,2024,1235.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531015,06531,Rabenau,06,2024,1072.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531016,06531,Reiskirchen,06,2024,1405.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531017,06531,"Staufenberg, Stadt",06,2024,1229.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06531018,06531,Wettenberg,06,2024,1905.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532001,06532,"Aßlar, Stadt",06,2024,1705.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532002,06532,Bischoffen,06,2024,1543.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532003,06532,"Braunfels, Stadt",06,2024,1053.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532004,06532,Breitscheid,06,2024,1231.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532005,06532,Dietzhölztal,06,2024,4078.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532006,06532,"Dillenburg, Oranienstadt",06,2024,1663.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532007,06532,Driedorf,06,2024,1599.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532008,06532,Ehringshausen,06,2024,1127.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532009,06532,Eschenburg,06,2024,1457.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532010,06532,Greifenstein,06,2024,1347,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532011,06532,"Haiger, Stadt",06,2024,2626.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532012,06532,"Herborn, Stadt",06,2024,2438.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532013,06532,Hohenahr,06,2024,1124.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532014,06532,Hüttenberg,06,2024,1414.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532015,06532,Lahnau,06,2024,2039.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532016,06532,"Leun, Stadt",06,2024,961.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532017,06532,Mittenaar,06,2024,1449.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532018,06532,Schöffengrund,06,2024,1052.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532019,06532,Siegbach,06,2024,948.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532020,06532,Sinn,06,2024,1160.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532021,06532,"Solms, Stadt",06,2024,1271.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532022,06532,Waldsolms,06,2024,1147.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06532023,06532,"Wetzlar, Stadt",06,2024,2173.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533001,06533,Beselich,06,2024,1451.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533002,06533,Brechen,06,2024,1241.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533003,06533,"Bad Camberg, Stadt",06,2024,1730.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533004,06533,Dornburg,06,2024,1073.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533005,06533,Elbtal,06,2024,1221.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533006,06533,Elz,06,2024,1524.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533007,06533,"Hadamar, Stadt",06,2024,1157.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533008,06533,Hünfelden,06,2024,1179.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533009,06533,"Limburg a. d. Lahn, Kreisstadt",06,2024,2312.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533010,06533,Löhnberg,06,2024,1025.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533011,06533,"Mengerskirchen, Marktflecken",06,2024,1105.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533012,06533,"Merenberg, Marktflecken",06,2024,1388.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533013,06533,"Runkel, Stadt",06,2024,1167.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533014,06533,Selters (Taunus),06,2024,923.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533015,06533,"Villmar, Marktflecken",06,2024,1343.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533016,06533,Waldbrunn (Westerwald),06,2024,1016.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533017,06533,"Weilburg, Stadt",06,2024,1617.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533018,06533,"Weilmünster, Marktflecken",06,2024,1267.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06533019,06533,Weinbach,06,2024,1162.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534001,06534,"Amöneburg, Stadt",06,2024,1183.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534002,06534,Angelburg,06,2024,1435.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534003,06534,Bad Endbach,06,2024,1050.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534004,06534,"Biedenkopf, Stadt",06,2024,1641.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534005,06534,Breidenbach,06,2024,2019,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534006,06534,Cölbe,06,2024,1143.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534007,06534,Dautphetal,06,2024,1430.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534008,06534,Ebsdorfergrund,06,2024,1098,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534009,06534,Fronhausen,06,2024,2356.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534010,06534,"Gladenbach, Stadt",06,2024,1379.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534011,06534,"Kirchhain, Stadt",06,2024,1308.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534012,06534,Lahntal,06,2024,1332.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534013,06534,Lohra,06,2024,1026.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534014,06534,"Marburg, Universitätsstadt",06,2024,1406.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534015,06534,Münchhausen,06,2024,982.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534016,06534,"Neustadt (Hessen), Stadt",06,2024,947.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534017,06534,"Rauschenberg, Stadt",06,2024,1296.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534018,06534,"Stadtallendorf, Stadt",06,2024,2974.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534019,06534,Steffenberg,06,2024,1769.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534020,06534,Weimar (Lahn),06,2024,1294.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534021,06534,"Wetter (Hessen), Stadt",06,2024,1042.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06534022,06534,Wohratal,06,2024,974.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535001,06535,"Alsfeld, Stadt",06,2024,1643.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535002,06535,Antrifttal,06,2024,1108.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535003,06535,Feldatal,06,2024,1078.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535004,06535,Freiensteinau,06,2024,1654.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535005,06535,Gemünden (Felda),06,2024,1164.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535006,06535,"Grebenau, Stadt",06,2024,1289,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535007,06535,Grebenhain,06,2024,1179,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535008,06535,"Herbstein, Stadt",06,2024,2142.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535009,06535,"Homberg (Ohm), Stadt",06,2024,1479,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535010,06535,"Kirtorf, Stadt",06,2024,1351.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535011,06535,"Lauterbach (Hessen), Kreisstadt",06,2024,1728.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535012,06535,Lautertal (Vogelsberg),06,2024,1499.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535013,06535,Mücke,06,2024,1344,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535014,06535,"Romrod, Stadt",06,2024,1307.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535015,06535,"Schlitz, Stadt",06,2024,1081.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535016,06535,"Schotten, Stadt",06,2024,1101.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535017,06535,Schwalmtal,06,2024,1057.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535018,06535,"Ulrichstein, Stadt",06,2024,1499.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06535019,06535,Wartenberg,06,2024,1376.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06611000,06611,"Kassel, documenta-Stadt",06,2024,1893.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631001,06631,Bad Salzschlirf,06,2024,955.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631002,06631,"Burghaun, Marktgemeinde",06,2024,1588.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631003,06631,Dipperz,06,2024,1293.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631004,06631,Ebersburg,06,2024,1422.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631005,06631,Ehrenberg (Rhön),06,2024,1293,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631006,06631,Eichenzell,06,2024,1758.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631007,06631,"Eiterfeld, Marktgemeinde",06,2024,2200.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631008,06631,Flieden,06,2024,1118.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631009,06631,"Fulda, Stadt",06,2024,1971.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631010,06631,"Gersfeld (Rhön), Stadt",06,2024,1108,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631011,06631,Großenlüder,06,2024,1429.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631012,06631,"Hilders, Marktgemeinde",06,2024,1274,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631013,06631,Hofbieber,06,2024,1272.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631014,06631,Hosenfeld,06,2024,1483.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631015,06631,"Hünfeld, Konrad-Zuse-Stadt",06,2024,1417.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631016,06631,Kalbach,06,2024,1230.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631017,06631,Künzell,06,2024,1204.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631018,06631,Neuhof,06,2024,1505.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631019,06631,Nüsttal,06,2024,1155.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631020,06631,Petersberg,06,2024,1551.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631021,06631,Poppenhausen (Wasserkuppe),06,2024,2885.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631022,06631,"Rasdorf, Point-Alpha-Gemeinde",06,2024,2512.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06631023,06631,"Tann (Rhön), Stadt",06,2024,987.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632001,06632,Alheim,06,2024,1025.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632002,06632,"Bad Hersfeld, Kreisstadt",06,2024,1518.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632003,06632,"Bebra, Stadt",06,2024,1621.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632004,06632,Breitenbach a. Herzberg,06,2024,996.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632005,06632,Cornberg,06,2024,747,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632006,06632,Friedewald,06,2024,1394.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632007,06632,Hauneck,06,2024,1556.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632008,06632,Haunetal,06,2024,1186.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632009,06632,"Heringen (Werra), Stadt",06,2024,1459.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632010,06632,Hohenroda,06,2024,948.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632011,06632,Kirchheim,06,2024,1273.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632012,06632,Ludwigsau,06,2024,1023.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632013,06632,Nentershausen,06,2024,913.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632014,06632,Neuenstein,06,2024,1725.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632015,06632,"Niederaula, Marktgemeinde",06,2024,1214.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632016,06632,"Philippsthal (Werra), Marktgemeinde",06,2024,2226.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632017,06632,Ronshausen,06,2024,1039.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632018,06632,"Rotenburg a. d. Fulda, Stadt",06,2024,1094.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632019,06632,Schenklengsfeld,06,2024,1141.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06632020,06632,Wildeck,06,2024,1203.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633001,06633,Ahnatal,06,2024,1232.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633002,06633,"Bad Karlshafen, Stadt",06,2024,1048,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633003,06633,"Baunatal, Stadt",06,2024,1862.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633004,06633,Breuna,06,2024,2541.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633005,06633,Calden,06,2024,1412.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633006,06633,Bad Emstal,06,2024,1119.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633007,06633,Espenau,06,2024,1042,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633008,06633,Fuldabrück,06,2024,1765.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633009,06633,Fuldatal,06,2024,1116.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633010,06633,"Grebenstein, Stadt",06,2024,948.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633011,06633,Habichtswald,06,2024,1083.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633012,06633,Helsa,06,2024,1058.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633013,06633,"Hofgeismar, Stadt",06,2024,1326,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633014,06633,"Immenhausen, Stadt",06,2024,1076.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633015,06633,Kaufungen,06,2024,1462,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633016,06633,"Liebenau, Stadt",06,2024,1215.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633017,06633,Lohfelden,06,2024,1511.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633018,06633,"Naumburg, Stadt",06,2024,1120.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633019,06633,Nieste,06,2024,1109.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633020,06633,Niestetal,06,2024,1566.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633022,06633,Reinhardshagen,06,2024,985.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633023,06633,Schauenburg,06,2024,1202.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633024,06633,Söhrewald,06,2024,1173.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633025,06633,"Trendelburg, Stadt",06,2024,1177.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633026,06633,"Vellmar, Stadt",06,2024,1267.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633028,06633,"Wolfhagen, Hans-Staden-Stadt",06,2024,1488.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633029,06633,"Zierenberg, Stadt",06,2024,1214.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633030,06633,Wesertal,06,2024,987.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06633200,06633,"Gutsbezirk Reinhardswald, gemfr. Gebiet",06,2024,,published_missing_sentinel,DE_ATLAS_HA26_GEM_2024
+06634001,06634,"Borken (Hessen), Stadt",06,2024,1031.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634002,06634,Edermünde,06,2024,1241.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634003,06634,"Felsberg, Stadt",06,2024,1111.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634004,06634,"Frielendorf, Marktflecken",06,2024,1018.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634005,06634,"Fritzlar, Dom- und Kaiserstadt",06,2024,1427.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634006,06634,Gilserberg,06,2024,1179.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634007,06634,"Gudensberg, Stadt",06,2024,1080.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634008,06634,Guxhagen,06,2024,2708.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634009,06634,"Homberg (Efze), Reformationsstadt, Kreisstadt",06,2024,1246.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634010,06634,Jesberg,06,2024,998.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634011,06634,Knüllwald,06,2024,1459.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634012,06634,Körle,06,2024,1238.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634013,06634,Malsfeld,06,2024,1622.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634014,06634,"Melsungen, Stadt",06,2024,2523.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634015,06634,Morschen,06,2024,988,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634016,06634,Neuental,06,2024,1.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634017,06634,"Neukirchen, Stadt",06,2024,4.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634018,06634,"Niedenstein, Stadt",06,2024,4.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634019,06634,Oberaula,06,2024,2.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634020,06634,Ottrau,06,2024,1.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634021,06634,Schrecksbach,06,2024,2.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634022,06634,"Schwalmstadt, Konfirmationsstadt",06,2024,15,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634023,06634,"Schwarzenborn, Stadt",06,2024,1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634024,06634,"Spangenberg, Liebenbachstadt",06,2024,3.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634025,06634,Wabern,06,2024,5.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634026,06634,Willingshausen,06,2024,3.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06634027,06634,Bad Zwesten,06,2024,2.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635001,06635,Allendorf (Eder),06,2024,44.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635002,06635,"Bad Arolsen, Stadt",06,2024,12.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635003,06635,"Bad Wildungen, Stadt",06,2024,12.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635004,06635,"Battenberg (Eder), Stadt",06,2024,7.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635006,06635,Burgwald,06,2024,4.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635007,06635,Diemelsee,06,2024,3.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635008,06635,"Diemelstadt, Stadt",06,2024,5.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635009,06635,"Edertal, Nationalparkgemeinde",06,2024,5.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635010,06635,"Frankenau, Nationalparkstadt",06,2024,1.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635011,06635,"Frankenberg (Eder), Philipp-Soldan-Stadt",06,2024,17.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635012,06635,"Gemünden (Wohra), Stadt",06,2024,2.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635013,06635,Haina (Kloster),06,2024,2.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635014,06635,"Hatzfeld (Eder), Stadt",06,2024,2.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635015,06635,"Korbach, Hansestadt, Kreisstadt",06,2024,25.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635016,06635,"Lichtenfels, Stadt",06,2024,2.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635017,06635,"Rosenthal, Stadt",06,2024,1.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635018,06635,Twistetal,06,2024,3.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635019,06635,"Vöhl, Nationalparkgemeinde",06,2024,3.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635020,06635,"Volkmarsen, Stadt",06,2024,5.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635021,06635,"Waldeck, Nationalparkstadt",06,2024,5.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06635022,06635,Willingen (Upland),06,2024,8.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636001,06636,"Bad Sooden-Allendorf, Stadt",06,2024,4.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636002,06636,Berkatal,06,2024,1.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636003,06636,"Eschwege, Kreisstadt",06,2024,15,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636004,06636,"Großalmerode, Stadt",06,2024,4.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636005,06636,Herleshausen,06,2024,2,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636006,06636,"Hessisch Lichtenau, Stadt",06,2024,9.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636007,06636,Meinhard,06,2024,2.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636008,06636,Meißner,06,2024,1.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636009,06636,Neu-Eichenberg,06,2024,1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636010,06636,Ringgau,06,2024,1.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636011,06636,"Sontra, Stadt",06,2024,5.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636012,06636,"Waldkappel, Stadt",06,2024,3.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636013,06636,"Wanfried, Stadt",06,2024,2.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636014,06636,Wehretal,06,2024,3.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636015,06636,Weißenborn,06,2024,0.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636016,06636,"Witzenhausen, Stadt",06,2024,15.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+06636200,06636,"Gutsbezirk Kaufunger Wald, gemfr. Gebiet",06,2024,,published_missing_sentinel,DE_ATLAS_HA26_GEM_2024
