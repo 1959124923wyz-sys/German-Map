@@ -5,8 +5,6 @@
 'use strict';
 const {shape,actualBounds}=window.Railway07Geometry;
 const STEP=.15,CELL=8,MAX_GAP=25,MAX_SNAP=1.15,GLOBAL='__PHYSICAL_NETWORK__';
-const nodeKey=(x,y)=>Math.round(x/STEP)+','+Math.round(y/STEP);
-const cellKey=(x,y)=>Math.floor(x/CELL)+','+Math.floor(y/CELL);
 const kmPerPixel=(y)=>{
  const n=Math.PI-2*Math.PI*y/131072;
  return (40075/131072)/Math.cosh(n);
@@ -168,7 +166,7 @@ class RouteGraph{
    const coords=[...start.point];
    for(let i=start.index;i<end.index;i+=2)coords.push(xy[i],xy[i+1]);
    coords.push(...end.point);
-   const path=al<=bl?shape(coords):shape(coords.reverse===undefined?coords:reverseCoords(coords));
+   const path=shape(al<=bl?coords:reverseCoords(coords));
    const km=length(path.xy);
    if(km<=maxKm){this.reasons.success++;return {parts:[path],km,crossRoute:actual===GLOBAL};}
    this.reasons.sameEdgeTooLong++;return null;
@@ -325,7 +323,6 @@ function mergeGroups(groups,graph,allObservations,config={}){
    const left=rows[i],candidates=[];
    for(let j=i+1;j<rows.length;j++){
     const right=rows[j],gap=right.span[0]-left.span[1];
-    if(left.route==='5900')debug.bamberg={gap,left:left.span,right:right.span,stage:'consider'};
     if(gap>cap)break;
     if(gap<.12)continue; // overlapping opposite-direction observations
     debug.withinGap++;
@@ -333,16 +330,15 @@ function mergeGroups(groups,graph,allObservations,config={}){
     // A known grade in the intervening km range is not an unknown gap.
     if(allObservations.some(o=>String(o.leg.route)===left.route&&o.grade!==left.g.grade&&
        o.leg.km_range?.[0]<right.span[0]-.05&&o.leg.km_range?.[1]>left.span[1]+.05)){
-       if(left.route==='5900')debug.bamberg.stage='grade-conflict';
        continue;
     }
     debug.unblocked++;
     const anchors=bestAnchors(left.g,right.g);
-    if(!anchors){if(left.route==='5900')debug.bamberg.stage='no-anchors';continue;}
+    if(!anchors)continue;
     const straight=Math.hypot(anchors[0][0]-anchors[1][0],anchors[0][1]-anchors[1][1])*
       kmPerPixel((anchors[0][1]+anchors[1][1])/2);
     if(straight>cap*1.1+1||Math.abs(gap-straight)>Math.max(8,gap*.9)){
-     if(left.route==='5900')Object.assign(debug.bamberg,{stage:'far-anchors',straight});continue;
+     continue;
     }
     debug.near++;
     if(checks++>=capItems)break;
@@ -361,7 +357,7 @@ function mergeGroups(groups,graph,allObservations,config={}){
         debug.visualOnly++;
        }
     }
-    if(left.route==='5900')Object.assign(debug.bamberg,{stage:bridge?(bridge.visualOnly?'visual-only':'path-found'):'no-official-path',straight,bridgeKm:bridge?.km});
+
     if(bridge&&bridge.km<=Math.max(3,gap*2.2+2))
       candidates.push({right,bridge});
    }
