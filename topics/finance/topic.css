@@ -211,3 +211,11 @@ footer{display:none}
 .finance-state-jump:focus-visible{outline:2px solid #74b9e7;outline-offset:2px}
 .finance-state-actions .finance-reset{flex:0 0 auto}
 @media(max-width:560px){.finance-state-actions{gap:5px}.finance-state-jump{min-width:0;max-width:none;padding:7px 4px;font-size:10px}.finance-state-actions .finance-reset{padding:7px 6px}}
+
+/* Finance R24: historical county/city facts live only in an opt-in detail drawer.
+   Keep default national map, balance legend and state navigation unchanged. */
+.finance-regional-debt{margin-top:3px;margin-bottom:12px}
+.finance-history-item{display:flex;flex-direction:column;gap:4px;border-bottom:1px solid #314654;padding:9px 0}
+.finance-history-item small{font-size:10px;line-height:1.4;color:#9eb7c6}
+.finance-history-item strong{font-size:17px;color:#f0f6fa;font-variant-numeric:tabular-nums}
+.finance-regional-debt .finance-loan-history p{margin-top:10px}
