@@ -1,0 +1,3234 @@
+{
+  "schema_version": "1.0",
+  "snapshot": "2026-10-10",
+  "base_geometry_source": "German-Map/data/germany-counties.geojson (402 historic county features, original IDs preserved)",
+  "num_geometry_features": 402,
+  "canonical_ags_distinct": 400,
+  "canonical_remaps": {
+    "16056": "16063",
+    "03156": "03152"
+  },
+  "remap_sources": {
+    "16056": "https://www.wartburgkreis.de/landratsamt/medien/medieninformationen/stadt-eisenach-und-wartburgkreis-gehen-gemeinsam-empfang-des-landrates-anlaesslich-der-fusion-auf-der-wartburg",
+    "03156": "https://www.statistik.niedersachsen.de/presse/zahl-der-kreise-und-gemeinden-in-niedersachsen-geht-zurueck-148228.html"
+  },
+  "limitations": "Historical GADM geometry is NOT current BKG geometry. Mapping two retired AGS codes prevents statistical duplication but does NOT update shapes. Compare against BKG VG250 for precise polygons before official release.",
+  "features": [
+    {
+      "legacy_ags": "08425",
+      "canonical_ags": "08425",
+      "legacy_name": "Alb-Donau-Kreis",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08115",
+      "canonical_ags": "08115",
+      "legacy_name": "Böblingen",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08211",
+      "canonical_ags": "08211",
+      "legacy_name": "Baden-Baden",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Stadtkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08426",
+      "canonical_ags": "08426",
+      "legacy_name": "Biberach",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08435",
+      "canonical_ags": "08435",
+      "legacy_name": "Bodenseekreis",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08315",
+      "canonical_ags": "08315",
+      "legacy_name": "Breisgau-Hochschwarzwald",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08235",
+      "canonical_ags": "08235",
+      "legacy_name": "Calw",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08316",
+      "canonical_ags": "08316",
+      "legacy_name": "Emmendingen",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08236",
+      "canonical_ags": "08236",
+      "legacy_name": "Enzkreis",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08116",
+      "canonical_ags": "08116",
+      "legacy_name": "Esslingen",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08311",
+      "canonical_ags": "08311",
+      "legacy_name": "Freiburg im Breisgau",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Stadtkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08237",
+      "canonical_ags": "08237",
+      "legacy_name": "Freudenstadt",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08117",
+      "canonical_ags": "08117",
+      "legacy_name": "Göppingen",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08221",
+      "canonical_ags": "08221",
+      "legacy_name": "Heidelberg",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Stadtkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08135",
+      "canonical_ags": "08135",
+      "legacy_name": "Heidenheim",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08125",
+      "canonical_ags": "08125",
+      "legacy_name": "Heilbronn",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08121",
+      "canonical_ags": "08121",
+      "legacy_name": "Heilbronn",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Stadtkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08126",
+      "canonical_ags": "08126",
+      "legacy_name": "Hohenlohekreis",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08215",
+      "canonical_ags": "08215",
+      "legacy_name": "Karlsruhe",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08212",
+      "canonical_ags": "08212",
+      "legacy_name": "Karlsruhe",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Stadtkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08335",
+      "canonical_ags": "08335",
+      "legacy_name": "Konstanz",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08336",
+      "canonical_ags": "08336",
+      "legacy_name": "Lörrach",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08118",
+      "canonical_ags": "08118",
+      "legacy_name": "Ludwigsburg",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08128",
+      "canonical_ags": "08128",
+      "legacy_name": "Main-Tauber-Kreis",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08222",
+      "canonical_ags": "08222",
+      "legacy_name": "Mannheim",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Stadtkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08225",
+      "canonical_ags": "08225",
+      "legacy_name": "Neckar-Odenwald-Kreis",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08317",
+      "canonical_ags": "08317",
+      "legacy_name": "Ortenaukreis",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08136",
+      "canonical_ags": "08136",
+      "legacy_name": "Ostalbkreis",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08231",
+      "canonical_ags": "08231",
+      "legacy_name": "Pforzheim",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Stadtkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08216",
+      "canonical_ags": "08216",
+      "legacy_name": "Rastatt",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08436",
+      "canonical_ags": "08436",
+      "legacy_name": "Ravensburg",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08119",
+      "canonical_ags": "08119",
+      "legacy_name": "Rems-Murr-Kreis",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08415",
+      "canonical_ags": "08415",
+      "legacy_name": "Reutlingen",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08226",
+      "canonical_ags": "08226",
+      "legacy_name": "Rhein-Neckar-Kreis",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08325",
+      "canonical_ags": "08325",
+      "legacy_name": "Rottweil",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08127",
+      "canonical_ags": "08127",
+      "legacy_name": "Schwäbisch Hall",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08326",
+      "canonical_ags": "08326",
+      "legacy_name": "Schwarzwald-Baar-Kreis",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08437",
+      "canonical_ags": "08437",
+      "legacy_name": "Sigmaringen",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08111",
+      "canonical_ags": "08111",
+      "legacy_name": "Stuttgart",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Stadtkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08416",
+      "canonical_ags": "08416",
+      "legacy_name": "Tübingen",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08327",
+      "canonical_ags": "08327",
+      "legacy_name": "Tuttlingen",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08421",
+      "canonical_ags": "08421",
+      "legacy_name": "Ulm",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Stadtkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08337",
+      "canonical_ags": "08337",
+      "legacy_name": "Waldshut",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "08417",
+      "canonical_ags": "08417",
+      "legacy_name": "Zollernalbkreis",
+      "legacy_state": "Baden-Württemberg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09771",
+      "canonical_ags": "09771",
+      "legacy_name": "Aichach-Friedberg",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09171",
+      "canonical_ags": "09171",
+      "legacy_name": "Altötting",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09371",
+      "canonical_ags": "09371",
+      "legacy_name": "Amberg-Sulzbach",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09361",
+      "canonical_ags": "09361",
+      "legacy_name": "Amberg",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09561",
+      "canonical_ags": "09561",
+      "legacy_name": "Ansbach",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09571",
+      "canonical_ags": "09571",
+      "legacy_name": "Ansbach",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09661",
+      "canonical_ags": "09661",
+      "legacy_name": "Aschaffenburg",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09671",
+      "canonical_ags": "09671",
+      "legacy_name": "Aschaffenburg",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09761",
+      "canonical_ags": "09761",
+      "legacy_name": "Augsburg",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09772",
+      "canonical_ags": "09772",
+      "legacy_name": "Augsburg",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09672",
+      "canonical_ags": "09672",
+      "legacy_name": "Bad Kissingen",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09173",
+      "canonical_ags": "09173",
+      "legacy_name": "Bad Tölz-Wolfratshausen",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09461",
+      "canonical_ags": "09461",
+      "legacy_name": "Bamberg",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09471",
+      "canonical_ags": "09471",
+      "legacy_name": "Bamberg",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09462",
+      "canonical_ags": "09462",
+      "legacy_name": "Bayreuth",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09472",
+      "canonical_ags": "09472",
+      "legacy_name": "Bayreuth",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09172",
+      "canonical_ags": "09172",
+      "legacy_name": "Berchtesgadener Land",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09372",
+      "canonical_ags": "09372",
+      "legacy_name": "Cham",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09463",
+      "canonical_ags": "09463",
+      "legacy_name": "Coburg",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09473",
+      "canonical_ags": "09473",
+      "legacy_name": "Coburg",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09174",
+      "canonical_ags": "09174",
+      "legacy_name": "Dachau",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09271",
+      "canonical_ags": "09271",
+      "legacy_name": "Deggendorf",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09773",
+      "canonical_ags": "09773",
+      "legacy_name": "Dillingen an der Donau",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09279",
+      "canonical_ags": "09279",
+      "legacy_name": "Dingolfing-Landau",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09779",
+      "canonical_ags": "09779",
+      "legacy_name": "Donau-Ries",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09175",
+      "canonical_ags": "09175",
+      "legacy_name": "Ebersberg",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09176",
+      "canonical_ags": "09176",
+      "legacy_name": "Eichstätt",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09177",
+      "canonical_ags": "09177",
+      "legacy_name": "Erding",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09572",
+      "canonical_ags": "09572",
+      "legacy_name": "Erlangen-Höchstadt",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09562",
+      "canonical_ags": "09562",
+      "legacy_name": "Erlangen",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09179",
+      "canonical_ags": "09179",
+      "legacy_name": "Fürstenfeldbruck",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09563",
+      "canonical_ags": "09563",
+      "legacy_name": "Fürth",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09573",
+      "canonical_ags": "09573",
+      "legacy_name": "Fürth",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09474",
+      "canonical_ags": "09474",
+      "legacy_name": "Forchheim",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09178",
+      "canonical_ags": "09178",
+      "legacy_name": "Freising",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09272",
+      "canonical_ags": "09272",
+      "legacy_name": "Freyung-Grafenau",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09774",
+      "canonical_ags": "09774",
+      "legacy_name": "Günzburg",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09180",
+      "canonical_ags": "09180",
+      "legacy_name": "Garmisch-Partenkirchen",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09674",
+      "canonical_ags": "09674",
+      "legacy_name": "Haßberge",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09464",
+      "canonical_ags": "09464",
+      "legacy_name": "Hof",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09475",
+      "canonical_ags": "09475",
+      "legacy_name": "Hof",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09161",
+      "canonical_ags": "09161",
+      "legacy_name": "Ingolstadt",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09762",
+      "canonical_ags": "09762",
+      "legacy_name": "Kaufbeuren",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09273",
+      "canonical_ags": "09273",
+      "legacy_name": "Kelheim",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09763",
+      "canonical_ags": "09763",
+      "legacy_name": "Kempten (Allgäu)",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09675",
+      "canonical_ags": "09675",
+      "legacy_name": "Kitzingen",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09476",
+      "canonical_ags": "09476",
+      "legacy_name": "Kronach",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09477",
+      "canonical_ags": "09477",
+      "legacy_name": "Kulmbach",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09181",
+      "canonical_ags": "09181",
+      "legacy_name": "Landsberg am Lech",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09261",
+      "canonical_ags": "09261",
+      "legacy_name": "Landshut",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09274",
+      "canonical_ags": "09274",
+      "legacy_name": "Landshut",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09478",
+      "canonical_ags": "09478",
+      "legacy_name": "Lichtenfels",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09776",
+      "canonical_ags": "09776",
+      "legacy_name": "Lindau (Bodensee)",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09183",
+      "canonical_ags": "09183",
+      "legacy_name": "Mühldorf am Inn",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09162",
+      "canonical_ags": "09162",
+      "legacy_name": "München",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09184",
+      "canonical_ags": "09184",
+      "legacy_name": "München",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09677",
+      "canonical_ags": "09677",
+      "legacy_name": "Main-Spessart",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09764",
+      "canonical_ags": "09764",
+      "legacy_name": "Memmingen",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09182",
+      "canonical_ags": "09182",
+      "legacy_name": "Miesbach",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09676",
+      "canonical_ags": "09676",
+      "legacy_name": "Miltenberg",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09574",
+      "canonical_ags": "09574",
+      "legacy_name": "Nürnberger Land",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09564",
+      "canonical_ags": "09564",
+      "legacy_name": "Nürnberg",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09775",
+      "canonical_ags": "09775",
+      "legacy_name": "Neu-Ulm",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09185",
+      "canonical_ags": "09185",
+      "legacy_name": "Neuburg-Schrobenhausen",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09373",
+      "canonical_ags": "09373",
+      "legacy_name": "Neumarkt in der Oberpfalz",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09575",
+      "canonical_ags": "09575",
+      "legacy_name": "Neustadt an der Aisch-Bad Windsheim",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09374",
+      "canonical_ags": "09374",
+      "legacy_name": "Neustadt an der Waldnaab",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09780",
+      "canonical_ags": "09780",
+      "legacy_name": "Oberallgäu",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09777",
+      "canonical_ags": "09777",
+      "legacy_name": "Ostallgäu",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09262",
+      "canonical_ags": "09262",
+      "legacy_name": "Passau",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09275",
+      "canonical_ags": "09275",
+      "legacy_name": "Passau",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09186",
+      "canonical_ags": "09186",
+      "legacy_name": "Pfaffenhofen an der Ilm",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09276",
+      "canonical_ags": "09276",
+      "legacy_name": "Regen",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09362",
+      "canonical_ags": "09362",
+      "legacy_name": "Regensburg",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09375",
+      "canonical_ags": "09375",
+      "legacy_name": "Regensburg",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09673",
+      "canonical_ags": "09673",
+      "legacy_name": "Rhön-Grabfeld",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09163",
+      "canonical_ags": "09163",
+      "legacy_name": "Rosenheim",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09187",
+      "canonical_ags": "09187",
+      "legacy_name": "Rosenheim",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09576",
+      "canonical_ags": "09576",
+      "legacy_name": "Roth",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09277",
+      "canonical_ags": "09277",
+      "legacy_name": "Rottal-Inn",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09565",
+      "canonical_ags": "09565",
+      "legacy_name": "Schwabach",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09376",
+      "canonical_ags": "09376",
+      "legacy_name": "Schwandorf",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09662",
+      "canonical_ags": "09662",
+      "legacy_name": "Schweinfurt",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09678",
+      "canonical_ags": "09678",
+      "legacy_name": "Schweinfurt",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09188",
+      "canonical_ags": "09188",
+      "legacy_name": "Starnberg",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09278",
+      "canonical_ags": "09278",
+      "legacy_name": "Straubing-Bogen",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09263",
+      "canonical_ags": "09263",
+      "legacy_name": "Straubing",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09377",
+      "canonical_ags": "09377",
+      "legacy_name": "Tirschenreuth",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09189",
+      "canonical_ags": "09189",
+      "legacy_name": "Traunstein",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09778",
+      "canonical_ags": "09778",
+      "legacy_name": "Unterallgäu",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09663",
+      "canonical_ags": "09663",
+      "legacy_name": "Würzburg",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09679",
+      "canonical_ags": "09679",
+      "legacy_name": "Würzburg",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09577",
+      "canonical_ags": "09577",
+      "legacy_name": "Weißenburg-Gunzenhausen",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09363",
+      "canonical_ags": "09363",
+      "legacy_name": "Weiden in der Oberpfalz",
+      "legacy_state": "Bayern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09190",
+      "canonical_ags": "09190",
+      "legacy_name": "Weilheim-Schongau",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "09479",
+      "canonical_ags": "09479",
+      "legacy_name": "Wunsiedel im Fichtelgebirge",
+      "legacy_state": "Bayern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "11000",
+      "canonical_ags": "11000",
+      "legacy_name": "Berlin",
+      "legacy_state": "Berlin",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12060",
+      "canonical_ags": "12060",
+      "legacy_name": "Barnim",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12051",
+      "canonical_ags": "12051",
+      "legacy_name": "Brandenburg an der Havel",
+      "legacy_state": "Brandenburg",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12052",
+      "canonical_ags": "12052",
+      "legacy_name": "Cottbus",
+      "legacy_state": "Brandenburg",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12061",
+      "canonical_ags": "12061",
+      "legacy_name": "Dahme-Spreewald",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12062",
+      "canonical_ags": "12062",
+      "legacy_name": "Elbe-Elster",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12053",
+      "canonical_ags": "12053",
+      "legacy_name": "Frankfurt (Oder)",
+      "legacy_state": "Brandenburg",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12063",
+      "canonical_ags": "12063",
+      "legacy_name": "Havelland",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12064",
+      "canonical_ags": "12064",
+      "legacy_name": "Märkisch-Oderland",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12065",
+      "canonical_ags": "12065",
+      "legacy_name": "Oberhavel",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12066",
+      "canonical_ags": "12066",
+      "legacy_name": "Oberspreewald-Lausitz",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12067",
+      "canonical_ags": "12067",
+      "legacy_name": "Oder-Spree",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12068",
+      "canonical_ags": "12068",
+      "legacy_name": "Ostprignitz-Ruppin",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12069",
+      "canonical_ags": "12069",
+      "legacy_name": "Potsdam-Mittelmark",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12054",
+      "canonical_ags": "12054",
+      "legacy_name": "Potsdam",
+      "legacy_state": "Brandenburg",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12070",
+      "canonical_ags": "12070",
+      "legacy_name": "Prignitz",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12071",
+      "canonical_ags": "12071",
+      "legacy_name": "Spree-Neiße",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12072",
+      "canonical_ags": "12072",
+      "legacy_name": "Teltow-Fläming",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "12073",
+      "canonical_ags": "12073",
+      "legacy_name": "Uckermark",
+      "legacy_state": "Brandenburg",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "04011",
+      "canonical_ags": "04011",
+      "legacy_name": "Bremen",
+      "legacy_state": "Bremen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "04012",
+      "canonical_ags": "04012",
+      "legacy_name": "Bremerhaven",
+      "legacy_state": "Bremen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "02000",
+      "canonical_ags": "02000",
+      "legacy_name": "Hamburg",
+      "legacy_state": "Hamburg",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06431",
+      "canonical_ags": "06431",
+      "legacy_name": "Bergstraße",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06432",
+      "canonical_ags": "06432",
+      "legacy_name": "Darmstadt-Dieburg",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06411",
+      "canonical_ags": "06411",
+      "legacy_name": "Darmstadt",
+      "legacy_state": "Hessen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06412",
+      "canonical_ags": "06412",
+      "legacy_name": "Frankfurt am Main",
+      "legacy_state": "Hessen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06631",
+      "canonical_ags": "06631",
+      "legacy_name": "Fulda",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06531",
+      "canonical_ags": "06531",
+      "legacy_name": "Gießen",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06433",
+      "canonical_ags": "06433",
+      "legacy_name": "Groß-Gerau",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06632",
+      "canonical_ags": "06632",
+      "legacy_name": "Hersfeld-Rotenburg",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06434",
+      "canonical_ags": "06434",
+      "legacy_name": "Hochtaunuskreis",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06611",
+      "canonical_ags": "06611",
+      "legacy_name": "Kassel",
+      "legacy_state": "Hessen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06633",
+      "canonical_ags": "06633",
+      "legacy_name": "Kassel",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06532",
+      "canonical_ags": "06532",
+      "legacy_name": "Lahn-Dill-Kreis",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06533",
+      "canonical_ags": "06533",
+      "legacy_name": "Limburg-Weilburg",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06435",
+      "canonical_ags": "06435",
+      "legacy_name": "Main-Kinzig-Kreis",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06436",
+      "canonical_ags": "06436",
+      "legacy_name": "Main-Taunus-Kreis",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06534",
+      "canonical_ags": "06534",
+      "legacy_name": "Marburg-Biedenkopf",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06437",
+      "canonical_ags": "06437",
+      "legacy_name": "Odenwaldkreis",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06413",
+      "canonical_ags": "06413",
+      "legacy_name": "Offenbach am Main",
+      "legacy_state": "Hessen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06438",
+      "canonical_ags": "06438",
+      "legacy_name": "Offenbach",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06439",
+      "canonical_ags": "06439",
+      "legacy_name": "Rheingau-Taunus-Kreis",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06634",
+      "canonical_ags": "06634",
+      "legacy_name": "Schwalm-Eder-Kreis",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06535",
+      "canonical_ags": "06535",
+      "legacy_name": "Vogelsbergkreis",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06635",
+      "canonical_ags": "06635",
+      "legacy_name": "Waldeck-Frankenberg",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06636",
+      "canonical_ags": "06636",
+      "legacy_name": "Werra-Meißner-Kreis",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06440",
+      "canonical_ags": "06440",
+      "legacy_name": "Wetteraukreis",
+      "legacy_state": "Hessen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "06414",
+      "canonical_ags": "06414",
+      "legacy_name": "Wiesbaden",
+      "legacy_state": "Hessen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "13076",
+      "canonical_ags": "13076",
+      "legacy_name": "Ludwigslust-Parchim",
+      "legacy_state": "Mecklenburg-Vorpommern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "13071",
+      "canonical_ags": "13071",
+      "legacy_name": "Mecklenburgische Seenplatte",
+      "legacy_state": "Mecklenburg-Vorpommern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "13074",
+      "canonical_ags": "13074",
+      "legacy_name": "Nordwestmecklenburg",
+      "legacy_state": "Mecklenburg-Vorpommern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "13003",
+      "canonical_ags": "13003",
+      "legacy_name": "Rostock",
+      "legacy_state": "Mecklenburg-Vorpommern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "13072",
+      "canonical_ags": "13072",
+      "legacy_name": "Rostock",
+      "legacy_state": "Mecklenburg-Vorpommern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "13004",
+      "canonical_ags": "13004",
+      "legacy_name": "Schwerin",
+      "legacy_state": "Mecklenburg-Vorpommern",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "13075",
+      "canonical_ags": "13075",
+      "legacy_name": "Vorpommern-Greifswald",
+      "legacy_state": "Mecklenburg-Vorpommern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "13073",
+      "canonical_ags": "13073",
+      "legacy_name": "Vorpommern-Rügen",
+      "legacy_state": "Mecklenburg-Vorpommern",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03451",
+      "canonical_ags": "03451",
+      "legacy_name": "Ammerland",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03452",
+      "canonical_ags": "03452",
+      "legacy_name": "Aurich",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03101",
+      "canonical_ags": "03101",
+      "legacy_name": "Braunschweig",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03351",
+      "canonical_ags": "03351",
+      "legacy_name": "Celle",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03453",
+      "canonical_ags": "03453",
+      "legacy_name": "Cloppenburg",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03352",
+      "canonical_ags": "03352",
+      "legacy_name": "Cuxhaven",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03401",
+      "canonical_ags": "03401",
+      "legacy_name": "Delmenhorst",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03251",
+      "canonical_ags": "03251",
+      "legacy_name": "Diepholz",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03402",
+      "canonical_ags": "03402",
+      "legacy_name": "Emden",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03454",
+      "canonical_ags": "03454",
+      "legacy_name": "Emsland",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03455",
+      "canonical_ags": "03455",
+      "legacy_name": "Friesland",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03152",
+      "canonical_ags": "03152",
+      "legacy_name": "Göttingen",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03151",
+      "canonical_ags": "03151",
+      "legacy_name": "Gifhorn",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03153",
+      "canonical_ags": "03153",
+      "legacy_name": "Goslar",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03456",
+      "canonical_ags": "03456",
+      "legacy_name": "Grafschaft Bentheim",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03252",
+      "canonical_ags": "03252",
+      "legacy_name": "Hameln-Pyrmont",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03353",
+      "canonical_ags": "03353",
+      "legacy_name": "Harburg",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03358",
+      "canonical_ags": "03358",
+      "legacy_name": "Heidekreis",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03154",
+      "canonical_ags": "03154",
+      "legacy_name": "Helmstedt",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03254",
+      "canonical_ags": "03254",
+      "legacy_name": "Hildesheim",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03255",
+      "canonical_ags": "03255",
+      "legacy_name": "Holzminden",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03354",
+      "canonical_ags": "03354",
+      "legacy_name": "Lüchow-Dannenberg",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03355",
+      "canonical_ags": "03355",
+      "legacy_name": "Lüneburg",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03457",
+      "canonical_ags": "03457",
+      "legacy_name": "Leer",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03256",
+      "canonical_ags": "03256",
+      "legacy_name": "Nienburg (Weser)",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03155",
+      "canonical_ags": "03155",
+      "legacy_name": "Northeim",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03403",
+      "canonical_ags": "03403",
+      "legacy_name": "Oldenburg",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03458",
+      "canonical_ags": "03458",
+      "legacy_name": "Oldenburg",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03404",
+      "canonical_ags": "03404",
+      "legacy_name": "Osnabrück",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03459",
+      "canonical_ags": "03459",
+      "legacy_name": "Osnabrück",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03356",
+      "canonical_ags": "03356",
+      "legacy_name": "Osterholz",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03156",
+      "canonical_ags": "03152",
+      "legacy_name": "Osterode am Harz",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "historical_district_merged"
+    },
+    {
+      "legacy_ags": "03157",
+      "canonical_ags": "03157",
+      "legacy_name": "Peine",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03241",
+      "canonical_ags": "03241",
+      "legacy_name": "Region Hannover",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03357",
+      "canonical_ags": "03357",
+      "legacy_name": "Rotenburg (Wümme)",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03102",
+      "canonical_ags": "03102",
+      "legacy_name": "Salzgitter",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03257",
+      "canonical_ags": "03257",
+      "legacy_name": "Schaumburg",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03359",
+      "canonical_ags": "03359",
+      "legacy_name": "Stade",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03360",
+      "canonical_ags": "03360",
+      "legacy_name": "Uelzen",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03460",
+      "canonical_ags": "03460",
+      "legacy_name": "Vechta",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03361",
+      "canonical_ags": "03361",
+      "legacy_name": "Verden",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03461",
+      "canonical_ags": "03461",
+      "legacy_name": "Wesermarsch",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03405",
+      "canonical_ags": "03405",
+      "legacy_name": "Wilhelmshaven",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03462",
+      "canonical_ags": "03462",
+      "legacy_name": "Wittmund",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03158",
+      "canonical_ags": "03158",
+      "legacy_name": "Wolfenbüttel",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "03103",
+      "canonical_ags": "03103",
+      "legacy_name": "Wolfsburg",
+      "legacy_state": "Niedersachsen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05711",
+      "canonical_ags": "05711",
+      "legacy_name": "Bielefeld",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05911",
+      "canonical_ags": "05911",
+      "legacy_name": "Bochum",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05314",
+      "canonical_ags": "05314",
+      "legacy_name": "Bonn",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05554",
+      "canonical_ags": "05554",
+      "legacy_name": "Borken",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05512",
+      "canonical_ags": "05512",
+      "legacy_name": "Bottrop",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05558",
+      "canonical_ags": "05558",
+      "legacy_name": "Coesfeld",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05358",
+      "canonical_ags": "05358",
+      "legacy_name": "Düren",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05111",
+      "canonical_ags": "05111",
+      "legacy_name": "Düsseldorf",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05913",
+      "canonical_ags": "05913",
+      "legacy_name": "Dortmund",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05112",
+      "canonical_ags": "05112",
+      "legacy_name": "Duisburg",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05954",
+      "canonical_ags": "05954",
+      "legacy_name": "Ennepe-Ruhr-Kreis",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05113",
+      "canonical_ags": "05113",
+      "legacy_name": "Essen",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05366",
+      "canonical_ags": "05366",
+      "legacy_name": "Euskirchen",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05754",
+      "canonical_ags": "05754",
+      "legacy_name": "Gütersloh",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05513",
+      "canonical_ags": "05513",
+      "legacy_name": "Gelsenkirchen",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05762",
+      "canonical_ags": "05762",
+      "legacy_name": "Höxter",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05914",
+      "canonical_ags": "05914",
+      "legacy_name": "Hagen",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05915",
+      "canonical_ags": "05915",
+      "legacy_name": "Hamm",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05370",
+      "canonical_ags": "05370",
+      "legacy_name": "Heinsberg",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05758",
+      "canonical_ags": "05758",
+      "legacy_name": "Herford",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05916",
+      "canonical_ags": "05916",
+      "legacy_name": "Herne",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05958",
+      "canonical_ags": "05958",
+      "legacy_name": "Hochsauerlandkreis",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05315",
+      "canonical_ags": "05315",
+      "legacy_name": "Köln",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05154",
+      "canonical_ags": "05154",
+      "legacy_name": "Kleve",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05114",
+      "canonical_ags": "05114",
+      "legacy_name": "Krefeld",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05316",
+      "canonical_ags": "05316",
+      "legacy_name": "Leverkusen",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05766",
+      "canonical_ags": "05766",
+      "legacy_name": "Lippe",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05962",
+      "canonical_ags": "05962",
+      "legacy_name": "Märkischer Kreis",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05116",
+      "canonical_ags": "05116",
+      "legacy_name": "Mönchengladbach",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05117",
+      "canonical_ags": "05117",
+      "legacy_name": "Mülheim an der Ruhr",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05515",
+      "canonical_ags": "05515",
+      "legacy_name": "Münster",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05158",
+      "canonical_ags": "05158",
+      "legacy_name": "Mettmann",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05770",
+      "canonical_ags": "05770",
+      "legacy_name": "Minden-Lübbecke",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05374",
+      "canonical_ags": "05374",
+      "legacy_name": "Oberbergischer Kreis",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05119",
+      "canonical_ags": "05119",
+      "legacy_name": "Oberhausen",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05966",
+      "canonical_ags": "05966",
+      "legacy_name": "Olpe",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05774",
+      "canonical_ags": "05774",
+      "legacy_name": "Paderborn",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05562",
+      "canonical_ags": "05562",
+      "legacy_name": "Recklinghausen",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05120",
+      "canonical_ags": "05120",
+      "legacy_name": "Remscheid",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05362",
+      "canonical_ags": "05362",
+      "legacy_name": "Rhein-Erft-Kreis",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05162",
+      "canonical_ags": "05162",
+      "legacy_name": "Rhein-Kreis Neuss",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05382",
+      "canonical_ags": "05382",
+      "legacy_name": "Rhein-Sieg-Kreis",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05378",
+      "canonical_ags": "05378",
+      "legacy_name": "Rheinisch-Bergischer Kreis",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05970",
+      "canonical_ags": "05970",
+      "legacy_name": "Siegen-Wittgenstein",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05974",
+      "canonical_ags": "05974",
+      "legacy_name": "Soest",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05122",
+      "canonical_ags": "05122",
+      "legacy_name": "Solingen",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05334",
+      "canonical_ags": "05334",
+      "legacy_name": "Städteregion Aachen",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05566",
+      "canonical_ags": "05566",
+      "legacy_name": "Steinfurt",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05978",
+      "canonical_ags": "05978",
+      "legacy_name": "Unna",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05166",
+      "canonical_ags": "05166",
+      "legacy_name": "Viersen",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05570",
+      "canonical_ags": "05570",
+      "legacy_name": "Warendorf",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05170",
+      "canonical_ags": "05170",
+      "legacy_name": "Wesel",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "05124",
+      "canonical_ags": "05124",
+      "legacy_name": "Wuppertal",
+      "legacy_state": "Nordrhein-Westfalen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07131",
+      "canonical_ags": "07131",
+      "legacy_name": "Ahrweiler",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07132",
+      "canonical_ags": "07132",
+      "legacy_name": "Altenkirchen (Westerwald)",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07331",
+      "canonical_ags": "07331",
+      "legacy_name": "Alzey-Worms",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07332",
+      "canonical_ags": "07332",
+      "legacy_name": "Bad Dürkheim",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07133",
+      "canonical_ags": "07133",
+      "legacy_name": "Bad Kreuznach",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07231",
+      "canonical_ags": "07231",
+      "legacy_name": "Bernkastel-Wittlich",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07134",
+      "canonical_ags": "07134",
+      "legacy_name": "Birkenfeld",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07135",
+      "canonical_ags": "07135",
+      "legacy_name": "Cochem-Zell",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07333",
+      "canonical_ags": "07333",
+      "legacy_name": "Donnersbergkreis",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07232",
+      "canonical_ags": "07232",
+      "legacy_name": "Eifelkreis Bitburg-Prüm",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07311",
+      "canonical_ags": "07311",
+      "legacy_name": "Frankenthal (Pfalz)",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07334",
+      "canonical_ags": "07334",
+      "legacy_name": "Germersheim",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07312",
+      "canonical_ags": "07312",
+      "legacy_name": "Kaiserslautern",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07335",
+      "canonical_ags": "07335",
+      "legacy_name": "Kaiserslautern",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07111",
+      "canonical_ags": "07111",
+      "legacy_name": "Koblenz",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07336",
+      "canonical_ags": "07336",
+      "legacy_name": "Kusel",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07313",
+      "canonical_ags": "07313",
+      "legacy_name": "Landau in der Pfalz",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07314",
+      "canonical_ags": "07314",
+      "legacy_name": "Ludwigshafen am Rhein",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07339",
+      "canonical_ags": "07339",
+      "legacy_name": "Mainz-Bingen",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07315",
+      "canonical_ags": "07315",
+      "legacy_name": "Mainz",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07137",
+      "canonical_ags": "07137",
+      "legacy_name": "Mayen-Koblenz",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07316",
+      "canonical_ags": "07316",
+      "legacy_name": "Neustadt an der Weinstraße",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07138",
+      "canonical_ags": "07138",
+      "legacy_name": "Neuwied",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07317",
+      "canonical_ags": "07317",
+      "legacy_name": "Pirmasens",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07140",
+      "canonical_ags": "07140",
+      "legacy_name": "Rhein-Hunsrück-Kreis",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07141",
+      "canonical_ags": "07141",
+      "legacy_name": "Rhein-Lahn-Kreis",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07338",
+      "canonical_ags": "07338",
+      "legacy_name": "Rhein-Pfalz-Kreis",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07337",
+      "canonical_ags": "07337",
+      "legacy_name": "Südliche Weinstraße",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07340",
+      "canonical_ags": "07340",
+      "legacy_name": "Südwestpfalz",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07318",
+      "canonical_ags": "07318",
+      "legacy_name": "Speyer",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07235",
+      "canonical_ags": "07235",
+      "legacy_name": "Trier-Saarburg",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07211",
+      "canonical_ags": "07211",
+      "legacy_name": "Trier",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07233",
+      "canonical_ags": "07233",
+      "legacy_name": "Vulkaneifel",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07143",
+      "canonical_ags": "07143",
+      "legacy_name": "Westerwaldkreis",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07319",
+      "canonical_ags": "07319",
+      "legacy_name": "Worms",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "07320",
+      "canonical_ags": "07320",
+      "legacy_name": "Zweibrücken",
+      "legacy_state": "Rheinland-Pfalz",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "10042",
+      "canonical_ags": "10042",
+      "legacy_name": "Merzig-Wadern",
+      "legacy_state": "Saarland",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "10043",
+      "canonical_ags": "10043",
+      "legacy_name": "Neunkirchen",
+      "legacy_state": "Saarland",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "10041",
+      "canonical_ags": "10041",
+      "legacy_name": "Regionalverband Saarbrücken",
+      "legacy_state": "Saarland",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "10044",
+      "canonical_ags": "10044",
+      "legacy_name": "Saarlouis",
+      "legacy_state": "Saarland",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "10045",
+      "canonical_ags": "10045",
+      "legacy_name": "Saarpfalz-Kreis",
+      "legacy_state": "Saarland",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "10046",
+      "canonical_ags": "10046",
+      "legacy_name": "St. Wendel",
+      "legacy_state": "Saarland",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15081",
+      "canonical_ags": "15081",
+      "legacy_name": "Altmarkkreis Salzwedel",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15082",
+      "canonical_ags": "15082",
+      "legacy_name": "Anhalt-Bitterfeld",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15083",
+      "canonical_ags": "15083",
+      "legacy_name": "Börde",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15084",
+      "canonical_ags": "15084",
+      "legacy_name": "Burgenlandkreis",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15001",
+      "canonical_ags": "15001",
+      "legacy_name": "Dessau-Roßlau",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15002",
+      "canonical_ags": "15002",
+      "legacy_name": "Halle (Saale)",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15085",
+      "canonical_ags": "15085",
+      "legacy_name": "Harz",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15086",
+      "canonical_ags": "15086",
+      "legacy_name": "Jerichower Land",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15003",
+      "canonical_ags": "15003",
+      "legacy_name": "Magdeburg",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15087",
+      "canonical_ags": "15087",
+      "legacy_name": "Mansfeld-Südharz",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15088",
+      "canonical_ags": "15088",
+      "legacy_name": "Saalekreis",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15089",
+      "canonical_ags": "15089",
+      "legacy_name": "Salzlandkreis",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15090",
+      "canonical_ags": "15090",
+      "legacy_name": "Stendal",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "15091",
+      "canonical_ags": "15091",
+      "legacy_name": "Wittenberg",
+      "legacy_state": "Sachsen-Anhalt",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "14625",
+      "canonical_ags": "14625",
+      "legacy_name": "Bautzen",
+      "legacy_state": "Sachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "14511",
+      "canonical_ags": "14511",
+      "legacy_name": "Chemnitz",
+      "legacy_state": "Sachsen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "14612",
+      "canonical_ags": "14612",
+      "legacy_name": "Dresden",
+      "legacy_state": "Sachsen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "14521",
+      "canonical_ags": "14521",
+      "legacy_name": "Erzgebirgskreis",
+      "legacy_state": "Sachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "14626",
+      "canonical_ags": "14626",
+      "legacy_name": "Görlitz",
+      "legacy_state": "Sachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "14713",
+      "canonical_ags": "14713",
+      "legacy_name": "Leipzig",
+      "legacy_state": "Sachsen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "14729",
+      "canonical_ags": "14729",
+      "legacy_name": "Leipzig",
+      "legacy_state": "Sachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "14627",
+      "canonical_ags": "14627",
+      "legacy_name": "Meißen",
+      "legacy_state": "Sachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "14522",
+      "canonical_ags": "14522",
+      "legacy_name": "Mittelsachsen",
+      "legacy_state": "Sachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "14730",
+      "canonical_ags": "14730",
+      "legacy_name": "Nordsachsen",
+      "legacy_state": "Sachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "14628",
+      "canonical_ags": "14628",
+      "legacy_name": "Sächsische Schweiz-Osterzgebirge",
+      "legacy_state": "Sachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "14523",
+      "canonical_ags": "14523",
+      "legacy_name": "Vogtlandkreis",
+      "legacy_state": "Sachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "14524",
+      "canonical_ags": "14524",
+      "legacy_name": "Zwickau",
+      "legacy_state": "Sachsen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01051",
+      "canonical_ags": "01051",
+      "legacy_name": "Dithmarschen",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01001",
+      "canonical_ags": "01001",
+      "legacy_name": "Flensburg",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01053",
+      "canonical_ags": "01053",
+      "legacy_name": "Herzogtum Lauenburg",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01002",
+      "canonical_ags": "01002",
+      "legacy_name": "Kiel",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01003",
+      "canonical_ags": "01003",
+      "legacy_name": "Lübeck",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01004",
+      "canonical_ags": "01004",
+      "legacy_name": "Neumünster",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01054",
+      "canonical_ags": "01054",
+      "legacy_name": "Nordfriesland",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01055",
+      "canonical_ags": "01055",
+      "legacy_name": "Ostholstein",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01056",
+      "canonical_ags": "01056",
+      "legacy_name": "Pinneberg",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01057",
+      "canonical_ags": "01057",
+      "legacy_name": "Plön",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01058",
+      "canonical_ags": "01058",
+      "legacy_name": "Rendsburg-Eckernförde",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01059",
+      "canonical_ags": "01059",
+      "legacy_name": "Schleswig-Flensburg",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01060",
+      "canonical_ags": "01060",
+      "legacy_name": "Segeberg",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01061",
+      "canonical_ags": "01061",
+      "legacy_name": "Steinburg",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "01062",
+      "canonical_ags": "01062",
+      "legacy_name": "Stormarn",
+      "legacy_state": "Schleswig-Holstein",
+      "districtType": "Kreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16077",
+      "canonical_ags": "16077",
+      "legacy_name": "Altenburger Land",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16061",
+      "canonical_ags": "16061",
+      "legacy_name": "Eichsfeld",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16056",
+      "canonical_ags": "16063",
+      "legacy_name": "Eisenach",
+      "legacy_state": "Thüringen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "historical_district_merged"
+    },
+    {
+      "legacy_ags": "16051",
+      "canonical_ags": "16051",
+      "legacy_name": "Erfurt",
+      "legacy_state": "Thüringen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16052",
+      "canonical_ags": "16052",
+      "legacy_name": "Gera",
+      "legacy_state": "Thüringen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16067",
+      "canonical_ags": "16067",
+      "legacy_name": "Gotha",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16076",
+      "canonical_ags": "16076",
+      "legacy_name": "Greiz",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16069",
+      "canonical_ags": "16069",
+      "legacy_name": "Hildburghausen",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16070",
+      "canonical_ags": "16070",
+      "legacy_name": "Ilm-Kreis",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16053",
+      "canonical_ags": "16053",
+      "legacy_name": "Jena",
+      "legacy_state": "Thüringen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16065",
+      "canonical_ags": "16065",
+      "legacy_name": "Kyffhäuserkreis",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16062",
+      "canonical_ags": "16062",
+      "legacy_name": "Nordhausen",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16068",
+      "canonical_ags": "16068",
+      "legacy_name": "Sömmerda",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16074",
+      "canonical_ags": "16074",
+      "legacy_name": "Saale-Holzland-Kreis",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16075",
+      "canonical_ags": "16075",
+      "legacy_name": "Saale-Orla-Kreis",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16073",
+      "canonical_ags": "16073",
+      "legacy_name": "Saalfeld-Rudolstadt",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16066",
+      "canonical_ags": "16066",
+      "legacy_name": "Schmalkalden-Meiningen",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16072",
+      "canonical_ags": "16072",
+      "legacy_name": "Sonneberg",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16054",
+      "canonical_ags": "16054",
+      "legacy_name": "Suhl",
+      "legacy_state": "Thüringen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16064",
+      "canonical_ags": "16064",
+      "legacy_name": "Unstrut-Hainich-Kreis",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16063",
+      "canonical_ags": "16063",
+      "legacy_name": "Wartburgkreis",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16071",
+      "canonical_ags": "16071",
+      "legacy_name": "Weimarer Land",
+      "legacy_state": "Thüringen",
+      "districtType": "Landkreis",
+      "status": "retained_from_base_geofeatures"
+    },
+    {
+      "legacy_ags": "16055",
+      "canonical_ags": "16055",
+      "legacy_name": "Weimar",
+      "legacy_state": "Thüringen",
+      "districtType": "Kreisfreie Stadt",
+      "status": "retained_from_base_geofeatures"
+    }
+  ]
+}
