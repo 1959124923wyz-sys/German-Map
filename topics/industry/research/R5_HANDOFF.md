@@ -35,3 +35,11 @@
 ## 数据抓取现实限制
 - 本轮探索的公开黑森Hessen CSV数据源只含黑森，且本会话下载返回403；没有将它当成已获取的全国面板。
 - 官方GIS接口仅定位成功，未完成全国县级逐年实体数据验收；不能宣称全国县级就业变化完成。
+
+## 第三阶段：取得402个几何AG S对应键
+- 主项目 `data/germany-counties.geojson` 的402个Feature中**全部存在唯一5位 `feature.id`**；从历史GeoJSON直接提取，生成 `topics/industry/data/county_ags_crosswalk.json`。这一点修正了R1“缺AGS”的认识。
+- 上述402个ID是**当前项目历史几何携带的AGS**，并非已经由Destatis 2025/2026县市边界新修订认证；旧区划特别是县域合并需要再核查。
+- `topic.js` 已经把未来官方就业序列按 `feature.id` 匹配，不再用同名县市拼接；缺失区域继续灰色，官方就业数据不与新闻计数混色。
+- `tests/validate_industry.cjs` 已对402个ID唯一性、长度和AGS代码使用做CI验收。
+- 新增 `scripts/try_regionalatlas_county.py`：利用bundesAPI开源文档生成ArcGIS查询，默认只打印请求；必须指定`--execute`才访问网络，结果只保存为候选数据，不自动发布；若不满足覆盖要求须保留失败日志。
+- 全国真实2019→2024/2025县级就业面板仍未完成正式下载/验收，R5不得报称地图已按真实就业下降率着色。
