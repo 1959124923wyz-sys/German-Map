@@ -56,3 +56,11 @@ R1—R4原117条之外，另独立提交R5A 10条、R5B 16条、R5C 12条、R5D 
 - 新增 `scripts/build_county_employment.cjs`：仅接受官方可核的WZ2008-C纯制造业、工作地、2019与同口径比较年份原始CSV；保密/缺失不冒充0，拒绝B+C混合。测试只使用明确标注的虚构夹具，永不发布到地图数据。
 - 新增 `tests/smoke_industry_data.cjs`：在Node环境模拟完整页面启动，检查173事件、402历史/400现行县、地图使用“已登记事件”而非假装就业降幅。CI已将其纳入。
 - 接班时优先阅读 `research/HANDOFF.md` 和 Draft PR #37；后续应按官方BA县级工作地WZ-C就业数据、工厂精确坐标和地理几何更新推进，而非继续增加不必要的复杂前景图层。
+
+
+## R8研究支线更新（2026-10-10，以此处信息覆盖上方R1–R7历史数量）
+- 当前R8独立预览已收录 **231条唯一工业收缩相关研究记录**（R7基线220+R8A10+R8B1），涵盖拟关闭、分厂/产线停产、外迁、减员、集团隔离与风险记录，**绝不等于231间已关厂**。
+- BKG官方VG250 2025现行400县的Polygon/MultiPolygon已真实获取到 `data/bkg_vg250_counties_2025_candidate.geojson`（BKG来源，时间点2024-12-31，dl-de/by-2-0），R8工业专题页面已引用，**全站main原始402县地理图层未修改**。不要删去BKG图例来源和现行AGS严格对应测试。
+- 2024回溯补充UPM Hürth、Dörpen PM3、Bruchsal、Solarwatt Dresden、Siltronic Burghausen、Rodenstock Regen、Putzmeister Gründau/Heimertingen；跨厂合计岗位数保留在集团备忘，单厂不能擅自分配。已核2024后续状态证据单独放`research/r8-implementation-patches.json`。
+- 全国县市2019—最近年份**纯WZ2008-C制造业工作地就业人数面板依然未获取**；官网Regionaldatenbank表公开CSV尝试返回404，失败已归档`research/R8_REGIONAL_FETCH_FAILURE.log`。工作地社保人数、工业企业场所受雇人和国民经济核算三者禁止混合。
+- 数据出处与完整接续点见`research/R8_HANDOFF.md`；R8 Draft PR #43 基于R7研究分支，未上线主线。所有数据仍需严格的来源审查、实施状态跟踪与地图交互验收。
