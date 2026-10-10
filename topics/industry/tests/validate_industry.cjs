@@ -14,6 +14,15 @@ const r6=JSON.parse(fs.readFileSync(path.join(root,'research/r6-events.json'),'u
 const r7a=JSON.parse(fs.readFileSync(path.join(root,'research/r7a-screened-2026-events.json'),'utf8'));
 const r7b=JSON.parse(fs.readFileSync(path.join(root,'research/r7b-2025-retrospective.json'),'utf8'));
 const r7c=JSON.parse(fs.readFileSync(path.join(root,'research/r7c-plant-closures-offshoring.json'),'utf8'));
+const r7d=JSON.parse(fs.readFileSync(path.join(root,'research/r7d-2024-company-primary-audited.json'),'utf8'));
+assert.equal(r7d.events.length,13,'R7D source-backed factory history and research-only notes');
+assert.equal(r7d.events.filter(e=>e.eligible_factory_marker).length,11,'11 R7D site reference candidates');
+const feintool=r7d.events.find(e=>e.event_id==='R7D_FEI_SAC');
+assert.equal(feintool.jobs_affected,null,'200 shared jobs must NOT be assigned to Sachsenheim');
+assert.equal(feintool.event_type,'production_relocation','Feintool 2025 accord prevents incorrect whole factory closure');
+for(const e of r7d.events.filter(x=>x.shared_program_id==='neveon_de_2024_240_3sites')){
+ if(e.eligible_factory_marker)assert.equal(e.jobs_affected,null,'240 cannot be assigned to Neveon factory');
+}
 assert.equal(r7c.events.length,7,'R7C source-backed industrial sites');
 const r7audit=JSON.parse(fs.readFileSync(path.join(root,'research/r7-legacy-identity-audit.json'),'utf8'));
 assert.equal(r7audit.updates.DEEB26_BB_EBER.city,'Britz (Barnim)','EWN Britz plant location not Eberswalde trade name');
@@ -22,7 +31,7 @@ const r6Audit=JSON.parse(fs.readFileSync(path.join(root,'research/r6-dedup-audit
 assert.equal(r6.events.length,1,'R6 only genuinely new site');
 assert.equal(r7a.events.length,10,'R7A individually screened cases');
 assert.equal(r7b.events.length,11,'R7B retrospective events');
-for(const b of [r7a,r7b,r7c])for(const e of b.events){
+for(const b of [r7a,r7b,r7c,r7d])for(const e of b.events){
  if(e.eligible_factory_marker){
   assert.match(e.county_ags||'',/^\d{5}$/,'R7 site must have current AGS: '+e.event_id);
  }
@@ -74,9 +83,9 @@ assert.equal(r5c.manifest.sites,7);
 assert.equal(r5c.events.filter(e=>e.eligible_factory_marker===false).length,5,'R5C undecided/group/nonfactory excluded');
 assert.equal(r5b.events.filter(e=>e.eligible_factory_marker===false).length,2,'R5B groups are not map markers');
 assert.equal(r5a.events.filter(e=>e.eligible_factory_marker===false).length,2,'Exclude operators/multi-site');
-const rows=[...r1.events,...r23.events,...r4.events,...r5a.events,...r5b.events,...r5c.events,...r5d.events,...r6.events,...r7a.events,...r7b.events,...r7c.events];
-assert.equal(rows.length,202);
-assert.equal(new Set(rows.map(e=>e.event_id)).size,202,'IDs unique');
+const rows=[...r1.events,...r23.events,...r4.events,...r5a.events,...r5b.events,...r5c.events,...r5d.events,...r6.events,...r7a.events,...r7b.events,...r7c.events,...r7d.events];
+assert.equal(rows.length,215);
+assert.equal(new Set(rows.map(e=>e.event_id)).size,215,'IDs unique');
 for(const [id,fix] of Object.entries({...r4.updates,...r7audit.updates})){
  assert.ok(rows.some(e=>e.event_id===id),'patch target '+id);
  assert.ok((fix.source_url||rows.find(e=>e.event_id===id)?.source_url)?.startsWith('https://'),'patch citation '+id);
@@ -109,6 +118,7 @@ assert.match(js,/r5d-2025-factory-closures.json/);
 assert.match(js,/r7a-screened-2026-events.json/);
 assert.match(js,/r7b-2025-retrospective.json/);
 assert.match(js,/r7c-plant-closures-offshoring.json/);
+assert.match(js,/r7d-2024-company-primary-audited.json/);
 assert.match(js,/r7-legacy-identity-audit.json/);
 assert.match(js,/ags-crosswalk-402-to-400.json/);
 assert.match(js,/new Set\(counties.features.map\(stateKey\)\).size!==400/);
@@ -146,4 +156,4 @@ try{
  fs.writeFileSync(csv,fixture.replace('WZ2008_C','WZ2008_BC'));
  assert.throws(()=>execFileSync(process.execPath,[importer,'--input',csv,'--output',out],{stdio:'pipe'}));
 }finally{fs.rmSync(tmp,{recursive:true,force:true})}
-console.log('industry staging validation passed: 202 unique events; 400 canonical districts; official-CSV guardrail fixture.');
+console.log('industry staging validation passed: 215 unique events; 400 canonical districts; official-CSV guardrail fixture.');
