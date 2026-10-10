@@ -42,7 +42,7 @@ jobs:
               path=Path('topics')/name/'index.html'
               page=path.read_text(encoding='utf-8')
               assert 'href="../finance/"' in page
-              assert "2025" in page or "2024" in page
+              assert "<nav" in page and "德国地图" in page
               for other in names:
                   if other != name:
                       assert f'href="../{other}/"' in page
