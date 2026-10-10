@@ -1,0 +1,166 @@
+{
+  "publisher": "Statistische Ämter des Bundes und der Länder",
+  "source": "https://www.destatis.de/static/DE/zensus/gitterdaten/Regionaltabelle_Gebaeude_Wohnungen.xlsx",
+  "reference_date": "2022-05-15",
+  "districts": 400,
+  "coverage": {
+    "census_rent_eligible_units_binned_2022": 364,
+    "rents_12eur_plus_2022_count": 364,
+    "rents_under8eur_2022_count": 364,
+    "rents_12eur_plus_of_paid_rental_2022_pct": 364,
+    "rents_under8eur_of_paid_rental_2022_pct": 364,
+    "rented_dwellings_2022": 400,
+    "dwelling_units_built_since_2016_2022": 400,
+    "dwelling_units_built_since_2016_of_all_2022_pct": 400,
+    "cooperative_owned_dwelling_units_2022": 393,
+    "municipal_owned_dwelling_units_2022": 400,
+    "federal_state_owned_dwelling_units_2022": 397,
+    "private_housing_company_owned_dwelling_units_2022": 400,
+    "municipal_coop_state_owned_of_all_units_2022_pct": 391,
+    "cooperative_owned_of_all_units_2022_pct": 393,
+    "municipal_owned_of_all_units_2022_pct": 400,
+    "private_housing_company_owned_of_all_units_2022_pct": 400
+  },
+  "ranges": {
+    "census_rent_eligible_units_binned_2022": {
+      "min": 8943,
+      "max": 1663173
+    },
+    "rents_12eur_plus_2022_count": {
+      "min": 23,
+      "max": 320006
+    },
+    "rents_under8eur_2022_count": {
+      "min": 7183,
+      "max": 1135276
+    },
+    "rents_12eur_plus_of_paid_rental_2022_pct": {
+      "min": 0.12,
+      "max": 52.18
+    },
+    "rents_under8eur_of_paid_rental_2022_pct": {
+      "min": 19.54,
+      "max": 98.92
+    },
+    "rented_dwellings_2022": {
+      "min": 8948,
+      "max": 1663184
+    },
+    "dwelling_units_built_since_2016_2022": {
+      "min": 216,
+      "max": 80878
+    },
+    "dwelling_units_built_since_2016_of_all_2022_pct": {
+      "min": 0.86,
+      "max": 10.76
+    },
+    "cooperative_owned_dwelling_units_2022": {
+      "min": 3,
+      "max": 205020
+    },
+    "municipal_owned_dwelling_units_2022": {
+      "min": 11,
+      "max": 381074
+    },
+    "federal_state_owned_dwelling_units_2022": {
+      "min": 3,
+      "max": 40743
+    },
+    "private_housing_company_owned_dwelling_units_2022": {
+      "min": 52,
+      "max": 389012
+    },
+    "municipal_coop_state_owned_of_all_units_2022_pct": {
+      "min": 0.17,
+      "max": 56.77
+    },
+    "cooperative_owned_of_all_units_2022_pct": {
+      "min": 0.0,
+      "max": 27.57
+    },
+    "municipal_owned_of_all_units_2022_pct": {
+      "min": 0.04,
+      "max": 30.93
+    },
+    "private_housing_company_owned_of_all_units_2022_pct": {
+      "min": 0.15,
+      "max": 27.39
+    }
+  },
+  "crosscheck": {
+    "sample_districts": [
+      {
+        "id": "01001",
+        "name": "Flensburg, Stadt",
+        "census_rent_eligible_units_binned_2022": 39173,
+        "rents_12eur_plus_2022_count": 1173,
+        "rents_under8eur_2022_count": 29656,
+        "rents_12eur_plus_of_paid_rental_2022_pct": 2.99,
+        "rents_under8eur_of_paid_rental_2022_pct": 75.71,
+        "rented_dwellings_2022": 39170,
+        "dwelling_units_built_since_2016_2022": 2607,
+        "dwelling_units_built_since_2016_of_all_2022_pct": 4.87,
+        "cooperative_owned_dwelling_units_2022": 12067,
+        "municipal_owned_dwelling_units_2022": 77,
+        "federal_state_owned_dwelling_units_2022": 13,
+        "private_housing_company_owned_dwelling_units_2022": 6474,
+        "municipal_coop_state_owned_of_all_units_2022_pct": 22.7,
+        "cooperative_owned_of_all_units_2022_pct": 22.53,
+        "municipal_owned_of_all_units_2022_pct": 0.14,
+        "private_housing_company_owned_of_all_units_2022_pct": 12.09
+      },
+      {
+        "id": "09162",
+        "name": "München, Landeshauptstadt",
+        "census_rent_eligible_units_binned_2022": 613302,
+        "rents_12eur_plus_2022_count": 320006,
+        "rents_under8eur_2022_count": 119863,
+        "rents_12eur_plus_of_paid_rental_2022_pct": 52.18,
+        "rents_under8eur_of_paid_rental_2022_pct": 19.54,
+        "rented_dwellings_2022": 613299,
+        "dwelling_units_built_since_2016_2022": 41098,
+        "dwelling_units_built_since_2016_of_all_2022_pct": 4.99,
+        "cooperative_owned_dwelling_units_2022": 33569,
+        "municipal_owned_dwelling_units_2022": 73649,
+        "federal_state_owned_dwelling_units_2022": 15859,
+        "private_housing_company_owned_dwelling_units_2022": 101057,
+        "municipal_coop_state_owned_of_all_units_2022_pct": 14.93,
+        "cooperative_owned_of_all_units_2022_pct": 4.07,
+        "municipal_owned_of_all_units_2022_pct": 8.94,
+        "private_housing_company_owned_of_all_units_2022_pct": 12.26
+      },
+      {
+        "id": "11000",
+        "name": "Berlin, Stadt",
+        "census_rent_eligible_units_binned_2022": 1663173,
+        "rents_12eur_plus_2022_count": 125606,
+        "rents_under8eur_2022_count": 1135276,
+        "rents_12eur_plus_of_paid_rental_2022_pct": 7.55,
+        "rents_under8eur_of_paid_rental_2022_pct": 68.26,
+        "rented_dwellings_2022": 1663184,
+        "dwelling_units_built_since_2016_2022": 80878,
+        "dwelling_units_built_since_2016_of_all_2022_pct": 4.01,
+        "cooperative_owned_dwelling_units_2022": 205020,
+        "municipal_owned_dwelling_units_2022": 381074,
+        "federal_state_owned_dwelling_units_2022": 40743,
+        "private_housing_company_owned_dwelling_units_2022": 389012,
+        "municipal_coop_state_owned_of_all_units_2022_pct": 31.05,
+        "cooperative_owned_of_all_units_2022_pct": 10.16,
+        "municipal_owned_of_all_units_2022_pct": 18.88,
+        "private_housing_company_owned_of_all_units_2022_pct": 19.27
+      }
+    ]
+  },
+  "differences": {
+    "rent_band_vs_rented_units_max_abs": 14,
+    "owner_vs_all_units_max_abs": 16,
+    "building_age_vs_all_units_max_abs": 16
+  },
+  "warnings": [
+    "Price bands describe EXISTING rents paid in May 2022, not 2025 ads",
+    "High-price rental share NOT actual income-based affordability or housing rent burden",
+    "Conservative treatment of Zensus suppressed empty/rental bracket cells as null can leave 36 or more counties without a computed full 10-bin rent distribution; DO NOT coerce to zero",
+    "Municipal/coop/government building-owner classifications are NOT the same as housing with legal rent subsidy/Sozialwohnungen",
+    "Class percentages use explicitly documented denominators; official confidentiality adjustments can make group sums differ slightly"
+  ]
+}
