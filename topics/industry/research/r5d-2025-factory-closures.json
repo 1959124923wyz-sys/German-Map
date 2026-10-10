@@ -4,8 +4,8 @@
     "updated": "2026-10-10",
     "cohort": "R5D_2025_major_factory_closures",
     "total": 18,
-    "site_events": 18,
-    "research_only": 0,
+    "site_events": 17,
+    "research_only": 1,
     "research_focus": "Systematic gap-filling Eurofound 2025 German factories, no duplicates of R1-R5C",
     "nonadditivity": "Never sum a multi-site total with individual site rows. Cross-site DS Smith 500 captured once in separate nonmap memo.",
     "warning": "Dates represent dated announcements; when closure scheduled 2025/26 but not confirmed by later evidence, implementation remains an announcement."
