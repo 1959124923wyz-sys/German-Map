@@ -50,3 +50,9 @@
 - 实际服务器均返回 **ArcGIS code 400 / Invalid or missing input parameters**，程序退出码均为3；已保留日志 [artifact 11663483662](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38037722026/artifacts/11663483662)。
 - GitHub工作流步骤本身完成（因为候选抓取故意容错），**这不代表县级官方数据已经成功下载**。本轮仍没有真实县级数值、没有用于上色的2019—2024面板。
 - 以后优先检查Regionalatlas2026真实表名、ArcGIS当前查询参数、服务端SQL权限；也可改用经身份注册的Regionaldatenbank原始导出或各州统计局CSV，避免同一个错误请求无限重试。
+
+## 第五阶段：R5并行研究成果接续与R6去重（2026-10-10）
+- 同支线已有其它研究工作流提交R5a 10、R5b 16、R5c 12、R5d 18条：原R1-R4 117 + R5a-d 56 = **173条**；本研究的R6批次11条候选中有10条与这些R5文件**完全相同的Eurofound事件URL**，已一律排除，仅保留 `Siempelkamp Zweibrücken` 129岗生产调整事件，当前页面总计 **174条唯一event_id**。R6原始候选去重过程保存在 `r6-dedup-audit.json`，最终新增保存在 `r6-events.json`。
+- R5并行工作流新增 `data/ags-crosswalk-402-to-400.json`，旧402几何边界映射到400个当期统计行政区代码。发现此前对2016年哥廷根合并的代码**映射错误**，旧03152（Göttingen）与旧03156（Osterode）均应映射至**03159（新Göttingen Landkreis）**而不是03152；根据德国联邦统计局2025年行政区代码表 `12411-0016` 更正。旧16056 Eisenach仍正确归并到16063 Wartburgkreis。该改动仅修正数据键，不宣称替换了县界几何；存于 `data/ags-crosswalk-402-to-400.json`，页面官方统计读取时改用 `stateKey(feature)` 规范AGS，增加自动化回归断言。
+- `tests/smoke_industry_data.cjs` 和 `tests/validate_industry.cjs` 已加入174条批次校验；脚本运行结果以PR最新GitHub CI为准。地图用灰色标注缺失官方同口径县级就业数据，无数据不能与事件数量着色混淆。
+- **真实县级2019/2024/2025就业人数面板依旧未获得**；基于新闻量的底色只是研究暂用，不可称“真实工业收缩率”。
