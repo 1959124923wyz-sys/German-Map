@@ -1,0 +1,44 @@
+name: Finance 08 - 2023 Official Integrated Debt Source (Research Only)
+on:
+  push:
+    branches: [research/finance-regional-expansion-20261010]
+    paths:
+      - 'research/finance/regional-expansion/inspect_integrated_2023.py'
+      - '.github/workflows/finance-integrated-2023-research.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: finance08-2023-source-research
+  cancel-in-progress: false
+jobs:
+  inspect-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify 2023 official source and inspect workbook without presuming 2024 columns
+        run: python research/finance/regional-expansion/inspect_integrated_2023.py
+      - name: Commit source hash and workbook audit on research branch only
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/finance/regional-expansion/derived/integrated_2023/
+          if ! git diff --cached --quiet; then
+            git commit -m "data(finance): archive inspected 2023 integrated debt original schema and hash"
+            git pull --rebase origin research/finance-regional-expansion-20261010
+            git push origin HEAD:research/finance-regional-expansion-20261010
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: finance08-integrated-2023-official-source
+          path: /tmp/finance08-2023/
+          retention-days: 30
+          if-no-files-found: warn
