@@ -23,10 +23,11 @@ def check(browser, mobile=False):
     page.route("**/tile.openstreetmap.org/**",lambda route:route.abort())
     resp=page.goto(BASE+"topics/environment/",wait_until="domcontentloaded",timeout=30000)
     assert resp and resp.ok, ("HTTP",resp.status if resp else None)
-    page.wait_for_function("""() => window.__ENVIRONMENT_MAP__?.getMarkerCount()===154
+    page.wait_for_function("""() => window.__ENVIRONMENT_MAP__?.getMarkerCount()===0
         && window.GermanEnvironment06Data?.length===154
-        && window.__ENVIRONMENT_TAXONOMY__?.all===154
-        && document.querySelectorAll('#environment-map .leaflet-marker-icon.env-marker-icon').length>=40""",timeout=30000)
+        && window.__ENVIRONMENT_TAXONOMY__?.all===154""",timeout=30000)
+    assert page.locator("#showEnvPoints").is_checked() is False
+    assert page.locator("#envStateDossier").is_hidden()
     assert page.locator(".modebar a.modebtn").count()==10
     assert page.locator(".modebar .modebtn.active").inner_text()=="环保争议"
     assert page.locator("#environment-map .leaflet-control-zoom-in").is_visible()
@@ -56,6 +57,26 @@ def check(browser, mobile=False):
     assert [facts[k] for k in ("archive","policy","organization","facility","facility_story")]==[41,10,10,92,1],facts
     assert facts["phases"]=={"retired":32,"awarded":36,"ordered":3,"scheduled":21},facts
     page.wait_for_function("""() => window.__ENVIRONMENT_MAP__.map.getPane('environmentStates')?.querySelectorAll('path').length>=16""",timeout=20000)
+    assert page.evaluate("window.__ENVIRONMENT_MAP__.getStateAssigned()")==73
+    page.locator("#envStateJump").select_option("DE-NW")
+    assert page.locator("#envStateDossier").is_visible()
+    assert page.evaluate("window.__ENVIRONMENT_MAP__.getState()")=="DE-NW"
+    assert "22条" in page.locator("#envStateStats").inner_text()
+    page.locator('[data-dossier-tab="sources"]').click()
+    assert page.locator("#envStateEvidence .env-region-evidence").count()>0
+    page.locator('[data-dossier-tab="records"]').click()
+    page.locator("#envStateSearch").fill("unlikely-match-xxxxxxxx")
+    assert "暂无匹配" in page.locator("#envStateList").inner_text()
+    page.locator("#envStateSearch").fill("")
+    assert page.locator("#envStateList .dossier-entry").count()==22
+    page.locator("#envStateJump").select_option("DE-SL")
+    assert "暂无明确州归属" in page.locator("#envStateCaveat").inner_text()
+    page.locator("#envStateJump").select_option("")
+    assert page.locator("#envStateDossier").is_hidden()
+    assert page.evaluate("window.__ENVIRONMENT_MAP__.getState()") is None
+    page.locator("#showEnvPoints").check()
+    page.wait_for_function("window.__ENVIRONMENT_MAP__.getMarkerCount()===154",timeout=12000)
+    assert page.locator("#environment-map .leaflet-marker-icon.env-marker-icon").count()>=40
     assert page.locator('[data-mode]').count()==5
     census=page.evaluate("window.__ENVIRONMENT_TAXONOMY__")
     assert census=={"all":154,"archive":41,"policy":10,"project":11,"facility":92},census
