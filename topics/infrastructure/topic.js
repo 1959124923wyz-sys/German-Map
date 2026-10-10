@@ -87,7 +87,15 @@
     road.forEach(v=>{
       h+='<div class="evidence-card"><strong>'+escapeHtml(v.scope)+' · '+escapeHtml(v.metric)+'</strong><p>'+(v.approx?'约':'')+fmt(v.value_pct,1)+'% · '+v.year+'年</p><small>'+escapeHtml(v.definition)+'</small>'+(v.source_quality==='needs_exact_report'?'<small>⚠ 来源文件待二次核验，不能用于正式州际排名</small>':'')+anchor(v.source,'资料来源')+'</div>';
     });
-    if(!x && !d.length && !road.length)h+='<div class="metric-sub">目前没有已整理的桥梁／道路地方样本；无数据不等于设施完好。</div>';
+    const extra=(evidence.additional_facility_evidence||[]).filter(v=>v.iso===row.iso);
+    if(extra.length){
+      h+='<details class="infra-extra-evidence"><summary>更多设施调查证据 · '+extra.length+'项</summary>';
+      extra.forEach(v=>{
+        h+='<div class="evidence-card"><strong>'+escapeHtml(v.measurement)+'</strong><p>'+escapeHtml(v.value)+' '+escapeHtml(v.unit)+'</p><small>'+escapeHtml(v.year)+'年 · '+escapeHtml(v.scope)+'</small>'+anchor(v.source,'官方来源')+'</div>';
+      });
+      h+='</details>';
+    }
+    if(!x && !d.length && !road.length && !extra.length)h+='<div class="metric-sub">目前没有已整理的桥梁／道路地方样本；无数据不等于设施完好。</div>';
     return h;
   }
   function renderRank() {
