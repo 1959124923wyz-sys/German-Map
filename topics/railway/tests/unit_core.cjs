@@ -89,6 +89,19 @@ assert.ok(merged.groups[0].bridgeKm>0);
 assert.equal(merged.groups[0].members.length,2);
 assert.equal(merged.groups[0].m.late,44.5);
 assert.equal(merged.groups[0].m.cancel,5);
+// Previously the old gap>=.12 rule dropped *exactly adjoining* km sections,
+// leaving false breaks where the station labels did not match.
+const touchA=leg('Station A','Station B',[0,5],45,5);
+const touchB=leg('Station B variant','Station C',[5,10],44,5);
+const touchRows=[
+ {leg:touchA,grade:2,parts:[part(100,104)],m:math.metrics(touchA,'both')},
+ {leg:touchB,grade:2,parts:[part(105,110)],m:math.metrics(touchB,'both')}
+];
+const touching=bridge.mergeGroups(math.buildCorridors(touchRows),net,touchRows);
+assert.equal(touching.groups.length,1,'adjacent km chain remains one corridor');
+assert.equal(touching.groups[0].members.length,2);
+assert.equal(touching.groups[0].m.late,44.5);
+
 // Two directions on the same physical km interval become one corridor with
 // pooled *counted* arrivals, not an average of printed percentages.
 const groupedOpposite=bridge.mergeGroups(
