@@ -22,10 +22,10 @@ def run(browser,mobile=False):
     page.route("https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",lambda r:r.fulfill(path=str(LEAFLET/"leaflet.css"),content_type="text/css"))
     page.route("**tile.openstreetmap.org/**",lambda r:r.fulfill(status=200,body=PIX,content_type="image/png"))
     page.goto(BASE,wait_until="domcontentloaded",timeout=45000)
-    page.wait_for_function("window.GermanHousingResearch?.state()?.validCount===399",timeout=45000)
+    page.wait_for_function("window.GermanHousingResearch?.state()?.validCount===400",timeout=45000)
     state=page.evaluate("GermanHousingResearch.state()")
     print(label,"initial",state)
-    assert state["countyShapes"]==402
+    assert state["countyShapes"]==400
     assert state["stockReady"] is True
     assert page.locator("#housingMap .leaflet-control-zoom-in").count()==1
     assert page.locator("#stateJump option").count()==17
@@ -35,12 +35,12 @@ def run(browser,mobile=False):
     assert "2025" in page.locator("#legend").inner_text()
     assert "欧元" in page.locator("#value").inner_text()
     assert page.locator("main .housing-rank-row").count()==8
-    assert page.locator("#housingMetric option").count()==9
+    assert page.locator("#housingMetric option").count()==10
     for opt,needle in [("vacancy_2022_pct","2022"),("homes_per_1000_people_2025","2025"),
                        ("housing_stock_growth_2022_2025_pct","2022—2025")]:
         page.locator("#housingMetric").select_option(opt)
         assert needle in page.locator("#yearLabel").inner_text()
-        assert page.evaluate("GermanHousingResearch.state().validCount")==399
+        assert page.evaluate("GermanHousingResearch.state().validCount")==400
         assert page.locator("#legend .housing-scale i").count()==7
     page.locator("#housingMetric").select_option("asking_rent_2025_eur_m2")
     page.locator("#stateJump").select_option("07")
