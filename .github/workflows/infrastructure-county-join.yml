@@ -1,0 +1,44 @@
+name: Infrastructure county name-join audit
+on:
+  push:
+    branches: [feature/infrastructure-map-phase1]
+    paths:
+      - 'topics/infrastructure/research/scripts/join_county_names.py'
+      - '.github/workflows/infrastructure-county-join.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: infrastructure-county-join
+  cancel-in-progress: false
+jobs:
+  join:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/infrastructure-map-phase1
+      - name: Conservative county-name source-to-geometry crosswalk
+        run: python topics/infrastructure/research/scripts/join_county_names.py
+      - name: Check all source groups accounted for
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('topics/infrastructure/research/candidate_bridge_county_geometry_join.json'))
+          assert d['matched_source_groups']+d['unmatched_source_groups']==d['source_groups']
+          assert d['matched_source_features']+d['unmatched_source_features']==51664
+          assert not d['polygon_has_AGS']
+          assert all(x['official_AGS'] is None for x in d['joined'])
+          print('PASS no false official AGS and source feature conservation')
+          PY
+      - name: Commit source-preserving audit only
+        run: |
+          git config user.name 'german-map-research-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/infrastructure/research/candidate_bridge_county_geometry_join.json
+          if ! git diff --cached --quiet; then
+            git commit -m "research: add exact county name crosswalk draft with uncovered groups"
+            git pull --rebase origin feature/infrastructure-map-phase1
+            git push origin HEAD:feature/infrastructure-map-phase1
+          fi
