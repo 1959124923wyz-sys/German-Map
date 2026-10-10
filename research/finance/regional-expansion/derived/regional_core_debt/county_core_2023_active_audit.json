@@ -1,0 +1,21 @@
+{
+  "original_regional_county_rows": 471,
+  "official_atlas_2023_county_codes": 400,
+  "same_ags_2023_regional_atlas": 398,
+  "regional_historical_extinct_codes": 73,
+  "historical_rows_with_numeric_values": 0,
+  "active_with_true_numeric_debt": 392,
+  "active_without_numeric_debt": 6,
+  "city_state_nonmatching_ags5": [
+    "02000",
+    "11000"
+  ],
+  "valid_date": "2023-12-31",
+  "valid_layer": "2023_398_county_active_rows_392_numerical_values",
+  "source_raw_sha256": "28f034e26731bd538bfec5461a8375156be085b41ac33eb62798167a7b88b80b",
+  "not_current_2026_counties": true,
+  "warning": "two city-state municipality-level Atlas codes not included in core-budget district table; do not fill with zero",
+  "geography_warning": "2026 county set gained Hanau 06415; do not render 2023 06435 on 2026 boundary without a historical-vintage warning",
+  "statistical_scope": "2023 municipal and associations core budget, NOT 2023 integrated full entities",
+  "readiness": "research_data_ready_with_explicit_missing; not yet front-end reviewed"
+}

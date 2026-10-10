@@ -1,0 +1,74 @@
+ags5,state_code,name_de,report_date,debt_per_capita_eur,core_budget_debt_thousand_eur,marketable_securities_thousand_eur,nonpublic_loans_thousand_eur,nonpublic_cash_credits_thousand_eur,public_loans_thousand_eur,public_cash_credits_thousand_eur,per_capita_value_status,total_value_status,source_id,scope_note
+03152,03,"Göttingen, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+03156,03,"Osterode am Harz, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+05354,05,"Aachen, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13001,13,"Greifswald, Hansestadt, kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13002,13,"Neubrandenburg, Stadt,  kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13005,13,"Stralsund, Hansestadt,  kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13006,13,"Wismar, Hansestadt,  kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13051,13,"Bad Doberan, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13052,13,Landkreis Demmin,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13053,13,"Güstrow, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13054,13,Landkreis Ludwigslust,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13055,13,"Mecklenburg-Strelitz, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13056,13,Landkreis Müritz,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13057,13,"Nordvorpommern, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13058,13,Landkreis Nordwestmecklenburg,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13059,13,"Ostvorpommern, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13060,13,Landkreis Parchim,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13061,13,"Rügen, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+13062,13,Landkreis Uecker-Randow,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14161,14,"Chemnitz, kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14166,14,"Plauen, kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14167,14,"Zwickau, kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14171,14,"Annaberg, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14173,14,"Chemnitzer Land, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14177,14,"Freiberg, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14178,14,Vogtlandkreis,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14181,14,Mittlerer Erzgebirgskreis,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14182,14,"Mittweida, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14188,14,"Stollberg, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14191,14,"Aue-Schwarzenberg, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14193,14,"Zwickauer Land, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14262,14,"Dresden, kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14263,14,"Görlitz, kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14264,14,"Hoyerswerda, kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14272,14,"Bautzen, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14280,14,"Meißen, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14284,14,Niederschlesischer Oberlausitzkreis,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14285,14,"Riesa-Großenhain, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14286,14,"Löbau-Zittau, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14287,14,"Sächsische Schweiz, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14290,14,Weißeritzkreis,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14292,14,"Kamenz, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14365,14,"Leipzig, kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14374,14,"Delitzsch, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14375,14,"Döbeln, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14379,14,"Leipziger Land, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14383,14,Muldentalkreis,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+14389,14,"Torgau-Oschatz, Landkreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15101,15,"Dessau, kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15151,15,"Anhalt-Zerbst, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15153,15,"Bernburg, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15154,15,"Bitterfeld, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15159,15,"Köthen, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15171,15,"Wittenberg, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15202,15,"Halle (Saale), kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15256,15,Burgenlandkreis,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15260,15,"Mansfelder Land, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15261,15,"Merseburg-Querfurt, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15265,15,Saalkreis,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15266,15,"Sangerhausen, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15268,15,"Weißenfels, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15303,15,"Magdeburg, kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15352,15,"Aschersleben-Staßfurt, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15355,15,Bördekreis,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15357,15,"Halberstadt, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15358,15,"Jerichower Land, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15362,15,Ohrekreis,31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15363,15,"Stendal, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15364,15,"Quedlinburg, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15367,15,"Schönebeck, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15369,15,"Wernigerode, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+15370,15,"Altmarkkreis Salzwedel, Kreis",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
+16056,16,"Eisenach, kreisfreie Stadt",31.12.2023,,,,,,,,no_published_numeric,no_published_numeric,REGIONALSTATISTIK_71327-01-05-4_2023,core_budgets_only_not_integrated_public_enterprise_debt
