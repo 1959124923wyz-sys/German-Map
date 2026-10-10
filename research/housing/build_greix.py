@@ -47,6 +47,11 @@ def main():
             skips["no_city"]+=1
             continue
         city=str(get("City")).strip()
+        # Public file contains annual and quarterly panels too. Only rows with
+        # an explicit month AND quarter belong in a monthly series.
+        if get("Month") in (None, "") or get("Quarter") in (None, ""):
+            skips["non_monthly"]+=1
+            continue
         year,month,quarter=map(int,(get("Year"),get("Month"),get("Quarter")))
         if not (2012<=year<=2026 and 1<=month<=12 and 1<=quarter<=4):
             raise ValueError(f"Invalid time {year}-{month}/{quarter}")
