@@ -318,6 +318,9 @@ function recalc(){
  view.groups=result.corridors;view.hiddenCorridors=result.hidden;
  view.physicalEdges=result.physicalEdges;
  view.selected=previous?(view.groups.find(g=>g.members.some(x=>x.leg===previous))||null):null;
+ // Never leave the old infrastructure-loading toast after passenger data loads.
+ const mapStatus=$('#mapStatus');
+ if(mapStatus.textContent.includes('客运运行线路加载中'))mapStatus.textContent='';
  rebuildIndex();
  status(labels[view.service]+' · '+fmt(view.groups.length)+' 段城市间走廊');
  fillLegend();placeLegend();updateHotspots();showDetail();
