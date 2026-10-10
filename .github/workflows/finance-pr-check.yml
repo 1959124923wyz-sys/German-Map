@@ -37,6 +37,7 @@ jobs:
           python topics/finance/tests/validate_finance_history.py
           python topics/finance/tests/validate_finance_integrated.py
           python topics/finance/tests/validate_finance_regional.py
+          python topics/finance/data/build_finance_municipal.py --verify
       - name: Validate browser script syntax
         run: |
           node --check topics/finance/topic.js
@@ -46,7 +47,7 @@ jobs:
           node --check topics/finance/data/finance-regional-evidence.js
       - name: Require reproducible datasets and clean generated artifacts
         run: |
-          git diff --exit-code -- topics/finance/data/finance-data.js topics/finance/data/finance-history.js topics/finance/data/finance-integrated.js topics/finance/data/finance-regional-evidence.js
+          git diff --exit-code -- topics/finance/data/finance-data.js topics/finance/data/finance-history.js topics/finance/data/finance-integrated.js topics/finance/data/finance-regional-evidence.js topics/finance/data/municipal-2024
 
   finance-browser:
     runs-on: ubuntu-latest
