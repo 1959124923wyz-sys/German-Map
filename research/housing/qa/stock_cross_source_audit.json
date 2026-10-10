@@ -1,0 +1,82 @@
+{
+  "source": "https://mietkautionskonto.info/data/wohnungsmarkt-kreise.json",
+  "sha256_raw": "6dc7245c0dbcc603cb1ff62ff90cf1bfdac4346426f4c82b14e390082134d89b",
+  "data_rows": 400,
+  "dwellings_2025_total": 43951556,
+  "official_checks_2025_homes": {
+    "01001": 54372,
+    "01002": 141392,
+    "01003": 123030,
+    "01004": 42647
+  },
+  "atlas_join_count": 399,
+  "vacancy_differences_median_pp": 0.1,
+  "vacancy_differences_max_abs_pp": 1.0,
+  "largest_10_vacancy_differences": [
+    {
+      "id": "14713",
+      "atlas_vacancy": 5.4,
+      "census_vacancy": 4.4,
+      "difference_pp": 1.0
+    },
+    {
+      "id": "09464",
+      "atlas_vacancy": 8.7,
+      "census_vacancy": 7.8,
+      "difference_pp": 0.9
+    },
+    {
+      "id": "09178",
+      "atlas_vacancy": 3.9,
+      "census_vacancy": 3.3,
+      "difference_pp": 0.6
+    },
+    {
+      "id": "16065",
+      "atlas_vacancy": 10.5,
+      "census_vacancy": 10,
+      "difference_pp": 0.5
+    },
+    {
+      "id": "16069",
+      "atlas_vacancy": 7.7,
+      "census_vacancy": 7.2,
+      "difference_pp": 0.5
+    },
+    {
+      "id": "16075",
+      "atlas_vacancy": 11.6,
+      "census_vacancy": 11.1,
+      "difference_pp": 0.5
+    },
+    {
+      "id": "07231",
+      "atlas_vacancy": 6.1,
+      "census_vacancy": 5.7,
+      "difference_pp": 0.4
+    },
+    {
+      "id": "08325",
+      "atlas_vacancy": 6.2,
+      "census_vacancy": 5.8,
+      "difference_pp": 0.4
+    },
+    {
+      "id": "08417",
+      "atlas_vacancy": 5.7,
+      "census_vacancy": 5.3,
+      "difference_pp": 0.4
+    },
+    {
+      "id": "08426",
+      "atlas_vacancy": 5.0,
+      "census_vacancy": 4.6,
+      "difference_pp": 0.4
+    }
+  ],
+  "important": [
+    "Secondary publisher data, not primary official download",
+    "Zensus 2022 vacancy denominator may differ between indicators; do not overwrite official BBSR vacancy",
+    "All source rows retained under CC BY 4.0 with full attribution"
+  ]
+}
