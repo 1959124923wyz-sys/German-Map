@@ -319,7 +319,7 @@ function mergeGroups(groups,graph,allObservations,config={}){
   if(!bucket.has(k))bucket.set(k,[]);bucket.get(k).push(x);
  }
  const next=new Map(),prev=new Map();let bridged=0,checks=0;
- const debug={originalGroups,groups:groups.length,routes:bucket.size,withinGap:0,unblocked:0,near:0,tries:0,paths:0,unique:0,ambiguous:0};
+ const debug={originalGroups,groups:groups.length,routes:bucket.size,withinGap:0,unblocked:0,near:0,tries:0,paths:0,visualOnly:0,unique:0,ambiguous:0};
  for(const rows of bucket.values()){
   for(let i=0;i<rows.length-1;i++){
    const left=rows[i],candidates=[];
@@ -347,9 +347,21 @@ function mergeGroups(groups,graph,allObservations,config={}){
     debug.near++;
     if(checks++>=capItems)break;
     debug.tries++;
-    const bridge=graph.find(left.route,...anchors,Math.min(cap,gap*2+3));
+    let bridge=graph.find(left.route,...anchors,Math.min(cap,gap*2+3));
     if(bridge)debug.paths++;
-    if(left.route==='5900')Object.assign(debug.bamberg,{stage:bridge?'path-found':'no-official-path',straight,actualRoute:graph.resolveRoute(left.route,...anchors),failure:{...graph.reasons},bridgeKm:bridge?.km});
+    // Some source WGS84 segments cannot be joined topologically despite
+    // both measured ends landing on official railway curves. Keep a single
+    // corridor for statistics only, without ever drawing an invented path.
+    // The unchanged low-opacity official network remains visible in the gap.
+    if(!bridge&&gap<=20&&straight>=2&&
+      Math.abs(straight-gap)<=Math.max(4,gap*.3)){
+       const a=graph.nearest(GLOBAL,anchors[0]),b=graph.nearest(GLOBAL,anchors[1]);
+       if(a&&b&&a.d<.35**2&&b.d<.35**2){
+        bridge={parts:[],km:gap,visualOnly:true};
+        debug.visualOnly++;
+       }
+    }
+    if(left.route==='5900')Object.assign(debug.bamberg,{stage:bridge?(bridge.visualOnly?'visual-only':'path-found'):'no-official-path',straight,bridgeKm:bridge?.km});
     if(bridge&&bridge.km<=Math.max(3,gap*2.2+2))
       candidates.push({right,bridge});
    }
@@ -392,6 +404,7 @@ function mergeGroups(groups,graph,allObservations,config={}){
   const late=nArrival?100*lateCount/nArrival:null;
   const cancel=nPlanned?100*canceled/nPlanned:null;
   const output={members,parts:[...parts,...bridgeParts],bridgeParts,bridges:bridges.length,
+   schematicBridges:bridges.filter(x=>x.visualOnly).length,
    bridgeKm:bridges.reduce((s,g)=>s+g.km,0),
    bounds:actualBounds([...parts,...bridgeParts]),grade:chain[0].grade,
    m:{late,onTime:late===null?null:100-late,cancel,nArrival,nPlanned}};
