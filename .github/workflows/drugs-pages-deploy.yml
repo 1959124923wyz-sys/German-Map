@@ -60,9 +60,7 @@ jobs:
           scripts=[src.split('?',1)[0] for src in re.findall(r'<script src="([^"]+)"', h)]
           # Verify actual required assets rather than pinning an obsolete
           # number of script tags whenever UI/data modules are separated.
-          required={'js/states.js','overview.js','js/station-zh.js','js/rail-geometry.js','js/rail-analysis.js','js/rail-picker.js','js/rail-service-groups.js','js/rail-city-corridors.js'}
-          forbidden={'data/data-core.js','js/rail-bridge.js','data/data-sections-00.js','data/data-sections-01.js','data/data-sections-02.js'}
-          assert not forbidden.intersection(scripts), 'Public page must not ship full unobserved official infrastructure'
+          required={'js/states.js','overview.js','js/station-zh.js','js/rail-geometry.js','js/rail-analysis.js','js/rail-picker.js','js/rail-service-groups.js','js/rail-city-corridors.js','js/rail-bridge.js','js/rail-continuity.js','data/data-core.js','data/data-sections-00.js','data/data-sections-01.js','data/data-sections-02.js'}
           assert required <= set(scripts), (required-set(scripts))
           assert len(scripts)==len(set(scripts)), 'Duplicate railway script inclusion'
           external=[u for u in scripts if u.startswith('https://')]
@@ -75,7 +73,7 @@ jobs:
           assert 'toplinks' in h and '铁路运行' in h
           assert Path('topics/railway/research.html').is_file()
           assert Path('topics/railway/overview.css').is_file()
-          print('PASS passenger city corridors, no full-network sections, local assets and archival dashboard', len(scripts))
+          print('PASS continuous official railway backbone, complete network sections and passenger risk overlays', len(scripts))
           RAIL_AUDIT
           node --check topics/railway/overview.js
           node --check topics/railway/js/rail-geometry.js
@@ -84,6 +82,7 @@ jobs:
           node --check topics/railway/js/rail-picker.js
           node --check topics/railway/js/rail-service-groups.js
           node --check topics/railway/js/rail-city-corridors.js
+          node --check topics/railway/js/rail-continuity.js
           node topics/railway/tests/unit_core.cjs
           python scripts/validate_site_assets.py
           node --check topics/railway/js/station-zh.js
