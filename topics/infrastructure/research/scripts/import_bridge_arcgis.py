@@ -49,7 +49,7 @@ def iso(value):
     raw = str(value or "").strip().replace("ß","ss")
     raw = unicodedata.normalize("NFKD",raw)
     raw = "".join(c for c in raw if not unicodedata.combining(c)).upper()
-    return STATE_MAP.get(raw) or (raw if raw in STATE_MAP.values() else None)
+    return STATE_MAP.get(raw) or (("DE-"+raw) if len(raw)==2 and ("DE-"+raw) in STATE_MAP.values() else (raw if raw in STATE_MAP.values() else None))
 
 def num(value):
     try:
@@ -64,6 +64,7 @@ def summarize(rows, expected):
       condition_missing=0,area_missing_or_invalid=0,tli_valid=0,tli_bad=0,
       inspections_year_present=0,county_present=0))
     unknown = defaultdict(int)
+    missing_state = 0
     ids = set()
     for record in rows:
         a=record["attributes"]
@@ -72,7 +73,10 @@ def summarize(rows, expected):
         ids.add(rid)
         key=iso(a.get("bl"))
         if not key:
-            unknown[str(a.get("bl"))]+=1
+            if a.get("bl") in (None,"", "None"):
+                missing_state+=1
+            else:
+                unknown[str(a.get("bl"))]+=1
             continue
         t=stats[key]
         t["features"]+=1
@@ -109,8 +113,8 @@ def summarize(rows, expected):
              tli_iv_v_pct_count=ratio("tli_bad","tli_valid"),
              condition_valid_pct_of_geocoded=ratio("condition_valid","features"))
         results.append(v)
-    if sum(x["features"] for x in results)!=expected:raise RuntimeError("state totals fail")
-    return results
+    if sum(x["features"] for x in results)+missing_state!=expected:raise RuntimeError("state totals + missing attribution fail")
+    return results,missing_state
 
 def main():
     count=http_json({"f":"json","where":"1=1","returnCountOnly":"true"})
@@ -133,7 +137,7 @@ def main():
         if retrieved!=set(batch):raise RuntimeError("ArcGIS returned wrong ID set")
         rows.extend(records)
         if offset%3600==0:print("Downloaded",len(rows),"/",expected,flush=True)
-    results=summarize(rows,expected)
+    results,unattributed=summarize(rows,expected)
     output={
       "status":"candidate_geocoded_subset_not_full_BASt",
       "snapshot_claim":"2025-09",
@@ -142,6 +146,9 @@ def main():
       "source_url":BASE,
       "official_bast_source":"https://www.govdata.de/suche/daten/bruckenstatistik",
       "raw_feature_count":expected,
+      "attributed_state_feature_count":expected-unattributed,
+      "missing_state_feature_count":unattributed,
+      "attributed_state_feature_pct":round(100*(expected-unattributed)/expected,3),
       "states":results,
       "excluded_records":"Original BASt records with no coordinates are omitted by ArcGIS publisher; exclusion counts UNKNOWN",
       "geometry_scope":"Federal motorway and Bundesstraße bridge point features; NOT states' road bridges, municipal, or railway bridges",
