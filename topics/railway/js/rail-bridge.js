@@ -46,7 +46,7 @@ function reversed(p){
  return shape(b);
 }
 class RouteGraph{
- constructor(){this.routes=new Map();this.edges=0;}
+ constructor(){this.routes=new Map();this.edges=0;this.reasons={noRoute:0,noSnap:0,far:0,sameEdgeTooLong:0,noPath:0,ratio:0,success:0};}
  add(route,part){
   if(route===undefined||route===null||!part?.xy||part.xy.length<4)return;
   const key=String(route);
@@ -91,11 +91,11 @@ class RouteGraph{
   return best;
  }
  find(route,from,to,maxKm=MAX_GAP){
-  const r=this.routes.get(String(route));if(!r)return null;
+  const r=this.routes.get(String(route));if(!r){this.reasons.noRoute++;return null;}
   const a=this.nearest(route,from),b=this.nearest(route,to);
-  if(!a||!b)return null;
+  if(!a||!b){this.reasons.noSnap++;return null;}
   const distance=Math.hypot(from[0]-to[0],from[1]-to[1]);
-  if(distance>maxKm/Math.min(kmPerPixel(from[1]),kmPerPixel(to[1]))+5)return null;
+  if(distance>maxKm/Math.min(kmPerPixel(from[1]),kmPerPixel(to[1]))+5){this.reasons.far++;return null;}
   // Same original source element: trace its REAL curve between projections.
   if(a.edge===b.edge){
    const xy=a.edge.part.xy;
@@ -106,8 +106,8 @@ class RouteGraph{
    coords.push(...end.point);
    const path=al<=bl?shape(coords):shape(coords.reverse===undefined?coords:reverseCoords(coords));
    const km=length(path.xy);
-   if(km<=maxKm)return {parts:[path],km};
-   return null;
+   if(km<=maxKm){this.reasons.success++;return {parts:[path],km};}
+   this.reasons.sameEdgeTooLong++;return null;
   }
   // Dijkstra from both endpoints of the snapped source section. Per-route
   // capped search and a small heap; all returned segments are official curves.
@@ -140,7 +140,8 @@ class RouteGraph{
     best.set(other,next);prev.set(other,{parent:n,edge,dir});push([next,other]);
    }
   }
-  if(!goal||score>maxKm||score>distance*kmPerPixel((from[1]+to[1])/2)*2.2+3)return null;
+  if(!goal||score>maxKm){this.reasons.noPath++;return null;}
+  if(score>distance*kmPerPixel((from[1]+to[1])/2)*2.2+3){this.reasons.ratio++;return null;}
   const chain=[];let n=goal,start=null;
   while(n){
    const p=prev.get(n);if(!p)return null;
@@ -149,6 +150,7 @@ class RouteGraph{
   }
   if(!start)return null;
   chain.reverse();
+  this.reasons.success++;
   return {parts:[start,...chain,goals.get(goal).part],km:score};
  }
 }
