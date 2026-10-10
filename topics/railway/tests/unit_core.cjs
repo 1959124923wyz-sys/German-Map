@@ -7,7 +7,7 @@ const path=require('node:path');
 const vm=require('node:vm');
 const root=path.resolve(__dirname,'..');
 const context=vm.createContext({window:{}});
-for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js','rail-service-groups.js','rail-city-corridors.js','rail-picker.js']){
+for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js','rail-service-groups.js','rail-city-corridors.js','rail-continuity.js','rail-picker.js']){
   const source=fs.readFileSync(path.join(root,'js',name),'utf8');
   vm.runInContext(source,context,{filename:name,timeout:10000});
 }
@@ -204,5 +204,23 @@ const match=both.corridors.find(g=>g.cityFrom==='Erfurt'&&g.cityTo==='Arnstadt')
 assert.equal(match.members.length,3);
 assert.equal(match.m.onTime,100-(30+30+20)/3);
 assert.equal(city.cityName('Berlin-Spandau'),'Berlin');
+
+
+// User's A--green--red--green--B contract: original official geometry survives
+// even without any timetable observations; no new fake measured segments.
+const network=new context.window.Railway07Continuity.Backbone();
+network.add('7000',part(100,104));
+network.add('7000',part(104,108));
+network.add('7000',part(108,112));
+assert.equal(network.official,3);
+assert.equal(network.all.length,3);
+const trace=network.unobserved('7000',[105,baseY]);
+assert.ok(trace.parts.length>=3,'green backbone must span the missing middle');
+const active=network.setActive([{members:[{leg:{route:'7000'}}]}]);
+assert.equal(active.sections,3);
+assert.equal(active.all,3);
+assert.equal(network.all.length,3,'changing observed categories cannot delete official track');
+assert.equal(network.unobserved('7000',[110,baseY]).parts.length,3);
+assert.equal(network.unobserved('UNKNOWN',[110,baseY]).parts.length,0);
 
 console.log('PASS railway pure geometry, weighted rates, branches, km gaps and pooled counts');
