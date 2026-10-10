@@ -1,6 +1,5 @@
-/* Railway 07 — same Leaflet / OSM base as 01–06.
-   Official DB InfraGO tracks and matched service observations use two Canvas
-   layers, not thousands of SVG nodes or invented straight-line joins. */
+/* Railway 07 public map: Leaflet + one Canvas of measured city-to-city passenger corridors.
+   Full DB infrastructure and fine-grained station measurements remain research assets. */
 (()=>{
 'use strict';
 const $=s=>document.querySelector(s);
@@ -162,10 +161,7 @@ const attention=m=>window.Railway07Analysis.attention(m,view.metric);
 const buildCorridors=items=>window.Railway07Analysis.buildCorridors(items);
 
 function fillLegend(){
- const mode=view.metric;
- const thresholds=mode==='late'?['晚点比例','<25%','25%–<40%','≥40%']
- :mode==='cancel'?['停靠取消标记率','<4%','4%–<8%','≥8%']
- :['晚点 / 取消标记','','晚点 ≥25% 或取消 ≥4%','晚点 ≥40% 或取消 ≥8%'];
+ const thresholds=['晚点 / 取消标记','','晚点 ≥25% 或取消 ≥4%','晚点 ≥40% 或取消 ≥8%'];
  const box=$('#railLegend');
  box.replaceChildren();
  const title=document.createElement('b');title.textContent=thresholds[0];box.appendChild(title);
@@ -348,13 +344,6 @@ function bindControls(){
    const active=el===b;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));
   }
   chooseService();
- };
- for(const b of document.querySelectorAll('[data-metric]'))b.onclick=()=>{
-  view.metric=b.dataset.metric;
-  for(const el of document.querySelectorAll('[data-metric]')){
-   const active=el===b;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));
-  }
-  view.selected=null;recalc();
  };
  window.addEventListener('resize',placeLegend);
 }
