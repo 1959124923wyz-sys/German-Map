@@ -1,0 +1,39 @@
+{
+  "source": "https://download.statistik-berlin-brandenburg.de/94c8873070894dca/43d5f940c81b/pressemitteilung-tabelle-60-2026.xlsx",
+  "report_footnote": "New-build completion count may exceed total due net housing change from other building measures",
+  "counts": 18,
+  "source_state_totals": [
+    7379,
+    10172,
+    6489,
+    9466
+  ],
+  "county_sums": [
+    7379,
+    10172,
+    6489,
+    9466
+  ],
+  "crosswalk": {
+    "Brandenburg an der Havel, Stadt": "12051",
+    "Cottbus, Stadt": "12052",
+    "Frankfurt (Oder), Stadt": "12053",
+    "Potsdam, Stadt": "12054",
+    "Barnim": "12060",
+    "Dahme-Spreewald": "12061",
+    "Elbe-Elster": "12062",
+    "Havelland": "12063",
+    "Märkisch-Oderland": "12064",
+    "Oberhavel": "12065",
+    "Oberspreewald-Lausitz": "12066",
+    "Oder-Spree": "12067",
+    "Ostprignitz-Ruppin": "12068",
+    "Potsdam-Mittelmark": "12069",
+    "Prignitz": "12070",
+    "Spree-Neiße": "12071",
+    "Teltow-Fläming": "12072",
+    "Uckermark": "12073"
+  },
+  "license": "CC BY 3.0 Germany",
+  "warning": "This report has 6489 new-build homes including nonresidential; its new residential-only total 6457 cannot be assigned across counties from this press table without additional source"
+}
