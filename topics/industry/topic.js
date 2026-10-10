@@ -210,21 +210,22 @@ async function start(){
    'research/r1-events.json','research/r2-r3-events.json','../../data/geocode_cache.json',
    'data/county-employment.json','research/r4-events-and-updates.json','research/r5a-eurofound-sites.json','research/r5b-manufacturing-cases.json','data/ags-crosswalk-402-to-400.json','research/r5c-screened-manufacturing.json','research/r5d-2025-factory-closures.json','research/r6-events.json',
    'research/r7a-screened-2026-events.json','research/r7b-2025-retrospective.json',
-   'research/r7-legacy-identity-audit.json','research/r7c-plant-closures-offshoring.json'];
+   'research/r7-legacy-identity-audit.json','research/r7c-plant-closures-offshoring.json',
+   'research/r7d-2024-company-primary-audited.json'];
  const results=await Promise.all(sources.map(async src=>{
   const r=await fetch(src,{cache:'no-store'});if(!r.ok)throw Error(src+': HTTP '+r.status);return r.json();
  }));
- const [counties,states,r1,r2,geocache,metric,r4,r5a,r5b,agsCrosswalk,r5c,r5d,r6,r7a,r7b,r7audit,r7c]=results;
+ const [counties,states,r1,r2,geocache,metric,r4,r5a,r5b,agsCrosswalk,r5c,r5d,r6,r7a,r7b,r7audit,r7c,r7d]=results;
  if(!Array.isArray(counties.features)||counties.features.length!==402||!Array.isArray(states.features)||states.features.length!==16)
   throw Error('官方边界记录数量异常');
- if(r1.events.length!==61||r2.events.length!==38||r4.events.length!==18||r5a.events.length!==10||r5b.events.length!==16||r5c.events.length!==12||r5d.events.length!==18||r6.events.length!==1||r7a.events.length!==10||r7b.events.length!==11||r7c.events.length!==7)throw Error('事件档案数量异常');
+ if(r1.events.length!==61||r2.events.length!==38||r4.events.length!==18||r5a.events.length!==10||r5b.events.length!==16||r5c.events.length!==12||r5d.events.length!==18||r6.events.length!==1||r7a.events.length!==10||r7b.events.length!==11||r7c.events.length!==7||r7d.events.length!==13)throw Error('事件档案数量异常');
  if(agsCrosswalk.features.length!==402||agsCrosswalk.canonical_ags_distinct!==400)throw Error('地区AGS对照表无效');
  const agsIds=new Set(counties.features.map(f=>f.id));
  if(agsIds.size!==402||[...agsIds].some(id=>!/^\d{5}$/.test(id)))throw Error('县市AGS缺失/重复');
  app.agsRemap=agsCrosswalk.canonical_remaps;
  if(new Set(counties.features.map(stateKey)).size!==400)throw Error('现行县市AGS数量不符');
  app.features=counties.features;app.countyGeo=counties;app.metric=metric;
- const allRaw=[...r1.events,...r2.events,...r4.events,...r5a.events,...r5b.events,...r5c.events,...r5d.events,...r6.events,...r7a.events,...r7b.events,...r7c.events];
+ const allRaw=[...r1.events,...r2.events,...r4.events,...r5a.events,...r5b.events,...r5c.events,...r5d.events,...r6.events,...r7a.events,...r7b.events,...r7c.events,...r7d.events];
  const patches={...(r4.updates||{}),...(r7audit.updates||{})};
  for(const [id,patch] of Object.entries(patches)){
   const original=allRaw.find(e=>e.event_id===id);
