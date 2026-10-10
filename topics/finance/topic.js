@@ -176,7 +176,7 @@
   }else if(map.hasLayer(countiesLayer))map.removeLayer(countiesLayer);
  }
  function zoomToState(id,name){
-  view.county=null;view.selected=null;view.limit=8;
+  view.county=null;view.currentCounty=null;view.selected=null;view.limit=8;
   displaySelectedState(id,name);
   $('sectionTitle').textContent='2025年人均地方财政收支';
   $('districtPanel').hidden=id!=='DE-RP';
@@ -191,6 +191,7 @@
  }
  function showCounty(feature){
   if(!view.focusState||!String(feature.id||'').startsWith(AGS[view.focusState]))return;
+  view.currentCounty=feature.id;
   const row=view.focusState==='DE-RP'?regionalRow(feature.id):null;
   const name=feature.properties?.name||'县级地区';
   if(row){
@@ -222,7 +223,7 @@
   renderLegend();renderMarkers();
  }
  function resetView(){
-  view.focusState=null;view.county=null;view.selected=null;
+  view.focusState=null;view.county=null;view.currentCounty=null;view.selected=null;
   view.limit=8;view.rpPeriod='2025-full-cities';
   $('rpPeriod').value=view.rpPeriod;
   resetArea();renderList();
@@ -279,6 +280,19 @@
   const unmatched=readyCases.filter(r=>!countyIds.has(r.county));
   if(unmatched.length)throw Error('地图候选县级AGS没有匹配的边界：'+unmatched.map(x=>x.id).join(','));
   buildMapLayers();
+  window.__FINANCE_UI__=Object.freeze({
+   getFocusState:()=>view.focusState,
+   zoomToState,
+   selectCounty:id=>{const l=allCountyShapes.get(id);if(l)showCounty(l.feature)},
+   getBalance:id=>selectedStateValue(id),
+   stateFill:id=>color(selectedStateValue(id)),
+   getMode:()=> 'balance-2025',
+   eventCount:()=>bubblesLayer.getLayers().length,
+   hasStateLayer:()=>map.hasLayer(statesLayer),
+   hasCountyDetail:()=>map.hasLayer(countiesLayer),
+   stateLayer:()=>statesLayer,
+   eventMarkers:()=>bubblesLayer.getLayers()
+  });
   renderMap();showStatus('');
  }
  document.addEventListener('DOMContentLoaded',()=>{boot().catch(err=>{console.error(err);showStatus('财政专题加载失败：'+err.message+'。可查看研究档案和来源说明。')})});
