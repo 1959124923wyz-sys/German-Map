@@ -1,0 +1,6 @@
+{
+  "verified": true,
+  "exit_code": 0,
+  "status": "downloaded_source_schema_only",
+  "notes": "SUCCESS 71327 county core debt downloaded 44435 bytes, lines 615 SHA256 28f034e26731bd538bfec5461a8375156be085b41ac33eb62798167a7b88b80b ENC cp1252\nFIRST LINES [\"GENESIS-Tabelle: 71327-01-05-4\", \"Schulden der Kernhaushalte der Gemeinden und;;;;;;;;;\", \"Gemeindeverb\u00e4nde - Stichtag: 31.12. - regionale Tiefe:;;;;;;;;;\", \"Kreise und krfr. St\u00e4dte;;;;;;;;;\", \" J\u00e4hrliche Schulden der Kernhaushalte der Gemeinden/Gemeindeverb\u00e4nde;;;;;;;;;\", \";;;Schuldenst.d.Kernhh.d.Gem.u.-verb.je Einw.a.30.06.;Schuldenst d.Kernhh.d.Gem.u.-verb\u00e4nde insgesamt;Schuldenstand d.Kernhaush.d.Gemeinden u.-verb\u00e4nde;Schuldenstand d.Kernhaush.d.Gemeinden u.-verb\u00e4nde;Schuldenstand d.Kernhaush.d.Gemeinden u.-verb\u00e4nde;Schuldenstand d.Kernhaush.d.Gemeinden u.-verb\u00e4nde;Schuldenstand d.Kernhaush.d.Gemeinden u.-verb\u00e4nde\"]\n"
+}
