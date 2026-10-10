@@ -40,7 +40,7 @@ vm.runInNewContext(src,context,{filename:'topics/industry/topic.js',timeout:6000
  for(let i=0;i<30&&!w.GermanIndustryQA;i++)await new Promise(resolve=>setImmediate(resolve));
  const qa=w.GermanIndustryQA;
  assert.ok(qa,'topic failed to boot');
- assert.equal(qa.records,195);
+ assert.equal(qa.records,202);
  assert.equal(qa.counties,402);
  assert.equal(qa.modernCounties,400);
  assert.equal(qa.states,16);
@@ -48,7 +48,7 @@ vm.runInNewContext(src,context,{filename:'topics/industry/topic.js',timeout:6000
  assert.ok(qa.mappedCounties>80,'valid administrative assignment for sample events');
  assert.ok(qa.pointMarkers>90,'major markers should load');
  assert.equal(el('mapStatus').style.display,'none');
- assert.equal(el('areaEvents').textContent,195);
+ assert.equal(el('areaEvents').textContent,202);
  assert.ok(el('legend').innerHTML.includes('已登记工业收缩事件'),'sampled-news shading must disclose its nature');
  console.log('industry runtime smoke succeeded',JSON.stringify(qa));
 })().catch(e=>{process.stderr.write(String(e.stack||e)+'\\n');process.exitCode=1});
