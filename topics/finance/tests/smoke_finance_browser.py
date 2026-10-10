@@ -148,7 +148,7 @@ def verify(browser,mobile=False):
     page.wait_for_function("document.getElementById('municipalCount')?.textContent.includes('个市镇')",timeout=30000)
     assert page.evaluate(f"{api}.municipalStateLoaded('01')")
     page.locator("#municipalDrawer summary").click()
-    assert "Kiel" in page.locator("#municipalList").inner_text()
+    assert "01002000" in page.locator("#municipalList").inner_text()
     assert "5,165.6" in page.locator("#municipalList").inner_text()
     page.locator("#municipalSearch").fill("01002000")
     assert page.locator("#finance-map").is_visible()
