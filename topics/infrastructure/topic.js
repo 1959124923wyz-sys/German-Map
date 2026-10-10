@@ -9,8 +9,8 @@
   const state = {selectedState:null,selectedEvent:null,showEvents:false,category:'all'};
   let map, stateLayer, markerGroup, scores, evidence, archive, rows, rowByIso, geo, markers = new Map();
 
-  const categoryNames = {bridge:'桥梁损坏',delay:'工期延期',cost:'投资超支',strange:'闲置工程',access:'公共服务'};
-  const statusNames = {in_progress:'分阶段施工',unconnected:'长期闲置',completed:'已完成',replacement:'待重建',partly_open:'部分恢复',closed:'封闭/限制',unavailable:'设施停用',temporary:'临时设施运行'};
+  const categoryNames = {bridge:'桥梁损坏',delay:'工期延期',cost:'投资超支',strange:'闲置工程',access:'公共交通',school:'学校建筑',facility:'公共设施'};
+  const statusNames = {in_progress:'分阶段施工',unconnected:'长期闲置',completed:'已完成',replacement:'待重建',partly_open:'部分恢复',closed:'封闭/限制',unavailable:'设施停用',temporary:'临时设施运行',restricted:'限重/限行',partly_closed:'部分区域关闭'};
   function color(v) {
     if(v == null || !Number.isFinite(v)) return '#83919b';
     if(v>=66)return palette[0];
@@ -128,9 +128,10 @@
     const el=$('eventDetail'), e=archive.events.find(x=>x.id===state.selectedEvent);
     el.hidden=!e;if(!e){el.innerHTML='';return;}
     const precision=e.coordinates.precision==='locality_approx'?'城镇近似点':'设施附近示意点';
+    const dateLabel=e.event_date_precision==='month'?e.event_date+'（月份）':e.event_date;
     el.innerHTML='<button type="button" aria-label="关闭事件详情" id="closeEventDetail">×</button>'
       +'<h3>'+escapeHtml(e.title)+'</h3>'
-      +'<div class="meta">'+escapeHtml(e.city)+' · '+escapeHtml(e.event_date)+' · '+escapeHtml(categoryNames[e.category])+' · '+escapeHtml(statusNames[e.status]||e.status)+'</div>'
+      +'<div class="meta">'+escapeHtml(e.city)+' · '+escapeHtml(dateLabel)+' · '+escapeHtml(categoryNames[e.category]||e.category)+' · '+escapeHtml(statusNames[e.status]||e.status)+'</div>'
       +'<p>'+escapeHtml(e.summary)+'</p><p class="meta">定位精度：'+precision+'。该条为精选档案，不参与地区指数。</p>'
       +e.sources.filter(v=>isUrl(v.url)).map((s,i)=>anchor(s.url,'阅读来源 '+(i+1))).join(' · ');
     $('closeEventDetail').addEventListener('click',()=>{state.selectedEvent=null;renderEventDetail();renderEvents();});
