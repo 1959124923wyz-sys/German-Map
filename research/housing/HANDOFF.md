@@ -111,3 +111,51 @@ python research/housing/build_stock_proxy.py
 5. 局部事件仅凭来源实证精确位置才能加坐标；先保持简洁地图，不制造虚构住房事故或多余图层。
 
 **断点恢复**：检出 `research/housing-crisis-20261010`；阅读 `research/housing/HANDOFF.md` 文末第三阶段；检查以上成功 Action/审计；地图入口 `topics/housing/index.html`；独立原始下载脚本和回归脚本都在 `research/housing/` 与 `topics/housing/tests/`。新改动每批先提交GitHub，确认SHA与Actions结果，再更新本交接文档。**本分支原型尚未合并或发布到主站**。
+
+## ✅ 第四阶段追加：Zensus 2022 全国400县住房普查深挖（2026-10-10）
+
+**严格记录：以下四组采集、字段审计和前端回归均有 `completed/success` 的 GitHub Actions 证据，数据已实际存在远端研究分支；旧交接中“仍缺全国县级存量租金、空置结构细节”的条目已经过时。** `main` 未合并或修改。
+
+### A. 德国联邦统计局官方完整2022住房普查，全国400县、全级别历史地域
+
+- 原始权威下载：`https://www.destatis.de/static/DE/zensus/gitterdaten/Regionaltabelle_Gebaeude_Wohnungen.xlsx`，Zensus 2022住房建筑普查区域表，约 **21,451,209字节**，SHA256 `82da8578a4657e20752b436a756ed27846c77f96e3f7333bdea7f4fe29a8b551`，统计时点 **2022-05-15**。
+- 源文件：`research/housing/raw/destatis_zensus_2022_regional_housing_national.xlsx`，原始全德地区表另包含市镇与市镇联合体记录，**不得与县级数值相加**。
+- 全国原始工作簿采集并保全：[run 38042015961 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38042015961)。字段结构 `research/housing/qa/destatis_zensus2022_national_housing_workbook_schema.json`。
+- 县级机器表规范化处理程序：`research/housing/build_destatis_zensus_counties.py`，准确识别 `Regionalebene=Stadtkreis/kreisfreie Stadt/Landkreis` + 五位县级 `_RS`，**400/400** AGS和官方2024 BKG 400县编码完全对应。生成 `research/housing/data/zensus2022_official_400_counties_{dwellings,buildings}.csv`，全量字段 `topics/housing/data/zensus2022-county-archive.json`。机器表有**89个住宅指标字段、47个建筑指标字段**。县级提取 [run 38042183940 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38042183940)。
+- 对每个简写字段由原始格式表查回德文分层标题，严禁靠代码猜含义：`research/housing/probe_zensus_column_labels.py`、`research/housing/qa/zensus2022_official_housing_column_codebook.json`，[run 38042252131 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38042252131)。
+
+### B. 新增全国2022年真实存量租金、长期空置及可入住结构
+
+- 计算脚本 `research/housing/build_zensus_housing_indicators.py`；原表逐县记录和分母验证输出 `research/housing/data/zensus2022_official_district_rents_vacancy_breakdown.csv`；供地图页面使用 `topics/housing/data/zensus2022-housing-indicators-counties.json`；详尽审计 `research/housing/qa/zensus2022_rent_vacancy_400_county_audit.json`。
+- **各项均400/400县有效**。原始官方机器代码与意义：
+  - `QMMIETE` = 2022年实际已出租住房平均净冷租金（欧元/㎡），与2025年互联网挂牌租金**不具有直接同比可比性**；
+  - `LEQ` = 2022 Zensus总体住房空置率（保留官方原值，不等同于BBSR另一个定义）；
+  - `ETQ` = 2022 Zensus业主居住份额（官方原表定义的 Eigentümerquote，注意与HA26 `wohn_eigen` 具体统计对象可能不同）；
+  - `LEERSTAND_INSGESAMT` = 已空置的住房套数；
+  - `LEERSTAND_DAUER__4` = 连续空置**至少12个月**套数，除以 `LEERSTAND_INSGESAMT` 得“空房中长期空置的比例”，**不是全部住房空置率**；
+  - `LEERSTAND_GRUND__1` = **三个月内可供入住**的空房，除以 `LEERSTAND_INSGESAMT` 得“空房中较快可入住的比例”；也保存相对于所有住房的比例，但**不是可出租房源/市场活跃空置率**；
+  - `LEERSTAND_GRUND__2…6` = 施工中或计划施工、拆除、出售、未来自用与其他空置原因，原始套数均保留。
+- **全国住房套数验证**：县级 `GEBAEUDEART_SYS_1` 合计 **43,106,558套**，与普查全国原值 **43,106,589套**相差 **-31套**。保密扰动致各分类/县汇总可能相差少量（最长空置期子类按县最大偏差12套、原因子类最大13套）。不强制要求按类别严丝合缝汇总，也不擅自篡改。
+- **存量租金独立交叉核验**：Flensburg 6.96 €/㎡、Kiel 7.64、Lübeck 7.47、Neumünster 6.22，同此前独立取得的德国地图集市镇联合体租金文件四地逐一相同。
+- 已实际通过构建任务 [run 38042356410 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38042356410)，无缺失值编造。
+- 县级实值JSON与CSV之外，所有地区均可在完整归档 `zensus2022-county-archive.json` 查看原始字段。
+
+### C. 地图原型更新与客户端 QA
+
+- `topics/housing/index.html`, `topic.js` 新增3个可切换的全国县级地图指标：
+  1. **2022年实际存量租金** `existing_cold_rent_2022_eur_m2`
+  2. **2022年空置至少12个月占全部空房比例** `vacant_12mo_plus_of_vacant_2022_pct`
+  3. **2022年三个月内可入住占全部空房比例** `vacant_available_3mo_of_vacant_2022_pct`
+- 现在共有**15个互不混合的指标选项**，但页面默认仍仅显示2025挂牌租金主图，其他统计通过一个下拉菜单切换；没有新增独立地图浮窗或“危机综合评分”。
+- 新来源归属于Destatis Zensus 2022原件，统计年份、分母、与挂牌价不同口径的限制同时进入右侧说明和方法展开抽屉。
+- Chromium完整桌面+手机实际测试：[run 38042441415 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38042441415)。测试覆盖400县2022住房普查数据有效性、独立来源、15项指标、全德其他层、州县选择、萨克森与北威档案、移动端不溢出。
+
+### D. 尚存缺口，后续研究行动
+
+1. **2024及2025年全国400县级竣工序列**仍未取得，全国静态Regionalstatistik 31121-01-02-4接口原始文件只含2023年，现有2025北威州53县可留作交叉校验。应逐州搜集原始表或找到全德政府机器接口的新快照；不得用2023数据冒充2025。
+2. **2026年全国400县的受安置无住房者**县级细分仍缺；2025年官方县级表394有数值，但2026全国汇总452,910不等于2026县级序列。按地区统计站和2026 GENESIS数据库进一步查找，统计日与分类必须一致。
+3. 本次得到的“预计3个月内可入住”空置原因不等于Zensus 2022 **4000W-0002 Marktaktive Leerstandsquote (Geschosswohnungen)**；后者另一指标已找到全国总量2.3%，若需要逐县序列应独立取得原始单独表，并明确只涉及多单元公寓住房。**不要用本次新衍生指标假称是4000W-0002。**
+4. 全国可比的“县级实际家庭住房负担率”仍待独立微观调查，严禁拼接2025挂牌租金与2023地区人均可支配收入推算住户负担率。
+5. 可深入普查的建成年份、租金价位段、能源与房屋拥有主体等89+47源字段；需要继续做单位解释、跨指标一致性审计，避免把加总过的多口径分组当作独立住房数量。
+
+**恢复**：从远端 `research/housing-crisis-20261010` 检出，先读本文第四阶段；工作簿位于 `research/housing/raw/destatis_zensus_2022_regional_housing_national.xlsx`；运行 `build_destatis_zensus_counties.py` + `probe_zensus_column_labels.py` + `build_zensus_housing_indicators.py` 即可完全复建新的400县级指标；使用 `topics/housing/tests/smoke_housing_browser.py` 及CI验证。所有批次仍坚持源文件、SHA256、代码、QA、分支提交的保全原则。
