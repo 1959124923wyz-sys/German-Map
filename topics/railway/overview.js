@@ -18,7 +18,7 @@ const NATION=[[47.05,5.45],[55.15,15.65]];
 const {REF_ZOOM,WORLD,officialPart,observedParts,actualBounds,currentViewport,visible,drawPath,unproject,segmentDist}=window.Railway07Geometry;
 // Fixed 100-observation inclusion threshold (not a user-facing filter).
 const view={service:'REGIONAL',metric:'both',minimum:100,selected:null,links:[],
-  rendered:[],groups:[],bridgePaths:[],bridged:0,bridgeGraph:new window.Railway07Bridge.RouteGraph(),ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,networkParts:[],grid:new Map(),map:null,
+  rendered:[],groups:[],serviceGroups:[],serviceGroupMap:new Map(),serviceBridged:0,bridgePaths:[],bridged:0,bridgeGraph:new window.Railway07Bridge.RouteGraph(),ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,networkParts:[],grid:new Map(),map:null,
   baseLayer:null,observedLayer:null,picker:new window.Railway07Picker.RailwayPicker(),repaints:0};
 const cache=new Map();
 const fmt=n=>Number(n).toLocaleString('zh-CN');
@@ -303,11 +303,14 @@ function showDetail(){
  const {m,grade:g,members}=o;
  const first=members[0].leg,last=members[members.length-1].leg;
  const [startStation,endStation]=corridorStations(members);
- const title=stationZh(startStation)+' → '+stationZh(endStation);
- element(box,'span',g===2?'● 晚点或取消较多':g===1?'● 需要关注':'● 表现相对较好','grade');
+ const title=(o.serviceName?o.serviceName+' · ':'')+stationZh(startStation)+' → '+stationZh(endStation);
+ element(box,'span',o.gradeVariation?'● 线路不同路段表现有差异':
+  g===2?'● 晚点或取消较多':g===1?'● 需要关注':'● 表现相对较好','grade');
  element(box,'h3',title);
  if(members.length>1||o.bridges)
-  element(box,'p','连续区段 · '+members.length+' 个有观测站间'+(o.bridges?' · '+o.bridges+' 处观测缺口':''),'corridor-count');
+  element(box,'p',(o.serviceName?'运营走廊':'连续区段')+' · '+members.length+
+   ' 个有观测站间'+(o.serviceLinks?' · 跨'+o.serviceLinks+'处线路编号':'')+
+   (o.bridges?' · '+o.bridges+' 处观测缺口':''),'corridor-count');
  const grid=element(box,'div','','detail-grid');
  for(const [value,label] of [[pct(m.onTime),'准点率（晚点不足6分钟）'],
   [pct(m.cancel),'停靠取消标记率']]){
@@ -322,7 +325,9 @@ function showDetail(){
   element(r,'strong',stationZh(item.leg.from_station)+' → '+stationZh(item.leg.to_station));
   element(r,'span','准点 '+pct(item.m.late===null?null:100-item.m.late)+' · 取消标记 '+pct(item.m.cancel));
  }
- element(more,'p','线路 '+first.route+' · 有效到站 '+fmt(m.nArrival)+' 次 · 计划站间配对 '+fmt(m.nPlanned)+' 次');
+ const routes=[...new Set(members.map(x=>String(x.leg.route)))].join('、');
+ element(more,'p','官方线路 '+routes+' · 有效到站 '+fmt(m.nArrival)+' 次 · 计划站间配对 '+fmt(m.nPlanned)+' 次');
+ if(o.serviceName)element(more,'p','按 '+o.serviceName+' 的共有列车线路标记及可核对的相邻轨道归并；各子段风险颜色仍按各自观测绘制，面板百分比按原始次数合计。');
  element(more,'p','晚点率 '+pct(m.late)+'（至少6分钟）；相邻区间可能重复观测同一趟车。');
  if(o.bridges){
   const verified=o.bridges-(o.schematicBridges||0);
@@ -348,7 +353,7 @@ function updateHotspots(){
   element(main,'small','准点 '+pct(o.m.onTime)+' · 取消标记 '+pct(o.m.cancel));
   element(row,'span',o.grade===2?'高':'中','hot-grade '+(o.grade===2?'high':'medium'));
   row.onclick=()=>{
-   view.selected=o;showDetail();view.observedLayer.schedule();
+   view.selected=view.serviceGroupMap.get(o)||o;showDetail();view.observedLayer.schedule();
    const b=o.bounds,ll1=unproject(b.minX,b.minY),ll2=unproject(b.maxX,b.maxY);
    const bounds=L.latLngBounds(ll1,ll2);
    if(bounds.isValid())view.map.fitBounds(bounds.pad(.38),{maxZoom:11,animate:false});
@@ -366,7 +371,7 @@ function pickAt(latlng){
  const point=view.map.project(latlng,REF_ZOOM);
  const match=view.picker.hit([point.x,point.y],view.map.getZoom());
  if(!match)return;
- view.selected=match.kind==='observed'?match.group:{
+ view.selected=match.kind==='observed'?(view.serviceGroupMap.get(match.group)||match.group):{
   unobserved:true,route:match.route,parts:[match.part]
  };
  showDetail();
@@ -392,7 +397,19 @@ function recalc(){
   view.groups=measured;view.bridged=0;
  }
  view.bridgePaths=view.groups.flatMap(g=>g.bridgeParts||[]);
- view.selected=previous?(view.groups.find(g=>g.members.some(x=>x.leg===previous))||null):null;
+ if(view.networkReady){
+  const services=window.Railway07ServiceGroups.joinServiceCorridors(view.groups,
+   view.bridgeGraph,view.metric);
+  view.serviceGroups=services.corridors;
+  view.serviceGroupMap=services.map;
+  view.serviceBridged=services.joined;
+  view.bridgePaths.push(...services.servicePaths);
+ }else{
+  view.serviceGroups=view.groups;view.serviceGroupMap=new Map();
+  view.serviceBridged=0;
+ }
+ const previousGroup=previous?view.groups.find(g=>g.members.some(x=>x.leg===previous)):null;
+ view.selected=previousGroup?(view.serviceGroupMap.get(previousGroup)||previousGroup):null;
  rebuildIndex();
  // The research dashboard retains all overall counts; the map stays focused on picked segments.
  status(labels[view.service]+' · '+fmt(view.groups.length)+' 段连续区间');
@@ -402,7 +419,7 @@ function recalc(){
 
 async function chooseService(){
  const id=++view.ticket,service=view.service;
- view.selected=null;view.links=[];view.rendered=[];view.groups=[];view.bridgePaths=[];view.bridged=0;view.picker.replaceObserved([],[]);
+ view.selected=null;view.links=[];view.rendered=[];view.groups=[];view.serviceGroups=[];view.serviceGroupMap.clear();view.serviceBridged=0;view.bridgePaths=[];view.bridged=0;view.picker.replaceObserved([],[]);
  view.observedLayer.schedule();status('正在读取 '+labels[service]+' 的观测…');
  try{
   const data=await Promise.all(sources[service].map(async k=>[k,await loadData(k)]));
@@ -445,7 +462,7 @@ try{
   getMap:()=>view.map,getNetworkGeometryCount:()=>view.networkParts.length,
   getNetworkReady:()=>view.networkReady,getStatesReady:()=>view.statesReady,
   getCountiesReady:()=>view.countiesReady,getRendered:()=>view.rendered,
-  getCorridors:()=>view.groups,getBridgedCount:()=>view.bridged,
+  getCorridors:()=>view.groups,getServiceCorridors:()=>view.serviceGroups,getServiceBridgedCount:()=>view.serviceBridged,getBridgedCount:()=>view.bridged,
   getBridgeDiagnostics:()=>view.bridgeDiagnostics,getBridgeFailureCounts:()=>view.bridgeGraph.reasons,getBridgedGeometryCount:()=>view.bridgePaths.length,getGraphEdgeCount:()=>view.bridgeGraph.edges,
   getRepaintCount:()=>view.repaints,getCanvasCount:()=>document.querySelectorAll('.railway-canvas').length,
   getSpatialBucketCount:()=>view.picker.observed.cells.size,
