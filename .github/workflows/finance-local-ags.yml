@@ -1,0 +1,20 @@
+name: Finance 08 - AGS research
+on:
+  push:
+    branches: [research/finance-regional-expansion-20261010]
+    paths:
+      - 'research/finance/regional-expansion/geocode_local_debt_2025.py'
+      - '.github/workflows/finance-local-ags.yml'
+permissions:
+  contents: write
+jobs:
+  geocode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python research/finance/regional-expansion/geocode_local_debt_2025.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/finance/regional-expansion/derived/local_debt_2025_*
+          git diff --cached --quiet || (git commit -m "data: stage 32 historically linked local debt entities" && git push origin HEAD:research/finance-regional-expansion-20261010)
