@@ -8,7 +8,7 @@ const site=path.resolve(topic,'../..');
 const src=fs.readFileSync(path.join(topic,'topic.js'),'utf8');
 const elements=new Map();
 function el(id){
- if(!elements.has(id))elements.set(id,{style:{},textContent:'',innerHTML:'',hidden:false,className:'',addEventListener(){},querySelectorAll(){return [];}});
+ if(!elements.has(id))elements.set(id,{style:{},textContent:'',innerHTML:'',hidden:false,className:'',value:'',addEventListener(){},insertAdjacentHTML(){},querySelectorAll(){return [];}});
  return elements.get(id);
 }
 const panes={};
@@ -32,7 +32,7 @@ async function fetchStatic(url){
  const obj=JSON.parse(fs.readFileSync(filepath,'utf8'));
  return {ok:true,status:200,json:async()=>obj};
 }
-const w={GermanPlaceNames:{translate:s=>s}};
+const w={GermanPlaceNames:{translate:s=>s},GermanRegionDossier:{mount:()=>({show(){},choose(){}})}};
 const context={window:w,document:{getElementById:el},L,fetch:fetchStatic,
  console:{error:e=>{throw e}},setTimeout};
 vm.runInNewContext(src,context,{filename:'topics/industry/topic.js',timeout:6000});
