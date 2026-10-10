@@ -1,0 +1,14 @@
+{
+  "as_of": "2026-10-10",
+  "new_metrics": 9,
+  "entities": [
+    "Hamburg",
+    "Berlin",
+    "Leipzig"
+  ],
+  "count_city_state": 7,
+  "forecast_count": 2,
+  "feeds_identified_not_downloaded": 3,
+  "nationwide_comparison_allowed": false,
+  "original_financial_scopes_retained": true
+}
