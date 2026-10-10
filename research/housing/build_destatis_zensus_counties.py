@@ -31,10 +31,10 @@ def collect(sh,expected):
         name=str(row[2]).strip() if row[2] is not None else ""
         lev=str(row[3]).strip() if row[3] is not None else ""
         levels[lev]+=1
-        if not re.fullmatch(r"\\d{5}",key) or lev!="Stadtkreis/kreisfreie Stadt/Landkreis":
+        if not re.fullmatch(r"\d{5}",key) or lev!="Stadtkreis/kreisfreie Stadt/Landkreis":
             continue
         if row[0] != 20220515 and str(row[0])!="20220515":
-            raise ValueError(f"Unexpected Zensus reference date {_id}, {row[0]}")
+            raise ValueError(f"Unexpected Zensus reference date {key}, {row[0]}")
         if key in data:raise ValueError(f"Duplicate census county {key}")
         vals={}
         for col,v in zip(header[4:],row[4:]):
@@ -45,7 +45,7 @@ def collect(sh,expected):
                 vals[col]=v
             else:
                 v=str(v).strip()
-                if re.fullmatch(r"-?\\d+(?:[,.]\\d+)?",v):
+                if re.fullmatch(r"-?\d+(?:[,.]\d+)?",v):
                     vals[col]=float(v.replace(",",".")) if "," in v or "." in v else int(v)
                 else:
                     vals[col]=v
@@ -89,8 +89,8 @@ def main():
     wb.close()
     WEB.mkdir(parents=True,exist_ok=True);QA.mkdir(parents=True,exist_ok=True)
     (WEB/"zensus2022-county-archive.json").write_text(
-      json.dumps(payload,ensure_ascii=False,separators=(",",":"),default=str)+"\\n",encoding="utf-8")
+      json.dumps(payload,ensure_ascii=False,separators=(",",":"),default=str)+"\n",encoding="utf-8")
     (QA/"zensus2022_official_county_extract_audit.json").write_text(
-      json.dumps(audit,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+      json.dumps(audit,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print("SUCCESS national Zensus: 400 current AGS building+dwellings, full source columns",flush=True)
 if __name__=="__main__":main()
