@@ -74,7 +74,8 @@ function findCounty(name,iso,raw){
  if(!rows.length)return null;
  if(rows.length===1)return rows[0];
  const isCity=raw&&raw===name&&!['Fürth'].includes(raw);
- return rows.find(f=>(f.properties.districtType==='Kreisfreie Stadt')===Boolean(isCity))||rows[0];
+ const independent=f=>['Kreisfreie Stadt','Stadtkreis'].includes(f.properties.districtType);
+ return rows.find(f=>independent(f)===Boolean(isCity))||rows[0];
 }
 function normalize(e,batch){
  const title=e.headline_zh||e.company+' · '+e.city;
