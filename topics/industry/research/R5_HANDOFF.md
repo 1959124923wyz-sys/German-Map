@@ -43,3 +43,10 @@
 - `tests/validate_industry.cjs` 已对402个ID唯一性、长度和AGS代码使用做CI验收。
 - 新增 `scripts/try_regionalatlas_county.py`：利用bundesAPI开源文档生成ArcGIS查询，默认只打印请求；必须指定`--execute`才访问网络，结果只保存为候选数据，不自动发布；若不满足覆盖要求须保留失败日志。
 - 全国真实2019→2024/2025县级就业面板仍未完成正式下载/验收，R5不得报称地图已按真实就业下降率着色。
+
+## 第四阶段：Regionalatlas ArcGIS 在线抓取实测（未成功）
+- GitHub Actions研究任务 `industry-research-fetch.yml` 在支线执行，运行编号 [38037722026](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38037722026)。
+- 运行脚本 `scripts/try_regionalatlas_county.py` 于2019年与2024年分别测试 `ai007_1_5` 县级制造业就业占比候选表。
+- 实际服务器均返回 **ArcGIS code 400 / Invalid or missing input parameters**，程序退出码均为3；已保留日志 [artifact 11663483662](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38037722026/artifacts/11663483662)。
+- GitHub工作流步骤本身完成（因为候选抓取故意容错），**这不代表县级官方数据已经成功下载**。本轮仍没有真实县级数值、没有用于上色的2019—2024面板。
+- 以后优先检查Regionalatlas2026真实表名、ArcGIS当前查询参数、服务端SQL权限；也可改用经身份注册的Regionaldatenbank原始导出或各州统计局CSV，避免同一个错误请求无限重试。
