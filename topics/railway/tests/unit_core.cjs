@@ -275,4 +275,26 @@ const noDataRuns=shade.forCorridor(missingGroup,fakeDB);
 assert.ok(noDataRuns.some(x=>x.grade===0&&x.m.onTime===null),
  'green without timetable samples stays selectable and numeric KPI missing');
 
+
+// A railway siding joining at X must not truncate the A--B green selection
+// when the straight physical continuation is unambiguous.
+const switches=new context.window.Railway07Continuity.Backbone();
+switches.add('8100',part(100,104));
+switches.add('8100',part(104,108));
+switches.add('8100',part(108,112));
+switches.add('8100',geom.shape([104,baseY,104,baseY+4]));
+const trunk=switches.walkPhysical('8100',[101,baseY],20);
+assert.ok(trunk.parts.length>=3,'a minor turnout must not fragment the main track');
+assert.equal(trunk.parts.includes(switches.perRoute.get('8100')[3]),false,
+ 'a siding must not be mistaken for the A--B trunk');
+// Green A--RED middle--GREEN B must form 3 physical click regions.
+const fakeRisk=[colorObs('X','Y',104,108,45,2)];
+const sourceCut=shade.forOfficial(switches.unobserved('8100',[105,baseY]),fakeRisk);
+const gA=shade.findRun(sourceCut,[101,baseY],0,3);
+const gB=shade.findRun(sourceCut,[111,baseY],0,3);
+assert.ok(gA&&gB&&gA!==gB,
+ 'green must be split into two separate runs by a measured red section');
+assert.ok(gA.unobserved&&gB.unobserved&&gA.m.onTime===null,
+ 'missing-data green cannot inherit the red interval statistics');
+
 console.log('PASS railway pure geometry, weighted rates, branches, km gaps and pooled counts');
