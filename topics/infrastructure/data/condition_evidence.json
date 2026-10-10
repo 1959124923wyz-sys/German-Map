@@ -320,6 +320,44 @@
       "scope": "黑森州道2024检测对2020变化，原文未给绝对初始比例及是否百分点；不能解读为4.2%的道路已修复",
       "source": "https://mobil.hessen.de/presse/fast-1-milliarde-euro-fuer-hessens-landesstrassen",
       "source_quality": "verified_original"
+    },
+    {
+      "iso": "DE-BE",
+      "domain": "state_managed_bridges",
+      "year": 2025,
+      "measurement": "州管桥梁状况评分≥3.0占比",
+      "value": 7,
+      "unit": "pct_structures_rounded",
+      "scope": "2025年6月柏林州政府管理的1047个桥梁构造物（包括行人桥、公园桥及分段/标志牌桥），官方图表占比约7%；不是BASt联邦公路桥梁、不代表所有柏林桥",
+      "source": "https://www.berlin.de/sen/uvk/_assets/verkehr/infrastruktur/brueckenbau/masterplan-bruecken-berlin/masterplan_bruecken_broschuere_senmvku.pdf",
+      "source_page": 19,
+      "source_quality": "verified_original",
+      "threshold": "DIN1076 >=3.0",
+      "count_estimate_only": 73
+    },
+    {
+      "iso": "DE-BE",
+      "domain": "state_managed_bridges",
+      "year": 2025,
+      "measurement": "州管桥梁状况2.0–2.4的比例",
+      "value": 47,
+      "unit": "pct_structures_rounded",
+      "scope": "与州管1047个桥梁构造物同口径，属于满意级别，不等于危桥",
+      "source": "https://www.berlin.de/sen/uvk/_assets/verkehr/infrastruktur/brueckenbau/masterplan-bruecken-berlin/masterplan_bruecken_broschuere_senmvku.pdf",
+      "source_page": 19,
+      "source_quality": "verified_original"
+    },
+    {
+      "iso": "DE-BE",
+      "domain": "state_managed_bridges",
+      "year": 2025,
+      "measurement": "州管桥梁状况2.5–2.9比例",
+      "value": 27,
+      "unit": "pct_structures_rounded",
+      "scope": "与州管1047个桥梁构造物同口径，表示尚可级别，不能直接标为不可通行",
+      "source": "https://www.berlin.de/sen/uvk/_assets/verkehr/infrastruktur/brueckenbau/masterplan-bruecken-berlin/masterplan_bruecken_broschuere_senmvku.pdf",
+      "source_page": 19,
+      "source_quality": "verified_original"
     }
   ]
 }
