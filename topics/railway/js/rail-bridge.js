@@ -56,12 +56,23 @@ class RouteGraph{
   let r=this.routes.get(key);
   if(!r){r={nodes:new Map(),cells:new Map(),edges:[]};this.routes.set(key,r);}
   const xy=part.xy;
-  const keys=[nodeKey(xy[0],xy[1]),nodeKey(xy[xy.length-2],xy[xy.length-1])];
-  const nodes=keys.map((k,i)=>{
-   let n=r.nodes.get(k);
-   if(!n){n={key:k,xy:i?[xy[xy.length-2],xy[xy.length-1]]:[xy[0],xy[1]],adj:[]};r.nodes.set(k,n);}
-   return n;
-  });
+  // Endpoint coordinates of independently published DB geometries may differ
+  // by a few metres and fall on opposite quantization-cell boundaries.
+  // Snapping the closest REAL existing endpoint avoids artificial topology
+  // gaps; it never adds a drawing segment or joins far-away tracks.
+  const getNode=(x,y)=>{
+   const ix=Math.round(x/STEP),iy=Math.round(y/STEP);
+   let nearest=null,dist=.28**2;
+   for(let ax=ix-2;ax<=ix+2;ax++)for(let ay=iy-2;ay<=iy+2;ay++){
+    const node=r.nodes.get(ax+','+ay);if(!node)continue;
+    const d=(node.xy[0]-x)**2+(node.xy[1]-y)**2;
+    if(d<dist){dist=d;nearest=node;}
+   }
+   if(nearest)return nearest;
+   const key=ix+','+iy,node={key,xy:[x,y],adj:[]};
+   r.nodes.set(key,node);return node;
+  };
+  const nodes=[getNode(xy[0],xy[1]),getNode(xy[xy.length-2],xy[xy.length-1])];
   const edge={part,nodes,length:length(xy)};
   r.edges.push(edge);if(key!==GLOBAL)this.edges++;
   if(nodes[0]!==nodes[1]){
