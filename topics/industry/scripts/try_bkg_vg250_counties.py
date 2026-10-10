@@ -27,7 +27,7 @@ STATES = {
 
 def run(out):
     params = {
-       "where": "1=1", "outFields": "AGS,GEN,BEZ,GF",
+       "where": "GF=4", "outFields": "AGS,GEN,BEZ,GF",
        "returnGeometry": "true", "outSR": "4326",
        "f": "geojson", "geometryPrecision": "5",
        "maxAllowableOffset": "0.001",
@@ -40,6 +40,7 @@ def run(out):
     obj=json.loads(data)
     if obj.get("error"): raise ValueError("ArcGIS returned error: "+json.dumps(obj["error"],ensure_ascii=False))
     features=obj.get("features", [])
+    if obj.get("exceededTransferLimit"): raise ValueError("Incomplete ArcGIS response")
     crosswalk=json.loads((ROOT/"data/ags-crosswalk-402-to-400.json").read_text(encoding="utf-8"))
     canonical={e["canonical_ags"] for e in crosswalk["features"]}
     if len(canonical)!=400: raise ValueError("Reference modern AGS count is not 400")
@@ -48,7 +49,12 @@ def run(out):
     for feat in features:
         p=feat.get("properties") or {}
         ags=str(p.get("AGS","")).strip()
-        if len(ags)!=5 or not ags.isdigit(): raise ValueError(f"Bad AGS: {ags!r} {p}")
+        # BKG eight-digit AGS for a Kreis is AGS5+000.
+        # Verify 000 suffix, never truncate an actual Gemeinde key.
+        if len(ags)==8 and ags.endswith("000") and ags.isdigit():
+            ags=ags[:5]
+        if len(ags)!=5 or not ags.isdigit(): raise ValueError(f"Non-county AGS: {ags!r} {p}")
+        if str(p.get("GF")) not in ("4","4.0"): raise ValueError("Non-land boundary, GF="+str(p.get("GF")))
         if ags in seen: raise ValueError("Duplicate canonical AGS "+ags)
         seen.add(ags)
         name=p.get("GEN")
@@ -67,8 +73,11 @@ def run(out):
     cleaned.sort(key=lambda x:x["id"])
     record={"type":"FeatureCollection","_provenance":{
       "publisher":"Bundesamt für Kartographie und Geodäsie","product":"VG250 Kreise",
-      "effective_date":"2025-01-01","obtained_at_utc":dt.datetime.now(dt.timezone.utc).isoformat(),
+      "effective_date":"2024-12-31","obtained_at_utc":dt.datetime.now(dt.timezone.utc).isoformat(),
       "source_api":API,"source_metadata":META,"query":params,
+      "BKG_documentation":"https://sg.geodatenzentrum.de/public/gdz/dokumentation/eng/vg250_01-01_eng.pdf",
+      "AGS_mapping":"BKG eight-digit AGS ending 000 -> five-digit canonical county key",
+      "GF_filter":"GF=4 land polygons; exclude coast/sea GF=2",
       "geometry_note":"ArcGIS query maxAllowableOffset 0.001° for map rendering; no exact surveyed boundaries promised",
       "license":"Data licence Germany attribution 2.0 dl-de/by-2-0",
       "credit":"© BKG (2026) dl-de/by-2-0; https://www.bkg.bund.de; https://www.govdata.de/dl-de/by-2-0",
