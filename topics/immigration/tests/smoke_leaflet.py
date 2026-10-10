@@ -28,7 +28,7 @@ def check(browser, mobile=False):
     assert not page.locator("script:not([src])").count()
     # A new topic must retain all existing links, in a deterministic order.
     nav=page.locator(".toplinks .modebtn")
-    assert nav.count()==7
+    assert nav.count()==10
     assert [name.strip() for name in nav.all_inner_texts()]==[
         "暴力犯罪","财产犯罪","毒品问题","移民人口","环保争议","铁路运行","地方财政"]
     assert page.locator('.toplinks a[href="../environment/"]').count()==1
