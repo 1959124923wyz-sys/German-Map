@@ -1,0 +1,203 @@
+{
+  "source": "https://www.kielinstitut.de/fileadmin/Dateiverwaltung/IfW_Unit/Macroeconomics/GREIX/Mietpreisindex/City_metrics_public.xlsx",
+  "cities": 38,
+  "observations_nominal": 6612,
+  "skipped": {
+    "inflation_adjusted": 9348,
+    "non_monthly": 2736
+  },
+  "latest": "2026-06",
+  "by_city": {
+    "Aachen": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Augsburg": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Berlin": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Bielefeld": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Bocholt": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Bochum": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Bonn": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Braunschweig": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Bremen": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Chemnitz": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Dortmund": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Dresden": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Duisburg": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Düsseldorf": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Erfurt": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Essen": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Frankfurt am Main": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Gelsenkirchen": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Greix": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Hamburg": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Hamm": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Hannover": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Karlsruhe": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Kiel": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Kreis Mettmann": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Köln": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Leipzig": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Lübeck": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Mannheim": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Mönchengladbach": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "München": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Münster": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Nürnberg": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Potsdam": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Rhein-Erft-Kreis": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Stuttgart": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Wiesbaden": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    },
+    "Wuppertal": {
+      "first": "2012-01",
+      "last": "2026-06",
+      "months": 174
+    }
+  },
+  "important": "2025 annual BBSR rents and Q2 2026 GREIX monthly city data are different sampling/methodological series and should never be described as the same time series."
+}
