@@ -27,7 +27,7 @@
  let selectedCounty=null, focusState=null, metric='asking_rent_2025_eur_m2';
  let stateFeatures=[], countyFeatures=[], byid=new Map(), countyShapes=new Map();
  let stockReady=false, homelessReady=false, completionsReady=false, censusReady=false, breaks=[], sortedAll=[];
- let saxonyRows=new Map(), nrwRows=new Map(), bavariaRows=new Map();
+ let saxonyRows=new Map(), nrwRows=new Map(), bavariaRows=new Map(), brandenburgRows=new Map();
  const COUNTRY=[[47.2,5.5],[55.3,15.5]];
  const sourceURL = {
   atlas:'https://deutschlandatlas.bund.de/service/daten-herunterladen/aktuelle-downloaddaten/aktuelle-downloaddateien',
@@ -146,6 +146,22 @@
     '<p>仅巴伐利亚州96县市 · 2025年。新建住宅建筑中竣工的住房与全部建筑措施中竣工的住房是不同统计对象，不能相加。与北威州53县来源互补，目前绝不声称2025全国各县均有此统计。</p>'+
     '<a target="_blank" rel="noopener noreferrer" href="https://www.statistik.bayern.de/mam/produkte/veroffentlichungen/statistische_berichte/f2200c_202500.xlsx">巴伐利亚统计局 F2200C 202500原始表 ↗</a>';
  }
+ function renderBrandenburg(region){
+  const panel=$('brandenburgCompletions');
+  const row=region.scope==='county'?brandenburgRows.get(region.ids[0]):null;
+  panel.hidden=!row;
+  if(!row)return;
+  const labels=[
+    ['2025年 · 全部竣工住房',row.completed_dwellings_all_measures_2025],
+    ['2024年 · 全部竣工住房',row.completed_dwellings_all_measures_2024],
+    ['2025年 · 新建建筑中住房',row.completed_new_build_all_types_2025],
+    ['2024年 · 新建建筑中住房',row.completed_new_build_all_types_2024]
+  ];
+  $('brandenburgHistory').innerHTML='<div class="housing-archive-grid">'+labels.map(([label,n])=>
+    '<div><small>'+safe(label)+'</small><b>'+safe(isNum(n)?fmt(n,0)+'套':'无可比数据')+'</b></div>').join('')+'</div>'+
+    '<p>仅勃兰登堡州18个县级市和县。新建建筑统计包含新住宅建筑及非住宅建筑内的住房，不同于北威州、巴伐利亚的“新建住宅建筑”口径；全部竣工住房含既有建筑工程。这两个口径不可相加。两年数字反映官方报告、不能推及德国其它州。</p>'+
+    '<a target="_blank" rel="noopener noreferrer" href="https://www.statistik-berlin-brandenburg.de/presse/2026/60-baufertigstellungen-2025-brandenburg/">勃兰登堡州统计局2025官方县级表 ↗</a>';
+ }
  function renderSaxony(region){
   const panel=$('saxonyDetails');
   const row=region.scope==='county'?saxonyRows.get(region.ids[0]):null;
@@ -174,6 +190,7 @@
   renderLandPrice(region);
   renderNRW(region);
   renderBavaria(region);
+  renderBrandenburg(region);
   renderSaxony(region);
   updateRanks(region.ids);
  }
@@ -311,13 +328,18 @@
     if(bavaria.counties.length!==96 || bavaria.meta.counties!==96)throw new Error('Bavaria 2025 official county coverage changed');
     bavariaRows=new Map(bavaria.counties.map(row=>[row.id,row]));
    }catch(err){console.warn('Bavaria county 2025 completion detail not available',err)}
+   try{
+    const bb=await readJson('data/brandenburg-completions-2024-2025.json');
+    if(bb.counties.length!==18 || bb.meta.districts!==18 || bb.meta.all_completions_2025_state_total!==7379)throw new Error('Brandenburg verified 2025 county data missing or altered');
+    brandenburgRows=new Map(bb.counties.map(row=>[row.id,row]));
+   }catch(err){console.warn('Brandenburg completion county details not available',err)}
    makeLayers(states,counties);
    paint();
    const valid=sortedAll.length;
    $('mapStatus').textContent=valid+'处县级地图区域已载入；'+(stockReady?'含核验住房存量':'住房存量层暂不可用');
    $('mapStatus').classList.add('ok');
    window.GermanHousingResearch=Object.freeze({
-     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,countyShapes:countyShapes.size}),
+     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,countyShapes:countyShapes.size}),
      metrics:Object.keys(metrics)
    });
   }catch(err){
