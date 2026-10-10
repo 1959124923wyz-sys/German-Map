@@ -83,3 +83,9 @@
 .housing-summary .housing-source[hidden],.housing-summary .housing-note[hidden]{display:none!important}
 .housing-summary .housing-archive-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media(max-width:540px){.housing-summary .housing-archive-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Opt-in GREIX history, scoped to explicitly mapped 37 city/region samples. */
+.housing-greix-chart{width:100%;min-height:164px;border:1px solid #385163;border-radius:8px;padding:5px 2px;background:#142532;box-sizing:border-box;margin-top:7px}
+.housing-greix-chart svg{display:block;width:100%;height:auto;min-height:160px}
+#greixSummary b{font-size:14px}
+#greixCity{font-family:inherit;cursor:pointer}
