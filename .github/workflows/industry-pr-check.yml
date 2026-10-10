@@ -1,0 +1,21 @@
+name: Industry map staging validation
+on:
+  pull_request:
+    paths:
+      - 'topics/industry/**'
+      - '.github/workflows/industry-pr-check.yml'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax and content
+        run: |
+          node --check topics/industry/topic.js
+          node topics/industry/tests/validate_industry.cjs
+          node topics/industry/tests/smoke_industry_data.cjs
+          python scripts/validate_site_assets.py
