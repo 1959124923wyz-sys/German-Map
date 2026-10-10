@@ -1,0 +1,60 @@
+name: Infrastructure official BKG 2025 county geometry acquisition
+on:
+  push:
+    branches: [feature/infrastructure-map-phase1]
+    paths:
+      - 'topics/infrastructure/research/scripts/download_bkg_official_counties.py'
+      - '.github/workflows/infrastructure-bkg-official-counties.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: infrastructure-bkg-official-2025
+  cancel-in-progress: false
+jobs:
+  official:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/infrastructure-map-phase1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install official geometry readers
+        run: pip install 'geopandas>=1,<2' 'pyogrio>=0.10,<1' 'shapely>=2,<3'
+      - name: Download BKG official VG250 31 Dec 2025 and extract validated counties
+        run: python topics/infrastructure/research/scripts/download_bkg_official_counties.py
+      - name: Validate 400 AGS + source date with independent parser
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          base=Path('topics/infrastructure/research')
+          d=json.loads((base/'germany-counties-bkg-official-2025.geojson').read_text())
+          a=json.loads((base/'germany-counties-bkg-official-2025-audit.json').read_text())
+          assert len(d['features'])==400
+          assert len({x['id'] for x in d['features']})==400
+          assert all(len(x['id'])==5 and x['id'].isdigit() for x in d['features'])
+          assert a['unique_AGS_count']==400 and d['metadata']['site_main_boundary_replaced'] is False
+          print('PASS official BKG 2025 county GEOJSON preserved research-only',a['file_bytes'])
+          PY
+      - name: Commit government-sourced geometry to isolated research branch
+        run: |
+          git config user.name 'german-map-research-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/infrastructure/research/germany-counties-bkg-official-2025.geojson topics/infrastructure/research/germany-counties-bkg-official-2025-audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "research: preserve BKG official 2025-12-31 county AGS geometry and license metadata"
+            git pull --rebase origin feature/infrastructure-map-phase1
+            git push origin HEAD:feature/infrastructure-map-phase1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: infrastructure-bkg-2025-official-county-boundaries
+          path: |
+            topics/infrastructure/research/germany-counties-bkg-official-2025.geojson
+            topics/infrastructure/research/germany-counties-bkg-official-2025-audit.json
+          if-no-files-found: warn
