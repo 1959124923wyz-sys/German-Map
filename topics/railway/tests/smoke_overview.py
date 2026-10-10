@@ -65,6 +65,15 @@ def run(browser,mobile=False):
           });
         }""")
         print('Geographic official gap samples:',bridges,flush=True)
+        bamberg=page.evaluate("""() => {
+          return window.__RAILWAY_OVERVIEW__.getCorridors()
+            .filter(g=>String(g.members[0].leg.route)==='5900')
+            .map(g=>({grade:g.grade,stops:g.members.map(x=>x.leg.from_station+'>'+x.leg.to_station),
+                km:[Math.min(...g.members.flatMap(x=>x.leg.km_range)),
+                    Math.max(...g.members.flatMap(x=>x.leg.km_range))],
+                bridge:g.bridges||0,bounds:g.bounds}));
+        }""")
+        print('Bamberg route 5900:',bamberg,flush=True)
     print('Official corridor gap bridges:',page.evaluate("window.__RAILWAY_OVERVIEW__.getBridgedCount()"),'filters',page.evaluate("window.__RAILWAY_OVERVIEW__.getBridgeDiagnostics()"),'graph',page.evaluate("window.__RAILWAY_OVERVIEW__.getBridgeFailureCounts()"),flush=True)
     assert page.locator("#minimum").count()==0
     assert page.locator(".mini-stats").count()==0
