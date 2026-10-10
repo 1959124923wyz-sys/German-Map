@@ -1,0 +1,40 @@
+{
+  "manifest": {
+    "date": "2026-10-10",
+    "purpose": "R7 retrospective identity/dedup audit: add source-backed amendments to legacy IDs without overwriting original R1 evidence; do not create duplicate points",
+    "changes": 1,
+    "duplicates_not_added": 2
+  },
+  "updates": {
+    "DEEB26_BB_EBER": {
+      "city": "Britz (Barnim)",
+      "county_name": "Barnim",
+      "county_ags": "12060",
+      "event_type": "plant_closure",
+      "implementation_status": "reported_closed",
+      "headline_zh": "埃伯斯瓦尔德品牌肉制品生产基地实位于Britz镇，2026年2月底关闭，约500人在该厂工作",
+      "source_url": "https://www.rbb24.de/wirtschaft/beitrag/2026/02/wurstfabrik-eberswalde-jobboerse-mitarbeiter-suchen-jobs.html",
+      "source_id": "rbb24_20260225_Britz_plant_location",
+      "verification": "broadcaster_and_ERM_203947_crosschecked_2026-10-10",
+      "caveat": "同一事件只保留既有ID。品牌/招聘会地名Eberswalde并非工厂所在municipality；厂址为Britz（Barnim，AGS12060），生产2026-02-28关闭；约500为员工总数非实际失业人数。",
+      "location_precision": "municipality_verified_factory_gate_not_verified",
+      "county_ags_assignment": "Britz municipality of Landkreis Barnim; canonical AGS 12060"
+    }
+  },
+  "reviewed_nonadditions": [
+    {
+      "candidate": "EWN Wurstspezialitäten",
+      "candidate_source_url": "https://apps.eurofound.europa.eu/restructuring-events/detail/203947",
+      "already_represented_by": "DEEB26_BB_EBER",
+      "disposition": "same_factory_same_closure_same_500_positions_update_existing_event_only",
+      "reason": "ERM uses operative company EWN whereas existing project uses Eberswalder trademark; same Britz factory."
+    },
+    {
+      "candidate": "Varta Nördlingen May 2026 CoinPower division closure",
+      "candidate_source_url": "https://www.bayern.de/teil-schlieung-der-batterieproduktion-der-varta-ag-in-nrdlingen/",
+      "already_represented_by": "DEV26_BY_NOER",
+      "disposition": "same_factory_same_production_unit_no_new_record",
+      "reason": "Already encoded as partial production unit closure, not whole plant; avoid duplicate points."
+    }
+  ]
+}
