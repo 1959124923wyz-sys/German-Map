@@ -1,0 +1,33 @@
+name: Infrastructure 400-county merger-aware bridge pilot
+on:
+  push:
+    branches: [feature/infrastructure-map-phase1]
+    paths:
+      - 'topics/infrastructure/research/scripts/aggregate_bridge_county_400.py'
+      - '.github/workflows/infrastructure-county-400-ags.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: infrastructure-county-400-ags
+  cancel-in-progress: false
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/infrastructure-map-phase1
+      - name: Merge historically separate Eisenach units without dropping bridge observations
+        run: python topics/infrastructure/research/scripts/aggregate_bridge_county_400.py
+      - name: Save derivative to isolated research directory
+        run: |
+          git config user.name 'german-map-research-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/infrastructure/research/candidate_bridge_county_ags_400d_2025.json
+          if ! git diff --cached --quiet; then
+            git commit -m "research: checkpoint bridge pilot on 400 merger-corrected county shapes"
+            git pull --rebase origin feature/infrastructure-map-phase1
+            git push origin HEAD:feature/infrastructure-map-phase1
+          fi
