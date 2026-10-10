@@ -19,13 +19,19 @@ def get(url):
  req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 GermanMapResearch'})
  with urllib.request.urlopen(req,timeout=240) as response:return response.read()
 def main():
- md5_file=get(URL+'.md5').decode('utf-8',errors='replace')
+ # Historical BKG archives may not publish a .md5 companion (HTTP 404).
+ # In that case record raw SHA256 for a SECOND pinned run, not an official-MD5 claim.
+ try:
+  md5_file=get(URL+'.md5').decode('utf-8',errors='replace')
+ except urllib.error.HTTPError as ex:
+  if ex.code!=404:raise
+  md5_file=''
  matches=re.findall(r'\b[0-9a-fA-F]{32}\b',md5_file)
- assert len(matches)==1,('unexpected BKG MD5 content',md5_file[:500])
- md5=matches[0].lower()
+ assert len(matches)<=1,('ambiguous published checksum',md5_file[:500])
+ md5=matches[0].lower() if matches else ''
  original=get(URL)
  got=hashlib.md5(original).hexdigest()
- assert got==md5,'BKG archive official MD5 mismatch'
+ if md5:assert got==md5,'BKG archive official MD5 mismatch'
  orig=TMP/'BKG_vg250ew_2024_original.zip'
  orig.write_bytes(original)
  with zipfile.ZipFile(orig) as z:
@@ -75,7 +81,7 @@ def main():
        'debt_entities_without_2024_geometry':sorted(debts-official),
        'atlas_2024_tax_ags_match_count':len(official&atlas),
        'municipality_geojson_not_yet_generated':True,
-       'checksum_status':'official_MD5_match_source_SHA_recorded_needs_pinning',
+       'checksum_status':'official_MD5_matched' if md5 else 'historical_archive_no_official_MD5_second_SHA_pin_required',
        'status':'research_only_not_published',
        'license':'© BKG (2026) dl-de/by-2-0'}
  (OUT/'municipal_2024_ags_audit.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
