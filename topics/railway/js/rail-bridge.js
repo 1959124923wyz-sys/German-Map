@@ -91,7 +91,7 @@ class RouteGraph{
   return best;
  }
  find(route,from,to,maxKm=MAX_GAP){
-  const r=this.routes.get(String(route));if(!r){this.reasons.noRoute++;return null;}
+  const r=this.routes.get(String(route));if(!r){this.reasons.noRoute++;if(!this.reasons.examples)this.reasons.examples=[];if(this.reasons.examples.length<12)this.reasons.examples.push({missing:String(route),available:[...this.routes.keys()].slice(0,5),size:this.routes.size});return null;}
   const a=this.nearest(route,from),b=this.nearest(route,to);
   if(!a||!b){this.reasons.noSnap++;return null;}
   const distance=Math.hypot(from[0]-to[0],from[1]-to[1]);
