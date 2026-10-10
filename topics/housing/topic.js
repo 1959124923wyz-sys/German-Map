@@ -28,6 +28,7 @@
  let stateFeatures=[], countyFeatures=[], byid=new Map(), countyShapes=new Map();
  let stockReady=false, homelessReady=false, completionsReady=false, censusReady=false, breaks=[], sortedAll=[];
  let saxonyRows=new Map(), nrwRows=new Map(), bavariaRows=new Map(), brandenburgRows=new Map(), berlinBoroughRows=[];
+ let structureRows=new Map(), housingDossier;
  const COUNTRY=[[47.2,5.5],[55.3,15.5]];
  const sourceURL = {
   atlas:'https://deutschlandatlas.bund.de/service/daten-herunterladen/aktuelle-downloaddaten/aktuelle-downloaddateien',
@@ -91,6 +92,38 @@
    '<div style="font-size:9px;margin-top:7px;color:#aabac4"><i style="background:'+gray+';display:inline-block;width:10px;height:8px"></i> 灰色：该指标缺失或不可比较</div>';
  }
  function overview(ids,key){const v=ids.map(id=>metricValue(id,key)).filter(isNum).sort((a,b)=>a-b);return med(v)}
+ function renderStructure(region){
+  const keys=[
+   ['rents_12eur_plus_of_paid_rental_2022_pct','2022租金≥12欧元/㎡的已分档租约'],
+   ['rents_under8eur_of_paid_rental_2022_pct','2022租金不足8欧元/㎡的已分档租约'],
+   ['cooperative_owned_of_all_units_2022_pct','合作社持有建筑中的住房'],
+   ['municipal_owned_of_all_units_2022_pct','市镇持有建筑中的住房'],
+   ['private_housing_company_owned_of_all_units_2022_pct','私人住房公司持有建筑中的住房'],
+   ['dwelling_units_built_since_2016_of_all_2022_pct','2016年起建造的住房']
+  ];
+  const rows=region.ids.map(id=>structureRows.get(id)).filter(Boolean);
+  $('housingStructure').innerHTML=keys.map(([key,label])=>{
+   const vals=rows.map(x=>x[key]).filter(isNum).sort((a,b)=>a-b);
+   const v=region.scope==='county'?(rows[0]&&isNum(rows[0][key])?rows[0][key]:null):med(vals);
+   return '<div><small>'+safe(label)+(region.scope==='county'?'':' · 县级中位数')+
+      '</small><b>'+safe(isNum(v)?fmt(v,2)+'%':'保密/缺失')+
+      '</b><small>'+vals.length+' / '+rows.length+'县有可用数值</small></div>';
+  }).join('');
+  $('housingStructureCoverage').textContent='2022住房普查：'+rows.length+'个县级地区匹配；租金分档保密值不填0。业主指建筑的归属单位，不是租客是否获得住房补贴。';
+ }
+ function renderCountySearch(){
+  const stateIds=focusState?[...byid.keys()].filter(id=>id.startsWith(focusState)):[];
+  const q=$('housingCountySearch').value.trim().toLocaleLowerCase();
+  const matches=stateIds.filter(id=>!q||id.includes(q)||String(byid.get(id)?.name||'').toLocaleLowerCase().includes(q)||
+    String(window.GermanPlaceNames?.byAGS(id,byid.get(id)?.name||'')||'').toLocaleLowerCase().includes(q));
+  $('housingCountyResults').innerHTML=matches.slice(0,80).map(id=>{
+   const d=byid.get(id),name=window.GermanPlaceNames?.byAGS(id,d?.name)||d?.name||id;
+   return '<button type="button" class="dossier-entry" data-county="'+safe(id)+'"><strong>'+safe(name)+
+    '</strong><small>AGS '+safe(id)+' · '+safe(displayVal(metricValue(id)))+'</small></button>';
+  }).join('')||'<p class="dossier-note">没有匹配县市；缺失不等于零。</p>';
+  $('housingCountyResults').querySelectorAll('[data-county]').forEach(b=>b.addEventListener('click',()=>chooseCounty(b.dataset.county)));
+  if(matches.length>80)$('housingCountyResults').insertAdjacentHTML('beforeend','<p class="dossier-note">仅显示前80县，请缩小搜索范围。</p>');
+ }
  function renderQuick(region){
   const stats=[
    ['asking_rent_2025_eur_m2','挂牌租金 · 2025'],
@@ -200,6 +233,11 @@
   $('sourceLink').textContent=(metrics[metric].source==='atlas'?'Deutschlandatlas HA26 官网':metrics[metric].source==='homeless'?'Destatis GENESIS 22971-0080 官方县级表':metrics[metric].source==='completions'?'Regionalstatistik 31121-01-02-4 官方县级表':metrics[metric].source==='census'?'Zensus 2022 全国官方住房普查':'第三方县级再发布与来源说明')+' ↗';
   $('sourceCredit').textContent=s.credit;
   renderQuick(region);
+  if(region.scope!=='nation'){renderStructure(region);renderCountySearch()}
+  $('housingNationalHint').hidden=region.scope!=='nation';
+  $('housingBackState').hidden=region.scope!=='county';
+  $('interpretNote').hidden=region.scope==='nation';
+  document.querySelector('.housing-source').hidden=region.scope==='nation';
   renderLandPrice(region);
   renderNRW(region);
   renderBavaria(region);
@@ -213,6 +251,7 @@
   if(!shape)return;
   selectedCounty=id; focusState=id.slice(0,2);
   $('stateJump').value=focusState;
+  housingDossier.show(true);
   map.fitBounds(shape.getBounds(),{padding:[38,38],maxZoom:9,animate:false});
   paint();
  }
@@ -221,12 +260,15 @@
   const state=stateFeatures.find(f=>stateId(f)===id);
   if(!state)return;
   selectedCounty=null;focusState=id;
+  $('housingCountySearch').value='';
+  housingDossier.show(true);
   const layer=stateLayer.getLayers().find(x=>stateId(x.feature)===id);
   if(layer)map.fitBounds(layer.getBounds(),{padding:[26,26],maxZoom:8,animate:false});
   paint();
  }
  function reset(){
   selectedCounty=null;focusState=null;$('stateJump').value='';
+  housingDossier.show(false);
   map.fitBounds(COUNTRY,{padding:[15,15],animate:false});
   paint();
  }
@@ -243,12 +285,13 @@
    onEachFeature:(f,l)=>{
     const id=featureId(f);
     countyShapes.set(id,l);
-    l.on('click',()=>chooseCounty(id));
+    l.on('click',()=>focusState!==id.slice(0,2)?selectState(id.slice(0,2)):chooseCounty(id));
    }
   }).addTo(map);
   stateLayer.bringToFront();
   const options=stateFeatures.map(f=>({id:stateId(f),name:f.properties?.name||stateId(f)})).sort((a,b)=>a.name.localeCompare(b.name));
-  $('stateJump').insertAdjacentHTML('beforeend',options.map(s=>'<option value="'+safe(s.id)+'">'+safe(s.name)+'</option>').join(''));
+  $('stateJump').insertAdjacentHTML('beforeend',options.map(s=>'<option value="'+safe(s.id)+'">'+
+   safe(window.GermanPlaceNames?.translate(s.name)||s.name)+'</option>').join(''));
   if(window.CrimeCityLabels?.create)cityLabels=window.CrimeCityLabels.create(map,{paneName:'housingCityLabels',zIndex:460});
  }
  async function start(){
@@ -262,6 +305,9 @@
   });
   $('stateJump').addEventListener('change',e=>selectState(e.target.value));
   $('resetView').addEventListener('click',reset);
+  $('housingBackState').addEventListener('click',()=>{if(focusState)selectState(focusState)});
+  $('housingCountySearch').addEventListener('input',renderCountySearch);
+  housingDossier=window.GermanRegionDossier.mount('housingDossier');
   try{
    const [atlas,states,counties]=await Promise.all([
     readJson('data/atlas-counties.json'),
@@ -328,6 +374,13 @@
     document.querySelectorAll('#housingMetric option').forEach(o=>{if(metrics[o.value]?.source==='census')o.disabled=true});
    }
    try{
+    const structure=await readJson('data/zensus2022-county-rent-owner-distribution.json');
+    if(structure.counties.length!==400 || structure.meta.counties!==400 ||
+       structure.meta.not_income_based!==true)throw Error('2022住房所有权与租金分档来源不符合核验');
+    structureRows=new Map(structure.counties.map(r=>[ags(r.id),r]));
+    if(structureRows.size!==400)throw Error('2022住房分档AGS未唯一匹配');
+   }catch(err){console.warn('Zensus 2022 housing structure unavailable',err)}
+   try{
     const saxony=await readJson('data/saxony-homeless-counties.json');
     if(saxony.counties.length!==13)throw new Error('Saxony county-series coverage changed');
     saxonyRows=new Map(saxony.counties.map(row=>[row.id,row]));
@@ -358,7 +411,7 @@
    $('mapStatus').textContent=valid+'处县级地图区域已载入；'+(stockReady?'含核验住房存量':'住房存量层暂不可用');
    $('mapStatus').classList.add('ok');
    window.GermanHousingResearch=Object.freeze({
-     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,berlinBoroughReady:berlinBoroughRows.length===12,countyShapes:countyShapes.size}),
+     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,berlinBoroughReady:berlinBoroughRows.length===12,structureReady:structureRows.size===400,dossierOpen:!$('housingDossier').hidden,countyShapes:countyShapes.size}),
      metrics:Object.keys(metrics)
    });
   }catch(err){
