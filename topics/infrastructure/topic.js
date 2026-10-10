@@ -8,6 +8,7 @@
   const palette = ['#e0e8dc','#d1dcc2','#d8d4ae','#d6b88b','#c79171','#b26c63','#854753'];
   const state = {selectedState:null,selectedEvent:null,showEvents:false,category:'all'};
   let map, stateLayer, markerGroup, scores, evidence, archive, rows, rowByIso, geo, markers = new Map();
+  let dossier, bridgeCountyRows=[];
 
   const categoryNames = {bridge:'桥梁损坏',delay:'工期延期',cost:'投资超支',strange:'闲置工程',access:'公共交通',school:'学校建筑',facility:'公共设施'};
   const statusNames = {in_progress:'分阶段施工',unconnected:'长期闲置',completed:'已完成',replacement:'待重建',partly_open:'部分恢复',closed:'封闭/限制',unavailable:'设施停用',temporary:'临时设施运行',restricted:'限重/限行',partly_closed:'部分区域关闭'};
@@ -38,6 +39,10 @@
     if(!rowByIso.has(iso))return;
     state.selectedState=iso;
     state.selectedEvent=null;
+    $('infraStateJump').value=iso;
+    const layer=stateLayer?.getLayers().find(x=>x.feature?.properties?.id===iso);
+    if(layer)map.fitBounds(layer.getBounds(),{padding:[26,26],maxZoom:8,animate:false});
+    dossier.show(true);
     updateStateStyles();
     renderPanel();
   }
@@ -51,6 +56,8 @@
   function reset() {
     state.selectedState=null;
     state.selectedEvent=null;
+    $('infraStateJump').value='';
+    dossier.show(false);
     if(map)map.fitBounds(bounds,{padding:[14,14],animate:false});
     updateStateStyles();renderPanel();renderEvents();
   }
@@ -112,6 +119,22 @@
       &&(!state.selectedState||e.state_iso===state.selectedState))
       .sort((a,b)=>b.event_date.localeCompare(a.event_date));
   }
+  function renderBridgeEvidence(iso){
+    const rows=bridgeCountyRows.filter(x=>x.iso===iso).sort((a,b)=>a.ags.localeCompare(b.ags));
+    $('bridgeStateSummary').innerHTML='<div><small>本州已匹配县市</small><b>'+rows.length+'个</b></div>'+
+      '<div><small>具备≥20结构单元的县市</small><b>'+rows.filter(x=>x.parts>=20).length+'个</b></div>';
+    const q=$('bridgeCountySearch').value.trim().toLocaleLowerCase();
+    const matched=rows.filter(x=>!q||x.ags.includes(q)||x.name.toLocaleLowerCase().includes(q)||
+     String(window.GermanPlaceNames?.byAGS(x.ags,x.name)||'').toLocaleLowerCase().includes(q));
+    $('bridgeCountyList').innerHTML=matched.slice(0,100).map(x=>{
+      const name=window.GermanPlaceNames?.byAGS(x.ags,x.name)||x.name;
+      return '<div class="dossier-entry"><strong>'+escapeHtml(name)+'</strong>'+
+       '<small>AGS '+escapeHtml(x.ags)+' · 联邦公路桥梁结构单元 '+x.parts+'个，DIN≥3.0 '+x.poor_parts+'个'+
+       (x.parts>=20&&Number.isFinite(x.poor_pct_count)?'（样本内'+fmt(x.poor_pct_count,1)+'%）':'（少量样本，不显示比例排名）')+
+       '</small></div>';
+    }).join('')||'<p class="dossier-note">暂无符合条件的县市数据；缺失不等于零。</p>';
+    if(matched.length>100)$('bridgeCountyList').insertAdjacentHTML('beforeend','<p class="dossier-note">仅显示前100条，请继续输入县市名称或编码。</p>');
+  }
   function renderPanel() {
     const r=state.selectedState?rowByIso.get(state.selectedState):null;
     $('eventDetail').hidden=!state.selectedEvent;
@@ -129,6 +152,7 @@
     $('indicatorDetail').hidden=!r;
     $('indicatorDetail').innerHTML=r?evidenceHtml(r):'';
     $('stateRanking').hidden=!!r;
+    if(r)renderBridgeEvidence(r.iso);
     renderEventDetail();
     renderEvents();
   }
@@ -147,8 +171,11 @@
   function selectEvent(id) {
     const e=archive.events.find(v=>v.id===id);if(!e)return;
     state.selectedState=e.state_iso;state.selectedEvent=id;state.showEvents=true;$('showEvents').checked=true;
+    $('infraStateJump').value=e.state_iso;
     $('filterWrap').hidden=false;
+    dossier.show(true);
     updateStateStyles();renderPanel();
+    dossier.choose('projects');
     map.panTo([e.coordinates.lat,e.coordinates.lon],{animate:false});
   }
   function renderEvents() {
@@ -156,16 +183,16 @@
     markerGroup.clearLayers();markers=new Map();
     const box=$('eventList');box.replaceChildren();
     const shown=filteredEvents();
-    $('eventSection').hidden=!state.showEvents;
+    $('eventSection').hidden=!state.selectedState;
     $('eventCount').textContent=shown.length+' 条精选记录';
-    if(!state.showEvents)return;
     shown.forEach(e=>{
       const selected=e.id===state.selectedEvent;
       const symbol='<span class="infra-marker '+escapeHtml(e.status)+(selected?' selected':'')+'"></span>';
       const icon=L.divIcon({className:'infra-marker-icon',html:symbol,iconSize:[16,16],iconAnchor:[8,8]});
       const marker=L.marker([e.coordinates.lat,e.coordinates.lon],{icon,zIndexOffset:selected?1000:0,title:e.title,riseOnHover:true})
         .bindTooltip(escapeHtml(e.title)+'<br>'+escapeHtml(e.summary.slice(0,31))+'…',{className:'infra-tooltip',direction:'top',sticky:true});
-      marker.on('click',()=>selectEvent(e.id));marker.addTo(markerGroup);markers.set(e.id,marker);
+      marker.on('click',()=>selectEvent(e.id));
+      if(state.showEvents){marker.addTo(markerGroup);markers.set(e.id,marker);}
       const b=document.createElement('button');b.type='button';if(selected)b.className='selected';
       b.innerHTML='<b>'+escapeHtml(e.title)+'</b><small>'+escapeHtml(e.city)+' · '+escapeHtml(e.event_date)+' · '+escapeHtml(statusNames[e.status]||e.status)+'</small>';
       b.addEventListener('click',()=>selectEvent(e.id));box.append(b);
@@ -192,14 +219,25 @@
     map.createPane('infraStatePane').style.zIndex=340;
     map.createPane('infraEventPane').style.zIndex=530;
     markerGroup=L.layerGroup().addTo(map);
-    $('showEvents').addEventListener('change',e=>{state.showEvents=e.target.checked;$('filterWrap').hidden=!state.showEvents;renderEvents();});
+    $('showEvents').addEventListener('change',e=>{state.showEvents=e.target.checked;$('filterWrap').hidden=!state.showEvents;if(state.selectedState&&state.showEvents)dossier.choose('projects');renderEvents();});
     $('eventCategory').addEventListener('change',e=>{state.category=e.target.value;state.selectedEvent=null;renderEventDetail();renderEvents();});
     $('resetView').addEventListener('click',reset);
+    $('infraStateJump').addEventListener('change',e=>e.target.value?selectState(e.target.value):reset());
+    $('bridgeCountySearch').addEventListener('input',()=>{if(state.selectedState)renderBridgeEvidence(state.selectedState)});
+    dossier=window.GermanRegionDossier.mount('infraDossier');
     legend();
     try{
       const results=await Promise.all([loadJson('data/state_scores_2025.json'),loadJson('data/condition_evidence.json'),loadJson('data/events.json'),loadJson('../../data/germany-states.geojson')]);
       [scores,evidence,archive,geo]=results;validate(geo);
       rows=scores.states;rowByIso=new Map(rows.map(r=>[r.iso,r]));
+      $('infraStateJump').insertAdjacentHTML('beforeend',[...rows].sort((a,b)=>a.name_zh.localeCompare(b.name_zh,'zh'))
+        .map(r=>'<option value="'+escapeHtml(r.iso)+'">'+escapeHtml(r.name_zh)+'</option>').join(''));
+      try{
+       const bridges=await loadJson('data/bridge_county_metrics_2025.json');
+       if(bridges.status!=='CANDIDATE_NOT_OFFICIAL_ALL_BRIDGES_QUALITY_RANKING'||bridges.bridge_counties.length!==400||
+          !bridges.counts_are_substructures_not_distinct_bridges)throw Error('桥梁样本口径不符合研究审核');
+       bridgeCountyRows=bridges.bridge_counties.filter(x=>Number.isFinite(x.parts)&&x.parts>=0&&Number.isFinite(x.poor_parts)&&x.poor_parts>=0);
+      }catch(err){console.warn('桥梁县市研究样本暂不可用',err);bridgeCountyRows=[]}
       stateLayer=L.geoJSON(geo,{
         pane:'infraStatePane',renderer:L.svg({pane:'infraStatePane'}),
         style:f=>({color:'#526c7b',weight:1.1,fillOpacity:.85,fillColor:color(rowByIso.get(f.properties.id)?.score)}),
