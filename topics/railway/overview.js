@@ -465,6 +465,7 @@ try{
   getOfficialPickCount:()=>view.picker.network.items,getCompleteBackboneRoutes:()=>view.backbone.perRoute.size,
   getOfficialPickEntries:()=>view.picker.network.cells,getDrawnObserved:()=>view.drawnObserved,
   getVerifiedCorridorPaths:()=>view.backbone.verified,
+  traceVerifiedCorridor:g=>view.backbone.full(g),
   getRepaintCount:()=>view.repaints,
   getCanvasCount:()=>document.querySelectorAll('.railway-canvas').length,
   getSpatialBucketCount:()=>view.picker.observed.cells.size,
