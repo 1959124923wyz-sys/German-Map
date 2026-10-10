@@ -1,0 +1,35 @@
+name: Industry Regionalatlas research fetch (not deployment)
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/industry-contraction-map-20261010
+    paths:
+      - .github/workflows/industry-research-fetch.yml
+      - topics/industry/scripts/try_regionalatlas_county.py
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Syntax check
+        run: python -m py_compile topics/industry/scripts/try_regionalatlas_county.py
+      - name: Research candidate county download and logs
+        shell: bash
+        run: |
+          mkdir -p research-output
+          set +e
+          python topics/industry/scripts/try_regionalatlas_county.py --year 2019 --table ai007_1_5 --execute --out research-output/ai007_1_5_2019.json >research-output/2019.log 2>&1
+          echo "2019 exit=$?" | tee -a research-output/2019.log
+          python topics/industry/scripts/try_regionalatlas_county.py --year 2024 --table ai007_1_5 --execute --out research-output/ai007_1_5_2024.json >research-output/2024.log 2>&1
+          echo "2024 exit=$?" | tee -a research-output/2024.log
+          cat research-output/2019.log research-output/2024.log
+      - uses: actions/upload-artifact@v4
+        with:
+          name: regionalatlas-county-research-candidates
+          path: research-output/
+          retention-days: 30
