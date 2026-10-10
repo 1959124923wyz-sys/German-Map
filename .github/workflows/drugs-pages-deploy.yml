@@ -8,6 +8,8 @@ on:
       - 'topics/immigration/**'
       - 'topics/environment/**'
       - 'topics/railway/**'
+      - 'topics/finance/**'
+      - 'research/finance/**'
       - 'scripts/validate_site_assets.py'
       - 'js/layers/city-labels.js'
       - 'js/core/place-names-zh.js'
@@ -84,6 +86,21 @@ jobs:
           node --check topics/railway/js/rail-city-corridors.js
           node --check topics/railway/js/rail-continuity.js
           node --check topics/railway/js/rail-color-runs.js
+          # Finance 08: same source-preserving validation as its dedicated PR checks.
+          test -s topics/finance/index.html
+          test -s topics/finance/topic.css
+          grep -Fq 'href="topics/finance/"' index.html
+          grep -Fq 'href="../finance/"' topics/drugs/index.html
+          grep -Fq 'href="../finance/"' topics/immigration/index.html
+          grep -Fq 'href="../finance/"' topics/environment/index.html
+          grep -Fq 'href="../finance/"' topics/railway/index.html
+          node --check topics/finance/topic.js
+          node --check topics/finance/data/finance-data.js
+          node --check topics/finance/data/finance-history.js
+          node --check topics/finance/data/finance-integrated.js
+          python topics/finance/tests/validate_finance.py
+          python topics/finance/tests/validate_finance_history.py
+          python topics/finance/tests/validate_finance_integrated.py
           node topics/railway/tests/unit_core.cjs
           python scripts/validate_site_assets.py
           node --check topics/railway/js/station-zh.js

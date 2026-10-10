@@ -7,6 +7,7 @@
 - [打开外国籍人口地图（AZR 2025 · 16州 · 2018—2025趋势）](https://1959124923wyz-sys.github.io/German-Map/topics/immigration/)
 - [打开环保争议地图（06 · 组织行动／能源政策／设施退役）](https://1959124923wyz-sys.github.io/German-Map/topics/environment/)
 - [德国铁路运行地图（官方铁路网与2026年9月停靠观测）](https://1959124923wyz-sys.github.io/German-Map/topics/railway/)
+- [地方财政地图（08 · 地方收支、综合债务与财政事件）](https://1959124923wyz-sys.github.io/German-Map/topics/finance/)
 - [开发文档](README_DEV.md)
 - [数据来源及统计口径](SOURCE_MATRIX.md)
 
