@@ -1,0 +1,66 @@
+name: Finance 08 - Official Jan 2026 County AGS (Research Only)
+on:
+  push:
+    branches: [research/finance-regional-expansion-20261010]
+    paths:
+      - 'research/finance/regional-expansion/build_bkg2026_ags.py'
+      - '.github/workflows/finance-bkg2026-ags.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: finance08-bkg2026-ags
+  cancel-in-progress: false
+jobs:
+  certify-2026-boundaries:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pin 2026 official BKG MD5 and verify new county level Hanau
+        id: verify
+        continue-on-error: true
+        run: |
+          set +e
+          python research/finance/regional-expansion/build_bkg2026_ags.py > /tmp/finance08_2026_ags.log 2>&1
+          rc=$?
+          cat /tmp/finance08_2026_ags.log
+          mkdir -p research/finance/regional-expansion/derived/bkg2026
+          EXIT_CODE=$rc python - <<'PY'
+          import json,os
+          from pathlib import Path
+          output=Path('research/finance/regional-expansion/derived/bkg2026/last_run_status.json')
+          rc=int(os.environ['EXIT_CODE'])
+          log=Path('/tmp/finance08_2026_ags.log').read_text(encoding='utf-8',errors='replace')
+          output.write_text(json.dumps({'verified':rc==0,'exit_code':rc,
+             'status':'verified_official_2026' if rc==0 else 'failed_not_published',
+             'notes':log[-2300:]},indent=2)+'\n',encoding='utf-8')
+          PY
+          exit $rc
+      - name: Preserve verified source audit or failure status on research branch only
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/finance/regional-expansion/derived/bkg2026/
+          if ! git diff --cached --quiet; then
+            git commit -m "data(finance R19): official 2026 BKG county AGS and Hanau boundary correction"
+            git pull --rebase origin research/finance-regional-expansion-20261010
+            git push origin HEAD:research/finance-regional-expansion-20261010
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: finance08-bkg2026-original-zip
+          path: /tmp/finance08-bkg2026/bkg_2026_original.zip
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Require verified 2026 administrative boundary after persistence
+        if: always()
+        run: test "${{ steps.verify.outcome }}" = success
