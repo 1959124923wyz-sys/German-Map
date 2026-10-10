@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0c1117">
+<meta name="description" content="德国住房危机地图研究预览：2025年全国县市挂牌租金，2022年住宅空置率、住房所有权、住房存量，官方原始出处可核验。">
+<title>德国住房危机地图 · German-Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="../../css/map.css">
+<link rel="stylesheet" href="topic.css">
+</head>
+<body>
+<header>
+ <div class="header-main">
+  <div class="titleblock"><div class="title">德国住房危机地图</div><div class="header-meta">全国县市租金与住房供给 · 研究预览</div></div>
+  <nav class="modebar" aria-label="德国地图专题切换">
+   <a class="modebtn" href="../../index.html">暴力犯罪</a>
+   <a class="modebtn" href="../../index.html?mode=property">财产犯罪</a>
+   <a class="modebtn" href="../drugs/">毒品问题</a>
+   <a class="modebtn" href="../immigration/">移民人口</a>
+   <a class="modebtn" href="../environment/">环保争议</a>
+   <a class="modebtn" href="../railway/">铁路运行</a>
+   <a class="modebtn" href="../finance/">地方财政</a>
+   <a class="modebtn active" href="./" aria-current="page">住房危机</a>
+  </nav>
+ </div>
+</header>
+<main class="housing-workspace">
+ <section class="mapwrap housing-map-wrap" aria-label="德国县市住房统计地图">
+  <div id="housingMap" role="application" aria-label="选择一个县市查看各住房指标"></div>
+  <div class="housing-map-caption"><strong id="mapGuideTitle">2025年新租挂牌净冷租金</strong><small>点击县市查看详情 · 颜色只代表当前所选指标</small></div>
+  <div id="mapStatus" class="mapstatus" role="status">正在载入住房数据…</div>
+  <div id="legend" class="legend housing-legend" aria-label="图例"></div>
+ </section>
+ <aside class="housing-side" aria-label="住房指标和地区详情">
+  <div class="housing-controls">
+   <label for="housingMetric">地图指标</label>
+   <select id="housingMetric" aria-label="地图指标">
+    <option value="asking_rent_2025_eur_m2">2025年挂牌租金 · €/㎡</option>
+    <option value="vacancy_2022_pct">2022年住宅空置率 · %</option>
+    <option value="owner_occupier_2022_pct">2022年自住住房家庭比例 · %</option>
+    <option value="living_area_2022_m2_person">2022年人均居住面积 · ㎡</option>
+    <option value="homes_per_1000_people_2025">2025年千人住宅存量 · 套</option>
+    <option value="housing_stock_growth_2022_2025_pct">2022—2025年住房存量增长 · %</option>
+    <option value="population_growth_2022_2025_pct">2022—2025年人口增长 · %</option>
+    <option value="renewable_heat_new_2024_pct">2024年新建住宅可再生供暖 · %</option>
+    <option value="renewable_heat_stock_2022_pct">2022年存量住宅可再生供暖 · %</option>
+   </select>
+   <div class="housing-jump">
+    <label for="stateJump">定位</label>
+    <select id="stateJump" aria-label="选择联邦州"><option value="">选择联邦州…</option></select>
+    <button type="button" id="resetView">全国</button>
+   </div>
+  </div>
+  <section class="safety-panel housing-summary" aria-live="polite">
+   <div class="safety-head"><strong>住房数据</strong><span class="safety-hint" id="yearLabel">2025年</span></div>
+   <div class="area-title"><div class="area-name" id="areaName">德国 · 全国</div></div>
+   <div class="housing-big" id="value">正在读取数据</div>
+   <div class="housing-description" id="description">选择一个地区查看详细指标</div>
+   <div class="housing-coverage" id="coverage">—</div>
+   <div class="housing-side-grid" id="quickStats"></div>
+   <div class="housing-note" id="interpretNote"></div>
+   <div class="housing-source"><strong>数据出处</strong><a id="sourceLink" target="_blank" rel="noopener noreferrer" href="https://deutschlandatlas.bund.de/service/daten-herunterladen/aktuelle-downloaddaten/aktuelle-downloaddateien">Deutschlandatlas 原始统计 ↗</a><div id="sourceCredit"></div></div>
+   <section class="housing-rank" id="rankBox"><div class="housing-rank-head"><strong>县市数值排序</strong><small>相同指标与统计年份</small></div><div id="topRank"></div></section>
+  </section>
+  <details class="housing-method">
+   <summary>数据说明与局限</summary>
+   <p>2025年全国挂牌租金为新出租/再次出租房源的互联网挂牌净冷租金，不能代表所有在租家庭实际支付的租金。</p>
+   <p>2022年空置率包含未必可进入租赁市场的空房；空置率、租金、住房供应量不构成一个“住房危机分数”。</p>
+   <p>人口和住房存量（2022—2025）为注明归属的第三方再发布官方基础统计；部分复核通过，未完成全县对原表逐值核验。每千人套数不能等同于住房短缺比例。</p>
+   <p>现有地图含402个历史县级图形；官方最新表为400县，因行政区变化存在3个无法直接关联的旧图形。缺失位置显示灰色，不将其当作零。</p>
+   <p>来源、脚本和质量审计：<a href="../../research/housing/HANDOFF.md">住房研究阶段交接 ↗</a>。本页面为分支原型，尚非全站正式发布。</p>
+  </details>
+ </aside>
+</main>
+<footer><span>Deutschlandatlas 2026-10-08 · 2025/2022 · 独立研究预览</span><span>© OpenStreetMap contributors · Leaflet</span></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="../../js/core/place-names-zh.js"></script>
+<script src="../../js/layers/city-labels.js"></script>
+<script src="topic.js"></script>
+</body>
+</html>
