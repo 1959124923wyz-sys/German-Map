@@ -6,7 +6,7 @@ a geometry audit; no website changes. Note 2025 boundaries exclude Jan-2026
 Hanau district-free split, which MUST be separately handled for 2026 mapping.
 """
 from __future__ import annotations
-import collections,hashlib,json,re,sqlite3,urllib.request,zipfile
+import collections,csv,hashlib,json,re,sqlite3,urllib.request,zipfile
 from pathlib import Path
 from shapely import wkb
 from shapely.ops import transform,unary_union
@@ -65,6 +65,9 @@ def main():
   groups[code].append(polygon)
   if name and code not in names:names[code]=str(name).strip()
  assert len(groups)==400,len(groups)
+ with (ROOT/'derived/official_atlas_municipalities_2025_ags.csv').open(encoding='utf-8-sig',newline='') as f:
+  atlas_parents={r['ags8'][:5] for r in csv.DictReader(f)}
+ assert set(groups)==atlas_parents,('2025 Atlas/BKG county key mismatch',sorted(set(groups)^atlas_parents))
  transformer=Transformer.from_crs('EPSG:'+str(srs),'EPSG:4326',always_xy=True)
  total_raw_area=0
  total_simple_area=0
