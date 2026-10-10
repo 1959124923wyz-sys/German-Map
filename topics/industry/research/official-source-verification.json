@@ -1,0 +1,92 @@
+{
+  "updated": "2026-10-10",
+  "status": "metadata_source_audit_not_full_official_district_panel",
+  "official_county_employment_uploaded": false,
+  "no_guess_policy": "Only true source-backed official WZ-C county same-date workplace 2019 vs comparison can colour industrial contraction. 2025 event study maps are NEVER a proxy for official district job change.",
+  "sources": [
+    {
+      "id": "DE-BA-BST",
+      "publisher": "Bundesagentur für Arbeit / Statistik",
+      "url": "https://statistik.arbeitsagentur.de/DE/Navigation/Statistiken/Interaktive-Statistiken/Datenbanken/Datenbanken-BST-Nav.html",
+      "format": "CSV/JSON/XLSX by browser UI",
+      "county_level": true,
+      "manufacturing_only_available": "WZ-C selection to verify",
+      "period": "monthly/quarterly",
+      "class": "candidate_primary_official",
+      "status": "download_interface_verified_but_full_raw_county_series_not_acquired",
+      "next": "Export AGS county workplace socially insured employment WZ2008-C for 2019 and 2025 same annual snapshot; record exact download timestamps and BA revision settings."
+    },
+    {
+      "id": "DE-BA-WZ",
+      "publisher": "Bundesagentur für Arbeit",
+      "url": "https://statistik.arbeitsagentur.de/DE/Navigation/Statistiken/Fachstatistiken/Beschaeftigung/Beschaeftigte/Beschaeftigte-Nav.html",
+      "format": "annual tables and branch dashboard",
+      "county_level": true,
+      "manufacturing_only_available": "Industry group breakdown; check WZ2008-C",
+      "period": "2019-2026",
+      "class": "candidate_primary_official",
+      "status": "source_index_verified_no_manufacturing_county_series_acquired",
+      "next": "Confirm country, workplace, social-insurance and regional AGS dimension counts."
+    },
+    {
+      "id": "DE-REGIO-42111-02-03-4",
+      "publisher": "Regionaldatenbank Deutschland / statistical offices",
+      "url": "https://www.regionalstatistik.de/",
+      "format": "statistical query/CSV (automated API may require registration)",
+      "county_level": true,
+      "manufacturing_only_available": "check Verarbeitendes Gewerbe subset and reporting cutoff >=20 persons",
+      "period": "historical annual",
+      "class": "candidate_primary_official",
+      "status": "table_identifier_from_prior_research_not_downloaded",
+      "next": "Acquire raw 2019/2024/2025 matching industry scope; need guard against reporting threshold effects, county boundary changes, privacy suppression."
+    },
+    {
+      "id": "DE-ETR-COUNTY",
+      "publisher": "Arbeitskreis Erwerbstätigenrechnung der Länder",
+      "url": "https://www.statistikportal.de/en/node/933",
+      "format": "Reihe 2 Band 1 PDF with Excel attachment",
+      "county_level": true,
+      "manufacturing_only_available": "NOT VERIFIED: sector grouping may be Produzierendes Gewerbe, must not be labeled pure WZ-C",
+      "period": "1991-2024 revision 2024 as of 2026-10",
+      "class": "backup_crosscheck_not_primary_until_WZ_verified",
+      "status": "official_publication_metadata_verified_full_excel_not_downloaded",
+      "next": "Download excel attachment and inspect row-sector hierarchy; reject C unless manufacturing only."
+    },
+    {
+      "id": "DE-BY-E1111C",
+      "publisher": "Bayerisches Landesamt für Statistik",
+      "url": "https://www.statistik.bayern.de/statistik/wirtschaft_handel/verarbeitendes_gewerbe/index.html",
+      "format": "annual state/county reports",
+      "county_level": true,
+      "manufacturing_only_available": "WARNING: B+C aggregated in some E1111C reports; no pure C claim without checking headers",
+      "period": "2019-2025",
+      "class": "bavaria_subnational_candidate_with_category_risk",
+      "status": "official_reports_located_no_panel_export",
+      "next": "Read WZ industry exact definition on each annual table; if B+C do not splice into official pure C panel."
+    },
+    {
+      "id": "DE-BKG-VG250",
+      "publisher": "Bundesamt für Kartographie und Geodäsie",
+      "url": "https://sgx.geodatenzentrum.de/wfs_vg250",
+      "format": "Geo WFS, use Kreis AGS polygon geometry",
+      "county_level": true,
+      "manufacturing_only_available": "not statistical source",
+      "period": "current geometry",
+      "class": "geography_reference",
+      "status": "official_data_service_identified_not_ingested",
+      "next": "Verify latest effective-year 400-Kreis VG250 polygon dataset and matching AGS before replacement of historical bundle."
+    },
+    {
+      "id": "DE-EUROFOUND-ERM",
+      "publisher": "Eurofound / European Restructuring Monitor",
+      "url": "https://apps.eurofound.europa.eu/restructuring-events/countries/Germany",
+      "format": "browser factsheets/CSV access by request",
+      "county_level": false,
+      "manufacturing_only_available": "manual classification based on each announcement",
+      "period": "2002-2026",
+      "class": "fact_source_sample_not_exhaustive_census",
+      "status": "selected_fact_sheets_individually_read_R5A_B_C_D",
+      "next": "Continue systematic 2024-2026 site news audit, dedup same programs, track 2025/26 closure implementation; never use news as employment denominator."
+    }
+  ]
+}

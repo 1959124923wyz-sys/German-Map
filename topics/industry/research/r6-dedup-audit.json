@@ -1,0 +1,59 @@
+{
+  "generated": "2026-10-10",
+  "compared_existing": 56,
+  "submitted_original": 11,
+  "accepted_new": 1,
+  "excluded_duplicates": 10,
+  "duplicate_sources": [
+    {
+      "incoming_id": "R6_INN_MAR",
+      "already_saved_id": "R5_INN_MAR",
+      "source_url": "https://apps.eurofound.europa.eu/restructuring-events/detail/300937"
+    },
+    {
+      "incoming_id": "R6_ENG_RAD",
+      "already_saved_id": "R5_ENG_RAD",
+      "source_url": "https://apps.eurofound.europa.eu/restructuring-events/detail/300874"
+    },
+    {
+      "incoming_id": "R6_PI_KAR",
+      "already_saved_id": "R5_PI_KAR",
+      "source_url": "https://apps.eurofound.europa.eu/restructuring-events/detail/300830"
+    },
+    {
+      "incoming_id": "R6_FRA_NEU",
+      "already_saved_id": "R5_FRA_NST",
+      "source_url": "https://apps.eurofound.europa.eu/restructuring-events/detail/300802"
+    },
+    {
+      "incoming_id": "R6_PAN_LEI",
+      "already_saved_id": "R5_PAN_LEI",
+      "source_url": "https://apps.eurofound.europa.eu/restructuring-events/detail/300678"
+    },
+    {
+      "incoming_id": "R6_PER_MULTI",
+      "already_saved_id": "R5_PER_MULTI",
+      "source_url": "https://apps.eurofound.europa.eu/restructuring-events/detail/300549"
+    },
+    {
+      "incoming_id": "R6_KOE_KAR",
+      "already_saved_id": "R5_KON_KAR",
+      "source_url": "https://apps.eurofound.europa.eu/restructuring-events/detail/300541"
+    },
+    {
+      "incoming_id": "R6_VEN_KRE",
+      "already_saved_id": "R5B_VEN_KRE",
+      "source_url": "https://apps.eurofound.europa.eu/restructuring-events/detail/300413"
+    },
+    {
+      "incoming_id": "R6_NOV_WEH",
+      "already_saved_id": "R5B_NOV_WEH",
+      "source_url": "https://apps.eurofound.europa.eu/restructuring-events/detail/300330"
+    },
+    {
+      "incoming_id": "R6_KRA_KAR",
+      "already_saved_id": "R5B_KRA_KAR",
+      "source_url": "https://apps.eurofound.europa.eu/restructuring-events/detail/300215"
+    }
+  ]
+}

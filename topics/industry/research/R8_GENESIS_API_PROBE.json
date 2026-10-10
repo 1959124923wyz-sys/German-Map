@@ -1,0 +1,82 @@
+{
+  "created_utc": "2026-10-10T09:48:54.150767+00:00",
+  "table": "42111-02-03-4",
+  "authentication": "guest or supplied GitHub Actions secret, no secret printed",
+  "source_openapi": "https://www.regionalstatistik.de/genesisws/rest/2020/GOJsonApi.json",
+  "status": "RAW_API_DIAGNOSTIC_NEVER_PRODUCTION",
+  "attempts": [
+    {
+      "endpoint": "https://www.regionalstatistik.de/genesisws/rest/2020/metadata/table",
+      "method": "POST",
+      "fields": {
+        "name": "42111-02-03-4",
+        "area": "free",
+        "language": "de"
+      },
+      "http": 401,
+      "http_error_excerpt": "{\"Code\":15,\"Content\":\"Sie sind nicht berechtigt diesen Service aufzurufen oder der Header Ihres Requests enthält nicht alle notwendigen Angaben, sodass Ihre Zugangsdaten nicht erkannt werden.\",\"Type\":\"ERROR\"}",
+      "bytes": 209,
+      "sha256": "81f4500ec9b0802173f39277597b038550c1c1c3434f07dab59bcbb649a7d4d4",
+      "excerpt": "{\"Code\":15,\"Content\":\"Sie sind nicht berechtigt diesen Service aufzurufen oder der Header Ihres Requests enthält nicht alle notwendigen Angaben, sodass Ihre Zugangsdaten nicht erkannt werden.\",\"Type\":\"ERROR\"}",
+      "json_keys": [
+        "Code",
+        "Content",
+        "Type"
+      ],
+      "Status": "",
+      "status": "diagnostic_only_no_county_employment_import"
+    },
+    {
+      "endpoint": "https://www.regionalstatistik.de/genesisws/rest/2020/data/tablefile",
+      "method": "POST",
+      "fields": {
+        "name": "42111-02-03-4",
+        "area": "free",
+        "language": "de",
+        "startyear": "2019",
+        "endyear": "2025",
+        "compress": "false",
+        "job": "false",
+        "format": "datencsv"
+      },
+      "http": 401,
+      "http_error_excerpt": "{\"Code\":15,\"Content\":\"Sie sind nicht berechtigt diesen Service aufzurufen oder der Header Ihres Requests enthält nicht alle notwendigen Angaben, sodass Ihre Zugangsdaten nicht erkannt werden.\",\"Type\":\"ERROR\"}",
+      "bytes": 209,
+      "sha256": "81f4500ec9b0802173f39277597b038550c1c1c3434f07dab59bcbb649a7d4d4",
+      "excerpt": "{\"Code\":15,\"Content\":\"Sie sind nicht berechtigt diesen Service aufzurufen oder der Header Ihres Requests enthält nicht alle notwendigen Angaben, sodass Ihre Zugangsdaten nicht erkannt werden.\",\"Type\":\"ERROR\"}",
+      "json_keys": [
+        "Code",
+        "Content",
+        "Type"
+      ],
+      "Status": "",
+      "status": "diagnostic_only_no_county_employment_import"
+    },
+    {
+      "endpoint": "https://www.regionalstatistik.de/genesisws/rest/2020/data/table",
+      "method": "POST",
+      "fields": {
+        "name": "42111-02-03-4",
+        "area": "free",
+        "language": "de",
+        "startyear": "2019",
+        "endyear": "2025",
+        "compress": "false",
+        "job": "false"
+      },
+      "http": 401,
+      "http_error_excerpt": "{\"Code\":15,\"Content\":\"Sie sind nicht berechtigt diesen Service aufzurufen oder der Header Ihres Requests enthält nicht alle notwendigen Angaben, sodass Ihre Zugangsdaten nicht erkannt werden.\",\"Type\":\"ERROR\"}",
+      "bytes": 209,
+      "sha256": "81f4500ec9b0802173f39277597b038550c1c1c3434f07dab59bcbb649a7d4d4",
+      "excerpt": "{\"Code\":15,\"Content\":\"Sie sind nicht berechtigt diesen Service aufzurufen oder der Header Ihres Requests enthält nicht alle notwendigen Angaben, sodass Ihre Zugangsdaten nicht erkannt werden.\",\"Type\":\"ERROR\"}",
+      "json_keys": [
+        "Code",
+        "Content",
+        "Type"
+      ],
+      "Status": "",
+      "status": "diagnostic_only_no_county_employment_import"
+    }
+  ],
+  "caution": "An API HTTP 200, JSON metadata, or partial table is not a verified nationwide WZ-C employment panel; never convert to county-employment.json."
+}

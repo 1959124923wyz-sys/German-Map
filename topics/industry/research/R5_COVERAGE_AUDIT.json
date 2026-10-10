@@ -1,0 +1,563 @@
+{
+  "generated": "2026-10-10",
+  "input_datasets": [
+    61,
+    38,
+    18
+  ],
+  "records": 117,
+  "status_counts": {
+    "under_implementation": 8,
+    "reported_closed": 6,
+    "confirmed_by_regulatory_filing": 2,
+    "confirmed_by_subsequent_report": 4,
+    "announced": 68,
+    "company_investor_plan": 2,
+    "reported_plan": 1,
+    "announced_agreed": 1,
+    "announced_with_repurposing": 1,
+    "2023年底已结束德国生产": 1,
+    "2024提出缩减；2025市政府纪事记载两处装置拟关": 1,
+    "公司破产，2025年宣布停厂；实际关闭完成时点需进一步核实": 1,
+    "实施中的集团计划": 1,
+    "集体协议确认，部分设施计划2026—2028年退出": 1,
+    "计划2027年停止生产并清空厂区": 1,
+    "企业公告拟于2026年底停产": 1,
+    "已宣布 · 拟于2027年调整": 1,
+    "已宣布 · 计划2027年关闭": 1,
+    "社保方案已达成；分阶段实施": 1,
+    "confirmed_temporary_or_indeterminate": 1,
+    "confirmed_closed_activity": 2,
+    "reported_completed": 7,
+    "reported_implemented": 1,
+    "reported_closing": 1,
+    "announced_final_closure": 2
+  },
+  "state_counts": {
+    "DE-BB": 2,
+    "DE-BE": 1,
+    "DE-BW": 16,
+    "DE-BY": 14,
+    "DE-HB": 1,
+    "DE-HE": 8,
+    "DE-HH": 2,
+    "DE-MV": 3,
+    "DE-NI": 12,
+    "DE-NW": 25,
+    "DE-RP": 5,
+    "DE-SH": 3,
+    "DE-SL": 3,
+    "DE-SN": 10,
+    "DE-ST": 6,
+    "DE-TH": 3,
+    "cross-state": 3
+  },
+  "announcement_year_counts": {
+    "2023": 6,
+    "2024": 12,
+    "2025": 36,
+    "2026": 63
+  },
+  "point_quality_note": "All R2/R3/R4 positions are currently city or county level, not factory-exact.",
+  "need_precise_coordinates": [
+    {
+      "id": "DEGY23_BB_FUER",
+      "city": "Fürstenwalde/Spree",
+      "state": "DE-BB",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEEB26_BB_EBER",
+      "city": "Eberswalde",
+      "state": "DE-BB",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEPM24_BE_BERL",
+      "city": "Berlin-Neukölln",
+      "state": "DE-BE",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEMI23_BW_KARL",
+      "city": "Karlsruhe",
+      "state": "DE-BW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEBO25_BW_BUHL",
+      "city": "Bühl/Bühlertal",
+      "state": "DE-BW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEBO25_BW_FEUE",
+      "city": "Stuttgart-Feuerbach",
+      "state": "DE-BW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEBO25_BW_WAIB",
+      "city": "Waiblingen",
+      "state": "DE-BW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEIAC25_BY_PLAT",
+      "city": "Plattling",
+      "state": "DE-BY",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DERG25_BY_CAD",
+      "city": "Cadolzburg",
+      "state": "DE-BY",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEMA26_BY_NEUS",
+      "city": "Neustadt an der Donau",
+      "state": "DE-BY",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEV26_BY_NOER",
+      "city": "Nördlingen",
+      "state": "DE-BY",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DETK24_HB_BREM",
+      "city": "Bremen-Farge",
+      "state": "DE-HB",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEGY23_HE_FULD",
+      "city": "Fulda",
+      "state": "DE-HE",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEAC25_HE_BAB",
+      "city": "Babenhausen",
+      "state": "DE-HE",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEAC25_HE_KARB",
+      "city": "Karben",
+      "state": "DE-HE",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEAE25_HE_NENT",
+      "city": "Nentershausen",
+      "state": "DE-HE",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DELE26_HE_GRUN",
+      "city": "Gründau",
+      "state": "DE-HE",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEEV26_HH_HAMB",
+      "city": "Hamburg",
+      "state": "DE-HH",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEEE26_MV_ROST",
+      "city": "Rostock",
+      "state": "DE-MV",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DECT25_NI_HAN",
+      "city": "Hannover-Vahrenwald",
+      "state": "DE-NI",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DECT25_NI_STOLZ",
+      "city": "Stolzenau",
+      "state": "DE-NI",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEJU25_NI_LUNE",
+      "city": "Lüneburg",
+      "state": "DE-NI",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DESC25_NI_HAM",
+      "city": "Hameln",
+      "state": "DE-NI",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEHB26_NI_LUNE",
+      "city": "Lüneburg",
+      "state": "DE-NI",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEVW26_NI_WOLF",
+      "city": "Wolfsburg",
+      "state": "DE-NI",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEVW24_NI_OSNAB",
+      "city": "Osnabrück",
+      "state": "DE-NI",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEMI24_NW_GUET",
+      "city": "Gütersloh",
+      "state": "DE-NW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DECT25_NW_MOERS",
+      "city": "Moers",
+      "state": "DE-NW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DESC25_NW_STEIN",
+      "city": "Steinhagen",
+      "state": "DE-NW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DESW25_NW_LUEBB",
+      "city": "Lübbecke",
+      "state": "DE-NW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEMI23_RP_TRIER",
+      "city": "Trier",
+      "state": "DE-RP",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEBA24_RP_LUDW",
+      "city": "Ludwigshafen am Rhein",
+      "state": "DE-RP",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEAE25_SH_LUEB",
+      "city": "Lübeck",
+      "state": "DE-SH",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DESOL25_SH_MAL",
+      "city": "Malente",
+      "state": "DE-SH",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DENAL26_SH_NEUM",
+      "city": "Neumünster",
+      "state": "DE-SH",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEMI23_SL_HOM",
+      "city": "Homburg",
+      "state": "DE-SL",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEBO25_SL_HOM",
+      "city": "Homburg",
+      "state": "DE-SL",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEFO25_SL_SAAR",
+      "city": "Saarlouis",
+      "state": "DE-SL",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEPM24_SN_DRESD",
+      "city": "Dresden",
+      "state": "DE-SN",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEVW24_SN_DRESD",
+      "city": "Dresden",
+      "state": "DE-SN",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEVW24_SN_ZWICK",
+      "city": "Zwickau",
+      "state": "DE-SN",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DECT25_SN_FROHB",
+      "city": "Frohburg",
+      "state": "DE-SN",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DECT25_SN_GEITH",
+      "city": "Geithain",
+      "state": "DE-SN",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEDO25_SN_BOEH",
+      "city": "Böhlen",
+      "state": "DE-SN",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEDG25_SN_RADE",
+      "city": "Radeburg",
+      "state": "DE-SN",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEPMG26_SN_OBER",
+      "city": "Oberlungwitz",
+      "state": "DE-SN",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEDO25_ST_SCHK",
+      "city": "Schkopau",
+      "state": "DE-ST",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DEEV26_ST_BITT",
+      "city": "Bitterfeld-Wolfen",
+      "state": "DE-ST",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "DECT25_TH_BADBLANK",
+      "city": "Bad Blankenburg",
+      "state": "DE-TH",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_YAN_LUN",
+      "city": "Lüneburg",
+      "state": "DE-NI",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_NES_NEU",
+      "city": "Neuss",
+      "state": "DE-NW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_INE_RHB",
+      "city": "Rheinberg",
+      "state": "DE-NW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_LAN_KRE",
+      "city": "Krefeld-Uerdingen",
+      "state": "DE-NW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_EV_RHE",
+      "city": "Rheinfelden",
+      "state": "DE-BW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_EV_DUR",
+      "city": "Düren",
+      "state": "DE-NW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_BOH_HAR",
+      "city": "Harzgerode",
+      "state": "DE-ST",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_BRE_UEC",
+      "city": "Ueckermünde",
+      "state": "DE-MV",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_KEL_WIL",
+      "city": "Nobitz-Wilchwitz",
+      "state": "DE-TH",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_PLA_DIE",
+      "city": "Dietenhofen",
+      "state": "DE-BY",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_EIC_MAN",
+      "city": "Mannheim",
+      "state": "DE-BW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_FRI_BAI",
+      "city": "Baiersbronn",
+      "state": "DE-BW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_SCH_HAR",
+      "city": "Harzgerode",
+      "state": "DE-ST",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_GAW_WER",
+      "city": "Wernigerode",
+      "state": "DE-ST",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R2_FOC_LUN",
+      "city": "Lüneburg",
+      "state": "DE-NI",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_BOSCH_NUE",
+      "city": "Nürnberg",
+      "state": "DE-BY",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_GSK_DRE",
+      "city": "Dresden",
+      "state": "DE-SN",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_AM_DUI",
+      "city": "Duisburg",
+      "state": "DE-NW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_TE_SPE",
+      "city": "Speyer",
+      "state": "DE-RP",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_MOLD_BAD",
+      "city": "Bad Harzburg",
+      "state": "DE-NI",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_MOLD_SON",
+      "city": "Sonneberg",
+      "state": "DE-TH",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_CONT_KOR",
+      "city": "Korbach",
+      "state": "DE-HE",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_HIM_TAU",
+      "city": "Taufkirchen (Vils)",
+      "state": "DE-BY",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_WARS_WAR",
+      "city": "Warstein",
+      "state": "DE-NW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_PAUL_MED",
+      "city": "Medebach",
+      "state": "DE-NW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_ROKU_UNT",
+      "city": "Unterschneidheim",
+      "state": "DE-BW",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_EBER_AUG",
+      "city": "Augsburg-Pfersee",
+      "state": "DE-BY",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_HALB_HAL",
+      "city": "Halberstadt",
+      "state": "DE-ST",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_MAG_DOR",
+      "city": "Dorfprozelten",
+      "state": "DE-BY",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_MERC_TOR",
+      "city": "Torgau",
+      "state": "DE-SN",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_WAL_WAL",
+      "city": "Waldaschaff",
+      "state": "DE-BY",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_GET_BRE",
+      "city": "Bremervörde",
+      "state": "DE-NI",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_BNT_IDA",
+      "city": "Idar-Oberstein",
+      "state": "DE-RP",
+      "reason": "site geocode still needed"
+    },
+    {
+      "id": "R3_BNT_MAR",
+      "city": "Marburg",
+      "state": "DE-HE",
+      "reason": "site geocode still needed"
+    }
+  ],
+  "employment_choropleth_status": "not yet sourced and validated; news-count placeholder only"
+}

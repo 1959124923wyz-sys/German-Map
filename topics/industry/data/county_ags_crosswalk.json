@@ -1,0 +1,2843 @@
+{
+  "schema_version": "1.0",
+  "captured": "2026-10-10",
+  "geometry_source": "data/germany-counties.geojson feature.id",
+  "reference_source": "m-ad/geofeatures-ags-germany geojson/counties.json historical geometry source",
+  "count": 402,
+  "ags5_field": "feature.id",
+  "legacy_boundary_warning": "GIS IDs represent the legacy geometry. Verify 2025/2026 official district AGS and administrative reform before time-series join.",
+  "count_by_state_prefix": {
+    "10": 6,
+    "11": 1,
+    "12": 18,
+    "13": 8,
+    "14": 13,
+    "15": 14,
+    "16": 23,
+    "08": 44,
+    "09": 96,
+    "04": 2,
+    "02": 1,
+    "06": 26,
+    "03": 46,
+    "05": 53,
+    "07": 36,
+    "01": 15
+  },
+  "records": [
+    {
+      "ags5": "08425",
+      "name": "Alb-Donau-Kreis",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "AD"
+    },
+    {
+      "ags5": "08115",
+      "name": "Böblingen",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "BL"
+    },
+    {
+      "ags5": "08211",
+      "name": "Baden-Baden",
+      "state": "Baden-Württemberg",
+      "district_type": "Stadtkreis",
+      "kfz": "BB"
+    },
+    {
+      "ags5": "08426",
+      "name": "Biberach",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "BR"
+    },
+    {
+      "ags5": "08435",
+      "name": "Bodenseekreis",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "BD"
+    },
+    {
+      "ags5": "08315",
+      "name": "Breisgau-Hochschwarzwald",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "BH"
+    },
+    {
+      "ags5": "08235",
+      "name": "Calw",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "CL"
+    },
+    {
+      "ags5": "08316",
+      "name": "Emmendingen",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "EM"
+    },
+    {
+      "ags5": "08236",
+      "name": "Enzkreis",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "EZ"
+    },
+    {
+      "ags5": "08116",
+      "name": "Esslingen",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "ES"
+    },
+    {
+      "ags5": "08311",
+      "name": "Freiburg im Breisgau",
+      "state": "Baden-Württemberg",
+      "district_type": "Stadtkreis",
+      "kfz": "FB"
+    },
+    {
+      "ags5": "08237",
+      "name": "Freudenstadt",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "FE"
+    },
+    {
+      "ags5": "08117",
+      "name": "Göppingen",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "GP"
+    },
+    {
+      "ags5": "08221",
+      "name": "Heidelberg",
+      "state": "Baden-Württemberg",
+      "district_type": "Stadtkreis",
+      "kfz": "HD"
+    },
+    {
+      "ags5": "08135",
+      "name": "Heidenheim",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "HH"
+    },
+    {
+      "ags5": "08125",
+      "name": "Heilbronn",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "HB"
+    },
+    {
+      "ags5": "08121",
+      "name": "Heilbronn",
+      "state": "Baden-Württemberg",
+      "district_type": "Stadtkreis",
+      "kfz": "HB"
+    },
+    {
+      "ags5": "08126",
+      "name": "Hohenlohekreis",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "HL"
+    },
+    {
+      "ags5": "08215",
+      "name": "Karlsruhe",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "KL"
+    },
+    {
+      "ags5": "08212",
+      "name": "Karlsruhe",
+      "state": "Baden-Württemberg",
+      "district_type": "Stadtkreis",
+      "kfz": "KL"
+    },
+    {
+      "ags5": "08335",
+      "name": "Konstanz",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "KN"
+    },
+    {
+      "ags5": "08336",
+      "name": "Lörrach",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "LR"
+    },
+    {
+      "ags5": "08118",
+      "name": "Ludwigsburg",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "LD"
+    },
+    {
+      "ags5": "08128",
+      "name": "Main-Tauber-Kreis",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "MT"
+    },
+    {
+      "ags5": "08222",
+      "name": "Mannheim",
+      "state": "Baden-Württemberg",
+      "district_type": "Stadtkreis",
+      "kfz": "MN"
+    },
+    {
+      "ags5": "08225",
+      "name": "Neckar-Odenwald-Kreis",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "NO"
+    },
+    {
+      "ags5": "08317",
+      "name": "Ortenaukreis",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "OR"
+    },
+    {
+      "ags5": "08136",
+      "name": "Ostalbkreis",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "OA"
+    },
+    {
+      "ags5": "08231",
+      "name": "Pforzheim",
+      "state": "Baden-Württemberg",
+      "district_type": "Stadtkreis",
+      "kfz": "PO"
+    },
+    {
+      "ags5": "08216",
+      "name": "Rastatt",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "RS"
+    },
+    {
+      "ags5": "08436",
+      "name": "Ravensburg",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "RV"
+    },
+    {
+      "ags5": "08119",
+      "name": "Rems-Murr-Kreis",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "RM"
+    },
+    {
+      "ags5": "08415",
+      "name": "Reutlingen",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "RU"
+    },
+    {
+      "ags5": "08226",
+      "name": "Rhein-Neckar-Kreis",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "RN"
+    },
+    {
+      "ags5": "08325",
+      "name": "Rottweil",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "RT"
+    },
+    {
+      "ags5": "08127",
+      "name": "Schwäbisch Hall",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "SH"
+    },
+    {
+      "ags5": "08326",
+      "name": "Schwarzwald-Baar-Kreis",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "SB"
+    },
+    {
+      "ags5": "08437",
+      "name": "Sigmaringen",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "SG"
+    },
+    {
+      "ags5": "08111",
+      "name": "Stuttgart",
+      "state": "Baden-Württemberg",
+      "district_type": "Stadtkreis",
+      "kfz": "SU"
+    },
+    {
+      "ags5": "08416",
+      "name": "Tübingen",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "TB"
+    },
+    {
+      "ags5": "08327",
+      "name": "Tuttlingen",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "TT"
+    },
+    {
+      "ags5": "08421",
+      "name": "Ulm",
+      "state": "Baden-Württemberg",
+      "district_type": "Stadtkreis",
+      "kfz": "UM"
+    },
+    {
+      "ags5": "08337",
+      "name": "Waldshut",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "WL"
+    },
+    {
+      "ags5": "08417",
+      "name": "Zollernalbkreis",
+      "state": "Baden-Württemberg",
+      "district_type": "Landkreis",
+      "kfz": "ZL"
+    },
+    {
+      "ags5": "09771",
+      "name": "Aichach-Friedberg",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "AF"
+    },
+    {
+      "ags5": "09171",
+      "name": "Altötting",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "AT"
+    },
+    {
+      "ags5": "09371",
+      "name": "Amberg-Sulzbach",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "AS"
+    },
+    {
+      "ags5": "09361",
+      "name": "Amberg",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "AM"
+    },
+    {
+      "ags5": "09561",
+      "name": "Ansbach",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "AN"
+    },
+    {
+      "ags5": "09571",
+      "name": "Ansbach",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "AN"
+    },
+    {
+      "ags5": "09661",
+      "name": "Aschaffenburg",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "AL"
+    },
+    {
+      "ags5": "09671",
+      "name": "Aschaffenburg",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "AL"
+    },
+    {
+      "ags5": "09761",
+      "name": "Augsburg",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "AG"
+    },
+    {
+      "ags5": "09772",
+      "name": "Augsburg",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "AG"
+    },
+    {
+      "ags5": "09672",
+      "name": "Bad Kissingen",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "BK"
+    },
+    {
+      "ags5": "09173",
+      "name": "Bad Tölz-Wolfratshausen",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "BW"
+    },
+    {
+      "ags5": "09461",
+      "name": "Bamberg",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "BM"
+    },
+    {
+      "ags5": "09471",
+      "name": "Bamberg",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "BM"
+    },
+    {
+      "ags5": "09462",
+      "name": "Bayreuth",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "BY"
+    },
+    {
+      "ags5": "09472",
+      "name": "Bayreuth",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "BY"
+    },
+    {
+      "ags5": "09172",
+      "name": "Berchtesgadener Land",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "BL"
+    },
+    {
+      "ags5": "09372",
+      "name": "Cham",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "CA"
+    },
+    {
+      "ags5": "09463",
+      "name": "Coburg",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "CL"
+    },
+    {
+      "ags5": "09473",
+      "name": "Coburg",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "CL"
+    },
+    {
+      "ags5": "09174",
+      "name": "Dachau",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "DC"
+    },
+    {
+      "ags5": "09271",
+      "name": "Deggendorf",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "DG"
+    },
+    {
+      "ags5": "09773",
+      "name": "Dillingen an der Donau",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "DD"
+    },
+    {
+      "ags5": "09279",
+      "name": "Dingolfing-Landau",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "DL"
+    },
+    {
+      "ags5": "09779",
+      "name": "Donau-Ries",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "DR"
+    },
+    {
+      "ags5": "09175",
+      "name": "Ebersberg",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "EE"
+    },
+    {
+      "ags5": "09176",
+      "name": "Eichstätt",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "EC"
+    },
+    {
+      "ags5": "09177",
+      "name": "Erding",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "ED"
+    },
+    {
+      "ags5": "09572",
+      "name": "Erlangen-Höchstadt",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "EH"
+    },
+    {
+      "ags5": "09562",
+      "name": "Erlangen",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "EL"
+    },
+    {
+      "ags5": "09179",
+      "name": "Fürstenfeldbruck",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "FF"
+    },
+    {
+      "ags5": "09563",
+      "name": "Fürth",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "FL"
+    },
+    {
+      "ags5": "09573",
+      "name": "Fürth",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "FL"
+    },
+    {
+      "ags5": "09474",
+      "name": "Forchheim",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "FR"
+    },
+    {
+      "ags5": "09178",
+      "name": "Freising",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "FE"
+    },
+    {
+      "ags5": "09272",
+      "name": "Freyung-Grafenau",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "FG"
+    },
+    {
+      "ags5": "09774",
+      "name": "Günzburg",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "GN"
+    },
+    {
+      "ags5": "09180",
+      "name": "Garmisch-Partenkirchen",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "GP"
+    },
+    {
+      "ags5": "09674",
+      "name": "Haßberge",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "HB"
+    },
+    {
+      "ags5": "09464",
+      "name": "Hof",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "HL"
+    },
+    {
+      "ags5": "09475",
+      "name": "Hof",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "HL"
+    },
+    {
+      "ags5": "09161",
+      "name": "Ingolstadt",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "IG"
+    },
+    {
+      "ags5": "09762",
+      "name": "Kaufbeuren",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "KU"
+    },
+    {
+      "ags5": "09273",
+      "name": "Kelheim",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "KE"
+    },
+    {
+      "ags5": "09763",
+      "name": "Kempten (Allgäu)",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "KM"
+    },
+    {
+      "ags5": "09675",
+      "name": "Kitzingen",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "KT"
+    },
+    {
+      "ags5": "09476",
+      "name": "Kronach",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "KO"
+    },
+    {
+      "ags5": "09477",
+      "name": "Kulmbach",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "KB"
+    },
+    {
+      "ags5": "09181",
+      "name": "Landsberg am Lech",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "LL"
+    },
+    {
+      "ags5": "09261",
+      "name": "Landshut",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "LH"
+    },
+    {
+      "ags5": "09274",
+      "name": "Landshut",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "LH"
+    },
+    {
+      "ags5": "09478",
+      "name": "Lichtenfels",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "LC"
+    },
+    {
+      "ags5": "09776",
+      "name": "Lindau (Bodensee)",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "LN"
+    },
+    {
+      "ags5": "09183",
+      "name": "Mühldorf am Inn",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "MI"
+    },
+    {
+      "ags5": "09162",
+      "name": "München",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "MU"
+    },
+    {
+      "ags5": "09184",
+      "name": "München",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "MU"
+    },
+    {
+      "ags5": "09677",
+      "name": "Main-Spessart",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "MS"
+    },
+    {
+      "ags5": "09764",
+      "name": "Memmingen",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "MM"
+    },
+    {
+      "ags5": "09182",
+      "name": "Miesbach",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "ME"
+    },
+    {
+      "ags5": "09676",
+      "name": "Miltenberg",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "ML"
+    },
+    {
+      "ags5": "09574",
+      "name": "Nürnberger Land",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "NL"
+    },
+    {
+      "ags5": "09564",
+      "name": "Nürnberg",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "NR"
+    },
+    {
+      "ags5": "09775",
+      "name": "Neu-Ulm",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "NU"
+    },
+    {
+      "ags5": "09185",
+      "name": "Neuburg-Schrobenhausen",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "NS"
+    },
+    {
+      "ags5": "09373",
+      "name": "Neumarkt in der Oberpfalz",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "NO"
+    },
+    {
+      "ags5": "09575",
+      "name": "Neustadt an der Aisch-Bad Windsheim",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "NA"
+    },
+    {
+      "ags5": "09374",
+      "name": "Neustadt an der Waldnaab",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "NW"
+    },
+    {
+      "ags5": "09780",
+      "name": "Oberallgäu",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "OE"
+    },
+    {
+      "ags5": "09777",
+      "name": "Ostallgäu",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "OT"
+    },
+    {
+      "ags5": "09262",
+      "name": "Passau",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "PL"
+    },
+    {
+      "ags5": "09275",
+      "name": "Passau",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "PL"
+    },
+    {
+      "ags5": "09186",
+      "name": "Pfaffenhofen an der Ilm",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "PI"
+    },
+    {
+      "ags5": "09276",
+      "name": "Regen",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "RE"
+    },
+    {
+      "ags5": "09362",
+      "name": "Regensburg",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "RL"
+    },
+    {
+      "ags5": "09375",
+      "name": "Regensburg",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "RL"
+    },
+    {
+      "ags5": "09673",
+      "name": "Rhön-Grabfeld",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "RG"
+    },
+    {
+      "ags5": "09163",
+      "name": "Rosenheim",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "RH"
+    },
+    {
+      "ags5": "09187",
+      "name": "Rosenheim",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "RH"
+    },
+    {
+      "ags5": "09576",
+      "name": "Roth",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "RT"
+    },
+    {
+      "ags5": "09277",
+      "name": "Rottal-Inn",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "RI"
+    },
+    {
+      "ags5": "09565",
+      "name": "Schwabach",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "SH"
+    },
+    {
+      "ags5": "09376",
+      "name": "Schwandorf",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "SD"
+    },
+    {
+      "ags5": "09662",
+      "name": "Schweinfurt",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "SL"
+    },
+    {
+      "ags5": "09678",
+      "name": "Schweinfurt",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "SL"
+    },
+    {
+      "ags5": "09188",
+      "name": "Starnberg",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "SA"
+    },
+    {
+      "ags5": "09278",
+      "name": "Straubing-Bogen",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "SB"
+    },
+    {
+      "ags5": "09263",
+      "name": "Straubing",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "ST"
+    },
+    {
+      "ags5": "09377",
+      "name": "Tirschenreuth",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "TR"
+    },
+    {
+      "ags5": "09189",
+      "name": "Traunstein",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "TA"
+    },
+    {
+      "ags5": "09778",
+      "name": "Unterallgäu",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "UT"
+    },
+    {
+      "ags5": "09663",
+      "name": "Würzburg",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "WR"
+    },
+    {
+      "ags5": "09679",
+      "name": "Würzburg",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "WR"
+    },
+    {
+      "ags5": "09577",
+      "name": "Weißenburg-Gunzenhausen",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "WG"
+    },
+    {
+      "ags5": "09363",
+      "name": "Weiden in der Oberpfalz",
+      "state": "Bayern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "WO"
+    },
+    {
+      "ags5": "09190",
+      "name": "Weilheim-Schongau",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "WS"
+    },
+    {
+      "ags5": "09479",
+      "name": "Wunsiedel im Fichtelgebirge",
+      "state": "Bayern",
+      "district_type": "Landkreis",
+      "kfz": "WF"
+    },
+    {
+      "ags5": "11000",
+      "name": "Berlin",
+      "state": "Berlin",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "BR"
+    },
+    {
+      "ags5": "12060",
+      "name": "Barnim",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "BR"
+    },
+    {
+      "ags5": "12051",
+      "name": "Brandenburg an der Havel",
+      "state": "Brandenburg",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "BH"
+    },
+    {
+      "ags5": "12052",
+      "name": "Cottbus",
+      "state": "Brandenburg",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "CT"
+    },
+    {
+      "ags5": "12061",
+      "name": "Dahme-Spreewald",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "DS"
+    },
+    {
+      "ags5": "12062",
+      "name": "Elbe-Elster",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "EE"
+    },
+    {
+      "ags5": "12053",
+      "name": "Frankfurt (Oder)",
+      "state": "Brandenburg",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "FA"
+    },
+    {
+      "ags5": "12063",
+      "name": "Havelland",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "HV"
+    },
+    {
+      "ags5": "12064",
+      "name": "Märkisch-Oderland",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "MO"
+    },
+    {
+      "ags5": "12065",
+      "name": "Oberhavel",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "OE"
+    },
+    {
+      "ags5": "12066",
+      "name": "Oberspreewald-Lausitz",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "OL"
+    },
+    {
+      "ags5": "12067",
+      "name": "Oder-Spree",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "OS"
+    },
+    {
+      "ags5": "12068",
+      "name": "Ostprignitz-Ruppin",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "OR"
+    },
+    {
+      "ags5": "12069",
+      "name": "Potsdam-Mittelmark",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "PM"
+    },
+    {
+      "ags5": "12054",
+      "name": "Potsdam",
+      "state": "Brandenburg",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "PT"
+    },
+    {
+      "ags5": "12070",
+      "name": "Prignitz",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "PI"
+    },
+    {
+      "ags5": "12071",
+      "name": "Spree-Neiße",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "SN"
+    },
+    {
+      "ags5": "12072",
+      "name": "Teltow-Fläming",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "TF"
+    },
+    {
+      "ags5": "12073",
+      "name": "Uckermark",
+      "state": "Brandenburg",
+      "district_type": "Landkreis",
+      "kfz": "UK"
+    },
+    {
+      "ags5": "04011",
+      "name": "Bremen",
+      "state": "Bremen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "BR"
+    },
+    {
+      "ags5": "04012",
+      "name": "Bremerhaven",
+      "state": "Bremen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "BH"
+    },
+    {
+      "ags5": "02000",
+      "name": "Hamburg",
+      "state": "Hamburg",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "HM"
+    },
+    {
+      "ags5": "06431",
+      "name": "Bergstraße",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "BR"
+    },
+    {
+      "ags5": "06432",
+      "name": "Darmstadt-Dieburg",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "DD"
+    },
+    {
+      "ags5": "06411",
+      "name": "Darmstadt",
+      "state": "Hessen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "DR"
+    },
+    {
+      "ags5": "06412",
+      "name": "Frankfurt am Main",
+      "state": "Hessen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "FM"
+    },
+    {
+      "ags5": "06631",
+      "name": "Fulda",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "FL"
+    },
+    {
+      "ags5": "06531",
+      "name": "Gießen",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "GE"
+    },
+    {
+      "ags5": "06433",
+      "name": "Groß-Gerau",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "GG"
+    },
+    {
+      "ags5": "06632",
+      "name": "Hersfeld-Rotenburg",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "HR"
+    },
+    {
+      "ags5": "06434",
+      "name": "Hochtaunuskreis",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "HC"
+    },
+    {
+      "ags5": "06611",
+      "name": "Kassel",
+      "state": "Hessen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "KL"
+    },
+    {
+      "ags5": "06633",
+      "name": "Kassel",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "KL"
+    },
+    {
+      "ags5": "06532",
+      "name": "Lahn-Dill-Kreis",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "LD"
+    },
+    {
+      "ags5": "06533",
+      "name": "Limburg-Weilburg",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "LW"
+    },
+    {
+      "ags5": "06435",
+      "name": "Main-Kinzig-Kreis",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "MK"
+    },
+    {
+      "ags5": "06436",
+      "name": "Main-Taunus-Kreis",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "MT"
+    },
+    {
+      "ags5": "06534",
+      "name": "Marburg-Biedenkopf",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "MB"
+    },
+    {
+      "ags5": "06437",
+      "name": "Odenwaldkreis",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "OE"
+    },
+    {
+      "ags5": "06413",
+      "name": "Offenbach am Main",
+      "state": "Hessen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "OM"
+    },
+    {
+      "ags5": "06438",
+      "name": "Offenbach",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "OF"
+    },
+    {
+      "ags5": "06439",
+      "name": "Rheingau-Taunus-Kreis",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "RT"
+    },
+    {
+      "ags5": "06634",
+      "name": "Schwalm-Eder-Kreis",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "SE"
+    },
+    {
+      "ags5": "06535",
+      "name": "Vogelsbergkreis",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "VG"
+    },
+    {
+      "ags5": "06635",
+      "name": "Waldeck-Frankenberg",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "WF"
+    },
+    {
+      "ags5": "06636",
+      "name": "Werra-Meißner-Kreis",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "WM"
+    },
+    {
+      "ags5": "06440",
+      "name": "Wetteraukreis",
+      "state": "Hessen",
+      "district_type": "Landkreis",
+      "kfz": "WT"
+    },
+    {
+      "ags5": "06414",
+      "name": "Wiesbaden",
+      "state": "Hessen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "WE"
+    },
+    {
+      "ags5": "13076",
+      "name": "Ludwigslust-Parchim",
+      "state": "Mecklenburg-Vorpommern",
+      "district_type": "Landkreis",
+      "kfz": "LP"
+    },
+    {
+      "ags5": "13071",
+      "name": "Mecklenburgische Seenplatte",
+      "state": "Mecklenburg-Vorpommern",
+      "district_type": "Landkreis",
+      "kfz": "MS"
+    },
+    {
+      "ags5": "13074",
+      "name": "Nordwestmecklenburg",
+      "state": "Mecklenburg-Vorpommern",
+      "district_type": "Landkreis",
+      "kfz": "NR"
+    },
+    {
+      "ags5": "13003",
+      "name": "Rostock",
+      "state": "Mecklenburg-Vorpommern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "RL"
+    },
+    {
+      "ags5": "13072",
+      "name": "Rostock",
+      "state": "Mecklenburg-Vorpommern",
+      "district_type": "Landkreis",
+      "kfz": "RL"
+    },
+    {
+      "ags5": "13004",
+      "name": "Schwerin",
+      "state": "Mecklenburg-Vorpommern",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "SH"
+    },
+    {
+      "ags5": "13075",
+      "name": "Vorpommern-Greifswald",
+      "state": "Mecklenburg-Vorpommern",
+      "district_type": "Landkreis",
+      "kfz": "VG"
+    },
+    {
+      "ags5": "13073",
+      "name": "Vorpommern-Rügen",
+      "state": "Mecklenburg-Vorpommern",
+      "district_type": "Landkreis",
+      "kfz": "VR"
+    },
+    {
+      "ags5": "03451",
+      "name": "Ammerland",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "AM"
+    },
+    {
+      "ags5": "03452",
+      "name": "Aurich",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "AR"
+    },
+    {
+      "ags5": "03101",
+      "name": "Braunschweig",
+      "state": "Niedersachsen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "BA"
+    },
+    {
+      "ags5": "03351",
+      "name": "Celle",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "CL"
+    },
+    {
+      "ags5": "03453",
+      "name": "Cloppenburg",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "CO"
+    },
+    {
+      "ags5": "03352",
+      "name": "Cuxhaven",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "CX"
+    },
+    {
+      "ags5": "03401",
+      "name": "Delmenhorst",
+      "state": "Niedersachsen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "DL"
+    },
+    {
+      "ags5": "03251",
+      "name": "Diepholz",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "DE"
+    },
+    {
+      "ags5": "03402",
+      "name": "Emden",
+      "state": "Niedersachsen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "ED"
+    },
+    {
+      "ags5": "03454",
+      "name": "Emsland",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "ES"
+    },
+    {
+      "ags5": "03455",
+      "name": "Friesland",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "FI"
+    },
+    {
+      "ags5": "03152",
+      "name": "Göttingen",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "GT"
+    },
+    {
+      "ags5": "03151",
+      "name": "Gifhorn",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "GF"
+    },
+    {
+      "ags5": "03153",
+      "name": "Goslar",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "GS"
+    },
+    {
+      "ags5": "03456",
+      "name": "Grafschaft Bentheim",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "GB"
+    },
+    {
+      "ags5": "03252",
+      "name": "Hameln-Pyrmont",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "HP"
+    },
+    {
+      "ags5": "03353",
+      "name": "Harburg",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "HR"
+    },
+    {
+      "ags5": "03358",
+      "name": "Heidekreis",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "HD"
+    },
+    {
+      "ags5": "03154",
+      "name": "Helmstedt",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "HL"
+    },
+    {
+      "ags5": "03254",
+      "name": "Hildesheim",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "HH"
+    },
+    {
+      "ags5": "03255",
+      "name": "Holzminden",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "HZ"
+    },
+    {
+      "ags5": "03354",
+      "name": "Lüchow-Dannenberg",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "LD"
+    },
+    {
+      "ags5": "03355",
+      "name": "Lüneburg",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "LN"
+    },
+    {
+      "ags5": "03457",
+      "name": "Leer",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "LE"
+    },
+    {
+      "ags5": "03256",
+      "name": "Nienburg (Weser)",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "NE"
+    },
+    {
+      "ags5": "03155",
+      "name": "Northeim",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "NR"
+    },
+    {
+      "ags5": "03403",
+      "name": "Oldenburg",
+      "state": "Niedersachsen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "OL"
+    },
+    {
+      "ags5": "03458",
+      "name": "Oldenburg",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "OS"
+    },
+    {
+      "ags5": "03404",
+      "name": "Osnabrück",
+      "state": "Niedersachsen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "ON"
+    },
+    {
+      "ags5": "03459",
+      "name": "Osnabrück",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "ON"
+    },
+    {
+      "ags5": "03356",
+      "name": "Osterholz",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "OT"
+    },
+    {
+      "ags5": "03156",
+      "name": "Osterode am Harz",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "OH"
+    },
+    {
+      "ags5": "03157",
+      "name": "Peine",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "PI"
+    },
+    {
+      "ags5": "03241",
+      "name": "Region Hannover",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "HA"
+    },
+    {
+      "ags5": "03357",
+      "name": "Rotenburg (Wümme)",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "RT"
+    },
+    {
+      "ags5": "03102",
+      "name": "Salzgitter",
+      "state": "Niedersachsen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "SL"
+    },
+    {
+      "ags5": "03257",
+      "name": "Schaumburg",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "SH"
+    },
+    {
+      "ags5": "03359",
+      "name": "Stade",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "SA"
+    },
+    {
+      "ags5": "03360",
+      "name": "Uelzen",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "UL"
+    },
+    {
+      "ags5": "03460",
+      "name": "Vechta",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "VC"
+    },
+    {
+      "ags5": "03361",
+      "name": "Verden",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "VR"
+    },
+    {
+      "ags5": "03461",
+      "name": "Wesermarsch",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "WS"
+    },
+    {
+      "ags5": "03405",
+      "name": "Wilhelmshaven",
+      "state": "Niedersachsen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "WH"
+    },
+    {
+      "ags5": "03462",
+      "name": "Wittmund",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "WT"
+    },
+    {
+      "ags5": "03158",
+      "name": "Wolfenbüttel",
+      "state": "Niedersachsen",
+      "district_type": "Landkreis",
+      "kfz": "WB"
+    },
+    {
+      "ags5": "03103",
+      "name": "Wolfsburg",
+      "state": "Niedersachsen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "WL"
+    },
+    {
+      "ags5": "05711",
+      "name": "Bielefeld",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "BE"
+    },
+    {
+      "ags5": "05911",
+      "name": "Bochum",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "BC"
+    },
+    {
+      "ags5": "05314",
+      "name": "Bonn",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "BN"
+    },
+    {
+      "ags5": "05554",
+      "name": "Borken",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "BR"
+    },
+    {
+      "ags5": "05512",
+      "name": "Bottrop",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "BT"
+    },
+    {
+      "ags5": "05558",
+      "name": "Coesfeld",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "CE"
+    },
+    {
+      "ags5": "05358",
+      "name": "Düren",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "DR"
+    },
+    {
+      "ags5": "05111",
+      "name": "Düsseldorf",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "DS"
+    },
+    {
+      "ags5": "05913",
+      "name": "Dortmund",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "DD"
+    },
+    {
+      "ags5": "05112",
+      "name": "Duisburg",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "DI"
+    },
+    {
+      "ags5": "05954",
+      "name": "Ennepe-Ruhr-Kreis",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "ER"
+    },
+    {
+      "ags5": "05113",
+      "name": "Essen",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "ES"
+    },
+    {
+      "ags5": "05366",
+      "name": "Euskirchen",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "EK"
+    },
+    {
+      "ags5": "05754",
+      "name": "Gütersloh",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "GT"
+    },
+    {
+      "ags5": "05513",
+      "name": "Gelsenkirchen",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "GL"
+    },
+    {
+      "ags5": "05762",
+      "name": "Höxter",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "HX"
+    },
+    {
+      "ags5": "05914",
+      "name": "Hagen",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "HG"
+    },
+    {
+      "ags5": "05915",
+      "name": "Hamm",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "HM"
+    },
+    {
+      "ags5": "05370",
+      "name": "Heinsberg",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "HI"
+    },
+    {
+      "ags5": "05758",
+      "name": "Herford",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "HF"
+    },
+    {
+      "ags5": "05916",
+      "name": "Herne",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "HR"
+    },
+    {
+      "ags5": "05958",
+      "name": "Hochsauerlandkreis",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "HC"
+    },
+    {
+      "ags5": "05315",
+      "name": "Köln",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "KO"
+    },
+    {
+      "ags5": "05154",
+      "name": "Kleve",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "KV"
+    },
+    {
+      "ags5": "05114",
+      "name": "Krefeld",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "KF"
+    },
+    {
+      "ags5": "05316",
+      "name": "Leverkusen",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "LV"
+    },
+    {
+      "ags5": "05766",
+      "name": "Lippe",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "LP"
+    },
+    {
+      "ags5": "05962",
+      "name": "Märkischer Kreis",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "MK"
+    },
+    {
+      "ags5": "05116",
+      "name": "Mönchengladbach",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "MG"
+    },
+    {
+      "ags5": "05117",
+      "name": "Mülheim an der Ruhr",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "MR"
+    },
+    {
+      "ags5": "05515",
+      "name": "Münster",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "MN"
+    },
+    {
+      "ags5": "05158",
+      "name": "Mettmann",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "MT"
+    },
+    {
+      "ags5": "05770",
+      "name": "Minden-Lübbecke",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "ML"
+    },
+    {
+      "ags5": "05374",
+      "name": "Oberbergischer Kreis",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "OK"
+    },
+    {
+      "ags5": "05119",
+      "name": "Oberhausen",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "OE"
+    },
+    {
+      "ags5": "05966",
+      "name": "Olpe",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "OP"
+    },
+    {
+      "ags5": "05774",
+      "name": "Paderborn",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "PD"
+    },
+    {
+      "ags5": "05562",
+      "name": "Recklinghausen",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "RC"
+    },
+    {
+      "ags5": "05120",
+      "name": "Remscheid",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "RM"
+    },
+    {
+      "ags5": "05362",
+      "name": "Rhein-Erft-Kreis",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "RE"
+    },
+    {
+      "ags5": "05162",
+      "name": "Rhein-Kreis Neuss",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "RN"
+    },
+    {
+      "ags5": "05382",
+      "name": "Rhein-Sieg-Kreis",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "RS"
+    },
+    {
+      "ags5": "05378",
+      "name": "Rheinisch-Bergischer Kreis",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "RB"
+    },
+    {
+      "ags5": "05970",
+      "name": "Siegen-Wittgenstein",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "SW"
+    },
+    {
+      "ags5": "05974",
+      "name": "Soest",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "SO"
+    },
+    {
+      "ags5": "05122",
+      "name": "Solingen",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "SL"
+    },
+    {
+      "ags5": "05334",
+      "name": "Städteregion Aachen",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "AC"
+    },
+    {
+      "ags5": "05566",
+      "name": "Steinfurt",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "SF"
+    },
+    {
+      "ags5": "05978",
+      "name": "Unna",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "UN"
+    },
+    {
+      "ags5": "05166",
+      "name": "Viersen",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "VE"
+    },
+    {
+      "ags5": "05570",
+      "name": "Warendorf",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "WR"
+    },
+    {
+      "ags5": "05170",
+      "name": "Wesel",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreis",
+      "kfz": "WS"
+    },
+    {
+      "ags5": "05124",
+      "name": "Wuppertal",
+      "state": "Nordrhein-Westfalen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "WP"
+    },
+    {
+      "ags5": "07131",
+      "name": "Ahrweiler",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "AR"
+    },
+    {
+      "ags5": "07132",
+      "name": "Altenkirchen (Westerwald)",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "AT"
+    },
+    {
+      "ags5": "07331",
+      "name": "Alzey-Worms",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "AW"
+    },
+    {
+      "ags5": "07332",
+      "name": "Bad Dürkheim",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "BD"
+    },
+    {
+      "ags5": "07133",
+      "name": "Bad Kreuznach",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "BK"
+    },
+    {
+      "ags5": "07231",
+      "name": "Bernkastel-Wittlich",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "BW"
+    },
+    {
+      "ags5": "07134",
+      "name": "Birkenfeld",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "BR"
+    },
+    {
+      "ags5": "07135",
+      "name": "Cochem-Zell",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "CZ"
+    },
+    {
+      "ags5": "07333",
+      "name": "Donnersbergkreis",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "DN"
+    },
+    {
+      "ags5": "07232",
+      "name": "Eifelkreis Bitburg-Prüm",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "EB"
+    },
+    {
+      "ags5": "07311",
+      "name": "Frankenthal (Pfalz)",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "FA"
+    },
+    {
+      "ags5": "07334",
+      "name": "Germersheim",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "GR"
+    },
+    {
+      "ags5": "07312",
+      "name": "Kaiserslautern",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "KL"
+    },
+    {
+      "ags5": "07335",
+      "name": "Kaiserslautern",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "KL"
+    },
+    {
+      "ags5": "07111",
+      "name": "Koblenz",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "KO"
+    },
+    {
+      "ags5": "07336",
+      "name": "Kusel",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "KU"
+    },
+    {
+      "ags5": "07313",
+      "name": "Landau in der Pfalz",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "LP"
+    },
+    {
+      "ags5": "07314",
+      "name": "Ludwigshafen am Rhein",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "LR"
+    },
+    {
+      "ags5": "07339",
+      "name": "Mainz-Bingen",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "MB"
+    },
+    {
+      "ags5": "07315",
+      "name": "Mainz",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "MI"
+    },
+    {
+      "ags5": "07137",
+      "name": "Mayen-Koblenz",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "MK"
+    },
+    {
+      "ags5": "07316",
+      "name": "Neustadt an der Weinstraße",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "NW"
+    },
+    {
+      "ags5": "07138",
+      "name": "Neuwied",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "NU"
+    },
+    {
+      "ags5": "07317",
+      "name": "Pirmasens",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "PR"
+    },
+    {
+      "ags5": "07140",
+      "name": "Rhein-Hunsrück-Kreis",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "RH"
+    },
+    {
+      "ags5": "07141",
+      "name": "Rhein-Lahn-Kreis",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "RN"
+    },
+    {
+      "ags5": "07338",
+      "name": "Rhein-Pfalz-Kreis",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "RZ"
+    },
+    {
+      "ags5": "07337",
+      "name": "Südliche Weinstraße",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "SW"
+    },
+    {
+      "ags5": "07340",
+      "name": "Südwestpfalz",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "SD"
+    },
+    {
+      "ags5": "07318",
+      "name": "Speyer",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "SE"
+    },
+    {
+      "ags5": "07235",
+      "name": "Trier-Saarburg",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "TS"
+    },
+    {
+      "ags5": "07211",
+      "name": "Trier",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "TI"
+    },
+    {
+      "ags5": "07233",
+      "name": "Vulkaneifel",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "VL"
+    },
+    {
+      "ags5": "07143",
+      "name": "Westerwaldkreis",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Landkreis",
+      "kfz": "WS"
+    },
+    {
+      "ags5": "07319",
+      "name": "Worms",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "WR"
+    },
+    {
+      "ags5": "07320",
+      "name": "Zweibrücken",
+      "state": "Rheinland-Pfalz",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "ZE"
+    },
+    {
+      "ags5": "10042",
+      "name": "Merzig-Wadern",
+      "state": "Saarland",
+      "district_type": "Landkreis",
+      "kfz": "MW"
+    },
+    {
+      "ags5": "10043",
+      "name": "Neunkirchen",
+      "state": "Saarland",
+      "district_type": "Landkreis",
+      "kfz": "NU"
+    },
+    {
+      "ags5": "10041",
+      "name": "Regionalverband Saarbrücken",
+      "state": "Saarland",
+      "district_type": "Landkreis",
+      "kfz": "SB"
+    },
+    {
+      "ags5": "10044",
+      "name": "Saarlouis",
+      "state": "Saarland",
+      "district_type": "Landkreis",
+      "kfz": "SA"
+    },
+    {
+      "ags5": "10045",
+      "name": "Saarpfalz-Kreis",
+      "state": "Saarland",
+      "district_type": "Landkreis",
+      "kfz": "SP"
+    },
+    {
+      "ags5": "10046",
+      "name": "St. Wendel",
+      "state": "Saarland",
+      "district_type": "Landkreis",
+      "kfz": "SW"
+    },
+    {
+      "ags5": "15081",
+      "name": "Altmarkkreis Salzwedel",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Landkreis",
+      "kfz": "AS"
+    },
+    {
+      "ags5": "15082",
+      "name": "Anhalt-Bitterfeld",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Landkreis",
+      "kfz": "AB"
+    },
+    {
+      "ags5": "15083",
+      "name": "Börde",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Landkreis",
+      "kfz": "BR"
+    },
+    {
+      "ags5": "15084",
+      "name": "Burgenlandkreis",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Landkreis",
+      "kfz": "BG"
+    },
+    {
+      "ags5": "15001",
+      "name": "Dessau-Roßlau",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "DR"
+    },
+    {
+      "ags5": "15002",
+      "name": "Halle (Saale)",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "HA"
+    },
+    {
+      "ags5": "15085",
+      "name": "Harz",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Landkreis",
+      "kfz": "HR"
+    },
+    {
+      "ags5": "15086",
+      "name": "Jerichower Land",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Landkreis",
+      "kfz": "JL"
+    },
+    {
+      "ags5": "15003",
+      "name": "Magdeburg",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "MG"
+    },
+    {
+      "ags5": "15087",
+      "name": "Mansfeld-Südharz",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Landkreis",
+      "kfz": "MS"
+    },
+    {
+      "ags5": "15088",
+      "name": "Saalekreis",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Landkreis",
+      "kfz": "SL"
+    },
+    {
+      "ags5": "15089",
+      "name": "Salzlandkreis",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Landkreis",
+      "kfz": "SZ"
+    },
+    {
+      "ags5": "15090",
+      "name": "Stendal",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Landkreis",
+      "kfz": "SE"
+    },
+    {
+      "ags5": "15091",
+      "name": "Wittenberg",
+      "state": "Sachsen-Anhalt",
+      "district_type": "Landkreis",
+      "kfz": "WT"
+    },
+    {
+      "ags5": "14625",
+      "name": "Bautzen",
+      "state": "Sachsen",
+      "district_type": "Landkreis",
+      "kfz": "BU"
+    },
+    {
+      "ags5": "14511",
+      "name": "Chemnitz",
+      "state": "Sachsen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "CE"
+    },
+    {
+      "ags5": "14612",
+      "name": "Dresden",
+      "state": "Sachsen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "DE"
+    },
+    {
+      "ags5": "14521",
+      "name": "Erzgebirgskreis",
+      "state": "Sachsen",
+      "district_type": "Landkreis",
+      "kfz": "EZ"
+    },
+    {
+      "ags5": "14626",
+      "name": "Görlitz",
+      "state": "Sachsen",
+      "district_type": "Landkreis",
+      "kfz": "GR"
+    },
+    {
+      "ags5": "14713",
+      "name": "Leipzig",
+      "state": "Sachsen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "LL"
+    },
+    {
+      "ags5": "14729",
+      "name": "Leipzig",
+      "state": "Sachsen",
+      "district_type": "Landkreis",
+      "kfz": "LL"
+    },
+    {
+      "ags5": "14627",
+      "name": "Meißen",
+      "state": "Sachsen",
+      "district_type": "Landkreis",
+      "kfz": "MI"
+    },
+    {
+      "ags5": "14522",
+      "name": "Mittelsachsen",
+      "state": "Sachsen",
+      "district_type": "Landkreis",
+      "kfz": "MT"
+    },
+    {
+      "ags5": "14730",
+      "name": "Nordsachsen",
+      "state": "Sachsen",
+      "district_type": "Landkreis",
+      "kfz": "NR"
+    },
+    {
+      "ags5": "14628",
+      "name": "Sächsische Schweiz-Osterzgebirge",
+      "state": "Sachsen",
+      "district_type": "Landkreis",
+      "kfz": "SS"
+    },
+    {
+      "ags5": "14523",
+      "name": "Vogtlandkreis",
+      "state": "Sachsen",
+      "district_type": "Landkreis",
+      "kfz": "VG"
+    },
+    {
+      "ags5": "14524",
+      "name": "Zwickau",
+      "state": "Sachsen",
+      "district_type": "Landkreis",
+      "kfz": "ZI"
+    },
+    {
+      "ags5": "01051",
+      "name": "Dithmarschen",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreis",
+      "kfz": "DT"
+    },
+    {
+      "ags5": "01001",
+      "name": "Flensburg",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "FE"
+    },
+    {
+      "ags5": "01053",
+      "name": "Herzogtum Lauenburg",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreis",
+      "kfz": "HL"
+    },
+    {
+      "ags5": "01002",
+      "name": "Kiel",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "KE"
+    },
+    {
+      "ags5": "01003",
+      "name": "Lübeck",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "LB"
+    },
+    {
+      "ags5": "01004",
+      "name": "Neumünster",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "NU"
+    },
+    {
+      "ags5": "01054",
+      "name": "Nordfriesland",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreis",
+      "kfz": "NR"
+    },
+    {
+      "ags5": "01055",
+      "name": "Ostholstein",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreis",
+      "kfz": "OT"
+    },
+    {
+      "ags5": "01056",
+      "name": "Pinneberg",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreis",
+      "kfz": "PN"
+    },
+    {
+      "ags5": "01057",
+      "name": "Plön",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreis",
+      "kfz": "PO"
+    },
+    {
+      "ags5": "01058",
+      "name": "Rendsburg-Eckernförde",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreis",
+      "kfz": "RE"
+    },
+    {
+      "ags5": "01059",
+      "name": "Schleswig-Flensburg",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreis",
+      "kfz": "SF"
+    },
+    {
+      "ags5": "01060",
+      "name": "Segeberg",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreis",
+      "kfz": "SG"
+    },
+    {
+      "ags5": "01061",
+      "name": "Steinburg",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreis",
+      "kfz": "SE"
+    },
+    {
+      "ags5": "01062",
+      "name": "Stormarn",
+      "state": "Schleswig-Holstein",
+      "district_type": "Kreis",
+      "kfz": "SO"
+    },
+    {
+      "ags5": "16077",
+      "name": "Altenburger Land",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "AL"
+    },
+    {
+      "ags5": "16061",
+      "name": "Eichsfeld",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "EC"
+    },
+    {
+      "ags5": "16056",
+      "name": "Eisenach",
+      "state": "Thüringen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "ES"
+    },
+    {
+      "ags5": "16051",
+      "name": "Erfurt",
+      "state": "Thüringen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "EF"
+    },
+    {
+      "ags5": "16052",
+      "name": "Gera",
+      "state": "Thüringen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "GR"
+    },
+    {
+      "ags5": "16067",
+      "name": "Gotha",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "GT"
+    },
+    {
+      "ags5": "16076",
+      "name": "Greiz",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "GE"
+    },
+    {
+      "ags5": "16069",
+      "name": "Hildburghausen",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "HL"
+    },
+    {
+      "ags5": "16070",
+      "name": "Ilm-Kreis",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "IK"
+    },
+    {
+      "ags5": "16053",
+      "name": "Jena",
+      "state": "Thüringen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "JN"
+    },
+    {
+      "ags5": "16065",
+      "name": "Kyffhäuserkreis",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "KF"
+    },
+    {
+      "ags5": "16062",
+      "name": "Nordhausen",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "NR"
+    },
+    {
+      "ags5": "16068",
+      "name": "Sömmerda",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "SD"
+    },
+    {
+      "ags5": "16074",
+      "name": "Saale-Holzland-Kreis",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "SH"
+    },
+    {
+      "ags5": "16075",
+      "name": "Saale-Orla-Kreis",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "SO"
+    },
+    {
+      "ags5": "16073",
+      "name": "Saalfeld-Rudolstadt",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "SR"
+    },
+    {
+      "ags5": "16066",
+      "name": "Schmalkalden-Meiningen",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "SM"
+    },
+    {
+      "ags5": "16072",
+      "name": "Sonneberg",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "SN"
+    },
+    {
+      "ags5": "16054",
+      "name": "Suhl",
+      "state": "Thüringen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "SU"
+    },
+    {
+      "ags5": "16064",
+      "name": "Unstrut-Hainich-Kreis",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "UH"
+    },
+    {
+      "ags5": "16063",
+      "name": "Wartburgkreis",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "WR"
+    },
+    {
+      "ags5": "16071",
+      "name": "Weimarer Land",
+      "state": "Thüringen",
+      "district_type": "Landkreis",
+      "kfz": "WL"
+    },
+    {
+      "ags5": "16055",
+      "name": "Weimar",
+      "state": "Thüringen",
+      "district_type": "Kreisfreie Stadt",
+      "kfz": "WI"
+    }
+  ]
+}

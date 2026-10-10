@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>德国工业衰退地图 · 重点关厂与裁员 | German-Map</title>
+<meta name="description" content="德国工业收缩重大事件：县市区域底图、重点工厂关闭与裁员，附公告状态和来源。">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="../../css/map.css?v=clean1">
+<link rel="stylesheet" href="topic.css?v=industry1">
+</head><body>
+<header><div class="header-main">
+ <div class="titleblock"><div class="title">德国工业衰退地图</div><div class="header-meta">2023—2026年公告与实施 · 全国县市 · 研究预览</div></div>
+ <nav class="modebar" aria-label="德国地图专题切换">
+  <a class="modebtn" href="../../index.html">暴力犯罪</a>
+  <a class="modebtn" href="../../index.html?mode=property">财产犯罪</a>
+  <a class="modebtn" href="../drugs/">毒品问题</a>
+  <a class="modebtn" href="../immigration/">移民人口</a>
+  <a class="modebtn" href="../environment/">环保争议</a>
+  <a class="modebtn" href="../railway/">铁路运行</a>
+  <a class="modebtn" href="../finance/">地方财政</a>
+  <a class="modebtn active" href="./" aria-current="page">工业衰退</a>
+ </nav>
+</div></header>
+<main class="industry-workspace">
+ <section class="mapwrap" aria-label="德国工业收缩地图">
+  <div id="industry-map"></div><div class="mapstatus" id="mapStatus">正在载入德国县市边界与工业事件…</div>
+  <div class="legend" id="legend"></div>
+ </section>
+ <aside class="industry-sidebar">
+  <div class="controls">
+   <div class="control-row"><strong>显示</strong>
+    <label><input type="checkbox" id="showMarkers" checked>重大企业新闻</label>
+    <button type="button" id="viewGermany">全国</button>
+   </div>
+  </div>
+  <section class="safety-panel" aria-live="polite">
+   <div class="safety-head"><strong>区域数据</strong><span class="safety-hint">点击地图选取区域</span></div>
+   <div class="area-title"><div class="area-name" id="areaName">德国全国</div><span class="risk-badge mid" id="riskBadge">收缩事件档案</span></div>
+   <div class="area-metric" id="areaMetric">已核实公告与候选记录，非工业就业下降率</div>
+   <div class="area-grid">
+    <div class="area-stat"><b id="areaEvents">—</b><small>当前地区事件</small></div>
+    <div class="area-stat"><b id="areaMajor">—</b><small>重大新闻点</small></div>
+    <div class="area-stat"><b id="areaPlans">—</b><small>计划/未核实完成</small></div>
+   </div>
+   <div id="methodNote" class="area-note">地区颜色目前反映已收录重大工业收缩事件数量，尚非官方工业就业降幅；未收录不代表未发生。</div>
+   <div id="eventDetail" class="industry-detail" hidden></div>
+   <div class="rank-section"><div class="rank-head"><strong>重点企业事件</strong><span id="listCount">—</span></div><div class="industry-list" id="eventList"></div></div>
+  </section>
+  <details class="incident-drawer" id="researchDetails">
+   <summary>统计口径与资料限制</summary>
+   <div class="industry-method">底色只表示本研究已登记的重大工业收缩事件数量。正在建设的县级2019年对最新年度制造业就业变化数据尚未核验，因此不绘制虚假的“工业收缩率”。<p>事件点可能是城市或县中心参考位置，绝不等同于工厂大门精确坐标。关厂计划、已实施停产及跨厂址整体裁员分别列示；不累加成实际失业人数。</p><p>数据来源和实施状态可在逐条记录中核查。</p></div>
+  </details>
+ </aside>
+</main>
+<footer class="industry-footer"><span>研究版 · 实际工业就业收缩率底色待官方县级数据核验 · 2026-10-10</span><span>© OpenStreetMap contributors · Leaflet</span></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="../../js/core/place-names-zh.js?v=clean1"></script>
+<script src="../../js/layers/city-labels.js?v=clean1"></script>
+<script src="topic.js?v=industry1"></script>
+</body></html>

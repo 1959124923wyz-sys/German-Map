@@ -1,0 +1,525 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-10-10",
+  "coverage": "精选核实案例，包含16个联邦州各至少一个项目点；属于代表性采样而非完整普查",
+  "geocode_note": "除特定知名设施外，多数坐标是城镇或项目近似锚点，不是建筑测量坐标。",
+  "events": [
+    {
+      "id": "stuttgart21",
+      "state_iso": "DE-BW",
+      "city": "斯图加特",
+      "title": "斯图加特21：新车站分五期启用，工程费用预计145亿欧元",
+      "category": "delay",
+      "category_label": "工期延期",
+      "status": "in_progress",
+      "event_date": "2026-06-26",
+      "coordinates": {
+        "lat": 48.7824,
+        "lon": 9.1815,
+        "precision": "locality_approx"
+      },
+      "summary": "德国铁路2026年6月26日公布分期建设计划：新斯图加特中央车站预计2031年12月启用，2027—2033年工程分五个阶段投用，整个项目最新成本估算145亿欧元。不能把2027年的通道改善称为新车站已启用。",
+      "sources": [
+        {
+          "url": "https://www.deutschebahn.com/de/presse/pressestart_zentrales_uebersicht/Stuttgart-21-Deutsche-Bahn-stellt-Inbetriebnahmeplan-neu-auf--13956556",
+          "role": "primary_or_reporting"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "gottenheim_soda",
+      "state_iso": "DE-BW",
+      "city": "Gottenheim",
+      "title": "一座桥建好近15年，却没有汽车驶过",
+      "category": "strange",
+      "category_label": "闲置工程",
+      "status": "unconnected",
+      "event_date": "2025-04-13",
+      "coordinates": {
+        "lat": 48.0502,
+        "lon": 7.7282,
+        "precision": "locality_approx"
+      },
+      "summary": "SWR报道：为B31 West连接工程准备的桥梁长期未接上规划道路，建造费用超过100万欧元。位置为Gottenheim市镇示意，不代表桥梁精确坐标。",
+      "sources": [
+        {
+          "url": "https://www.swr.de/swraktuell/baden-wuerttemberg/zur-sache-bw-schildbuergerstreich-wenn-steuergelder-fuer-infrastruktur-versickern-100.html",
+          "role": "primary_or_reporting"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "ber_airport",
+      "state_iso": "DE-BB",
+      "city": "舍讷费尔德",
+      "title": "柏林新机场：多年延期后于2020年才启用",
+      "category": "delay",
+      "category_label": "工期延期",
+      "status": "completed",
+      "event_date": "2020-10-31",
+      "coordinates": {
+        "lat": 52.3668,
+        "lon": 13.5034,
+        "precision": "facility_approx"
+      },
+      "summary": "柏林勃兰登堡机场T1航站楼2020年10月31日启用。本事件是已完工历史工程，不能标为仍在烂尾。",
+      "sources": [
+        {
+          "url": "https://corporate.berlin-airport.de/de/unternehmen-presse/historie/flughafen-berlin-brandenburg-willy-brandt.html",
+          "role": "primary_or_reporting"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "carola_bridge",
+      "state_iso": "DE-SN",
+      "city": "德累斯顿",
+      "title": "卡罗拉大桥2024年凌晨部分坍塌",
+      "category": "bridge",
+      "category_label": "桥梁故障",
+      "status": "replacement",
+      "event_date": "2024-09-11",
+      "coordinates": {
+        "lat": 51.0584,
+        "lon": 13.755,
+        "precision": "locality_approx"
+      },
+      "summary": "2024年9月11日凌晨发生桥梁C段坍塌，无人员伤亡。2026年萨克森州检方公开结案说明，研究报告指向预应力钢材应力腐蚀。",
+      "sources": [
+        {
+          "url": "https://medienservice.sachsen.de/medien/news/1098593",
+          "role": "primary_or_reporting"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "rahmede",
+      "state_iso": "DE-NW",
+      "city": "吕登沙伊德",
+      "title": "A45大桥封闭四年，2025年底终于恢复高速公路通行",
+      "category": "bridge",
+      "category_label": "桥梁故障",
+      "status": "partly_open",
+      "event_date": "2025-12-22",
+      "coordinates": {
+        "lat": 51.2293,
+        "lon": 7.6293,
+        "precision": "locality_approx"
+      },
+      "summary": "Rahmede旧桥2021年12月因严重损坏关闭，2025年12月22日新桥第一部分开放恢复A45连续通行，第二部分仍施工。",
+      "sources": [
+        {
+          "url": "https://www.autobahn.de/aktuelles/aktuell/a45-talbruecke-rahmede-nach-nur-zwei-jahren-bauzeit-freigegeben-1",
+          "role": "primary_or_reporting"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "opera_cologne",
+      "state_iso": "DE-NW",
+      "city": "科隆",
+      "title": "科隆歌剧院翻修14年，成本估算接近15亿欧元",
+      "category": "cost",
+      "category_label": "投资超支",
+      "status": "completed",
+      "event_date": "2026-09-14",
+      "coordinates": {
+        "lat": 50.9377,
+        "lon": 6.9536,
+        "precision": "facility_approx"
+      },
+      "summary": "2012年启动的歌剧院与剧院翻修项目，在2026年9月重新开放；近15亿欧元为建造与融资成本合计，不能当作纯施工费。",
+      "sources": [
+        {
+          "url": "https://www.tagesschau.de/inland/regional/nordrheinwestfalen/wdr-wiedereroeffnung-koelner-buehnen-warum-die-sanierung-zum-desaster-wurde-100.html",
+          "role": "primary_or_reporting"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "elbphilharmonie",
+      "state_iso": "DE-HH",
+      "city": "汉堡",
+      "title": "易北爱乐音乐厅：建设成本远超最初预算",
+      "category": "cost",
+      "category_label": "投资超支",
+      "status": "completed",
+      "event_date": "2017-01-11",
+      "coordinates": {
+        "lat": 53.5413,
+        "lon": 9.984,
+        "precision": "facility_approx"
+      },
+      "summary": "德国联邦财政部记录，2017年1月11日开放的音乐厅，最终建造费用超过最初7700万欧元预算的十倍；已经正常运营。",
+      "sources": [
+        {
+          "url": "https://www.bundesfinanzministerium.de/Content/DE/Bilderstrecken/Sondermarken/Programm_2017/Briefmarken_Programm_2017/1701_Elbphilharmonie.html",
+          "role": "primary_or_reporting"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "speyer_b9",
+      "state_iso": "DE-RP",
+      "city": "施派尔",
+      "title": "B9公路桥发现预应力钢材损伤，2026年紧急封路",
+      "category": "bridge",
+      "category_label": "桥梁故障",
+      "status": "closed",
+      "event_date": "2026-09-19",
+      "coordinates": {
+        "lat": 49.3362,
+        "lon": 8.4281,
+        "precision": "locality_approx"
+      },
+      "summary": "B9施派尔绕城路2026年9月19日起因两座桥梁分段的损伤封闭。部分相邻路段在9月下旬至10月初有条件恢复通行，但受损桥梁截至10月9日仍安装应急支撑，预计10月底至11月初可逐步开放。不能笼统说整条B9持续完全封闭。",
+      "sources": [
+        {
+          "url": "https://lbm.rlp.de/service/presse-aktuelles/detail/b-9-update-zur-vollsperrung-der-umgehung-speyer-aufbau-der-notunterstuetzung-verlaeuft-planmaessig",
+          "role": "official"
+        },
+        {
+          "url": "https://lbm.rlp.de/grossprojekte/regionale-projekte/b-9-/-l-528-vollsperrung-der-umgehung-speyer",
+          "role": "official"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "bonn_nord",
+      "state_iso": "DE-NW",
+      "city": "波恩",
+      "title": "A565北桥发现结构损伤，2026年全面封闭",
+      "category": "bridge",
+      "category_label": "桥梁故障",
+      "status": "closed",
+      "event_date": "2026-06-03",
+      "coordinates": {
+        "lat": 50.7633,
+        "lon": 7.0852,
+        "precision": "locality_approx"
+      },
+      "summary": "1967年建成的北桥左岸引桥承重结构出现严重问题。2026年6月3日全桥封闭，左岸引桥需拆除重建。",
+      "sources": [
+        {
+          "url": "https://www.autobahn.de/planen-bauen/projekt/sperrung-bonner-nordbruecke",
+          "role": "primary_or_reporting"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "holzhausen_lift",
+      "state_iso": "DE-NW",
+      "city": "Bad Holzhausen",
+      "title": "多年不能正常使用的火车站电梯，最后被拆掉",
+      "category": "access",
+      "category_label": "公共服务",
+      "status": "unavailable",
+      "event_date": "2026-10-06",
+      "coordinates": {
+        "lat": 52.2865,
+        "lon": 8.5485,
+        "precision": "locality_approx"
+      },
+      "summary": "WDR于2026年10月6日报道，Bad Holzhausen车站电梯多年无法可靠使用，已被拆除；当时没有可用的替代无障碍通道。",
+      "sources": [
+        {
+          "url": "https://www1.wdr.de/nrw/ostwestfalen-lippe/kreis-minden-luebbecke/bahnhof-barrierefrei-db-bad-holzhausen-100.amp",
+          "role": "primary_or_reporting"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "elsfleth_hunte",
+      "state_iso": "DE-NI",
+      "city": "Elsfleth",
+      "title": "铁路活动桥连续遭船舶撞击，被迫使用不能开启的临时桥",
+      "category": "bridge",
+      "category_label": "桥梁故障",
+      "status": "temporary",
+      "event_date": "2024-02-25",
+      "coordinates": {
+        "lat": 53.2331,
+        "lon": 8.4667,
+        "precision": "locality_approx"
+      },
+      "summary": "2024年2月和7月两次船舶碰撞使桥梁及临时桥损坏。铁路已用固定临时桥恢复运行，但海船航道通行受到限制，正推进可开启新桥。",
+      "sources": [
+        {
+          "url": "https://www.deutschebahn.com/de/presse/presse-regional/pr-hamburg-de/aktuell/presseinformationen-regional/Baustart-fuer-neue-Huntebruecke-Elsfleth--13886132",
+          "role": "primary_or_reporting"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "berlin_jannowitz_gallery",
+      "state_iso": "DE-BE",
+      "city": "柏林",
+      "title": "1932年建造的Jannowitzbrücke站廊道评分4.0，紧急关闭临河入口",
+      "category": "bridge",
+      "status": "closed",
+      "event_date": "2026-10-09",
+      "coordinates": {
+        "lat": 52.5149,
+        "lon": 13.4185,
+        "precision": "facility_approx"
+      },
+      "summary": "柏林交通主管部门2026年10月8日公告：1932年建造的车站临河入口廊道经DIN 1076检查，状态评分4.0、承载能力不足，10月9日起封闭。其他U-Bahn和S-Bahn车站入口继续开放；不可写成整座车站停运。",
+      "sources": [
+        {
+          "url": "https://www.berlin.de/sen/uvk/presse/pressemitteilungen/2026/pressemitteilung.1723192.php",
+          "role": "official"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "bavaria_haar_a99_bridge",
+      "state_iso": "DE-BY",
+      "city": "Haar（慕尼黑东郊）",
+      "title": "A99环线跨桥损坏严重，先架临时桥，再拆1973年的旧桥",
+      "category": "bridge",
+      "status": "in_progress",
+      "event_date": "2026-09",
+      "coordinates": {
+        "lat": 48.1096,
+        "lon": 11.7329,
+        "precision": "locality_approx"
+      },
+      "summary": "Autobahn GmbH说明B304跨A99桥建成于1973年，存在老化和氯盐侵蚀，需紧急更换。2026年8月车流转至临时桥，9月开始替换施工；截至公告，整体计划2028年底完成，预算约3000万欧元（含规划与建设）。",
+      "sources": [
+        {
+          "url": "https://www.autobahn.de/planen-bauen/projekt/as-haar-bw422",
+          "role": "official"
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "event_date_precision": "month"
+    },
+    {
+      "id": "bremen_bremerhaven_canal",
+      "state_iso": "DE-HB",
+      "city": "不来梅港",
+      "title": "木蛀贝破坏港区运河支撑桩，车辆与步行桥一同封闭",
+      "category": "bridge",
+      "status": "closed",
+      "event_date": "2026-06-08",
+      "coordinates": {
+        "lat": 53.541,
+        "lon": 8.574,
+        "precision": "locality_approx"
+      },
+      "summary": "不来梅港市政府2026年6月8日通告：连接Alter Hafen与Neuer Hafen的运河因支撑木桩受到木蛀贝严重侵蚀，结构稳定性无法证明，车辆和行人桥均因安全原因封闭。该记录为当时公告，持续封闭与否需后续复核。",
+      "sources": [
+        {
+          "url": "https://www.bremerhaven.de/de/aktuelles/verbindungskanal-alter-neuer-hafen-wird-vollstaendig-gesperrt.177465.html",
+          "role": "official"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "marburg_l3089_bridge",
+      "state_iso": "DE-HE",
+      "city": "马尔堡",
+      "title": "裂缝威胁桥梁稳定，2024年封闭、2025年拆除、2026年才动工重建",
+      "category": "bridge",
+      "status": "in_progress",
+      "event_date": "2024-11-26",
+      "coordinates": {
+        "lat": 50.8177,
+        "lon": 8.7742,
+        "precision": "locality_approx"
+      },
+      "summary": "黑森州Hessen Mobil通告：Neue Kasseler Straße的L3089铁路跨线桥因混凝土裂缝于2024年11月26日封闭，2025年3月拆除，2026年9月4日新桥工程正式开工，计划2027年底恢复通行。不是一直无人施工。",
+      "sources": [
+        {
+          "url": "https://mobil.hessen.de/presse/l-3089-spatenstich-fuer-den-ersatzneubau-der-bruecke-ueber-die-bahn-bei-marburg-nord",
+          "role": "official"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "warin_muehlenbruecke",
+      "state_iso": "DE-MV",
+      "city": "Warin",
+      "title": "市镇唯一汽车通道老桥拆建，先用临时桥维持单车道通行",
+      "category": "bridge",
+      "status": "temporary",
+      "event_date": "2026-08-19",
+      "coordinates": {
+        "lat": 53.8007,
+        "lon": 11.7007,
+        "precision": "locality_approx"
+      },
+      "summary": "NDR 2026年7月报道Warin B192的Mühlenbach老桥需要重建，建设临时桥时须暂时全封路。Warin市政府8月18日公告临时桥将在8月19日下午恢复通行；新桥工程预计2027年完成，不能继续标成全城封闭。",
+      "sources": [
+        {
+          "url": "https://www.stadt-warin.eu/news/1/1274996/nachrichten/die-m%C3%BChlenbr%C3%BCcke-in-warin-ist-ab-dem-19.08.2026-wieder-befahrbar.html",
+          "role": "official"
+        },
+        {
+          "url": "https://www.ndr.de/nachrichten/mecklenburg-vorpommern/westmecklenburg/warin-vollsperrung-fuer-neubau-der-bruecke-ueber-muehlenbach%2Cmvregioschwerin-4870.html",
+          "role": "public_broadcaster"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "saar_johannisbruecke",
+      "state_iso": "DE-SL",
+      "city": "萨尔布吕肯",
+      "title": "Johannisbrücke老桥卡车禁行至少延续至2028年",
+      "category": "bridge",
+      "status": "restricted",
+      "event_date": "2026-08-20",
+      "coordinates": {
+        "lat": 49.2431,
+        "lon": 7.0107,
+        "precision": "locality_approx"
+      },
+      "summary": "SR经Tagesschau 2026年8月报道：Johannisbrücke建成于1967年，自2022年起3.5吨以上货车禁行，普通车辆仅每方向一条车道；临时加固方案将持续至少两年，后续需考虑更换桥体。该禁行不代表所有车辆不得通过。",
+      "sources": [
+        {
+          "url": "https://www.tagesschau.de/inland/regional/saarland/sr-saarbruecker-johannisbruecke-noch-mindestens-zwei-jahre-fuer-lkw-gesperrt-102.html",
+          "role": "public_broadcaster"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "pouch_mulde_bridge",
+      "state_iso": "DE-ST",
+      "city": "Pouch",
+      "title": "B100 Mulde桥损坏太重无法维修，只能重建并持续大规模绕行",
+      "category": "bridge",
+      "status": "replacement",
+      "event_date": "2024-11",
+      "coordinates": {
+        "lat": 51.6285,
+        "lon": 12.4012,
+        "precision": "locality_approx"
+      },
+      "summary": "萨克森-安哈尔特州基础设施部门2026年通告：Pouch的B100旧桥建于1975年，因损坏严重无法修复。新桥于2024年11月开工，约456米长，总投资约5300万欧元；B100计划封路至2028年9月1日。新桥正在推进，不能写作完全停工。",
+      "sources": [
+        {
+          "url": "https://mid.sachsen-anhalt.de/pressemitteilung/bauarbeiten-fuer-den-ersatzneubau-der-muldebruecke-pouch-gehen-planmaessig-voran",
+          "role": "official"
+        }
+      ],
+      "last_reviewed": "2026-10-10",
+      "event_date_precision": "month"
+    },
+    {
+      "id": "missunde_iii",
+      "state_iso": "DE-SH",
+      "city": "Missunde",
+      "title": "斥资更换的新电动渡轮反复故障，传动链断裂又停航",
+      "category": "access",
+      "status": "unavailable",
+      "event_date": "2026-10-09",
+      "coordinates": {
+        "lat": 54.5206,
+        "lon": 9.7187,
+        "precision": "locality_approx"
+      },
+      "summary": "石勒苏益格-荷尔斯泰因州政府2026年7月已宣布检查Missunde III渡轮的长期故障原因、评估重启旧船或替代方案。Tagesschau报道10月9日渡轮因岸边靠泊装置传动链断裂停航，外部专家介入；截至10月9日不能保证下周仍停航。",
+      "sources": [
+        {
+          "url": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/VII/Presse/PI/2026/III_2026/260731_Missunde?nn=549a8fa0-66c0-4da0-9f19-70e4be245eac",
+          "role": "official"
+        },
+        {
+          "url": "https://www.tagesschau.de/inland/regional/schleswigholstein/schleifaehre-missunde-iii-erneut-ausser-betrieb%2Cregionflensburgnews-3536.html",
+          "role": "public_broadcaster"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "erfurt_schmidtstedter",
+      "state_iso": "DE-TH",
+      "city": "埃尔福特",
+      "title": "一千五百吨旧铁路桥构件因腐蚀疑虑整体替换，路口封闭数周",
+      "category": "bridge",
+      "status": "partly_open",
+      "event_date": "2026-08-06",
+      "coordinates": {
+        "lat": 50.9773,
+        "lon": 11.0449,
+        "precision": "locality_approx"
+      },
+      "summary": "MDR报道：Erfurt Schmidtstedter Knoten旧铁路桥存在预应力钢材应力腐蚀风险。2026年8月6日实施全封，8月中旬拆除约1500吨构件。8月26日多方向逐步恢复通行，但通往Stauffenbergallee的道路仍计划封闭至10月底；现状应表示部分恢复。",
+      "sources": [
+        {
+          "url": "https://www.mdr.de/nachrichten/thueringen/mitte-thueringen/erfurt/baustelle-verkehr-vollsperrung-freigabe%2Cschmidtstedter-knoten-114.html",
+          "role": "public_broadcaster"
+        },
+        {
+          "url": "https://www.mdr.de/nachrichten/thueringen/mitte-thueringen/erfurt/eisenbahnbruecke-baustelle-schmidtstedter-knoten-100.html",
+          "role": "public_broadcaster"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "datteln_comenius_school",
+      "state_iso": "DE-NW",
+      "city": "Datteln",
+      "title": "学校本来要装网线，拆开吊顶发现1928年施工问题，17间教室封闭",
+      "category": "school",
+      "status": "partly_closed",
+      "event_date": "2026-08-21",
+      "coordinates": {
+        "lat": 51.6557,
+        "lon": 7.3458,
+        "precision": "locality_approx"
+      },
+      "summary": "Datteln市政府2026年8月21日通报：Comenius-Gymnasium老楼数字化施工中发现1928年楼板局部施工质量不合格，17间教室以及食堂、图书馆和厕所不能使用。市政府预计维修至少持续到2027年暑假，不代表整所学校停课。",
+      "sources": [
+        {
+          "url": "https://www.datteln.de/news/comenius-gymnasium-altbau-muss-gesperrt-werden-17-klassenraeume-betroffen-maengel-durch",
+          "role": "official"
+        },
+        {
+          "url": "https://www1.wdr.de/nrw/ruhrgebiet/kreis-recklinghausen/marode-klassenzimmer-datteln-100.html",
+          "role": "public_broadcaster"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    },
+    {
+      "id": "hallenberg_naturbad",
+      "state_iso": "DE-NW",
+      "city": "Hallenberg",
+      "title": "露天泳池设备老化且持续漏水，财政紧张之下2026年整季不开门",
+      "category": "facility",
+      "status": "unavailable",
+      "event_date": "2026-04-15",
+      "coordinates": {
+        "lat": 51.1138,
+        "lon": 8.621,
+        "precision": "locality_approx"
+      },
+      "summary": "Hallenberg市政府公布：市议会2026年4月15日一致决定该市Naturbad在2026年泳季不开放，原因包括水处理设备老化、尚未解决的严重失水以及财政紧张。属于当季关闭决定，不应写成永久关闭。",
+      "sources": [
+        {
+          "url": "https://www.stadt-hallenberg.de/buergerservice/veroeffentlichungen/pressemeldungen/presseartikel/default-1dbeff87eaff78acf01c5ae4fd13878e",
+          "role": "official"
+        }
+      ],
+      "last_reviewed": "2026-10-10"
+    }
+  ]
+}

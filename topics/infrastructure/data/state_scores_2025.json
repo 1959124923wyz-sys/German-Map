@@ -1,0 +1,554 @@
+{
+  "schema_version": 1,
+  "topic": "infrastructure",
+  "version": "pilot-2026-10-10",
+  "scoring_direction": "higher=better",
+  "ranking_scope": "only these 16 states and these indicators",
+  "weights": {
+    "rail_track": 0.35,
+    "rail_station": 0.15,
+    "fiber": 0.3,
+    "power": 0.2
+  },
+  "alternative_weights": {
+    "rail_emphasis": {
+      "rail_track": 0.45,
+      "rail_station": 0.2,
+      "fiber": 0.2,
+      "power": 0.15
+    },
+    "digital_emphasis": {
+      "rail_track": 0.25,
+      "rail_station": 0.1,
+      "fiber": 0.45,
+      "power": 0.2
+    },
+    "equal_sectors": {
+      "rail_track": 0.16666666666666666,
+      "rail_station": 0.16666666666666666,
+      "fiber": 0.3333333333333333,
+      "power": 0.3333333333333333
+    }
+  },
+  "power_minutes_benchmark_for_zero": 30,
+  "source_urls": {
+    "rail": "https://www.deutschebahn.com/resource/blob/13865542/110ca11ebca4cd6917de62b24c97e38e/Zustandsnote-Kombi-PDF-data.pdf",
+    "fiber": "https://gigabitbuero.de/artikel/neue-versorgungsdaten-im-breitbandatlas-verfuegbar-datenstand-dezember-2025/",
+    "power": "https://www.statistikportal.de/de/nachhaltigkeit/ergebnisse/ziel-9-industrie-innovation-und-infrastruktur/versorgungsunterbrechungen",
+    "power_primary": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Versorgungssicherheit/Versorgungsunterbrechungen/Auswertung_Strom/start.html"
+  },
+  "states": [
+    {
+      "iso": "DE-BB",
+      "name_de": "Brandenburg",
+      "name_zh": "勃兰登堡",
+      "rail_track_grade_2025": 2.89,
+      "rail_station_grade_2025": 2.83,
+      "fiber_fttbh_pct_2025": 46.24,
+      "power_saidi_min_2023": 14.6,
+      "power_saidi_min_2024": 16.6,
+      "power_saidi_two_year_mean": 15.6,
+      "indicators": {
+        "rail_track": 62.2,
+        "rail_station": 63.4,
+        "fiber": 46.24,
+        "power": 48.0
+      },
+      "score": 54.752,
+      "sensitivity_scores": {
+        "rail_emphasis": 57.118,
+        "digital_emphasis": 52.298,
+        "equal_sectors": 52.3467
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 10,
+        "digital_emphasis": 10,
+        "equal_sectors": 12
+      },
+      "rank": 11,
+      "sensitivity_rank_min": 10,
+      "sensitivity_rank_max": 12,
+      "display_level": "lower_mid"
+    },
+    {
+      "iso": "DE-BE",
+      "name_de": "Berlin",
+      "name_zh": "柏林",
+      "rail_track_grade_2025": 2.8,
+      "rail_station_grade_2025": 3.4,
+      "fiber_fttbh_pct_2025": 52.77,
+      "power_saidi_min_2023": 9.6,
+      "power_saidi_min_2024": 8.5,
+      "power_saidi_two_year_mean": 9.05,
+      "indicators": {
+        "rail_track": 64.0,
+        "rail_station": 52.0,
+        "fiber": 52.77,
+        "power": 69.8333
+      },
+      "score": 59.9977,
+      "sensitivity_scores": {
+        "rail_emphasis": 60.229,
+        "digital_emphasis": 58.9132,
+        "equal_sectors": 60.2011
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 6,
+        "digital_emphasis": 6,
+        "equal_sectors": 6
+      },
+      "rank": 6,
+      "sensitivity_rank_min": 6,
+      "sensitivity_rank_max": 6,
+      "display_level": "lower_mid"
+    },
+    {
+      "iso": "DE-BW",
+      "name_de": "Baden-Württemberg",
+      "name_zh": "巴登-符腾堡",
+      "rail_track_grade_2025": 2.98,
+      "rail_station_grade_2025": 2.85,
+      "fiber_fttbh_pct_2025": 35.48,
+      "power_saidi_min_2023": 14.7,
+      "power_saidi_min_2024": 12.8,
+      "power_saidi_two_year_mean": 13.75,
+      "indicators": {
+        "rail_track": 60.4,
+        "rail_station": 63.0,
+        "fiber": 35.48,
+        "power": 54.1667
+      },
+      "score": 52.0673,
+      "sensitivity_scores": {
+        "rail_emphasis": 55.001,
+        "digital_emphasis": 48.1993,
+        "equal_sectors": 50.4489
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 14,
+        "digital_emphasis": 15,
+        "equal_sectors": 15
+      },
+      "rank": 15,
+      "sensitivity_rank_min": 14,
+      "sensitivity_rank_max": 15,
+      "display_level": "lower_mid"
+    },
+    {
+      "iso": "DE-BY",
+      "name_de": "Bayern",
+      "name_zh": "巴伐利亚",
+      "rail_track_grade_2025": 2.97,
+      "rail_station_grade_2025": 3.07,
+      "fiber_fttbh_pct_2025": 39.98,
+      "power_saidi_min_2023": 14.3,
+      "power_saidi_min_2024": 13.2,
+      "power_saidi_two_year_mean": 13.75,
+      "indicators": {
+        "rail_track": 60.6,
+        "rail_station": 58.6,
+        "fiber": 39.98,
+        "power": 54.1667
+      },
+      "score": 52.8273,
+      "sensitivity_scores": {
+        "rail_emphasis": 55.111,
+        "digital_emphasis": 49.8343,
+        "equal_sectors": 51.2489
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 13,
+        "digital_emphasis": 14,
+        "equal_sectors": 14
+      },
+      "rank": 14,
+      "sensitivity_rank_min": 13,
+      "sensitivity_rank_max": 14,
+      "display_level": "lower_mid"
+    },
+    {
+      "iso": "DE-HB",
+      "name_de": "Bremen",
+      "name_zh": "不来梅",
+      "rail_track_grade_2025": 3.1,
+      "rail_station_grade_2025": 2.66,
+      "fiber_fttbh_pct_2025": 86.05,
+      "power_saidi_min_2023": 9.4,
+      "power_saidi_min_2024": 14.7,
+      "power_saidi_two_year_mean": 12.05,
+      "indicators": {
+        "rail_track": 58.0,
+        "rail_station": 66.8,
+        "fiber": 86.05,
+        "power": 59.8333
+      },
+      "score": 68.1017,
+      "sensitivity_scores": {
+        "rail_emphasis": 65.645,
+        "digital_emphasis": 71.8692,
+        "equal_sectors": 69.4278
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 1,
+        "digital_emphasis": 1,
+        "equal_sectors": 1
+      },
+      "rank": 1,
+      "sensitivity_rank_min": 1,
+      "sensitivity_rank_max": 1,
+      "display_level": "upper_mid"
+    },
+    {
+      "iso": "DE-HE",
+      "name_de": "Hessen",
+      "name_zh": "黑森",
+      "rail_track_grade_2025": 2.95,
+      "rail_station_grade_2025": 3.03,
+      "fiber_fttbh_pct_2025": 47.67,
+      "power_saidi_min_2023": 10.4,
+      "power_saidi_min_2024": 10.3,
+      "power_saidi_two_year_mean": 10.35,
+      "indicators": {
+        "rail_track": 61.0,
+        "rail_station": 59.4,
+        "fiber": 47.67,
+        "power": 65.5
+      },
+      "score": 57.661,
+      "sensitivity_scores": {
+        "rail_emphasis": 58.689,
+        "digital_emphasis": 55.7415,
+        "equal_sectors": 57.79
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 7,
+        "digital_emphasis": 7,
+        "equal_sectors": 7
+      },
+      "rank": 7,
+      "sensitivity_rank_min": 7,
+      "sensitivity_rank_max": 7,
+      "display_level": "lower_mid"
+    },
+    {
+      "iso": "DE-HH",
+      "name_de": "Hamburg",
+      "name_zh": "汉堡",
+      "rail_track_grade_2025": 3.2,
+      "rail_station_grade_2025": 2.69,
+      "fiber_fttbh_pct_2025": 80.02,
+      "power_saidi_min_2023": 10.9,
+      "power_saidi_min_2024": 12.0,
+      "power_saidi_two_year_mean": 11.45,
+      "indicators": {
+        "rail_track": 56.0,
+        "rail_station": 66.2,
+        "fiber": 80.02,
+        "power": 61.8333
+      },
+      "score": 65.9027,
+      "sensitivity_scores": {
+        "rail_emphasis": 63.719,
+        "digital_emphasis": 68.9957,
+        "equal_sectors": 67.6511
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 4,
+        "digital_emphasis": 2,
+        "equal_sectors": 4
+      },
+      "rank": 4,
+      "sensitivity_rank_min": 2,
+      "sensitivity_rank_max": 4,
+      "display_level": "upper_mid"
+    },
+    {
+      "iso": "DE-MV",
+      "name_de": "Mecklenburg-Vorpommern",
+      "name_zh": "梅克伦堡-前波美拉尼亚",
+      "rail_track_grade_2025": 2.82,
+      "rail_station_grade_2025": 2.75,
+      "fiber_fttbh_pct_2025": 49.36,
+      "power_saidi_min_2023": 8.3,
+      "power_saidi_min_2024": 7.3,
+      "power_saidi_two_year_mean": 7.8,
+      "indicators": {
+        "rail_track": 63.6,
+        "rail_station": 65.0,
+        "fiber": 49.36,
+        "power": 74.0
+      },
+      "score": 61.618,
+      "sensitivity_scores": {
+        "rail_emphasis": 62.592,
+        "digital_emphasis": 59.412,
+        "equal_sectors": 62.5533
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 5,
+        "digital_emphasis": 5,
+        "equal_sectors": 5
+      },
+      "rank": 5,
+      "sensitivity_rank_min": 5,
+      "sensitivity_rank_max": 5,
+      "display_level": "upper_mid"
+    },
+    {
+      "iso": "DE-NI",
+      "name_de": "Niedersachsen",
+      "name_zh": "下萨克森",
+      "rail_track_grade_2025": 3.05,
+      "rail_station_grade_2025": 2.75,
+      "fiber_fttbh_pct_2025": 72.27,
+      "power_saidi_min_2023": 8.7,
+      "power_saidi_min_2024": 8.6,
+      "power_saidi_two_year_mean": 8.65,
+      "indicators": {
+        "rail_track": 59.0,
+        "rail_station": 65.0,
+        "fiber": 72.27,
+        "power": 71.1667
+      },
+      "score": 66.3143,
+      "sensitivity_scores": {
+        "rail_emphasis": 64.679,
+        "digital_emphasis": 68.0048,
+        "equal_sectors": 68.4789
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 2,
+        "digital_emphasis": 4,
+        "equal_sectors": 3
+      },
+      "rank": 3,
+      "sensitivity_rank_min": 2,
+      "sensitivity_rank_max": 4,
+      "display_level": "upper_mid"
+    },
+    {
+      "iso": "DE-NW",
+      "name_de": "Nordrhein-Westfalen",
+      "name_zh": "北莱茵-威斯特法伦",
+      "rail_track_grade_2025": 3.26,
+      "rail_station_grade_2025": 2.93,
+      "fiber_fttbh_pct_2025": 50.28,
+      "power_saidi_min_2023": 11.8,
+      "power_saidi_min_2024": 11.8,
+      "power_saidi_two_year_mean": 11.8,
+      "indicators": {
+        "rail_track": 54.8,
+        "rail_station": 61.4,
+        "fiber": 50.28,
+        "power": 60.6667
+      },
+      "score": 55.6073,
+      "sensitivity_scores": {
+        "rail_emphasis": 56.096,
+        "digital_emphasis": 54.5993,
+        "equal_sectors": 56.3489
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 12,
+        "digital_emphasis": 8,
+        "equal_sectors": 8
+      },
+      "rank": 10,
+      "sensitivity_rank_min": 8,
+      "sensitivity_rank_max": 12,
+      "display_level": "lower_mid"
+    },
+    {
+      "iso": "DE-RP",
+      "name_de": "Rheinland-Pfalz",
+      "name_zh": "莱茵兰-普法尔茨",
+      "rail_track_grade_2025": 3.2,
+      "rail_station_grade_2025": 2.92,
+      "fiber_fttbh_pct_2025": 47.1,
+      "power_saidi_min_2023": 19.4,
+      "power_saidi_min_2024": 10.0,
+      "power_saidi_two_year_mean": 14.7,
+      "indicators": {
+        "rail_track": 56.0,
+        "rail_station": 61.6,
+        "fiber": 47.1,
+        "power": 51.0
+      },
+      "score": 53.17,
+      "sensitivity_scores": {
+        "rail_emphasis": 54.59,
+        "digital_emphasis": 51.555,
+        "equal_sectors": 52.3
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 15,
+        "digital_emphasis": 12,
+        "equal_sectors": 13
+      },
+      "rank": 13,
+      "sensitivity_rank_min": 12,
+      "sensitivity_rank_max": 15,
+      "display_level": "lower_mid"
+    },
+    {
+      "iso": "DE-SH",
+      "name_de": "Schleswig-Holstein",
+      "name_zh": "石勒苏益格-荷尔斯泰因",
+      "rail_track_grade_2025": 3.25,
+      "rail_station_grade_2025": 2.47,
+      "fiber_fttbh_pct_2025": 74.45,
+      "power_saidi_min_2023": 10.1,
+      "power_saidi_min_2024": 7.4,
+      "power_saidi_two_year_mean": 8.75,
+      "indicators": {
+        "rail_track": 55.0,
+        "rail_station": 70.6,
+        "fiber": 74.45,
+        "power": 70.8333
+      },
+      "score": 66.3417,
+      "sensitivity_scores": {
+        "rail_emphasis": 64.385,
+        "digital_emphasis": 68.4792,
+        "equal_sectors": 69.3611
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 3,
+        "digital_emphasis": 3,
+        "equal_sectors": 2
+      },
+      "rank": 2,
+      "sensitivity_rank_min": 2,
+      "sensitivity_rank_max": 3,
+      "display_level": "upper_mid"
+    },
+    {
+      "iso": "DE-SL",
+      "name_de": "Saarland",
+      "name_zh": "萨尔",
+      "rail_track_grade_2025": 2.98,
+      "rail_station_grade_2025": 2.94,
+      "fiber_fttbh_pct_2025": 37.17,
+      "power_saidi_min_2023": 8.6,
+      "power_saidi_min_2024": 11.8,
+      "power_saidi_two_year_mean": 10.2,
+      "indicators": {
+        "rail_track": 60.4,
+        "rail_station": 61.2,
+        "fiber": 37.17,
+        "power": 66.0
+      },
+      "score": 54.671,
+      "sensitivity_scores": {
+        "rail_emphasis": 56.754,
+        "digital_emphasis": 51.1465,
+        "equal_sectors": 54.6567
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 11,
+        "digital_emphasis": 13,
+        "equal_sectors": 10
+      },
+      "rank": 12,
+      "sensitivity_rank_min": 10,
+      "sensitivity_rank_max": 13,
+      "display_level": "lower_mid"
+    },
+    {
+      "iso": "DE-SN",
+      "name_de": "Sachsen",
+      "name_zh": "萨克森",
+      "rail_track_grade_2025": 2.79,
+      "rail_station_grade_2025": 3.12,
+      "fiber_fttbh_pct_2025": 36.76,
+      "power_saidi_min_2023": 9.3,
+      "power_saidi_min_2024": 8.9,
+      "power_saidi_two_year_mean": 9.1,
+      "indicators": {
+        "rail_track": 64.2,
+        "rail_station": 57.6,
+        "fiber": 36.76,
+        "power": 69.6667
+      },
+      "score": 56.0713,
+      "sensitivity_scores": {
+        "rail_emphasis": 58.212,
+        "digital_emphasis": 52.2853,
+        "equal_sectors": 55.7756
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 8,
+        "digital_emphasis": 11,
+        "equal_sectors": 9
+      },
+      "rank": 8,
+      "sensitivity_rank_min": 8,
+      "sensitivity_rank_max": 11,
+      "display_level": "lower_mid"
+    },
+    {
+      "iso": "DE-ST",
+      "name_de": "Sachsen-Anhalt",
+      "name_zh": "萨克森-安哈尔特",
+      "rail_track_grade_2025": 2.75,
+      "rail_station_grade_2025": 3.04,
+      "fiber_fttbh_pct_2025": 48.74,
+      "power_saidi_min_2023": 17.8,
+      "power_saidi_min_2024": 13.1,
+      "power_saidi_two_year_mean": 15.45,
+      "indicators": {
+        "rail_track": 65.0,
+        "rail_station": 59.2,
+        "fiber": 48.74,
+        "power": 48.5
+      },
+      "score": 55.952,
+      "sensitivity_scores": {
+        "rail_emphasis": 58.113,
+        "digital_emphasis": 53.803,
+        "equal_sectors": 53.1133
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 9,
+        "digital_emphasis": 9,
+        "equal_sectors": 11
+      },
+      "rank": 9,
+      "sensitivity_rank_min": 9,
+      "sensitivity_rank_max": 11,
+      "display_level": "lower_mid"
+    },
+    {
+      "iso": "DE-TH",
+      "name_de": "Thüringen",
+      "name_zh": "图林根",
+      "rail_track_grade_2025": 2.65,
+      "rail_station_grade_2025": 3.27,
+      "fiber_fttbh_pct_2025": 26.48,
+      "power_saidi_min_2023": 21.4,
+      "power_saidi_min_2024": 17.5,
+      "power_saidi_two_year_mean": 19.45,
+      "indicators": {
+        "rail_track": 67.0,
+        "rail_station": 54.6,
+        "fiber": 26.48,
+        "power": 35.1667
+      },
+      "score": 46.6173,
+      "sensitivity_scores": {
+        "rail_emphasis": 51.641,
+        "digital_emphasis": 41.1593,
+        "equal_sectors": 40.8156
+      },
+      "sensitivity_ranks": {
+        "rail_emphasis": 16,
+        "digital_emphasis": 16,
+        "equal_sectors": 16
+      },
+      "rank": 16,
+      "sensitivity_rank_min": 16,
+      "sensitivity_rank_max": 16,
+      "display_level": "low"
+    }
+  ]
+}

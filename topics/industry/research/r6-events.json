@@ -1,0 +1,34 @@
+{
+  "manifest": {
+    "schema_version": "1.0",
+    "updated": "2026-10-10",
+    "events": 1,
+    "source": "Eurofound Germany 2026 restructuring event factsheets; links retained in every row",
+    "exclude_nonfactory_or_shared_jobs": true,
+    "publication_status": "candidate with source crosschecks; not population census",
+    "important_geography_note": "Eurofound Wehr (Novartis) may have erroneous district; DO NOT assign to Lörrach until officially verified",
+    "deduplicated_source_overlap": 10,
+    "note": "R6 intake retained only truly new factsheets after checking R5a–R5d by exact source URL; duplicate entries recorded in r6-dedup-audit.json."
+  },
+  "events": [
+    {
+      "event_id": "R6_SIE_ZWE",
+      "company": "Siempelkamp",
+      "city": "Zweibrücken",
+      "state_iso": "DE-RP",
+      "event_date": "2026-06-02",
+      "event_type": "production_cessation",
+      "implementation_status": "announced",
+      "jobs_affected": 129,
+      "headline_zh": "Siempelkamp茨魏布吕肯将退出大部分厂内制造，仅保留备件生产，拟减129岗",
+      "source_url": "https://apps.eurofound.europa.eu/restructuring-events/detail/300538",
+      "county_name": "Zweibrücken",
+      "caveat": "涉及约282个当前岗位中的129个；内制生产退出而非所有业务完全关闭",
+      "jobs_basis": "site_jobs_reported_not_actual_unemployment",
+      "verification": "eurofound_factsheet",
+      "eligible_factory_marker": true,
+      "location_precision": "city_reference_pending_exact_geocode",
+      "batch": "R6"
+    }
+  ]
+}
