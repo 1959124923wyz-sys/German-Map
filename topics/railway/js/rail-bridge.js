@@ -62,8 +62,13 @@ class RouteGraph{
   // gaps; it never adds a drawing segment or joins far-away tracks.
   const getNode=(x,y)=>{
    const ix=Math.round(x/STEP),iy=Math.round(y/STEP);
-   let nearest=null,dist=.28**2;
-   for(let ax=ix-2;ax<=ix+2;ax++)for(let ay=iy-2;ay<=iy+2;ay++){
+   // Across infrastructure-number boundaries, published line ends may stop
+   // at opposite sides of a switch/junction. Search a cartographic-scale
+   // radius (no synthetic path is drawn between these endpoint records).
+   const radius=key===GLOBAL?.60:.28;
+   const cells=Math.ceil(radius/STEP);
+   let nearest=null,dist=radius**2;
+   for(let ax=ix-cells;ax<=ix+cells;ax++)for(let ay=iy-cells;ay<=iy+cells;ay++){
     const node=r.nodes.get(ax+','+ay);if(!node)continue;
     const d=(node.xy[0]-x)**2+(node.xy[1]-y)**2;
     if(d<dist){dist=d;nearest=node;}
