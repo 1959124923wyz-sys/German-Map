@@ -1,0 +1,16 @@
+{
+  "source_sha256": "6b096eb4862b4eafda9294e425fb5a6d0e7773eb5815a4d4edc78b639ec2728f",
+  "source_zip_bytes": 70630747,
+  "reference_date": "2026-01-01",
+  "gpkg_srs_id": 25832,
+  "source_polygon_rows": 434,
+  "unique_county_ags5": 401,
+  "features_geojson": 401,
+  "raw_county_area_km2": 357714.7,
+  "simplified_area_km2": 357714.5,
+  "simplification_tolerance_m": 125,
+  "created_map_payload_bytes": 4487653,
+  "hanau_2026_handling": "2026-01-01 includes separate independent Hanau 06415; 2023/2024 debts retain vintage codes and cannot be plotted as 2026 values",
+  "status": "research_only_not_published",
+  "license": "© BKG (2026) dl-de/by-2-0"
+}
