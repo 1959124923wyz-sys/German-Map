@@ -81,6 +81,25 @@ def run(browser,mobile=False):
 
 
     if not mobile:
+        path_report=page.evaluate("""()=>{
+          const api=window.__RAILWAY_OVERVIEW__;
+          const chosen=api.getCityCorridors().filter(g=>g.members.length>=2);
+          const output=[];
+          for(const g of chosen.slice(0,28)){
+            const traced=api.traceVerifiedCorridor(g);
+            output.push({from:g.cityFrom,to:g.cityTo,route:g.members[0].leg.route,
+              count:g.members.length,official:traced?.length||0});
+          }
+          return output;
+        }""")
+        verified=[x for x in path_report if x["official"]>0]
+        print('REAL official A-to-B verified paths:',verified[:12],
+          'count',len(verified),'checked',len(path_report),flush=True)
+        # Real source geometries can have junction gaps, but at least some
+        # physically verified city corridors must select a whole curve.
+        assert len(verified)>=1, 'Full railway highlight never follows verified A-to-B geometry'
+
+    if not mobile:
         # Unobserved green official line must be selectable rather than absent.
         green=page.evaluate("""() => {
           const api=window.__RAILWAY_OVERVIEW__,map=api.getMap();
