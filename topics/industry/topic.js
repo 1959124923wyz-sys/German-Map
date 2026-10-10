@@ -93,8 +93,8 @@ function colorByCount(n){
  return !n?'#e6e8e8':n===1?'#fbe2c8':n===2?'#f6b780':n===3?'#e4825d':'#bc4945';
 }
 function officialMetricFor(feature){
- const ags5=String(feature.id||'');
- // Official county employment is indexed by five-digit AGS, never by name.
+ const ags5=String(stateKey(feature)||'');
+ // Official county employment is indexed by canonical five-digit AGS, never by district name or retired ID.
  const r=app.metric?.records?.[ags5];
  return r&&Number.isFinite(r.change_pct)?r:null;
 }
