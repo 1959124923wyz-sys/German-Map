@@ -40,8 +40,10 @@ def main():
    if re.fullmatch(r"[1-7]",key) and name in (
      "Oberbayern","Niederbayern","Oberpfalz","Oberfranken",
      "Mittelfranken","Unterfranken","Schwaben"):
-    if key in region_sum:raise ValueError(f"Repeated Bavarian regional summary {key}")
-    region_sum[key]={"name":name,"new_dwellings":numeric(r[6],sh.title)}
+    benchmark={"name":name,"new_dwellings":numeric(r[6],sh.title)}
+    if key in region_sum and region_sum[key]!=benchmark:
+     raise ValueError(f"Inconsistent repeated regional benchmark {key} {region_sum[key]} vs {benchmark}")
+    region_sum[key]=benchmark
    if not re.fullmatch(r"\d{3}",key):continue
    ags="09"+key
    if ags not in expected:raise ValueError(f"Unexpected Bavarian district code {ags}: {name}")
