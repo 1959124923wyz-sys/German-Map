@@ -24,12 +24,31 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Verify 2023 official source and inspect workbook without presuming 2024 columns
+      - name: Verify 2023 official source and normalize safely
+        id: validate_2023
+        continue-on-error: true
         run: |
-          python research/finance/regional-expansion/inspect_integrated_2023.py
-          python research/finance/regional-expansion/normalize_integrated_2023.py
-          python research/finance/regional-expansion/tests/validate_2023_integrated.py
-      - name: Commit source hash, 2023 state CSVs and cross-year entity audit on research branch only
+          set +e
+          (
+            python research/finance/regional-expansion/inspect_integrated_2023.py &&
+            python research/finance/regional-expansion/normalize_integrated_2023.py &&
+            python research/finance/regional-expansion/tests/validate_2023_integrated.py
+          ) > /tmp/finance08_2023_normalize.log 2>&1
+          code=$?
+          cat /tmp/finance08_2023_normalize.log
+          mkdir -p research/finance/regional-expansion/derived/integrated_2023
+          RESULT_CODE=$code python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path('research/finance/regional-expansion/derived/integrated_2023/last_normalize_status.json')
+          log=Path('/tmp/finance08_2023_normalize.log').read_text(encoding='utf-8',errors='replace')
+          n=int(os.environ['RESULT_CODE'])
+          p.write_text(json.dumps({'exit_code':n,'verified':n==0,
+             'tail_log':log[-2600:],'status':'all_tests_passed' if n==0 else 'failed_do_not_publish'},indent=2)+'\n',encoding='utf-8')
+          PY
+          exit $code
+      - name: Commit source hash, 2023 state CSVs and failure diagnostics on research branch only
+        if: always()
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -47,3 +66,6 @@ jobs:
           path: /tmp/finance08-2023/
           retention-days: 30
           if-no-files-found: warn
+      - name: Require successful source normalization after archiving diagnostics
+        if: always()
+        run: test "${{ steps.validate_2023.outcome }}" = success
