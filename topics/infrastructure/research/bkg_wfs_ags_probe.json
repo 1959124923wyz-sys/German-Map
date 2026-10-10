@@ -1,0 +1,17 @@
+{
+  "published": "2026-10-10",
+  "asof_boundary": "BKG VG2500 historical 31.12.2024/2025, verify on full download",
+  "publisher": "Bundesamt für Kartographie und Geodäsie (BKG)",
+  "official_service_page": "https://gdz.bkg.bund.de/index.php/default/webdienste/verwaltungsgebiete/wfs-verwaltungsgebiete-1-2-500-000-stand-31-12-wfs-vg2500.html",
+  "tested": [
+    {
+      "type_name": "vg2500_krs",
+      "network_error": "<urlopen error timed out>"
+    },
+    {
+      "type_name": "vg2500:vg2500_krs",
+      "network_error": "<urlopen error timed out>"
+    }
+  ],
+  "assertion": "This is a probe only; AGS must be from verified WFS output before being assigned."
+}
