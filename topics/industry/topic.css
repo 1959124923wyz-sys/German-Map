@@ -49,3 +49,13 @@
 .industry-sidebar #industryBackState,.housing-summary #housingBackState{color:#c5dce8;border:1px solid #446173;background:#203746;border-radius:6px;padding:5px 8px;font-size:10px;cursor:pointer}
 .industry-sidebar #industryNationalArchive .industry-list{padding:0 8px}
 .industry-sidebar .dossier-entry{color:#e2ebf2}
+
+/* Industrial timeline is a secondary, evidence-by-year archive, not national decoration. */
+.industry-timeline-year{margin:8px 0;border:1px solid #3b5060;border-radius:8px;background:#182a37;overflow:hidden}
+.industry-timeline-year>summary{padding:9px 10px;cursor:pointer;font-size:11px;color:#c8dbe4}
+.industry-timeline-year[open]>summary{border-bottom:1px solid #385064;background:#203747}
+.industry-timeline-entries{padding:3px 9px 9px;max-height:300px;overflow-y:auto;overscroll-behavior:contain}
+.industry-linked-events{border-top:1px solid #455866;margin-top:10px;padding:10px 0}
+.industry-linked-events>strong{font-size:12px;color:#e3eef6}
+.industry-linked-events>p{font-size:10px;line-height:1.6;color:#b2c6d2}
+.industry-linked-events>.dossier-entry strong{font-size:10px}
