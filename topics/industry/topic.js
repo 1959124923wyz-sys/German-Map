@@ -48,8 +48,10 @@ const STATUS_COMPLETE=new Set(['reported_closed','reported_completed','reported_
 'confirmed_closed_activity','confirmed_by_subsequent_report']);
 const POLYGON_BOUNDS=[[47.05,5.45],[55.15,15.65]];
 const app={map:null,events:[],countyGeo:null,features:[],featureLookup:new Map(),byCounty:new Map(),
- selectedCounty:null,selectedEvent:null,eventMarkers:new Map(),markers:null,counties:null,metric:null};
-const stateKey=f=>STATE_ISO[f.properties.state]+'|'+f.properties.name+'|'+(f.properties.districtType||'');
+ selectedCounty:null,selectedEvent:null,eventMarkers:new Map(),markers:null,counties:null,metric:null,agsRemap:{}};
+// AGS has five digits. The bundled geometry predates 2016/2021 mergers; use the current
+// canonical AGS for district statistics, keeping historic shapes explicitly marked.
+const stateKey=f=>app.agsRemap[f.id]||f.id;
 function nameZh(s){return window.GermanPlaceNames?.translate(s)||s;}
 function cleanCity(e){
  const raw=String(e.city||'').trim();
@@ -59,6 +61,7 @@ function cleanCity(e){
 }
 function getCounty(e){
  if(e.eligible_factory_marker===false)return null;
+ if(/^\\d{5}$/.test(e.county_ags||''))return app.features.find(f=>stateKey(f)===e.county_ags&&f.id===e.county_ags)||null;
  if(e.county_label||e.county_name)return findCounty(String(e.county_label||e.county_name),e.state_iso);
  const raw=cleanCity(e);
  if(!raw||e.eligible_factory_marker===false)return null;
@@ -67,7 +70,7 @@ function getCounty(e){
 }
 function findCounty(name,iso,raw){
  if(!iso||!name)return null;
- const rows=app.features.filter(f=>STATE_ISO[f.properties.state]===iso&&f.properties.name===name);
+ const rows=app.features.filter(f=>!app.agsRemap[f.id]&&STATE_ISO[f.properties.state]===iso&&f.properties.name===name);
  if(!rows.length)return null;
  if(rows.length===1)return rows[0];
  const isCity=raw&&raw===name&&!['Fürth'].includes(raw);
@@ -198,14 +201,19 @@ function selectCounty(f){
 async function start(){
  const sources=['../../data/germany-counties.geojson','../../data/germany-states.geojson',
    'research/r1-events.json','research/r2-r3-events.json','../../data/geocode_cache.json',
-   'data/county-employment.json','research/r4-events-and-updates.json','research/r5a-eurofound-sites.json','research/r5b-manufacturing-cases.json'];
+   'data/county-employment.json','research/r4-events-and-updates.json','research/r5a-eurofound-sites.json','research/r5b-manufacturing-cases.json','data/ags-crosswalk-402-to-400.json'];
  const results=await Promise.all(sources.map(async src=>{
   const r=await fetch(src,{cache:'no-store'});if(!r.ok)throw Error(src+': HTTP '+r.status);return r.json();
  }));
- const [counties,states,r1,r2,geocache,metric,r4,r5a,r5b]=results;
+ const [counties,states,r1,r2,geocache,metric,r4,r5a,r5b,agsCrosswalk]=results;
  if(!Array.isArray(counties.features)||counties.features.length!==402||!Array.isArray(states.features)||states.features.length!==16)
   throw Error('官方边界记录数量异常');
  if(r1.events.length!==61||r2.events.length!==38||r4.events.length!==18||r5a.events.length!==10||r5b.events.length!==16)throw Error('事件档案数量异常');
+ if(agsCrosswalk.features.length!==402||agsCrosswalk.canonical_ags_distinct!==400)throw Error('地区AGS对照表无效');
+ const agsIds=new Set(counties.features.map(f=>f.id));
+ if(agsIds.size!==402||[...agsIds].some(id=>!/^\\d{5}$/.test(id)))throw Error('县市AGS缺失/重复');
+ app.agsRemap=agsCrosswalk.canonical_remaps;
+ if(new Set(counties.features.map(stateKey)).size!==400)throw Error('现行县市AGS数量不符');
  app.features=counties.features;app.countyGeo=counties;app.metric=metric;
  const allRaw=[...r1.events,...r2.events,...r4.events,...r5a.events,...r5b.events];
  const patches=r4.updates||{};
@@ -224,7 +232,7 @@ async function start(){
   l.on('click',()=>selectCounty(f));
   l.on('mouseover',()=>l.setStyle({weight:1.75,color:'#3b627d'}));
   l.on('mouseout',()=>app.counties.resetStyle(l));
-  l.bindTooltip(nameZh(f.properties.name),{sticky:true,direction:'auto',className:'industry-tip'});
+  l.bindTooltip((app.agsRemap[f.id]?'历史县界 · 已并入现行区域：':'')+nameZh(f.properties.name),{sticky:true,direction:'auto',className:'industry-tip'});
  }}).addTo(app.map);
  L.geoJSON(states,{interactive:false,style:{weight:1.1,color:'#43596b',fillOpacity:0}}).addTo(app.map);
  app.markers=L.layerGroup().addTo(app.map);
@@ -255,7 +263,7 @@ async function start(){
  });
  $('mapStatus').style.display='none';
  window.GermanIndustryQA=Object.freeze({records:app.events.length,states:states.features.length,
-  counties:counties.features.length,major:app.events.filter(e=>e.isMajor).length,
+  counties:counties.features.length,modernCounties:new Set(counties.features.map(stateKey)).size,major:app.events.filter(e=>e.isMajor).length,
   mappedCounties:app.byCounty.size,pointMarkers:app.eventMarkers.size,
   officialCoverage:Object.keys(metric.records||{}).length});
 }
