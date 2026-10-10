@@ -116,6 +116,7 @@ jobs:
           node topics/industry/tests/validate_industry.cjs
           node topics/industry/tests/smoke_industry_data.cjs
           node topics/infrastructure/tests/validate_data.cjs
+          node topics/housing/tests/validate_greix.cjs
           test -s topics/housing/data/germany-counties-2024.geojson
           test -s topics/housing/data/atlas-counties.json
           test -s research/housing/HANDOFF.md
