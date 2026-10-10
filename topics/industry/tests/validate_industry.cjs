@@ -5,14 +5,24 @@ const path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const r1=JSON.parse(fs.readFileSync(path.join(root,'research/r1-events.json'),'utf8'));
 const r23=JSON.parse(fs.readFileSync(path.join(root,'research/r2-r3-events.json'),'utf8'));
+const r4=JSON.parse(fs.readFileSync(path.join(root,'research/r4-events-and-updates.json'),'utf8'));
 const employment=JSON.parse(fs.readFileSync(path.join(root,'data/county-employment.json'),'utf8'));
 assert.equal(r1.events.length,61,'R1 input count');
 assert.equal(r23.events.length,38,'R2+R3 input count');
 assert.equal(r23.events.filter(x=>x.batch==='R2').length,15);
 assert.equal(r23.events.filter(x=>x.batch==='R3').length,23);
-const rows=[...r1.events,...r23.events];
-assert.equal(rows.length,99);
-assert.equal(new Set(rows.map(e=>e.event_id)).size,99,'IDs unique');
+assert.equal(r4.events.length,18,'R4 input count');
+assert.equal(Object.keys(r4.updates).length,5,'R4 corrections');
+const rows=[...r1.events,...r23.events,...r4.events];
+assert.equal(rows.length,117);
+assert.equal(new Set(rows.map(e=>e.event_id)).size,117,'IDs unique');
+for(const [id,fix] of Object.entries(r4.updates)){
+ assert.ok(rows.some(e=>e.event_id===id),'patch target '+id);
+ assert.ok(fix.source_url?.startsWith('https://'),'patch citation '+id);
+}
+const r4Groups=r4.events.filter(e=>e.eligible_factory_marker===false);
+assert.equal(r4Groups.length,5,'R4 research-only shared groups must not generate point markers');
+for(const e of r4Groups)assert.equal(e.jobs_affected,null,'research-only multi-site jobs must not be distributed');
 const validStates=new Set(['DE-BB','DE-BE','DE-BW','DE-BY','DE-HB','DE-HE','DE-HH','DE-MV','DE-NI','DE-NW','DE-RP','DE-SH','DE-SL','DE-SN','DE-ST','DE-TH']);
 for(const e of rows){
  assert.ok(validStates.has(e.state_iso),'state '+e.event_id);
@@ -29,7 +39,9 @@ assert.match(js,/COUNTY_HINTS/);
 assert.match(js,/isMajor/);
 assert.match(js,/source_url/);
 assert.match(js,/county-employment.json/);
+assert.match(js,/r4-events-and-updates.json/);
+assert.match(js,/Object.assign\(original,patch\)/);
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 for(const tag of ['industry-map','legend','eventList','eventDetail','showMarkers','areaName'])
  assert.match(html,new RegExp('id="'+tag+'"'));
-console.log('industry staging validation passed: 99 unique source-linked records; 16-state codes; no fabricated employment series.');
+console.log('industry staging validation passed: 117 unique source-linked records; 5 documented corrections; no fabricated employment series.');
