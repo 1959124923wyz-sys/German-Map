@@ -120,8 +120,9 @@
       .sort((a,b)=>b.event_date.localeCompare(a.event_date));
   }
   function renderBridgeEvidence(iso){
-    const rows=bridgeCountyRows.filter(x=>x.iso===iso).sort((a,b)=>a.ags.localeCompare(b.ags));
-    $('bridgeStateSummary').innerHTML='<div><small>本州已匹配县市</small><b>'+rows.length+'个</b></div>'+
+    const all=bridgeCountyRows.filter(x=>x.iso===iso);
+    const rows=all.filter(x=>x.parts>0).sort((a,b)=>a.ags.localeCompare(b.ags));
+    $('bridgeStateSummary').innerHTML='<div><small>本州有桥梁结构样本的县市</small><b>'+rows.length+' / '+all.length+'个</b></div>'+
       '<div><small>具备≥20结构单元的县市</small><b>'+rows.filter(x=>x.parts>=20).length+'个</b></div>';
     const q=$('bridgeCountySearch').value.trim().toLocaleLowerCase();
     const matched=rows.filter(x=>!q||x.ags.includes(q)||x.name.toLocaleLowerCase().includes(q)||
