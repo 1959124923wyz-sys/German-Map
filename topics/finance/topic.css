@@ -101,3 +101,29 @@
  .finance-tabs button{font-size:10.5px}
  .finance-map-wrap .legend{width:min(285px,calc(100% - 20px))}
 }
+
+/* Source-separated municipal debt time series and optional RP reporting windows. */
+.finance-period{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-top:9px;font-size:10px;color:#bdced9}
+.finance-period[hidden],.finance-loan-drawer[hidden]{display:none!important}
+.finance-period select{width:min(225px,70%);padding:6px 7px;color:#dfebf3;background:#1b2e3c;border:1px solid #456276;border-radius:6px;font-size:10.5px}
+.finance-loan-drawer{flex:0 0 auto;min-width:0;margin:0 0 11px;border:1px solid #2d4657;border-radius:7px;background:#182733;color:#b8cbd7}
+.finance-loan-drawer>summary{display:flex;gap:9px;align-items:center;justify-content:space-between;padding:8px 10px;cursor:pointer;color:#e1edf3;font-size:10.5px;font-weight:650;list-style:none}
+.finance-loan-drawer>summary::-webkit-details-marker{display:none}
+.finance-loan-drawer>summary:before{content:'›';color:#8baebf;font-size:15px;line-height:1}
+.finance-loan-drawer[open]>summary:before{content:'⌄'}
+.finance-loan-drawer>summary span{margin-left:auto;color:#8da6b7;font-size:9px;font-weight:400}
+.finance-loan-drawer[open]{max-height:min(45vh,390px);overflow:auto}
+.finance-loan-history{padding:0 10px 10px}
+.finance-loan-totals{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:3px 0 9px}
+.finance-loan-totals div{display:flex;flex-direction:column;gap:2px;padding:7px 8px;background:#203240;border-radius:5px}
+.finance-loan-totals small{font-size:9px;color:#9eb5c3}
+.finance-loan-totals strong{font-size:13px;color:#f0f6fa;font-variant-numeric:tabular-nums}
+.finance-loan-history table{width:100%;border-collapse:collapse;font-size:10px;text-align:right;font-variant-numeric:tabular-nums}
+.finance-loan-history th,.finance-loan-history td{padding:5px 3px;border-bottom:1px solid #314554}
+.finance-loan-history th{color:#9fb9c8;font-size:9px;font-weight:550}
+.finance-loan-history th:first-child,.finance-loan-history td:first-child{text-align:left}
+.finance-loan-history tr:last-child td{color:#e7f1f6;font-weight:700}
+.finance-loan-history p{font-size:9px;line-height:1.6;color:#9eb2c0;margin:8px 0 0}
+.finance-loan-history a{display:block;color:#98cbea;margin-top:4px;overflow-wrap:anywhere}
+@media(max-width:960px){.finance-loan-drawer[open]{max-height:none}}
+@media(max-width:560px){.finance-period{align-items:flex-start}.finance-period select{max-width:70%;width:70%}}

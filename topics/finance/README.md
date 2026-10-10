@@ -14,6 +14,14 @@
 
 右侧优先展示单个地区的人均财政收支、三个覆盖数字和有限条事件；事件类型及状态筛选、170条完整档案位于折叠式“筛选与完整研究档案”，不会默认挤占地图。单击地图上的县域事件数量可筛选该县域。所有记录及原始出处均予保留。中文主要城市标签使用主地图公共模块。
 
+## 第九轮（支线增量，未合并main）
+
+- 添加 `research/finance/a/state_municipal_loans_2021_2025.csv`（各州2021—2025年短期流动性借款和投资借款原始研究表，160行，其中城市州30条标为不适用，130条有效）。2025年非城市州两类借款分别为385.87亿欧元和1551.36亿欧元。**借款是债务存量，不是年度财政赤字，也不包含市属企业分摊债务。**
+- `data/finance-history.js` 从原始A线CSV构建，并保留莱法州2025/2026上半年各36条地区记录；期别为2025全年（只有12城）、2025上半年（12城/24县）、2026上半年（12城/24县）。本次地图提供2025全年12城、2025上半年12城、2026上半年12城、2026上半年24个县政府本级四种独立选项。**禁止把县本级财政同城市或其下属市镇财政合算。**
+- 点击州可展开2021—2025年借款存量（单位亿欧元），默认折叠，不制造新的全国债务热力图；三主菜单保持不变。
+- 生成指令：`python topics/finance/data/build_finance_history.py`；新增回归：`python topics/finance/tests/validate_finance_history.py`。
+- 官方依据：[2026地方财政报告](https://www.bertelsmann-stiftung.de/fileadmin/files/Projekte/Monitor_Nachhaltige_Kommune/Finanzreport2026.pdf) 表9/10（第43/44页），[莱法州2026年上半年市镇财政报告](https://www.statistik.rlp.de/nachrichten/nachrichtendetailseite/nach-rekorddefizit-2025-luecke-zwischen-ausgaben-und-einnahmen-im-ersten-halbjahr-2026-geringer)（县本级与城市分表）。
+
 ## 代码和资料
 
 - `data/build_finance.py`：从 `research/finance/a/` 和 `research/finance/b/` CSV 再生成 `finance-data.js`，不凭空计算或补齐缺失值。
