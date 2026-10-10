@@ -8,6 +8,9 @@
   asking_rent_2025_eur_m2:{label:'2025年新租挂牌净冷租金',year:'2025',unit:'欧元/㎡',dec:2,source:'atlas',interpret:'互联网挂牌中重新出租住房的净冷租金，不是所有租房家庭正在支付的实际租金。'},
   completed_dwellings_new_residential_buildings_2023:{label:'2023年新建住宅建筑竣工住房',year:'2023',unit:'套',dec:0,source:'completions',interpret:'德国各州统计局联合地区统计，2023年新建住宅建筑内竣工住房套数，全国400县完整；不包含改建、扩建和非住宅建筑中的全部竣工住房。绝对套数受人口和县级规模影响。'},
   sheltered_homeless_2025:{label:'2025年已安置无住房人员',year:'2025-01-31',unit:'人',dec:0,source:'homeless',interpret:'仅统计2025年1月31日已获临时住宿的无住房人员，不含街头露宿和隐性无住房；按县绝对人数，受人口规模影响。394县有可用数字，6县缺失；保密五人取整。'},
+  existing_cold_rent_2022_eur_m2:{label:'2022年存量租约实际净冷租金',year:'2022',unit:'欧元/㎡',dec:2,source:'census',interpret:'2022年5月住房普查中已出租住房的实际净冷租金均值，与2025年新增挂牌租金的抽样对象、时间都不同，不能直接当作租金增长率。'},
+  vacant_12mo_plus_of_vacant_2022_pct:{label:'2022年空置超过12个月占空房比例',year:'2022',unit:'%',dec:2,source:'census',interpret:'分子为2022年普查空置12个月及以上的住房数，分母为所有空置住房数。并非所有住房中空置超过一年的比例。'},
+  vacant_available_3mo_of_vacant_2022_pct:{label:'2022年空房中3个月内可入住比例',year:'2022',unit:'%',dec:2,source:'census',interpret:'分子为普查所列预计3个月内可供入住的空置住房，分母为所有空置住房。可入住不一定进入租赁市场，不能称为市场活跃空置率。'},
   vacancy_2022_pct:{label:'2022年住宅空置率',year:'2022',unit:'%',dec:1,source:'atlas',interpret:'全部空置住宅中的部分住宅可能并不适合出租；较高空置率不表示当地没有住房结构性问题。'},
   disposable_income_2023_keur_person:{label:'2023年人均可支配收入',year:'2023',unit:'千欧元/人·年',dec:2,source:'atlas',interpret:'这是地区所有私人家庭的平均可支配收入按全体居民折算，不是租房家庭收入，也不是工资中位数。不能将2023年此指标与2025年新租挂牌租金直接计算所谓住房负担率。'},
   owner_occupier_2022_pct:{label:'2022年自住住房家庭占比',year:'2022',unit:'%',dec:1,source:'atlas',interpret:'统计对象是住在自有房屋的家庭，不是市场租赁住房比例，也不是各地住房可负担性评分。'},
@@ -23,14 +26,15 @@
  let map, countyLayer, stateLayer, cityLabels, sourceMeta;
  let selectedCounty=null, focusState=null, metric='asking_rent_2025_eur_m2';
  let stateFeatures=[], countyFeatures=[], byid=new Map(), countyShapes=new Map();
- let stockReady=false, homelessReady=false, completionsReady=false, breaks=[], sortedAll=[];
+ let stockReady=false, homelessReady=false, completionsReady=false, censusReady=false, breaks=[], sortedAll=[];
  let saxonyRows=new Map(), nrwRows=new Map();
  const COUNTRY=[[47.2,5.5],[55.3,15.5]];
  const sourceURL = {
   atlas:'https://deutschlandatlas.bund.de/service/daten-herunterladen/aktuelle-downloaddaten/aktuelle-downloaddateien',
   stock:'https://mietkautionskonto.info/wohnungsmarkt-analyse-kreise/',
   homeless:'https://genesis.destatis.de/datenbank/online/statistic/22971/table/22971-0080',
-  completions:'https://www.regionalstatistik.de/genesisws/downloader/00/tables/31121-01-02-4_00.csv'
+  completions:'https://www.regionalstatistik.de/genesisws/downloader/00/tables/31121-01-02-4_00.csv',
+  census:'https://www.destatis.de/static/DE/zensus/gitterdaten/Regionaltabelle_Gebaeude_Wohnungen.xlsx'
  };
  function ags(v){return String(v??'').padStart(5,'0')}
  function featureId(f){return ags(f.id??f.properties?.id)}
@@ -49,6 +53,7 @@
   const d=metrics[metric];
   if(d.source==='homeless')return {url:sourceURL.homeless,credit:'德国联邦统计局 Destatis GENESIS 22971-0080；2025-01-31；仅获安置无住房人员、五人取整，6个县缺数，不可代表全部无住房者。'};
   if(d.source==='completions')return {url:sourceURL.completions,credit:'德国联邦与各州统计局 Regionalstatistik 31121-01-02-4，2023年新建住宅建筑中的竣工住房套数，400县核验与全国总数一致；非全部住宅竣工。'};
+  if(d.source==='census')return {url:sourceURL.census,credit:'德国 Zensus 2022 住房普查全国区域表；400县官方原始住房租金、空置持续时间及空房可入住原因；合计受保密处理存在小幅不一致。2022普查与2024边界存在年份差异。'};
   return d.source==='atlas'
     ?{url:sourceURL.atlas,credit:'德国联邦 Deutschlandatlas HA26，2026-10-08版，县级官方指标；2022与2024行政区边界混用，详见核验记录。'}
     :{url:sourceURL.stock,credit:'mietkautionskonto.info 公开再发布官方底表，CC BY 4.0；2025住房存量已做全国总量和四县数值交叉检查，非逐县官方原表复核。'};
@@ -149,7 +154,7 @@
    '当前范围 '+available+' / '+region.ids.length+' 个县市有数值；按县统计，不代表所有居民的加权平均';
   $('interpretNote').textContent=metrics[metric].interpret;
   const s=sourceInfo();$('sourceLink').href=s.url;
-  $('sourceLink').textContent=(metrics[metric].source==='atlas'?'Deutschlandatlas HA26 官网':metrics[metric].source==='homeless'?'Destatis GENESIS 22971-0080 官方县级表':metrics[metric].source==='completions'?'Regionalstatistik 31121-01-02-4 官方县级表':'第三方县级再发布与来源说明')+' ↗';
+  $('sourceLink').textContent=(metrics[metric].source==='atlas'?'Deutschlandatlas HA26 官网':metrics[metric].source==='homeless'?'Destatis GENESIS 22971-0080 官方县级表':metrics[metric].source==='completions'?'Regionalstatistik 31121-01-02-4 官方县级表':metrics[metric].source==='census'?'Zensus 2022 全国官方住房普查':'第三方县级再发布与来源说明')+' ↗';
   $('sourceCredit').textContent=s.credit;
   renderQuick(region);
   renderLandPrice(region);
@@ -260,6 +265,23 @@
     document.querySelectorAll('#housingMetric option').forEach(o=>{if(metrics[o.value]?.source==='completions')o.disabled=true});
    }
    try{
+    const census=await readJson('data/zensus2022-housing-indicators-counties.json');
+    if(census.counties.length!==400)throw new Error('Zensus national 2022 county coverage not 400');
+    const sourceKeys=['existing_cold_rent_2022_eur_m2','vacant_12mo_plus_of_vacant_2022_pct','vacant_available_3mo_of_vacant_2022_pct'];
+    let found=0;
+    for(const d of census.counties){
+     const id=ags(d.id),target=byid.get(id);
+     if(!target)throw new Error('Census county not in current BKG geometry: '+id);
+     for(const k of sourceKeys)target[k]=d[k];
+     if(Number.isFinite(d.existing_cold_rent_2022_eur_m2))found++;
+    }
+    if(found!==400)throw new Error('Zensus 2022 official existing rents incomplete: '+found);
+    censusReady=true;
+   }catch(err){
+    console.warn('Zensus nationwide 2022 indicators not available',err);
+    document.querySelectorAll('#housingMetric option').forEach(o=>{if(metrics[o.value]?.source==='census')o.disabled=true});
+   }
+   try{
     const saxony=await readJson('data/saxony-homeless-counties.json');
     if(saxony.counties.length!==13)throw new Error('Saxony county-series coverage changed');
     saxonyRows=new Map(saxony.counties.map(row=>[row.id,row]));
@@ -275,7 +297,7 @@
    $('mapStatus').textContent=valid+'处县级地图区域已载入；'+(stockReady?'含核验住房存量':'住房存量层暂不可用');
    $('mapStatus').classList.add('ok');
    window.GermanHousingResearch=Object.freeze({
-     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,countyShapes:countyShapes.size}),
+     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,countyShapes:countyShapes.size}),
      metrics:Object.keys(metrics)
    });
   }catch(err){
