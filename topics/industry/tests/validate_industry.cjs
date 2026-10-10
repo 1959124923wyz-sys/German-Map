@@ -9,6 +9,11 @@ const r4=JSON.parse(fs.readFileSync(path.join(root,'research/r4-events-and-updat
 const r5a=JSON.parse(fs.readFileSync(path.join(root,'research/r5a-eurofound-sites.json'),'utf8'));
 const r5b=JSON.parse(fs.readFileSync(path.join(root,'research/r5b-manufacturing-cases.json'),'utf8'));
 const employment=JSON.parse(fs.readFileSync(path.join(root,'data/county-employment.json'),'utf8'));
+const ags=JSON.parse(fs.readFileSync(path.join(root,'data/ags-crosswalk-402-to-400.json'),'utf8'));
+assert.equal(ags.features.length,402);
+assert.equal(new Set(ags.features.map(e=>e.canonical_ags)).size,400);
+assert.equal(ags.canonical_remaps['03156'],'03152');
+assert.equal(ags.canonical_remaps['16056'],'16063');
 assert.equal(r1.events.length,61,'R1 input count');
 assert.equal(r23.events.length,38,'R2+R3 input count');
 assert.equal(r23.events.filter(x=>x.batch==='R2').length,15);
@@ -48,6 +53,8 @@ assert.match(js,/county-employment.json/);
 assert.match(js,/r4-events-and-updates.json/);
 assert.match(js,/r5a-eurofound-sites.json/);
 assert.match(js,/r5b-manufacturing-cases.json/);
+assert.match(js,/ags-crosswalk-402-to-400.json/);
+assert.match(js,/new Set\(counties.features.map\(stateKey\)\).size!==400/);
 const grouped=r5b.events.filter(e=>e.shared_program_id);
 for(const e of grouped){
  if(e.jobs_affected!==null)assert.equal(e.jobs_basis,'site_planned_or_reported_positions_non_additive','only independently allocated site figures allowed '+e.event_id);
@@ -57,4 +64,29 @@ assert.match(js,/Object.assign\(original,patch\)/);
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 for(const tag of ['industry-map','legend','eventList','eventDetail','showMarkers','areaName'])
  assert.match(html,new RegExp('id="'+tag+'"'));
-console.log('industry staging validation passed: 143 unique source-linked records; 5 documented corrections; no fabricated employment series.');
+const os=require('node:os');
+const {execFileSync}=require('node:child_process');
+const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'industry-ags-test-'));
+const csv=path.join(tmp,'fixture.csv'),out=path.join(tmp,'out.json');
+const header='ags,year,manufacturing_employees,industry_definition,workplace_basis,source_table,source_url';
+const fixture=[header,
+ '08425,2019,1000,WZ2008_C,workplace,fixture_v1,https://example.invalid/2019',
+ '08425,2025,800,WZ2008_C,workplace,fixture_v1,https://example.invalid/2025',
+ '03152,2019,1111,WZ2008_C,workplace,fixture_v1,https://example.invalid/2019',
+ '03152,2025,.,WZ2008_C,workplace,fixture_v1,https://example.invalid/2025'
+].join('\\n');
+try{
+ fs.writeFileSync(csv,fixture);
+ const importer=path.join(root,'scripts/build_county_employment.cjs');
+ execFileSync(process.execPath,[importer,'--input',csv,'--output',out],{stdio:'pipe'});
+ const result=JSON.parse(fs.readFileSync(out,'utf8'));
+ assert.equal(result.coverage.valid_districts,1);
+ assert.equal(result.coverage.possible_districts,400);
+ assert.equal(result.records['08425'].change_pct,-20);
+ assert.equal(result.records['03152'],undefined,'suppressed official cells remain missing');
+ assert.equal(result.records['08425'].source_url_2019,'https://example.invalid/2019');
+ // Refuse any series that mixes mining and manufacturing.
+ fs.writeFileSync(csv,fixture.replace('WZ2008_C','WZ2008_BC'));
+ assert.throws(()=>execFileSync(process.execPath,[importer,'--input',csv,'--output',out],{stdio:'pipe'}));
+}finally{fs.rmSync(tmp,{recursive:true,force:true})}
+console.log('industry staging validation passed: 143 unique events; 400 canonical districts; official-CSV guardrail fixture.');
