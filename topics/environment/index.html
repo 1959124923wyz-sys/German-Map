@@ -7,7 +7,8 @@
 <meta name="description" content="德国环保争议政策、环保组织行动、机场封锁、能源设施退役和后续证据地图；基于154条带来源的记录。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css?v=clean1">
-<link rel="stylesheet" href="topic.css?v=clean2">
+<link rel="stylesheet" href="topic.css?v=clean3">
+<link rel="stylesheet" href="../../css/region-dossier.css?v=1">
 </head>
 <body>
 <header>
@@ -49,6 +50,12 @@
           <button type="button" data-mode="facility" aria-pressed="false">能源设施 <span class="env-tab-count" data-count-for="facility">92</span></button>
         </div>
       </div>
+      <div class="env-region-controls">
+       <label class="env-point-toggle"><input id="showEnvPoints" type="checkbox"> 显示地图事件点</label>
+       <label class="env-state-picker" for="envStateJump">定位联邦州
+        <select id="envStateJump"><option value="">全国 · 选择联邦州</option></select>
+       </label>
+      </div>
     </div>
 
     <section class="safety-panel" id="summaryPanel">
@@ -69,6 +76,26 @@
       </div>
     </section>
 
+    <section id="envStateDossier" class="region-dossier" hidden>
+      <div class="dossier-heading"><strong id="envStateHeading">联邦州环保资料室</strong><small>明确州归属的记录</small></div>
+      <div class="dossier-tabs">
+       <button data-dossier-tab="overview">本州概况</button>
+       <button data-dossier-tab="records">地方事件档案</button>
+       <button data-dossier-tab="sources">进展与证据</button>
+      </div>
+      <div data-dossier-pane="overview" class="dossier-pane">
+       <div class="dossier-metrics" id="envStateStats"></div>
+       <p id="envStateCaveat" class="dossier-note"></p>
+      </div>
+      <div data-dossier-pane="records" class="dossier-pane" hidden>
+       <input id="envStateSearch" type="search" class="dossier-search" placeholder="查找事件、企业或地点">
+       <div id="envStateList" class="dossier-scroll"></div>
+      </div>
+      <div data-dossier-pane="sources" class="dossier-pane" hidden>
+       <p class="dossier-note">只展示经来源档案明确归属该州的记录。并未纳入所有全国政策与不能逐州归属的设施；事件结果与预期不可混同。</p>
+       <div id="envStateEvidence" class="dossier-scroll"></div>
+      </div>
+    </section>
     <details class="incident-drawer" id="recordDrawer">
       <summary>记录列表 <span id="listCount">154 条</span></summary>
       <div id="entries" class="env-entries"></div>
@@ -81,6 +108,7 @@
 <script src="../../js/core/place-names-zh.js?v=clean1"></script>
 <script src="../../js/layers/city-labels.js?v=clean1"></script>
 <script src="data/records.js?v=clean1"></script>
-<script src="topic.js?v=clean2"></script>
+<script src="../../js/core/region-dossier.js?v=1"></script>
+<script src="topic.js?v=clean3"></script>
 </body>
 </html>

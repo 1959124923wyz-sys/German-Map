@@ -103,3 +103,16 @@
  .environment-sidebar .env-taxonomy .env-tabs button{font-size:10px;padding:7px 5px}
  .env-taxonomy-heading span{font-size:8.5px}
 }
+
+/* 06: do not scatter 154 event glyphs over first-screen Germany map. */
+.env-region-controls{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:10px 0 0}
+.env-point-toggle{display:flex;gap:6px;align-items:center;white-space:nowrap;font-size:10.5px;color:#bdcfdd}
+.env-point-toggle input{accent-color:#78b9cf}
+.env-state-picker{display:flex;gap:7px;align-items:center;flex:1 1 190px;font-size:10px;color:#aec2d0}
+.env-state-picker select{flex:1;min-width:0;max-width:100%;border:1px solid #465e70;background:#182b39;color:#e8f1f6;border-radius:6px;padding:7px;font-size:10.5px}
+.environment-sidebar .env-region-evidence{padding:9px 1px;border-bottom:1px solid #344c5b}
+.environment-sidebar .env-region-evidence strong{display:block;color:#e9f1f7;font-size:11px}
+.environment-sidebar .env-region-evidence p{margin:4px 0;color:#c4d6e0;font-size:10px}
+.environment-sidebar .env-region-evidence small{display:block;color:#a6b9c7;font-size:9px}
+.environment-sidebar .env-region-evidence a{display:inline-block;margin:5px 0;color:#8dc6e0;font-size:9.5px}
+.environment-sidebar .dossier-metrics b{font-size:14px}
