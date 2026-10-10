@@ -123,6 +123,19 @@ def run(browser,mobile=False):
         assert len(numbers)==2 and all(v.endswith("%") for v in numbers),numbers
         print("PASS selectable measured green:",observed_green,flush=True)
 
+    if not mobile:
+        re4=page.evaluate("""() => {
+          const app=window.__RAILWAY_OVERVIEW__;
+          const sample=app.getServiceCorridors().filter(g=>
+            g.members.some(m=>String(m.leg.route)==='6107' &&
+             /Wustermark|Elstal/.test(m.leg.from_station+' '+m.leg.to_station)) &&
+            g.members.some(m=>String(m.leg.route)==='6179' &&
+             /Berlin-Staaken|Berlin-Spandau/.test(m.leg.from_station+' '+m.leg.to_station)));
+          return {joined:app.getServiceBridgedCount(),groupCount:app.getServiceCorridors().length,
+            re4:sample.map(g=>({label:g.serviceName,count:g.members.length,percent:g.m.onTime}))};
+        }""")
+        print("Cross-infrastructure RE4 corridor audit:",re4,flush=True)
+
     assert page.locator("#minimum").count()==0
     assert page.locator(".mini-stats").count()==0
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getMinimum()")==100
