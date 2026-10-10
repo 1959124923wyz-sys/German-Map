@@ -1,0 +1,38 @@
+name: Housing research - nationwide Destatis county homelessness table
+on:
+  push:
+    branches:
+      - research/housing-crisis-20261010
+    paths:
+      - 'research/housing/probe_destatis_homeless.py'
+      - '.github/workflows/housing-destatis-homeless-intake.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: housing-destatis-22971-0080
+  cancel-in-progress: false
+jobs:
+  official-national-homelessness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/housing-crisis-20261010
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Acquire nationwide county original and inspect county table schema
+        run: python research/housing/probe_destatis_homeless.py
+      - name: Commit source and forensic schema to durable research branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/housing/raw/destatis_22971-0080_national_counties.csv
+          git add research/housing/qa/destatis_22971-0080_schema.json
+          if ! git diff --cached --quiet; then
+            git commit -m "housing data: archive Destatis national county homelessness 22971-0080 original [skip ci]"
+            git pull --rebase origin research/housing-crisis-20261010
+            git push origin HEAD:research/housing-crisis-20261010
+          fi
