@@ -1,13 +1,30 @@
 {
   "status": "candidate_geocoded_subset_not_full_BASt",
   "snapshot_claim": "2025-09",
-  "retrieved_utc": "2026-10-10T08:05:35.321032+00:00",
+  "retrieved_utc": "2026-10-10T08:08:04.590461+00:00",
   "origin": "Third-party ArcGIS republishing of BASt federal-road bridge data",
   "source_url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Br%C3%BCckenstatistik_Deutschland/FeatureServer/0",
   "official_bast_source": "https://www.govdata.de/suche/daten/bruckenstatistik",
   "raw_feature_count": 52553,
   "raw_grade_diagnostics": {
     "above_4": 41738
+  },
+  "invalid_grade_top_values": {
+    "23": 6419,
+    "22": 5788,
+    "25": 5237,
+    "24": 4729,
+    "19": 3053,
+    "18": 2803,
+    "27": 2653,
+    "28": 2286,
+    "17": 1552,
+    "29": 1518,
+    "21": 1281,
+    "12": 763,
+    "13": 669,
+    "11": 656,
+    "16": 492
   },
   "source_list_membership_grade_coverage": {
     "NULL": [
