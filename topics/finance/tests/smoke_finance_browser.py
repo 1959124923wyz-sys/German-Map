@@ -60,11 +60,52 @@ def verify(browser,mobile=False):
     page.locator("#rpPeriod").select_option("2026-H1-counties")
     assert page.evaluate(f"{api}.stateFill('DE-RP')")==national_style
 
+    # Regression for the old bug: transparent county geometries covering
+    # OTHER states swallowed actual map clicks on shared Leaflet Canvas.
+    assert page.evaluate(f"{api}.selectedCounties().length")>=12
+    assert page.evaluate(f"{api}.selectedCounties().every(x=>String(x).startsWith('07'))")
+    assert page.locator("#stateJump").input_value()=="DE-RP"
+    # A user may pan and click Hessen DIRECTLY without returning nationwide.
+    if not mobile:
+        page.evaluate("window.__FINANCE_MAP__.panTo([50.11,8.25],{animate:false})")
+        loc=page.evaluate("""()=>{
+          const map=window.__FINANCE_MAP__;
+          const p=map.latLngToContainerPoint([50.1109,8.6821]);
+          return {x:p.x,y:p.y,w:map.getSize().x,h:map.getSize().y};
+        }""")
+        assert 0<loc["x"]<loc["w"] and 0<loc["y"]<loc["h"],loc
+        rect=page.locator("#finance-map").bounding_box()
+        page.mouse.click(rect["x"]+loc["x"],rect["y"]+loc["y"])
+        assert page.evaluate(f"{api}.getFocusState()")=="DE-HE","Hessen direct click must work while RP counties are visible"
+        assert page.locator("#stateJump").input_value()=="DE-HE"
+        assert page.locator("#districtPanel").is_hidden()
+        assert page.evaluate(f"{api}.selectedCounties().every(x=>String(x).startsWith('06'))")
+        assert page.evaluate(f"{api}.stateFill('DE-RP')")==national_style
+        assert page.evaluate(f"{api}.hasStateLayer()")
+
+    # Direct state selector works even when the desired state is offscreen;
+    # neither switching calls nor map colour needs a nationwide reset.
+    page.locator("#stateJump").select_option("DE-NI")
+    assert page.evaluate(f"{api}.getFocusState()")=="DE-NI"
+    assert page.evaluate(f"{api}.selectedCounties().every(x=>String(x).startsWith('03'))")
+    assert page.locator("#loanDrawer").is_visible()
+    assert page.evaluate(f"{api}.stateFill('DE-RP')")==national_style
+    page.locator("#stateJump").select_option("DE-RP")
+    assert page.evaluate(f"{api}.getFocusState()")=="DE-RP"
+    assert page.locator("#districtPanel").is_visible()
+    assert page.evaluate(f"{api}.selectedCounties().every(x=>String(x).startsWith('07'))")
+
     # Event checkbox only adds/removes geographic markers and sidebar events.
     page.locator("#showEvents").check()
     page.wait_for_function("window.__FINANCE_UI__.eventCount()>=30")
     assert page.locator("#eventPanel").is_visible()
     assert page.locator("#extraControls").is_visible()
+    # Changing states does NOT turn off the independent event overlay.
+    page.locator("#stateJump").select_option("DE-BY")
+    assert page.evaluate(f"{api}.getFocusState()")=="DE-BY"
+    assert page.locator("#showEvents").is_checked()
+    assert page.evaluate(f"{api}.eventCount()")>=30
+    assert page.locator("#eventPanel").is_visible()
     assert page.evaluate(f"{api}.stateFill('DE-RP')")==national_style
     assert "2025" in page.locator("#legend").inner_text()
     assert page.locator(".finance-case-preview").count()>=8
