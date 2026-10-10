@@ -7,7 +7,9 @@
     "primary_registry": "Eurofound ERM 2026",
     "restricted_to_announcements_on_or_before": "2026-10-10",
     "cohort": "2026 manufacturing cases, excluding nonmanufacturing operator and multisite number from markers",
-    "study_note": "Case-study sample, not national census; statuses and job quantities should not be summed as realised net job losses"
+    "study_note": "Case-study sample, not national census; statuses and job quantities should not be summed as realised net job losses",
+    "county_ags_assigned": 8,
+    "county_ags_source": "German-Map/data/germany-counties.geojson feature.id plus individually sourced Landkreis/Stadtkreis. Historic district remaps handled by published AGS crosswalk."
   },
   "events": [
     {
@@ -32,7 +34,9 @@
       "caveat": "厂址约150名员工已收到解约通知；2026年10月底结束生产仍需执行后核查",
       "first_collected": "2026-10-10",
       "batch": "R5A",
-      "nonadditive_group": null
+      "nonadditive_group": null,
+      "county_ags": "08335",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5_FRA_NST",
@@ -56,7 +60,9 @@
       "caveat": "源称超过110岗，110仅作下界；未来计划不是已完成关闭",
       "first_collected": "2026-10-10",
       "batch": "R5A",
-      "nonadditive_group": null
+      "nonadditive_group": null,
+      "county_ags": "09473",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5_DRE_WER",
@@ -80,7 +86,9 @@
       "caveat": "ERM报道称2026年7月裁撤全部剩余岗位，区别一般拟关闭公告",
       "first_collected": "2026-10-10",
       "batch": "R5A",
-      "nonadditive_group": null
+      "nonadditive_group": null,
+      "county_ags": "05974",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5_PAN_LEI",
@@ -104,7 +112,9 @@
       "caveat": "现有生产退出而非厂址永久废弃；新业主保留窑炉，计划2027年新投资，不得直接说工业资产永久消失",
       "first_collected": "2026-10-10",
       "batch": "R5A",
-      "nonadditive_group": null
+      "nonadditive_group": null,
+      "county_ags": "14522",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5_LMC_SAS",
@@ -128,7 +138,9 @@
       "caveat": "资料称88岗拟2026年7月底、18岗2027年1月退出；实际实施情况待后续公告",
       "first_collected": "2026-10-10",
       "batch": "R5A",
-      "nonadditive_group": null
+      "nonadditive_group": null,
+      "county_ags": "05570",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5_DOW_STA",
@@ -152,7 +164,9 @@
       "caveat": "集团Transform to Outperform调整，厂址110岗约占当时1100人一成；不是整厂关闭",
       "first_collected": "2026-10-10",
       "batch": "R5A",
-      "nonadditive_group": null
+      "nonadditive_group": null,
+      "county_ags": "03359",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5_KON_KAR",
@@ -176,7 +190,9 @@
       "caveat": "2026年6月初已完成裁员，保留约700岗；不应写为关闭厂区",
       "first_collected": "2026-10-10",
       "batch": "R5A",
-      "nonadditive_group": null
+      "nonadditive_group": null,
+      "county_ags": "06440",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5_PI_KAR",
@@ -200,7 +216,9 @@
       "caveat": "ERM合计100—190，另约90为子公司IBS的工程设计人员，本厂制造岗位只取100，待核精准生产/研发岗位构成",
       "first_collected": "2026-10-10",
       "batch": "R5A",
-      "nonadditive_group": null
+      "nonadditive_group": null,
+      "county_ags": "08212",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5_INN_MAR",
