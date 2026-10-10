@@ -243,7 +243,7 @@ function showDetail(){
  element(box,'span',g===2?'● 晚点或取消较多':g===1?'● 需要关注':'● 表现相对较好','grade');
  element(box,'h3',title);
  if(members.length>1||o.bridges)
-  element(box,'p','连续区段 · '+members.length+' 个有观测站间'+(o.bridges?' · '+o.bridges+' 处轨道连接':''),'corridor-count');
+  element(box,'p','连续区段 · '+members.length+' 个有观测站间'+(o.bridges?' · '+o.bridges+' 处观测缺口':''),'corridor-count');
  const grid=element(box,'div','','detail-grid');
  for(const [value,label] of [[pct(m.onTime),'准点率（晚点不足6分钟）'],
   [pct(m.cancel),'停靠取消标记率']]){
@@ -260,7 +260,11 @@ function showDetail(){
  }
  element(more,'p','线路 '+first.route+' · 有效到站 '+fmt(m.nArrival)+' 次 · 计划站间配对 '+fmt(m.nPlanned)+' 次');
  element(more,'p','晚点率 '+pct(m.late)+'（至少6分钟）；相邻区间可能重复观测同一趟车。');
- if(o.bridges)element(more,'p','依 DB InfraGO 原始轨道几何连接 '+o.bridges+' 处（约'+o.bridgeKm.toFixed(1)+' 公里）；连接部分没有参与准点及取消率计算。');
+ if(o.bridges){
+  const verified=o.bridges-(o.schematicBridges||0);
+  if(verified)element(more,'p','沿 DB InfraGO 官方轨道曲线核实连接 '+verified+' 处；没有给缺失区段补造统计数据。');
+  if(o.schematicBridges)element(more,'p','另有 '+o.schematicBridges+' 处约定的连续统计走廊，依据同线路公里范围及两端实际轨道位置归并；中间缺少可追踪的完整轨道路径，仅保留原有绿色底网，不补画假线路或假准点率。');
+ }
  element(more,'p','原始站名：'+first.from_station+' → '+last.to_station,'original-stations');
  box.append(more);
 }
