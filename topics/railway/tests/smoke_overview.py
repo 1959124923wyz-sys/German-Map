@@ -53,6 +53,18 @@ def run(browser,mobile=False):
     assert page.locator("#railway-map canvas").count()==2
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getNetworkGeometryCount()")==33547
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getGraphEdgeCount()")==33547
+    if not mobile:
+        bridges=page.evaluate("""() => {
+          const v=window.__RAILWAY_OVERVIEW__,m=v.getMap();
+          return v.getCorridors().filter(g=>g.bridges).slice(0,50).map(g=>{
+            const b=g.bounds;
+            const center=m.unproject(L.point((b.minX+b.maxX)/2,(b.minY+b.maxY)/2),9);
+            return {route:g.members[0].leg.route,from:g.members[0].leg.from_station,
+              to:g.members[g.members.length-1].leg.to_station,bridges:g.bridges,
+              km:+g.bridgeKm.toFixed(1),lat:+center.lat.toFixed(2),lon:+center.lng.toFixed(2)};
+          });
+        }""")
+        print('Geographic official gap samples:',bridges,flush=True)
     print('Official corridor gap bridges:',page.evaluate("window.__RAILWAY_OVERVIEW__.getBridgedCount()"),'filters',page.evaluate("window.__RAILWAY_OVERVIEW__.getBridgeDiagnostics()"),'graph',page.evaluate("window.__RAILWAY_OVERVIEW__.getBridgeFailureCounts()"),flush=True)
     assert page.locator("#minimum").count()==0
     assert page.locator(".mini-stats").count()==0
