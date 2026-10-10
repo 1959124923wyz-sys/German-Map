@@ -1,0 +1,20 @@
+{
+  "all_cases": 170,
+  "map_ready": 72,
+  "states_with_data": 13,
+  "rp_city_rows": 12,
+  "map_counties": 37,
+  "all_case_status": {
+    "adopted": 59,
+    "announced": 9,
+    "completed": 10,
+    "effective": 71,
+    "proposed": 4,
+    "rejected": 1,
+    "reversed": 8,
+    "under_review": 6,
+    "withdrawn": 2
+  },
+  "missing_primary_sources": 0,
+  "notes": "地图事件均是县域中心的汇总锚点，不是设施精准坐标。"
+}
