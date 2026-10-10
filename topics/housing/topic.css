@@ -1,0 +1,65 @@
+/* German-Map Housing: same compact dark shell as Finance 08, simple main map. */
+.housing-workspace{grid-template-columns:minmax(0,1fr) minmax(350px,32vw)}
+#housingMap{width:100%;height:100%;background:#c4d4de}
+.housing-map-wrap{position:relative}
+.housing-map-caption{position:absolute;top:12px;left:53px;z-index:600;pointer-events:none;display:grid;gap:3px;max-width:min(345px,calc(100% - 120px));padding:8px 11px;border:1px solid rgba(59,83,100,.67);border-radius:8px;background:rgba(13,23,32,.88);color:#f2f7fa;box-shadow:0 3px 14px #101d2a38}
+.housing-map-caption strong{font-size:12px;line-height:1.3}
+.housing-map-caption small{font-size:9.5px;color:#b3c6d2;line-height:1.5}
+.housing-side{background:#131a22;display:flex;flex-direction:column;overflow:hidden}
+.housing-controls{background:#151f29;border-bottom:1px solid #30404e;flex:0 0 auto;padding:12px;display:grid;gap:7px}
+.housing-controls label{font-size:10px;color:#aabbc9;font-weight:650}
+.housing-controls select,.housing-controls button{color:#dfeaf1;background:#1d2d3b;border:1px solid #3c5365;border-radius:7px;padding:9px;font-size:11px;min-width:0}
+.housing-controls button{cursor:pointer}
+.housing-controls select:focus-visible,.housing-controls button:focus-visible,.housing-rank-row:focus-visible{outline:2px solid #8bbad7;outline-offset:1px}
+.housing-jump{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:7px;margin-top:3px}
+.housing-summary{padding:12px 13px!important;display:flex;flex-direction:column;gap:6px;min-height:0;overflow:auto}
+.housing-summary .safety-head{margin-bottom:6px}
+.housing-summary .area-title{margin-bottom:0}
+.housing-big{font-size:27px;font-weight:760;line-height:1.28;color:#f2f7fa;font-variant-numeric:tabular-nums}
+.housing-description{font-size:10.5px;color:#b8c7d4;line-height:1.55}
+.housing-coverage{font-size:9.5px;color:#98b0bf;line-height:1.55}
+.housing-side-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:5px 0}
+.housing-quick-card{padding:9px;border:1px solid #2d4051;border-radius:8px;background:#192530;min-width:0}
+.housing-quick-card small{display:block;color:#8fa8b9;font-size:9px;line-height:1.4}
+.housing-quick-card strong{display:block;color:#e4eef5;font-size:17px;line-height:1.5;font-variant-numeric:tabular-nums}
+.housing-note{font-size:10px;color:#9fb0bd;line-height:1.6;margin:3px 0 8px;overflow-wrap:anywhere}
+.housing-source{padding:9px 0;border-top:1px solid #2b3d4a;border-bottom:1px solid #2b3d4a;display:grid;gap:4px;font-size:9.5px;color:#9eafbf;line-height:1.5;overflow-wrap:anywhere}
+.housing-source strong{color:#cddde8}
+.housing-source a{font-size:10px;color:#87bfe4;text-decoration:none}
+.housing-source a:hover{text-decoration:underline}
+.housing-rank{padding:11px 0 12px}
+.housing-rank-head{display:flex;gap:6px;align-items:center;justify-content:space-between;padding:3px 0 7px;font-size:10px}
+.housing-rank-head small{color:#879fad;font-size:9px}
+.housing-rank-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid #293843;padding:8px 6px;color:#cfdde7;cursor:pointer;font-size:10.5px}
+.housing-rank-row:hover{background:#253443}
+.housing-rank-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.housing-rank-row b{font-weight:660}
+.housing-method{border-top:1px solid #2a3945;flex:0 0 auto;color:#aebfca;background:#121b24}
+.housing-method summary{cursor:pointer;padding:10px 13px;font-size:10.5px;font-weight:650;color:#d9e7f0}
+.housing-method[open]{max-height:40vh;overflow:auto}
+.housing-method p{padding:0 13px;margin:8px 0;font-size:10px;line-height:1.65}
+.housing-method a{color:#84bde3}
+.housing-legend{min-width:0;width:min(320px,calc(100% - 24px));max-width:none}
+.housing-scale{height:9px;display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin:8px 0 6px;overflow:hidden;border-radius:4px}
+.housing-scale i{display:block;height:9px}
+.housing-legend-labels{display:flex;justify-content:space-between;gap:8px;font-size:9px;color:#b2c3cf}
+.housing-legend-labels span{white-space:nowrap}
+#housingMap .leaflet-interactive,#housingMap .leaflet-interactive:hover,#housingMap .leaflet-interactive:focus,#housingMap .leaflet-interactive:focus-visible{outline:none!important}
+#housingMap svg path.leaflet-interactive:focus-visible{stroke:#fff!important;stroke-width:2px!important}
+#housingMap .leaflet-tooltip{background:#15232f;color:#edf3f7;border:1px solid #4a6779;border-radius:6px;box-shadow:0 2px 10px #1327375c;font-size:10px}
+@media(max-width:920px){
+ .housing-workspace{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(280px,56vh) minmax(250px,1fr);min-height:0}
+ .housing-map-wrap{min-height:280px}
+ .housing-side{min-height:0;overflow:auto;border-left:0;border-top:1px solid #2c3845}
+ .housing-summary{overflow:visible;flex:0 0 auto}
+ .housing-map-caption{max-width:min(280px,calc(100% - 108px))}
+ .housing-big{font-size:23px}
+ .housing-method[open]{max-height:none}
+}
+@media(max-width:540px){
+ .housing-workspace{grid-template-rows:minmax(260px,51vh) minmax(220px,1fr)}
+ .housing-map-caption{top:10px;left:46px;max-width:calc(100% - 90px);padding:6px 9px}
+ .housing-map-caption strong{font-size:10.5px}
+ .housing-map-caption small{font-size:8px}
+ .housing-controls{padding:9px}
+}
