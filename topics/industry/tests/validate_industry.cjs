@@ -108,8 +108,8 @@ const header='ags,year,manufacturing_employees,industry_definition,workplace_bas
 const fixture=[header,
  '08425,2019,1000,WZ2008_C,workplace,fixture_v1,https://example.invalid/2019',
  '08425,2025,800,WZ2008_C,workplace,fixture_v1,https://example.invalid/2025',
- '03152,2019,1111,WZ2008_C,workplace,fixture_v1,https://example.invalid/2019',
- '03152,2025,.,WZ2008_C,workplace,fixture_v1,https://example.invalid/2025'
+ '03159,2019,1111,WZ2008_C,workplace,fixture_v1,https://example.invalid/2019',
+ '03159,2025,.,WZ2008_C,workplace,fixture_v1,https://example.invalid/2025'
 ].join('\n');
 try{
  fs.writeFileSync(csv,fixture);
@@ -119,10 +119,10 @@ try{
  assert.equal(result.coverage.valid_districts,1);
  assert.equal(result.coverage.possible_districts,400);
  assert.equal(result.records['08425'].change_pct,-20);
- assert.equal(result.records['03152'],undefined,'suppressed official cells remain missing');
+ assert.equal(result.records['03159'],undefined,'suppressed official cells remain missing');
  assert.equal(result.records['08425'].source_url_2019,'https://example.invalid/2019');
  // Refuse any series that mixes mining and manufacturing.
  fs.writeFileSync(csv,fixture.replace('WZ2008_C','WZ2008_BC'));
  assert.throws(()=>execFileSync(process.execPath,[importer,'--input',csv,'--output',out],{stdio:'pipe'}));
 }finally{fs.rmSync(tmp,{recursive:true,force:true})}
-console.log('industry staging validation passed: 173 unique events; 400 canonical districts; official-CSV guardrail fixture.');
+console.log('industry staging validation passed: 174 unique events; 400 canonical districts; official-CSV guardrail fixture.');
