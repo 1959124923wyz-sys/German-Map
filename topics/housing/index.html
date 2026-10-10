@@ -8,7 +8,7 @@
 <title>德国住房危机地图 · German-Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css">
-<link rel="stylesheet" href="topic.css?v=h2">
+<link rel="stylesheet" href="topic.css?v=h3">
 <link rel="stylesheet" href="../../css/region-dossier.css?v=1">
 </head>
 <body>
@@ -76,6 +76,7 @@
      <button data-dossier-tab="structure">租住结构</button>
      <button data-dossier-tab="districts">县市对照</button>
      <button data-dossier-tab="archive">地方资料</button>
+     <button data-dossier-tab="rent-series">城市租金时间轴</button>
     </div>
     <div data-dossier-pane="overview" class="dossier-pane">
      <div class="housing-side-grid" id="quickStats"></div>
@@ -102,6 +103,15 @@
      <details class="housing-extra" id="berlinBoroughCompletions" hidden><summary>柏林 · 12行政区2024—2025年竣工住房</summary><div id="berlinBoroughHistory"></div></details>
      <details class="housing-extra" id="saxonyDetails" hidden><summary>萨克森 · 2022—2026安置无住房人员</summary><div id="saxonyHistory"></div></details>
     </div>
+    <div data-dossier-pane="rent-series" class="dossier-pane" hidden>
+     <p class="dossier-note">GREIX · 基尔世界经济研究所，2012年1月至2026年6月月度新租挂牌样本，仅有37个可归属州的城市或地区样本；不是全国400县数据，也不是住房普查存量租金。租金均值、指数和四分位数各有独立定义。</p>
+     <label for="greixCity">选择本州已收录城市或地区</label>
+     <select id="greixCity" class="dossier-search" aria-label="选择GREIX租金样本城市"><option value="">读取中…</option></select>
+     <div id="greixSummary" class="dossier-metrics" aria-live="polite"></div>
+     <div id="greixChart" class="housing-greix-chart" aria-label="GREIX月度挂牌租金折线图"></div>
+     <div id="greixChartNote" class="dossier-note"></div>
+     <a href="https://www.kielinstitut.de/fileadmin/Dateiverwaltung/IfW_Unit/Macroeconomics/GREIX/Mietpreisindex/City_metrics_public.xlsx" target="_blank" rel="noopener noreferrer">IfW Kiel GREIX公开数据原表 ↗</a>
+    </div>
    </div>
    <div class="housing-note" id="interpretNote"></div>
    <div class="housing-source"><strong>数据出处</strong><a id="sourceLink" target="_blank" rel="noopener noreferrer" href="https://deutschlandatlas.bund.de/service/daten-herunterladen/aktuelle-downloaddaten/aktuelle-downloaddateien">Deutschlandatlas 原始统计 ↗</a><div id="sourceCredit"></div></div>
@@ -127,6 +137,6 @@
 <script src="../../js/core/place-names-zh.js"></script>
 <script src="../../js/layers/city-labels.js"></script>
 <script src="../../js/core/region-dossier.js?v=1"></script>
-<script src="topic.js?v=h2"></script>
+<script src="topic.js?v=h3"></script>
 </body>
 </html>

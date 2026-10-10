@@ -75,6 +75,26 @@ def run(browser,mobile=False):
     assert page.locator("#stateJump").input_value()=="07"
     assert "欧元" in page.locator("#value").inner_text()
     assert page.locator("#housingDossier").is_visible()
+    # GREIX is a separate city-level nominal advertised-rent archive, not the
+    # 400-county Zensus indicator and not automatically loaded nationwide.
+    assert page.evaluate("GermanHousingResearch.state().greixReady") is False
+    page.locator('[data-dossier-tab="rent-series"]').click()
+    page.wait_for_function("GermanHousingResearch.state().greixReady===true",timeout=30000)
+    assert "本州暂无GREIX" in page.locator("#greixCity").inner_text()
+    page.locator("#stateJump").select_option("01")
+    page.locator('[data-dossier-tab="rent-series"]').click()
+    page.wait_for_function("GermanHousingResearch.state().greixReady===true",timeout=30000)
+    assert page.locator("#greixCity").input_value() in ("Kiel","Lübeck")
+    page.locator("#greixCity").select_option("Kiel")
+    assert "2026-06" in page.locator("#greixChartNote").inner_text()
+    assert page.locator("#greixChart polyline").count()==1
+    assert "11.79" in page.locator("#greixSummary").inner_text()
+    page.locator("#stateJump").select_option("05")
+    page.locator('[data-dossier-tab="rent-series"]').click()
+    assert "Kiel" not in [x.get_attribute("value") for x in page.locator("#greixCity option").all()]
+    page.locator("#greixCity").select_option("Düsseldorf")
+    assert "15.01" in page.locator("#greixSummary").inner_text()
+    page.locator("#stateJump").select_option("07")
     page.locator('[data-dossier-tab="structure"]').click()
     assert "2022住房普查" in page.locator("#housingStructureCoverage").inner_text()
     assert page.locator("#housingStructure .dossier-metrics").count()==0

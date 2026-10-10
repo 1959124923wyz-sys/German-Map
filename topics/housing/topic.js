@@ -28,7 +28,19 @@
  let stateFeatures=[], countyFeatures=[], byid=new Map(), countyShapes=new Map();
  let stockReady=false, homelessReady=false, completionsReady=false, censusReady=false, breaks=[], sortedAll=[];
  let saxonyRows=new Map(), nrwRows=new Map(), bavariaRows=new Map(), brandenburgRows=new Map(), berlinBoroughRows=[];
- let structureRows=new Map(), housingDossier;
+ let structureRows=new Map(), housingDossier,greixData=null,greixLoading=null,greixCurrentState=null;
+ // Curated GREIX sample → state placement only. GREIX city/region statistical
+ // boundaries do not automatically match the county polygons of Deutschlandatlas.
+ const GREIX_STATES=Object.freeze({
+  'Aachen':'05','Augsburg':'09','Berlin':'11','Bielefeld':'05','Bocholt':'05',
+  'Bochum':'05','Bonn':'05','Braunschweig':'03','Bremen':'04','Chemnitz':'14',
+  'Dortmund':'05','Dresden':'14','Duisburg':'05','Düsseldorf':'05','Erfurt':'16',
+  'Essen':'05','Frankfurt am Main':'06','Gelsenkirchen':'05','Hamburg':'02',
+  'Hamm':'05','Hannover':'03','Karlsruhe':'08','Kiel':'01','Kreis Mettmann':'05',
+  'Köln':'05','Leipzig':'14','Lübeck':'01','Mannheim':'08','Mönchengladbach':'05',
+  'München':'09','Münster':'05','Nürnberg':'09','Potsdam':'12',
+  'Rhein-Erft-Kreis':'05','Stuttgart':'08','Wiesbaden':'06','Wuppertal':'05'
+ });
  const COUNTRY=[[47.2,5.5],[55.3,15.5]];
  const sourceURL = {
   atlas:'https://deutschlandatlas.bund.de/service/daten-herunterladen/aktuelle-downloaddaten/aktuelle-downloaddateien',
@@ -123,6 +135,75 @@
   }).join('')||'<p class="dossier-note">没有匹配县市；缺失不等于零。</p>';
   $('housingCountyResults').querySelectorAll('[data-county]').forEach(b=>b.addEventListener('click',()=>chooseCounty(b.dataset.county)));
   if(matches.length>80)$('housingCountyResults').insertAdjacentHTML('beforeend','<p class="dossier-note">仅显示前80县，请缩小搜索范围。</p>');
+ }
+ function rentSeriesCitySelector(){
+  const field=$('greixCity'),st=focusState,previous=field.value;
+  const names=greixData?Object.keys(greixData.cities).filter(n=>GREIX_STATES[n]===st).sort((a,b)=>a.localeCompare(b,'de')):[];
+  field.replaceChildren();
+  if(!st){field.add(new Option('请先选择联邦州',''));return;}
+  if(!greixData){field.add(new Option('尚未加载资料',''));return;}
+  if(!names.length){field.add(new Option('本州暂无GREIX城市样本',''));return;}
+  for(const name of names)field.add(new Option(name,name));
+  field.value=greixCurrentState===st&&names.includes(previous)?previous:names[0];
+  greixCurrentState=st;
+ }
+ function renderGreixCity(){
+  if(!greixData||!focusState)return;
+  const name=$('greixCity').value, series=greixData.cities[name];
+  if(!series){
+   $('greixSummary').innerHTML='';
+   $('greixChart').innerHTML='';
+   $('greixChartNote').textContent='本州没有可对应的GREIX月度样本；缺失不代表租金为零。';
+   return;
+  }
+  const first=series[0],last=series.at(-1);
+  const fmtRent=v=>isNum(v)?fmt(v,2)+' 欧元/㎡':'未发布';
+  $('greixSummary').innerHTML=[
+   ['最新月度均值',fmtRent(last[1])],['最新月度中位数',fmtRent(last[3])],
+   ['最新第25百分位',fmtRent(last[4])],['最新第75百分位',fmtRent(last[5])]
+  ].map(([label,value])=>'<div><small>'+safe(label)+' · '+safe(last[0])+'</small><b>'+safe(value)+'</b></div>').join('');
+  // Only the same-city nominal monthly advertised mean forms this time-series line.
+  const values=series.map(x=>x[1]);
+  const lo=Math.floor(Math.min(...values)*.95),hi=Math.ceil(Math.max(...values)*1.05);
+  const w=620,h=185,left=42,right=12,top=15,bottom=30;
+  const x=i=>left+(w-left-right)*i/(series.length-1);
+  const y=v=>top+(h-top-bottom)*(hi-v)/(hi-lo||1);
+  const points=values.map((v,i)=>x(i).toFixed(2)+','+y(v).toFixed(2)).join(' ');
+  const guides=[lo,(lo+hi)/2,hi].map(v=>'<line x1="'+left+'" y1="'+y(v).toFixed(2)+'" x2="'+(w-right)+
+   '" y2="'+y(v).toFixed(2)+'" stroke="#395066" stroke-width=".7"/><text x="4" y="'+(y(v)+3).toFixed(2)+
+   '" font-size="10" fill="#9fb5c4">'+safe(fmt(v,1))+'</text>').join('');
+  const years=[2012,2016,2020,2024,2026].map(year=>{
+   const i=series.findIndex(v=>v[0]===year+'-01');return i<0?'':'<text x="'+x(i).toFixed(2)+'" y="178" font-size="10" text-anchor="middle" fill="#9fb5c4">'+year+'</text>';
+  }).join('');
+  $('greixChart').innerHTML='<svg viewBox="0 0 620 185" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+
+   safe(name)+'2012至2026年每月新租挂牌均价折线图"><title>'+safe(name)+'：'+safe(first[0])+'—'+safe(last[0])+'月度名义挂牌均价（欧元/平方米）</title>'+
+   guides+'<polyline points="'+points+'" fill="none" stroke="#79c4d9" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>'+
+   '<circle cx="'+x(values.length-1).toFixed(2)+'" cy="'+y(values.at(-1)).toFixed(2)+'" r="4.5" fill="#e1f5ff"/>'+years+'</svg>';
+  $('greixChartNote').textContent=name+' · '+first[0]+'—'+last[0]+' · '+series.length+
+   '个月；图中仅展示名义挂牌租金均值序列（欧元/㎡），未作通胀调整，不是已签租约的存量租金。2022住房普查、2025县级挂牌价与GREIX城市样本都不可直接合并成同口径增长率。';
+ }
+ async function enableGreix(){
+  if(!focusState)return;
+  if(!greixLoading){
+   greixLoading=readJson('data/greix-city-series.json').then(data=>{
+    const names=Object.keys(data.cities||{});
+    if(data.meta.city_count!==38||data.meta.observations!==6612||
+       names.length!==38||names.some(n=>data.cities[n].length!==174)||
+       Object.keys(GREIX_STATES).some(n=>!names.includes(n)))
+     throw Error('GREIX归档数量或地区样本映射与核验记录不符');
+    greixData=data;return data;
+   }).catch(err=>{
+    greixLoading=null;
+    $('greixChartNote').textContent='GREIX月度资料暂不可读取：'+String(err.message||err);
+    throw err;
+   });
+  }
+  try{
+   $('greixChartNote').textContent='正在读取GREIX历史月度样本…';
+   await greixLoading;
+   rentSeriesCitySelector();
+   renderGreixCity();
+  }catch(err){console.warn('GREIX time series unavailable',err)}
  }
  function renderQuick(region){
   const stats=[
@@ -234,6 +315,7 @@
   $('sourceCredit').textContent=s.credit;
   renderQuick(region);
   if(region.scope!=='nation'){renderStructure(region);renderCountySearch()}
+  if(greixData&&region.scope!=='nation'){rentSeriesCitySelector();renderGreixCity()}
   $('housingNationalHint').hidden=region.scope!=='nation';
   $('housingBackState').hidden=region.scope!=='county';
   $('interpretNote').hidden=region.scope==='nation';
@@ -307,6 +389,8 @@
   $('resetView').addEventListener('click',reset);
   $('housingBackState').addEventListener('click',()=>{if(focusState)selectState(focusState)});
   $('housingCountySearch').addEventListener('input',renderCountySearch);
+  $('greixCity').addEventListener('change',renderGreixCity);
+  document.querySelector('[data-dossier-tab="rent-series"]').addEventListener('click',enableGreix);
   housingDossier=window.GermanRegionDossier.mount('housingDossier');
   try{
    const [atlas,states,counties]=await Promise.all([
@@ -411,7 +495,7 @@
    $('mapStatus').textContent=valid+'处县级地图区域已载入；'+(stockReady?'含核验住房存量':'住房存量层暂不可用');
    $('mapStatus').classList.add('ok');
    window.GermanHousingResearch=Object.freeze({
-     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,berlinBoroughReady:berlinBoroughRows.length===12,structureReady:structureRows.size===400,dossierOpen:!$('housingDossier').hidden,countyShapes:countyShapes.size}),
+     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,berlinBoroughReady:berlinBoroughRows.length===12,structureReady:structureRows.size===400,dossierOpen:!$('housingDossier').hidden,greixReady:!!greixData,countyShapes:countyShapes.size}),
      metrics:Object.keys(metrics)
    });
   }catch(err){
