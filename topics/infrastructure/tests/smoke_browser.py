@@ -30,10 +30,23 @@ def verify(browser, mobile: bool) -> None:
     assert page.locator("#eventSection").is_hidden()
     assert page.locator("#areaName").inner_text() == "德国全国"
     assert "非官方" in page.locator("#legend").inner_text()
-    page.locator("#rankList button").first.click()
+    assert page.locator("#infraDossier").is_hidden()
+    assert page.locator("#stateRanking").is_visible()
+    assert page.locator("#stateRanking").get_attribute("open") is None
+    page.locator("#infraStateJump").select_option("DE-TH")
     assert page.locator("#areaName").inner_text() == "图林根"
     assert page.locator("#indicatorDetail").is_visible()
     assert page.locator("#indicatorDetail .metric-row").count() == 4
+    page.locator('[data-dossier-tab="bridges"]').click()
+    assert page.locator("#bridgeStateSummary").is_visible()
+    assert "县市" in page.locator("#bridgeStateSummary").inner_text()
+    page.locator("#infraStateJump").select_option("DE-SH")
+    page.locator('[data-dossier-tab="bridges"]').click()
+    page.locator("#bridgeCountySearch").fill("01002")
+    assert "01002" in page.locator("#bridgeCountyList").inner_text()
+    assert "85个" in page.locator("#bridgeCountyList").inner_text()
+    page.locator("#bridgeCountySearch").fill("")
+    page.locator("#infraStateJump").select_option("DE-TH")
     assert page.locator("#eventSection").is_hidden()
     page.locator("#showEvents").check()
     assert page.locator("#eventSection").is_visible()
@@ -49,6 +62,8 @@ def verify(browser, mobile: bool) -> None:
     assert page.locator("#eventList button").count() == 22
     page.locator("#eventCategory").select_option("school")
     assert page.locator("#eventList button").count() == 1
+    page.locator("#infraStateJump").select_option("DE-NW")
+    page.locator('[data-dossier-tab="projects"]').click()
     page.locator("#eventList button").first.click()
     assert "17间教室" in page.locator("#eventDetail").inner_text()
     assert "Datteln" in page.locator("#eventDetail").inner_text()
