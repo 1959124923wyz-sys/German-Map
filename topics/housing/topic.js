@@ -6,6 +6,7 @@
  const isNum = v => typeof v==='number' && Number.isFinite(v);
  const metrics = {
   asking_rent_2025_eur_m2:{label:'2025年新租挂牌净冷租金',year:'2025',unit:'欧元/㎡',dec:2,source:'atlas',interpret:'互联网挂牌中重新出租住房的净冷租金，不是所有租房家庭正在支付的实际租金。'},
+  sheltered_homeless_2025:{label:'2025年已安置无住房人员',year:'2025-01-31',unit:'人',dec:0,source:'homeless',interpret:'仅统计2025年1月31日已获临时住宿的无住房人员，不含街头露宿和隐性无住房；按县绝对人数，受人口规模影响。394县有可用数字，6县缺失；保密五人取整。'},
   vacancy_2022_pct:{label:'2022年住宅空置率',year:'2022',unit:'%',dec:1,source:'atlas',interpret:'全部空置住宅中的部分住宅可能并不适合出租；较高空置率不表示当地没有住房结构性问题。'},
   disposable_income_2023_keur_person:{label:'2023年人均可支配收入',year:'2023',unit:'千欧元/人·年',dec:2,source:'atlas',interpret:'这是地区所有私人家庭的平均可支配收入按全体居民折算，不是租房家庭收入，也不是工资中位数。不能将2023年此指标与2025年新租挂牌租金直接计算所谓住房负担率。'},
   owner_occupier_2022_pct:{label:'2022年自住住房家庭占比',year:'2022',unit:'%',dec:1,source:'atlas',interpret:'统计对象是住在自有房屋的家庭，不是市场租赁住房比例，也不是各地住房可负担性评分。'},
@@ -21,12 +22,13 @@
  let map, countyLayer, stateLayer, cityLabels, sourceMeta;
  let selectedCounty=null, focusState=null, metric='asking_rent_2025_eur_m2';
  let stateFeatures=[], countyFeatures=[], byid=new Map(), countyShapes=new Map();
- let stockReady=false, breaks=[], sortedAll=[];
+ let stockReady=false, homelessReady=false, breaks=[], sortedAll=[];
  let saxonyRows=new Map(), nrwRows=new Map();
  const COUNTRY=[[47.2,5.5],[55.3,15.5]];
  const sourceURL = {
   atlas:'https://deutschlandatlas.bund.de/service/daten-herunterladen/aktuelle-downloaddaten/aktuelle-downloaddateien',
-  stock:'https://mietkautionskonto.info/wohnungsmarkt-analyse-kreise/'
+  stock:'https://mietkautionskonto.info/wohnungsmarkt-analyse-kreise/',
+  homeless:'https://genesis.destatis.de/datenbank/online/statistic/22971/table/22971-0080'
  };
  function ags(v){return String(v??'').padStart(5,'0')}
  function featureId(f){return ags(f.id??f.properties?.id)}
@@ -43,6 +45,7 @@
  }
  function sourceInfo(){
   const d=metrics[metric];
+  if(d.source==='homeless')return {url:sourceURL.homeless,credit:'德国联邦统计局 Destatis GENESIS 22971-0080；2025-01-31；仅获安置无住房人员、五人取整，6个县缺数，不可代表全部无住房者。'};
   return d.source==='atlas'
     ?{url:sourceURL.atlas,credit:'德国联邦 Deutschlandatlas HA26，2026-10-08版，县级官方指标；2022与2024行政区边界混用，详见核验记录。'}
     :{url:sourceURL.stock,credit:'mietkautionskonto.info 公开再发布官方底表，CC BY 4.0；2025住房存量已做全国总量和四县数值交叉检查，非逐县官方原表复核。'};
@@ -135,7 +138,7 @@
   const region=selectedRegion(),v=region.scope==='county'?metricValue(region.ids[0]):overview(region.ids);
   const available=region.ids.filter(id=>isNum(metricValue(id))).length;
   $('areaName').textContent=region.title;
-  $('yearLabel').textContent=metrics[metric].year+'年';
+  $('yearLabel').textContent=metric==='sheltered_homeless_2025'?'2025年1月31日':metrics[metric].year+'年';
   $('value').textContent=displayVal(v);
   $('description').textContent=region.scope==='county'?metrics[metric].label:
    (metrics[metric].label+' · 县市简单中位数（非人口加权全国/全州值）');
@@ -143,7 +146,7 @@
    '当前范围 '+available+' / '+region.ids.length+' 个县市有数值；按县统计，不代表所有居民的加权平均';
   $('interpretNote').textContent=metrics[metric].interpret;
   const s=sourceInfo();$('sourceLink').href=s.url;
-  $('sourceLink').textContent=(metrics[metric].source==='atlas'?'Deutschlandatlas HA26 官网':'第三方县级再发布与来源说明')+' ↗';
+  $('sourceLink').textContent=(metrics[metric].source==='atlas'?'Deutschlandatlas HA26 官网':metrics[metric].source==='homeless'?'Destatis GENESIS 22971-0080 官方县级表':'第三方县级再发布与来源说明')+' ↗';
   $('sourceCredit').textContent=s.credit;
   renderQuick(region);
   renderLandPrice(region);
@@ -230,6 +233,18 @@
     document.querySelectorAll('#housingMetric option').forEach(o=>{if(metrics[o.value]?.source==='stock')o.disabled=true});
    }
    try{
+    const nationwideHomeless=await readJson('data/germany-homeless-counties-2025.json');
+    if(nationwideHomeless.counties.length!==400 || nationwideHomeless.meta.coverage_numerical!==394)throw new Error('Destatis national homeless series differs from QA');
+    for(const d of nationwideHomeless.counties){
+     const id=ags(d.id);
+     if(byid.has(id))byid.get(id).sheltered_homeless_2025=d.sheltered_homeless_2025;
+    }
+    homelessReady=true;
+   }catch(err){
+    console.warn('Destatis national housed homelessness not available',err);
+    document.querySelectorAll('#housingMetric option').forEach(o=>{if(metrics[o.value]?.source==='homeless')o.disabled=true});
+   }
+   try{
     const saxony=await readJson('data/saxony-homeless-counties.json');
     if(saxony.counties.length!==13)throw new Error('Saxony county-series coverage changed');
     saxonyRows=new Map(saxony.counties.map(row=>[row.id,row]));
@@ -245,7 +260,7 @@
    $('mapStatus').textContent=valid+'处县级地图区域已载入；'+(stockReady?'含核验住房存量':'住房存量层暂不可用');
    $('mapStatus').classList.add('ok');
    window.GermanHousingResearch=Object.freeze({
-     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,countyShapes:countyShapes.size}),
+     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,countyShapes:countyShapes.size}),
      metrics:Object.keys(metrics)
    });
   }catch(err){
