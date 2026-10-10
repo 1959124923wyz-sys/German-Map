@@ -69,6 +69,12 @@ assert.equal(net.find('100',[104,baseY],[130,baseY],5),null,'no invented straigh
 assert.ok(net.find('200',[104,baseY],[106,baseY],5),'observed route alias must be reconciled by real geographic geometry');
 const duplicate=new bridge.RouteGraph();duplicate.add('100',part(100,110));duplicate.add('200',part(100,110));
 assert.equal(duplicate.find('300',[104,baseY],[106,baseY],5),null,'ambiguous coincident DB alignments must be rejected');
+const crossNumber=new bridge.RouteGraph();
+crossNumber.add('100',part(100,105));crossNumber.add('200',part(105,110));
+const crossLink=crossNumber.find('999',[102,baseY],[108,baseY],5);
+assert.ok(crossLink&&crossLink.crossRoute===true,
+  'joined official geometries may traverse mismatched infrastructure route labels');
+
 const m1=leg('A','B',[0,5],45,5),m2=leg('C','D',[6,11],44,5);
 const reverse=leg('B','A',[0,5],20,1);
 const f=x=>({leg:x,grade:2,parts:[part((x===m1||x===reverse)?100:106,(x===m1||x===reverse)?104:110)],m:math.metrics(x,'both')});
