@@ -143,9 +143,13 @@ function decorate(runs,observations,group=null){
    // link, which may straddle the boundary of a physical colour component.
    // Opposite directions on the same track contribute to the same denominator.
    const q=Math.min(...pts.map(pt=>closestOnParts(pt,run.parts)));
-   if(q<d){d=q;best=run;}
+   // At an exact colour boundary, a station edge's endpoint may touch the
+   // previous risk component. Prefer its own observed tier at comparable
+   // distance, but allow reverse-direction tiers on the same physical part.
+   const rank=q+(run.grade===item.grade?0:2.1);
+   if(rank<d){d=rank;best=run;}
   }
-  if(best&&d<5)apportioned.get(best).push(item);
+  if(best&&d<6)apportioned.get(best).push(item);
  }
  runs.forEach((run,i)=>{
   const members=apportioned.get(run);
