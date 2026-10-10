@@ -52,6 +52,8 @@ def run(browser,mobile=False):
     assert page.locator("#railway-map .segment-hit").count()==0
     assert page.locator("#railway-map canvas").count()==2
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getNetworkGeometryCount()")==33547
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getGraphEdgeCount()")==33547
+    print('Official corridor gap bridges:',page.evaluate("window.__RAILWAY_OVERVIEW__.getBridgedCount()"),flush=True)
     assert page.locator("#minimum").count()==0
     assert page.locator(".mini-stats").count()==0
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getMinimum()")==100
