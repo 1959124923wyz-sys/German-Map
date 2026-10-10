@@ -52,7 +52,9 @@ const CanvasLayer=L.Layer.extend({
   const ctx=cv.getContext('2d',{alpha:true,desynchronized:true});
   ctx.setTransform(dpr,0,0,dpr,0,0);
   ctx.clearRect(0,0,size.x,size.y);
-  ctx.lineCap='butt';ctx.lineJoin='bevel';
+  // Round strokes close subpixel gaps at adjoining station endpoints without
+  // adding any path geometry or borrowing missing observations.
+  ctx.lineCap='round';ctx.lineJoin='round';
   const v=currentViewport(m,size);
   if(this.kind==='network'){
    if(!view.networkReady)return;
