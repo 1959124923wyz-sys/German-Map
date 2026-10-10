@@ -17,7 +17,7 @@ const NATION=[[47.05,5.45],[55.15,15.65]];
 const {REF_ZOOM,WORLD,officialPart,observedParts,actualBounds,currentViewport,visible,drawPath,unproject,segmentDist}=window.Railway07Geometry;
 // Fixed 100-observation inclusion threshold (not a user-facing filter).
 const view={service:'REGIONAL',metric:'both',minimum:100,selected:null,links:[],
-  rendered:[],groups:[],hiddenCorridors:0,physicalEdges:0,ticket:0,networkReady:true,statesReady:false,countiesReady:false,tiles:false,map:null,
+  rendered:[],groups:[],hiddenCorridors:0,physicalEdges:0,ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,map:null,backbone:new window.Railway07Continuity.Backbone(),drawnObserved:[],
   observedLayer:null,picker:new window.Railway07Picker.RailwayPicker(),repaints:0};
 const cache=new Map();
 const fmt=n=>Number(n).toLocaleString('zh-CN');
@@ -55,25 +55,34 @@ const CanvasLayer=L.Layer.extend({
   // adding any path geometry or borrowing missing observations.
   ctx.lineCap='round';ctx.lineJoin='round';
   const v=currentViewport(m,size);
-  // Only measured passenger corridors, not all infrastructure sidings.
-  const widths=[2.5,3.15,3.8],colors=[COLORS.green,COLORS.orange,COLORS.red];
-  for(let risk=0;risk<3;risk++){
+  // 1. Complete actual DB railway geometry, including unsampled spans.
+  // Different observation groups may change colour but cannot cut the rail.
+  if(view.networkReady){
    ctx.beginPath();
-   for(const corridor of view.groups){
-    if(corridor.grade!==risk||!visible(corridor.bounds,v))continue;
-    for(const part of corridor.parts)if(visible(part,v))drawPath(ctx,part,v);
+   for(const part of view.backbone.active)if(visible(part,v))drawPath(ctx,part,v);
+   ctx.strokeStyle=COLORS.green;ctx.globalAlpha=.9;
+   ctx.lineWidth=m.getZoom()<7?1.55:2.05;ctx.stroke();
+  }
+  // 2. Genuine observed orange/red intervals only, never extrapolate a
+  // missing station pair or recolour an unmeasured bridge.
+  const widths=[2.95,3.75],colors=[COLORS.orange,COLORS.red];
+  for(let level=1;level<=2;level++){
+   ctx.beginPath();
+   for(const observed of view.drawnObserved){
+    if(observed.grade!==level||!visible(observed.bounds,v))continue;
+    for(const part of observed.parts)if(visible(part,v))drawPath(ctx,part,v);
    }
-   ctx.strokeStyle=colors[risk];ctx.globalAlpha=.98;ctx.lineWidth=widths[risk];ctx.stroke();
+   ctx.strokeStyle=colors[level-1];ctx.globalAlpha=1;ctx.lineWidth=widths[level-1];ctx.stroke();
   }
    if(view.selected?.parts){
     ctx.beginPath();
     for(const p of view.selected.parts)if(visible(p,v))drawPath(ctx,p,v);
-    ctx.strokeStyle=view.selected.unobserved?'#183f3b':'#273b4b';
-    ctx.globalAlpha=1;ctx.lineWidth=view.selected.unobserved?3.8:6;ctx.stroke();
+    ctx.strokeStyle='#273b4b';
+    ctx.globalAlpha=1;ctx.lineWidth=5.1;ctx.stroke();
     ctx.beginPath();
     for(const p of view.selected.parts)if(visible(p,v))drawPath(ctx,p,v);
     ctx.strokeStyle=view.selected.unobserved?'#a4ddbd':'#fee2a9';
-    ctx.lineWidth=view.selected.unobserved?2.1:3.2;ctx.stroke();
+    ctx.lineWidth=2.5;ctx.stroke();
    }
   ctx.globalAlpha=1;view.repaints++;
  }
@@ -122,6 +131,39 @@ function makeMap(){
  $('#home').onclick=()=>m.fitBounds(NATION,{padding:[12,12],animate:false});
  return m;
 }
+// Batch initialisation: all official sections are deliberately retained.
+// Full DB source lines are drawn as GREEN continuity regardless of timetables.
+function buildNetwork(){
+ if(!DATA||DATA.sections.length!==33547||
+   DATA.qa?.source_line_geometries!==33547)
+   throw Error('DB InfraGO 官方线路几何数量校验失败');
+ const sections=DATA.sections;let index=0;
+ function batch(){
+  const end=Math.min(index+850,sections.length);
+  for(;index<end;index++){
+   const part=officialPart(sections[index]);
+   if(!part)continue;
+   const route=sections[index][0];
+   view.backbone.add(route,part);
+   view.picker.addNetwork(route,part);
+  }
+  if(index<sections.length)requestAnimationFrame(batch);
+  else{
+   view.networkReady=true;
+   refreshBackbone();
+   view.observedLayer.schedule();
+   $('#mapStatus').textContent='';
+  }
+ }
+ requestAnimationFrame(batch);
+}
+function refreshBackbone(){
+ if(!view.networkReady)return;
+ const info=view.backbone.setActive(view.groups);
+ view.backboneCoverage=info;
+ view.observedLayer?.schedule();
+}
+
 const pad=n=>String(n).padStart(2,'0');
 function script(src){
  return new Promise((resolve,reject)=>{
@@ -165,7 +207,7 @@ function fillLegend(){
  const box=$('#railLegend');
  box.replaceChildren();
  const title=document.createElement('b');title.textContent=thresholds[0];box.appendChild(title);
- for(const [col,s] of [[COLORS.green,'相对较好'],[COLORS.orange,thresholds[2]],[COLORS.red,thresholds[3]]]){
+ for(const [col,s] of [[COLORS.green,'铁路／暂无高风险观测'],[COLORS.orange,thresholds[2]],[COLORS.red,thresholds[3]]]){
   const row=document.createElement('span'),dot=document.createElement('i');
   dot.style.background=col;row.append(dot,document.createTextNode(s));box.append(row);
  }
@@ -234,10 +276,23 @@ function showDetail(){
  const o=view.selected;
  if(!o){
   box.classList.add('empty');
-  element(box,'h3','点击地图上的城市间客运线路');
+  element(box,'h3','点击任意铁路线，查看城市间区段');
   return;
  }
  box.classList.remove('empty');
+ if(o.unobserved){
+  element(box,'span','● 此处暂无可比观测','grade');
+  element(box,'h3','官方铁路线路 '+o.route);
+  const grid=element(box,'div','','detail-grid');
+  for(const label of ['准点率（晚点不足6分钟）','停靠取消标记率']){
+   const cell=element(grid,'div','');
+   element(cell,'b','—');element(cell,'span',label);
+  }
+  const more=element(box,'details','','corridor-more');
+  element(more,'summary','数据说明');
+  element(more,'p','轨道几何来自 DB InfraGO，绿色表示没有可显示的高风险观测。此处可能缺少数据，不代表保证准点。');
+  return;
+ }
  const {m,grade:g,members}=o;
  const first=members[0].leg,last=members[members.length-1].leg;
  const startStation=o.startStation||members[0].leg.from_station;
@@ -245,7 +300,7 @@ function showDetail(){
  const from=o.cityFrom||startStation,to=o.cityTo||endStation;
  const prefix=o.serviceName&&!o.serviceName.startsWith('DB ')?o.serviceName+' · ':'';
  const title=prefix+stationZh(from)+' → '+stationZh(to);
- element(box,'span',g===2?'● 晚点或取消较多':g===1?'● 需要关注':'● 表现相对较好','grade');
+ element(box,'span','● 城市间整体观测','grade');
  element(box,'h3',title);
  if(members.length>1)element(box,'p','城市间走廊 · '+o.observedEdges+' 个实际观测站间','corridor-count');
  const grid=element(box,'div','','detail-grid');
@@ -264,7 +319,7 @@ function showDetail(){
  }
  const routes=[...new Set(members.map(x=>String(x.leg.route)))].join('、');
  element(more,'p','官方线路 '+routes+' · 有效到站 '+fmt(m.nArrival)+' 次 · 计划站间配对 '+fmt(m.nPlanned)+' 次');
- element(more,'p','只统计同一列车线路标记和站名真实相接的客运观测；未观测轨道不在主地图展示，原始次数合计后再计算比例。');
+ element(more,'p','绿色官方轨道保证线路骨架可见，红橙仅对应实际晚点或取消偏高的已观测站间；缺失站间不计入两项比例。');
  element(more,'p','晚点率 '+pct(m.late)+'（至少6分钟）；相邻区间可能重复观测同一趟车。');
  element(more,'p','原始站名：'+startStation+' → '+endStation,'original-stations');
  box.append(more);
@@ -284,7 +339,7 @@ function updateHotspots(){
   element(main,'small','准点 '+pct(o.m.onTime)+' · 取消标记 '+pct(o.m.cancel));
   element(row,'span',o.grade===2?'高':'中','hot-grade '+(o.grade===2?'high':'medium'));
   row.onclick=()=>{
-   view.selected=o;showDetail();view.observedLayer.schedule();
+   selectCorridor(o);
    const b=o.bounds,ll1=unproject(b.minX,b.minY),ll2=unproject(b.maxX,b.maxY);
    const bounds=L.latLngBounds(ll1,ll2);
    if(bounds.isValid())view.map.fitBounds(bounds.pad(.38),{maxZoom:11,animate:false});
@@ -297,11 +352,42 @@ function updateHotspots(){
 function rebuildIndex(){
  view.picker.replaceObserved(view.groups.map(g=>({parts:g.parts,group:g})),[]);
 }
+// Clicking either measured colour or the intervening GREEN official curve
+// returns the SAME city-to-city statistical corridor when geographically
+// justified by station routes, otherwise an explicitly no-data rail.
+function selectCorridor(group){
+ const official=view.networkReady?view.backbone.full(group):null;
+ view.selected=official?.length?{...group,parts:official}:group;
+ showDetail();view.observedLayer.schedule();
+}
+function nearbyCityCorridor(route,point){
+ const sections=view.groups.filter(g=>g.members.some(m=>String(m.leg.route)===route));
+ let best=null,dist=Infinity;
+ for(const group of sections){
+  const b=group.bounds,margin=70; // evaluate actual curves only below
+  if(point[0]<b.minX-margin||point[0]>b.maxX+margin||
+     point[1]<b.minY-margin||point[1]>b.maxY+margin)continue;
+  for(const p of group.parts){
+   const xy=p.xy;
+   for(let i=2;i<xy.length;i+=2){
+    const d=segmentDist(point[0],point[1],
+      xy[i-2],xy[i-1],xy[i],xy[i+1]);
+    if(d<dist){dist=d;best=group;}
+   }
+  }
+ }
+ // A missing 10-20 km interval can still belong to a measured corridor;
+ // never match a distant unrelated branch across a large junction.
+ return dist<70*70?best:null;
+}
 function pickAt(latlng){
- const point=view.map.project(latlng,REF_ZOOM);
- const hit=view.picker.hit([point.x,point.y],view.map.getZoom());
- if(!hit||hit.kind!=='observed')return;
- view.selected=hit.group;
+ const p=view.map.project(latlng,REF_ZOOM),pt=[p.x,p.y];
+ const hit=view.picker.hit(pt,view.map.getZoom());
+ if(!hit)return;
+ if(hit.kind==='observed'){selectCorridor(hit.group);return;}
+ const candidate=nearbyCityCorridor(hit.route,pt);
+ if(candidate){selectCorridor(candidate);return;}
+ view.selected=view.backbone.unobserved(hit.route,pt);
  showDetail();view.observedLayer.schedule();
 }
 function recalc(){
@@ -317,6 +403,9 @@ function recalc(){
  const result=window.Railway07Cities.buildCityCorridors(items,view.metric);
  view.groups=result.corridors;view.hiddenCorridors=result.hidden;
  view.physicalEdges=result.physicalEdges;
+ const displayed=new Set(view.groups.flatMap(g=>g.members));
+ view.drawnObserved=items.filter(item=>displayed.has(item));
+ refreshBackbone();
  view.selected=previous?(view.groups.find(g=>g.members.some(x=>x.leg===previous))||null):null;
  // Never leave the old infrastructure-loading toast after passenger data loads.
  const mapStatus=$('#mapStatus');
@@ -356,15 +445,17 @@ try{
  fillLegend();placeLegend();showDetail();
  // The extra sixth topic otherwise appears off-screen in the mobile nav.
  const nav=$('.toplinks');if(nav)nav.scrollLeft=nav.scrollWidth;
- // Complete official infrastructure is retained in research, not the public city map.
+ buildNetwork();
  window.__RAILWAY_OVERVIEW__=Object.freeze({
   getService:()=>view.service,getMetric:()=>view.metric,getMinimum:()=>view.minimum,
   getVisible:()=>view.rendered.length,getMergedLinks:()=>view.links.length,
-  getSelected:()=>view.selected,getMap:()=>view.map,getNetworkReady:()=>true,
+  getSelected:()=>view.selected,getMap:()=>view.map,getNetworkReady:()=>view.networkReady,
   getStatesReady:()=>view.statesReady,getCountiesReady:()=>view.countiesReady,
   getRendered:()=>view.rendered,getCorridors:()=>view.groups,
   getCityCorridors:()=>view.groups,getServiceCorridors:()=>view.groups,
   getHiddenCorridors:()=>view.hiddenCorridors,getPhysicalEdgeCount:()=>view.physicalEdges,
+  getNetworkGeometryCount:()=>view.backbone.official,getBackboneCoverage:()=>view.backboneCoverage,
+  getOfficialPickCount:()=>view.picker.network.items,getCompleteBackboneRoutes:()=>view.backbone.perRoute.size,
   getRepaintCount:()=>view.repaints,
   getCanvasCount:()=>document.querySelectorAll('.railway-canvas').length,
   getSpatialBucketCount:()=>view.picker.observed.cells.size,
