@@ -47,7 +47,9 @@ def main():
         if rec in years:raise ValueError(f"Duplicate county-year row {rec}")
         years[rec]=d;names[key]=row[2].strip()
     ids=sorted({key for key,y in years if y==latest})
-    if len(ids)!=53:raise ValueError(f"NRW 2025 county count expected 53, got {len(ids)}")
+    if len(ids)!=53:
+        print("NRW 2025 INPUT county rows:",[(x,names[x],years[(x,latest)]["new_dwellings_in_residential_buildings"]) for x in ids],flush=True)
+        raise ValueError(f"NRW 2025 county count expected 53, got {len(ids)}")
     assert states[latest]["new_dwellings_in_residential_buildings"]==31237
     sum_dwellings=sum(years[(key,latest)]["new_dwellings_in_residential_buildings"] for key in ids)
     if sum_dwellings!=31237:raise ValueError(f"County sum {sum_dwellings} not equal state 31237")
