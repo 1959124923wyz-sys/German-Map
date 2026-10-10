@@ -102,7 +102,10 @@ def run(browser,mobile=False):
               const piece=source.parts[Math.floor(source.parts.length/2)];
               const v=piece.xy;
               const idx=Math.floor((v.length/2-1)/2)*2;
-              const ll=map.unproject(L.point(v[idx],v[idx+1]),9);
+              const j=Math.min(v.length-2,idx+2);
+              // Real user clicks a stroke interior, not a shared station
+              // vertex that also belongs to a different-colour neighbour.
+              const ll=map.unproject(L.point((v[idx]+v[j])/2,(v[idx+1]+v[j+1])/2),9);
               api.clickPoint(ll);attempts++;
               const current=api.getCurrentColourRun();
               if(current){clicked++;if(current===run)same++;}
