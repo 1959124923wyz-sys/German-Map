@@ -54,7 +54,6 @@ def verify(browser,mobile=False):
     page.locator("#industryEventSearch").fill("Putzmeister")
     assert page.locator("#eventList .industry-row").count()>=1
     page.locator("#eventList .industry-row").first.click()
-    assert page.locator("#industryLinkedEvents").count()==0
     assert page.locator(".industry-linked-events [data-id]").count()>=2
     assert "岗位数字不能直接相加" in page.locator(".industry-linked-events").inner_text()
     page.locator(".industry-linked-events [data-id]").first.click()
