@@ -167,7 +167,7 @@ function selectEvent(e){
   if(app.stateOverlay&&app.map.hasLayer(app.stateOverlay))app.map.removeLayer(app.stateOverlay);
  }
  const county=app.featureLookup.get(e.id);
- if(county)app.selectedCounty=stateKey(county);
+ app.selectedCounty=county?stateKey(county):null;
  renderSummary();
  if(app.selectedState)app.dossier.choose('cases');
  app.eventMarkers.forEach((mk,id)=>mk.setStyle(markerStyle(app.events.find(r=>r.id===id),id===e.id)));
@@ -186,6 +186,22 @@ function detail(e){
   +(e.confirmation_source_url?'<p><a target="_blank" rel="noopener noreferrer" href="'+esc(e.confirmation_source_url)+'">查看后续执行确认资料 ↗</a></p>':'')
   +'<p>'+openSource(e)+'</p>'
   +'<div class="disclaimer">'+esc(e.point?.precision||'位置未核实，不在地图标点')+'；计划影响人数≠已经失业人数。'+(e.shared_program_id?' 关联计划：'+esc(e.shared_program_id):'')+'</div>';
+ // Same company across sites or independently sourced updates can provide a
+ // chronological evidence chain. Never sum shared program job counts.
+ const linked=app.events.filter(x=>x.id!==e.id&&
+  ((e.company&&x.company===e.company)||
+   (e.shared_program_id&&x.shared_program_id===e.shared_program_id)))
+  .sort((a,b)=>String(a.event_date).localeCompare(String(b.event_date)));
+ if(linked.length){
+  $('eventDetail').insertAdjacentHTML('beforeend',
+   '<div class="industry-linked-events"><strong>关联企业／共同调整方案的其他记录 · '+linked.length+'条</strong>'+
+   '<p>以下为独立来源记录，可能涉及不同工厂与不同日期；岗位数字不能直接相加，计划退出不等于实际实施。</p>'+
+   linked.slice(0,30).map(x=>'<button type="button" class="dossier-entry" data-id="'+esc(x.id)+'"><strong>'+
+    esc(x.event_date||'日期不明')+' · '+esc(x.company)+' · '+esc(x.city)+'</strong>'+
+    '<small>'+esc(x.title)+' · '+(x.isPlan?'公告/未核实':'有后续实施证据')+'</small></button>').join('')+
+   (linked.length>30?'<p>仅显示前30条，请通过地区档案继续查询。</p>':'')+'</div>');
+  wireEventButtons($('eventDetail'));
+ }
 }
 function eventButton(e){
  return '<button type="button" class="industry-row '+(app.selectedEvent===e.id?'selected':'')+'" data-id="'+esc(e.id)+'">'+
@@ -229,6 +245,26 @@ function renderStatus(rows){
   ' · '+esc(e.implementation_status||'')+'</small></button>').join('');
  wireEventButtons($('industryStatusList'));
 }
+function renderTimeline(rows){
+ const yearGroups=new Map();
+ for(const e of rows){
+  const raw=String(e.event_date||'');
+  const year=/^20\d{2}/.test(raw)?raw.slice(0,4):'日期待核';
+  if(!yearGroups.has(year))yearGroups.set(year,[]);
+  yearGroups.get(year).push(e);
+ }
+ const years=[...yearGroups.keys()].sort((a,b)=>b.localeCompare(a));
+ $('industryEventTimeline').innerHTML=years.map((year,i)=>{
+  const events=[...yearGroups.get(year)].sort((a,b)=>String(b.event_date).localeCompare(String(a.event_date)));
+  return '<details class="industry-timeline-year"'+(i===0?' open':'')+'><summary>'+esc(year)+
+   '年 · '+events.length+'条已登记来源记录</summary><div class="industry-timeline-entries">'+
+   events.map(e=>'<button type="button" class="dossier-entry" data-id="'+esc(e.id)+'"><strong>'+
+    esc(e.company)+' · '+esc(e.city)+'</strong><small>'+esc(e.event_date||'日期未核')+
+    ' · '+esc(e.event_type)+' · '+(e.isPlan?'公告/未核实':'有后续实施证据')+'</small></button>').join('')+
+   '</div></details>';
+ }).join('')||'<p class="dossier-note">此地区尚未收录可核实年份的工业事件，不等于没有工业调整。</p>';
+ wireEventButtons($('industryEventTimeline'));
+}
 function stateOverview(rows){
  const sites=rows.filter(e=>e.eligible_factory_marker!==false),companies=new Set(rows.map(e=>e.company).filter(Boolean));
  $('industryStateMetrics').innerHTML=
@@ -259,6 +295,7 @@ function renderSummary(){
  if(!app.selectedEvent){$('eventDetail').hidden=true;$('eventDetail').innerHTML='';}
  stateOverview(records);
  renderStatus(records);
+ renderTimeline(records);
  listRows(records);
 }
 function selectState(iso){
