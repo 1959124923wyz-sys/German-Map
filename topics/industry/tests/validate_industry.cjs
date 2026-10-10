@@ -25,7 +25,7 @@ assert.equal(r4Groups.length,5,'R4 research-only shared groups must not generate
 for(const e of r4Groups)assert.equal(e.jobs_affected,null,'research-only multi-site jobs must not be distributed');
 const validStates=new Set(['DE-BB','DE-BE','DE-BW','DE-BY','DE-HB','DE-HE','DE-HH','DE-MV','DE-NI','DE-NW','DE-RP','DE-SH','DE-SL','DE-SN','DE-ST','DE-TH']);
 for(const e of rows){
- assert.ok(validStates.has(e.state_iso),'state '+e.event_id);
+ assert.ok(validStates.has(e.state_iso)||(e.state_iso===null&&e.eligible_factory_marker===false),'state '+e.event_id);
  assert.ok(e.headline_zh&&e.company&&e.event_date&&e.implementation_status,'required fields '+e.event_id);
  assert.match(e.source_url||'',/^https:\/\//,'source URL '+e.event_id);
  assert.ok(!e.jobs_affected||e.jobs_affected>=0,'bad jobs '+e.event_id);
