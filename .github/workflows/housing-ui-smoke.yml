@@ -1,0 +1,55 @@
+name: Housing research - browser and data smoke
+on:
+  push:
+    branches:
+      - research/housing-crisis-20261010
+    paths:
+      - 'topics/housing/index.html'
+      - 'topics/housing/topic.css'
+      - 'topics/housing/topic.js'
+      - 'topics/housing/tests/**'
+      - '.github/workflows/housing-ui-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/housing-crisis-20261010
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate scripts and referenced assets
+        run: |
+          node --check topics/housing/topic.js
+          python scripts/validate_site_assets.py
+          python - <<'PY'
+          import json
+          p=json.load(open('topics/housing/data/atlas-counties.json',encoding='utf8'))
+          d=json.load(open('topics/housing/data/stock-counties.json',encoding='utf8'))
+          assert len(p['counties'])==402 and len(d['counties'])==400
+          assert p['meta']['coverage_on_existing_402_map']['asking_rent_2025_eur_m2']==399
+          PY
+      - name: Install local Leaflet and browser
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts leaflet@1.9.4
+          python -m pip install --quiet playwright
+          python -m playwright install --with-deps chromium
+      - name: Exercise real maps and state/county drilldown on desktop and mobile
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/housing-http.log 2>&1 &
+          sleep 2
+          python topics/housing/tests/smoke_housing_browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: housing-browser-screenshots
+          path: /tmp/housing-research-*.png
+          if-no-files-found: warn
