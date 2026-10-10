@@ -1,0 +1,39 @@
+name: Housing research - 2022 paid rent and vacant housing structure for 400 districts
+on:
+  push:
+    branches:
+      - research/housing-crisis-20261010
+    paths:
+      - 'research/housing/build_zensus_housing_indicators.py'
+      - '.github/workflows/housing-zensus-housing-indicators.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: housing-zensus-2022-rent-vacancy
+  cancel-in-progress: false
+jobs:
+  census-counties:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/housing-crisis-20261010
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Reconcile all 400 census districts and validate rental/census 2022 values
+        run: python research/housing/build_zensus_housing_indicators.py
+      - name: Commit official rental and structural vacancy indicators plus audit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/housing/data/zensus2022_official_district_rents_vacancy_breakdown.csv
+          git add research/housing/qa/zensus2022_rent_vacancy_400_county_audit.json
+          git add topics/housing/data/zensus2022-housing-indicators-counties.json
+          if ! git diff --cached --quiet; then
+            git commit -m "housing data: verified official Zensus 2022 existing rent and structural vacancy 400 Kreise [skip ci]"
+            git pull --rebase origin research/housing-crisis-20261010
+            git push origin HEAD:research/housing-crisis-20261010
+          fi
