@@ -1,0 +1,6 @@
+{
+  "verified": true,
+  "exit_code": 0,
+  "notes": "/home/runner/work/German-Map/German-Map/research/finance/regional-expansion/build_bkg2025_geometry.py:85: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.\n  projected=transform(transformer.transform,simplified)\nPASS: BKG 2025 400 county polygons 433 source parts, GeoJSON bytes 4482113\n",
+  "status": "validated_research_geometry"
+}

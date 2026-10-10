@@ -1,0 +1,16 @@
+{
+  "source_sha256": "df71d6a7ec0a0ca38e0559d9a90523a81c7948c74e7c7c3ddeab79041d1046f5",
+  "source_zip_bytes": 70627276,
+  "reference_date": "2025-12-31",
+  "gpkg_srs_id": 25832,
+  "source_polygon_rows": 433,
+  "unique_county_ags5": 400,
+  "features_geojson": 400,
+  "raw_county_area_km2": 357714.6,
+  "simplified_area_km2": 357713.9,
+  "simplification_tolerance_m": 125,
+  "created_map_payload_bytes": 4482113,
+  "hanau_2026_handling": "2025-12-31 geometry keeps Hanau under Main-Kinzig-Kreis 06435; 2026 district-free Hanau 06415 missing",
+  "status": "research_only_not_published",
+  "license": "© BKG (2026) dl-de/by-2-0"
+}
