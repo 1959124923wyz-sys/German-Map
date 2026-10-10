@@ -1,0 +1,420 @@
+{
+  "publisher": "Amt für Statistik Berlin-Brandenburg",
+  "statistical_year": 2025,
+  "land": "Brandenburg",
+  "download": "https://download.statistik-berlin-brandenburg.de/94c8873070894dca/43d5f940c81b/pressemitteilung-tabelle-60-2026.xlsx",
+  "landing": "https://www.statistik-berlin-brandenburg.de/presse/2026/60-baufertigstellungen-2025-brandenburg/",
+  "original_bytes": 55897,
+  "sha256": "d4174ee5c858c4ad0dc08fae0cbea1d0773b46eb7229efd568a500c532a04993",
+  "sheets": {
+    "Tabelle1": {
+      "rows": 40,
+      "cols": 8,
+      "first40": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "Gemeldete fertiggestellte Wohnungen 2025 im Land Brandenburg",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "Land / Kreis",
+          "insgesamt",
+          null,
+          "Neubau ¹",
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "2025",
+          "2024",
+          "2025",
+          "2024",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "Brandenburg",
+          "7379",
+          "10172",
+          "6489",
+          "9466",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "Brandenburg an der Havel, Stadt    ",
+          "95",
+          "58",
+          "57",
+          "95",
+          null,
+          null,
+          null
+        ],
+        [
+          "Cottbus, Stadt                     ",
+          "375",
+          "125",
+          "352",
+          "165",
+          null,
+          null,
+          null
+        ],
+        [
+          "Frankfurt (Oder), Stadt            ",
+          "192",
+          "65",
+          "151",
+          "67",
+          null,
+          null,
+          null
+        ],
+        [
+          "Potsdam, Stadt                     ",
+          "933",
+          "1039",
+          "908",
+          "1001",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "Barnim                             ",
+          "686",
+          "792",
+          "492",
+          "793",
+          null,
+          null,
+          null
+        ],
+        [
+          "Dahme-Spreewald                    ",
+          "752",
+          "1156",
+          "694",
+          "1100",
+          null,
+          null,
+          null
+        ],
+        [
+          "Elbe-Elster                        ",
+          "195",
+          "143",
+          "171",
+          "94",
+          null,
+          null,
+          null
+        ],
+        [
+          "Havelland                          ",
+          "554",
+          "1865",
+          "512",
+          "1792",
+          null,
+          null,
+          null
+        ],
+        [
+          "Märkisch-Oderland                  ",
+          "300",
+          "680",
+          "278",
+          "591",
+          null,
+          null,
+          null
+        ],
+        [
+          "Oberhavel                          ",
+          "666",
+          "983",
+          "612",
+          "952",
+          null,
+          null,
+          null
+        ],
+        [
+          "Oberspreewald-Lausitz              ",
+          "89",
+          "142",
+          "78",
+          "133",
+          null,
+          null,
+          null
+        ],
+        [
+          "Oder-Spree                         ",
+          "408",
+          "552",
+          "327",
+          "527",
+          null,
+          null,
+          null
+        ],
+        [
+          "Ostprignitz-Ruppin                 ",
+          "148",
+          "256",
+          "94",
+          "223",
+          null,
+          null,
+          null
+        ],
+        [
+          "Potsdam-Mittelmark                 ",
+          "1070",
+          "1017",
+          "967",
+          "851",
+          null,
+          null,
+          null
+        ],
+        [
+          "Prignitz                           ",
+          "85",
+          "163",
+          "74",
+          "140",
+          null,
+          null,
+          null
+        ],
+        [
+          "Spree-Neiße                        ",
+          "182",
+          "192",
+          "179",
+          "161",
+          null,
+          null,
+          null
+        ],
+        [
+          "Teltow-Fläming                     ",
+          "501",
+          "658",
+          "425",
+          "579",
+          null,
+          null,
+          null
+        ],
+        [
+          "Uckermark                          ",
+          "148",
+          "286",
+          "118",
+          "202",
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "1 Die Anzahl der Neubauwohnungen kann höher sein als die Gesamtzahl der Wohnungen in genehmigten Bauvorhaben insgesamt, oder die Anzahl der Wohnu",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "Quelle: Amt für Statistik Berlin-Brandenburg",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "Diese Seite steht unter einer Creative Commons Namensnennung 3.0 Deutschland Lizenz. ",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "reference_press_state_total_completed_dwellings_all_measures": 7379,
+  "reference_press_state_total_new_dwellings_in_residential_buildings": 6457,
+  "note": "Two different completion category totals (all/new residential). Do not confuse 7379 with 6457."
+}
