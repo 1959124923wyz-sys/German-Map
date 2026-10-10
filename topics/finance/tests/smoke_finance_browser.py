@@ -30,6 +30,15 @@ def verify(browser,mobile=False):
     assert page.evaluate(f"{api}.eventCount()")==0
     assert "2025" in page.locator("#legend").inner_text()
     assert page.evaluate("window.__FINANCE_MAP__.getBounds().contains(L.latLngBounds([[47.15,5.4],[55.1,15.6]]))")
+    # Regression: the checkbox label must never collapse into a vertical
+    # character column when a state-switcher shares the sidebar.
+    toggle=page.locator(".finance-event-toggle span").bounding_box()
+    controls=page.locator(".finance-controls").bounding_box()
+    switcher=page.locator(".finance-state-actions").bounding_box()
+    assert toggle and controls and switcher
+    assert toggle["height"]<30, ("event label is wrapping vertically",toggle)
+    assert switcher["y"]>=toggle["y"]+toggle["height"], (toggle,switcher)
+    assert switcher["x"]+switcher["width"]<=controls["x"]+controls["width"]+2
     national_style=page.evaluate(f"{api}.stateFill('DE-RP')")
     original_zoom=page.evaluate("window.__FINANCE_MAP__.getZoom()")
 
@@ -117,6 +126,11 @@ def verify(browser,mobile=False):
     assert tooltip.is_visible()
     assert "点击查看" in tooltip.inner_text()
     assert len(tooltip.locator("div").first.inner_text())>=8
+    # Leaflet's absolutely positioned tooltip has a shrink-to-fit width.
+    # A max-width alone lets Chinese text become a one-character-wide tower.
+    tooltip_box=tooltip.bounding_box()
+    assert tooltip_box and 210<=tooltip_box["width"]<=270,tooltip_box
+    assert tooltip_box["height"]<210,tooltip_box
     page.locator("#caseList button").first.click()
     assert page.locator("#detail").is_visible()
     assert page.locator("#detail details summary").is_visible()
