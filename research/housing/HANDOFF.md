@@ -210,3 +210,31 @@ python research/housing/build_stock_proxy.py
 5. 所有2025逐州统计必须保留官方报告原始文件与出处、SHA256和严格QA；县界不同年份应记录且单独灰色，不得编造数值。
 
 **恢复步骤**：检出 `research/housing-crisis-20261010`，读取 `research/housing/HANDOFF.md` 最后阶段；运行 `python research/housing/build_zensus_rent_owners.py`、`python research/housing/build_bavaria_2025_completions.py`；以CI成功记录和 `research/housing/qa/` 为最终证据。**该分支未合并主站、非公开生产上线版本。**
+
+## ✅ 第六阶段追加：勃兰登堡2024—2025年县级住宅竣工（2026-10-10）
+
+**本节为第五阶段后新发现的第三个州县级住房建设来源。全部已经过远端 GitHub Actions 原件及县/州总量审计并成功提交；地图渲染另以浏览器回归为最终证据。**
+
+### 勃兰登堡州官方2025竣工Excel：18/18县，双年份双口径
+
+- 来源：Amt für Statistik Berlin-Brandenburg（柏林—勃兰登堡州统计局）2026年官方新闻稿，`https://www.statistik-berlin-brandenburg.de/presse/2026/60-baufertigstellungen-2025-brandenburg/`；页面“Gemeldete fertiggestellte Wohnungen 2025 nach Kreisen und kreisfreien Städten”原始Excel：
+  `https://download.statistik-berlin-brandenburg.de/94c8873070894dca/43d5f940c81b/pressemitteilung-tabelle-60-2026.xlsx`。
+- 原始XLSX `research/housing/raw/brandenburg_2025_18_county_completions_official.xlsx`，**55,897字节**，SHA256 `d4174ee5c858c4ad0dc08fae0cbea1d0773b46eb7229efd568a500c532a04993`；原表布局 `research/housing/qa/brandenburg_2025_completions_original_schema.json`；下载入档 [run 38043295567 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38043295567)。
+- 程序 `research/housing/build_brandenburg_completions.py`。原始表**未刊印五位AGS**；研究程序使用独立明确列出的18项**源地名—官方五位县编码交叉表**，要求名字与联邦官方HA26表**逐项完全一致且无重复**，未命中时整批失败，不做模糊地名推断。勃兰登堡18/18县完成关联。
+- 县市原始2024与2025两年度**四个统计列**：
+  - **所有竣工住房、2025年** 7,379套；
+  - **所有竣工住房、2024年** 10,172套；
+  - **新建建筑中的竣工住房（新建住宅建筑+非住宅建筑）、2025年** 6,489套；
+  - **新建建筑中的竣工住房（新建住宅建筑+非住宅建筑）、2024年** 9,466套。
+- **四次独立州合计校验差额都为0**，详见 `research/housing/qa/brandenburg_2025_18_county_completions_audit.json`，构建工作流 [run 38043389389 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38043389389)。
+- 输出 `topics/housing/data/brandenburg-completions-2024-2025.json` 和 `research/housing/data/brandenburg_2024_2025_18_county_completions.csv`。
+- **务必保留口径不同的重要限制**：该新闻附件所称Neubau **6,489套**包括**新住宅建筑及新非住宅建筑中的住房**；单纯新建住宅建筑全州总数是另一个统计数字 **6,457套**，但新闻县级附件无法准确分拆每县的两类。故它**不直接与巴伐利亚39,204套或北威州31,237套“新住宅建筑”县值合并绘制同口径全国2025新建住宅地图**；同理“所有竣工住房”7,379不可与“新建住房”6,489相加。官方表附注提醒部分新建数可以大于全部净竣工数，不能简单强制每县all>=new。
+- 目前**三个州**2025年有县级住宅完工相关原始资料：北威州**53县**、巴伐利亚**96县**、勃兰登堡**18县**，合计**167/400县**有2025州级证据。但**暂不声称这167县新建住宅竣工指标已经完全同口径**；仅北威与巴伐利亚149县是严格“新建住宅建筑”同名口径候选（仍需跨州统计一致性留痕）。
+
+### 低干扰网页附录
+
+- `topics/housing/index.html` 和 `topic.js` 中新增 `brandenburgCompletions`：只有点击18个勃兰登堡县时才展开其2024/2025所有竣工与包含非住宅建筑的新建住房两组数字。与巴伐利亚、北威州侧栏档案完全互斥，不改默认全国挂牌租金分级设色，不伪造2025年全国竣工率。
+- 地图仍用2024年BKG400县底图、全国各项异年独立指标下拉，保持地方财政同类简约设计。
+- 当前研究侧重点：其它州2025竣工（尤其Baden-Württemberg 44县、Hessen 26县、Niedersachsen 45县等），2026年无住房者全国县级数据，以及各地补贴住房/家庭租金负担调查；**未经逐州验证，不把全州单个汇总数平均分摊到县**。
+
+**恢复**：从 `research/housing-crisis-20261010` 检出，阅读本节；运行 `python research/housing/probe_brandenburg_2025_completions.py`、`python research/housing/build_brandenburg_completions.py`。检查三者：raw sha256、QA四个汇总数相等、最新 `housing-ui-smoke` Chromium desktop/mobile，通过后方可认为UI完全通过。不得直接修改main。
