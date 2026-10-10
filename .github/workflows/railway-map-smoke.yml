@@ -49,5 +49,5 @@ jobs:
         if: always()
         with:
           name: railway-minimal-browser-screenshots
-          path: /tmp/railway-v18/*.png
+          path: /tmp/railway-city/*.png
           if-no-files-found: warn
