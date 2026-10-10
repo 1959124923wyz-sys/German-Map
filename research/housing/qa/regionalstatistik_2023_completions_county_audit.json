@@ -1,0 +1,384 @@
+{
+  "table": "31121-01-02-4",
+  "source": "https://www.regionalstatistik.de/genesisws/downloader/00/tables/31121-01-02-4_00.csv",
+  "statistical_years": [
+    "2023"
+  ],
+  "county_count": 400,
+  "numerical_count": 400,
+  "nation_official_total": 257241,
+  "county_subtotal": 257241,
+  "difference": 0,
+  "legacy_codes": [
+    {
+      "id": "03152",
+      "name": "Göttingen, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "03156",
+      "name": "Osterode am Harz, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "05354",
+      "name": "Aachen, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "13001",
+      "name": "Greifswald, Hansestadt, kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "13002",
+      "name": "Neubrandenburg, Stadt,  kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "13005",
+      "name": "Stralsund, Hansestadt,  kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "13006",
+      "name": "Wismar, Hansestadt,  kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "13051",
+      "name": "Bad Doberan, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "13052",
+      "name": "Landkreis Demmin",
+      "dwellings": null
+    },
+    {
+      "id": "13053",
+      "name": "Güstrow, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "13054",
+      "name": "Landkreis Ludwigslust",
+      "dwellings": null
+    },
+    {
+      "id": "13055",
+      "name": "Mecklenburg-Strelitz, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "13056",
+      "name": "Landkreis Müritz",
+      "dwellings": null
+    },
+    {
+      "id": "13057",
+      "name": "Nordvorpommern, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "13058",
+      "name": "Landkreis Nordwestmecklenburg",
+      "dwellings": null
+    },
+    {
+      "id": "13059",
+      "name": "Ostvorpommern, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "13060",
+      "name": "Landkreis Parchim",
+      "dwellings": null
+    },
+    {
+      "id": "13061",
+      "name": "Rügen, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "13062",
+      "name": "Landkreis Uecker-Randow",
+      "dwellings": null
+    },
+    {
+      "id": "14161",
+      "name": "Chemnitz, kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "14166",
+      "name": "Plauen, kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "14167",
+      "name": "Zwickau, kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "14171",
+      "name": "Annaberg, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14173",
+      "name": "Chemnitzer Land, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14177",
+      "name": "Freiberg, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14178",
+      "name": "Vogtlandkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14181",
+      "name": "Mittlerer Erzgebirgskreis",
+      "dwellings": null
+    },
+    {
+      "id": "14182",
+      "name": "Mittweida, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14188",
+      "name": "Stollberg, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14191",
+      "name": "Aue-Schwarzenberg, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14193",
+      "name": "Zwickauer Land, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14262",
+      "name": "Dresden, kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "14263",
+      "name": "Görlitz, kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "14264",
+      "name": "Hoyerswerda, kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "14272",
+      "name": "Bautzen, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14280",
+      "name": "Meißen, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14284",
+      "name": "Niederschlesischer Oberlausitzkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14285",
+      "name": "Riesa-Großenhain, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14286",
+      "name": "Löbau-Zittau, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14287",
+      "name": "Sächsische Schweiz, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14290",
+      "name": "Weißeritzkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14292",
+      "name": "Kamenz, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14365",
+      "name": "Leipzig, kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "14374",
+      "name": "Delitzsch, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14375",
+      "name": "Döbeln, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14379",
+      "name": "Leipziger Land, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14383",
+      "name": "Muldentalkreis",
+      "dwellings": null
+    },
+    {
+      "id": "14389",
+      "name": "Torgau-Oschatz, Landkreis",
+      "dwellings": null
+    },
+    {
+      "id": "15101",
+      "name": "Dessau, kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "15151",
+      "name": "Anhalt-Zerbst, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15153",
+      "name": "Bernburg, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15154",
+      "name": "Bitterfeld, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15159",
+      "name": "Köthen, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15171",
+      "name": "Wittenberg, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15202",
+      "name": "Halle (Saale), kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "15256",
+      "name": "Burgenlandkreis",
+      "dwellings": null
+    },
+    {
+      "id": "15260",
+      "name": "Mansfelder Land, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15261",
+      "name": "Merseburg-Querfurt, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15265",
+      "name": "Saalkreis",
+      "dwellings": null
+    },
+    {
+      "id": "15266",
+      "name": "Sangerhausen, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15268",
+      "name": "Weißenfels, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15303",
+      "name": "Magdeburg, kreisfreie Stadt",
+      "dwellings": null
+    },
+    {
+      "id": "15352",
+      "name": "Aschersleben-Staßfurt, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15355",
+      "name": "Bördekreis",
+      "dwellings": null
+    },
+    {
+      "id": "15357",
+      "name": "Halberstadt, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15358",
+      "name": "Jerichower Land, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15362",
+      "name": "Ohrekreis",
+      "dwellings": null
+    },
+    {
+      "id": "15363",
+      "name": "Stendal, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15364",
+      "name": "Quedlinburg, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15367",
+      "name": "Schönebeck, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15369",
+      "name": "Wernigerode, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "15370",
+      "name": "Altmarkkreis Salzwedel, Kreis",
+      "dwellings": null
+    },
+    {
+      "id": "16056",
+      "name": "Eisenach, kreisfreie Stadt",
+      "dwellings": null
+    }
+  ],
+  "warnings": [
+    "This static CSV covers year 2023 only",
+    "Newly built residential buildings only; not all housing construction",
+    "2025 NRW completed building series is newer but a separate dataset"
+  ]
+}

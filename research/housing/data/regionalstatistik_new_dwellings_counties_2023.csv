@@ -1,0 +1,401 @@
+id,name,completed_dwellings_new_residential_buildings_2023,completed_new_residential_buildings_2023
+01001,"Flensburg, kreisfreie Stadt",115,50
+01002,"Kiel, kreisfreie Stadt",665,72
+01003,"Lübeck, kreisfreie Stadt, Hansestadt",563,183
+01004,"Neumünster, kreisfreie Stadt",122,54
+01051,"Dithmarschen, Kreis",558,304
+01053,"Herzogtum Lauenburg, Kreis",658,325
+01054,"Nordfriesland, Kreis",1040,481
+01055,"Ostholstein, Kreis",735,289
+01056,"Pinneberg, Kreis",1480,586
+01057,"Plön, Kreis",639,284
+01058,"Rendsburg-Eckernförde, Kreis",1001,492
+01059,"Schleswig-Flensburg, Kreis",1267,634
+01060,"Segeberg, Kreis",1647,556
+01061,"Steinburg, Kreis",439,226
+01062,"Stormarn, Kreis",827,386
+02000,Hamburg,5620,1092
+03101,"Braunschweig, kreisfreie Stadt",501,121
+03102,"Salzgitter, kreisfreie Stadt",204,39
+03103,"Wolfsburg, kreisfreie Stadt",397,85
+03151,"Gifhorn, Landkreis",689,486
+03153,"Goslar, Landkreis",122,84
+03154,"Helmstedt, Landkreis",169,165
+03155,"Northeim, Landkreis",35,31
+03157,"Peine, Landkreis",423,238
+03158,"Wolfenbüttel, Landkreis",331,195
+03159,"Göttingen, Landkreis",611,207
+03241,"Region Hannover, Landkreis",5302,1113
+03251,"Diepholz, Landkreis",744,376
+03252,"Hameln-Pyrmont, Landkreis",303,198
+03254,"Hildesheim, Landkreis",356,67
+03255,"Holzminden, Landkreis",24,19
+03256,"Nienburg (Weser), Landkreis",433,243
+03257,"Schaumburg, Landkreis",224,147
+03351,"Celle, Landkreis",270,162
+03352,"Cuxhaven, Landkreis",1051,533
+03353,"Harburg, Landkreis",1020,496
+03354,"Lüchow-Dannenberg, Landkreis",143,71
+03355,"Lüneburg, Landkreis",155,44
+03356,"Osterholz, Landkreis",215,173
+03357,"Rotenburg (Wümme), Landkreis",599,343
+03358,Heidekreis,533,273
+03359,"Stade, Landkreis",961,360
+03360,"Uelzen, Landkreis",257,166
+03361,"Verden, Landkreis",317,182
+03401,"Delmenhorst, kreisfreie Stadt",139,75
+03402,"Emden, kreisfreie Stadt",37,14
+03403,"Oldenburg (Oldenburg), kreisfreie Stadt",582,207
+03404,"Osnabrück, kreisfreie Stadt",553,115
+03405,"Wilhelmshaven, kreisfreie Stadt",74,21
+03451,"Ammerland, Landkreis",624,320
+03452,"Aurich, Landkreis",691,401
+03453,"Cloppenburg, Landkreis",1117,617
+03454,"Emsland, Landkreis",1407,849
+03455,"Friesland, Landkreis",87,47
+03456,"Grafschaft Bentheim, Landkreis",462,196
+03457,"Leer, Landkreis",503,211
+03458,"Oldenburg, Landkreis",326,200
+03459,"Osnabrück, Landkreis",1248,598
+03460,"Vechta, Landkreis",759,397
+03461,"Wesermarsch, Landkreis",178,114
+03462,"Wittmund, Landkreis",207,112
+04011,"Bremen, kreisfreie Stadt",1104,203
+04012,"Bremerhaven, kreisfreie Stadt",213,45
+05111,"Düsseldorf, kreisfreie Stadt",1886,303
+05112,"Duisburg, kreisfreie Stadt",515,188
+05113,"Essen, kreisfreie Stadt",715,105
+05114,"Krefeld, kreisfreie Stadt",302,82
+05116,"Mönchengladbach, kreisfreie Stadt",593,134
+05117,"Mülheim an der Ruhr, kreisfreie Stadt",177,66
+05119,"Oberhausen, kreisfreie Stadt",81,25
+05120,"Remscheid, kreisfreie Stadt",50,27
+05122,"Solingen, kreisfreie Stadt",280,70
+05124,"Wuppertal, kreisfreie Stadt",217,84
+05154,"Kleve, Kreis",1323,443
+05158,"Mettmann, Kreis",911,262
+05162,Rhein-Kreis Neuss,1000,414
+05166,"Viersen, Kreis",444,218
+05170,"Wesel, Kreis",566,282
+05314,"Bonn, kreisfreie Stadt",700,92
+05315,"Köln, kreisfreie Stadt",3232,457
+05316,"Leverkusen, kreisfreie Stadt",191,33
+05334,"Städteregion Aachen, Kreis",1134,356
+05358,"Düren, Kreis",953,398
+05362,Rhein-Erft-Kreis,1491,446
+05366,"Euskirchen, Kreis",847,524
+05370,"Heinsberg, Kreis",1316,624
+05374,Oberbergischer Kreis,428,247
+05378,Rheinisch-Bergischer Kreis,912,253
+05382,Rhein-Sieg-Kreis,1571,689
+05512,"Bottrop, kreisfreie Stadt",196,53
+05513,"Gelsenkirchen, kreisfreie Stadt",33,19
+05515,"Münster, kreisfreie Stadt",2099,277
+05554,"Borken, Kreis",1335,543
+05558,"Coesfeld, Kreis",720,303
+05562,"Recklinghausen, Kreis",1085,385
+05566,"Steinfurt, Kreis",1981,734
+05570,"Warendorf, Kreis",994,424
+05711,"Bielefeld, kreisfreie Stadt",718,242
+05754,"Gütersloh, Kreis",1413,491
+05758,"Herford, Kreis",436,211
+05762,"Höxter, Kreis",417,183
+05766,"Lippe, Kreis",619,321
+05770,"Minden-Lübbecke, Kreis",635,353
+05774,"Paderborn, Kreis",1119,489
+05911,"Bochum, kreisfreie Stadt",890,113
+05913,"Dortmund, kreisfreie Stadt",1180,226
+05914,"Hagen, kreisfreie Stadt",74,50
+05915,"Hamm, kreisfreie Stadt",478,138
+05916,"Herne, kreisfreie Stadt",124,37
+05954,Ennepe-Ruhr-Kreis,406,195
+05958,Hochsauerlandkreis,541,319
+05962,Märkischer Kreis,504,193
+05966,"Olpe, Kreis",243,120
+05970,"Siegen-Wittgenstein, Kreis",448,188
+05974,"Soest, Kreis",929,439
+05978,"Unna, Kreis",826,275
+06411,"Darmstadt, kreisfreie Stadt, Wissenschaftsstadt",464,69
+06412,"Frankfurt am Main, kreisfreie Stadt",2842,231
+06413,"Offenbach am Main, kreisfreie Stadt",305,44
+06414,"Wiesbaden, kreisfreie Stadt, Landeshauptstadt",1328,250
+06431,"Bergstraße, Landkreis",611,320
+06432,"Darmstadt-Dieburg, Landkreis",405,196
+06433,"Groß-Gerau, Landkreis",976,221
+06434,Hochtaunuskreis,589,206
+06435,Main-Kinzig-Kreis,1337,491
+06436,Main-Taunus-Kreis,543,202
+06437,Odenwaldkreis,270,149
+06438,"Offenbach, Landkreis",894,122
+06439,Rheingau-Taunus-Kreis,483,175
+06440,Wetteraukreis,758,406
+06531,"Gießen, Landkreis",646,241
+06532,Lahn-Dill-Kreis,775,328
+06533,"Limburg-Weilburg, Landkreis",744,258
+06534,"Marburg-Biedenkopf, Landkreis",731,359
+06535,Vogelsbergkreis,193,156
+06611,"Kassel, kreisfreie Stadt, documenta-Stadt",155,42
+06631,"Fulda, Landkreis",777,366
+06632,"Hersfeld-Rotenburg, Landkreis",175,118
+06633,"Kassel, Landkreis",698,282
+06634,Schwalm-Eder-Kreis,590,329
+06635,"Waldeck-Frankenberg, Landkreis",410,278
+06636,Werra-Meißner-Kreis,96,61
+07111,"Koblenz, kreisfreie Stadt",164,29
+07131,"Ahrweiler, Landkreis",435,247
+07132,"Altenkirchen (Westerwald), Landkreis",203,148
+07133,"Bad Kreuznach, Landkreis",708,219
+07134,"Birkenfeld, Landkreis",157,109
+07135,"Cochem-Zell, Landkreis",276,170
+07137,"Mayen-Koblenz, Landkreis",553,296
+07138,"Neuwied, Landkreis",591,252
+07140,Rhein-Hunsrück-Kreis,392,209
+07141,Rhein-Lahn-Kreis,370,184
+07143,Westerwaldkreis,617,361
+07211,"Trier, kreisfreie Stadt",375,68
+07231,"Bernkastel-Wittlich, Landkreis",404,208
+07232,Eifelkreis Bitburg-Prüm,592,322
+07233,"Vulkaneifel, Landkreis",185,160
+07235,"Trier-Saarburg, Landkreis",425,229
+07311,"Frankenthal (Pfalz), kreisfreie Stadt",16,13
+07312,"Kaiserslautern, kreisfreie Stadt",268,77
+07313,"Landau in der Pfalz, kreisfreie Stadt",278,31
+07314,"Ludwigshafen am Rhein, kreisfreie Stadt",203,46
+07315,"Mainz, kreisfreie Stadt",941,85
+07316,"Neustadt an der Weinstraße, kreisfreie Stadt",101,31
+07317,"Pirmasens, kreisfreie Stadt",62,38
+07318,"Speyer, kreisfreie Stadt",121,16
+07319,"Worms, kreisfreie Stadt",143,46
+07320,"Zweibrücken, kreisfreie Stadt",15,12
+07331,"Alzey-Worms, Landkreis",747,381
+07332,"Bad Dürkheim, Landkreis",327,194
+07333,Donnersbergkreis,140,97
+07334,"Germersheim, Landkreis",470,218
+07335,"Kaiserslautern, Landkreis",130,77
+07336,"Kusel, Landkreis",113,87
+07337,"Südliche Weinstraße, Landkreis",247,127
+07338,Rhein-Pfalz-Kreis,253,150
+07339,"Mainz-Bingen, Landkreis",821,384
+07340,"Südwestpfalz, Landkreis",255,166
+08111,"Stuttgart, Stadtkreis",1646,206
+08115,"Böblingen, Landkreis",1246,450
+08116,"Esslingen, Landkreis",1530,515
+08117,"Göppingen, Landkreis",699,305
+08118,"Ludwigsburg, Landkreis",1389,482
+08119,"Rems-Murr-Kreis, Landkreis",1465,490
+08121,"Heilbronn, Stadtkreis",432,69
+08125,"Heilbronn, Landkreis",1139,577
+08126,"Hohenlohekreis, Landkreis",577,242
+08127,"Schwäbisch Hall, Landkreis",851,377
+08128,"Main-Tauber-Kreis, Landkreis",512,246
+08135,"Heidenheim, Landkreis",401,175
+08136,"Ostalbkreis, Landkreis",1143,565
+08211,"Baden-Baden, Stadtkreis",253,59
+08212,"Karlsruhe, Stadtkreis",162,104
+08215,"Karlsruhe, Landkreis",1686,637
+08216,"Rastatt, Landkreis",465,226
+08221,"Heidelberg, Stadtkreis",253,49
+08222,"Mannheim, Stadtkreis",1385,212
+08225,"Neckar-Odenwald-Kreis, Landkreis",586,311
+08226,"Rhein-Neckar-Kreis, Landkreis",1380,605
+08231,"Pforzheim, Stadtkreis",229,73
+08235,"Calw, Landkreis",504,274
+08236,"Enzkreis, Landkreis",462,229
+08237,"Freudenstadt, Landkreis",359,191
+08311,"Freiburg im Breisgau, Stadtkreis",776,99
+08315,"Breisgau-Hochschwarzwald, Landkreis",693,345
+08316,"Emmendingen, Landkreis",630,302
+08317,"Ortenaukreis, Landkreis",1843,683
+08325,"Rottweil, Landkreis",581,278
+08326,"Schwarzwald-Baar-Kreis, Landkreis",1059,274
+08327,"Tuttlingen, Landkreis",660,232
+08335,"Konstanz, Landkreis",1145,334
+08336,"Lörrach, Landkreis",709,210
+08337,"Waldshut, Landkreis",607,265
+08415,"Reutlingen, Landkreis",884,338
+08416,"Tübingen, Landkreis",889,315
+08417,"Zollernalbkreis, Landkreis",687,320
+08421,"Ulm, Stadtkreis",729,71
+08425,"Alb-Donau-Kreis, Landkreis",831,345
+08426,"Biberach, Landkreis",1130,514
+08435,"Bodenseekreis, Landkreis",764,220
+08436,"Ravensburg, Landkreis",1384,432
+08437,"Sigmaringen, Landkreis",492,277
+09161,"Ingolstadt, kreisfreie Stadt",652,208
+09162,"München, kreisfreie Stadt",9079,1249
+09163,"Rosenheim, kreisfreie Stadt",108,56
+09171,"Altötting, Landkreis",451,215
+09172,"Berchtesgadener Land, Landkreis",220,82
+09173,"Bad Tölz-Wolfratshausen, Landkreis",608,245
+09174,"Dachau, Landkreis",492,224
+09175,"Ebersberg, Landkreis",419,158
+09176,"Eichstätt, Landkreis",740,471
+09177,"Erding, Landkreis",712,312
+09178,"Freising, Landkreis",809,345
+09179,"Fürstenfeldbruck, Landkreis",755,333
+09180,"Garmisch-Partenkirchen, Landkreis",386,120
+09181,"Landsberg am Lech, Landkreis",482,294
+09182,"Miesbach, Landkreis",272,110
+09183,"Mühldorf a.Inn, Landkreis",727,316
+09184,"München, Landkreis",1664,562
+09185,"Neuburg-Schrobenhausen, Landkreis",548,316
+09186,"Pfaffenhofen a.d.Ilm, Landkreis",853,454
+09187,"Rosenheim, Landkreis",1556,621
+09188,"Starnberg, Landkreis",518,264
+09189,"Traunstein, Landkreis",529,257
+09190,"Weilheim-Schongau, Landkreis",660,362
+09261,"Landshut, kreisfreie Stadt",230,86
+09262,"Passau, kreisfreie Stadt",195,43
+09263,"Straubing, kreisfreie Stadt",335,68
+09271,"Deggendorf, Landkreis",735,345
+09272,"Freyung-Grafenau, Landkreis",138,79
+09273,"Kelheim, Landkreis",972,380
+09274,"Landshut, Landkreis",745,455
+09275,"Passau, Landkreis",1465,804
+09276,"Regen, Landkreis",343,182
+09277,"Rottal-Inn, Landkreis",574,325
+09278,"Straubing-Bogen, Landkreis",558,342
+09279,"Dingolfing-Landau, Landkreis",261,69
+09361,"Amberg, kreisfreie Stadt",77,37
+09362,"Regensburg, kreisfreie Stadt",1052,115
+09363,"Weiden i.d.OPf., kreisfreie Stadt",111,24
+09371,"Amberg-Sulzbach, Landkreis",371,254
+09372,"Cham, Landkreis",844,471
+09373,"Neumarkt i.d.OPf., Landkreis",1212,620
+09374,"Neustadt a.d.Waldnaab, Landkreis",362,235
+09375,"Regensburg, Landkreis",1264,701
+09376,"Schwandorf, Landkreis",1098,633
+09377,"Tirschenreuth, Landkreis",363,275
+09461,"Bamberg, kreisfreie Stadt",326,46
+09462,"Bayreuth, kreisfreie Stadt",338,40
+09463,"Coburg, kreisfreie Stadt",74,28
+09464,"Hof, kreisfreie Stadt",36,31
+09471,"Bamberg, Landkreis",842,548
+09472,"Bayreuth, Landkreis",253,186
+09473,"Coburg, Landkreis",228,122
+09474,"Forchheim, Landkreis",333,209
+09475,"Hof, Landkreis",111,91
+09476,"Kronach, Landkreis",80,43
+09477,"Kulmbach, Landkreis",162,76
+09478,"Lichtenfels, Landkreis",146,116
+09479,"Wunsiedel i.Fichtelgebirge, Landkreis",254,102
+09561,"Ansbach, kreisfreie Stadt",55,30
+09562,"Erlangen, kreisfreie Stadt",283,126
+09563,"Fürth, kreisfreie Stadt",310,84
+09564,"Nürnberg, kreisfreie Stadt",2083,219
+09565,"Schwabach, kreisfreie Stadt",93,50
+09571,"Ansbach, Landkreis",877,468
+09572,"Erlangen-Höchstadt, Landkreis",356,153
+09573,"Fürth, Landkreis",416,175
+09574,"Nürnberger Land, Landkreis",514,336
+09575,"Neustadt a.d.Aisch-Bad Windsheim, Landkreis",372,250
+09576,"Roth, Landkreis",558,302
+09577,"Weißenburg-Gunzenhausen, Landkreis",431,227
+09661,"Aschaffenburg, kreisfreie Stadt",320,67
+09662,"Schweinfurt, kreisfreie Stadt",144,18
+09663,"Würzburg, kreisfreie Stadt",354,40
+09671,"Aschaffenburg, Landkreis",424,221
+09672,"Bad Kissingen, Landkreis",449,315
+09673,"Rhön-Grabfeld, Landkreis",201,131
+09674,"Haßberge, Landkreis",148,115
+09675,"Kitzingen, Landkreis",193,144
+09676,"Miltenberg, Landkreis",332,177
+09677,"Main-Spessart, Landkreis",327,218
+09678,"Schweinfurt, Landkreis",381,247
+09679,"Würzburg, Landkreis",568,343
+09761,"Augsburg, kreisfreie Stadt",832,148
+09762,"Kaufbeuren, kreisfreie Stadt",159,92
+09763,"Kempten (Allgäu), kreisfreie Stadt",117,41
+09764,"Memmingen, kreisfreie Stadt",258,51
+09771,"Aichach-Friedberg, Landkreis",616,368
+09772,"Augsburg, Landkreis",1167,536
+09773,"Dillingen a.d.Donau, Landkreis",311,182
+09774,"Günzburg, Landkreis",463,283
+09775,"Neu-Ulm, Landkreis",1007,304
+09776,"Lindau (Bodensee), Landkreis",220,60
+09777,"Ostallgäu, Landkreis",450,244
+09778,"Unterallgäu, Landkreis",623,431
+09779,"Donau-Ries, Landkreis",551,353
+09780,"Oberallgäu, Landkreis",386,155
+10041,"Saarbrücken, Regionalverband",544,145
+10042,"Merzig-Wadern, Landkreis",340,154
+10043,"Neunkirchen, Landkreis",131,91
+10044,"Saarlouis, Landkreis",472,179
+10045,Saarpfalz-Kreis,197,90
+10046,"St. Wendel, Landkreis",200,124
+11000,Berlin,14431,1436
+12051,"Brandenburg an der Havel, kreisfreie Stadt",393,93
+12052,"Cottbus, kreisfreie Stadt",249,82
+12053,"Frankfurt (Oder), kreisfreie Stadt",106,39
+12054,"Potsdam, kreisfreie Stadt",832,134
+12060,"Barnim, Landkreis",1120,486
+12061,"Dahme-Spreewald, Landkreis",1492,555
+12062,"Elbe-Elster, Landkreis",96,95
+12063,"Havelland, Landkreis",1167,526
+12064,"Märkisch-Oderland, Landkreis",786,531
+12065,"Oberhavel, Landkreis",725,454
+12066,"Oberspreewald-Lausitz, Landkreis",119,101
+12067,"Oder-Spree, Landkreis",714,436
+12068,"Ostprignitz-Ruppin, Landkreis",231,148
+12069,"Potsdam-Mittelmark, Landkreis",1085,629
+12070,"Prignitz, Landkreis",107,101
+12071,"Spree-Neiße, Landkreis",255,186
+12072,"Teltow-Fläming, Landkreis",1040,810
+12073,"Uckermark, Landkreis",192,111
+13003,"Rostock, kreisfreie Stadt",810,71
+13004,"Schwerin, kreisfreie Stadt",148,39
+13071,"Mecklenburgische Seenplatte, Landkreis",328,181
+13072,Landkreis Rostock,671,408
+13073,"Vorpommern-Rügen, Landkreis",970,459
+13074,"Nordwestmecklenburg, Landkreis",323,257
+13075,"Vorpommern-Greifswald, Landkreis",516,303
+13076,"Ludwigslust-Parchim, Landkreis",445,340
+14511,"Chemnitz, kreisfreie Stadt",280,145
+14521,Erzgebirgskreis,424,293
+14522,"Mittelsachsen, Landkreis",482,346
+14523,Vogtlandkreis,240,163
+14524,"Zwickau, Landkreis",436,202
+14612,"Dresden, kreisfreie Stadt",1862,233
+14625,"Bautzen, Landkreis",571,418
+14626,"Görlitz, Landkreis",206,168
+14627,"Meißen, Landkreis",416,283
+14628,"Sächsische Schweiz-Osterzgebirge, Landkreis",424,242
+14713,"Leipzig, kreisfreie Stadt",2084,283
+14729,"Leipzig, Landkreis",625,403
+14730,"Nordsachsen, Landkreis",364,264
+15001,"Dessau-Roßlau, kreisfreie Stadt",159,70
+15002,"Halle (Saale), kreisfreie Stadt",331,111
+15003,"Magdeburg, kreisfreie Stadt, Landeshauptstadt",719,220
+15081,Altmarkkreis Salzwedel,134,108
+15082,"Anhalt-Bitterfeld, Landkreis",300,209
+15083,"Börde, Landkreis",372,310
+15084,Burgenlandkreis,179,135
+15085,"Harz, Landkreis",207,176
+15086,"Jerichower Land, Landkreis",216,114
+15087,"Mansfeld-Südharz, Landkreis",154,118
+15088,Saalekreis,349,274
+15089,Salzlandkreis,198,129
+15090,"Stendal, Landkreis",79,64
+15091,"Wittenberg, Landkreis",132,127
+16051,"Erfurt, kreisfreie Stadt",552,92
+16052,"Gera, kreisfreie Stadt",69,49
+16053,"Jena, kreisfreie Stadt",156,39
+16054,"Suhl, kreisfreie Stadt",19,19
+16055,"Weimar, kreisfreie Stadt",316,19
+16061,"Eichsfeld, Landkreis",169,127
+16062,"Nordhausen, Landkreis",82,63
+16063,Wartburgkreis,192,121
+16064,Unstrut-Hainich-Kreis,171,119
+16065,Kyffhäuserkreis,45,42
+16066,"Schmalkalden-Meiningen, Landkreis",506,80
+16067,"Gotha, Landkreis",112,80
+16068,"Sömmerda, Landkreis",94,76
+16069,"Hildburghausen, Landkreis",80,69
+16070,Ilm-Kreis,299,103
+16071,"Weimarer Land, Landkreis",144,115
+16072,"Sonneberg, Landkreis",62,29
+16073,"Saalfeld-Rudolstadt, Landkreis",110,59
+16074,Saale-Holzland-Kreis,84,49
+16075,Saale-Orla-Kreis,66,51
+16076,"Greiz, Landkreis",99,77
+16077,"Altenburger Land, Landkreis",65,62
