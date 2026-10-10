@@ -1,0 +1,14 @@
+{
+  "source_geometry_file_bytes": 19887981,
+  "output_display_geojson_bytes": 8394601,
+  "table_bytes": 179042,
+  "polygons": 400,
+  "source_snapshot": "2025-12-31",
+  "simplify_tolerance_degrees": 0.0005,
+  "fallback_invalid": [],
+  "fallback_excessive_area_change": [],
+  "max_area_change_pct_of_stored_geometry": 0.1809,
+  "official_geometry_remains_unmodified": true,
+  "total_bridge_parts": 51959,
+  "small_N_count": 12
+}
