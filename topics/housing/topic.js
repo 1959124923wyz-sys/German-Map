@@ -21,6 +21,7 @@
  let selectedCounty=null, focusState=null, metric='asking_rent_2025_eur_m2';
  let stateFeatures=[], countyFeatures=[], byid=new Map(), countyShapes=new Map();
  let stockReady=false, breaks=[], sortedAll=[];
+ let saxonyRows=new Map();
  const COUNTRY=[[47.2,5.5],[55.3,15.5]];
  const sourceURL = {
   atlas:'https://deutschlandatlas.bund.de/service/daten-herunterladen/aktuelle-downloaddaten/aktuelle-downloaddateien',
@@ -100,6 +101,16 @@
    '<p class="housing-note">本范围暂无可比较的县级记录</p>';
   $('topRank').querySelectorAll('[data-id]').forEach(el=>el.addEventListener('click',()=>chooseCounty(el.dataset.id)));
  }
+ function renderSaxony(region){
+  const panel=$('saxonyDetails');
+  const row=region.scope==='county'?saxonyRows.get(region.ids[0]):null;
+  panel.hidden=!row;
+  if(!row)return;
+  $('saxonyHistory').innerHTML='<div class="housing-archive-grid">'+Object.entries(row.annual_counts).map(([year,count])=>
+   '<div><small>'+safe(year)+'</small><b>'+safe(fmt(count,0))+'人</b></div>').join('')+'</div>'+
+   '<p>每年1月31日登记的已被安置无住房人员，并非所有无家可归者；州统计局为保护隐私将人数四舍五入至5的倍数，年度不能简单解释为住房危机增减。</p>'+
+   '<a target="_blank" rel="noopener noreferrer" href="https://www.statistik.sachsen.de/html/untergebrachte-wohnungslose-personen.html">萨克森州统计局原始资料 ↗</a>';
+ }
  function updateDetails(){
   const region=selectedRegion(),v=region.scope==='county'?metricValue(region.ids[0]):overview(region.ids);
   const available=region.ids.filter(id=>isNum(metricValue(id))).length;
@@ -115,6 +126,7 @@
   $('sourceLink').textContent=(metrics[metric].source==='atlas'?'Deutschlandatlas HA26 官网':'第三方县级再发布与来源说明')+' ↗';
   $('sourceCredit').textContent=s.credit;
   renderQuick(region);
+  renderSaxony(region);
   updateRanks(region.ids);
  }
  function chooseCounty(id){
@@ -195,6 +207,11 @@
     console.warn('Stock layer unavailable: retaining official primary map',err);
     document.querySelectorAll('#housingMetric option').forEach(o=>{if(metrics[o.value]?.source==='stock')o.disabled=true});
    }
+   try{
+    const saxony=await readJson('data/saxony-homeless-counties.json');
+    if(saxony.counties.length!==13)throw new Error('Saxony county-series coverage changed');
+    saxonyRows=new Map(saxony.counties.map(row=>[row.id,row]));
+   }catch(err){console.warn('Saxony county detail unavailable',err)}
    makeLayers(states,counties);
    paint();
    const valid=sortedAll.length;
