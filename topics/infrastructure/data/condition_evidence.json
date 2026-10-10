@@ -127,6 +127,48 @@
       "source": "https://www.swr.de/swraktuell/rheinland-pfalz/faq-baufaellig-einsturzgefaehrdet-so-steht-es-um-die-bruecken-in-rlp-100.html",
       "source_quality": "secondary_2026_report",
       "source_check": "SWR地区综合报道，分道路管理主体展示；与2021市镇历史样本不得跨期求和"
+    },
+    {
+      "iso": "DE-SN",
+      "scope": "联邦一般公路桥梁分段（不含高速公路、市政桥）",
+      "year": 2024,
+      "inspection": "DIN_1076",
+      "bad": 69,
+      "total": 952,
+      "threshold": "Zustandsnote ≥3.0（54档3.0–3.4 + 15档3.5–4.0）",
+      "source": "https://www.lasuv.sachsen.de/download/Bauwerksliste_Tabelle_Zustand_Stand_20241121.pdf",
+      "source_page": 3,
+      "source_quality": "verified_original",
+      "classes_count": [
+        112,
+        177,
+        439,
+        155,
+        54,
+        15
+      ],
+      "extra": "官方同时披露实际独立桥868座；本指标分母为952桥梁分段。"
+    },
+    {
+      "iso": "DE-SN",
+      "scope": "萨克森州道桥梁分段（不含市政桥）",
+      "year": 2024,
+      "inspection": "DIN_1076",
+      "bad": 164,
+      "total": 1688,
+      "threshold": "Zustandsnote ≥3.0（93档3.0–3.4 + 71档3.5–4.0）",
+      "source": "https://www.lasuv.sachsen.de/download/Bauwerksliste_Tabelle_Zustand_Stand_20241121.pdf",
+      "source_page": 3,
+      "source_quality": "verified_original",
+      "classes_count": [
+        275,
+        288,
+        673,
+        288,
+        93,
+        71
+      ],
+      "extra": "官方同时披露独立桥1646座；本指标分母为1688分段。"
     }
   ],
   "road_state_samples": [
@@ -189,5 +231,95 @@
     "municipal_investment_backlog_eur_billion_2025": 231.2,
     "kind": "KfW市政调查全国推估，不属于16州实测设施状态",
     "source": "https://www.kfw.de/%C3%9Cber-die-KfW/Newsroom/Aktuelles/Pressemitteilungen-Details_897920.html"
-  }
+  },
+  "additional_facility_evidence": [
+    {
+      "iso": "DE-BE",
+      "domain": "state_managed_bridges",
+      "year": 2025,
+      "measurement": "州管公路/步行等桥梁总数",
+      "value": 1047,
+      "unit": "bridge_structures",
+      "scope": "柏林州政府管理，不含联邦高速、铁路及联邦航运管理机构",
+      "source": "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1655594.php",
+      "source_quality": "verified_original"
+    },
+    {
+      "iso": "DE-BE",
+      "domain": "state_managed_bridges",
+      "year": 2025,
+      "measurement": "状态为好或很好的桥梁份额",
+      "value": 19,
+      "unit": "pct",
+      "scope": "柏林州管1047座桥梁；其余81%包含满意/尚可等，不等于81%坏桥",
+      "source": "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1655594.php",
+      "source_quality": "verified_original"
+    },
+    {
+      "iso": "DE-BE",
+      "domain": "state_managed_bridges",
+      "year": 2025,
+      "measurement": "2025—2040计划更换重建桥梁",
+      "value": 175,
+      "unit": "planned_structures",
+      "scope": "柏林州管桥梁的15年建设计划，不是已经倒塌或关闭的数量",
+      "source": "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1655594.php",
+      "source_quality": "verified_original"
+    },
+    {
+      "iso": "DE-BE",
+      "domain": "state_managed_bridges",
+      "year": 2025,
+      "measurement": "2025—2040计划大修桥梁",
+      "value": 125,
+      "unit": "planned_structures",
+      "scope": "柏林州管桥梁；与计划重建项目可能按工程计划分类",
+      "source": "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1655594.php",
+      "source_quality": "verified_original"
+    },
+    {
+      "iso": "DE-BE",
+      "domain": "state_managed_bridges",
+      "year": 2025,
+      "measurement": "2025—2040规划桥梁投资",
+      "value": 1.84,
+      "unit": "billion_eur",
+      "scope": "柏林2026年3月批准的15年计划金额，含更换与维护；不是已支出金额",
+      "source": "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1655594.php",
+      "source_quality": "verified_original"
+    },
+    {
+      "iso": "DE-BY",
+      "domain": "federal_highway_bridges",
+      "year": 2024,
+      "measurement": "DIN1076技术状况≥3.0占联邦公路桥梁面积比例",
+      "value": 10,
+      "unit": "pct_area",
+      "scope": "Bayern全国联邦道路桥梁面积；3.0–3.4为8.8%，3.5–4.0为1.2%，不等于桥梁分段占比",
+      "source": "https://www.bundestag.de/presse/hib/kurzmeldungen-1028608",
+      "source_quality": "verified_original"
+    },
+    {
+      "iso": "DE-BB",
+      "domain": "state_bridges",
+      "year": 2025,
+      "measurement": "使用应力腐蚀敏感预应力钢材的州管桥梁",
+      "value": 66,
+      "unit": "structures",
+      "scope": "勃兰登堡州道与该州负责管理的桥梁；属于材料关注名单，不是66座已判不安全",
+      "source": "https://www.ls.brandenburg.de/ls/de/service/presse/ansicht/~23-12-2025-rueckblick-2025-ausblick-2026",
+      "source_quality": "verified_original"
+    },
+    {
+      "iso": "DE-HE",
+      "domain": "state_roads",
+      "year": 2024,
+      "measurement": "相对2020 ZEB检测所报告的道路材质状态改善",
+      "value": 4.2,
+      "unit": "pct_improvement_reported",
+      "scope": "黑森州道2024检测对2020变化，原文未给绝对初始比例及是否百分点；不能解读为4.2%的道路已修复",
+      "source": "https://mobil.hessen.de/presse/fast-1-milliarde-euro-fuer-hessens-landesstrassen",
+      "source_quality": "verified_original"
+    }
+  ]
 }
