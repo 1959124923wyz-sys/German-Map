@@ -74,7 +74,7 @@ const fixture=[header,
  '08425,2025,800,WZ2008_C,workplace,fixture_v1,https://example.invalid/2025',
  '03152,2019,1111,WZ2008_C,workplace,fixture_v1,https://example.invalid/2019',
  '03152,2025,.,WZ2008_C,workplace,fixture_v1,https://example.invalid/2025'
-].join('\\n');
+].join('\n');
 try{
  fs.writeFileSync(csv,fixture);
  const importer=path.join(root,'scripts/build_county_employment.cjs');
