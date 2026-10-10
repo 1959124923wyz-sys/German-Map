@@ -35,7 +35,13 @@ def run(browser,mobile=False):
     assert "2025" in page.locator("#legend").inner_text()
     assert "欧元" in page.locator("#value").inner_text()
     assert page.locator("main .housing-rank-row").count()==8
-    assert page.locator("#housingMetric option").count()==10
+    assert page.locator("#housingMetric option").count()==11
+    assert page.evaluate("GermanHousingResearch.state().homelessReady") is True
+    page.locator("#housingMetric").select_option("sheltered_homeless_2025")
+    assert page.evaluate("GermanHousingResearch.state().validCount")==394
+    assert "Destatis" in page.locator("#sourceCredit").inner_text()
+    assert "2025年1月31日" in page.locator("#yearLabel").inner_text()
+    page.locator("#housingMetric").select_option("asking_rent_2025_eur_m2")
     for opt,needle in [("vacancy_2022_pct","2022"),("homes_per_1000_people_2025","2025"),
                        ("housing_stock_growth_2022_2025_pct","2022—2025")]:
         page.locator("#housingMetric").select_option(opt)
