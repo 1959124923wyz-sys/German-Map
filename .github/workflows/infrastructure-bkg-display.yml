@@ -1,0 +1,53 @@
+name: Infrastructure compact BKG county preview assets
+on:
+  push:
+    branches: [feature/infrastructure-map-phase1]
+    paths:
+      - 'topics/infrastructure/research/scripts/prepare_bkg_county_preview_data.py'
+      - '.github/workflows/infrastructure-bkg-display.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: infrastructure-bkg-display
+  cancel-in-progress: false
+jobs:
+  preview-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/infrastructure-map-phase1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install topology geometry processor
+        run: pip install 'shapely>=2,<3'
+      - name: Generate source-audited reduced-size official boundary display geometry
+        run: python topics/infrastructure/research/scripts/prepare_bkg_county_preview_data.py
+      - name: Confirm 400 AGS keys, all official counties and bridge totals
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=Path('topics/infrastructure/data')
+          g=json.loads((d/'bridge_bkg_counties_2025.geojson').read_text())
+          r=json.loads((d/'bridge_county_metrics_2025.json').read_text())
+          assert len(g['features'])==len(r['bridge_counties'])==400
+          assert {f['id'] for f in g['features']}=={x['ags'] for x in r['bridge_counties']}
+          assert sum(x['parts'] for x in r['bridge_counties'])==51959
+          assert all(x['scope'].startswith('federal motorway') for x in r['bridge_counties'])
+          assert g['metadata']['license'].startswith('© BKG')
+          print('PASS 400 source-derived county polygons and federally scoped bridge metrics, no rating extrapolation')
+          PY
+      - name: Commit verified display candidates without changing main map
+        run: |
+          git config user.name 'german-map-research-bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add topics/infrastructure/data/bridge_bkg_counties_2025.geojson topics/infrastructure/data/bridge_county_metrics_2025.json topics/infrastructure/research/bkg_county_display_simplification_audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "research: save compact BKG 2025 county display candidate and DIN bridge evidence"
+            git pull --rebase origin feature/infrastructure-map-phase1
+            git push origin HEAD:feature/infrastructure-map-phase1
+          fi
