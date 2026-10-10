@@ -267,7 +267,7 @@ python research/housing/build_stock_proxy.py
 
 - `topics/housing/index.html`、`topic.js` 独立添加隐藏折叠面板 `berlinBoroughCompletions`；仅点击柏林县级城市 `11000` 时显示柏林12行政区2025与2024全部竣工住房列表。其它州隐藏；原始官方来源和2026年更正注释放在展开面板内。
 - 仍然维持2025全国挂牌租金一个默认分级设色地图，不增加柏林12个虚假的县级图形、不创建新的地图上密集标记。
-- 浏览器测试 `topics/housing/tests/smoke_housing_browser.py` 已追加柏林“国家400县中的一个、侧栏12区表格”的实际桌面/手机交互断言。以最新 `housing-ui-smoke` GitHub Actions `completed/success` 为UI验收条件；**不以仅保存HTML/JS视为UI已验收**。
+- 浏览器测试 `topics/housing/tests/smoke_housing_browser.py` 已追加柏林“国家400县中的一个、侧栏12区表格”的实际桌面/手机交互断言，**最新 [run 38043701883 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38043701883)**，`completed/success`，本阶段客户端UI验收通过。
 
 ### D. 恢复步骤和下一步
 
