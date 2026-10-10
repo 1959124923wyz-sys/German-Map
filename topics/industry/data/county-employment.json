@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "metric": "manufacturing_employment_change_pct_2019_latest",
+  "status": "awaiting_verified_county_series",
+  "records": {},
+  "source": null,
+  "warning": "No nationwide verified AGS/county 2019-to-latest same-method employment series available. Never infer this measure from article counts."
+}
