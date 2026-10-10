@@ -238,3 +238,39 @@ python research/housing/build_stock_proxy.py
 - 当前研究侧重点：其它州2025竣工（尤其Baden-Württemberg 44县、Hessen 26县、Niedersachsen 45县等），2026年无住房者全国县级数据，以及各地补贴住房/家庭租金负担调查；**未经逐州验证，不把全州单个汇总数平均分摊到县**。
 
 **恢复**：从 `research/housing-crisis-20261010` 检出，阅读本节；运行 `python research/housing/probe_brandenburg_2025_completions.py`、`python research/housing/build_brandenburg_completions.py`。检查三者：raw sha256、QA四个汇总数相等、最新 `housing-ui-smoke` Chromium desktop/mobile，通过后方可认为UI完全通过。不得直接修改main。
+
+## ✅ 第七阶段追加：柏林2025年12行政区正式更正统计（2026-10-10）
+
+本节单独标记柏林“官方曾有错误并更正”的数据保护要求。主地图里柏林是全国400县中的**单一县级城市 `11000`**；内部12个Bezirke是**城市内次级地区**，严禁在全国400县中额外增加12县。
+
+### A. 更正后的官方Excel原件
+
+- 来源 Amt für Statistik Berlin-Brandenburg 2026年新闻稿 **59/2026**，更正说明日期 **2026-05-22**：`https://www.statistik-berlin-brandenburg.de/presse/2026/59-baufertigstellungen-2025-berlin/`。原新闻与附件存在错误，仅用更正后的统计。
+- 原始更正版Excel：
+  `https://download.statistik-berlin-brandenburg.de/f04f3ade7f98cd05/090fd40a76ac/pressemitteilung-tabelle-59_2026.xlsx`
+  **55,636字节**，SHA256 `93d8256de624c0d3ccfd526bb2e62318f89bbbc05810291b15dfd0ee3888e1cf`。
+- 远端原件 `research/housing/raw/berlin_2025_borough_completions_corrected_official.xlsx`，字段布局 `research/housing/qa/berlin_2025_corrected_borough_completions_schema.json`；下载及核验 [run 38043566484 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38043566484)。
+
+### B. 十二个行政区的两年住房竣工，全部四次州合计精确核验
+
+- 解析 `research/housing/build_berlin_borough_completions.py` 强制在官方更正文件中按 **12个行政区官方顺序与地名**逐项匹配，四列分别是：
+  1. **所有竣工住房**2025年：全柏林合计 **11,027套**；
+  2. 所有竣工住房2024年：全柏林合计 **15,362套**；
+  3. **新建建筑中的竣工住房**2025年：全柏林合计 **9,524套**；
+  4. 新建建筑中的竣工住房2024年：全柏林合计 **14,632套**。
+- **四个官方柏林全市总数=12个区逐项加和，四项差额均为零**，原表已纠错，故与被更正的旧版本不得交叉混用。
+- 完整数据 `topics/housing/data/berlin-2024-2025-borough-completions.json`，分析归档 `research/housing/data/berlin_2024_2025_12_borough_completions.csv`、审计 `research/housing/qa/berlin_2025_corrected_12_borough_completions_audit.json`；构建 [run 38043628840 PASS](https://github.com/1959124923wyz-sys/German-Map/actions/runs/38043628840)。
+- **口径禁止混用**：9,524为**所有新建建筑内的住宅**（包括非住宅建筑中建成的住房），而非严格“新建住宅建筑”内住宅；11,027包含既有建筑工程，也不等于简单加上新建值。柏林区级数据不能与北威州/巴伐利亚县级新住宅口径拼成全国2025统一竣工地图。
+- 典型不同建造进度2025区数据可在CSV直接比对：Treptow-Köpenick **1,891套**、Pankow **1,355套**、Lichtenberg **1,343套**（都是“所有竣工住房”2025年），未证明存在某特定住宅项目，只是区内总量。
+
+### C. 网页侧栏与QA
+
+- `topics/housing/index.html`、`topic.js` 独立添加隐藏折叠面板 `berlinBoroughCompletions`；仅点击柏林县级城市 `11000` 时显示柏林12行政区2025与2024全部竣工住房列表。其它州隐藏；原始官方来源和2026年更正注释放在展开面板内。
+- 仍然维持2025全国挂牌租金一个默认分级设色地图，不增加柏林12个虚假的县级图形、不创建新的地图上密集标记。
+- 浏览器测试 `topics/housing/tests/smoke_housing_browser.py` 已追加柏林“国家400县中的一个、侧栏12区表格”的实际桌面/手机交互断言。以最新 `housing-ui-smoke` GitHub Actions `completed/success` 为UI验收条件；**不以仅保存HTML/JS视为UI已验收**。
+
+### D. 恢复步骤和下一步
+
+- 本阶段完成后，从分支 `research/housing-crisis-20261010` 获取： `python research/housing/probe_berlin_borough_2025.py`，`python research/housing/build_berlin_borough_completions.py`，QA四控制值，浏览器回归。
+- 2025官方细节现覆盖**四个联邦州**（北威、巴伐利亚、勃兰登堡、柏林），共 **168/400个县级行政区**具备某一种**2025住宅竣工数据**，但**不是168县完全相同口径的新建住宅数据**。其中柏林是一个全国县、内部12行政区。
+- 其他12州2025年县级竣工、2026全国400县无住房者分类、全国县级真实家庭租金负担率仍需要持续研究。为了追求准确性，千万不能在数据库里将缺失值标为0，也不能用州总量分摊到各县。
