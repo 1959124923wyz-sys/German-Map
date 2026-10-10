@@ -49,8 +49,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research/finance/regional-expansion/derived/bkg2026/municipal_geometry_by_state/
-          git add research/finance/regional-expansion/derived/bkg2026/municipality_geometry_2026_audit.json research/finance/regional-expansion/derived/bkg2026/municipality_geometry_run_status.json || true
+          git add -A research/finance/regional-expansion/derived/bkg2026/
           if ! git diff --cached --quiet; then
             git commit -m "data(finance): stage 2026 real municipal boundaries 16 state chunks with QA"
             git pull --rebase origin research/finance-regional-expansion-20261010
