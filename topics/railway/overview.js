@@ -62,8 +62,8 @@ const CanvasLayer=L.Layer.extend({
    // when no September observation exists anywhere on that DB route.
    ctx.beginPath();
    for(const part of view.backbone.all)if(visible(part,v))drawPath(ctx,part,v);
-   ctx.strokeStyle=COLORS.green;ctx.globalAlpha=.28;
-   ctx.lineWidth=m.getZoom()<7?1:1.4;ctx.stroke();
+   ctx.strokeStyle=COLORS.green;ctx.globalAlpha=.6;
+   ctx.lineWidth=m.getZoom()<7?1.15:1.5;ctx.stroke();
    // Passenger-relevant infrastructure is the dominant continuous GREEN line.
    ctx.beginPath();
    for(const part of view.backbone.active)if(visible(part,v))drawPath(ctx,part,v);
@@ -166,7 +166,7 @@ function buildNetwork(){
 }
 function refreshBackbone(){
  if(!view.networkReady)return;
- const info=view.backbone.setActive(view.groups);
+ const info=view.backbone.setActive(view.groups,view.picker);
  view.backboneCoverage=info;
  view.observedLayer?.schedule();
 }
