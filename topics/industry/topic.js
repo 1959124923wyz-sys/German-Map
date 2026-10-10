@@ -61,7 +61,7 @@ function cleanCity(e){
 }
 function getCounty(e){
  if(e.eligible_factory_marker===false)return null;
- if(/^\\d{5}$/.test(e.county_ags||''))return app.features.find(f=>stateKey(f)===e.county_ags&&f.id===e.county_ags)||null;
+ if(/^\d{5}$/.test(e.county_ags||''))return app.features.find(f=>stateKey(f)===e.county_ags&&f.id===e.county_ags)||null;
  if(e.county_label||e.county_name)return findCounty(String(e.county_label||e.county_name),e.state_iso);
  const raw=cleanCity(e);
  if(!raw||e.eligible_factory_marker===false)return null;
@@ -211,7 +211,7 @@ async function start(){
  if(r1.events.length!==61||r2.events.length!==38||r4.events.length!==18||r5a.events.length!==10||r5b.events.length!==16)throw Error('事件档案数量异常');
  if(agsCrosswalk.features.length!==402||agsCrosswalk.canonical_ags_distinct!==400)throw Error('地区AGS对照表无效');
  const agsIds=new Set(counties.features.map(f=>f.id));
- if(agsIds.size!==402||[...agsIds].some(id=>!/^\\d{5}$/.test(id)))throw Error('县市AGS缺失/重复');
+ if(agsIds.size!==402||[...agsIds].some(id=>!/^\d{5}$/.test(id)))throw Error('县市AGS缺失/重复');
  app.agsRemap=agsCrosswalk.canonical_remaps;
  if(new Set(counties.features.map(stateKey)).size!==400)throw Error('现行县市AGS数量不符');
  app.features=counties.features;app.countyGeo=counties;app.metric=metric;
