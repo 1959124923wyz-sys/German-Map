@@ -18,6 +18,7 @@ TMP=Path('/tmp/finance08-2023')
 TMP.mkdir(exist_ok=True)
 URL='https://www.statistikportal.de/sites/default/files/2024-11/Integrierte_Schulden_der_Gemeinden_und_Gemeindeverbaende_2023_Tabellenband_0.xlsx'
 ARCHIVE=TMP/'integrated_2023_original.xlsx'
+PINNED_SHA256='af5b3e0ff66cd30f7566721028e57374bce2bffd1b1cb0fe3a870344b3bb53d0'
 TAG='{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'
 CODE=re.compile(r'^\d{5}$|^\d{9}$|^\d{12}$')
 SHEET=re.compile(r'^xl/worksheets/sheet(\d+)\.xml$')
@@ -32,6 +33,7 @@ def get():
  assert 4_000_000<len(data)<18_000_001,('unexpected 2023 official XLSX length',len(data))
  assert data[:2]==b'PK','source not OOXML workbook'
  sha=hashlib.sha256(data).hexdigest()
+ assert sha==PINNED_SHA256,'2023 source checksum changed; re-inspect before loading'
  ARCHIVE.write_bytes(data)
  write_json('source_2023_download.json',{'url':URL,'bytes':len(data),'sha256':sha,'source_type':'original_official_xlsx','verified_zip':True,'reference_year':2023,'publication_date':'2024-11-27','retained_binary':'GitHub Actions artifact, not committed as Git blob','published_map':False})
  return zipfile.ZipFile(ARCHIVE)
@@ -84,16 +86,18 @@ def main():
   sheets=sorted((n for n in names if SHEET.fullmatch(n)),key=lambda s:int(SHEET.fullmatch(s).group(1)))
   assert len(sheets)>5 and len(strings)>1000,('unexpected workbook layout',len(sheets),len(strings))
   details=[scan(z,name,strings) for name in sheets]
-  populated=[x for x in details if x['report_units']>100]
+  populated=[x for x in details if x['report_units']>0]
   tally=Counter()
   for d in populated:
    for r in d['by_type_state']:tally[r['type']]+=r['count']
+  assert len(populated)==13,'Expected 13 non-city states, including small Saarland tab'
+  assert sum(tally.values())==11896,('unexpected official 2023 unit count',sum(tally.values()))
   audit={'reference_year':2023,'sheet_count':len(sheets),'shared_strings':len(strings),
          'populated_sheets':len(populated),'source_url':URL,'report_units_candidate_total':sum(tally.values()),
          'candidate_unit_types':dict(tally),'status':'workbook_columns_inspected_not_harmonized',
          'warning':'Do not copy 2024 workbook column mapping into 2023 until sheet headers and denominator separately verified',
          'sheet_inspection':details}
   write_json('workbook_2023_structure_audit.json',audit)
-  assert sum(tally.values())>5000,'unexpectedly few 2023 official reporting entities'
+  assert tally=={'county_administration':294,'joint_administration':831,'municipality':10771},tally
   print('PASS: 2023 official XLSX inspected, candidate reporting rows',sum(tally.values()),'sheets',len(sheets))
 if __name__=='__main__':main()
