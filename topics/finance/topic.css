@@ -136,3 +136,68 @@
 .finance-loan-integrated-grid span{display:flex;flex-direction:column;gap:3px;padding:7px 8px;background:#21374a;border-radius:6px}
 .finance-loan-integrated-grid small{font-size:9px;color:#a7bdc8}
 .finance-loan-integrated-grid b{font-size:15px;color:#f2f7fb;font-variant-numeric:tabular-nums}
+
+/* 08 / compact state-first interaction: one persistent choropleth, one toggle. */
+.finance-workspace{grid-template-columns:minmax(0,1fr) minmax(350px,29vw)}
+.finance-controls{padding:14px 17px;background:#141e28;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.finance-event-toggle{display:flex;align-items:center;gap:10px;color:#eff5f9;font-size:13px;font-weight:650;cursor:pointer;min-width:0}
+.finance-event-toggle input{accent-color:#70b4e2;width:17px;height:17px;margin:0;flex:none;cursor:pointer}
+.finance-event-toggle small{font-size:10px;color:#93aabc;font-weight:400;white-space:nowrap}
+.finance-reset{padding:7px 10px;border-radius:7px;font-size:11px}
+.finance-summary{padding:19px!important;gap:0;background:linear-gradient(180deg,#111b25,#101720)}
+.finance-summary .safety-head{margin-bottom:18px}
+.finance-summary .safety-head strong{font-size:14px;font-weight:700}
+.finance-summary .safety-hint{font-size:11px}
+.finance-summary .area-name{font-size:22px;line-height:1.25;margin-bottom:6px}
+.finance-summary .area-metric{font-size:26px;font-weight:730;line-height:1.28;margin-bottom:6px;color:#f1f7fb}
+.finance-summary .finance-coverage{margin:0 0 18px;font-size:11px;color:#8ea6b6}
+.finance-map-caption{top:15px;left:68px;background:rgba(15,25,35,.91);padding:9px 13px}
+.finance-map-caption strong{font-size:13px}
+.finance-map-caption small{font-size:10px}
+.finance-map-wrap .legend{width:min(315px,calc(100% - 20px));padding:10px 13px}
+.finance-map-wrap .legend-title{font-size:11px}
+.finance-map-wrap .finance-legend-scale{margin-top:10px;margin-bottom:6px}
+.finance-map-wrap .finance-legend-labels{font-size:10px}
+.finance-district{border:1px solid #304658;border-radius:9px;padding:13px 12px;margin:1px 0 15px;background:#192734}
+.finance-district[hidden],.finance-event-panel[hidden],.finance-loan-drawer[hidden],.finance-drawer[hidden]{display:none!important}
+.finance-district-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.finance-district-head strong{font-size:12px}
+.finance-district-head small{font-size:10px;color:#9bafbf}
+.finance-district .finance-period{margin:0;display:flex;flex-direction:column;align-items:stretch;font-size:10.5px;gap:5px}
+.finance-district .finance-period select{width:100%;max-width:100%}
+.finance-district p{font-size:10px;color:#a5b6c2;line-height:1.45;margin:7px 0 0}
+.finance-event-panel{border-top:1px solid #314352;margin-top:12px;padding-top:7px;display:flex;flex-direction:column;min-height:0;flex:1}
+.finance-event-panel .finance-list-heading{border:0;padding:4px 0 3px;margin-bottom:0}
+.finance-event-panel .finance-list-heading strong{font-size:12px}
+.finance-event-hint{font-size:10px;color:#91a8b9;line-height:1.5;margin:3px 0 10px}
+.finance-event-panel .finance-case-list{max-height:40vh;flex:1 1 auto}
+.finance-case{padding:11px 5px}
+.finance-case-title{font-size:12px;line-height:1.3}
+.finance-case-preview{font-size:11px;color:#bad0de;line-height:1.45;margin-top:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.finance-case-meta{font-size:10px}
+.finance-detail{margin:5px 0 12px;max-height:34vh;padding:14px;font-size:12px}
+.finance-detail h3{font-size:13px}
+.finance-detail p,.finance-detail a{font-size:11px}
+.finance-detail details{border-top:1px solid #385064;margin-top:10px;padding-top:8px}
+.finance-detail details summary{cursor:pointer;color:#a6d1e9;font-size:11px}
+.finance-map-wrap .leaflet-tooltip.finance-event-tooltip{max-width:270px;white-space:normal;padding:10px 12px;background:#13222d;border-color:#5c8395}
+.finance-event-tooltip strong{display:block;font-size:12px;color:#f3f7fb;margin-bottom:5px}
+.finance-event-tooltip div{font-size:11px;color:#cedee9;line-height:1.5}
+.finance-event-tooltip small{display:block;margin-top:6px;font-size:9px;color:#94abb9}
+.finance-method summary{font-size:11px}
+.finance-method p{font-size:11px}
+footer{display:none}
+@media(max-width:960px){
+ .finance-workspace{display:block}
+ .finance-summary{padding:14px!important}
+ .finance-event-panel .finance-case-list{max-height:340px}
+ .finance-map-caption{left:60px}
+}
+@media(max-width:560px){
+ .finance-controls{padding:11px;gap:8px}
+ .finance-event-toggle{font-size:12px;gap:6px}
+ .finance-event-toggle small{font-size:9px}
+ .finance-summary .area-name{font-size:20px}
+ .finance-summary .area-metric{font-size:22px}
+ .finance-event-panel .finance-case-list{max-height:290px}
+}
