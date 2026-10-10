@@ -1,0 +1,7 @@
+{
+  "source": "BKG_VG250_2025",
+  "exit_code": 1,
+  "verified": false,
+  "job_notes": "Traceback (most recent call last):\n  File \"/home/runner/work/German-Map/German-Map/research/finance/regional-expansion/build_bkg2025_ags.py\", line 87, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"/home/runner/work/German-Map/German-Map/research/finance/regional-expansion/build_bkg2025_ags.py\", line 35, in main\n    assert len(names)==1,(candidates,names)\n           ^^^^^^^^^^^^^\nAssertionError: ([('vg250_vwg',), ('vg250_sta',), ('vg250_rbz',), ('vg250_pk',), ('vg250_li',), ('vg250_lan',), ('vg250_krs',), ('vg250_gem',), ('v_vg250_gem',), ('v_vg250_vwg',), ('v_vg250_krs',), ('v_vg250_rbz',), ('v_vg250_lan',), ('v_vg250_sta',), ('v_vg250_li',), ('v_vg250_pk',), ('v_vg250_f',), ('v_vz250_gem',)], ['vg250_krs', 'v_vg250_krs'])\n",
+  "status": "failed_do_not_map"
+}
