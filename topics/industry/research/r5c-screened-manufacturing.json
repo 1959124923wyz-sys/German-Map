@@ -4,8 +4,8 @@
     "cohort": "R5C",
     "date": "2026-10-10",
     "total": 12,
-    "sites": 12,
-    "research_only": 0,
+    "sites": 7,
+    "research_only": 5,
     "source": "Eurofound ERM individual evidence pages, filtered and dated",
     "excluded_duplicate": "ERM 204395 (B.PRO) is an alternative entry for the SAME Oberderdingen ENOXX 180-position industrial unit closure as ERM 204191; not a separate site event",
     "policy": "Potential closures, uncertain bankruptcies, non-manufacturing service offshore shifts, and unknown site-allocation group cuts are retained in research only, not mapped as factory decline."
