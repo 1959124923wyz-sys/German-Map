@@ -256,7 +256,16 @@ function mergeGroups(groups,graph,allObservations,config={}){
       candidates.push({right,bridge});
    }
    // Ambiguous continuation at a junction: do not choose a branch by chance.
-   if(candidates.length!==1){if(candidates.length>1)debug.ambiguous++;continue;}
+   if(candidates.length>1){
+    // Multiple branches are acceptable only when the official path to the
+    // closest continuation is distinctly shorter than all alternatives.
+    // Near-ties, parallel tracks and junction forks remain separate.
+    candidates.sort((a,b)=>a.bridge.km-b.bridge.km);
+    if(candidates[0].bridge.km>=candidates[1].bridge.km*.68){
+     debug.ambiguous++;continue;
+    }
+   }
+   if(!candidates.length)continue;
    debug.unique++;
    const {right,bridge}=candidates[0];
    if(prev.has(right.g))continue;
