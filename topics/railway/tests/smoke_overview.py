@@ -135,6 +135,28 @@ def run(browser,mobile=False):
             re4:sample.map(g=>({label:g.serviceName,count:g.members.length,percent:g.m.onTime}))};
         }""")
         print("Cross-infrastructure RE4 corridor audit:",re4,flush=True)
+        assert re4["joined"]>=1 and re4["groupCount"]<700
+        assert len(re4["re4"])==1 and re4["re4"][0]["label"]=="RE4"
+        assert re4["re4"][0]["count"]>=4
+        # Click Wustermark's short RE4 subsegment; the displayed detail must
+        # contain its longer service corridor, not an isolated 2-stop card.
+        picked_re4=page.evaluate("""() => {
+          const api=window.__RAILWAY_OVERVIEW__,map=api.getMap();
+          for(const item of api.getRendered().filter(x=>String(x.leg.route)==='6107' &&
+            /Wustermark|Elstal/.test(x.leg.from_station+' '+x.leg.to_station))){
+            const v=item.parts[0].xy;
+            const ll=map.unproject(L.point((v[0]+v[2])/2,(v[1]+v[3])/2),9);
+            api.clickPoint(ll);
+            const g=api.getSelected();
+            if(g?.serviceName==='RE4'&&g.members.some(x=>String(x.leg.route)==='6179'))
+              return {size:g.members.length,onTime:g.m.onTime};
+          }
+          return null;
+        }""")
+        assert picked_re4 and picked_re4["size"]>=4,picked_re4
+        assert "RE4" in page.locator("#detail h3").inner_text()
+        print("PASS Wustermark–Berlin RE4 pooled click:",picked_re4,flush=True)
+
 
     assert page.locator("#minimum").count()==0
     assert page.locator(".mini-stats").count()==0
