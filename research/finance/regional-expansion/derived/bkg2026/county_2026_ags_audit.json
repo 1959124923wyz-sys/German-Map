@@ -1,0 +1,21 @@
+{
+  "boundary_date": "2026-01-01",
+  "official_source_url": "https://daten.gdz.bkg.bund.de/produkte/vg/vg250_ebenen_0101/aktuell/vg250_01-01.utm32s.gpkg.ebenen.zip",
+  "official_md5": "912ebecfc58bade695cf31271f4e0e85",
+  "source_bytes": 70630747,
+  "source_sha256": "6b096eb4862b4eafda9294e425fb5a6d0e7773eb5815a4d4edc78b639ec2728f",
+  "source_polygon_rows": 434,
+  "official_2026_county_ags5": 401,
+  "official_2025_county_ags5": 400,
+  "new_2026_codes": [
+    "06415"
+  ],
+  "removed_2025_codes": [],
+  "hanau_2025_ags8": "06435014",
+  "hanau_2026_ags8": "06415000",
+  "2026_boundary_legal_source": "https://statistik.hessen.de/sites/statistik.hessen.de/files/2026-01/verz-2_26-01.pdf#page=26",
+  "status": "research_only_not_published",
+  "geometry_extracted": false,
+  "license": "© BKG (2026) dl-de/by-2-0",
+  "warning": "Never paint 2026 new Hanau under 2025 county boundary 06435; country fiscal values still require per-year entity normalization."
+}

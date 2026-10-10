@@ -1,0 +1,59 @@
+name: Finance 08 - 2025 Official BKG AGS Research
+on:
+  push:
+    branches: [research/finance-regional-expansion-20261010]
+    paths:
+      - 'research/finance/regional-expansion/build_bkg2025_ags.py'
+      - '.github/workflows/finance-bkg2025-ags.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: finance08-bkg2025-research
+  cancel-in-progress: false
+jobs:
+  verify-geography:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download checksum-verified official 2025 VG250 county boundaries and reconcile 2024 debt codes
+        id: bkg_verify
+        continue-on-error: true
+        run: |
+          set +e
+          python research/finance/regional-expansion/build_bkg2025_ags.py > /tmp/finance08_bkg_status.log 2>&1
+          result=$?
+          cat /tmp/finance08_bkg_status.log
+          mkdir -p research/finance/regional-expansion/derived/bkg2025
+          BKG_STATUS=$result python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path('research/finance/regional-expansion/derived/bkg2025/last_run_status.json')
+          log=Path('/tmp/finance08_bkg_status.log').read_text(encoding='utf-8',errors='replace')
+          code=int(os.environ['BKG_STATUS'])
+          p.write_text(json.dumps({'source':'BKG_VG250_2025','exit_code':code,'verified':code==0,
+              'job_notes':log[-2200:],'status':'verified' if code==0 else 'failed_do_not_map'},indent=2)+'\n',encoding='utf-8')
+          PY
+          exit $result
+      - name: Commit only research AGS, evidence and failure diagnostics; never website or main
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/finance/regional-expansion/derived/bkg2025/
+          if git diff --cached --quiet; then echo "No changed official geography indices"
+          else
+            git commit -m "data(finance): verify 2025 BKG district AGS and historical geometry gaps"
+            git pull --rebase origin research/finance-regional-expansion-20261010
+            git push origin HEAD:research/finance-regional-expansion-20261010
+          fi
+      - name: Assert BKG verification succeeded after saving diagnostics
+        if: always()
+        run: test "${{ steps.bkg_verify.outcome }}" = success

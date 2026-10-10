@@ -1,0 +1,2 @@
+change_id,reference_area,valid_from,old_ags8,new_ags8,old_parent_ags5,new_county_ags5,legal_change,source_url,source_page,source_status,geom_2025_compatible,notes_zh
+DE-HE-HANAU-2026,Hessen Hanau,2026-01-01,06435014,06415000,06435,06415,kreisangehoerig_to_kreisfrei,https://statistik.hessen.de/sites/statistik.hessen.de/files/2026-01/verz-2_26-01.pdf,PDF第26页_印刷第24页,official_state_statistics_verified,false,2025年县界包含哈瑙而2026年新建县辖层级为06415；财政历史按旧AGS保留不可回写到新县汇总

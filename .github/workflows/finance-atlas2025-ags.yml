@@ -1,0 +1,19 @@
+name: Finance 08 - Atlas 2025 AGS
+on:
+  push:
+    branches: [research/finance-regional-expansion-20261010]
+    paths:
+      - 'research/finance/regional-expansion/audit_atlas_2025_ags.py'
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python research/finance/regional-expansion/audit_atlas_2025_ags.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/finance/regional-expansion/derived/official_atlas_municipalities_2025_ags.csv research/finance/regional-expansion/derived/atlas_2025_ags_qa.json
+          git diff --cached --quiet || (git commit -m "data: audit nationwide 2025 municipality AGS and R13 identities" && git push origin HEAD:research/finance-regional-expansion-20261010)

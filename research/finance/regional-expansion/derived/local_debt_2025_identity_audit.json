@@ -1,0 +1,16 @@
+{
+  "as_of": "2026-10-10",
+  "count": 32,
+  "uniquely_matched": 32,
+  "unmatched": 0,
+  "ambiguous": 0,
+  "by_type": {
+    "county_ags5": 13,
+    "joint_administration_rs9": 1,
+    "municipality_ags8": 18
+  },
+  "special_alias": "Bad Homburg v. d. Höhe / SG Heeseberg",
+  "2025_boundary_checked": false,
+  "national_choropleth_eligible": 0,
+  "scope_comparable": false
+}

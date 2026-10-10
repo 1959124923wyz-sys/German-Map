@@ -1,0 +1,29 @@
+{
+  "reference_date": "2026-01-01",
+  "official_source_url": "https://daten.gdz.bkg.bund.de/produkte/vg/vg250_ebenen_0101/aktuell/vg250_01-01.utm32s.gpkg.ebenen.zip",
+  "source_sha256": "6b096eb4862b4eafda9294e425fb5a6d0e7773eb5815a4d4edc78b639ec2728f",
+  "official_municipality_polygon_rows": 11094,
+  "unique_official_municipality_ags8": 10939,
+  "2025_atlas_municipality_ags": 10949,
+  "2024_debt_municipality_ags": 10750,
+  "same_ags_2025_atlas_and_2026_bkg": 10938,
+  "atlas_2025_only_count": 11,
+  "bkg_2026_only_relative_to_atlas_count": 1,
+  "same_ags_2024_debt_and_2026_bkg": 10743,
+  "old_debt_2024_not_in_bkg2026_count": 7,
+  "old_debt_2024_not_in_bkg2026_sample": [
+    "06435014",
+    "07232089",
+    "07232096",
+    "16071038",
+    "16071042",
+    "16071055",
+    "16077003"
+  ],
+  "new_2026_hanau_in_municipality_geometry": true,
+  "old_hanau_06435014_in_municipality_geometry": false,
+  "municipal_geometry_extracted": false,
+  "status": "research_only_not_map_ready",
+  "license": "© BKG (2026) dl-de/by-2-0",
+  "warning": "A municipality-level source unit must be assigned to its exact year; old debt values cannot be silently remapped across mergers and the 2026 Hanau boundary reform."
+}

@@ -1,0 +1,61 @@
+name: Finance 08 - Official bulk acquisition (research only)
+on:
+  pull_request:
+    paths:
+      - 'research/finance/regional-expansion/**'
+      - '.github/workflows/finance-source-acquire.yml'
+permissions:
+  contents: read
+jobs:
+  acquire-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Acquire official finance sources (no commits or deployment)
+        run: |
+          python3 - <<'PY'
+          import urllib.request, zipfile, json, pathlib, hashlib, time
+          out=pathlib.Path('/tmp/finance08-official-raw')
+          out.mkdir(parents=True,exist_ok=True)
+          sources=[
+            ('integrierte_schulden_2024.xlsx','https://www.statistikportal.de/sites/default/files/2025-12/Integrierte_Schulden_der_Gemeinden_und_Gemeindeverbaende_2024_Tabellenband_0.xlsx','xlsx'),
+            ('atlas_ha26_municipality_2024.csv','https://deutschlandatlas.bund.de/fileadmin/Downloaddateien/HA26/Deutschlandatlas_GEM1224_HA26.csv','csv'),
+            ('atlas_ha26_county_2023.csv','https://deutschlandatlas.bund.de/fileadmin/Downloaddateien/HA26/Deutschlandatlas_KRS1222_HA26.csv','csv')
+          ]
+          audit=[]
+          for name,url,kind in sources:
+              item={'name':name,'source_url':url,'format':kind,'status':'failed'}
+              for attempt in range(2):
+                  try:
+                      req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 GermanMapResearch/1.0','Accept':'*/*'})
+                      with urllib.request.urlopen(req,timeout=70) as reply:
+                          data=reply.read(50000000)
+                          item['http_status']=reply.status
+                          item['content_type']=reply.headers.get('Content-Type','')
+                      if kind=='xlsx':
+                          file=out/name
+                          file.write_bytes(data)
+                          if not zipfile.is_zipfile(file): raise ValueError('non-xlsx response')
+                          with zipfile.ZipFile(file) as z:
+                              if 'xl/workbook.xml' not in z.namelist(): raise ValueError('not an Excel workbook')
+                      else:
+                          if len(data)<1000 or data[:100].lower().lstrip().startswith((b'<!doctype',b'<html',b'<?xml')): raise ValueError('short/html/error response')
+                          (out/name).write_bytes(data)
+                      item.update(status='verified_raw_download',size_bytes=len(data),sha256=hashlib.sha256(data).hexdigest())
+                      break
+                  except Exception as exc:
+                      item['error']=str(exc)[:240]
+                      (out/name).unlink(missing_ok=True)
+                      time.sleep(2)
+              audit.append(item)
+          (out/'source_download_audit.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2)+'\n')
+          for item in audit: print(item['name'],item['status'],item.get('size_bytes',0),item.get('error',''))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: finance08-official-raw-research
+          path: /tmp/finance08-official-raw/
+          retention-days: 14
+          if-no-files-found: warn

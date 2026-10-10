@@ -1,0 +1,6 @@
+{
+  "exit_code": 0,
+  "verified": true,
+  "tail_log": "PASS: 2023 official XLSX inspected, candidate reporting rows 11896 sheets 19\nPASS: official 2023 integrated debt 13 states 11896 stable report codes 11867\nPASS 2023 national integrated debt: 11,896 units; 10,771 municipalities; 294 county budgets; 831 joint administrations\nPASS 2023/2024 immutable region key overlap 11,867; 2023-only 29; 2024-only 7 (not a debt-level comparison)\n",
+  "status": "all_tests_passed"
+}
