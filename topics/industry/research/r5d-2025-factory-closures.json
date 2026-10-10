@@ -8,7 +8,9 @@
     "research_only": 1,
     "research_focus": "Systematic gap-filling Eurofound 2025 German factories, no duplicates of R1-R5C",
     "nonadditivity": "Never sum a multi-site total with individual site rows. Cross-site DS Smith 500 captured once in separate nonmap memo.",
-    "warning": "Dates represent dated announcements; when closure scheduled 2025/26 but not confirmed by later evidence, implementation remains an announcement."
+    "warning": "Dates represent dated announcements; when closure scheduled 2025/26 but not confirmed by later evidence, implementation remains an announcement.",
+    "county_ags_assigned": 17,
+    "county_ags_source": "German-Map/data/germany-counties.geojson feature.id plus individually sourced Landkreis/Stadtkreis. Historic district remaps handled by published AGS crosswalk."
   },
   "events": [
     {
@@ -31,7 +33,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "08215",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_BSH_NAU",
@@ -53,7 +57,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "12063",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_STAE_NEU",
@@ -75,7 +81,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "09373",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_STAE_SUG",
@@ -97,7 +105,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "09575",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_DSS_PAD",
@@ -119,7 +129,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "ds_smith_germany_five_sites_500",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "05774",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_DSS_HOV",
@@ -141,7 +153,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "ds_smith_germany_five_sites_500",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "05774",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_DSS_MAN",
@@ -163,7 +177,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "ds_smith_germany_five_sites_500",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "08222",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_DSS_END",
@@ -185,7 +201,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "ds_smith_germany_five_sites_500",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "08316",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_DSS_DON",
@@ -207,7 +225,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "ds_smith_germany_five_sites_500",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "09779",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_RW_POC",
@@ -229,7 +249,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "09275",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_DAN_OCH",
@@ -251,7 +273,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "Fulda, Germany",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "09679",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_NHY_LUE",
@@ -273,7 +297,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "05962",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_OIG_BER",
@@ -295,7 +321,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "14625",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_UPM_ETT",
@@ -317,7 +345,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "07137",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_MBG_HOH",
@@ -339,7 +369,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "14524",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_MBI_BIT",
@@ -361,7 +393,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "15082",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_MEH_FUL",
@@ -383,7 +417,9 @@
       "eligible_factory_marker": true,
       "shared_program_id": "",
       "location_precision": "county_reference_pending_factory_geocode",
-      "batch": "R5D"
+      "batch": "R5D",
+      "county_ags": "06631",
+      "county_ags_assignment": "matched_county_name_and_official_5digit_AGS_to_current_county_2026-10-10; site_reference_not_factory_gate"
     },
     {
       "event_id": "R5D_DSS_MULTI",
