@@ -1,0 +1,18 @@
+{
+  "source": "https://download.statistik-berlin-brandenburg.de/f04f3ade7f98cd05/090fd40a76ac/pressemitteilung-tabelle-59_2026.xlsx",
+  "source_is_corrected": true,
+  "borough_count": 12,
+  "official_four_berlin_totals": [
+    11027,
+    15362,
+    9524,
+    14632
+  ],
+  "borough_four_totals": [
+    11027,
+    15362,
+    9524,
+    14632
+  ],
+  "note": "Berlin Bezirke are subcounty; do not generate false extra county polygons/AGS or combine new-build with all-measures."
+}
