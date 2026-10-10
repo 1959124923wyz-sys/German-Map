@@ -97,11 +97,11 @@ def read_official(raw: bytes, vintage: str):
         # The first source field is the official territorial key; do not use
         # a loosely matched five-digit substring of a description.
         leading = fields[0].lstrip("\ufeff")
-        m = re.fullmatch(r"(\d{5})(?:\s+(.+))?", leading)
+        m = re.fullmatch(r"(\d{5,8})(?:\s+(.+))?", leading)
         if not m:
             if len(sample_bad) < 5: sample_bad.append([line, row[:3]])
             continue
-        ags = m.group(1)
+        ags = (m.group(1).zfill(8)[:5] if len(m.group(1)) > 5 else m.group(1))
         name = (fields[1] if len(fields) > 1 else "") or (m.group(2) or "")
         if ags in result:
             raise ValueError(f"Duplicated AGS {ags} in {vintage}, lines include {line}")
