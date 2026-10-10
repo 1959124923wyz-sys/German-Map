@@ -83,7 +83,7 @@ assert.match(js,/COUNTY_HINTS/);
 assert.match(js,/isMajor/);
 assert.match(js,/source_url/);
 assert.match(js,/county-employment.json/);
-assert.match(js,/String\(feature.id\|\|''\)/,'Official employment metric must use AGS, not state-name key');
+assert.match(js,/String\(stateKey\(feature\)\|\|''\)/,'Official employment must use canonical AGS after historical mergers');
 assert.match(js,/r4-events-and-updates.json/);
 assert.match(js,/r5a-eurofound-sites.json/);
 assert.match(js,/r5b-manufacturing-cases.json/);
