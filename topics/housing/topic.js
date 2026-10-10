@@ -29,7 +29,8 @@
  function ags(v){return String(v??'').padStart(5,'0')}
  function featureId(f){return ags(f.id??f.properties?.id)}
  function metricValue(id,key=metric){const d=byid.get(id);return isNum(d?.[key])?d[key]:null}
- function stateId(f){return String(f.properties?.id??f.id??'').padStart(2,'0')}
+ const STATE_AGS=Object.freeze({'DE-SH':'01','DE-HH':'02','DE-NI':'03','DE-HB':'04','DE-NW':'05','DE-HE':'06','DE-RP':'07','DE-BW':'08','DE-BY':'09','DE-SL':'10','DE-BE':'11','DE-BB':'12','DE-MV':'13','DE-SN':'14','DE-ST':'15','DE-TH':'16'});
+ function stateId(f){const raw=String(f.properties?.id??f.id??'');return STATE_AGS[raw]||(/^[0-9]{1,2}$/.test(raw)?raw.padStart(2,'0'):'')}
  function selectedRegion(){
   if(selectedCounty){const r=byid.get(selectedCounty);return {title:r?.name||selectedCounty,scope:'county',ids:[selectedCounty]}}
   if(focusState){
