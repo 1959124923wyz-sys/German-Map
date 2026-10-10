@@ -125,6 +125,7 @@
     const totalCountyCases = [...stateStatistics.values()].reduce((sum, v) => sum + v.cases, 0);
     const container = L.layerGroup().addTo(map);
     const isStandalone = Boolean(el('drug-map'));
+    let lastBoardState = null;
 
     function renderRegionNews(name) {
       const list=el('region-news-list'),all=el('region-news-all');
@@ -169,6 +170,18 @@
       const board = el('region-navigator'), national = el('national-drug-summary');
       const stats = stateStatistics.get(name);
       if (!board || !national || !stats) return;
+      // A new state opens as a clean summary, without carrying over
+      // expanded long lists from a previously selected state. Moving among
+      // counties in the same state preserves user-opened drawers.
+      if (lastBoardState !== name) {
+        for (const id of ['region-county-details','region-news','region-evidence','region-interpretation']) {
+          const details = el(id);
+          if (details) details.open = false;
+        }
+        lastBoardState = name;
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) sidebar.scrollTop = 0;
+      }
       board.hidden = false;
       national.hidden = true;
       const countyMode = Boolean(county);
@@ -189,6 +202,7 @@
       const change = countyMode ? parseChange(county.drug_crime.change) : null;
       const trend = el('region-change');
       if (trend) {
+        trend.hidden = !countyMode;
         trend.classList.toggle('is-rising',countyMode && change !== null && change > 0);
         trend.classList.toggle('is-falling',countyMode && change !== null && change < 0);
         trend.textContent = countyMode
@@ -260,6 +274,7 @@
       if (feature) renderState(feature);
     }
     function resetRegion() {
+      lastBoardState = null;
       selectedCounty = null;
       selectedState = null;
       if (selectedCountyLayer && counties) counties.resetStyle(selectedCountyLayer);
@@ -271,7 +286,7 @@
       const regionNewsList=el('region-news-list');if(regionNewsList)regionNewsList.replaceChildren();
       window.GermanMapDrugNews?.setStateFilter?.('all');
       text('map-guide-title','警方登记毒品案件 · 2025');
-      text('map-guide-desc','单击州查看汇总；点击“查看县市”或放大地图后，可以点选具体县市。');
+      text('map-guide-desc','点击联邦州或县市查看详细数据');
       map.fitBounds(NATION_BOUNDS,{padding:[13,13],animate:false});
     }
     function renderCounty(rec, feature) {

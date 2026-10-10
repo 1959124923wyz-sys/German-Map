@@ -7,7 +7,7 @@
 <title>德国毒品问题地图｜German-Map</title>
 <meta name="description" content="2025德国县级毒品犯罪登记案件地图。数据来自BKA PKS县级统计的公开镜像，明确区分警方记录与毒品消费。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="topic.css?v=clean1">
+<link rel="stylesheet" href="topic.css?v=clean2">
 </head>
 <body>
 <header class="topbar">
@@ -28,7 +28,7 @@
 <main class="workspace">
   <section class="map-area" aria-label="德国毒品犯罪分布交互式地图">
     <div id="drug-map"></div>
-    <div class="map-shade"><strong id="map-guide-title">警方登记毒品案件 · 2025</strong><small id="map-guide-desc">单击州查看汇总；点击“查看县市”或放大地图后，可以点选具体县市。</small></div>
+    <div class="map-shade"><strong id="map-guide-title">警方登记毒品案件 · 2025</strong><small id="map-guide-desc">点击联邦州或县市查看详细数据</small></div>
     <div class="legend" id="legend"><div class="legend-title" id="legend-title">毒品违法案件 / 每10万人</div><div id="legend-data">读取中…</div></div>
     <section class="state-flyout" id="wastewater-flyout" hidden aria-live="polite">
       <div class="heading"><div><h3 id="wastewater-city">—</h3><div class="label">EUDA / SCORE · 2025 · 检测站点</div></div><button id="close-wastewater" type="button" aria-label="关闭污水检测详情">×</button></div>
@@ -39,8 +39,8 @@
     </section>
   </section>
   <aside class="sidebar">
-    <h2>德国毒品犯罪分布</h2>
-    <p class="intro">警方登记的违法案件，不等于吸毒人口；大麻相关案件未全部排除。</p>
+    <h2>德国毒品问题</h2>
+    <p class="intro">警方登记案件、城市污水检测与近期通报</p>
     <div class="tabset" role="group" aria-label="专题数据类别">
       <button type="button" class="selected" id="drugs-tab-crime" aria-current="true">违法案件</button>
       <button type="button" id="drugs-tab-wastewater" aria-current="false">消费检测</button>
@@ -65,28 +65,41 @@
       </div>
       <div class="metadata" id="region-completeness">—</div>
       <div id="region-change" class="compare-line" aria-live="polite">年度变化：—</div>
-      <p id="region-compare-note" class="note region-compare-note"></p>
-      <div class="row"><h4 id="region-list-heading" class="section-title">州内县市</h4><span id="region-subtitle" class="subtle-note"></span></div>
-      <ol class="district-list regional-counties" id="region-county-list"></ol>
-      <p id="region-footnote" class="note"></p>
+      <details id="region-county-details" class="drug-drawer">
+        <summary>查看州内县市 <span id="region-subtitle" class="subtle-note"></span></summary>
+        <div class="drawer-body">
+          <h4 id="region-list-heading" class="section-title">州内县市</h4>
+          <ol class="district-list regional-counties" id="region-county-list"></ol>
+          <p id="region-footnote" class="note"></p>
+        </div>
+      </details>
       <details id="region-evidence" class="region-evidence">
         <summary id="region-evidence-head">2025年州级补充资料 · 加载中</summary>
         <div id="region-evidence-body" class="region-evidence-body">
           <p class="note">仅使用带来源的州级统计，暂无数据的州不会推算。</p>
         </div>
       </details>
-      <div id="region-news" class="region-news" aria-label="所选州的相关通报">
-        <div class="row"><h4 class="section-title">本州近期相关通报</h4><button type="button" class="secondary-button" id="region-news-all">查看全部</button></div>
-        <ol id="region-news-list" class="region-news-list"><li class="note">正在读取已核实来源…</li></ol>
-        <p class="note">新闻为选取的公开通报，按州关联；不代表全部毒品事件。</p>
-      </div>
-      <div class="source-links"><a id="region-original-source" target="_blank" rel="noopener noreferrer" hidden>查看县市原始统计 ↗</a></div>
+      <details id="region-news" class="drug-drawer region-news" aria-label="所选州的相关通报">
+        <summary>本州近期相关通报</summary>
+        <div class="drawer-body">
+          <div class="row"><span class="subtle-note">仅收录已公开的部分通报</span><button type="button" class="secondary-button" id="region-news-all">查看全部</button></div>
+          <ol id="region-news-list" class="region-news-list"><li class="note">正在读取已核实来源…</li></ol>
+          <p class="note">新闻为选取的公开通报，不代表全部毒品事件。</p>
+        </div>
+      </details>
+      <details id="region-interpretation" class="drug-drawer">
+        <summary>地区统计口径</summary>
+        <div class="drawer-body"><p id="region-compare-note" class="note region-compare-note"></p>
+          <div class="source-links"><a id="region-original-source" target="_blank" rel="noopener noreferrer" hidden>查看县市原始统计 ↗</a></div>
+        </div>
+      </details>
     </div>
     <div id="national-drug-summary">
     <div class="metricbox wide">
       <div class="metricvalue">164,991</div>
       <div class="metriclabel">BKA 2025全国 Rauschgiftkriminalität 登记案件（独立全国指标，与下方县级指标不直接等同）</div>
     </div>
+    <details id="national-extras" class="drug-drawer"><summary>全国补充指标 <span>死亡、物质分类及覆盖范围</span></summary><div class="drawer-body">
     <p class="national-health-summary">2025年全国登记毒品相关死亡 <strong>2,150人</strong> · <a href="https://www.bundesdrogenbeauftragter.de/presse/detail/jeder-vierte-drogentote-ist-unter-30-jahre/" target="_blank" rel="noopener noreferrer">联邦官方年度通报 ↗</a>（健康统计，非犯案数）</p>
     <div class="statgrid">
       <div class="metricbox"><div class="metricvalue">42,909</div><div class="metriclabel">2025年大麻及制品相关警方案件（全国，BKA分类）</div></div>
@@ -97,15 +110,19 @@
       <div class="metricbox"><div class="metricvalue" id="highest-value">—</div><div class="metriclabel" id="highest-name">县市最高登记率／10万人</div></div>
     </div>
     <div class="metadata" id="status" role="status">正在读取专题数据…</div>
-    <div class="row"><h3 class="section-title" id="rank-heading">全国县市高登记率</h3><button type="button" class="secondary-button" id="reset-map">全国视图</button></div>
+    </div></details>
+    <div class="drug-national-hint">德国 · 全国 <small>点击联邦州查看地区详情</small></div>
+    <details id="national-states" class="drug-drawer"><summary>各州汇总与排名 <span>16个联邦州</span></summary><div class="drawer-body">
+    <div class="row"><h3 class="section-title" id="rank-heading">各州案件汇总</h3><button type="button" class="secondary-button" id="reset-map">全国视图</button></div>
     <div class="region-list-section">
       <div class="row"><h3 class="section-title">16个州 · 毒品案件汇总</h3><span class="subtle-note">按案件总数排序</span></div>
       <p class="note">依据400条县级记录汇总，不是官方州级按物质分类。选中任意州可查看其下全部县市。</p>
       <ol class="district-list state-index-list" id="state-index-list"></ol>
     </div>
-    <div class="barline"></div>
-    <ol class="district-list" id="top-list"></ol>
-    <div class="barline"></div>
+    </div></details>
+    <details id="national-counties" class="drug-drawer"><summary>全国县市高登记率 <span>前12个地区</span></summary>
+      <div class="drawer-body"><ol class="district-list" id="top-list"></ol></div>
+    </details>
     <details class="drug-customs">
       <summary>2025年德国海关毒品查获量 · 按物质分类</summary>
       <table aria-label="德国海关2024年和2025年查获毒品重量，单位千克">
@@ -121,8 +138,8 @@
       <p class="note">单位：千克。仅德国海关查获量，不包括所有警方缴获，不等于交易规模或实际消费量。跨年变化尤其受单笔大宗查获影响，不能直接当作流行趋势。</p>
       <div class="source-links"><a href="https://www.bundesfinanzministerium.de/Monatsberichte/Ausgabe/2026/06/Inhalte/Kapitel-2-Analysen/2-2-zoll-jahresbilanz-2025.html" target="_blank" rel="noopener noreferrer">德国联邦财政部 · 海关2025年年度总结 ↗</a></div>
     </details>
-    <div class="barline"></div>
-    <div class="warning">⚠️ 2024年4月大麻部分合法化改变了警方登记案件的法律定义；不能据2023—2025年登记量下降直接推断吸毒减少。案件数量也受执法强度、检查地点及通报行为影响。</div>
+    <details class="drug-drawer" id="national-method"><summary>数据来源与统计口径</summary><div class="drawer-body">
+    <div class="warning">2024年4月大麻法律调整改变警方登记口径；案件变化不等于吸毒人口变化。登记数也受执法与报案行为影响。</div>
     <details class="compact-method"><summary>数据口径与来源</summary><p class="note">全国县级毒品案件使用第三方公开页面转录的BKA PKS 2025县级T01数据，页面保留原始县级来源URL。全国164,991起为BKA独立统计的“Rauschgiftkriminalität”，不可与县级镜像指标简单相加或作精确核对。灰色区域表示数据不可用，不表示没有犯罪。</p></details>
     <div class="source-links">
       <a href="https://www.bundesdrogenbeauftragter.de/presse/detail/organisierte-kriminalitaet-im-wandel/" target="_blank" rel="noopener noreferrer">BKA毒品形势报告（官方公告）↗</a>
@@ -130,11 +147,12 @@
       <a href="https://kriminalitaets-karte.de/kriminalitaet/" target="_blank" rel="noopener noreferrer">县级公开镜像 ↗</a>
       <a href="https://www.euda.europa.eu/publications/pods/waste-water-analysis_de" target="_blank" rel="noopener noreferrer">EUDA污水检测 ↗</a>
     </div>
+    </div></details>
     </div>
     </div>
     <div id="drugs-wastewater-content" hidden>
       <h3 class="section-title">2025年城市污水检测 · EUDA/SCORE</h3>
-      <p class="intro">在德国13个参与检测的站点显示污水药物残留。每次切换一种物质；点位不是整座城市的消费量。</p>
+      <p class="intro">德国13个参与站点 · 按物质切换</p>
       <label class="wastewater-label" for="wastewater-substance">选择检测物质</label>
       <select id="wastewater-substance" class="wastewater-select">
         <option value="cannabis">大麻 · THC-COOH</option>
@@ -145,25 +163,22 @@
         <option value="ketamine">氯胺酮 · Ketamine</option>
         <option disabled>海洛因 · 无可靠专属污水标志物</option>
       </select>
-      <div class="statgrid">
-        <div class="metricbox"><div class="metricvalue" id="wastewater-sites">—</div><div class="metriclabel">本物质有数据的检测站</div></div>
+      <div class="metricbox wide"><div class="metricvalue" id="wastewater-sites">—</div><div class="metriclabel">当前物质有数据的检测站点数</div></div>
+      <details id="wastewater-rank-details" class="drug-drawer"><summary>检测站点与排名 <span>点击查看各站数据</span></summary><div class="drawer-body">
         <div class="metricbox"><div class="metricvalue" id="wastewater-peak">—</div><div class="metriclabel" id="wastewater-peak-city">本组站点最高检测值</div></div>
-      </div>
-      <div class="metadata" id="wastewater-status" role="status">切换后读取 EUDA 官方数据…</div>
-      <div class="row"><h3 class="section-title">污水检测站点（按本物质排序）</h3><button type="button" id="wastewater-fit" class="secondary-button">显示全部站点</button></div>
-      <ol class="district-list" id="wastewater-rank"></ol>
-      <div class="barline"></div>
-      <div class="warning">⚠️ 这是污水中药物或代谢物的残留负荷，单位为mg/每1000人/每天。零表示低于定量限，缺失不等于零。不同物质之间不能直接比较数值大小。</div>
+        <div class="metadata" id="wastewater-status" role="status">切换后读取 EUDA 官方数据…</div>
+        <div class="row"><span class="subtle-note">按本物质排序</span><button type="button" id="wastewater-fit" class="secondary-button">显示全部站点</button></div>
+        <ol class="district-list" id="wastewater-rank"></ol>
+      </div></details>
+      <details class="compact-method"><summary>污水检测口径说明</summary><div class="warning">这是污水中药物或代谢物的残留负荷，单位mg/每1000人/天，不代表吸毒人口。低于定量限与缺失不可混淆，不同物质不可直接比较。</div></details>
       <details class="compact-method"><summary>数据口径与来源</summary><p class="note">2025年实测点，2026年发布。站点坐标来自EUDA污水处理设施信息表，部分点是多处理厂的汇总。此数据未根据代谢排泄系数换算为实际消费量、吸毒人数或使用比例。海洛因因缺乏稳定特异性指标暂不设此图层。</p></details>
       <div class="source-links"><a href="https://www.euda.europa.eu/publications/pods/waste-water-analysis_de" target="_blank" rel="noopener noreferrer">EUDA原始数据与方法 ↗</a></div>
     </div>
     <section id="drugs-news-content" hidden aria-label="德国近期毒品事件通报">
       <div class="row"><h3 class="section-title">近期毒品相关通报</h3><span class="subtle-note" id="drug-news-updated">近90天</span></div>
-      <p class="intro">警方公开通报的贩毒、查获、非法生产与部分毒品中毒事件；另列全国死亡统计公告。不是所有实际发生的案件。</p>
-      <div class="statgrid">
-        <div class="metricbox"><div class="metricvalue" id="drug-news-count">—</div><div class="metriclabel">当前筛选的公开通报</div></div>
-        <div class="metricbox"><div class="metricvalue" id="drug-news-mapped">—</div><div class="metriclabel">可定位到城市的通报</div></div>
-      </div>
+      <p class="intro">仅展示收录的公开通报，不等于实际案件总数</p>
+      <div class="metricbox wide"><div class="metricvalue" id="drug-news-count">—</div><div class="metriclabel">当前筛选的公开通报</div></div>
+      <div class="drug-quiet-metadata"><span id="drug-news-mapped">—</span> 条可定位到城市</div>
       <div class="news-filters">
         <label for="drug-news-type">事件类别</label>
         <select id="drug-news-type">

@@ -260,3 +260,80 @@ button:disabled{cursor:not-allowed}
 .compact-method{margin:7px 0;border:1px solid #344353;border-radius:7px;background:#17232c;color:#9fb8a9;font-size:10px}
 .compact-method>summary{cursor:pointer;padding:6px 9px;font-size:10px;list-style:revert}
 .compact-method .note{margin:0;padding:0 10px 8px;line-height:1.55}
+
+
+/* Finance-style information hierarchy: map first, one primary value,
+   regional facts on selection; research lists stay available on demand. */
+.map-shade{left:68px;top:15px;padding:9px 13px;max-width:min(325px,calc(100% - 145px));box-shadow:0 4px 14px #0004}
+.map-shade strong{font-size:12px;line-height:1.35}
+.map-shade small{font-size:10px;line-height:1.4}
+.legend{left:15px;bottom:13px;padding:11px 12px;min-width:210px;box-shadow:0 4px 14px #0004}
+.legend-title{margin-bottom:5px}
+.legend-gradient{height:9px}
+.legend-info{font-size:9px;margin-top:5px}
+.sidebar{padding:18px 19px 18px}
+.sidebar h2{margin:0 0 3px;font-size:19px;font-weight:740}
+.sidebar>.intro{font-size:10.5px;margin:0 0 14px;color:#8fa7b8}
+.tabset{margin:0 0 17px;gap:6px}
+.tabset button{padding:9px 3px;border-radius:7px}
+.metricbox.wide{margin:0 0 10px;padding:15px 14px;background:linear-gradient(140deg,#182b27,#14212a)}
+.metricbox.wide .metricvalue{font-size:29px;line-height:1.3}
+.metricbox.wide .metriclabel{font-size:11px;margin-top:5px}
+.drug-national-hint{padding:11px 2px 17px;font-size:16px;font-weight:740;color:#eff4f7}
+.drug-national-hint small{display:block;color:#8da5b6;font-size:11px;font-weight:400;margin-top:5px}
+.drug-drawer{margin:0;border-top:1px solid #2c3b47;background:transparent;color:#bbcbd6}
+.drug-drawer>summary{display:flex;align-items:center;gap:7px;list-style:none;cursor:pointer;padding:12px 3px;color:#deebf3;font-size:11px;font-weight:690;line-height:1.35}
+.drug-drawer>summary::-webkit-details-marker{display:none}
+.drug-drawer>summary::marker{content:""}
+.drug-drawer>summary:before{content:"›";font-size:17px;line-height:1;font-weight:400;color:#93b0c0;flex:0 0 auto}
+.drug-drawer[open]>summary:before{content:"⌄"}
+.drug-drawer>summary span{font-size:9px;font-weight:400;color:#8fa5b5;margin-left:auto;text-align:right}
+.drug-drawer>summary:hover{color:#fff}
+.drug-drawer>summary:focus-visible{outline:2px solid #7fcaa7;outline-offset:2px}
+.drug-drawer>.drawer-body{padding:1px 4px 13px}
+.drug-drawer .region-list-section{margin:4px 0 0}
+.drug-drawer .region-list-section .note{font-size:10px}
+.drug-drawer .metadata{margin:7px 0 12px}
+.drug-drawer .statgrid{margin:7px 0}
+.drug-drawer .metricvalue{font-size:19px}
+.drug-drawer .metriclabel{font-size:10px}
+.drug-drawer .warning{padding:9px;margin:4px 0 8px;font-size:10px}
+.drug-drawer .source-links{margin:9px 0}
+#national-states .state-index-list{max-height:245px}
+#national-extras .national-health-summary{margin:8px 0}
+#national-extras .metricbox{padding:9px}
+#national-counties .district-list{max-height:300px;overflow-y:auto}
+.region-navigator{padding:0;margin:0;background:transparent;border:0;border-radius:0}
+.region-breadcrumb{margin:2px 0 10px}
+.region-navigator>.row{margin:0 0 12px}
+.region-navigator>.statgrid{margin:0 0 10px}
+.region-navigator>.statgrid .metricbox{padding:12px 10px}
+.region-navigator>.statgrid .metricvalue{font-size:21px}
+.region-navigator>.metadata{margin:0 0 12px;line-height:1.55}
+.region-navigator>.compare-line{border:0;background:transparent;margin:4px 0 12px;padding:0;font-size:11px}
+#region-change[hidden]{display:none!important}
+.region-navigator .region-news{margin:0;padding:0;border-top:1px solid #2c3b47}
+.region-navigator .region-news-list{max-height:245px;overflow-y:auto}
+.region-navigator .region-evidence{background:transparent;border:0;border-top:1px solid #2c3b47;border-radius:0;margin:0;padding:0}
+.region-navigator .region-evidence summary{font-size:11px;font-weight:690;color:#dce9f0;padding:12px 3px}
+.region-navigator .region-evidence-body{padding:5px 4px 12px}
+.region-navigator .region-county-details .regional-counties{max-height:255px}
+#region-county-details .section-title{font-size:10px;color:#92acbc;margin:5px 0}
+#drugs-wastewater-content .intro,#drugs-news-content .intro{margin:5px 0 14px;font-size:10.5px}
+#drugs-wastewater-content>.section-title,#drugs-news-content .section-title{font-size:13px}
+#drugs-wastewater-content .wastewater-label{margin-top:13px}
+.drug-quiet-metadata{color:#95aabd;font-size:10px;margin:0 0 14px}
+#drugs-news-content .news-headline-row{margin-top:10px}
+#drugs-news-content .drug-news-list{margin-top:7px}
+@media(max-width:940px){
+  .sidebar{padding:15px 15px 18px}
+  .map-shade{left:60px;top:10px;max-width:calc(100% - 120px)}
+}
+@media(max-width:560px){
+  .map-shade{padding:8px 9px;max-width:calc(100% - 73px)}
+  .sidebar{padding:14px 12px 18px}
+  .tabset{margin-bottom:14px}
+  .drug-drawer>summary span{max-width:48%}
+  .metricbox.wide .metricvalue{font-size:26px}
+  .legend{left:9px;bottom:9px}
+}
