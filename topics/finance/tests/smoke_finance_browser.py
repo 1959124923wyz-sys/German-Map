@@ -54,8 +54,8 @@ def verify(browser,mobile=False):
     page.locator("#loanDrawer summary").click()
 
     city=page.evaluate("window.GermanFinance08Data.cities[0]")
-    page.evaluate(f"{api}.selectCounty(arguments[0])",city["id"])
-    assert city["id"] not in page.locator("#areaName").inner_text() or page.locator("#metricValue").inner_text()
+    page.evaluate("(id)=>window.__FINANCE_UI__.selectCounty(id)",city["id"])
+    assert page.locator("#areaName").inner_text() not in ("德国 · 全国","莱茵兰-普法尔茨")
     assert "欧元/人" in page.locator("#metricValue").inner_text()
     page.locator("#rpPeriod").select_option("2026-H1-counties")
     assert page.evaluate(f"{api}.stateFill('DE-RP')")==national_style
