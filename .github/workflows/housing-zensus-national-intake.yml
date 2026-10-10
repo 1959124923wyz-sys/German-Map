@@ -1,0 +1,39 @@
+name: Housing research - national original Zensus 2022 housing workbook
+on:
+  push:
+    branches:
+      - research/housing-crisis-20261010
+    paths:
+      - 'research/housing/probe_destatis_zensus_national.py'
+      - '.github/workflows/housing-zensus-national-intake.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: housing-zensus-national-intake
+  cancel-in-progress: false
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/housing-crisis-20261010
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --quiet openpyxl
+      - name: Fetch original national 2022 census housing regions
+        run: python research/housing/probe_destatis_zensus_national.py
+      - name: Commit validated original with SHA256 and metadata
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/housing/raw/destatis_zensus_2022_regional_housing_national.xlsx
+          git add research/housing/qa/destatis_zensus2022_national_housing_workbook_schema.json
+          if ! git diff --cached --quiet; then
+            git commit -m "housing data: national official 2022 Zensus regional housing workbook [skip ci]"
+            git pull --rebase origin research/housing-crisis-20261010
+            git push origin HEAD:research/housing-crisis-20261010
+          fi
