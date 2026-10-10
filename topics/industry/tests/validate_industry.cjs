@@ -22,7 +22,8 @@ for(const x of crosswalk.records)assert.match(x.ags5,/^[0-9]{5}$/,'invalid AGS')
 const ags=JSON.parse(fs.readFileSync(path.join(root,'data/ags-crosswalk-402-to-400.json'),'utf8'));
 assert.equal(ags.features.length,402);
 assert.equal(new Set(ags.features.map(e=>e.canonical_ags)).size,400);
-assert.equal(ags.canonical_remaps['03156'],'03152');
+assert.equal(ags.canonical_remaps['03152'],'03159','historic Goettingen remapped to new 2016 AGS');
+assert.equal(ags.canonical_remaps['03156'],'03159','Osterode remapped to modern Goettingen');
 assert.equal(ags.canonical_remaps['16056'],'16063');
 for(const batch of [r5a,r5b,r5c,r5d]){
  const siteRows=batch.events.filter(e=>e.eligible_factory_marker===true);
