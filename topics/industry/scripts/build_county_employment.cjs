@@ -73,11 +73,11 @@ const result={schema_version:'2.0',metric:'manufacturing_employment_change_pct_2
 for(const ags of canonical){
  const rows=byAgs.get(ags),a=rows?.get(years[0]),b=rows?.get(years[1]);
  if(!a||!b||a.jobs===null||b.jobs===null||a.jobs===0){result.exclusions.unmatched_or_missing_ags.push(ags);continue}
- if(a.source_table!==b.source_table||a.source_url!==b.source_url)
-  fail('Source changed across years for AGS '+ags+'; compare like for like only');
+ if(a.source_table!==b.source_table)
+  fail('Source methodology changed across years for AGS '+ags+'; compare like for like only');
  result.records[ags]={change_pct:Math.round((b.jobs/a.jobs-1)*10000)/100,
   employees_2019:a.jobs,employees_latest:b.jobs,latest_year:Number(years[1]),
-  source_url:a.source_url};
+  source_url:b.source_url,source_url_2019:a.source_url,source_url_latest:b.source_url};
 }
 result.source_url=[...byAgs.values()].flatMap(x=>[...x.values()]).find(x=>x.source_url)?.source_url||null;
 result.coverage={valid_districts:Object.keys(result.records).length,possible_districts:400};
