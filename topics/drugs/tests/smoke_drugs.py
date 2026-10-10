@@ -37,6 +37,14 @@ def main():
             assert page.evaluate("() => getComputedStyle(window.__DRUGS_PREVIEW_MAP__.getPane('drugs-city-labels')).pointerEvents") == 'none'
             # All 16 states must have a real county-backed summary and drilldown.
             assert page.locator('#state-index-list button').count() == 16
+            # First-screen contract: only one headline metric, all auxiliary
+            # national statistics, rankings and methods closed by default.
+            assert page.locator('#national-drug-summary .metricbox.wide').is_visible()
+            for drawer in ('national-extras','national-states','national-counties','national-method'):
+                assert not page.locator('#'+drawer).get_attribute('open'), drawer
+            assert not page.locator('#national-extras .national-health-summary').is_visible()
+            assert not page.locator('#state-index-list').is_visible()
+            page.locator('#national-states > summary').click()
             page.locator('#state-index-list button').filter(has_text='巴伐利亚州').click()
             assert page.locator('#region-navigator').is_visible()
             assert not page.locator('#national-drug-summary').is_visible()
@@ -57,16 +65,21 @@ def main():
             page.screenshot(path='/tmp/germany-drugs-evidence-bavaria.png', full_page=True)
             assert page.locator('#drug-map path[stroke="#ffffff"]').count() >= 1, 'Selected state must have a white border'
             assert page.locator('#region-county-list button').count() == 96
+            assert not page.locator('#region-county-details').get_attribute('open')
+            assert not page.locator('#region-news').get_attribute('open')
             assert '估算州级' in page.locator('#region-rate-label').inner_text()
             assert page.locator('#region-cases').inner_text() not in ['—','0']
             page.locator('#region-drill').click()
             page.wait_for_function('() => window.__DRUGS_PREVIEW_MAP__.getZoom() >= 8')
+            page.locator('#region-county-details > summary').click()
             page.locator('#region-county-list button').first.click()
             assert '县市详情' in page.locator('#region-heading').inner_text()
             assert page.locator('#region-change').inner_text().startswith('较2024年登记案件：')
             assert '%' in page.locator('#region-change').inner_text()
+            page.locator('#region-interpretation > summary').click()
             assert page.locator('#region-original-source').is_visible()
             page.wait_for_function("() => document.querySelectorAll('#region-news-list li').length >= 1")
+            page.locator('#region-news > summary').click()
             assert page.locator('#region-news-all').is_visible()
             assert page.locator('#drug-map path[stroke="#ffffff"]').count() >= 1, 'County selection requires white border'
             assert '同比' in page.locator('#region-completeness').inner_text()
@@ -173,6 +186,7 @@ def main():
             page.wait_for_timeout(300)
             click_place(page, 50.72, 9.1)
             assert '县市详情' in page.locator('#region-heading').inner_text()
+            page.locator('#region-interpretation > summary').click()
             assert page.locator('#region-original-source').is_visible()
             assert not errors, errors
             # EUDA overlay is a separate real data layer with six substances.
@@ -183,6 +197,8 @@ def main():
             assert page.locator('#drugs-wastewater-content').is_visible()
             assert not page.locator('#drugs-crime-content').is_visible()
             assert page.locator('#wastewater-rank button').count() == 13
+            assert not page.locator('#wastewater-rank-details').get_attribute('open')
+            page.locator('#wastewater-rank-details > summary').click()
             assert page.evaluate('() => window.__DRUGS_WASTEWATER_TEST__.markers') == 13
             assert page.locator('#legend-title').inner_text().startswith('大麻')
             page.screenshot(path='/tmp/germany-crime-map-drugs-euda.png', full_page=True)
@@ -235,6 +251,8 @@ def main():
             page.screenshot(path='/tmp/germany-crime-map-drugs-news.png',full_page=True)
             page.locator('#drugs-tab-crime').click()
             assert not page.locator('#drugs-news-content').is_visible()
+            if not page.locator('#region-news').get_attribute('open'):
+                page.locator('#region-news > summary').click()
             page.locator('#region-news-all').click()
             page.wait_for_function('() => document.querySelector("#drugs-tab-news")?.classList.contains("selected")')
             assert page.locator('#drugs-news-content').is_visible()
