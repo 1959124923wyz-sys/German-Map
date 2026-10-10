@@ -28,7 +28,7 @@ STATE_MAP = {
  "SACHSEN":"DE-SN", "SACHSEN-ANHALT":"DE-ST",
  "SCHLESWIG-HOLSTEIN":"DE-SH", "THURINGEN":"DE-TH",
 }
-FIELDS = "OBJECTID,id_nr,bl,kreis,zn,flaeche,trag_l_idx,jahr_letzte_hauptpruefung,baujahr"
+FIELDS = "OBJECTID,id_nr,bl,kreis,zn,flaeche,trag_l_idx,jahr_letzte_hauptpruefung,baujahr,teil_der_bast_liste,status_der_nr,teil_bw_stadium"
 def http_json(params):
     url = BASE + "/query?" + urllib.parse.urlencode(params)
     last = None
@@ -65,6 +65,8 @@ def summarize(rows, expected):
       inspections_year_present=0,county_present=0))
     unknown = defaultdict(int)
     missing_state = 0
+    missing_grade_reason = defaultdict(int)
+    listed_grade_present = defaultdict(lambda: [0,0])
     ids = set()
     for record in rows:
         a=record["attributes"]
@@ -83,6 +85,12 @@ def summarize(rows, expected):
         if a.get("kreis"):t["county_present"]+=1
         if num(a.get("jahr_letzte_hauptpruefung")) is not None:t["inspections_year_present"]+=1
         z=num(a.get("zn"))
+        listing=str(a.get("teil_der_bast_liste") or "NULL")[:80]
+        listed_grade_present[listing][0]+=1
+        if z is not None and 1<=z<=4:listed_grade_present[listing][1]+=1
+        if z is None:missing_grade_reason["null_or_non_numeric"]+=1
+        elif z<1:missing_grade_reason["below_1"]+=1
+        elif z>4:missing_grade_reason["above_4"]+=1
         area=num(a.get("flaeche"))
         valid_area = area is not None and 0 < area < 10000000
         if not valid_area:t["area_missing_or_invalid"]+=1
@@ -114,7 +122,7 @@ def summarize(rows, expected):
              condition_valid_pct_of_geocoded=ratio("condition_valid","features"))
         results.append(v)
     if sum(x["features"] for x in results)+missing_state!=expected:raise RuntimeError("state totals + missing attribution fail")
-    return results,missing_state
+    return results,missing_state,dict(missing_grade_reason),dict(listed_grade_present)
 
 def main():
     count=http_json({"f":"json","where":"1=1","returnCountOnly":"true"})
@@ -137,7 +145,7 @@ def main():
         if retrieved!=set(batch):raise RuntimeError("ArcGIS returned wrong ID set")
         rows.extend(records)
         if offset%3600==0:print("Downloaded",len(rows),"/",expected,flush=True)
-    results,unattributed=summarize(rows,expected)
+    results,unattributed,grade_gaps,listing_coverage=summarize(rows,expected)
     output={
       "status":"candidate_geocoded_subset_not_full_BASt",
       "snapshot_claim":"2025-09",
@@ -146,6 +154,10 @@ def main():
       "source_url":BASE,
       "official_bast_source":"https://www.govdata.de/suche/daten/bruckenstatistik",
       "raw_feature_count":expected,
+      "raw_grade_diagnostics":grade_gaps,
+      "source_list_membership_grade_coverage":listing_coverage,
+      "quality_verdict":"NOT SUITABLE for representative interstate DIN comparison without official stock calibration; high condition-missing fraction",
+      "do_not_use_for_choropleth":True,
       "attributed_state_feature_count":expected-unattributed,
       "missing_state_feature_count":unattributed,
       "attributed_state_feature_pct":round(100*(expected-unattributed)/expected,3),
