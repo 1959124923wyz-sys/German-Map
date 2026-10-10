@@ -169,6 +169,9 @@ def output():
     county_joined = [byid.get(ags, {"id": ags, "name": "", **{m:None for m in METRICS}})
                      for ags in county_ids]
     availability = {metric: sum(r[metric] is not None for r in county_joined) for metric in METRICS}
+    official_availability = {metric: sum(r[metric] is not None for r in data) for metric in METRICS}
+    if len(data)!=400 or any(official_availability[m]<395 for m in METRICS):
+        raise ValueError(f"Official 2024 nationwide geometry/data coverage failed: {len(data)}; {official_availability}")
     print("COVERAGE", availability)
     for key in STRICT | {"building_land_price_band_2024"}:
         if availability[key] < 380:
@@ -180,8 +183,10 @@ def output():
             "source_published":"2026-10-08","publisher":"Deutschlandatlas / Destatis / BBSR",
             "source_landing":"https://deutschlandatlas.bund.de/service/daten-herunterladen/aktuelle-downloaddaten/aktuelle-downloaddateien",
             "data_kind":"separate housing indicators; NOT a synthetic crisis ranking",
-            "metric_definitions":units, "coverage_on_existing_402_map":availability},
-            "counties":county_joined}
+            "metric_definitions":units, "coverage_on_existing_402_map":availability,
+            "coverage_on_official_400_geometry":official_availability,
+            "geometry_source":"BKG VG250 Kreise 2024 via research/housing/build_bkg_counties.py"},
+            "counties":data}
     diff = {}
     for v in ("2024","2022"):
         a = set(current[v][0])
@@ -198,12 +203,13 @@ def output():
     (QA_DIR/"ha26_join_audit.json").write_text(json.dumps({
         "official_csv":SOURCES, "source_csv_headers":{k:v[1] for k,v in current.items()},
         "geo_crosswalk":diff,"coverage":availability,
+        "official_2024_count":len(data),"coverage_on_official_400_geometry":official_availability,
         "notes":["No interpolation or name-based joins", "Different county boundary vintages",
                  "The project map contains 402 historical features; null means missing/unjoined, not zero"]
     },ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     (WEB_DIR/"atlas-counties.json").write_text(json.dumps(payload,ensure_ascii=False,
                                                    separators=(",",":"))+"\n", encoding="utf-8")
-    print("SUCCESS", len(data), "official district rows ->",len(county_joined),"map features")
+    print("SUCCESS",len(data),"official HA26 rows for exact-2024 BKG district polygons; legacy map availability",availability)
     print("OUTPUT", str(WEB_DIR/"atlas-counties.json"))
     print("JOIN mismatches:",diff)
 
