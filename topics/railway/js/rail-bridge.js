@@ -189,6 +189,7 @@ function mergeGroups(groups,graph,allObservations,config={}){
   if(!bucket.has(k))bucket.set(k,[]);bucket.get(k).push(x);
  }
  const next=new Map(),prev=new Map();let bridged=0,checks=0;
+ const debug={groups:groups.length,routes:bucket.size,withinGap:0,unblocked:0,near:0,tries:0,paths:0,unique:0,ambiguous:0};
  for(const rows of bucket.values()){
   for(let i=0;i<rows.length-1;i++){
    const left=rows[i],candidates=[];
@@ -196,23 +197,29 @@ function mergeGroups(groups,graph,allObservations,config={}){
     const right=rows[j],gap=right.span[0]-left.span[1];
     if(gap>cap)break;
     if(gap<.12)continue; // overlapping opposite-direction observations
+    debug.withinGap++;
     if(next.has(left.g)||prev.has(right.g))continue;
     // A known grade in the intervening km range is not an unknown gap.
     if(allObservations.some(o=>String(o.leg.route)===left.route&&o.grade!==left.g.grade&&
        o.leg.km_range?.[0]<right.span[0]-.05&&o.leg.km_range?.[1]>left.span[1]+.05))
        continue;
+    debug.unblocked++;
     const anchors=bestAnchors(left.g,right.g);
     if(!anchors)continue;
     const straight=Math.hypot(anchors[0][0]-anchors[1][0],anchors[0][1]-anchors[1][1])*
       kmPerPixel((anchors[0][1]+anchors[1][1])/2);
     if(straight>cap*1.1+1||Math.abs(gap-straight)>Math.max(8,gap*.9))continue;
+    debug.near++;
     if(checks++>=capItems)break;
+    debug.tries++;
     const bridge=graph.find(left.route,...anchors,Math.min(cap,gap*2+3));
+    if(bridge)debug.paths++;
     if(bridge&&bridge.km<=Math.max(3,gap*2.2+2))
       candidates.push({right,bridge});
    }
    // Ambiguous continuation at a junction: do not choose a branch by chance.
-   if(candidates.length!==1)continue;
+   if(candidates.length!==1){if(candidates.length>1)debug.ambiguous++;continue;}
+   debug.unique++;
    const {right,bridge}=candidates[0];
    if(prev.has(right.g))continue;
    next.set(left.g,{other:right.g,bridge});
@@ -246,7 +253,7 @@ function mergeGroups(groups,graph,allObservations,config={}){
   for(const m of members)m.group=output;
   result.push(output);
  }
- return {groups:result,bridged,checks};
+ return {groups:result,bridged,checks,debug};
 }
 window.Railway07Bridge=Object.freeze({RouteGraph,mergeGroups,closest,length});
 })();
