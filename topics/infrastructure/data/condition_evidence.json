@@ -11,7 +11,7 @@
     "scope": "联邦高速公路桥梁分段",
     "metric": "TLI_IV_V",
     "meaning": "承载等级IV/V份额，不是结构外观评分",
-    "source": "https://www.ihk-nrw.de/hauptnavigation/presse/medieninformationen-2025/pm-20250310-brueckenmonitor-6495744",
+    "source": "https://www.ihk-nrw.de/blueprint/servlet/resource/blob/6495714/8cb78e052a38723b1e54731b48a44581/ihk-nrw-bru-cken2025-online-data.pdf",
     "states": [
       {
         "iso": "DE-NW",
@@ -49,7 +49,9 @@
         "total": 5368,
         "percent": 9.8
       }
-    ]
+    ],
+    "source_page": 4,
+    "verified_original": "2026-10-10"
   },
   "din_bridge_samples": [
     {
@@ -81,8 +83,9 @@
       "total": 7314,
       "threshold": "Zustandsnote ≥ 3.0",
       "source": "https://www.landtag.nrw.de/portal/WWW/dokumentenarchiv/Dokument/MMD18-19040.pdf",
-      "source_check": "前期工作记录提及州议会答复，文件号及分母需在合并前再次核实；不参与排行",
-      "source_quality": "needs_exact_report"
+      "source_check": "州议会第18/19040号正式答复第1页披露Straßen.NRW管辖7314个桥梁分段；第2页确认295个评分3.0及以上。分母包括少量县道、不包括Autobahn GmbH管理高速桥梁。",
+      "source_quality": "verified_original",
+      "source_page": 2
     },
     {
       "iso": "DE-RP",
@@ -92,7 +95,9 @@
       "bad": 151,
       "total": 1936,
       "threshold": "Zustandsnote ≥ 3.0",
-      "source": "https://www.swr.de/swraktuell/rheinland-pfalz/faq-baufaellig-einsturzgefaehrdet-so-steht-es-um-die-bruecken-in-rlp-100.html"
+      "source": "https://www.swr.de/swraktuell/rheinland-pfalz/faq-baufaellig-einsturzgefaehrdet-so-steht-es-um-die-bruecken-in-rlp-100.html",
+      "source_quality": "secondary_2026_report",
+      "source_check": "SWR地区综合报道，分道路管理主体展示；与2021市镇历史样本不得跨期求和"
     },
     {
       "iso": "DE-RP",
@@ -103,7 +108,9 @@
       "total": 5700,
       "total_approx": true,
       "threshold": "Zustandsnote ≥ 3.0",
-      "source": "https://www.swr.de/swraktuell/rheinland-pfalz/faq-baufaellig-einsturzgefaehrdet-so-steht-es-um-die-bruecken-in-rlp-100.html"
+      "source": "https://www.swr.de/swraktuell/rheinland-pfalz/faq-baufaellig-einsturzgefaehrdet-so-steht-es-um-die-bruecken-in-rlp-100.html",
+      "source_quality": "secondary_2026_report",
+      "source_check": "SWR地区综合报道，分道路管理主体展示；与2021市镇历史样本不得跨期求和"
     },
     {
       "iso": "DE-RP",
@@ -113,7 +120,9 @@
       "bad": 1382,
       "total": 6579,
       "threshold": "Zustandsnote ≥ 3.0",
-      "source": "https://www.swr.de/swraktuell/rheinland-pfalz/faq-baufaellig-einsturzgefaehrdet-so-steht-es-um-die-bruecken-in-rlp-100.html"
+      "source": "https://www.swr.de/swraktuell/rheinland-pfalz/faq-baufaellig-einsturzgefaehrdet-so-steht-es-um-die-bruecken-in-rlp-100.html",
+      "source_quality": "secondary_2026_report",
+      "source_check": "SWR地区综合报道，分道路管理主体展示；与2021市镇历史样本不得跨期求和"
     }
   ],
   "road_state_samples": [
