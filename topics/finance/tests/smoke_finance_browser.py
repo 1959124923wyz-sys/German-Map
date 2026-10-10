@@ -23,6 +23,10 @@ def verify(browser, mobile: bool = False):
     page.goto(BASE, wait_until="domcontentloaded", timeout=45000)
     page.wait_for_function("document.getElementById('mapStatus').hidden === true", timeout=45000)
     assert page.locator("#finance-map .leaflet-control-zoom-in").count() == 1
+    # The country map must include the whole German geographical extent.
+    assert page.evaluate("(bounds) => window.__FINANCE_MAP__.getBounds().contains(L.latLngBounds(bounds))", 
+                         [[47.15, 5.4], [55.1, 15.6]])
+
     assert page.locator('[data-mode="state"]').get_attribute("aria-pressed") == "true"
     assert not page.locator("#showEvents").is_checked()
     assert page.locator("#countState").inner_text() == "13 / 16"
@@ -59,6 +63,7 @@ def verify(browser, mobile: bool = False):
     page.locator("#resetView").click()
     assert page.locator('[data-mode="state"]').get_attribute("aria-pressed") == "true"
     assert not page.locator("#showEvents").is_checked()
+    assert page.evaluate("() => window.__FINANCE_MAP__.getBounds().contains(L.latLngBounds([[47.15,5.4],[55.1,15.6]]))"), "Reset must show whole Germany"
 
     assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth + 4")
     page.screenshot(path="/tmp/finance08-" + ("mobile" if mobile else "desktop") + ".png",

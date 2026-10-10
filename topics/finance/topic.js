@@ -257,10 +257,11 @@
   $('sectionTitle').textContent=MODE[mode];
   resetArea();renderMap();renderList();
   if(map&&stateGeo){
+   map.stop();
    if(mode==='rp'){
     const rp=stateGeo.features.find(f=>f.properties?.id==='DE-RP'||f.properties?.name==='Rheinland-Pfalz');
-    if(rp)map.fitBounds(L.geoJSON(rp).getBounds(),{padding:[22,22],maxZoom:8});
-   }else map.fitBounds(withinBounds);
+    if(rp)map.fitBounds(L.geoJSON(rp).getBounds(),{padding:[22,22],maxZoom:8,animate:false});
+   }else map.fitBounds(withinBounds,{animate:false,padding:[12,12]});
   }
  }
  function updateFilters(){view.category=$('category').value;view.status=$('status').value;view.county=null;view.limit=8;view.selected=null;resetArea();renderList();renderMarkers()}
@@ -301,7 +302,9 @@
   if(!H||H.states.length!==13||H.regional.length!==72||H.totals.cash[4]!==38587)throw Error('历史财政数据不完整');
   if(!I||I.states.length!==16||I.meta.years.length!==3)throw Error('综合地方债务数据不完整');
   setupUI();resetArea();renderList();renderLegend();
-  map=L.map('finance-map',{zoomSnap:.25,minZoom:5,maxZoom:13,zoomControl:true,preferCanvas:true});map.fitBounds(withinBounds);
+  map=L.map('finance-map',{zoomSnap:.25,minZoom:5,maxZoom:13,zoomControl:true,preferCanvas:true});
+  window.__FINANCE_MAP__=map;
+  map.fitBounds(withinBounds,{animate:false,padding:[12,12]});
   const tile=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'});
   tile.addTo(map);
   if(window.CrimeCityLabels && window.GermanPlaceNames)window.CrimeCityLabels.create(map,{paneName:'financeCityLabels',zIndex:440});
