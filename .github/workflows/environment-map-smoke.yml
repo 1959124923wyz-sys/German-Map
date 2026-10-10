@@ -33,6 +33,7 @@ jobs:
         run: |
           node --check topics/environment/topic.js
           node --check topics/environment/data/records.js
+          node topics/environment/tests/validate_state_dossier.cjs
           python -m py_compile topics/environment/tests/smoke_environment.py
           python - <<'PY'
           import re
