@@ -216,7 +216,67 @@ function interval(group){
  if(vals.length<2||vals.some(x=>!Number.isFinite(x)))return null;
  return [Math.min(...vals),Math.max(...vals)];
 }
+// A public map depicts a PHYSICAL railway corridor, not separately
+// duplicated strokes for two directions. Collapse observations occupying
+// the same route, risk tier and actual geographic section before searching
+// for missing links. Raw directed stop counts are retained in members.
+function collapseOverlaps(groups){
+ const rows=groups.map(g=>({g,span:interval(g),route:String(g.members[0].leg.route)}))
+  .filter(x=>x.span);
+ const parent=rows.map((_,i)=>i);
+ const root=i=>{while(parent[i]!==i){parent[i]=parent[parent[i]];i=parent[i];}return i;};
+ const join=(a,b)=>{a=root(a);b=root(b);if(a!==b)parent[b]=a;};
+ const byRoute=new Map();
+ rows.forEach((row,i)=>{
+  const k=row.route+'|'+row.g.grade;
+  if(!byRoute.has(k))byRoute.set(k,[]);
+  byRoute.get(k).push(i);
+ });
+ for(const ids of byRoute.values()){
+  ids.sort((a,b)=>rows[a].span[0]-rows[b].span[0]);
+  for(let k=0;k<ids.length;k++){
+   const a=rows[ids[k]];
+   for(let l=k+1;l<ids.length;l++){
+    const b=rows[ids[l]];
+    if(b.span[0]>a.span[1]-.5)break;
+    const overlap=Math.min(a.span[1],b.span[1])-Math.max(a.span[0],b.span[0]);
+    if(overlap<.5)continue;
+    const x=a.g.bounds,y=b.g.bounds,buffer=.45;
+    if(x.maxX+buffer<y.minX||x.minX-buffer>y.maxX||
+       x.maxY+buffer<y.minY||x.minY-buffer>y.maxY)continue;
+    join(ids[k],ids[l]);
+   }
+  }
+ }
+ const clusters=new Map();
+ rows.forEach(({g},i)=>{
+  const id=root(i);
+  if(!clusters.has(id))clusters.set(id,[]);
+  clusters.get(id).push(g);
+ });
+ // Invalid km ranges remain separate and are never eligible for a bridge.
+ const invalid=groups.filter(g=>!interval(g));
+ const out=[...invalid];
+ for(const gs of clusters.values()){
+  if(gs.length===1){out.push(gs[0]);continue;}
+  const members=gs.flatMap(g=>g.members);
+  const parts=members.flatMap(m=>m.parts);
+  const nArrival=members.reduce((n,m)=>n+m.m.nArrival,0);
+  const nPlanned=members.reduce((n,m)=>n+m.m.nPlanned,0);
+  const lateCount=members.reduce((n,m)=>n+Number(m.leg.v11?.late6||0),0);
+  const cancelCount=members.reduce((n,m)=>n+Number(m.leg.v11?.boundary_cancel||0),0);
+  const late=nArrival?100*lateCount/nArrival:null;
+  const cancel=nPlanned?100*cancelCount/nPlanned:null;
+  const g={members,parts,bounds:actualBounds(parts),grade:gs[0].grade,
+   m:{late,onTime:late===null?null:100-late,cancel,nArrival,nPlanned}};
+  for(const m of members)m.group=g;
+  out.push(g);
+ }
+ return out;
+}
 function mergeGroups(groups,graph,allObservations,config={}){
+ const originalGroups=groups.length;
+ groups=collapseOverlaps(groups);
  const cap=config.maxGapKm??MAX_GAP,capItems=config.maxItems??1000;
  // Treat existing same-grade corridors as indivisible measured units.
  const ordered=groups.map(g=>({g,span:interval(g),route:String(g.members[0].leg.route)}))
@@ -227,7 +287,7 @@ function mergeGroups(groups,graph,allObservations,config={}){
   if(!bucket.has(k))bucket.set(k,[]);bucket.get(k).push(x);
  }
  const next=new Map(),prev=new Map();let bridged=0,checks=0;
- const debug={groups:groups.length,routes:bucket.size,withinGap:0,unblocked:0,near:0,tries:0,paths:0,unique:0,ambiguous:0};
+ const debug={originalGroups,groups:groups.length,routes:bucket.size,withinGap:0,unblocked:0,near:0,tries:0,paths:0,unique:0,ambiguous:0};
  for(const rows of bucket.values()){
   for(let i=0;i<rows.length-1;i++){
    const left=rows[i],candidates=[];
