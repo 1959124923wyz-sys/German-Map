@@ -8,6 +8,8 @@
   "municipal_ags_matched_other_official_2024_atlas": 10750,
   "municipal_missing_from_atlas": 0,
   "atlas_2024_tax_ags_without_debt_row": 206,
+  "atlas_2024_outside_integrated_city_states": 4,
+  "atlas_2024_outside_integrated_tax_missing_other": 202,
   "cities_not_in_scope": "Berlin,Hamburg,Bremen",
   "status": "research_only_not_national_choropleth",
   "official_publication_discrepancy": "published national 342761 million EUR vs 13 state totals sum 343762 million EUR (1001 million) unresolved",
