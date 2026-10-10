@@ -270,7 +270,7 @@ assert.equal(rA.m.onTime,56);
 assert.equal(rB.m.onTime,92);
 assert.equal(colouredGroup.members.length,3,'original observed records unchanged');
 // An unobserved middle GREEN gap cannot magically contribute two new samples.
-const missingGroup={...colouredGroup,members:[sr1,sr2]};
+const missingGroup={...colouredGroup,members:[sr1,sr2],_colorRuns:null};
 const noDataRuns=shade.forCorridor(missingGroup,fakeDB);
 assert.ok(noDataRuns.some(x=>x.grade===0&&x.m.onTime===null),
  'green without timetable samples stays selectable and numeric KPI missing');
