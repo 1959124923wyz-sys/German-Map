@@ -222,9 +222,42 @@
       "value_pct": 45,
       "approx": true,
       "definition": "不同阈值/年份，不参与州际总体排名",
-      "source": "https://lsbb.sachsen-anhalt.de/",
-      "source_quality": "needs_exact_report",
-      "source_check": "已保留前期调查数值，但原始报告精确页码尚待维护组复核，不用于排名"
+      "source": "https://lsbb.sachsen-anhalt.de/aufgaben/lsbb-landesstrassenbauplan-sachsen-anhalt-2040",
+      "source_quality": "verified_original",
+      "source_check": "官方2040规划原文：2022年州道ZEB约45%高于4.5严重干预阈值，约60%高于3.5警戒线。",
+      "threshold_grade": 4.5,
+      "road_class": "Landesstraße",
+      "measure": "ZEB"
+    },
+    {
+      "iso": "DE-BW",
+      "year": 2024,
+      "scope": "州道（Landesstraßen）",
+      "metric": "ZEB达到干预阈值4.5的路面比例",
+      "value_pct": 35,
+      "approx": true,
+      "threshold_grade": 4.5,
+      "road_class": "Landesstraße",
+      "measure": "ZEB",
+      "definition": "2024年测量，约35%的州道路面评分达到4.5干预阈值；实际修复或限行需要进一步现场核查，不等于35%不可通行",
+      "source": "https://vm.baden-wuerttemberg.de/de/mobilitaet-verkehr/auto-und-lkw/strasseninfrastruktur/zustand-der-strassen-in-baden-wuerttemberg",
+      "source_quality": "verified_original",
+      "comparison_guard": "与2022萨安州≈45%可比较阈值定义，但年份差异不可忽视"
+    },
+    {
+      "iso": "DE-BW",
+      "year": 2023,
+      "scope": "联邦一般公路（Bundesstraßen）",
+      "metric": "ZEB达到干预阈值4.5的路面比例",
+      "value_pct": 25,
+      "approx": true,
+      "threshold_grade": 4.5,
+      "road_class": "Bundesstraße",
+      "measure": "ZEB",
+      "definition": "2023年测量，约25%评分达到4.5；不可同州道路面混在一起",
+      "source": "https://vm.baden-wuerttemberg.de/de/mobilitaet-verkehr/auto-und-lkw/strasseninfrastruktur/zustand-der-strassen-in-baden-wuerttemberg",
+      "source_quality": "verified_original",
+      "comparison_guard": "不应与其他州州道或县道比较"
     }
   ],
   "national": {
@@ -359,5 +392,6 @@
       "source_page": 19,
       "source_quality": "verified_original"
     }
-  ]
+  ],
+  "methodology_road_note": "ZEB≥4.5为道路评分干预阈值；桥梁DIN≥3.0为完全不同体系。州道与联邦一般公路不能混为一个比较指标。"
 }
