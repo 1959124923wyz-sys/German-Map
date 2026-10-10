@@ -51,6 +51,7 @@ jobs:
           if git diff --cached --quiet; then echo "No changed official geography indices"
           else
             git commit -m "data(finance): verify 2025 BKG district AGS and historical geometry gaps"
+            git pull --rebase origin research/finance-regional-expansion-20261010
             git push origin HEAD:research/finance-regional-expansion-20261010
           fi
       - name: Assert BKG verification succeeded after saving diagnostics
