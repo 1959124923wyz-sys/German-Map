@@ -25,3 +25,19 @@
 - 已在独立R7支线更新前端 `topic.js`、`tests/validate_industry.cjs`、`tests/smoke_industry_data.cjs` 对202事件批次严格校验；最终通过状态应在Draft PR [#42](https://github.com/1959124923wyz-sys/German-Map/pull/42) 最新CI读取。
 - 官方BA仅有行业可选的交互数据库，未通过可信方式实收全国400县双年度纯WZ-C工作地数字。发现BKG的现行免费VG250县界公开GeoPackage/Shape/WFS，另BKG在线ArcGIS图层允许GeoJSON，但仍**没有下载和导入合格400县几何**。研究必须区分来源已找到与数据已下载。
 - R7支线PR #42 base=原工业支线而不是main，不能自动合并或部署。
+
+## R7D / R7E 最新交接（当前有效总数220，覆盖先前的202统计）
+
+- R7D新增 **13条**（11条厂址、2条仅研究隔离），文件 `research/r7d-2024-company-primary-audited.json`，GitHub持久化 commit `e7107db900f40b92f19a048965574dba5e156c55`。
+- R7E新增 **5条**厂址记录，文件 `research/r7e-2025-undercovered-sites.json`，GitHub持久化 commit `e876e96753d57ca9720e49992bb256a6d95f38c5`。
+- **当前已保存 R1–R6 174 + R7A 10 + R7B 11 + R7C 7 + R7D 13 + R7E 5 = 220条唯一研究事件ID。** 新增46条中厂址候选 3+9+7+11+5=35条、集团/办公室/未证明停产等隔离11条，绝非220家确认倒闭的工厂。完整事件页需以最新CI核验。
+- 重大状态订正：Feintool Sachsenheim 2024原拟2027全面关厂，2025-08-22企业劳资协议改为**部分保留工业应用生产线**，仅汽车业务外迁；不能称已全厂关闭。原Sachsenheim+Vaihingen合计减200不可分给任一厂。源：https://www.feintool.com/insights/feintool-reaches-agreement-with-employee-representatives-in-sachsenheim-on-realignment-of-business-unit-stamping-europe-part-of-production-in-sachsenheim-to-remain-in-operation/
+- NEVEON 2024公告两生产厂Ebersbach an der Fils(巴符Göppingen 08117)及Burkhardtsdorf(萨克森Erzgebirgskreis 14521)和Wiesbaden**行政中心**合计240人；只为两厂各保留 jobs=null，各厂地址虽找到但图点仍县级参考，240整体备忘研究不画红点。
+- UPM Raflatac Kaltenkirchen 154岗（2024官方公告，逐步在2025转波兰芬兰比利时），与UPM Ettringen和Nordland纸厂不同。Vileda Augsburg 118是无纺布厂，尽管Eurofound行业顶栏标批发；Papierfabrik Meldorf Tornesch 133仅确定破产、不能当成已关厂；Fjord Paper原网页错误出现2024/2025结束日期混淆，应优先用事实页预期2025-04。
+- 新查Kusch+Co Hallenberg 110岗位，2025-12确实停止生产，2026-05社会计划媒体证实；Etkon Markkleeberg 240岗位牙套外迁但保留牙科修复体生产；Oettinger Braunschweig 150岗转到德国其他厂且物流继续；KMS Solingen 120，Konradin Leinfelden 110计划待追踪。
+- 对R1 Eberswalder工厂地理补丁旧称Eberswalde更正为Britz (Barnim), 12060，避免与ERM EWN 203947重复；可追溯修订存于 `r7-legacy-identity-audit.json`，不覆写原始文档。
+- 前端 `topic.js` 和验收 `tests/validate_industry.cjs`、`tests/smoke_industry_data.cjs` 已集成220条，已观察GitHub Actions在220条版本commit `ae9eb94e6f3278804a1a3b205036c59386f50ae0` 的 run **38040905563成功**： https://github.com/1959124923wyz-sys/German-Map/actions/runs/38040905563 。
+- 新增长期查漏清单 `research/R7_COVERAGE_BACKLOG.md` 与官方统计/地区几何调查记录 `research/R7_OFFICIAL_COUNTY_SOURCE_AUDIT.md`（包含数个可用网址，但数据**未下载**）。
+- BKG 2025县界研究脚本 `scripts/try_bkg_vg250_counties.py`，安全研究工作流 `.github/workflows/industry-r7-bkg-research.yml`：仅校验400唯一canonical县AGS完全匹配后才会把候选原始几何提交R7分支；**核查此时GitHub仍无候选文件** `data/bkg_vg250_counties_2025_candidate.geojson`，不能称已得到县界或变更已上线。若后续工作流异步写入，下一会话重新读取branch head确认。
+- 国别县2019/2025 **纯WZ-C工作地制造业就业**面板仍未取得。图层仍为研究事件数、不可作为就业下降率。Thüringen KR000303可取旧年县级B–F总工业就业，但绝不是WZ C；BA Eckwerte API普通总社保就业不等于WZ C。
+- Draft PR #42 的base仍为旧工业工作分支，不动main、不自动合并。恢复 https://github.com/1959124923wyz-sys/German-Map/pull/42 及最新R7文件即可继续。
