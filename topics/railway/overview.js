@@ -404,7 +404,7 @@ try{
   getNetworkReady:()=>view.networkReady,getStatesReady:()=>view.statesReady,
   getCountiesReady:()=>view.countiesReady,getRendered:()=>view.rendered,
   getCorridors:()=>view.groups,getBridgedCount:()=>view.bridged,
-  getBridgeDiagnostics:()=>view.bridgeDiagnostics,getBridgedGeometryCount:()=>view.bridgePaths.length,getGraphEdgeCount:()=>view.bridgeGraph.edges,
+  getBridgeDiagnostics:()=>view.bridgeDiagnostics,getBridgeFailureCounts:()=>view.bridgeGraph.reasons,getBridgedGeometryCount:()=>view.bridgePaths.length,getGraphEdgeCount:()=>view.bridgeGraph.edges,
   getRepaintCount:()=>view.repaints,getCanvasCount:()=>document.querySelectorAll('.railway-canvas').length,
   getSpatialBucketCount:()=>view.grid.size,
   clickPoint:ll=>pickAt(L.latLng(ll)),stationZh
