@@ -9,6 +9,7 @@ on:
       - 'topics/environment/**'
       - 'topics/railway/**'
       - 'topics/finance/**'
+      - 'topics/infrastructure/**'
       - 'research/finance/**'
       - 'scripts/validate_site_assets.py'
       - 'js/layers/city-labels.js'
@@ -102,6 +103,11 @@ jobs:
           python topics/finance/tests/validate_finance_history.py
           python topics/finance/tests/validate_finance_integrated.py
           node topics/railway/tests/unit_core.cjs
+          # Infrastructure 09: review source-preserving pilot index and event markers.
+          test -s topics/infrastructure/index.html
+          grep -Fq 'href="topics/infrastructure/"' index.html
+          node --check topics/infrastructure/topic.js
+          node topics/infrastructure/tests/validate_data.cjs
           python scripts/validate_site_assets.py
           node --check topics/railway/js/station-zh.js
           node --check topics/railway/js/app.js
