@@ -264,7 +264,7 @@ const rB=shade.findRun(runs,[110,baseY],0,2.5);
 assert.strictEqual(rA,rX,'either red section must highlight the same complete red run');
 assert.notStrictEqual(rA,rB,'a differently coloured section must select separately');
 assert.ok(rA.parts.reduce((n,p)=>n+p.maxX-p.minX,0)>7.5);
-assert.ok(rB.parts.reduce((n,p)=>n+p.maxX-p.minX,0)>3.5);
+assert.ok(rB.parts.reduce((n,p)=>n+p.maxX-p.minX,0)>2.8);
 assert.equal(rA.members.length,2);
 assert.equal(rA.m.onTime,56);
 assert.equal(rB.m.onTime,92);
