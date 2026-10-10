@@ -35,7 +35,19 @@ def run(browser,mobile=False):
     assert "2025" in page.locator("#legend").inner_text()
     assert "欧元" in page.locator("#value").inner_text()
     assert page.locator("main .housing-rank-row").count()==8
-    assert page.locator("#housingMetric option").count()==12
+    assert page.locator("#housingMetric option").count()==15
+    assert page.evaluate("GermanHousingResearch.state().censusReady") is True
+    for metric,valueUnit in (
+        ("existing_cold_rent_2022_eur_m2","欧元"),
+        ("vacant_12mo_plus_of_vacant_2022_pct","%"),
+        ("vacant_available_3mo_of_vacant_2022_pct","%")
+    ):
+        page.locator("#housingMetric").select_option(metric)
+        assert page.evaluate("GermanHousingResearch.state().validCount")==400
+        assert valueUnit in page.locator("#value").inner_text()
+        assert "2022" in page.locator("#yearLabel").inner_text()
+        assert "Zensus 2022" in page.locator("#sourceCredit").inner_text()
+    page.locator("#housingMetric").select_option("asking_rent_2025_eur_m2")
     assert page.evaluate("GermanHousingResearch.state().completionsReady") is True
     page.locator("#housingMetric").select_option("completed_dwellings_new_residential_buildings_2023")
     assert page.evaluate("GermanHousingResearch.state().validCount")==400
