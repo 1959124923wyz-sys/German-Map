@@ -1,0 +1,127 @@
+{
+  "original_source": "https://www.destatis.de/static/DE/zensus/gitterdaten/Regionaltabelle_Gebaeude_Wohnungen.xlsx",
+  "district_count": 400,
+  "crosschecks_2022_census_existing_rent_eur_m2": {
+    "Flensburg": {
+      "ags": "01001",
+      "value": 6.96
+    },
+    "Kiel": {
+      "ags": "01002",
+      "value": 7.64
+    },
+    "Lübeck": {
+      "ags": "01003",
+      "value": 7.47
+    },
+    "Neumünster": {
+      "ags": "01004",
+      "value": 6.22
+    }
+  },
+  "county_sum_housing_units": 43106558,
+  "national_original_housing_units": 43106589,
+  "county_sum_minus_national": -31,
+  "coverage": {
+    "existing_cold_rent_2022_eur_m2": 400,
+    "census_vacancy_2022_pct": 400,
+    "census_ownership_2022_pct": 400,
+    "housing_units_in_buildings_2022": 400,
+    "vacant_housing_units_2022": 400,
+    "vacant_12mo_plus_2022": 400,
+    "vacant_available_3mo_2022": 400,
+    "vacant_due_construction_2022": 400,
+    "vacant_demolition_2022": 400,
+    "vacant_due_sale_2022": 400,
+    "vacant_future_selfuse_2022": 400,
+    "vacant_other_reason_2022": 400,
+    "vacant_12mo_plus_of_vacant_2022_pct": 400,
+    "vacant_available_3mo_of_vacant_2022_pct": 400,
+    "vacant_available_3mo_of_all_2022_pct": 400
+  },
+  "duration_plus_original_delta_max_abs": 12,
+  "reason_plus_original_delta_max_abs": 13,
+  "field_mapping": {
+    "existing_cold_rent_2022_eur_m2": {
+      "source_code": "QMMIETE",
+      "official_labels": [
+        "Wohnungen in Wohngebäuden (ohne Wohnheime)",
+        "durchschn. Nettokaltmiete pro Quadratmeter (€)"
+      ]
+    },
+    "census_vacancy_2022_pct": {
+      "source_code": "LEQ",
+      "official_labels": [
+        "Leerstands-\nquote (%)"
+      ]
+    },
+    "census_ownership_2022_pct": {
+      "source_code": "ETQ",
+      "official_labels": [
+        "Eigentümer-\nquote (%)"
+      ]
+    },
+    "housing_units_in_buildings_2022": {
+      "source_code": "GEBAEUDEART_SYS_1",
+      "official_labels": [
+        "Wohnungen in Gebäuden mit Wohnraum",
+        "insgesamt"
+      ]
+    },
+    "vacant_housing_units_2022": {
+      "source_code": "LEERSTAND_INSGESAMT",
+      "official_labels": [
+        "Leerstehende Wohnungen in Gebäuden mit Wohnraum",
+        "insgesamt"
+      ]
+    },
+    "vacant_12mo_plus_2022": {
+      "source_code": "LEERSTAND_DAUER__4",
+      "official_labels": [
+        "seit 12 Monaten oder länger"
+      ]
+    },
+    "vacant_available_3mo_2022": {
+      "source_code": "LEERSTAND_GRUND__1",
+      "official_labels": [
+        "Grund des Leerstands",
+        "innerhalb von 3 Monaten für den Bezug verfügbar"
+      ]
+    },
+    "vacant_due_construction_2022": {
+      "source_code": "LEERSTAND_GRUND__2",
+      "official_labels": [
+        "laufende bzw. geplante Baumaßnahmen"
+      ]
+    },
+    "vacant_demolition_2022": {
+      "source_code": "LEERSTAND_GRUND__3",
+      "official_labels": [
+        "geplanter Abriss oder Rückbau"
+      ]
+    },
+    "vacant_due_sale_2022": {
+      "source_code": "LEERSTAND_GRUND__4",
+      "official_labels": [
+        "Verkauf des Gebäudes oder der Wohnung"
+      ]
+    },
+    "vacant_future_selfuse_2022": {
+      "source_code": "LEERSTAND_GRUND__5",
+      "official_labels": [
+        "künftige Selbstnutzung"
+      ]
+    },
+    "vacant_other_reason_2022": {
+      "source_code": "LEERSTAND_GRUND__6",
+      "official_labels": [
+        "sonstiger Grund"
+      ]
+    }
+  },
+  "notes": [
+    "The original Zensus 2022 source was downloaded and archived in research/housing/raw",
+    "Long-term vacancy and short-term availability shares are analytical ratios of distinct official classes, not official published vacancy-rate series",
+    "All calculations preserve exact five-digit Kreis AGS; no interpolation or name-based join"
+  ]
+}
