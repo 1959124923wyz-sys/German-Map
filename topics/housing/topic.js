@@ -27,7 +27,7 @@
  let selectedCounty=null, focusState=null, metric='asking_rent_2025_eur_m2';
  let stateFeatures=[], countyFeatures=[], byid=new Map(), countyShapes=new Map();
  let stockReady=false, homelessReady=false, completionsReady=false, censusReady=false, breaks=[], sortedAll=[];
- let saxonyRows=new Map(), nrwRows=new Map(), bavariaRows=new Map(), brandenburgRows=new Map();
+ let saxonyRows=new Map(), nrwRows=new Map(), bavariaRows=new Map(), brandenburgRows=new Map(), berlinBoroughRows=[];
  const COUNTRY=[[47.2,5.5],[55.3,15.5]];
  const sourceURL = {
   atlas:'https://deutschlandatlas.bund.de/service/daten-herunterladen/aktuelle-downloaddaten/aktuelle-downloaddateien',
@@ -162,6 +162,19 @@
     '<p>仅勃兰登堡州18个县级市和县。新建建筑统计包含新住宅建筑及非住宅建筑内的住房，不同于北威州、巴伐利亚的“新建住宅建筑”口径；全部竣工住房含既有建筑工程。这两个口径不可相加。两年数字反映官方报告、不能推及德国其它州。</p>'+
     '<a target="_blank" rel="noopener noreferrer" href="https://www.statistik-berlin-brandenburg.de/presse/2026/60-baufertigstellungen-2025-brandenburg/">勃兰登堡州统计局2025官方县级表 ↗</a>';
  }
+ function renderBerlinBoroughs(region){
+  const panel=$('berlinBoroughCompletions');
+  const isBerlin=region.scope==='county' && region.ids[0]==='11000' && berlinBoroughRows.length===12;
+  panel.hidden=!isBerlin;
+  if(!isBerlin)return;
+  $('berlinBoroughHistory').innerHTML=
+    '<p>2025年柏林全市竣工住房11,027套；其中新建建筑中9,524套，两者是“全部”与“子类”，绝不可相加。本表为按12个Bezirke统计的城市内部数据，不是12个额外的县级单位。</p>'+
+    '<div class="housing-archive-grid">'+berlinBoroughRows.map(r=>
+       '<div><small>'+safe(r.name)+'</small><b>'+safe(fmt(r.completed_dwellings_all_measures_2025,0))+'套</b>'+
+       '<small>2024年：'+safe(fmt(r.completed_dwellings_all_measures_2024,0))+'套</small></div>').join('')+'</div>'+
+    '<p>数据取自2026年5月22日更正后的官方2025竣工表，不能使用被更正的早期版本。此处显示全部建筑活动竣工住房；新建建筑含非住宅建筑中的住房。</p>'+
+    '<a target="_blank" rel="noopener noreferrer" href="https://www.statistik-berlin-brandenburg.de/presse/2026/59-baufertigstellungen-2025-berlin/">柏林—勃兰登堡统计局更正后原始文件 ↗</a>';
+ }
  function renderSaxony(region){
   const panel=$('saxonyDetails');
   const row=region.scope==='county'?saxonyRows.get(region.ids[0]):null;
@@ -191,6 +204,7 @@
   renderNRW(region);
   renderBavaria(region);
   renderBrandenburg(region);
+  renderBerlinBoroughs(region);
   renderSaxony(region);
   updateRanks(region.ids);
  }
@@ -333,13 +347,18 @@
     if(bb.counties.length!==18 || bb.meta.districts!==18 || bb.meta.all_completions_2025_state_total!==7379)throw new Error('Brandenburg verified 2025 county data missing or altered');
     brandenburgRows=new Map(bb.counties.map(row=>[row.id,row]));
    }catch(err){console.warn('Brandenburg completion county details not available',err)}
+   try{
+    const berlinBorough=await readJson('data/berlin-2024-2025-borough-completions.json');
+    if(berlinBorough.boroughs.length!==12 || berlinBorough.meta.all_completed_dwellings_2025!==11027)throw new Error('Corrected Berlin 2025 borough totals invalid');
+    berlinBoroughRows=berlinBorough.boroughs;
+   }catch(err){console.warn('Berlin corrected borough completion detail not available',err)}
    makeLayers(states,counties);
    paint();
    const valid=sortedAll.length;
    $('mapStatus').textContent=valid+'处县级地图区域已载入；'+(stockReady?'含核验住房存量':'住房存量层暂不可用');
    $('mapStatus').classList.add('ok');
    window.GermanHousingResearch=Object.freeze({
-     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,countyShapes:countyShapes.size}),
+     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,berlinBoroughReady:berlinBoroughRows.length===12,countyShapes:countyShapes.size}),
      metrics:Object.keys(metrics)
    });
   }catch(err){
