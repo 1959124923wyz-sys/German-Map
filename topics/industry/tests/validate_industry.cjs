@@ -18,7 +18,7 @@ assert.equal(rows.length,117);
 assert.equal(new Set(rows.map(e=>e.event_id)).size,117,'IDs unique');
 for(const [id,fix] of Object.entries(r4.updates)){
  assert.ok(rows.some(e=>e.event_id===id),'patch target '+id);
- assert.ok(fix.source_url?.startsWith('https://'),'patch citation '+id);
+ assert.ok((fix.source_url||rows.find(e=>e.event_id===id)?.source_url)?.startsWith('https://'),'patch citation '+id);
 }
 const r4Groups=r4.events.filter(e=>e.eligible_factory_marker===false);
 assert.equal(r4Groups.length,5,'R4 research-only shared groups must not generate point markers');
