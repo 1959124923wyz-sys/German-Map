@@ -2,13 +2,13 @@
   "reference_year": 2023,
   "sheet_count": 19,
   "shared_strings": 36979,
-  "populated_sheets": 12,
+  "populated_sheets": 13,
   "source_url": "https://www.statistikportal.de/sites/default/files/2024-11/Integrierte_Schulden_der_Gemeinden_und_Gemeindeverbaende_2023_Tabellenband_0.xlsx",
-  "report_units_candidate_total": 11838,
+  "report_units_candidate_total": 11896,
   "candidate_unit_types": {
-    "county_administration": 288,
+    "county_administration": 294,
     "joint_administration": 831,
-    "municipality": 10719
+    "municipality": 10771
   },
   "status": "workbook_columns_inspected_not_harmonized",
   "warning": "Do not copy 2024 workbook column mapping into 2023 until sheet headers and denominator separately verified",
