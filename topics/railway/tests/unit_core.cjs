@@ -7,7 +7,7 @@ const path=require('node:path');
 const vm=require('node:vm');
 const root=path.resolve(__dirname,'..');
 const context=vm.createContext({window:{}});
-for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js','rail-picker.js']){
+for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js','rail-service-groups.js','rail-picker.js']){
   const source=fs.readFileSync(path.join(root,'js',name),'utf8');
   vm.runInContext(source,context,{filename:name,timeout:10000});
 }
@@ -144,5 +144,29 @@ assert.equal(locator.hit([105,baseY+100],9),null,'blank map must not trigger a r
 const seen=new Set();
 locator.network.nearest([105,baseY+10],2);
 assert.equal(locator.network.items,1);
+
+
+// The RE4 train service crosses DB infrastructure 6107 -> 6179 at Berlin:
+// clicking either measured part must select the same longer *service* corridor.
+const svc=context.window.Railway07ServiceGroups;
+const makeLine=(route,from,to,start,end,hint,late)=>{
+ const track=leg(from,to,[0,5],late,1,route);
+ track.label_hints=[[hint,150]];
+ return {leg:track,grade:math.grade(math.metrics(track,'both'),'both'),
+  parts:[part(start,end)],m:math.metrics(track,'both')};
+};
+const west=makeLine('6107','Wustermark','Elstal',100,104,'RE4',32);
+const east=makeLine('6179','Berlin-Staaken','Berlin-Spandau',106,110,'RE4',12);
+const services=svc.joinServiceCorridors(math.buildCorridors([west,east]),net,'both');
+assert.equal(services.joined,1);
+assert.equal(services.corridors.length,1);
+assert.equal(services.corridors[0].serviceName,'RE4');
+assert.equal(services.corridors[0].members.length,2);
+assert.equal(services.corridors[0].m.late,22);
+assert.equal(services.corridors[0].gradeVariation,true);
+assert.equal(services.map.get(services.corridors[0]),undefined);
+const other=makeLine('6179','Berlin-Staaken','Berlin-Spandau',106,110,'RE6',12);
+assert.equal(svc.joinServiceCorridors(math.buildCorridors([west,other]),net,'both').joined,0,
+ 'Different service labels must not be joined just for appearance');
 
 console.log('PASS railway pure geometry, weighted rates, branches, km gaps and pooled counts');
