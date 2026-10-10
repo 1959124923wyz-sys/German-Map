@@ -1,0 +1,41 @@
+name: Housing research - Bavaria 2025 county housing completions report probe
+on:
+  push:
+    branches:
+      - research/housing-crisis-20261010
+    paths:
+      - 'research/housing/probe_bavaria_2025_completions.py'
+      - '.github/workflows/housing-bavaria-2025-probe.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: housing-bavaria-2025-probe
+  cancel-in-progress: false
+jobs:
+  bavaria-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/housing-crisis-20261010
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --quiet openpyxl
+      - name: Probe official 2025 Bavaria annual completion workbook links
+        run: python research/housing/probe_bavaria_2025_completions.py
+      - name: Commit source when obtained and full probe notes in any case
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/housing/qa/bavaria_2025_completions_xlsx_discovery.json
+          if [ -f research/housing/raw/bavaria_f2200c_202500_official.xlsx ]; then
+            git add research/housing/raw/bavaria_f2200c_202500_official.xlsx
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m "housing research: official Bavaria F2200C 2025 source probe [skip ci]"
+            git pull --rebase origin research/housing-crisis-20261010
+            git push origin HEAD:research/housing-crisis-20261010
+          fi
