@@ -122,8 +122,8 @@ def main():
     if not isinstance(ids,list) or len(set(ids))!=expected:raise RuntimeError("ID listing inconsistent with count")
     ids=sorted(ids)
     rows=[]
-    for offset in range(0,len(ids),350):
-        batch=ids[offset:offset+350]
+    for offset in range(0,len(ids),120):
+        batch=ids[offset:offset+120]
         response=http_json({"f":"json","objectIds":",".join(map(str,batch)),"outFields":FIELDS,
                 "returnGeometry":"false"})
         records=response.get("features")
@@ -132,7 +132,7 @@ def main():
         retrieved={x["attributes"]["OBJECTID"] for x in records}
         if retrieved!=set(batch):raise RuntimeError("ArcGIS returned wrong ID set")
         rows.extend(records)
-        if offset%3500==0:print("Downloaded",len(rows),"/",expected,flush=True)
+        if offset%3600==0:print("Downloaded",len(rows),"/",expected,flush=True)
     results=summarize(rows,expected)
     output={
       "status":"candidate_geocoded_subset_not_full_BASt",
