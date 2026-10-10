@@ -22,15 +22,30 @@ def verify(browser,mobile=False):
     assert result["counties"]==400 and result["states"]==16,result
     assert result["modernCounties"]==400 and result["officialCoverage"]==0,result
     assert page.locator("#industry-map .leaflet-control-zoom-in").count()==1
-    assert page.locator("#eventList .industry-row").count()==30
+    assert page.locator("#industryDossier").is_hidden()
+    assert page.locator("#showMarkers").is_checked() is False
+    assert page.locator("#industryNationalList .industry-row").count()==231
     assert "不是" in page.locator("#methodNote").inner_text() or "尚非" in page.locator("#methodNote").inner_text()
     assert page.locator(".modebar a.modebtn").count()==10
     assert page.locator(".modebar .active").inner_text()=="工业衰退"
+    page.locator("#industryStateJump").select_option("DE-NW")
+    assert page.locator("#industryDossier").is_visible()
+    assert page.evaluate("GermanIndustryQA.selectedState()")=="DE-NW"
+    assert "本范围可溯源" in page.locator("#industryStateMetrics").inner_text()
+    page.locator('[data-dossier-tab="status"]').click()
+    assert page.locator("#industryStatusSummary").is_visible()
+    page.locator('[data-dossier-tab="cases"]').click()
+    assert page.locator("#eventList .industry-row").count()>0
+    page.locator("#industryEventSearch").fill("UPM")
+    assert page.locator("#eventList .industry-row").count()>0
+    page.locator("#industryEventSearch").fill("")
     page.locator("#eventList .industry-row").first.click()
     assert page.locator("#eventDetail").is_visible()
     assert page.locator("#eventDetail a[href^='https://']").count()>0
     page.locator("#viewGermany").click()
     assert page.locator("#areaName").inner_text()=="德国全国"
+    assert page.locator("#industryDossier").is_hidden()
+    assert page.locator("#showMarkers").is_checked() is False
     page.locator("#showMarkers").uncheck()
     assert page.locator("#showMarkers").is_checked() is False
     page.locator("#showMarkers").check()
