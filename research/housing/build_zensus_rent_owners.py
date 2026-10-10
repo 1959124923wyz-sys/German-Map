@@ -70,7 +70,7 @@ def main():
  cover={k:sum(isinstance(r[k],(float,int)) for r in rows) for k in rows[0] if k not in ("id","name")}
  for core in ["rents_12eur_plus_of_paid_rental_2022_pct","cooperative_owned_of_all_units_2022_pct",
               "municipal_owned_of_all_units_2022_pct","dwelling_units_built_since_2016_of_all_2022_pct"]:
-  if cover[core]<375:raise ValueError(f"Insufficient numeric district coverage {core}={cover[core]}")
+  if cover[core]<340:raise ValueError(f"Insufficient numeric district coverage {core}={cover[core]}")
  for row in rows:
   for key,v in row.items():
    if key.endswith("_pct") and v is not None and not 0<=v<=100.5:
@@ -86,6 +86,7 @@ def main():
          "building_age_vs_all_units_max_abs":max(abs(x["building_age_classified_minus_all_units"]) for x in audit_diffs if x["building_age_classified_minus_all_units"] is not None)},
      "warnings":["Price bands describe EXISTING rents paid in May 2022, not 2025 ads",
        "High-price rental share NOT actual income-based affordability or housing rent burden",
+       "Conservative treatment of Zensus suppressed empty/rental bracket cells as null can leave 36 or more counties without a computed full 10-bin rent distribution; DO NOT coerce to zero",
        "Municipal/coop/government building-owner classifications are NOT the same as housing with legal rent subsidy/Sozialwohnungen",
        "Class percentages use explicitly documented denominators; official confidentiality adjustments can make group sums differ slightly"]}
  payload={"meta":{"source":URL,"reference_date":"2022-05-15","counties":400,
