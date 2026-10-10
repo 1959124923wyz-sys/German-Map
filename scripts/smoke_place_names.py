@@ -34,6 +34,8 @@ def test_one(browser,url,mode=None):
     else:
         target="#immigration-map"
         page.wait_for_function("()=>window.__IMMIGRATION_READY__===true",timeout=45000)
+        # National state roster is intentionally collapsed in the compact layout.
+        page.locator("#azrStateDrawer > summary").click()
         page.locator("#state-list button").filter(has_text="柏林").click()
         assert "柏林" in page.locator("#region-name").inner_text()
         page.locator("#back-country").click()
