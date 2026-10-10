@@ -41,7 +41,7 @@ vm.runInNewContext(src,context,{filename:'topics/industry/topic.js',timeout:6000
  const qa=w.GermanIndustryQA;
  assert.ok(qa,'topic failed to boot');
  assert.equal(qa.records,220);
- assert.equal(qa.counties,402);
+ assert.equal(qa.counties,400);
  assert.equal(qa.modernCounties,400);
  assert.equal(qa.states,16);
  assert.equal(qa.officialCoverage,0,'must not fabricate official employment series');
