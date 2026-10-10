@@ -201,3 +201,12 @@ footer{display:none}
  .finance-summary .area-metric{font-size:22px}
  .finance-event-panel .finance-case-list{max-height:290px}
 }
+
+/* Direct state-to-state navigation: not a three-layer map mode switch. */
+.finance-state-actions{display:flex;align-items:center;gap:7px;min-width:0;flex:0 1 auto}
+.finance-state-label{font-size:10px;color:#9bafbf;white-space:nowrap}
+.finance-state-jump{min-width:125px;max-width:185px;flex:0 1 160px;background:#172533;color:#f0f6fb;border:1px solid #395669;border-radius:7px;padding:7px 9px;font:inherit;font-size:11px;cursor:pointer}
+.finance-state-jump:focus-visible{outline:2px solid #74b9e7;outline-offset:2px}
+.finance-state-actions .finance-reset{flex:0 0 auto}
+@media(max-width:1160px){.finance-state-label{display:none}.finance-state-jump{max-width:150px}}
+@media(max-width:560px){.finance-state-actions{gap:5px}.finance-state-jump{min-width:96px;max-width:118px;padding:7px 4px;font-size:10px}.finance-state-actions .finance-reset{padding:7px 6px}}
