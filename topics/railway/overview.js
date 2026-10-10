@@ -345,7 +345,7 @@ function recalc(){
  if(view.networkReady){
   const combined=window.Railway07Bridge.mergeGroups(measured,view.bridgeGraph,items);
   view.groups=combined.groups;
-  view.bridged=combined.bridged;
+  view.bridged=combined.bridged;view.bridgeDiagnostics=combined.debug;
  }else{
   view.groups=measured;view.bridged=0;
  }
@@ -404,7 +404,7 @@ try{
   getNetworkReady:()=>view.networkReady,getStatesReady:()=>view.statesReady,
   getCountiesReady:()=>view.countiesReady,getRendered:()=>view.rendered,
   getCorridors:()=>view.groups,getBridgedCount:()=>view.bridged,
-  getBridgedGeometryCount:()=>view.bridgePaths.length,getGraphEdgeCount:()=>view.bridgeGraph.edges,
+  getBridgeDiagnostics:()=>view.bridgeDiagnostics,getBridgedGeometryCount:()=>view.bridgePaths.length,getGraphEdgeCount:()=>view.bridgeGraph.edges,
   getRepaintCount:()=>view.repaints,getCanvasCount:()=>document.querySelectorAll('.railway-canvas').length,
   getSpatialBucketCount:()=>view.grid.size,
   clickPoint:ll=>pickAt(L.latLng(ll)),stationZh
