@@ -222,5 +222,20 @@ assert.equal(active.all,3);
 assert.equal(network.all.length,3,'changing observed categories cannot delete official track');
 assert.equal(network.unobserved('7000',[110,baseY]).parts.length,3);
 assert.equal(network.unobserved('UNKNOWN',[110,baseY]).parts.length,0);
+const observedGap={
+ startStation:'A Hbf',endStation:'B Hbf',
+ members:[
+  {leg:{route:'7000',from_station:'A Hbf',to_station:'Middle A'},
+   parts:[part(100,104)]},
+  {leg:{route:'7000',from_station:'Middle B',to_station:'B Hbf'},
+   parts:[part(108,112)]}
+ ]
+};
+const whole=network.full(observedGap);
+assert.ok(whole&&whole.length>=3,'a city selection must follow all 3 official track sections');
+const total=whole.reduce((n,p)=>n+(p.maxX-p.minX),0);
+assert.ok(total>=11.9,'highlight must span from city A to city B, not only the green gap');
+assert.equal(network.full(observedGap),whole,'verified full route cached per corridor');
+
 
 console.log('PASS railway pure geometry, weighted rates, branches, km gaps and pooled counts');
