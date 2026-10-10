@@ -67,6 +67,7 @@ def summarize(rows, expected):
     missing_state = 0
     missing_grade_reason = defaultdict(int)
     listed_grade_present = defaultdict(lambda: [0,0])
+    invalid_zn_values = defaultdict(int)
     ids = set()
     for record in rows:
         a=record["attributes"]
@@ -90,7 +91,9 @@ def summarize(rows, expected):
         if z is not None and 1<=z<=4:listed_grade_present[listing][1]+=1
         if z is None:missing_grade_reason["null_or_non_numeric"]+=1
         elif z<1:missing_grade_reason["below_1"]+=1
-        elif z>4:missing_grade_reason["above_4"]+=1
+        elif z>4:
+            missing_grade_reason["above_4"]+=1
+            invalid_zn_values[str(a.get("zn"))]+=1
         area=num(a.get("flaeche"))
         valid_area = area is not None and 0 < area < 10000000
         if not valid_area:t["area_missing_or_invalid"]+=1
@@ -122,7 +125,7 @@ def summarize(rows, expected):
              condition_valid_pct_of_geocoded=ratio("condition_valid","features"))
         results.append(v)
     if sum(x["features"] for x in results)+missing_state!=expected:raise RuntimeError("state totals + missing attribution fail")
-    return results,missing_state,dict(missing_grade_reason),dict(listed_grade_present)
+    return results,missing_state,dict(missing_grade_reason),dict(listed_grade_present),dict(sorted(invalid_zn_values.items(),key=lambda x:-x[1])[:15])
 
 def main():
     count=http_json({"f":"json","where":"1=1","returnCountOnly":"true"})
@@ -145,7 +148,7 @@ def main():
         if retrieved!=set(batch):raise RuntimeError("ArcGIS returned wrong ID set")
         rows.extend(records)
         if offset%3600==0:print("Downloaded",len(rows),"/",expected,flush=True)
-    results,unattributed,grade_gaps,listing_coverage=summarize(rows,expected)
+    results,unattributed,grade_gaps,listing_coverage,invalid_zn=summarize(rows,expected)
     output={
       "status":"candidate_geocoded_subset_not_full_BASt",
       "snapshot_claim":"2025-09",
@@ -155,6 +158,7 @@ def main():
       "official_bast_source":"https://www.govdata.de/suche/daten/bruckenstatistik",
       "raw_feature_count":expected,
       "raw_grade_diagnostics":grade_gaps,
+      "invalid_grade_top_values":invalid_zn,
       "source_list_membership_grade_coverage":listing_coverage,
       "quality_verdict":"NOT SUITABLE for representative interstate DIN comparison without official stock calibration; high condition-missing fraction",
       "do_not_use_for_choropleth":True,
