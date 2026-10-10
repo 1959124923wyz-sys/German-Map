@@ -6,7 +6,7 @@
 <meta name="description" content="德国铁路真实区间运行质量地图，基于2026年9月列车停靠记录，突出延误与取消标记较高的区间。">
 <title>德国铁路运行地图 · BahnMonitor | German-Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="overview.css?v=19">
+<link rel="stylesheet" href="overview.css?v=24">
 </head>
 <body>
 <div class="page">
@@ -25,7 +25,7 @@
  <section class="map-panel" aria-label="德国铁路延误和停靠取消区间分布">
   <div id="railway-map" role="application" aria-label="德国铁路真实轨道与运行区间地图"></div>
   <div class="rail-home"><button type="button" id="home" title="返回德国全国" aria-label="返回全国">全国</button></div>
-  <div class="map-status" id="mapStatus" role="status">官方铁路网络加载中…</div>
+  <div class="map-status" id="mapStatus" role="status">客运运行线路加载中…</div>
   <div class="legend rail-legend" id="railLegend" aria-label="铁路数值颜色图例" aria-live="polite">
    <b>观测比例 · 2026年9月</b>
    <span><i style="background:#16865e"></i>其他线路</span>
@@ -42,23 +42,15 @@
     <button type="button" data-service="OTHER" aria-pressed="false">其他运营商<small>HLB 等</small></button>
    </div>
   </div>
-  <div class="field"><label>关注指标</label>
-   <div id="metric" class="metric-tabs" role="group" aria-label="关注指标">
-    <button type="button" class="active" data-metric="both" aria-pressed="true">综合</button>
-    <button type="button" data-metric="late" aria-pressed="false">晚点</button>
-    <button type="button" data-metric="cancel" aria-pressed="false">停靠取消</button>
-   </div>
-  </div>
-
   <div id="status" role="status" aria-live="polite">正在加载铁路数据…</div>
   <section class="detail" id="detail" aria-live="polite"><h3>点击地图查看区段</h3></section>
   <details class="hotspots" id="hotspots"><summary>查看高关注区段</summary><div id="hotList" class="hot-list"></div></details>
   <details class="method"><summary>数据来源与统计口径</summary>
-   <p>后台固定使用至少100次有效观测。绿色也包括未匹配或样本不足的轨道，绿色不保证准点。</p>
+   <p>后台固定使用至少100次有效观测。公开地图默认隐藏不足12公里的短线路，但两端是明确枢纽的8公里以上城市连接仍保留。隐藏只是视觉筛选，不代表运行正常；完整原始资料仍可在研究页面查阅。</p>
    <p>2026年9月 DB Timetables API 历史停站数据，经 Piet Brömmel 汇编；轨道依据 DB InfraGO 官方线路几何及公里标匹配。</p>
    <p>综合关注：到站晚点≥6分钟的比例≥40%，或者到发停靠取消标记比例≥8%时标红；≥25%或≥4%时标橙。阈值仅用于地图展示，不是德国铁路官方评级。</p>
-   <p>区域列车合并 RE 与 RB，长途涵盖 ICE／IC／EC／FLX，其他运营商聚合 HLB、BRB、ERB、NWB、OE。分别按同方向站间、线路编号及公里区间合并可匹配观测；其他运营商数据与 RB／RE 在服务归属上可能重叠，不可跨类别求和。</p>
-   <p>停靠取消标记<strong>不是整趟列车取消概率</strong>；下游站晚点<strong>不表示该铁路区间造成延误</strong>。浅绿色底线不能据此判定运行正常，样本并未按旅客量加权。</p>
+   <p>区域列车合并 RE 与 RB，长途涵盖 ICE／IC／EC／FLX，其他运营商聚合 HLB、BRB、ERB、NWB、OE。按同一列车线路标记和站名连通关系，将各站间观察合并为城市间走廊；其他运营商数据与 RB／RE 在服务归属上可能重叠，不可跨类别求和。</p>
+   <p>停靠取消标记<strong>不是整趟列车取消概率</strong>；下游站晚点<strong>不表示该铁路区间造成延误</strong>。主地图仅绘制达到观测条件的城市间客运线路，不显示没有客运观测的官方设施轨道；样本没有按旅客量加权。</p>
    <p><a href="https://github.com/piebro/deutsche-bahn-data" target="_blank" rel="noopener noreferrer">Deutsche Bahn Data · CC BY 4.0 ↗</a> · <a href="research.html">研究详情 ↗</a></p>
   </details>
  </aside>
@@ -66,19 +58,15 @@
 </div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/states.js"></script>
-<script src="data/data-core.js"></script>
-<script src="data/data-sections-00.js"></script>
-<script src="data/data-sections-01.js"></script>
-<script src="data/data-sections-02.js"></script>
 <script src="../../js/core/place-names-zh.js"></script>
 <script src="js/station-zh.js"></script>
 <script src="../../js/layers/city-labels.js"></script>
 <!-- Pure geometry and statistics execute before the Leaflet UI controller. -->
 <script src="js/rail-geometry.js?v=20"></script>
 <script src="js/rail-analysis.js?v=20"></script>
-<script src="js/rail-bridge.js?v=21"></script>
 <script src="js/rail-service-groups.js?v=23"></script>
+<script src="js/rail-city-corridors.js?v=24"></script>
 <script src="js/rail-picker.js?v=22"></script>
-<script src="overview.js?v=23"></script>
+<script src="overview.js?v=24"></script>
 </body>
 </html>

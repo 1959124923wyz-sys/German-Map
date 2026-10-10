@@ -29,6 +29,7 @@ jobs:
           node --check topics/railway/js/rail-bridge.js
           node --check topics/railway/js/rail-picker.js
           node --check topics/railway/js/rail-service-groups.js
+          node --check topics/railway/js/rail-city-corridors.js
           node topics/railway/tests/unit_core.cjs
           python scripts/validate_site_assets.py
           node --check topics/railway/js/station-zh.js
@@ -48,5 +49,5 @@ jobs:
         if: always()
         with:
           name: railway-minimal-browser-screenshots
-          path: /tmp/railway-v18/*.png
+          path: /tmp/railway-city/*.png
           if-no-files-found: warn

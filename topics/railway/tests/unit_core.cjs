@@ -7,7 +7,7 @@ const path=require('node:path');
 const vm=require('node:vm');
 const root=path.resolve(__dirname,'..');
 const context=vm.createContext({window:{}});
-for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js','rail-service-groups.js','rail-picker.js']){
+for(const name of ['rail-geometry.js','rail-analysis.js','rail-bridge.js','rail-service-groups.js','rail-city-corridors.js','rail-picker.js']){
   const source=fs.readFileSync(path.join(root,'js',name),'utf8');
   vm.runInContext(source,context,{filename:name,timeout:10000});
 }
@@ -173,5 +173,36 @@ assert.equal(services.map.get(services.corridors[0]),undefined);
 const other=makeLine('6179','Berlin-Staaken','Berlin-Spandau',106,110,'RE6',12);
 assert.equal(svc.joinServiceCorridors(math.buildCorridors([west,other]),net,'both').joined,0,
  'Different service labels must not be joined just for appearance');
+
+
+// One click selects an entire city-to-city passenger chain while retaining
+// exact raw counts and stopping at a named metropolitan railway hub.
+const city=context.window.Railway07Cities;
+const cityLeg=(from,to,lo,hi,late=30)=>{
+ const x=leg(from,to,[lo,hi],late,2,'7000');
+ x.label_hints=[['RE11',200]];return x;
+};
+const t1=cityLeg('Erfurt Hbf','Neudietendorf',0,15);
+const t2=cityLeg('Neudietendorf','Arnstadt Hbf',15,27);
+const t3=cityLeg('Arnstadt Hbf','Ilmenau',27,48,50);
+const citem=x=>({leg:x,grade:math.grade(math.metrics(x,'both'),'both'),
+ parts:[part(x.km_range[0]*3,x.km_range[1]*3)],m:math.metrics(x,'both')});
+const input=[citem(t1),citem(t2),citem(t3)];
+const resultCity=city.buildCityCorridors(input,'both');
+assert.equal(resultCity.physicalEdges,3);
+assert.equal(resultCity.corridors.length,2,'stop at Arnstadt city interchange');
+const erToAr=resultCity.corridors.find(g=>g.cityFrom==='Erfurt'&&g.cityTo==='Arnstadt');
+assert.ok(erToAr);
+assert.equal(erToAr.members.length,2);
+assert.equal(erToAr.m.onTime,70);
+const arToIl=resultCity.corridors.find(g=>g.cityFrom==='Arnstadt'&&g.cityTo==='Ilmenau');
+assert.ok(arToIl);assert.equal(arToIl.m.onTime,50);
+// Reverse direction contributes counts, never a separate duplicate line.
+const reverse2=cityLeg('Arnstadt Hbf','Neudietendorf',15,27,20);
+const both=city.buildCityCorridors([...input,citem(reverse2)],'both');
+const match=both.corridors.find(g=>g.cityFrom==='Erfurt'&&g.cityTo==='Arnstadt');
+assert.equal(match.members.length,3);
+assert.equal(match.m.onTime,100-(30+30+20)/3);
+assert.equal(city.cityName('Berlin-Spandau'),'Berlin');
 
 console.log('PASS railway pure geometry, weighted rates, branches, km gaps and pooled counts');
