@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "verified_date": "2026-10-10",
+  "title": "德国联邦公路桥梁存量口径核查：独立桥梁≠桥梁分段",
+  "primary_official": {
+    "publisher": "Bundesministerium für Verkehr",
+    "publication_date": "2025-05-06",
+    "source_url": "https://www.bmv.de/SharedDocs/DE/Artikel/StB/brueckenmodernisierung.html",
+    "bridge_structures_approx": 40300,
+    "bridge_substructures_approx": 52600,
+    "scope": "联邦高速公路+联邦一般公路，联邦负担的桥梁存量",
+    "description": "BMV明确约40,300座桥梁因结构和车道划分进一步拆为约52,600个Teilbauwerke；数值均为近似值，非2025-09精确统计。"
+  },
+  "independent_audit": {
+    "publisher": "Bundesrechnungshof",
+    "date": "2025-04-29",
+    "source_url": "https://www.bundesrechnungshof.de/SharedDocs/Pressemitteilungen/DE/2025/brueckenmodernisierung.html",
+    "autobahn_substructures_september_2021": 27915,
+    "bundesstrassen_substructures_september_2021": 24471,
+    "total_substructures_september_2021": 52386,
+    "date_scope": "2021-09，历史基线，不可以作为2025精确分母"
+  },
+  "candidate_snapshot": {
+    "source_url": "https://services2.arcgis.com/jUpNdisbWqRpMo35/arcgis/rest/services/Br%C3%BCckenstatistik_Deutschland/FeatureServer/0",
+    "date": "2025-09",
+    "geocoded_feature_count": 52553,
+    "with_state_label": 51707,
+    "without_state_label": 846,
+    "unit_hypothesis": "Teilbauwerk/substructure (to verify by comparing id_nr/bwnr; NOT unique physical bridge)",
+    "ratio_to_approx_2025_stock_pct": 99.91,
+    "ratio_interpretation": "52553/52600仅为跨月份、近似官方基准的规模一致性检查，不能声称实际坐标覆盖率为99.91%。"
+  },
+  "conclusions": [
+    "地图及资料文案应将52,553称作联邦公路桥梁分段或点位记录，而不是52,553座独立桥梁",
+    "先前担忧地理化图层遗漏大量记录目前没有证据；其数量与BMV近似分段总数高度接近，但准确遗漏量仍未知",
+    "所有按数量计算的不良占比以有效桥梁分段为分母，按面积则以有效桥梁分段面积为分母",
+    "不包括各州单独负责的州道、县道、市政桥及德国铁路桥",
+    "风险为选样/同一桥多分段、变化年份、强相关大面积构造物等；任何新指数仍待与BASt原始清单对账"
+  ],
+  "raw_extraction_verification": "https://github.com/1959124923wyz-sys/German-Map/actions/runs/38037228372"
+}
