@@ -94,6 +94,8 @@ jobs:
           node --check js/layers/county-layer.js
           node --check js/layers/state-layer.js
           node --check js/app.js
+          node --check js/core/region-dossier.js
+          node --check js/layers/county-dossier.js
           node --check js/layers/city-detail.js
           node --check js/layers/city-count-detail.js
           node --check js/layers/bremen-category-detail.js
@@ -181,6 +183,9 @@ jobs:
           SMOKE_URL: http://127.0.0.1:8765/
           SMOKE_SCREENSHOT: /tmp/germany-crime-map-national.png
         run: python scripts/smoke_test_ui.py
+
+      - name: Verify 400-county 10-category dossier on desktop and mobile
+        run: python tests/smoke_county_dossier.py
 
       - name: Regression test drug topic and first-level navigation
         run: |
