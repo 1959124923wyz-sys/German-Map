@@ -154,7 +154,7 @@ def verify(browser,mobile=False):
                 id:String(county.feature.id),pt:[pt.x,pt.y],
                 node:node?.tagName,cls:node?.className?.baseVal||node?.className,
                 blocked:!!node?.closest('#stateDrawer,.legend,.leaflet-control')});
-              if(pt.x<430||pt.x>r.width-20||pt.y<25||pt.y>r.height-50)continue;
+              if(pt.x<15||pt.x>r.width-20||pt.y<25||pt.y>r.height-50)continue;
               diag.within++;
               if(!node||node.closest('#stateDrawer,.legend,.leaflet-control'))continue;
               return {x,y,id:String(county.feature.id),hit:node.tagName};
