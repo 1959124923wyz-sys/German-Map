@@ -158,6 +158,9 @@ def verify(browser,mobile=False):
     page.locator("#resetView").click()
     page.locator("#metricLayer").select_option("core-2023")
     assert page.evaluate(f"{api}.getMode()")=="core-2023"
+    assert "债务较高" in page.locator("#legend").inner_text()
+    assert "#a52d37" in (page.locator("#legend .finance-legend-scale span").last.get_attribute("style") or "")
+    assert page.evaluate("AtlasColorSemantics.get('finance','core-2023')")=="pressure-high"
     assert "2023" in page.locator("#legend").inner_text()
     assert page.evaluate(f"{api}.coloredCountyCount()")>=380
     assert page.evaluate(f"{api}.hasCountyDetail()")
@@ -179,6 +182,8 @@ def verify(browser,mobile=False):
 
     page.locator("#metricLayer").select_option("city-2024")
     assert page.evaluate(f"{api}.getMode()")=="city-2024"
+    assert "债务较高" in page.locator("#legend").inner_text()
+    assert "#a52d37" in (page.locator("#legend .finance-legend-scale span").last.get_attribute("style") or "")
     assert "2024" in page.locator("#legend").inner_text()
     assert page.evaluate(f"{api}.coloredCountyCount()")>=95
     page.evaluate(f"{api}.selectCounty('01002')")
