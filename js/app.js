@@ -424,7 +424,12 @@
       }).finally(()=>{berlinDataRequest=null;});
   }
   map.on('zoomend',()=>{buildStateLayer();berlinDetail.render();ensureBerlinData();renderLegend();});
-  map.on('moveend',()=>{if(!stateLayer)buildStateLayer();if(el.stateDrawer.classList.contains('open'))stateDrawerDrag.keepInside();ensureBerlinData();});
+  map.on('moveend',()=>{
+    if(!stateLayer)buildStateLayer();
+    berlinDetail.syncViewport();
+    if(el.stateDrawer.classList.contains('open'))stateDrawerDrag.keepInside();
+    ensureBerlinData();
+  });
 
   window.addEventListener('resize',()=>{
     if(el.stateDrawer.classList.contains('open'))stateDrawerDrag.keepInside();

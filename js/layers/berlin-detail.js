@@ -296,9 +296,17 @@
       clearProperty();
     }
 
+    // When panning at unchanged zoom, Leaflet does NOT dispatch zoomend.
+    // Evict hidden Berlin paths immediately and mount again only if needed.
+    function syncViewport(){
+      if(!berlinInView()){clear();return;}
+      if(!violenceLayer&&!propertyLayer&&isActive())render();
+    }
+
     return Object.freeze({
       render,
       clear,
+      syncViewport,
       isActive,
       propertyField: currentPropertyField,
       violenceRates,
