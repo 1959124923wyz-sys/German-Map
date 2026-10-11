@@ -57,6 +57,15 @@
         <div id="stateCityList" class="state-city-list" aria-label="已核实的城市街区统计图层"></div>
         <p class="state-city-caveat">城市街区官方统计的范围和指标并不完全一致：部分为每10万人犯罪率，部分为登记案件绝对数。进入后以该城市单独的图例和来源为准，不能跨口径排名。</p>
       </details>
+      <section class="state-section state-county-browser" aria-label="本州全部县市">
+        <div class="state-county-head"><strong>县市详细档案</strong><button id="stateCountyBrowse" type="button" aria-pressed="false">在地图上选县市</button></div>
+        <p class="state-county-note">州级数据仍在本窗口。选中县市后，右侧可查看2025年全部10项犯罪指标。</p>
+        <details id="stateCountyDirectory">
+          <summary>搜索本州全部县市 <span id="stateCountyCount"></span></summary>
+          <input id="stateCountySearch" type="search" placeholder="输入县市名称或5位AGS" aria-label="搜索本州县市">
+          <div id="stateCountyList" class="state-county-list" aria-label="本州全部县市"></div>
+        </details>
+      </section>
       <details class="state-section state-disclosure" id="stateCountyDisclosure">
         <summary><strong>州内高值县／市</strong><span>按当前指标 · 每10万人</span></summary>
         <div id="stateTopCounties"></div>
@@ -121,7 +130,7 @@
       </div>
       <div class="area-note" id="areaNote">全国概览会显示当前指标的真实分布统计；悬停或点击地图后切换为该县/市的实际数据。</div>
       <section id="crimeCountyDossier" class="region-dossier crime-county-dossier" hidden aria-label="县市全部犯罪指标资料室">
-       <div class="dossier-heading"><strong id="crimeCountyTitle">县市完整犯罪档案</strong><small>2025 · PKS</small></div>
+       <div class="dossier-heading"><strong id="crimeCountyTitle">县市完整犯罪档案</strong><button id="crimeCountyBackState" type="button">返回所属州</button></div>
        <details id="crimeCountyExpand" class="crime-county-expand">
         <summary>完整查看暴力、财产共10项指标 <span>案件数 · 犯罪率 · 同比</span></summary>
        <div class="dossier-tabs">
@@ -165,15 +174,15 @@
 <script src="js/core/config.js"></script>
 <script src="js/core/data-model.js"></script>
 <script src="js/panels/drawer-drag.js"></script>
-<script src="js/panels/state-panel.js?v=city1"></script>
+<script src="js/panels/state-panel.js?v=county2"></script>
 <script src="js/panels/area-panel.js?v=clean1"></script>
 <script src="js/layers/recent-events.js?v=clean1"></script>
 <script src="js/layers/berlin-detail.js"></script>
 <script src="js/layers/county-layer.js"></script>
-<script src="js/layers/state-layer.js?v=clean1"></script>
+<script src="js/layers/state-layer.js?v=county2"></script>
 <script src="js/core/place-names-zh.js?v=clean1"></script>
 <script src="js/layers/city-labels.js?v=clean1"></script>
-<script src="js/app.js?v=clean1"></script>
+<script src="js/app.js?v=county2"></script>
 <script src="js/layers/city-detail.js?v=city1"></script>
 <script src="js/layers/city-count-detail.js?v=clean1"></script>
 <script src="js/layers/bremen-category-detail.js?v=clean1"></script>
@@ -183,6 +192,6 @@
 <script src="js/layers/duesseldorf-other-stadtteile.js?v=clean1"></script>
 <script src="js/layers/state-city-catalog.js?v=city1"></script>
 <script src="js/core/region-dossier.js?v=1"></script>
-<script src="js/layers/county-dossier.js?v=1"></script>
+<script src="js/layers/county-dossier.js?v=county2"></script>
 </body>
 </html>
