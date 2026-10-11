@@ -20,11 +20,19 @@ def verify(browser,mobile=False):
     assert page.locator("#crimeCountyDossier").is_hidden()
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.entries('violence')")==0
     # Hovering the map must remain transient; only pinned counties get the archive.
-    page.evaluate("""() => window.__CRIME_MAP__.getCountyLayer().getLayers()
-      .find(l=>String(l.feature?.id||l.feature?.properties?.AGS)==='10041').fire('mouseover')""")
+    page.evaluate("""() => {
+      const layer=window.__CRIME_MAP__.getCountyLayer().getLayers()
+        .find(l=>String(l.feature?.id||l.feature?.properties?.AGS)==='10041');
+      layer.fire('mouseover');
+      return true;
+    }""")
     assert page.locator("#crimeCountyDossier").is_hidden()
-    page.evaluate("""() => window.__CRIME_MAP__.getCountyLayer().getLayers()
-      .find(l=>String(l.feature?.id||l.feature?.properties?.AGS)==='10041').fire('click')""")
+    page.evaluate("""() => {
+      const layer=window.__CRIME_MAP__.getCountyLayer().getLayers()
+        .find(l=>String(l.feature?.id||l.feature?.properties?.AGS)==='10041');
+      layer.fire('click');
+      return true;
+    }""")
     assert page.locator("#crimeCountyDossier").is_visible()
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.selected()")== "10041|violence"
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.active()")=="violence"
@@ -41,15 +49,23 @@ def verify(browser,mobile=False):
     assert page.locator('[data-dossier-pane="violence"]').is_hidden()
     assert "类别有包含与重叠关系" in page.locator("#crimeCountyDossier").inner_text()
     before=page.evaluate("window.__CRIME_COUNTY_DOSSIER__.renders()")
-    page.evaluate("""() => window.__CRIME_MAP__.getCountyLayer().getLayers()
-      .find(l=>String(l.feature?.id||l.feature?.properties?.AGS)==='10041').fire('mouseover')""")
+    page.evaluate("""() => {
+      const layer=window.__CRIME_MAP__.getCountyLayer().getLayers()
+        .find(l=>String(l.feature?.id||l.feature?.properties?.AGS)==='10041');
+      layer.fire('mouseover');
+      return true;
+    }""")
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.renders()")==before,"hover should not reset tabs"
     page.locator("#viewGermany").click()
     assert page.locator("#crimeCountyDossier").is_hidden()
     page.locator("#modeProperty").click()
     page.wait_for_function("window.__CRIME_MAP__.getMode()==='property'")
-    page.evaluate("""() => window.__CRIME_MAP__.getCountyLayer().getLayers()
-      .find(l=>String(l.feature?.id||l.feature?.properties?.AGS)==='10041').fire('click')""")
+    page.evaluate("""() => {
+      const layer=window.__CRIME_MAP__.getCountyLayer().getLayers()
+        .find(l=>String(l.feature?.id||l.feature?.properties?.AGS)==='10041');
+      layer.fire('click');
+      return true;
+    }""")
     assert page.locator("#crimeCountyDossier").is_visible()
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.active()")=="property"
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.selected()")=="10041|property"
