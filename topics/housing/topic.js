@@ -235,6 +235,111 @@
   const nice=String(v).replace(/^(\\d+) bis unter (\\d+)$/,'$1—不足$2').replace(/^(\\d+) und mehr$/,'≥$1').replace(/^unter (\\d+)$/,'低于$1');
   el.textContent='2024年住宅建筑用地价格等级：'+nice+' 欧元/㎡（用于一、两户型住宅的中等地段；官方县级表仅给区间，非精确价格）';
  }
+ // The underlying official county/subcounty files have already been loaded
+ // and verified. This archive is a state-only browsing interface, not a new
+ // combined nationwide 2025 house-building indicator.
+ let localArchiveState=null;
+ function localStateSource(){
+  if(!focusState)return null;
+  if(focusState==='05' && nrwRows.size===53){
+   const rows=[...nrwRows.values()];
+   return {name:'北威州',scope:'53县市 · 2015—2025年',rows,years:Object.keys(rows[0].values_by_year).sort(),
+    unit:'套',noun:'新建住宅建筑中竣工住房',kind:'residential',
+    link:'https://www.landesdatenbank.nrw.de/ldbnrwws/downloader/00/tables/31121-06i_00.csv',
+    value:(r,yr)=>r.values_by_year?.[yr]?.new_dwellings_in_residential_buildings,
+    caveat:'IT.NRW：仅统计新建住宅建筑中的竣工住房套数，不是建筑许可、住房存量净增长或全部竣工住房；原档案提供2015—2025年，同一县不同年可能涉及边界口径变化。'};
+  }
+  if(focusState==='09' && bavariaRows.size===96){
+   return {name:'巴伐利亚州',scope:'96县市 · 2025年',rows:[...bavariaRows.values()],years:['2025'],
+    unit:'套',noun:'新建住宅建筑中竣工住房',kind:'residential',
+    link:'https://www.statistik.bayern.de/mam/produkte/veroffentlichungen/statistische_berichte/f2200c_202500.xlsx',
+    value:r=>r.completed_dwellings_new_residential_buildings_2025,
+    caveat:'巴伐利亚州统计局F2200C：只展示2025年新建住宅建筑中竣工住房，不等于全部建筑措施竣工或年度许可；不要与勃兰登堡州更宽的新建建筑口径互相比率。'};
+  }
+  if(focusState==='12' && brandenburgRows.size===18){
+   return {name:'勃兰登堡州',scope:'18县市 · 2024—2025年',rows:[...brandenburgRows.values()],years:['2024','2025'],
+    unit:'套',noun:'全部建筑措施竣工住房',kind:'all-measures',
+    link:'https://www.statistik-berlin-brandenburg.de/presse/2026/60-baufertigstellungen-2025-brandenburg/',
+    value:(r,yr)=>r['completed_dwellings_all_measures_'+yr],
+    caveat:'勃兰登堡州统计局：全部建筑措施竣工住房，包括既有建筑内的改建、扩建及不同建筑类型；不能与北威州/巴伐利亚“新建住宅建筑”数字直接排名。'};
+  }
+  if(focusState==='11' && berlinBoroughRows.length===12){
+   return {name:'柏林',scope:'12个Bezirke区 · 2024—2025年',rows:berlinBoroughRows,years:['2024','2025'],
+    unit:'套',noun:'全部建筑措施竣工住房',kind:'borough',
+    link:'https://www.statistik-berlin-brandenburg.de/presse/2026/59-baufertigstellungen-2025-berlin/',
+    value:(r,yr)=>r['completed_dwellings_all_measures_'+yr],
+    caveat:'柏林—勃兰登堡统计局2026-05-22更正表。这里是柏林市内部12个Bezirke，柏林仍是一个县级单元11000，不能把12区当作额外12县。全部建筑措施口径不同于新建住宅建筑。'};
+  }
+  if(focusState==='14' && saxonyRows.size===13){
+   return {name:'萨克森州',scope:'13县市 · 2022—2026年',rows:[...saxonyRows.values()],years:['2022','2023','2024','2025','2026'],
+    unit:'人',noun:'1月31日获安置无住房人员',kind:'homeless',
+    link:'https://www.statistik.sachsen.de/html/untergebrachte-wohnungslose-personen.html',
+    value:(r,yr)=>r.annual_counts?.[yr],
+    caveat:'萨克森州统计局：每年1月31日获得临时住宿的无住房者，五人取整，不包括全部露宿者或隐性无住房；数据变化可含安置制度与登记范围变动，不可视为住房供需或净移民人数。'};
+  }
+  return null;
+ }
+ function renderLocalRows(){
+  const src=localStateSource();
+  if(!src)return;
+  const year=$('housingLocalYear').value,sort=$('housingLocalSort').value;
+  const q=$('housingLocalSearch').value.trim().toLocaleLowerCase();
+  const matches=src.rows.filter(r=>!q||[r.name,r.id||'',
+    window.GermanPlaceNames?.byAGS(r.id||'',r.name)||''].some(x=>String(x||'').toLocaleLowerCase().includes(q)));
+  const ordered=matches.map(r=>({row:r,v:src.value(r,year)})).sort((a,b)=>{
+   if(sort==='name')return a.row.name.localeCompare(b.row.name,'de');
+   const v=Number.isFinite(a.v)?a.v:-Infinity,w=Number.isFinite(b.v)?b.v:-Infinity;
+   return w-v||a.row.name.localeCompare(b.row.name,'de');
+  });
+  const nums=src.rows.map(r=>src.value(r,year)).filter(isNum).sort((a,b)=>a-b);
+  const top=nums.length?nums.at(-1):0,median=med(nums);
+  $('housingLocalSummary').innerHTML=[
+   ['完整样本',src.rows.length+'个地区'],
+   ['有效数值',nums.length+'/'+src.rows.length],
+   ['本年地区简单中位数',isNum(median)?fmt(median,0)+src.unit:'无数值']
+  ].map(([name,n])=>'<div><small>'+safe(name)+'</small><b>'+safe(n)+'</b></div>').join('');
+  $('housingLocalRows').innerHTML=ordered.map(({row,v})=>{
+   const priorYear=String(Number(year)-1);
+   const prev=src.years.includes(priorYear)?src.value(row,priorYear):null;
+   const name=window.GermanPlaceNames?.byAGS(row.id||'',row.name)||row.name;
+   const pct=top>0&&isNum(v)?Math.max(0,Math.min(100,100*v/top)):0;
+   const id=row.id&&countyShapes.has(row.id)&&row.id.startsWith(focusState)?row.id:null;
+   const text=(isNum(v)?fmt(v,0)+src.unit:'数据缺失');
+   return '<div class="housing-local-entry"><div class="housing-local-entry-head"><strong>'+safe(name)+'</strong>'+
+    (id?'<button type="button" data-local-county="'+safe(id)+'" aria-label="查看'+safe(name)+'县级详情">查看县市 ↗</button>':'<small>柏林区级</small>')+'</div>'+
+    '<div class="housing-local-entry-stat"><b>'+safe(text)+'</b>'+
+    (isNum(prev)?'<small>上一年 '+safe(fmt(prev,0))+src.unit+'</small>':'')+
+    '<small>'+safe(row.id?'AGS '+row.id:'2025更正官方区级表')+'</small></div>'+
+    '<div class="housing-local-bar" role="img" aria-label="'+safe(name)+' '+safe(year)+'年 '+safe(text)+'"><i style="width:'+pct.toFixed(2)+'%"></i></div></div>';
+  }).join('')||'<p class="dossier-note">没有匹配的地区；缺失值不是0。</p>';
+  for(const b of $('housingLocalRows').querySelectorAll('[data-local-county]')){
+   b.addEventListener('click',()=>{
+    const id=b.dataset.localCounty;
+    if(!countyShapes.has(id)||!id.startsWith(focusState))return;
+    chooseCounty(id);
+    housingDossier.choose('archive');
+    $('housingStateArchive').open=true;
+   });
+  }
+  $('housingLocalCaveat').textContent=src.caveat+' 柱条仅表示本州同一年同一口径样本内的相对大小；绝对人数／套数会受各县市规模影响，不能理解成人均住房风险。';
+ }
+ function renderLocalStateArchive(){
+  const src=localStateSource(),panel=$('housingStateArchive');
+  panel.hidden=!src;
+  if(!src){panel.open=false;localArchiveState=null;return;}
+  if(localArchiveState!==focusState){
+   localArchiveState=focusState;panel.open=false;
+   const year=$('housingLocalYear');
+   year.replaceChildren(...src.years.map(y=>new Option(y+'年',y)));
+   year.value=src.years.at(-1);
+   $('housingLocalSearch').value='';
+   $('housingLocalSort').value='value';
+  }
+  $('housingStateArchiveTitle').textContent=src.name+' · 官方'+src.rows.length+'地区年度明细';
+  $('housingStateArchiveScope').textContent=src.scope+' · '+src.noun+' · '+src.unit+'。此处为来源内的区域资料，不参与全国2025地图着色。';
+  $('housingLocalSource').href=src.link;
+  renderLocalRows();
+ }
  function renderNRW(region){
   const panel=$('nrwCompletions');
   const row=region.scope==='county'?nrwRows.get(region.ids[0]):null;
@@ -321,6 +426,7 @@
   $('interpretNote').hidden=region.scope==='nation';
   document.querySelector('.housing-source').hidden=region.scope==='nation';
   renderLandPrice(region);
+  renderLocalStateArchive();
   renderNRW(region);
   renderBavaria(region);
   renderBrandenburg(region);
@@ -390,6 +496,9 @@
   $('housingBackState').addEventListener('click',()=>{if(focusState)selectState(focusState)});
   $('housingCountySearch').addEventListener('input',renderCountySearch);
   $('greixCity').addEventListener('change',renderGreixCity);
+  $('housingLocalYear').addEventListener('change',renderLocalRows);
+  $('housingLocalSort').addEventListener('change',renderLocalRows);
+  $('housingLocalSearch').addEventListener('input',renderLocalRows);
   document.querySelector('[data-dossier-tab="rent-series"]').addEventListener('click',enableGreix);
   housingDossier=window.GermanRegionDossier.mount('housingDossier');
   try{
@@ -495,7 +604,7 @@
    $('mapStatus').textContent=valid+'处县级地图区域已载入；'+(stockReady?'含核验住房存量':'住房存量层暂不可用');
    $('mapStatus').classList.add('ok');
    window.GermanHousingResearch=Object.freeze({
-     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,berlinBoroughReady:berlinBoroughRows.length===12,structureReady:structureRows.size===400,dossierOpen:!$('housingDossier').hidden,greixReady:!!greixData,countyShapes:countyShapes.size}),
+     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,berlinBoroughReady:berlinBoroughRows.length===12,structureReady:structureRows.size===400,dossierOpen:!$('housingDossier').hidden,greixReady:!!greixData,countyShapes:countyShapes.size,localArchiveRows:localStateSource()?.rows.length||0,localArchiveState}),
      metrics:Object.keys(metrics)
    });
   }catch(err){

@@ -8,7 +8,7 @@
 <title>德国住房危机地图 · German-Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css">
-<link rel="stylesheet" href="topic.css?v=h3">
+<link rel="stylesheet" href="topic.css?v=h4">
 <link rel="stylesheet" href="../../css/region-dossier.css?v=1">
 </head>
 <body>
@@ -96,6 +96,27 @@
     </div>
     <div data-dossier-pane="archive" class="dossier-pane" hidden>
      <p class="dossier-note">这里存放仅覆盖部分州或特定县市的官方历史数据，不冒充全国同年份的可比图层。</p>
+     <details id="housingStateArchive" class="housing-extra housing-state-archive" hidden>
+      <summary id="housingStateArchiveTitle">本州官方县市明细档案</summary>
+      <p id="housingStateArchiveScope" class="housing-local-scope"></p>
+      <div class="housing-local-controls">
+       <label for="housingLocalYear">来源年份
+        <select id="housingLocalYear"></select>
+       </label>
+       <label for="housingLocalSort">排序
+        <select id="housingLocalSort">
+         <option value="value">按记录值从高到低</option>
+         <option value="name">按名称</option>
+        </select>
+       </label>
+      </div>
+      <label class="housing-local-search-label" for="housingLocalSearch">查找本州县市／柏林区名称或官方AGS</label>
+      <input id="housingLocalSearch" class="dossier-search" type="search" placeholder="县市或区名 / 5位AGS">
+      <div class="housing-local-summary" id="housingLocalSummary"></div>
+      <div class="housing-local-rows" id="housingLocalRows" aria-live="polite"></div>
+      <p class="housing-local-caveat" id="housingLocalCaveat"></p>
+      <a id="housingLocalSource" href="#" target="_blank" rel="noopener noreferrer">查看本州统计局原表 ↗</a>
+     </details>
      <div class="housing-note" id="landPriceBand" hidden></div>
      <details class="housing-extra" id="nrwCompletions" hidden><summary>北威州 · 2015—2025年新建住宅竣工</summary><div id="nrwHistory"></div></details>
      <details class="housing-extra" id="bavariaCompletions" hidden><summary>巴伐利亚州 · 2025年住宅竣工</summary><div id="bavariaHistory"></div></details>
@@ -137,6 +158,6 @@
 <script src="../../js/core/place-names-zh.js"></script>
 <script src="../../js/layers/city-labels.js"></script>
 <script src="../../js/core/region-dossier.js?v=1"></script>
-<script src="topic.js?v=h3"></script>
+<script src="topic.js?v=h4"></script>
 </body>
 </html>
