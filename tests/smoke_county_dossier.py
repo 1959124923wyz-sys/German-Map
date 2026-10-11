@@ -78,6 +78,12 @@ def verify(browser,mobile=False):
       return true;
     }""")
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.renders()")==before,"hover should not reset tabs"
+    page.locator("#crimeCountyBackState").click()
+    assert page.locator("#crimeCountyDossier").is_hidden()
+    assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')"),"state data remains available"
+    page.evaluate("""() => window.__CRIME_MAP__.getCountyLayer().getLayers()
+        .find(l=>String(l.feature?.id||l.feature?.properties?.AGS)==='10041').fire('click')""")
+    assert page.locator("#crimeCountyDossier").is_visible()
     page.locator("#viewGermany").click()
     assert page.locator("#crimeCountyDossier").is_hidden()
     assert page.locator("#crimeCountyExpand").get_attribute("open") is None
