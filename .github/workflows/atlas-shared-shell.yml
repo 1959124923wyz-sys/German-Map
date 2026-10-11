@@ -1,0 +1,52 @@
+name: Atlas 10-mode shared visual shell
+
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'topics/**/index.html'
+      - 'css/atlas-shared-shell.css'
+      - 'scripts/smoke_atlas_shell.py'
+      - '.github/workflows/atlas-shared-shell.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'topics/**/index.html'
+      - 'css/atlas-shared-shell.css'
+      - 'scripts/smoke_atlas_shell.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source and install offline browser
+        run: |
+          python -m py_compile scripts/smoke_atlas_shell.py
+          python scripts/validate_site_assets.py
+          npm install --no-save --no-package-lock --ignore-scripts leaflet@1.9.4
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Run ten-mode desktop and 390px browser checks
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/atlas-shell-http.log 2>&1 &
+          sleep 2
+          python scripts/smoke_atlas_shell.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: german-atlas-10-mode-layout
+          path: /tmp/atlas-shell/*.png
+          if-no-files-found: warn
