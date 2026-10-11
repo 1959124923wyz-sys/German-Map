@@ -199,7 +199,7 @@ function selectEvent(e){
  renderSummary();
  if(app.selectedState)app.dossier.choose('cases');
  app.eventMarkers.forEach((mk,id)=>mk.setStyle(markerStyle(app.events.find(r=>r.id===id),id===e.id)));
- if(e.point)app.map.panTo([e.point.lat,e.point.lon],{animate:true});
+ // An event record is evidence, not a map-pan instruction.
 }
 function openSource(e){
  return e.url&&/^https:\/\//.test(e.url) ? '<a target="_blank" rel="noopener noreferrer" href="'+esc(e.url)+'">查看原始公告或媒体来源 ↗</a>' : '<span>尚无可点击来源</span>';
@@ -339,7 +339,7 @@ function renderSummary(){
  renderTimeline(records);
  listRows(records);
 }
-function selectState(iso){
+function selectState(iso,{locate=false}={}){
  if(!STATE_ZH[iso])return;
  app.selectedState=iso;app.selectedCounty=null;app.selectedEvent=null;
  $('industryEventSearch').value='';
@@ -347,16 +347,16 @@ function selectState(iso){
  app.dossier.show(true);
  if(app.stateOverlay&&app.map.hasLayer(app.stateOverlay))app.map.removeLayer(app.stateOverlay);
  const f=app.stateFeatures.find(f=>f.properties?.id===iso);
- if(f)app.map.fitBounds(L.geoJSON(f).getBounds(),{padding:[26,26],maxZoom:8,animate:false});
+ if(locate&&f)app.map.fitBounds(L.geoJSON(f).getBounds(),{padding:[26,26],maxZoom:8,animate:false});
  renderSummary();
 }
 function selectCounty(f){
  const iso=countyState(f);
  if(!iso)return;
- if(app.selectedState!==iso){selectState(iso);return;}
+ if(app.selectedState!==iso)selectState(iso);
  app.selectedCounty=stateKey(f);app.selectedEvent=null;
  app.dossier.show(true);
- app.map.fitBounds(L.geoJSON(f).getBounds(),{padding:[28,28],maxZoom:9,animate:false});
+ // A county dossier retains the current viewport.
  renderSummary();
 }
 function reset(){
@@ -396,7 +396,7 @@ async function start(){
  $('industryStateJump').insertAdjacentHTML('beforeend',Object.entries(STATE_ZH)
   .sort((a,b)=>a[1].localeCompare(b[1],'zh'))
   .map(([iso,name])=>'<option value="'+esc(iso)+'">'+esc(name)+'</option>').join(''));
- $('industryStateJump').addEventListener('change',e=>e.target.value?selectState(e.target.value):reset());
+ $('industryStateJump').addEventListener('change',e=>e.target.value?selectState(e.target.value,{locate:true}):reset());
  $('industryBackState').addEventListener('click',()=>{if(app.selectedState)selectState(app.selectedState)});
  $('industryEventSearch').addEventListener('input',()=>listRows(activeRecords()));
  const allRaw=[...r1.events,...r2.events,...r4.events,...r5a.events,...r5b.events,...r5c.events,...r5d.events,...r6.events,...r7a.events,...r7b.events,...r7c.events,...r7d.events,...r7e.events,...r8a.events,...r8b.events];
@@ -450,7 +450,7 @@ async function start(){
   counties:counties.features.length,modernCounties:new Set(counties.features.map(stateKey)).size,major:app.events.filter(e=>e.isMajor).length,
   mappedCounties:app.byCounty.size,pointMarkers:app.eventMarkers.size,
   selectedState:()=>app.selectedState,dossier:()=>!$('industryDossier').hidden,
-  officialCoverage:Object.keys(metric.records||{}).length});
+  officialCoverage:Object.keys(metric.records||{}).length,view:()=>({center:app.map.getCenter().toJSON(),zoom:app.map.getZoom()})});
 }
 start().catch(err=>{console.error(err);$('mapStatus').textContent='工业地图资料加载失败：'+String(err.message||err);
  $('areaMetric').textContent='加载失败；保留错误信息，不以空数据替代。';});

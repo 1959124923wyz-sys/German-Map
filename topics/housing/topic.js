@@ -470,10 +470,10 @@
   selectedCounty=id; focusState=id.slice(0,2);
   $('stateJump').value=focusState;
   housingDossier.show(true);
-  map.fitBounds(shape.getBounds(),{padding:[38,38],maxZoom:9,animate:false});
+  // Selecting county information does not change the map's view.
   paint();
  }
- function selectState(id){
+ function selectState(id,{locate=false}={}){
   if(!id){return reset()}
   const state=stateFeatures.find(f=>stateId(f)===id);
   if(!state)return;
@@ -481,7 +481,7 @@
   $('housingCountySearch').value='';
   housingDossier.show(true);
   const layer=stateLayer.getLayers().find(x=>stateId(x.feature)===id);
-  if(layer)map.fitBounds(layer.getBounds(),{padding:[26,26],maxZoom:8,animate:false});
+  if(locate&&layer)map.fitBounds(layer.getBounds(),{padding:[26,26],maxZoom:8,animate:false});
   paint();
  }
  function reset(){
@@ -503,7 +503,7 @@
    onEachFeature:(f,l)=>{
     const id=featureId(f);
     countyShapes.set(id,l);
-    l.on('click',()=>focusState!==id.slice(0,2)?selectState(id.slice(0,2)):chooseCounty(id));
+    l.on('click',()=>chooseCounty(id));
    }
   }).addTo(map);
   stateLayer.bringToFront();
@@ -521,7 +521,7 @@
   $('housingMetric').addEventListener('change',e=>{
    if(metrics[e.target.value]){metric=e.target.value;paint()}
   });
-  $('stateJump').addEventListener('change',e=>selectState(e.target.value));
+  $('stateJump').addEventListener('change',e=>selectState(e.target.value,{locate:true}));
   $('resetView').addEventListener('click',reset);
   $('housingBackState').addEventListener('click',()=>{if(focusState)selectState(focusState)});
   $('housingCountySearch').addEventListener('input',renderCountySearch);
@@ -635,7 +635,7 @@
    $('mapStatus').textContent=valid+'处县级地图区域已载入；'+(stockReady?'含核验住房存量':'住房存量层暂不可用');
    $('mapStatus').classList.add('ok');
    window.GermanHousingResearch=Object.freeze({
-     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,berlinBoroughReady:berlinBoroughRows.length===12,structureReady:structureRows.size===400,dossierOpen:!$('housingDossier').hidden,greixReady:!!greixData,countyShapes:countyShapes.size,localArchiveRows:localStateSource()?.rows.length||0,localArchiveState}),
+     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,berlinBoroughReady:berlinBoroughRows.length===12,structureReady:structureRows.size===400,dossierOpen:!$('housingDossier').hidden,greixReady:!!greixData,countyShapes:countyShapes.size,localArchiveRows:localStateSource()?.rows.length||0,localArchiveState,view:map.getCenter().toJSON(),zoom:map.getZoom()}),
      metrics:Object.keys(metrics)
    });
   }catch(err){

@@ -35,13 +35,13 @@
       +'<div style="display:flex;justify-content:space-between;color:#b6c7d2;font-size:9px"><span>高分 · 相对较好</span><span>低分 · 相对较差</span></div>'
       +'<div style="margin-top:4px;color:#a8b9c6;font-size:9px">非官方综合评级；未纳入全国桥梁和路面</div>';
   }
-  function selectState(iso) {
+  function selectState(iso,{locate=false}={}) {
     if(!rowByIso.has(iso))return;
     state.selectedState=iso;
     state.selectedEvent=null;
     $('infraStateJump').value=iso;
     const layer=stateLayer?.getLayers().find(x=>x.feature?.properties?.id===iso);
-    if(layer)map.fitBounds(layer.getBounds(),{padding:[26,26],maxZoom:8,animate:false});
+    if(locate&&layer)map.fitBounds(layer.getBounds(),{padding:[26,26],maxZoom:8,animate:false});
     dossier.show(true);
     updateStateStyles();
     renderPanel();
@@ -177,7 +177,7 @@
     dossier.show(true);
     updateStateStyles();renderPanel();
     dossier.choose('projects');
-    map.panTo([e.coordinates.lat,e.coordinates.lon],{animate:false});
+    // Event detail selection must not re-center the map.
   }
   function renderEvents() {
     if(!markerGroup || !archive)return;
@@ -223,7 +223,7 @@
     $('showEvents').addEventListener('change',e=>{state.showEvents=e.target.checked;$('filterWrap').hidden=!state.showEvents;if(state.selectedState&&state.showEvents)dossier.choose('projects');renderEvents();});
     $('eventCategory').addEventListener('change',e=>{state.category=e.target.value;state.selectedEvent=null;renderEventDetail();renderEvents();});
     $('resetView').addEventListener('click',reset);
-    $('infraStateJump').addEventListener('change',e=>e.target.value?selectState(e.target.value):reset());
+    $('infraStateJump').addEventListener('change',e=>e.target.value?selectState(e.target.value,{locate:true}):reset());
     $('bridgeCountySearch').addEventListener('input',()=>{if(state.selectedState)renderBridgeEvidence(state.selectedState)});
     dossier=window.GermanRegionDossier.mount('infraDossier');
     legend();

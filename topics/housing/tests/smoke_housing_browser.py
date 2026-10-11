@@ -96,8 +96,12 @@ def run(browser,mobile=False):
     assert "120,825" in page.locator("#housingLocalRows").inner_text()
     assert "㎡" in page.locator("#housingLocalRows").inner_text()
     page.locator("#housingLocalMetric").select_option("dwellings")
+    oldview=page.evaluate("GermanHousingResearch.state()")
     page.locator("#housingLocalRows [data-local-county]").first.click()
     assert page.evaluate("GermanHousingResearch.state().selectedCounty")=="05111"
+    newview=page.evaluate("GermanHousingResearch.state()")
+    assert newview["zoom"]==oldview["zoom"]
+    assert abs(newview["view"]["lat"]-oldview["view"]["lat"])<1e-5
     assert page.locator("#nrwCompletions").is_visible()
     assert page.locator("#housingStateArchive").get_attribute("open") is not None
     page.locator("#stateJump").select_option("09")
