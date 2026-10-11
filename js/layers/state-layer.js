@@ -2,7 +2,7 @@
   'use strict';
 
   function create({
-    map, getStateGeo, getStatePanel, tooltipHtml, onChange,
+    map, getStateGeo, getStatePanel, getCountyBrowse, tooltipHtml, onChange,
   }) {
     let layer = null;
     // Reuse one renderer across zooms. Creating a new SVG renderer for every
@@ -21,7 +21,7 @@
     function render() {
       if (layer) { map.removeLayer(layer); layer = null; }
       const geo = getStateGeo();
-      if (!geo || map.getZoom() >= 7.5) return null;
+      if (!geo || map.getZoom() >= 7.5 || getCountyBrowse?.()) return null;
       // If the state outlines are visible, state selection must remain
       // interactive. The old <=7.15 threshold produced dead polygons at
       // zoom 7.15–7.5, especially after fitBounds/close cycles.

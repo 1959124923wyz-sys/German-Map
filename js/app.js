@@ -23,6 +23,16 @@
   let mode=new URLSearchParams(window.location.search).get('mode')==='property'?'property':'violence',caseData=null,pksData=null,propertyData=null,countyGeo=null,berlinViolence=null,heatData=null,stateGeo=null;
   let countyLayer=null,stateLayer=null,countyController=null,stateController=null;
   let pinnedArea=null,hoverArea=null,showViolenceNews=false,showPropertyNews=false,statePanel=null,eventLayer=null,berlinDetail=null,areaPanel=null;
+  let countyBrowse=false,syncingCountyState=false;
+  const countyBrowseButton=$('stateCountyBrowse');
+  function setCountyBrowse(next){
+    countyBrowse=Boolean(next);
+    if(countyBrowseButton){
+      countyBrowseButton.setAttribute('aria-pressed',String(countyBrowse));
+      countyBrowseButton.textContent=countyBrowse?'返回州边界选择':'在地图上选县市';
+    }
+    if(stateController)buildStateLayer();
+  }
   const stateDrawerDrag=window.CrimeDrawerDrag.create({drawer:el.stateDrawer,handle:el.stateDragHandle});
 
   const map=L.map('map',{minZoom:5,maxZoom:17,zoomControl:true,preferCanvas:true,worldCopyJump:false});
@@ -110,7 +120,15 @@
   function showArea(area,{pin=false}={}){
     if(pin)pinnedArea=area;
     hoverArea=pin?null:area;
-    areaPanel.show(area||pinnedArea);
+    if(pin&&['violence-county','property-county'].includes(area?.kind)&&statePanel){
+      const f=stateFeatureByName(area.state);
+      if(f&&statePanel.selectedName!==f.properties.name){
+        syncingCountyState=true;
+        try{statePanel.select(f)}finally{syncingCountyState=false;}
+      }
+    }
+    // Once selected, county details remain stable until the user selects a new area.
+    areaPanel.show(pinnedArea&&!pin?pinnedArea:(area||pinnedArea));
     // Source-backed county archive responds to explicit pinned selections,
     // not to hover or an unrelated city/neighbourhood map overlay.
     document.dispatchEvent(new CustomEvent('crime:area-pinned',{
@@ -220,7 +238,7 @@
       if(layer){
         const a=mode==='property'?propertyCountyArea(layer.feature,r):countyArea(layer.feature,r);
         selectCountyLayer(layer);showArea(a,{pin:true});
-        if(layer.getBounds)map.fitBounds(layer.getBounds(),{padding:[30,30],maxZoom:8});
+        // Choosing a ranked county opens its archive without forcing the camera to move.
       }
     }
   });
@@ -237,7 +255,7 @@
     formatNumber:fmt,escapeHtml:esc,nationalPalette,propertyPalette
   });
   stateController=window.CrimeStateLayer.create({
-    map,getStateGeo:()=>stateGeo,getStatePanel:()=>statePanel,
+    map,getStateGeo:()=>stateGeo,getStatePanel:()=>statePanel,getCountyBrowse:()=>countyBrowse,
     tooltipHtml:stateTooltipHtml
   });
 
@@ -286,17 +304,23 @@
       if(layer){
         const area=mode==='property'?propertyCountyArea(layer.feature,row):countyArea(layer.feature,row);
         selectCountyLayer(layer);showArea(area,{pin:true});
-        if(layer.getBounds)map.fitBounds(layer.getBounds(),{padding:[30,30],maxZoom:9});
+        // State directory selection does not automatically move the map.
       }
     },
     onNewsSelect:item=>eventLayer.open(item,{minZoom:10,duration:.45}),
-    onStateChanged:()=>renderNews(),
+    onStateChanged:change=>{
+       if(change?.changed&&!syncingCountyState){
+         pinnedArea=null;hoverArea=null;countyController?.clearSelection();
+         showArea(null);
+       }
+       renderNews();
+     },
     formatNumber:fmt,formatDate:pd,escapeHtml:esc
   });
 
-  el.modeViolence.onclick=()=>{mode='violence';pinnedArea=null;hoverArea=null;statePanel.reset();render();showArea(null);};
-  el.modeProperty.onclick=()=>{mode='property';pinnedArea=null;hoverArea=null;statePanel.reset();render();showArea(null);};
-  el.stateClose.onclick=e=>{e.stopPropagation();statePanel.close({restore:true});buildStateLayer();};
+  el.modeViolence.onclick=()=>{setCountyBrowse(false);mode='violence';pinnedArea=null;hoverArea=null;statePanel.reset();render();showArea(null);};
+  el.modeProperty.onclick=()=>{setCountyBrowse(false);mode='property';pinnedArea=null;hoverArea=null;statePanel.reset();render();showArea(null);};
+  el.stateClose.onclick=e=>{e.stopPropagation();setCountyBrowse(false);statePanel.close({restore:false});buildStateLayer();};
   // A source-backed state picker: the change is explicit navigation; clicking
   // state polygons themselves still opens their drawer WITHOUT auto-zoom.
   el.stateJump?.addEventListener('change',event=>{
@@ -311,18 +335,25 @@
     }
     el.stateDrawer.scrollTop=0;
   });
-  el.stateClose.onpointerdown=e=>e.stopPropagation();
+  countyBrowseButton?.addEventListener('click',()=>setCountyBrowse(!countyBrowse));
+   $('crimeCountyBackState')?.addEventListener('click',()=>{
+     const stateName=statePanel?.selectedName||pinnedArea?.state;
+     pinnedArea=null;hoverArea=null;countyController.clearSelection();showArea(null);
+     const f=stateFeatureByName(stateName);
+     if(f&&!statePanel.isOpen)statePanel.select(f);
+   });
+   el.stateClose.onpointerdown=e=>e.stopPropagation();
   el.stateDragHandle.addEventListener('pointerdown',stateDrawerDrag.begin);
   el.stateDragHandle.addEventListener('pointermove',stateDrawerDrag.move);
   el.stateDragHandle.addEventListener('pointerup',stateDrawerDrag.end);
   el.stateDragHandle.addEventListener('pointercancel',stateDrawerDrag.end);
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&statePanel.isOpen){statePanel.close({restore:true});buildStateLayer();}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&statePanel.isOpen){setCountyBrowse(false);statePanel.close({restore:false});buildStateLayer();}});
   el.toggleViolenceNews.onclick=()=>{showViolenceNews=!showViolenceNews;render();};
   el.togglePropertyNews.onclick=()=>{showPropertyNews=!showPropertyNews;render();};
   el.violenceMetric.addEventListener('change',()=>{pinnedArea=null;hoverArea=null;render();showArea(null);});
   el.propertyMetric.addEventListener('change',()=>{pinnedArea=null;hoverArea=null;render();showArea(null);});
-  el.viewGermany.onclick=()=>{pinnedArea=null;hoverArea=null;countyController.clearSelection();statePanel.reset();render();showArea(null);map.stop();map.fitBounds(germanyBounds,{padding:[14,14],animate:false});};
-  el.focusBerlin.onclick=()=>{pinnedArea=null;hoverArea=null;countyController.clearSelection();statePanel.reset();showArea(null);map.stop();map.fitBounds(berlinBounds,{padding:[25,25],maxZoom:10,animate:false});};
+  el.viewGermany.onclick=()=>{setCountyBrowse(false);pinnedArea=null;hoverArea=null;countyController.clearSelection();statePanel.reset();render();showArea(null);map.stop();map.fitBounds(germanyBounds,{padding:[14,14],animate:false});};
+  el.focusBerlin.onclick=()=>{setCountyBrowse(false);pinnedArea=null;hoverArea=null;countyController.clearSelection();statePanel.reset();showArea(null);map.stop();map.fitBounds(berlinBounds,{padding:[25,25],maxZoom:10,animate:false});};
   // Berlin's detailed LOR geometry is several MB. Keep nationwide startup light:
   // it is needed only after entering the Berlin city view at detail zoom.
   let berlinDataRequest=null, berlinRetryAfter=0;
@@ -380,7 +411,7 @@
   window.__CRIME_MAP__={
     map,getMode:()=>mode,getCaseData:()=>caseData,getPksData:()=>pksData,getPropertyData:()=>propertyData,getBerlinViolence:()=>berlinViolence,getHeatData:()=>heatData,
     getCountyLayer:()=>countyLayer,setCountyFocus:ags=>countyController?.setDetailFocus(ags),getBerlinLayer:()=>berlinDetail?.violenceLayer||null,getHeatLayer:()=>berlinDetail?.propertyLayer||null,getVisibleCases:()=>visibleCases(),
-    getPinnedArea:()=>pinnedArea,getHoverArea:()=>hoverArea,
+    getPinnedArea:()=>pinnedArea,getHoverArea:()=>hoverArea,isCountyBrowse:()=>countyBrowse,getStateLayer:()=>stateLayer,
     clearSelection:()=>{pinnedArea=null;hoverArea=null;countyController.clearSelection();statePanel.reset();showArea(null);},
     showArea
   };

@@ -16,6 +16,37 @@
     let filterName = null;
     let returnView = null;
 
+    // All 400 sourced county records already exist in the national data model.
+    // The county directory reveals only the records for the currently selected state.
+    let countyRows=[],countyKey=null;
+    const countySearch=document.getElementById('stateCountySearch');
+    const countyList=document.getElementById('stateCountyList');
+    function renderCountyRows(){
+      if(!countyList)return;
+      const q=(countySearch?.value||'').trim().toLocaleLowerCase();
+      const rows=countyRows.filter(row=>{
+        const label=window.GermanPlaceNames?.byAGS(row.ags,row.name)||row.name;
+        return !q||[row.ags,row.name,label].some(v=>String(v||'').toLocaleLowerCase().includes(q));
+      }).sort((a,b)=>{
+        const aName=window.GermanPlaceNames?.byAGS(a.ags,a.name)||a.name;
+        const bName=window.GermanPlaceNames?.byAGS(b.ags,b.name)||b.name;
+        return aName.localeCompare(bName,'zh');
+      });
+      countyList.replaceChildren();
+      for(const row of rows){
+        const button=document.createElement('button');button.type='button';
+        button.className='state-county-row';
+        const name=window.GermanPlaceNames?.byAGS(row.ags,row.name)||row.name;
+        button.innerHTML='<span>'+escapeHtml(name)+'<small>AGS '+escapeHtml(row.ags)+'</small></span>'+
+          '<b>'+formatNumber(Math.round(Number(row?.[countyKey]?.rate||0)))+' /10万人</b>';
+        button.addEventListener('click',()=>onCountySelect(row,countyKey));
+        countyList.appendChild(button);
+      }
+      if(!rows.length)countyList.textContent='没有匹配的县市。请尝试名称或AGS。';
+    }
+    countySearch?.addEventListener('input',renderCountyRows);
+
+
     function render(feature) {
       if (!feature) return;
       const s = getStats(feature);
@@ -29,6 +60,10 @@
       elements.stateRank.textContent = '#' + s.rank;
       elements.stateRecent.textContent = formatNumber(s.news.length);
 
+      countyRows=s.rows;countyKey=s.key;
+      const count=document.getElementById('stateCountyCount');
+      if(count)count.textContent=s.rows.length+'个';
+      renderCountyRows();
       elements.stateTopCounties.innerHTML = '';
       for (const row of s.topCounties) {
         const button = document.createElement('button');
@@ -81,18 +116,20 @@
         returnView = { center: map.getCenter(), zoom: map.getZoom() };
       }
       const nextName=feature?.properties?.name || null;
+      const previousName=selectedName;
       if (selectedName!==nextName) {
         // Each new state begins with quiet local lists. A source-backed city
         // archive can still open by default via its own state-scoped handler.
-        for (const id of ['stateCountyDisclosure','stateNewsDisclosure']) {
+        for (const id of ['stateCountyDisclosure','stateNewsDisclosure','stateCountyDirectory']) {
           const section=document.getElementById(id);
           if(section)section.open=false;
         }
       }
+      if(previousName!==nextName&&countySearch)countySearch.value='';
       selectedName = nextName;
       filterName = selectedName;
       render(feature);
-      onStateChanged?.();
+      onStateChanged?.({changed:previousName!==nextName,previousName,nextName});
     }
 
     function close({ restore = true } = {}) {
