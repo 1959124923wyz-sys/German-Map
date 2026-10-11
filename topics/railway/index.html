@@ -6,7 +6,8 @@
 <meta name="description" content="德国铁路真实区间运行质量地图，基于2026年9月列车停靠记录，突出延误与取消标记较高的区间。">
 <title>德国铁路运行地图 · BahnMonitor | German-Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="overview.css?v=25">
+<link rel="stylesheet" href="overview.css?v=27">
+<link rel="stylesheet" href="../../css/region-dossier.css?v=1">
 </head>
 <body>
 <div class="page">
@@ -46,6 +47,35 @@
     <button type="button" data-service="OTHER" aria-pressed="false">其他运营商<small>HLB 等</small></button>
    </div>
   </div>
+  <details class="rail-state-drawer" id="railStateDrawer">
+   <summary>16州铁路基础设施资料室</summary>
+   <div class="rail-state-inner">
+    <p class="dossier-note">DB InfraGO轨道结构和设施原始分州汇总，与上方2026年9月列车晚点观测是两套数据，不能互当铁路运营质量评分。</p>
+    <label for="railStateJump">选择联邦州</label>
+    <select id="railStateJump" aria-label="选择铁路基础设施联邦州"><option value="">选择联邦州…</option></select>
+    <div id="railStateDossier" class="region-dossier" hidden>
+     <div class="dossier-heading"><strong id="railStateTitle">州级基础设施</strong><small>DB InfraGO源文件</small></div>
+     <div class="dossier-tabs">
+      <button data-dossier-tab="network">路网概况</button>
+      <button data-dossier-tab="track">轨道构成</button>
+      <button data-dossier-tab="structures">工程设施</button>
+     </div>
+     <div class="dossier-pane" data-dossier-pane="network">
+      <div class="dossier-metrics" id="railStateNetwork"></div>
+      <p class="dossier-note">汇总长度来自DB InfraGO原始轨道分段：含方向轨、线轴等不同记录，不是去重后的线路营业里程。不能把分段总长度当作德国全境唯一铁路线长度。</p>
+     </div>
+     <div class="dossier-pane" data-dossier-pane="track" hidden>
+      <div class="dossier-metrics" id="railStateTrack"></div>
+      <p class="dossier-note">电气化、单线、双线、高速、速度不详是源轨道分段的累计长度；既不表示客运列车准点率，也不是德国官方按独立线路去重的公里数。</p>
+     </div>
+     <div class="dossier-pane" data-dossier-pane="structures" hidden>
+      <div class="dossier-metrics" id="railStateStructures"></div>
+      <p class="dossier-note">桥梁、隧道、道口、运营地点均为源字段的分段汇总记录，可能重复涉及同一实体；不声称是逐个去重的设施总数，不表示结构安全与故障风险。</p>
+     </div>
+    </div>
+    <a class="rail-state-source" href="research.html">查看铁路研究档案及来源说明 ↗</a>
+   </div>
+  </details>
   <div id="status" role="status" aria-live="polite">正在加载铁路数据…</div>
   <section class="detail" id="detail" aria-live="polite"><h3>点击地图查看区段</h3></section>
   <details class="hotspots" id="hotspots"><summary>查看高关注区段</summary><div id="hotList" class="hot-list"></div></details>
@@ -78,6 +108,7 @@
 <script src="js/rail-continuity.js?v=25"></script>
 <script src="js/rail-picker.js?v=22"></script>
 <script src="js/rail-color-runs.js?v=26"></script>
-<script src="overview.js?v=26"></script>
+<script src="../../js/core/region-dossier.js?v=1"></script>
+<script src="overview.js?v=27"></script>
 </body>
 </html>
