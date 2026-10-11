@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-11T03:03:32Z",
+    "generated_at": "2026-10-11T14:17:38Z",
     "today": "2026-10-11",
     "scope": "Berlin",
     "window_days": 90,
@@ -458,16 +458,6 @@
           "district": ""
         },
         {
-          "lor": "02400625",
-          "lat": 52.507202,
-          "lon": 13.441536,
-          "bike": 10,
-          "vehicle": 10,
-          "total": 20,
-          "name": "Wriezener Bahnhof",
-          "district": ""
-        },
-        {
           "lor": "07100102",
           "lat": 52.498349,
           "lon": 13.350204,
@@ -475,6 +465,16 @@
           "vehicle": 7,
           "total": 20,
           "name": "Kalckreuthstraße",
+          "district": ""
+        },
+        {
+          "lor": "02400625",
+          "lat": 52.507202,
+          "lon": 13.441536,
+          "bike": 10,
+          "vehicle": 10,
+          "total": 20,
+          "name": "Wriezener Bahnhof",
           "district": ""
         },
         {
@@ -508,16 +508,6 @@
           "district": ""
         },
         {
-          "lor": "01100313",
-          "lat": 52.508348,
-          "lon": 13.420611,
-          "bike": 8,
-          "vehicle": 12,
-          "total": 20,
-          "name": "Heine-Viertel Ost",
-          "district": ""
-        },
-        {
           "lor": "01100415",
           "lat": 52.532053,
           "lon": 13.392267,
@@ -525,6 +515,16 @@
           "vehicle": 5,
           "total": 20,
           "name": "Invalidenstraße",
+          "district": ""
+        },
+        {
+          "lor": "01100313",
+          "lat": 52.508348,
+          "lon": 13.420611,
+          "bike": 8,
+          "vehicle": 12,
+          "total": 20,
+          "name": "Heine-Viertel Ost",
           "district": ""
         },
         {
@@ -798,16 +798,6 @@
           "district": ""
         },
         {
-          "lor": "03601347",
-          "lat": 52.543477,
-          "lon": 13.41828,
-          "bike": 9,
-          "vehicle": 7,
-          "total": 16,
-          "name": "Helmholtzplatz",
-          "district": ""
-        },
-        {
           "lor": "04300415",
           "lat": 52.505816,
           "lon": 13.287133,
@@ -815,6 +805,16 @@
           "vehicle": 13,
           "total": 16,
           "name": "Lietzensee",
+          "district": ""
+        },
+        {
+          "lor": "03601347",
+          "lat": 52.543477,
+          "lon": 13.41828,
+          "bike": 9,
+          "vehicle": 7,
+          "total": 16,
+          "name": "Helmholtzplatz",
           "district": ""
         },
         {
@@ -868,16 +868,6 @@
           "district": ""
         },
         {
-          "lor": "07200413",
-          "lat": 52.480997,
-          "lon": 13.363274,
-          "bike": 10,
-          "vehicle": 5,
-          "total": 15,
-          "name": "Cheruskerstraße",
-          "district": ""
-        },
-        {
           "lor": "01200629",
           "lat": 52.518565,
           "lon": 13.341884,
@@ -885,6 +875,16 @@
           "vehicle": 2,
           "total": 15,
           "name": "Hansaviertel",
+          "district": ""
+        },
+        {
+          "lor": "07200413",
+          "lat": 52.480997,
+          "lon": 13.363274,
+          "bike": 10,
+          "vehicle": 5,
+          "total": 15,
+          "name": "Cheruskerstraße",
           "district": ""
         },
         {
@@ -1018,16 +1018,6 @@
           "district": ""
         },
         {
-          "lor": "01400937",
-          "lat": 52.552666,
-          "lon": 13.324609,
-          "bike": 6,
-          "vehicle": 8,
-          "total": 14,
-          "name": "Afrikanische Straße",
-          "district": ""
-        },
-        {
           "lor": "05300736",
           "lat": 52.541382,
           "lon": 13.224997,
@@ -1038,13 +1028,13 @@
           "district": ""
         },
         {
-          "lor": "03601450",
-          "lat": 52.535557,
-          "lon": 13.458483,
-          "bike": 3,
-          "vehicle": 11,
+          "lor": "01400937",
+          "lat": 52.552666,
+          "lon": 13.324609,
+          "bike": 6,
+          "vehicle": 8,
           "total": 14,
-          "name": "Volkspark Prenzlauer Berg",
+          "name": "Afrikanische Straße",
           "district": ""
         },
         {
@@ -1055,6 +1045,16 @@
           "vehicle": 12,
           "total": 14,
           "name": "Bismarckallee",
+          "district": ""
+        },
+        {
+          "lor": "03601450",
+          "lat": 52.535557,
+          "lon": 13.458483,
+          "bike": 3,
+          "vehicle": 11,
+          "total": 14,
+          "name": "Volkspark Prenzlauer Berg",
           "district": ""
         },
         {
@@ -1188,16 +1188,6 @@
           "district": ""
         },
         {
-          "lor": "04500939",
-          "lat": 52.491979,
-          "lon": 13.30458,
-          "bike": 3,
-          "vehicle": 9,
-          "total": 12,
-          "name": "Eisenzahnstraße",
-          "district": ""
-        },
-        {
           "lor": "01300730",
           "lat": 52.558472,
           "lon": 13.376618,
@@ -1205,6 +1195,16 @@
           "vehicle": 6,
           "total": 12,
           "name": "Drontheimer Straße",
+          "district": ""
+        },
+        {
+          "lor": "04500939",
+          "lat": 52.491979,
+          "lon": 13.30458,
+          "bike": 3,
+          "vehicle": 9,
+          "total": 12,
+          "name": "Eisenzahnstraße",
           "district": ""
         },
         {
@@ -1498,16 +1498,6 @@
           "district": ""
         },
         {
-          "lor": "01400942",
-          "lat": 52.546375,
-          "lon": 13.351164,
-          "bike": 2,
-          "vehicle": 8,
-          "total": 10,
-          "name": "Westliche Müllerstraße",
-          "district": ""
-        },
-        {
           "lor": "09100203",
           "lat": 52.478644,
           "lon": 13.484511,
@@ -1515,6 +1505,16 @@
           "vehicle": 7,
           "total": 10,
           "name": "Plänterwald Ost",
+          "district": ""
+        },
+        {
+          "lor": "01400942",
+          "lat": 52.546375,
+          "lon": 13.351164,
+          "bike": 2,
+          "vehicle": 8,
+          "total": 10,
+          "name": "Westliche Müllerstraße",
           "district": ""
         },
         {
@@ -1678,16 +1678,6 @@
           "district": ""
         },
         {
-          "lor": "11501238",
-          "lat": 52.491783,
-          "lon": 13.492941,
-          "bike": 8,
-          "vehicle": 1,
-          "total": 9,
-          "name": "Rummelsburg",
-          "district": ""
-        },
-        {
           "lor": "06100204",
           "lat": 52.453632,
           "lon": 13.348387,
@@ -1695,6 +1685,16 @@
           "vehicle": 6,
           "total": 9,
           "name": "Munsterdamm",
+          "district": ""
+        },
+        {
+          "lor": "11501238",
+          "lat": 52.491783,
+          "lon": 13.492941,
+          "bike": 8,
+          "vehicle": 1,
+          "total": 9,
+          "name": "Rummelsburg",
           "district": ""
         },
         {
@@ -1778,16 +1778,6 @@
           "district": ""
         },
         {
-          "lor": "09200613",
-          "lat": 52.456479,
-          "lon": 13.519776,
-          "bike": 4,
-          "vehicle": 5,
-          "total": 9,
-          "name": "Bahnhof Schöneweide",
-          "district": ""
-        },
-        {
           "lor": "12200412",
           "lat": 52.568398,
           "lon": 13.274839,
@@ -1795,6 +1785,16 @@
           "vehicle": 7,
           "total": 9,
           "name": "Waldidyll/Flughafensee",
+          "district": ""
+        },
+        {
+          "lor": "09200613",
+          "lat": 52.456479,
+          "lon": 13.519776,
+          "bike": 4,
+          "vehicle": 5,
+          "total": 9,
+          "name": "Bahnhof Schöneweide",
           "district": ""
         },
         {
@@ -1868,16 +1868,6 @@
           "district": ""
         },
         {
-          "lor": "12100103",
-          "lat": 52.573031,
-          "lon": 13.366042,
-          "bike": 0,
-          "vehicle": 9,
-          "total": 9,
-          "name": "Breitkopfbecken",
-          "district": ""
-        },
-        {
           "lor": "04100102",
           "lat": 52.537145,
           "lon": 13.298928,
@@ -1885,6 +1875,16 @@
           "vehicle": 9,
           "total": 9,
           "name": "Paul-Hertz-Siedlung",
+          "district": ""
+        },
+        {
+          "lor": "12100103",
+          "lat": 52.573031,
+          "lon": 13.366042,
+          "bike": 0,
+          "vehicle": 9,
+          "total": 9,
+          "name": "Breitkopfbecken",
           "district": ""
         },
         {
@@ -1978,6 +1978,16 @@
           "district": ""
         },
         {
+          "lor": "11300826",
+          "lat": 52.508979,
+          "lon": 13.484961,
+          "bike": 3,
+          "vehicle": 5,
+          "total": 8,
+          "name": "Frankfurter Allee Süd",
+          "district": ""
+        },
+        {
           "lor": "01401044",
           "lat": 52.550645,
           "lon": 13.37293,
@@ -1998,16 +2008,6 @@
           "district": ""
         },
         {
-          "lor": "11300826",
-          "lat": 52.508979,
-          "lon": 13.484961,
-          "bike": 3,
-          "vehicle": 5,
-          "total": 8,
-          "name": "Frankfurter Allee Süd",
-          "district": ""
-        },
-        {
           "lor": "11400929",
           "lat": 52.505165,
           "lon": 13.495895,
@@ -2018,16 +2018,6 @@
           "district": ""
         },
         {
-          "lor": "05100316",
-          "lat": 52.538903,
-          "lon": 13.195767,
-          "bike": 3,
-          "vehicle": 5,
-          "total": 8,
-          "name": "Carl-Schurz-Straße",
-          "district": ""
-        },
-        {
           "lor": "11501340",
           "lat": 52.485616,
           "lon": 13.53849,
@@ -2035,6 +2025,16 @@
           "vehicle": 2,
           "total": 8,
           "name": "Karlshorst Nord",
+          "district": ""
+        },
+        {
+          "lor": "05100316",
+          "lat": 52.538903,
+          "lon": 13.195767,
+          "bike": 3,
+          "vehicle": 5,
+          "total": 8,
+          "name": "Carl-Schurz-Straße",
           "district": ""
         },
         {
@@ -2188,16 +2188,6 @@
           "district": ""
         },
         {
-          "lor": "04501040",
-          "lat": 52.502809,
-          "lon": 13.309613,
-          "bike": 1,
-          "vehicle": 6,
-          "total": 7,
-          "name": "Hindemithplatz",
-          "district": ""
-        },
-        {
           "lor": "05100209",
           "lat": 52.549388,
           "lon": 13.178228,
@@ -2208,6 +2198,16 @@
           "district": ""
         },
         {
+          "lor": "04501040",
+          "lat": 52.502809,
+          "lon": 13.309613,
+          "bike": 1,
+          "vehicle": 6,
+          "total": 7,
+          "name": "Hindemithplatz",
+          "district": ""
+        },
+        {
           "lor": "02500832",
           "lat": 52.509869,
           "lon": 13.471675,
@@ -2215,6 +2215,16 @@
           "vehicle": 5,
           "total": 7,
           "name": "Traveplatz",
+          "district": ""
+        },
+        {
+          "lor": "03601141",
+          "lat": 52.551978,
+          "lon": 13.410237,
+          "bike": 5,
+          "vehicle": 2,
+          "total": 7,
+          "name": "Arnimplatz",
           "district": ""
         },
         {
@@ -2245,16 +2255,6 @@
           "vehicle": 3,
           "total": 7,
           "name": "Norweger Viertel",
-          "district": ""
-        },
-        {
-          "lor": "03601141",
-          "lat": 52.551978,
-          "lon": 13.410237,
-          "bike": 5,
-          "vehicle": 2,
-          "total": 7,
-          "name": "Arnimplatz",
           "district": ""
         },
         {
@@ -2308,6 +2308,16 @@
           "district": ""
         },
         {
+          "lor": "06300629",
+          "lat": 52.449914,
+          "lon": 13.301166,
+          "bike": 2,
+          "vehicle": 5,
+          "total": 7,
+          "name": "Botanischer Garten",
+          "district": ""
+        },
+        {
           "lor": "10300731",
           "lat": 52.523266,
           "lon": 13.556395,
@@ -2335,16 +2345,6 @@
           "vehicle": 6,
           "total": 7,
           "name": "Bergstraße",
-          "district": ""
-        },
-        {
-          "lor": "06300629",
-          "lat": 52.449914,
-          "lon": 13.301166,
-          "bike": 2,
-          "vehicle": 5,
-          "total": 7,
-          "name": "Botanischer Garten",
           "district": ""
         },
         {
@@ -2448,16 +2448,6 @@
           "district": ""
         },
         {
-          "lor": "03400829",
-          "lat": 52.561917,
-          "lon": 13.420794,
-          "bike": 1,
-          "vehicle": 6,
-          "total": 7,
-          "name": "Arnold-Zweig-Straße",
-          "district": ""
-        },
-        {
           "lor": "12100102",
           "lat": 52.569738,
           "lon": 13.376764,
@@ -2465,6 +2455,16 @@
           "vehicle": 6,
           "total": 7,
           "name": "Hausotterplatz",
+          "district": ""
+        },
+        {
+          "lor": "03400829",
+          "lat": 52.561917,
+          "lon": 13.420794,
+          "bike": 1,
+          "vehicle": 6,
+          "total": 7,
+          "name": "Arnold-Zweig-Straße",
           "district": ""
         },
         {
@@ -2488,16 +2488,6 @@
           "district": ""
         },
         {
-          "lor": "10100104",
-          "lat": 52.565339,
-          "lon": 13.578149,
-          "bike": 0,
-          "vehicle": 7,
-          "total": 7,
-          "name": "Golliner Straße",
-          "district": ""
-        },
-        {
           "lor": "10100206",
           "lat": 52.558521,
           "lon": 13.565347,
@@ -2505,6 +2495,16 @@
           "vehicle": 7,
           "total": 7,
           "name": "Wuhletalstraße",
+          "district": ""
+        },
+        {
+          "lor": "10100104",
+          "lat": 52.565339,
+          "lon": 13.578149,
+          "bike": 0,
+          "vehicle": 7,
+          "total": 7,
+          "name": "Golliner Straße",
           "district": ""
         },
         {
@@ -2798,16 +2798,6 @@
           "district": ""
         },
         {
-          "lor": "12200308",
-          "lat": 52.573304,
-          "lon": 13.31994,
-          "bike": 0,
-          "vehicle": 6,
-          "total": 6,
-          "name": "Meller Bogen",
-          "district": ""
-        },
-        {
           "lor": "05200527",
           "lat": 52.522154,
           "lon": 13.173827,
@@ -2815,6 +2805,16 @@
           "vehicle": 6,
           "total": 6,
           "name": "Maulbeerallee",
+          "district": ""
+        },
+        {
+          "lor": "12200308",
+          "lat": 52.573304,
+          "lon": 13.31994,
+          "bike": 0,
+          "vehicle": 6,
+          "total": 6,
+          "name": "Meller Bogen",
           "district": ""
         },
         {
@@ -2908,16 +2908,6 @@
           "district": ""
         },
         {
-          "lor": "07200412",
-          "lat": 52.47705,
-          "lon": 13.36036,
-          "bike": 2,
-          "vehicle": 3,
-          "total": 5,
-          "name": "Schöneberger Linse",
-          "district": ""
-        },
-        {
           "lor": "01200518",
           "lat": 52.528716,
           "lon": 13.326667,
@@ -2925,6 +2915,16 @@
           "vehicle": 2,
           "total": 5,
           "name": "Beusselkiez",
+          "district": ""
+        },
+        {
+          "lor": "07200412",
+          "lat": 52.47705,
+          "lon": 13.36036,
+          "bike": 2,
+          "vehicle": 3,
+          "total": 5,
+          "name": "Schöneberger Linse",
           "district": ""
         },
         {
@@ -2948,26 +2948,6 @@
           "district": ""
         },
         {
-          "lor": "06300526",
-          "lat": 52.43237,
-          "lon": 13.254535,
-          "bike": 3,
-          "vehicle": 2,
-          "total": 5,
-          "name": "Zehlendorf Mitte",
-          "district": ""
-        },
-        {
-          "lor": "07200411",
-          "lat": 52.487978,
-          "lon": 13.360392,
-          "bike": 4,
-          "vehicle": 1,
-          "total": 5,
-          "name": "Julius-Leber-Brücke",
-          "district": ""
-        },
-        {
           "lor": "04501147",
           "lat": 52.489744,
           "lon": 13.319666,
@@ -2985,6 +2965,26 @@
           "vehicle": 4,
           "total": 5,
           "name": "Schweizer Viertel",
+          "district": ""
+        },
+        {
+          "lor": "07200411",
+          "lat": 52.487978,
+          "lon": 13.360392,
+          "bike": 4,
+          "vehicle": 1,
+          "total": 5,
+          "name": "Julius-Leber-Brücke",
+          "district": ""
+        },
+        {
+          "lor": "06300526",
+          "lat": 52.43237,
+          "lon": 13.254535,
+          "bike": 3,
+          "vehicle": 2,
+          "total": 5,
+          "name": "Zehlendorf Mitte",
           "district": ""
         },
         {
@@ -3078,16 +3078,6 @@
           "district": ""
         },
         {
-          "lor": "05300840",
-          "lat": 52.534428,
-          "lon": 13.257384,
-          "bike": 2,
-          "vehicle": 3,
-          "total": 5,
-          "name": "Nonnendammallee",
-          "district": ""
-        },
-        {
           "lor": "03400722",
           "lat": 52.574236,
           "lon": 13.404217,
@@ -3095,6 +3085,16 @@
           "vehicle": 1,
           "total": 5,
           "name": "Parkstraße",
+          "district": ""
+        },
+        {
+          "lor": "05300840",
+          "lat": 52.534428,
+          "lon": 13.257384,
+          "bike": 2,
+          "vehicle": 3,
+          "total": 5,
+          "name": "Nonnendammallee",
           "district": ""
         },
         {
@@ -3118,16 +3118,6 @@
           "district": ""
         },
         {
-          "lor": "11100206",
-          "lat": 52.573946,
-          "lon": 13.50755,
-          "bike": 1,
-          "vehicle": 4,
-          "total": 5,
-          "name": "Wartenberg Nord",
-          "district": ""
-        },
-        {
           "lor": "04501153",
           "lat": 52.482386,
           "lon": 13.333179,
@@ -3135,6 +3125,16 @@
           "vehicle": 3,
           "total": 5,
           "name": "Babelsberger Straße",
+          "district": ""
+        },
+        {
+          "lor": "11100206",
+          "lat": 52.573946,
+          "lon": 13.50755,
+          "bike": 1,
+          "vehicle": 4,
+          "total": 5,
+          "name": "Wartenberg Nord",
           "district": ""
         },
         {
@@ -3308,16 +3308,6 @@
           "district": ""
         },
         {
-          "lor": "03601451",
-          "lat": 52.536311,
-          "lon": 13.44026,
-          "bike": 2,
-          "vehicle": 2,
-          "total": 4,
-          "name": "Anton-Saefkow-Park",
-          "district": ""
-        },
-        {
           "lor": "01200625",
           "lat": 52.52825,
           "lon": 13.348194,
@@ -3325,6 +3315,16 @@
           "vehicle": 1,
           "total": 4,
           "name": "Lübecker Straße",
+          "district": ""
+        },
+        {
+          "lor": "03601451",
+          "lat": 52.536311,
+          "lon": 13.44026,
+          "bike": 2,
+          "vehicle": 2,
+          "total": 4,
+          "name": "Anton-Saefkow-Park",
           "district": ""
         },
         {
@@ -3348,16 +3348,6 @@
           "district": ""
         },
         {
-          "lor": "05100312",
-          "lat": 52.55136,
-          "lon": 13.196508,
-          "bike": 2,
-          "vehicle": 2,
-          "total": 4,
-          "name": "Eckschanze",
-          "district": ""
-        },
-        {
           "lor": "06200421",
           "lat": 52.430771,
           "lon": 13.319552,
@@ -3368,13 +3358,13 @@
           "district": ""
         },
         {
-          "lor": "03500934",
-          "lat": 52.553463,
-          "lon": 13.436462,
+          "lor": "05100312",
+          "lat": 52.55136,
+          "lon": 13.196508,
           "bike": 2,
           "vehicle": 2,
           "total": 4,
-          "name": "Weißenseer Spitze",
+          "name": "Eckschanze",
           "district": ""
         },
         {
@@ -3385,6 +3375,16 @@
           "vehicle": 3,
           "total": 4,
           "name": "Alt-Tegel",
+          "district": ""
+        },
+        {
+          "lor": "03500934",
+          "lat": 52.553463,
+          "lon": 13.436462,
+          "bike": 2,
+          "vehicle": 2,
+          "total": 4,
+          "name": "Weißenseer Spitze",
           "district": ""
         },
         {
@@ -3448,16 +3448,6 @@
           "district": ""
         },
         {
-          "lor": "03400620",
-          "lat": 52.576142,
-          "lon": 13.383292,
-          "bike": 3,
-          "vehicle": 1,
-          "total": 4,
-          "name": "Schönholz",
-          "district": ""
-        },
-        {
           "lor": "04200207",
           "lat": 52.488048,
           "lon": 13.22579,
@@ -3465,6 +3455,16 @@
           "vehicle": 3,
           "total": 4,
           "name": "Eichkamp",
+          "district": ""
+        },
+        {
+          "lor": "03400620",
+          "lat": 52.576142,
+          "lon": 13.383292,
+          "bike": 3,
+          "vehicle": 1,
+          "total": 4,
+          "name": "Schönholz",
           "district": ""
         },
         {
@@ -3478,16 +3478,6 @@
           "district": ""
         },
         {
-          "lor": "06400838",
-          "lat": 52.449779,
-          "lon": 13.230694,
-          "bike": 2,
-          "vehicle": 2,
-          "total": 4,
-          "name": "Krumme Lanke",
-          "district": ""
-        },
-        {
           "lor": "11100205",
           "lat": 52.570242,
           "lon": 13.517874,
@@ -3498,13 +3488,13 @@
           "district": ""
         },
         {
-          "lor": "03300411",
-          "lat": 52.618258,
-          "lon": 13.490892,
+          "lor": "06400838",
+          "lat": 52.449779,
+          "lon": 13.230694,
           "bike": 2,
           "vehicle": 2,
           "total": 4,
-          "name": "Karow Nord",
+          "name": "Krumme Lanke",
           "district": ""
         },
         {
@@ -3515,6 +3505,16 @@
           "vehicle": 3,
           "total": 4,
           "name": "Dörpfeldstraße West",
+          "district": ""
+        },
+        {
+          "lor": "03300411",
+          "lat": 52.618258,
+          "lon": 13.490892,
+          "bike": 2,
+          "vehicle": 2,
+          "total": 4,
+          "name": "Karow Nord",
           "district": ""
         },
         {
@@ -3588,16 +3588,6 @@
           "district": ""
         },
         {
-          "lor": "07501032",
-          "lat": 52.44557,
-          "lon": 13.407615,
-          "bike": 0,
-          "vehicle": 4,
-          "total": 4,
-          "name": "Imbrosweg",
-          "district": ""
-        },
-        {
           "lor": "10100315",
           "lat": 52.539488,
           "lon": 13.565599,
@@ -3605,6 +3595,16 @@
           "vehicle": 4,
           "total": 4,
           "name": "Bärenstein",
+          "district": ""
+        },
+        {
+          "lor": "07501032",
+          "lat": 52.44557,
+          "lon": 13.407615,
+          "bike": 0,
+          "vehicle": 4,
+          "total": 4,
+          "name": "Imbrosweg",
           "district": ""
         },
         {
@@ -3628,16 +3628,6 @@
           "district": ""
         },
         {
-          "lor": "12601032",
-          "lat": 52.607787,
-          "lon": 13.331364,
-          "bike": 0,
-          "vehicle": 4,
-          "total": 4,
-          "name": "Rollbergesiedlung",
-          "district": ""
-        },
-        {
           "lor": "08200728",
           "lat": 52.44596,
           "lon": 13.464856,
@@ -3645,6 +3635,16 @@
           "vehicle": 4,
           "total": 4,
           "name": "Ortolanweg",
+          "district": ""
+        },
+        {
+          "lor": "12601032",
+          "lat": 52.607787,
+          "lon": 13.331364,
+          "bike": 0,
+          "vehicle": 4,
+          "total": 4,
+          "name": "Rollbergesiedlung",
           "district": ""
         },
         {
@@ -3778,16 +3778,6 @@
           "district": ""
         },
         {
-          "lor": "12500926",
-          "lat": 52.591174,
-          "lon": 13.334771,
-          "bike": 2,
-          "vehicle": 1,
-          "total": 3,
-          "name": "Wittenau Mitte",
-          "district": ""
-        },
-        {
           "lor": "06400736",
           "lat": 52.420839,
           "lon": 13.20732,
@@ -3808,6 +3798,26 @@
           "district": ""
         },
         {
+          "lor": "12500926",
+          "lat": 52.591174,
+          "lon": 13.334771,
+          "bike": 2,
+          "vehicle": 1,
+          "total": 3,
+          "name": "Wittenau Mitte",
+          "district": ""
+        },
+        {
+          "lor": "02500726",
+          "lat": 52.523646,
+          "lon": 13.451924,
+          "bike": 3,
+          "vehicle": 0,
+          "total": 3,
+          "name": "Hausburgviertel",
+          "district": ""
+        },
+        {
           "lor": "10400836",
           "lat": 52.509069,
           "lon": 13.588175,
@@ -3825,16 +3835,6 @@
           "vehicle": 0,
           "total": 3,
           "name": "Storkower Bogen",
-          "district": ""
-        },
-        {
-          "lor": "02500726",
-          "lat": 52.523646,
-          "lon": 13.451924,
-          "bike": 3,
-          "vehicle": 0,
-          "total": 3,
-          "name": "Hausburgviertel",
           "district": ""
         },
         {
@@ -3888,16 +3888,6 @@
           "district": ""
         },
         {
-          "lor": "09501939",
-          "lat": 52.454238,
-          "lon": 13.570409,
-          "bike": 2,
-          "vehicle": 1,
-          "total": 3,
-          "name": "Bahnhofstraße",
-          "district": ""
-        },
-        {
           "lor": "11100308",
           "lat": 52.566791,
           "lon": 13.493898,
@@ -3905,6 +3895,16 @@
           "vehicle": 2,
           "total": 3,
           "name": "Zingster Straße West",
+          "district": ""
+        },
+        {
+          "lor": "09501939",
+          "lat": 52.454238,
+          "lon": 13.570409,
+          "bike": 2,
+          "vehicle": 1,
+          "total": 3,
+          "name": "Bahnhofstraße",
           "district": ""
         },
         {
@@ -3958,16 +3958,6 @@
           "district": ""
         },
         {
-          "lor": "12500928",
-          "lat": 52.606633,
-          "lon": 13.316345,
-          "bike": 1,
-          "vehicle": 2,
-          "total": 3,
-          "name": "Waidmannslust",
-          "district": ""
-        },
-        {
           "lor": "07400826",
           "lat": 52.451734,
           "lon": 13.36615,
@@ -3975,6 +3965,16 @@
           "vehicle": 2,
           "total": 3,
           "name": "Marienhöhe",
+          "district": ""
+        },
+        {
+          "lor": "12500928",
+          "lat": 52.606633,
+          "lon": 13.316345,
+          "bike": 1,
+          "vehicle": 2,
+          "total": 3,
+          "name": "Waidmannslust",
           "district": ""
         },
         {
@@ -3998,6 +3998,16 @@
           "district": ""
         },
         {
+          "lor": "11100101",
+          "lat": 52.582615,
+          "lon": 13.512025,
+          "bike": 2,
+          "vehicle": 1,
+          "total": 3,
+          "name": "Dörfer Malchow-Wartenberg",
+          "district": ""
+        },
+        {
           "lor": "04200204",
           "lat": 52.510301,
           "lon": 13.221815,
@@ -4018,16 +4028,6 @@
           "district": ""
         },
         {
-          "lor": "11100101",
-          "lat": 52.582615,
-          "lon": 13.512025,
-          "bike": 2,
-          "vehicle": 1,
-          "total": 3,
-          "name": "Dörfer Malchow-Wartenberg",
-          "district": ""
-        },
-        {
           "lor": "11400931",
           "lat": 52.508356,
           "lon": 13.513091,
@@ -4035,16 +4035,6 @@
           "vehicle": 2,
           "total": 3,
           "name": "Massower Straße",
-          "district": ""
-        },
-        {
-          "lor": "11300619",
-          "lat": 52.525148,
-          "lon": 13.473366,
-          "bike": 0,
-          "vehicle": 3,
-          "total": 3,
-          "name": "Rudolf-Seiffert-Park",
           "district": ""
         },
         {
@@ -4068,6 +4058,16 @@
           "district": ""
         },
         {
+          "lor": "11300619",
+          "lat": 52.525148,
+          "lon": 13.473366,
+          "bike": 0,
+          "vehicle": 3,
+          "total": 3,
+          "name": "Rudolf-Seiffert-Park",
+          "district": ""
+        },
+        {
           "lor": "10100205",
           "lat": 52.554167,
           "lon": 13.540337,
@@ -4075,16 +4075,6 @@
           "vehicle": 3,
           "total": 3,
           "name": "Gewerbegebiet Bitterfelder Straße",
-          "district": ""
-        },
-        {
-          "lor": "08200727",
-          "lat": 52.441809,
-          "lon": 13.445881,
-          "bike": 0,
-          "vehicle": 3,
-          "total": 3,
-          "name": "Parchimer Allee Süd",
           "district": ""
         },
         {
@@ -4098,13 +4088,13 @@
           "district": ""
         },
         {
-          "lor": "08301036",
-          "lat": 52.424757,
-          "lon": 13.469298,
+          "lor": "08200727",
+          "lat": 52.441809,
+          "lon": 13.445881,
           "bike": 0,
           "vehicle": 3,
           "total": 3,
-          "name": "Gropiusstadt Mitte",
+          "name": "Parchimer Allee Süd",
           "district": ""
         },
         {
@@ -4115,6 +4105,16 @@
           "vehicle": 3,
           "total": 3,
           "name": "Treuenbrietzener Straße",
+          "district": ""
+        },
+        {
+          "lor": "08301036",
+          "lat": 52.424757,
+          "lon": 13.469298,
+          "bike": 0,
+          "vehicle": 3,
+          "total": 3,
+          "name": "Gropiusstadt Mitte",
           "district": ""
         },
         {
@@ -4238,16 +4238,6 @@
           "district": ""
         },
         {
-          "lor": "06100205",
-          "lat": 52.446996,
-          "lon": 13.350843,
-          "bike": 1,
-          "vehicle": 1,
-          "total": 2,
-          "name": "Südende",
-          "district": ""
-        },
-        {
           "lor": "12400721",
           "lat": 52.644302,
           "lon": 13.295912,
@@ -4255,6 +4245,16 @@
           "vehicle": 1,
           "total": 2,
           "name": "Frohnau Ost",
+          "district": ""
+        },
+        {
+          "lor": "06100205",
+          "lat": 52.446996,
+          "lon": 13.350843,
+          "bike": 1,
+          "vehicle": 1,
+          "total": 2,
+          "name": "Südende",
           "district": ""
         },
         {
@@ -4388,16 +4388,6 @@
           "district": ""
         },
         {
-          "lor": "02500836",
-          "lat": 52.492919,
-          "lon": 13.476039,
-          "bike": 2,
-          "vehicle": 0,
-          "total": 2,
-          "name": "Stralauer Halbinsel",
-          "district": ""
-        },
-        {
           "lor": "10200629",
           "lat": 52.519089,
           "lon": 13.581585,
@@ -4405,6 +4395,16 @@
           "vehicle": 1,
           "total": 2,
           "name": "Teterower Ring",
+          "district": ""
+        },
+        {
+          "lor": "02500836",
+          "lat": 52.492919,
+          "lon": 13.476039,
+          "bike": 2,
+          "vehicle": 0,
+          "total": 2,
+          "name": "Stralauer Halbinsel",
           "district": ""
         },
         {
@@ -4448,16 +4448,6 @@
           "district": ""
         },
         {
-          "lor": "04200206",
-          "lat": 52.505959,
-          "lon": 13.229818,
-          "bike": 0,
-          "vehicle": 2,
-          "total": 2,
-          "name": "Kranzallee",
-          "district": ""
-        },
-        {
           "lor": "12601236",
           "lat": 52.59449,
           "lon": 13.347543,
@@ -4465,6 +4455,16 @@
           "vehicle": 2,
           "total": 2,
           "name": "Schorfheidestraße",
+          "district": ""
+        },
+        {
+          "lor": "04200206",
+          "lat": 52.505959,
+          "lon": 13.229818,
+          "bike": 0,
+          "vehicle": 2,
+          "total": 2,
+          "name": "Kranzallee",
           "district": ""
         },
         {
@@ -4478,23 +4478,13 @@
           "district": ""
         },
         {
-          "lor": "12200413",
-          "lat": 52.577774,
-          "lon": 13.281141,
+          "lor": "05200421",
+          "lat": 52.535638,
+          "lon": 13.144102,
           "bike": 0,
           "vehicle": 2,
           "total": 2,
-          "name": "Tegel Süd",
-          "district": ""
-        },
-        {
-          "lor": "06200316",
-          "lat": 52.430456,
-          "lon": 13.359635,
-          "bike": 0,
-          "vehicle": 2,
-          "total": 2,
-          "name": "Belßstraße",
+          "name": "Spandauer Straße",
           "district": ""
         },
         {
@@ -4508,13 +4498,13 @@
           "district": ""
         },
         {
-          "lor": "05200421",
-          "lat": 52.535638,
-          "lon": 13.144102,
+          "lor": "06200316",
+          "lat": 52.430456,
+          "lon": 13.359635,
           "bike": 0,
           "vehicle": 2,
           "total": 2,
-          "name": "Spandauer Straße",
+          "name": "Belßstraße",
           "district": ""
         },
         {
@@ -4528,13 +4518,13 @@
           "district": ""
         },
         {
-          "lor": "10200423",
-          "lat": 52.541535,
-          "lon": 13.622821,
+          "lor": "12200413",
+          "lat": 52.577774,
+          "lon": 13.281141,
           "bike": 0,
           "vehicle": 2,
           "total": 2,
-          "name": "Böhlener Straße",
+          "name": "Tegel Süd",
           "district": ""
         },
         {
@@ -4545,6 +4535,16 @@
           "vehicle": 2,
           "total": 2,
           "name": "Kaulsdorf Nord",
+          "district": ""
+        },
+        {
+          "lor": "10200423",
+          "lat": 52.541535,
+          "lon": 13.622821,
+          "bike": 0,
+          "vehicle": 2,
+          "total": 2,
+          "name": "Böhlener Straße",
           "district": ""
         },
         {
@@ -4588,16 +4588,6 @@
           "district": ""
         },
         {
-          "lor": "09200512",
-          "lat": 52.463621,
-          "lon": 13.540736,
-          "bike": 0,
-          "vehicle": 2,
-          "total": 2,
-          "name": "Wuhlheide",
-          "district": ""
-        },
-        {
           "lor": "05400942",
           "lat": 52.482389,
           "lon": 13.167221,
@@ -4608,13 +4598,13 @@
           "district": ""
         },
         {
-          "lor": "06300631",
-          "lat": 52.414762,
-          "lon": 13.28715,
+          "lor": "09200512",
+          "lat": 52.463621,
+          "lon": 13.540736,
           "bike": 0,
           "vehicle": 2,
           "total": 2,
-          "name": "Goerzwerke",
+          "name": "Wuhlheide",
           "district": ""
         },
         {
@@ -4625,6 +4615,16 @@
           "vehicle": 2,
           "total": 2,
           "name": "Berlepschstraße",
+          "district": ""
+        },
+        {
+          "lor": "06300631",
+          "lat": 52.414762,
+          "lon": 13.28715,
+          "bike": 0,
+          "vehicle": 2,
+          "total": 2,
+          "name": "Goerzwerke",
           "district": ""
         },
         {
@@ -4808,16 +4808,6 @@
           "district": ""
         },
         {
-          "lor": "06200419",
-          "lat": 52.413108,
-          "lon": 13.315138,
-          "bike": 0,
-          "vehicle": 1,
-          "total": 1,
-          "name": "Thermometersiedlung",
-          "district": ""
-        },
-        {
           "lor": "10400837",
           "lat": 52.49176,
           "lon": 13.580469,
@@ -4825,6 +4815,16 @@
           "vehicle": 1,
           "total": 1,
           "name": "Kaulsdorf Süd",
+          "district": ""
+        },
+        {
+          "lor": "06200419",
+          "lat": 52.413108,
+          "lon": 13.315138,
+          "bike": 0,
+          "vehicle": 1,
+          "total": 1,
+          "name": "Thermometersiedlung",
           "district": ""
         },
         {
@@ -4838,16 +4838,6 @@
           "district": ""
         },
         {
-          "lor": "05200423",
-          "lat": 52.531222,
-          "lon": 13.153592,
-          "bike": 0,
-          "vehicle": 1,
-          "total": 1,
-          "name": "Magistratsweg",
-          "district": ""
-        },
-        {
           "lor": "09501940",
           "lat": 52.456655,
           "lon": 13.587607,
@@ -4858,6 +4848,16 @@
           "district": ""
         },
         {
+          "lor": "05200423",
+          "lat": 52.531222,
+          "lon": 13.153592,
+          "bike": 0,
+          "vehicle": 1,
+          "total": 1,
+          "name": "Magistratsweg",
+          "district": ""
+        },
+        {
           "lor": "06400841",
           "lat": 52.4405,
           "lon": 13.265176,
@@ -4865,16 +4865,6 @@
           "vehicle": 1,
           "total": 1,
           "name": "Zehlendorf Eiche",
-          "district": ""
-        },
-        {
-          "lor": "03300517",
-          "lat": 52.582913,
-          "lon": 13.477756,
-          "bike": 0,
-          "vehicle": 1,
-          "total": 1,
-          "name": "Märchenland",
           "district": ""
         },
         {
@@ -4895,6 +4885,16 @@
           "vehicle": 1,
           "total": 1,
           "name": "Rosenbecker Straße",
+          "district": ""
+        },
+        {
+          "lor": "03300517",
+          "lat": 52.582913,
+          "lon": 13.477756,
+          "bike": 0,
+          "vehicle": 1,
+          "total": 1,
+          "name": "Märchenland",
           "district": ""
         },
         {
@@ -5048,16 +5048,6 @@
           "district": ""
         },
         {
-          "lor": "03200310",
-          "lat": 52.613109,
-          "lon": 13.423172,
-          "bike": 0,
-          "vehicle": 1,
-          "total": 1,
-          "name": "Krugpfuhl",
-          "district": ""
-        },
-        {
           "lor": "09401433",
           "lat": 52.437822,
           "lon": 13.609861,
@@ -5075,6 +5065,16 @@
           "vehicle": 1,
           "total": 1,
           "name": "Vogelviertel Nord",
+          "district": ""
+        },
+        {
+          "lor": "03200310",
+          "lat": 52.613109,
+          "lon": 13.423172,
+          "bike": 0,
+          "vehicle": 1,
+          "total": 1,
+          "name": "Krugpfuhl",
           "district": ""
         },
         {
@@ -6076,16 +6076,6 @@
           "district": ""
         },
         {
-          "lor": "12100101",
-          "lat": 52.563708,
-          "lon": 13.37106,
-          "bike": 5,
-          "vehicle": 21,
-          "total": 26,
-          "name": "Letteplatz",
-          "district": ""
-        },
-        {
           "lor": "01401043",
           "lat": 52.547437,
           "lon": 13.365117,
@@ -6093,6 +6083,16 @@
           "vehicle": 18,
           "total": 26,
           "name": "Antonstraße",
+          "district": ""
+        },
+        {
+          "lor": "12100101",
+          "lat": 52.563708,
+          "lon": 13.37106,
+          "bike": 5,
+          "vehicle": 21,
+          "total": 26,
+          "name": "Letteplatz",
           "district": ""
         },
         {
@@ -6156,16 +6156,6 @@
           "district": ""
         },
         {
-          "lor": "08100103",
-          "lat": 52.474172,
-          "lon": 13.419672,
-          "bike": 10,
-          "vehicle": 15,
-          "total": 25,
-          "name": "Schillerpromenade Süd",
-          "district": ""
-        },
-        {
           "lor": "05300736",
           "lat": 52.541382,
           "lon": 13.224997,
@@ -6173,6 +6163,16 @@
           "vehicle": 22,
           "total": 25,
           "name": "Zitadellenweg",
+          "district": ""
+        },
+        {
+          "lor": "08100103",
+          "lat": 52.474172,
+          "lon": 13.419672,
+          "bike": 10,
+          "vehicle": 15,
+          "total": 25,
+          "name": "Schillerpromenade Süd",
           "district": ""
         },
         {
@@ -6186,16 +6186,6 @@
           "district": ""
         },
         {
-          "lor": "07400823",
-          "lat": 52.463416,
-          "lon": 13.373784,
-          "bike": 3,
-          "vehicle": 22,
-          "total": 25,
-          "name": "Wittekindstraße",
-          "district": ""
-        },
-        {
           "lor": "09100304",
           "lat": 52.46407,
           "lon": 13.485516,
@@ -6203,6 +6193,16 @@
           "vehicle": 16,
           "total": 25,
           "name": "Baumschulenweg West",
+          "district": ""
+        },
+        {
+          "lor": "07400823",
+          "lat": 52.463416,
+          "lon": 13.373784,
+          "bike": 3,
+          "vehicle": 22,
+          "total": 25,
+          "name": "Wittekindstraße",
           "district": ""
         },
         {
@@ -6376,16 +6376,6 @@
           "district": ""
         },
         {
-          "lor": "03601140",
-          "lat": 52.552453,
-          "lon": 13.40208,
-          "bike": 16,
-          "vehicle": 6,
-          "total": 22,
-          "name": "Malmöer Straße",
-          "district": ""
-        },
-        {
           "lor": "07200413",
           "lat": 52.480997,
           "lon": 13.363274,
@@ -6393,6 +6383,16 @@
           "vehicle": 6,
           "total": 22,
           "name": "Cheruskerstraße",
+          "district": ""
+        },
+        {
+          "lor": "03601140",
+          "lat": 52.552453,
+          "lon": 13.40208,
+          "bike": 16,
+          "vehicle": 6,
+          "total": 22,
+          "name": "Malmöer Straße",
           "district": ""
         },
         {
@@ -6746,16 +6746,6 @@
           "district": ""
         },
         {
-          "lor": "06300526",
-          "lat": 52.43237,
-          "lon": 13.254535,
-          "bike": 12,
-          "vehicle": 6,
-          "total": 18,
-          "name": "Zehlendorf Mitte",
-          "district": ""
-        },
-        {
           "lor": "01401049",
           "lat": 52.554355,
           "lon": 13.366423,
@@ -6763,6 +6753,16 @@
           "vehicle": 10,
           "total": 18,
           "name": "Schulstraße",
+          "district": ""
+        },
+        {
+          "lor": "06300526",
+          "lat": 52.43237,
+          "lon": 13.254535,
+          "bike": 12,
+          "vehicle": 6,
+          "total": 18,
+          "name": "Zehlendorf Mitte",
           "district": ""
         },
         {
@@ -7026,16 +7026,6 @@
           "district": ""
         },
         {
-          "lor": "04501040",
-          "lat": 52.502809,
-          "lon": 13.309613,
-          "bike": 4,
-          "vehicle": 12,
-          "total": 16,
-          "name": "Hindemithplatz",
-          "district": ""
-        },
-        {
           "lor": "07501030",
           "lat": 52.446398,
           "lon": 13.382804,
@@ -7043,6 +7033,16 @@
           "vehicle": 14,
           "total": 16,
           "name": "Machonstraße",
+          "district": ""
+        },
+        {
+          "lor": "04501040",
+          "lat": 52.502809,
+          "lon": 13.309613,
+          "bike": 4,
+          "vehicle": 12,
+          "total": 16,
+          "name": "Hindemithplatz",
           "district": ""
         },
         {
@@ -7196,6 +7196,16 @@
           "district": ""
         },
         {
+          "lor": "12200515",
+          "lat": 52.589059,
+          "lon": 13.279308,
+          "bike": 2,
+          "vehicle": 13,
+          "total": 15,
+          "name": "Alt-Tegel",
+          "district": ""
+        },
+        {
           "lor": "11501341",
           "lat": 52.477981,
           "lon": 13.520161,
@@ -7213,16 +7223,6 @@
           "vehicle": 10,
           "total": 15,
           "name": "Weißenseer Spitze",
-          "district": ""
-        },
-        {
-          "lor": "12200515",
-          "lat": 52.589059,
-          "lon": 13.279308,
-          "bike": 2,
-          "vehicle": 13,
-          "total": 15,
-          "name": "Alt-Tegel",
           "district": ""
         },
         {
@@ -7326,16 +7326,6 @@
           "district": ""
         },
         {
-          "lor": "10100207",
-          "lat": 52.55383,
-          "lon": 13.579925,
-          "bike": 2,
-          "vehicle": 12,
-          "total": 14,
-          "name": "Ahrensfelder Berge",
-          "district": ""
-        },
-        {
           "lor": "06100204",
           "lat": 52.453632,
           "lon": 13.348387,
@@ -7343,6 +7333,16 @@
           "vehicle": 11,
           "total": 14,
           "name": "Munsterdamm",
+          "district": ""
+        },
+        {
+          "lor": "10100207",
+          "lat": 52.55383,
+          "lon": 13.579925,
+          "bike": 2,
+          "vehicle": 12,
+          "total": 14,
+          "name": "Ahrensfelder Berge",
           "district": ""
         },
         {
@@ -7406,16 +7406,6 @@
           "district": ""
         },
         {
-          "lor": "04400835",
-          "lat": 52.472176,
-          "lon": 13.316369,
-          "bike": 7,
-          "vehicle": 7,
-          "total": 14,
-          "name": "Rüdesheimer Platz",
-          "district": ""
-        },
-        {
           "lor": "12200412",
           "lat": 52.568398,
           "lon": 13.274839,
@@ -7423,6 +7413,16 @@
           "vehicle": 12,
           "total": 14,
           "name": "Waldidyll/Flughafensee",
+          "district": ""
+        },
+        {
+          "lor": "04400835",
+          "lat": 52.472176,
+          "lon": 13.316369,
+          "bike": 7,
+          "vehicle": 7,
+          "total": 14,
+          "name": "Rüdesheimer Platz",
           "district": ""
         },
         {
@@ -7446,16 +7446,6 @@
           "district": ""
         },
         {
-          "lor": "03300516",
-          "lat": 52.570787,
-          "lon": 13.4411,
-          "bike": 6,
-          "vehicle": 8,
-          "total": 14,
-          "name": "Heinersdorf",
-          "district": ""
-        },
-        {
           "lor": "05200630",
           "lat": 52.522965,
           "lon": 13.191296,
@@ -7463,6 +7453,16 @@
           "vehicle": 6,
           "total": 14,
           "name": "Wilhelmstadt West",
+          "district": ""
+        },
+        {
+          "lor": "03300516",
+          "lat": 52.570787,
+          "lon": 13.4411,
+          "bike": 6,
+          "vehicle": 8,
+          "total": 14,
+          "name": "Heinersdorf",
           "district": ""
         },
         {
@@ -7896,16 +7896,6 @@
           "district": ""
         },
         {
-          "lor": "03601346",
-          "lat": 52.54593,
-          "lon": 13.415328,
-          "bike": 9,
-          "vehicle": 2,
-          "total": 11,
-          "name": "Gethsemanekirche",
-          "district": ""
-        },
-        {
           "lor": "03601348",
           "lat": 52.542065,
           "lon": 13.422844,
@@ -7913,6 +7903,16 @@
           "vehicle": 7,
           "total": 11,
           "name": "Senefelderstraße",
+          "district": ""
+        },
+        {
+          "lor": "03601346",
+          "lat": 52.54593,
+          "lon": 13.415328,
+          "bike": 9,
+          "vehicle": 2,
+          "total": 11,
+          "name": "Gethsemanekirche",
           "district": ""
         },
         {
@@ -7976,16 +7976,6 @@
           "district": ""
         },
         {
-          "lor": "11300616",
-          "lat": 52.534524,
-          "lon": 13.469143,
-          "bike": 1,
-          "vehicle": 10,
-          "total": 11,
-          "name": "Hohenschönhauser Straße",
-          "district": ""
-        },
-        {
           "lor": "06400842",
           "lat": 52.459886,
           "lon": 13.263141,
@@ -7993,6 +7983,16 @@
           "vehicle": 5,
           "total": 11,
           "name": "Hüttenweg",
+          "district": ""
+        },
+        {
+          "lor": "11300616",
+          "lat": 52.534524,
+          "lon": 13.469143,
+          "bike": 1,
+          "vehicle": 10,
+          "total": 11,
+          "name": "Hohenschönhauser Straße",
           "district": ""
         },
         {
@@ -8116,16 +8116,6 @@
           "district": ""
         },
         {
-          "lor": "05200526",
-          "lat": 52.521621,
-          "lon": 13.157836,
-          "bike": 0,
-          "vehicle": 11,
-          "total": 11,
-          "name": "Rudolf-Wissell-Großsiedlung",
-          "district": ""
-        },
-        {
           "lor": "03400618",
           "lat": 52.597332,
           "lon": 13.37767,
@@ -8136,13 +8126,13 @@
           "district": ""
         },
         {
-          "lor": "06100210",
-          "lat": 52.461105,
-          "lon": 13.3424,
-          "bike": 7,
-          "vehicle": 3,
-          "total": 10,
-          "name": "Bismarckstraße",
+          "lor": "05200526",
+          "lat": 52.521621,
+          "lon": 13.157836,
+          "bike": 0,
+          "vehicle": 11,
+          "total": 11,
+          "name": "Rudolf-Wissell-Großsiedlung",
           "district": ""
         },
         {
@@ -8153,6 +8143,16 @@
           "vehicle": 7,
           "total": 10,
           "name": "Stülerstraße",
+          "district": ""
+        },
+        {
+          "lor": "06100210",
+          "lat": 52.461105,
+          "lon": 13.3424,
+          "bike": 7,
+          "vehicle": 3,
+          "total": 10,
+          "name": "Bismarckstraße",
           "district": ""
         },
         {
@@ -8266,16 +8266,6 @@
           "district": ""
         },
         {
-          "lor": "05300840",
-          "lat": 52.534428,
-          "lon": 13.257384,
-          "bike": 2,
-          "vehicle": 8,
-          "total": 10,
-          "name": "Nonnendammallee",
-          "district": ""
-        },
-        {
           "lor": "10200417",
           "lat": 52.546623,
           "lon": 13.593821,
@@ -8283,6 +8273,16 @@
           "vehicle": 8,
           "total": 10,
           "name": "Zossener Straße",
+          "district": ""
+        },
+        {
+          "lor": "05300840",
+          "lat": 52.534428,
+          "lon": 13.257384,
+          "bike": 2,
+          "vehicle": 8,
+          "total": 10,
+          "name": "Nonnendammallee",
           "district": ""
         },
         {
@@ -8376,6 +8376,16 @@
           "district": ""
         },
         {
+          "lor": "03601141",
+          "lat": 52.551978,
+          "lon": 13.410237,
+          "bike": 6,
+          "vehicle": 3,
+          "total": 9,
+          "name": "Arnimplatz",
+          "district": ""
+        },
+        {
           "lor": "05300839",
           "lat": 52.544222,
           "lon": 13.263621,
@@ -8383,16 +8393,6 @@
           "vehicle": 7,
           "total": 9,
           "name": "Rohrdamm",
-          "district": ""
-        },
-        {
-          "lor": "09501736",
-          "lat": 52.455385,
-          "lon": 13.612256,
-          "bike": 9,
-          "vehicle": 0,
-          "total": 9,
-          "name": "Hirschgarten",
           "district": ""
         },
         {
@@ -8406,13 +8406,13 @@
           "district": ""
         },
         {
-          "lor": "03601141",
-          "lat": 52.551978,
-          "lon": 13.410237,
-          "bike": 6,
-          "vehicle": 3,
+          "lor": "09501736",
+          "lat": 52.455385,
+          "lon": 13.612256,
+          "bike": 9,
+          "vehicle": 0,
           "total": 9,
-          "name": "Arnimplatz",
+          "name": "Hirschgarten",
           "district": ""
         },
         {
@@ -8426,16 +8426,6 @@
           "district": ""
         },
         {
-          "lor": "12500926",
-          "lat": 52.591174,
-          "lon": 13.334771,
-          "bike": 4,
-          "vehicle": 5,
-          "total": 9,
-          "name": "Wittenau Mitte",
-          "district": ""
-        },
-        {
           "lor": "07400825",
           "lat": 52.456195,
           "lon": 13.380315,
@@ -8446,13 +8436,13 @@
           "district": ""
         },
         {
-          "lor": "06200421",
-          "lat": 52.430771,
-          "lon": 13.319552,
-          "bike": 6,
-          "vehicle": 3,
+          "lor": "12500926",
+          "lat": 52.591174,
+          "lon": 13.334771,
+          "bike": 4,
+          "vehicle": 5,
           "total": 9,
-          "name": "Königsberger Straße",
+          "name": "Wittenau Mitte",
           "district": ""
         },
         {
@@ -8463,6 +8453,16 @@
           "vehicle": 4,
           "total": 9,
           "name": "Hausburgviertel",
+          "district": ""
+        },
+        {
+          "lor": "06200421",
+          "lat": 52.430771,
+          "lon": 13.319552,
+          "bike": 6,
+          "vehicle": 3,
+          "total": 9,
+          "name": "Königsberger Straße",
           "district": ""
         },
         {
@@ -8676,16 +8676,6 @@
           "district": ""
         },
         {
-          "lor": "11300618",
-          "lat": 52.526899,
-          "lon": 13.462905,
-          "bike": 4,
-          "vehicle": 4,
-          "total": 8,
-          "name": "Storkower Bogen",
-          "district": ""
-        },
-        {
           "lor": "04501147",
           "lat": 52.489744,
           "lon": 13.319666,
@@ -8703,6 +8693,16 @@
           "vehicle": 6,
           "total": 8,
           "name": "Schweizer Viertel",
+          "district": ""
+        },
+        {
+          "lor": "11300618",
+          "lat": 52.526899,
+          "lon": 13.462905,
+          "bike": 4,
+          "vehicle": 4,
+          "total": 8,
+          "name": "Storkower Bogen",
           "district": ""
         },
         {
@@ -8766,16 +8766,6 @@
           "district": ""
         },
         {
-          "lor": "11300619",
-          "lat": 52.525148,
-          "lon": 13.473366,
-          "bike": 3,
-          "vehicle": 5,
-          "total": 8,
-          "name": "Rudolf-Seiffert-Park",
-          "district": ""
-        },
-        {
           "lor": "09300923",
           "lat": 52.404195,
           "lon": 13.539266,
@@ -8783,6 +8773,16 @@
           "vehicle": 6,
           "total": 8,
           "name": "Kölner Viertel",
+          "district": ""
+        },
+        {
+          "lor": "11300619",
+          "lat": 52.525148,
+          "lon": 13.473366,
+          "bike": 3,
+          "vehicle": 5,
+          "total": 8,
+          "name": "Rudolf-Seiffert-Park",
           "district": ""
         },
         {
@@ -9006,16 +9006,6 @@
           "district": ""
         },
         {
-          "lor": "12500928",
-          "lat": 52.606633,
-          "lon": 13.316345,
-          "bike": 5,
-          "vehicle": 2,
-          "total": 7,
-          "name": "Waidmannslust",
-          "district": ""
-        },
-        {
           "lor": "04200207",
           "lat": 52.488048,
           "lon": 13.22579,
@@ -9023,6 +9013,16 @@
           "vehicle": 6,
           "total": 7,
           "name": "Eichkamp",
+          "district": ""
+        },
+        {
+          "lor": "12500928",
+          "lat": 52.606633,
+          "lon": 13.316345,
+          "bike": 5,
+          "vehicle": 2,
+          "total": 7,
+          "name": "Waidmannslust",
           "district": ""
         },
         {
@@ -9166,16 +9166,6 @@
           "district": ""
         },
         {
-          "lor": "02500836",
-          "lat": 52.492919,
-          "lon": 13.476039,
-          "bike": 4,
-          "vehicle": 2,
-          "total": 6,
-          "name": "Stralauer Halbinsel",
-          "district": ""
-        },
-        {
           "lor": "10100205",
           "lat": 52.554167,
           "lon": 13.540337,
@@ -9183,6 +9173,16 @@
           "vehicle": 5,
           "total": 6,
           "name": "Gewerbegebiet Bitterfelder Straße",
+          "district": ""
+        },
+        {
+          "lor": "02500836",
+          "lat": 52.492919,
+          "lon": 13.476039,
+          "bike": 4,
+          "vehicle": 2,
+          "total": 6,
+          "name": "Stralauer Halbinsel",
           "district": ""
         },
         {
@@ -9406,16 +9406,6 @@
           "district": ""
         },
         {
-          "lor": "04200204",
-          "lat": 52.510301,
-          "lon": 13.221815,
-          "bike": 1,
-          "vehicle": 4,
-          "total": 5,
-          "name": "Angerburger Allee",
-          "district": ""
-        },
-        {
           "lor": "11100101",
           "lat": 52.582615,
           "lon": 13.512025,
@@ -9423,6 +9413,16 @@
           "vehicle": 3,
           "total": 5,
           "name": "Dörfer Malchow-Wartenberg",
+          "district": ""
+        },
+        {
+          "lor": "04200204",
+          "lat": 52.510301,
+          "lon": 13.221815,
+          "bike": 1,
+          "vehicle": 4,
+          "total": 5,
+          "name": "Angerburger Allee",
           "district": ""
         },
         {
@@ -9516,16 +9516,6 @@
           "district": ""
         },
         {
-          "lor": "08401245",
-          "lat": 52.402694,
-          "lon": 13.506468,
-          "bike": 0,
-          "vehicle": 5,
-          "total": 5,
-          "name": "Frauenviertel",
-          "district": ""
-        },
-        {
           "lor": "10100315",
           "lat": 52.539488,
           "lon": 13.565599,
@@ -9533,6 +9523,16 @@
           "vehicle": 5,
           "total": 5,
           "name": "Bärenstein",
+          "district": ""
+        },
+        {
+          "lor": "08401245",
+          "lat": 52.402694,
+          "lon": 13.506468,
+          "bike": 0,
+          "vehicle": 5,
+          "total": 5,
+          "name": "Frauenviertel",
           "district": ""
         },
         {
@@ -9786,16 +9786,6 @@
           "district": ""
         },
         {
-          "lor": "06100205",
-          "lat": 52.446996,
-          "lon": 13.350843,
-          "bike": 2,
-          "vehicle": 1,
-          "total": 3,
-          "name": "Südende",
-          "district": ""
-        },
-        {
           "lor": "12400721",
           "lat": 52.644302,
           "lon": 13.295912,
@@ -9803,6 +9793,16 @@
           "vehicle": 1,
           "total": 3,
           "name": "Frohnau Ost",
+          "district": ""
+        },
+        {
+          "lor": "06100205",
+          "lat": 52.446996,
+          "lon": 13.350843,
+          "bike": 2,
+          "vehicle": 1,
+          "total": 3,
+          "name": "Südende",
           "district": ""
         },
         {
@@ -9956,16 +9956,6 @@
           "district": ""
         },
         {
-          "lor": "12200413",
-          "lat": 52.577774,
-          "lon": 13.281141,
-          "bike": 0,
-          "vehicle": 3,
-          "total": 3,
-          "name": "Tegel Süd",
-          "district": ""
-        },
-        {
           "lor": "10400837",
           "lat": 52.49176,
           "lon": 13.580469,
@@ -9973,6 +9963,16 @@
           "vehicle": 3,
           "total": 3,
           "name": "Kaulsdorf Süd",
+          "district": ""
+        },
+        {
+          "lor": "12200413",
+          "lat": 52.577774,
+          "lon": 13.281141,
+          "bike": 0,
+          "vehicle": 3,
+          "total": 3,
+          "name": "Tegel Süd",
           "district": ""
         },
         {
@@ -10096,16 +10096,6 @@
           "district": ""
         },
         {
-          "lor": "09200614",
-          "lat": 52.448967,
-          "lon": 13.537047,
-          "bike": 1,
-          "vehicle": 1,
-          "total": 2,
-          "name": "Oberspree",
-          "district": ""
-        },
-        {
           "lor": "05400944",
           "lat": 52.454342,
           "lon": 13.151594,
@@ -10113,6 +10103,16 @@
           "vehicle": 1,
           "total": 2,
           "name": "Kladower Damm",
+          "district": ""
+        },
+        {
+          "lor": "09200614",
+          "lat": 52.448967,
+          "lon": 13.537047,
+          "bike": 1,
+          "vehicle": 1,
+          "total": 2,
+          "name": "Oberspree",
           "district": ""
         },
         {
@@ -10206,16 +10206,6 @@
           "district": ""
         },
         {
-          "lor": "08401138",
-          "lat": 52.442826,
-          "lon": 13.460198,
-          "bike": 0,
-          "vehicle": 2,
-          "total": 2,
-          "name": "Goldhähnchenweg",
-          "district": ""
-        },
-        {
           "lor": "09301227",
           "lat": 52.39246,
           "lon": 13.633427,
@@ -10223,6 +10213,16 @@
           "vehicle": 2,
           "total": 2,
           "name": "Karolinenhof",
+          "district": ""
+        },
+        {
+          "lor": "08401138",
+          "lat": 52.442826,
+          "lon": 13.460198,
+          "bike": 0,
+          "vehicle": 2,
+          "total": 2,
+          "name": "Goldhähnchenweg",
           "district": ""
         },
         {
@@ -10744,16 +10744,6 @@
           "district": ""
         },
         {
-          "lor": "02400625",
-          "lat": 52.507202,
-          "lon": 13.441536,
-          "bike": 34,
-          "vehicle": 29,
-          "total": 63,
-          "name": "Wriezener Bahnhof",
-          "district": ""
-        },
-        {
           "lor": "07100102",
           "lat": 52.498349,
           "lon": 13.350204,
@@ -10761,6 +10751,16 @@
           "vehicle": 22,
           "total": 63,
           "name": "Kalckreuthstraße",
+          "district": ""
+        },
+        {
+          "lor": "02400625",
+          "lat": 52.507202,
+          "lon": 13.441536,
+          "bike": 34,
+          "vehicle": 29,
+          "total": 63,
+          "name": "Wriezener Bahnhof",
           "district": ""
         },
         {
@@ -10894,16 +10894,6 @@
           "district": ""
         },
         {
-          "lor": "07300619",
-          "lat": 52.468489,
-          "lon": 13.351338,
-          "bike": 15,
-          "vehicle": 40,
-          "total": 55,
-          "name": "Grazer Platz",
-          "district": ""
-        },
-        {
           "lor": "02200212",
           "lat": 52.489412,
           "lon": 13.414598,
@@ -10911,6 +10901,16 @@
           "vehicle": 36,
           "total": 55,
           "name": "Graefekiez Süd",
+          "district": ""
+        },
+        {
+          "lor": "07300619",
+          "lat": 52.468489,
+          "lon": 13.351338,
+          "bike": 15,
+          "vehicle": 40,
+          "total": 55,
+          "name": "Grazer Platz",
           "district": ""
         },
         {
@@ -11694,16 +11694,6 @@
           "district": ""
         },
         {
-          "lor": "06100102",
-          "lat": 52.459511,
-          "lon": 13.320294,
-          "bike": 18,
-          "vehicle": 14,
-          "total": 32,
-          "name": "Schloßstraße",
-          "district": ""
-        },
-        {
           "lor": "11300725",
           "lat": 52.51553,
           "lon": 13.500836,
@@ -11714,13 +11704,13 @@
           "district": ""
         },
         {
-          "lor": "12100101",
-          "lat": 52.563708,
-          "lon": 13.37106,
-          "bike": 6,
-          "vehicle": 26,
+          "lor": "06100102",
+          "lat": 52.459511,
+          "lon": 13.320294,
+          "bike": 18,
+          "vehicle": 14,
           "total": 32,
-          "name": "Letteplatz",
+          "name": "Schloßstraße",
           "district": ""
         },
         {
@@ -11731,6 +11721,16 @@
           "vehicle": 25,
           "total": 32,
           "name": "Wartheplatz",
+          "district": ""
+        },
+        {
+          "lor": "12100101",
+          "lat": 52.563708,
+          "lon": 13.37106,
+          "bike": 6,
+          "vehicle": 26,
+          "total": 32,
+          "name": "Letteplatz",
           "district": ""
         },
         {
@@ -12144,16 +12144,6 @@
           "district": ""
         },
         {
-          "lor": "11501341",
-          "lat": 52.477981,
-          "lon": 13.520161,
-          "bike": 22,
-          "vehicle": 4,
-          "total": 26,
-          "name": "Karlshorst Süd",
-          "district": ""
-        },
-        {
           "lor": "12200515",
           "lat": 52.589059,
           "lon": 13.279308,
@@ -12161,6 +12151,16 @@
           "vehicle": 22,
           "total": 26,
           "name": "Alt-Tegel",
+          "district": ""
+        },
+        {
+          "lor": "11501341",
+          "lat": 52.477981,
+          "lon": 13.520161,
+          "bike": 22,
+          "vehicle": 4,
+          "total": 26,
+          "name": "Karlshorst Süd",
           "district": ""
         },
         {
@@ -12534,16 +12534,6 @@
           "district": ""
         },
         {
-          "lor": "01200628",
-          "lat": 52.521869,
-          "lon": 13.362698,
-          "bike": 13,
-          "vehicle": 9,
-          "total": 22,
-          "name": "Lüneburger Straße",
-          "district": ""
-        },
-        {
           "lor": "10100207",
           "lat": 52.55383,
           "lon": 13.579925,
@@ -12551,6 +12541,16 @@
           "vehicle": 19,
           "total": 22,
           "name": "Ahrensfelder Berge",
+          "district": ""
+        },
+        {
+          "lor": "01200628",
+          "lat": 52.521869,
+          "lon": 13.362698,
+          "bike": 13,
+          "vehicle": 9,
+          "total": 22,
+          "name": "Lüneburger Straße",
           "district": ""
         },
         {
@@ -12714,13 +12714,13 @@
           "district": ""
         },
         {
-          "lor": "04400835",
-          "lat": 52.472176,
-          "lon": 13.316369,
+          "lor": "08100105",
+          "lat": 52.464496,
+          "lon": 13.427318,
           "bike": 10,
           "vehicle": 11,
           "total": 21,
-          "name": "Rüdesheimer Platz",
+          "name": "Silbersteinstraße",
           "district": ""
         },
         {
@@ -12734,13 +12734,13 @@
           "district": ""
         },
         {
-          "lor": "08100105",
-          "lat": 52.464496,
-          "lon": 13.427318,
+          "lor": "04400835",
+          "lat": 52.472176,
+          "lon": 13.316369,
           "bike": 10,
           "vehicle": 11,
           "total": 21,
-          "name": "Silbersteinstraße",
+          "name": "Rüdesheimer Platz",
           "district": ""
         },
         {
@@ -12854,16 +12854,6 @@
           "district": ""
         },
         {
-          "lor": "03500934",
-          "lat": 52.553463,
-          "lon": 13.436462,
-          "bike": 5,
-          "vehicle": 15,
-          "total": 20,
-          "name": "Weißenseer Spitze",
-          "district": ""
-        },
-        {
           "lor": "04400726",
           "lat": 52.490556,
           "lon": 13.280123,
@@ -12871,6 +12861,16 @@
           "vehicle": 16,
           "total": 20,
           "name": "Bismarckallee",
+          "district": ""
+        },
+        {
+          "lor": "03500934",
+          "lat": 52.553463,
+          "lon": 13.436462,
+          "bike": 5,
+          "vehicle": 15,
+          "total": 20,
+          "name": "Weißenseer Spitze",
           "district": ""
         },
         {
@@ -12974,16 +12974,6 @@
           "district": ""
         },
         {
-          "lor": "07501029",
-          "lat": 52.442993,
-          "lon": 13.373045,
-          "bike": 7,
-          "vehicle": 12,
-          "total": 19,
-          "name": "Ringstraße",
-          "district": ""
-        },
-        {
           "lor": "03400725",
           "lat": 52.583161,
           "lon": 13.421806,
@@ -12991,6 +12981,16 @@
           "vehicle": 13,
           "total": 19,
           "name": "Schlosspark",
+          "district": ""
+        },
+        {
+          "lor": "07501029",
+          "lat": 52.442993,
+          "lon": 13.373045,
+          "bike": 7,
+          "vehicle": 12,
+          "total": 19,
+          "name": "Ringstraße",
           "district": ""
         },
         {
@@ -13274,16 +13274,6 @@
           "district": ""
         },
         {
-          "lor": "03601451",
-          "lat": 52.536311,
-          "lon": 13.44026,
-          "bike": 9,
-          "vehicle": 8,
-          "total": 17,
-          "name": "Anton-Saefkow-Park",
-          "district": ""
-        },
-        {
           "lor": "01200625",
           "lat": 52.52825,
           "lon": 13.348194,
@@ -13294,13 +13284,13 @@
           "district": ""
         },
         {
-          "lor": "04300619",
-          "lat": 52.518468,
-          "lon": 13.309971,
-          "bike": 8,
-          "vehicle": 9,
+          "lor": "03601451",
+          "lat": 52.536311,
+          "lon": 13.44026,
+          "bike": 9,
+          "vehicle": 8,
           "total": 17,
-          "name": "Alt-Lietzow",
+          "name": "Anton-Saefkow-Park",
           "district": ""
         },
         {
@@ -13311,6 +13301,16 @@
           "vehicle": 7,
           "total": 17,
           "name": "Arnimplatz",
+          "district": ""
+        },
+        {
+          "lor": "04300619",
+          "lat": 52.518468,
+          "lon": 13.309971,
+          "bike": 8,
+          "vehicle": 9,
+          "total": 17,
+          "name": "Alt-Lietzow",
           "district": ""
         },
         {
@@ -13474,16 +13474,6 @@
           "district": ""
         },
         {
-          "lor": "05300841",
-          "lat": 52.53701,
-          "lon": 13.270177,
-          "bike": 6,
-          "vehicle": 10,
-          "total": 16,
-          "name": "Siemensdamm",
-          "district": ""
-        },
-        {
           "lor": "06300629",
           "lat": 52.449914,
           "lon": 13.301166,
@@ -13491,6 +13481,16 @@
           "vehicle": 11,
           "total": 16,
           "name": "Botanischer Garten",
+          "district": ""
+        },
+        {
+          "lor": "05300841",
+          "lat": 52.53701,
+          "lon": 13.270177,
+          "bike": 6,
+          "vehicle": 10,
+          "total": 16,
+          "name": "Siemensdamm",
           "district": ""
         },
         {
@@ -13564,16 +13564,6 @@
           "district": ""
         },
         {
-          "lor": "12500929",
-          "lat": 52.615228,
-          "lon": 13.354296,
-          "bike": 0,
-          "vehicle": 16,
-          "total": 16,
-          "name": "Lübars",
-          "district": ""
-        },
-        {
           "lor": "12100103",
           "lat": 52.573031,
           "lon": 13.366042,
@@ -13581,6 +13571,16 @@
           "vehicle": 16,
           "total": 16,
           "name": "Breitkopfbecken",
+          "district": ""
+        },
+        {
+          "lor": "12500929",
+          "lat": 52.615228,
+          "lon": 13.354296,
+          "bike": 0,
+          "vehicle": 16,
+          "total": 16,
+          "name": "Lübars",
           "district": ""
         },
         {
@@ -13734,16 +13734,6 @@
           "district": ""
         },
         {
-          "lor": "03200207",
-          "lat": 52.591696,
-          "lon": 13.414063,
-          "bike": 4,
-          "vehicle": 10,
-          "total": 14,
-          "name": "Herthaplatz",
-          "district": ""
-        },
-        {
           "lor": "07200414",
           "lat": 52.486499,
           "lon": 13.368136,
@@ -13754,33 +13744,13 @@
           "district": ""
         },
         {
-          "lor": "12500926",
-          "lat": 52.591174,
-          "lon": 13.334771,
-          "bike": 5,
-          "vehicle": 9,
+          "lor": "03200207",
+          "lat": 52.591696,
+          "lon": 13.414063,
+          "bike": 4,
+          "vehicle": 10,
           "total": 14,
-          "name": "Wittenau Mitte",
-          "district": ""
-        },
-        {
-          "lor": "11300618",
-          "lat": 52.526899,
-          "lon": 13.462905,
-          "bike": 6,
-          "vehicle": 8,
-          "total": 14,
-          "name": "Storkower Bogen",
-          "district": ""
-        },
-        {
-          "lor": "07200411",
-          "lat": 52.487978,
-          "lon": 13.360392,
-          "bike": 9,
-          "vehicle": 5,
-          "total": 14,
-          "name": "Julius-Leber-Brücke",
+          "name": "Herthaplatz",
           "district": ""
         },
         {
@@ -13794,6 +13764,16 @@
           "district": ""
         },
         {
+          "lor": "12500926",
+          "lat": 52.591174,
+          "lon": 13.334771,
+          "bike": 5,
+          "vehicle": 9,
+          "total": 14,
+          "name": "Wittenau Mitte",
+          "district": ""
+        },
+        {
           "lor": "06300632",
           "lat": 52.424731,
           "lon": 13.288266,
@@ -13801,6 +13781,26 @@
           "vehicle": 9,
           "total": 14,
           "name": "Schweizer Viertel",
+          "district": ""
+        },
+        {
+          "lor": "07200411",
+          "lat": 52.487978,
+          "lon": 13.360392,
+          "bike": 9,
+          "vehicle": 5,
+          "total": 14,
+          "name": "Julius-Leber-Brücke",
+          "district": ""
+        },
+        {
+          "lor": "11300618",
+          "lat": 52.526899,
+          "lon": 13.462905,
+          "bike": 6,
+          "vehicle": 8,
+          "total": 14,
+          "name": "Storkower Bogen",
           "district": ""
         },
         {
@@ -14424,16 +14424,6 @@
           "district": ""
         },
         {
-          "lor": "12500928",
-          "lat": 52.606633,
-          "lon": 13.316345,
-          "bike": 6,
-          "vehicle": 4,
-          "total": 10,
-          "name": "Waidmannslust",
-          "district": ""
-        },
-        {
           "lor": "04200207",
           "lat": 52.488048,
           "lon": 13.22579,
@@ -14441,6 +14431,16 @@
           "vehicle": 6,
           "total": 10,
           "name": "Eichkamp",
+          "district": ""
+        },
+        {
+          "lor": "12500928",
+          "lat": 52.606633,
+          "lon": 13.316345,
+          "bike": 6,
+          "vehicle": 4,
+          "total": 10,
+          "name": "Waidmannslust",
           "district": ""
         },
         {
@@ -15064,16 +15064,6 @@
           "district": ""
         },
         {
-          "lor": "03100102",
-          "lat": 52.637507,
-          "lon": 13.510022,
-          "bike": 2,
-          "vehicle": 4,
-          "total": 6,
-          "name": "Klinikum Buch",
-          "district": ""
-        },
-        {
           "lor": "09401534",
           "lat": 52.442697,
           "lon": 13.577983,
@@ -15081,6 +15071,16 @@
           "vehicle": 2,
           "total": 6,
           "name": "Altstadt Köpenick",
+          "district": ""
+        },
+        {
+          "lor": "03100102",
+          "lat": 52.637507,
+          "lon": 13.510022,
+          "bike": 2,
+          "vehicle": 4,
+          "total": 6,
+          "name": "Klinikum Buch",
           "district": ""
         },
         {
@@ -15134,16 +15134,6 @@
           "district": ""
         },
         {
-          "lor": "06100205",
-          "lat": 52.446996,
-          "lon": 13.350843,
-          "bike": 2,
-          "vehicle": 3,
-          "total": 5,
-          "name": "Südende",
-          "district": ""
-        },
-        {
           "lor": "12400721",
           "lat": 52.644302,
           "lon": 13.295912,
@@ -15151,6 +15141,16 @@
           "vehicle": 2,
           "total": 5,
           "name": "Frohnau Ost",
+          "district": ""
+        },
+        {
+          "lor": "06100205",
+          "lat": 52.446996,
+          "lon": 13.350843,
+          "bike": 2,
+          "vehicle": 3,
+          "total": 5,
+          "name": "Südende",
           "district": ""
         },
         {
@@ -15364,16 +15364,6 @@
           "district": ""
         },
         {
-          "lor": "12200413",
-          "lat": 52.577774,
-          "lon": 13.281141,
-          "bike": 0,
-          "vehicle": 4,
-          "total": 4,
-          "name": "Tegel Süd",
-          "district": ""
-        },
-        {
           "lor": "10400837",
           "lat": 52.49176,
           "lon": 13.580469,
@@ -15381,6 +15371,16 @@
           "vehicle": 4,
           "total": 4,
           "name": "Kaulsdorf Süd",
+          "district": ""
+        },
+        {
+          "lor": "12200413",
+          "lat": 52.577774,
+          "lon": 13.281141,
+          "bike": 0,
+          "vehicle": 4,
+          "total": 4,
+          "name": "Tegel Süd",
           "district": ""
         },
         {
@@ -15404,16 +15404,6 @@
           "district": ""
         },
         {
-          "lor": "05400942",
-          "lat": 52.482389,
-          "lon": 13.167221,
-          "bike": 0,
-          "vehicle": 4,
-          "total": 4,
-          "name": "Alt-Gatow",
-          "district": ""
-        },
-        {
           "lor": "10100313",
           "lat": 52.539615,
           "lon": 13.549391,
@@ -15421,6 +15411,16 @@
           "vehicle": 4,
           "total": 4,
           "name": "Alt-Marzahn",
+          "district": ""
+        },
+        {
+          "lor": "05400942",
+          "lat": 52.482389,
+          "lon": 13.167221,
+          "bike": 0,
+          "vehicle": 4,
+          "total": 4,
+          "name": "Alt-Gatow",
           "district": ""
         },
         {
@@ -15554,16 +15554,6 @@
           "district": ""
         },
         {
-          "lor": "03300517",
-          "lat": 52.582913,
-          "lon": 13.477756,
-          "bike": 0,
-          "vehicle": 3,
-          "total": 3,
-          "name": "Märchenland",
-          "district": ""
-        },
-        {
           "lor": "05100206",
           "lat": 52.559484,
           "lon": 13.157686,
@@ -15571,6 +15561,16 @@
           "vehicle": 3,
           "total": 3,
           "name": "Griesingerstraße",
+          "district": ""
+        },
+        {
+          "lor": "03300517",
+          "lat": 52.582913,
+          "lon": 13.477756,
+          "bike": 0,
+          "vehicle": 3,
+          "total": 3,
+          "name": "Märchenland",
           "district": ""
         },
         {
