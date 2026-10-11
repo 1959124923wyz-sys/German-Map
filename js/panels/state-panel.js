@@ -68,6 +68,11 @@
       }
 
       elements.stateDrawer.classList.add('open');
+      // City source registries subscribe to a stable canonical state name.
+      // Do not infer a city's administrative state from visual map position.
+      elements.stateDrawer.dispatchEvent(new CustomEvent('crime:state-rendered',{
+        detail:{state:s.name,metric:s.key,browseMode:getMode()}
+      }));
     }
 
     function select(feature) {

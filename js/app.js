@@ -298,8 +298,8 @@
   el.togglePropertyNews.onclick=()=>{showPropertyNews=!showPropertyNews;render();};
   el.violenceMetric.addEventListener('change',()=>{pinnedArea=null;hoverArea=null;render();showArea(null);});
   el.propertyMetric.addEventListener('change',()=>{pinnedArea=null;hoverArea=null;render();showArea(null);});
-  el.viewGermany.onclick=()=>{pinnedArea=null;hoverArea=null;countyController.clearSelection();statePanel.reset();render();showArea(null);map.fitBounds(germanyBounds,{padding:[14,14]});};
-  el.focusBerlin.onclick=()=>{pinnedArea=null;hoverArea=null;countyController.clearSelection();statePanel.reset();showArea(null);map.fitBounds(berlinBounds,{padding:[25,25],maxZoom:10});};
+  el.viewGermany.onclick=()=>{pinnedArea=null;hoverArea=null;countyController.clearSelection();statePanel.reset();render();showArea(null);map.stop();map.fitBounds(germanyBounds,{padding:[14,14],animate:false});};
+  el.focusBerlin.onclick=()=>{pinnedArea=null;hoverArea=null;countyController.clearSelection();statePanel.reset();showArea(null);map.stop();map.fitBounds(berlinBounds,{padding:[25,25],maxZoom:10,animate:false});};
   // Berlin's detailed LOR geometry is several MB. Keep nationwide startup light:
   // it is needed only after entering the Berlin city view at detail zoom.
   let berlinDataRequest=null, berlinRetryAfter=0;
