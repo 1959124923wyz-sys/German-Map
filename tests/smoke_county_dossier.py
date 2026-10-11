@@ -138,23 +138,31 @@ def verify(browser,mobile=False):
             String(l.feature?.id||l.feature?.properties?.AGS).startsWith('10'));
           const r=map.getContainer().getBoundingClientRect();
           const inside=window.CrimeMapUtils.pointInGeometry;
+          const diag={zoom:map.getZoom(),map:[r.width,r.height],counties:candidates.length,
+            center:[map.getCenter().lat,map.getCenter().lng],inside:0,within:0,samples:[]};
           for(const county of candidates){
             const b=county.getBounds();
             for(let yi=1;yi<=19;yi++)for(let xi=1;xi<=19;xi++){
               const lat=b.getSouth()+(b.getNorth()-b.getSouth())*yi/20;
               const lng=b.getWest()+(b.getEast()-b.getWest())*xi/20;
               if(!inside(lng,lat,county.feature.geometry))continue;
+              diag.inside++;
               const pt=map.latLngToContainerPoint([lat,lng]);
               const x=r.left+pt.x,y=r.top+pt.y;
-              if(pt.x<430||pt.x>r.width-20||pt.y<25||pt.y>r.height-50)continue;
               const node=document.elementFromPoint(x,y);
+              if(diag.samples.length<8)diag.samples.push({
+                id:String(county.feature.id),pt:[pt.x,pt.y],
+                node:node?.tagName,cls:node?.className?.baseVal||node?.className,
+                blocked:!!node?.closest('#stateDrawer,.legend,.leaflet-control')});
+              if(pt.x<430||pt.x>r.width-20||pt.y<25||pt.y>r.height-50)continue;
+              diag.within++;
               if(!node||node.closest('#stateDrawer,.legend,.leaflet-control'))continue;
               return {x,y,id:String(county.feature.id),hit:node.tagName};
             }
           }
-          return null;
+          return {debug:diag};
         }""")
-        assert pointer, "no unblocked county point after explicit Saarland view"
+        assert pointer and "x" in pointer, pointer
         page.mouse.click(pointer["x"],pointer["y"])
         assert page.evaluate("__CRIME_MAP__.getPinnedArea()?.ags")==pointer["id"],pointer
         assert page.locator("#crimeCountyDossier").is_visible()
