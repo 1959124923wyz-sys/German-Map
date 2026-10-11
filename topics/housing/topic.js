@@ -635,7 +635,7 @@
    $('mapStatus').textContent=valid+'处县级地图区域已载入；'+(stockReady?'含核验住房存量':'住房存量层暂不可用');
    $('mapStatus').classList.add('ok');
    window.GermanHousingResearch=Object.freeze({
-     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,berlinBoroughReady:berlinBoroughRows.length===12,structureReady:structureRows.size===400,dossierOpen:!$('housingDossier').hidden,greixReady:!!greixData,countyShapes:countyShapes.size,localArchiveRows:localStateSource()?.rows.length||0,sampleTooltip:tooltipText(countyFeatures[0]),localArchiveState,view:map.getCenter().toJSON(),zoom:map.getZoom()}),
+     state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,berlinBoroughReady:berlinBoroughRows.length===12,structureReady:structureRows.size===400,dossierOpen:!$('housingDossier').hidden,greixReady:!!greixData,countyShapes:countyShapes.size,localArchiveRows:localStateSource()?.rows.length||0,sampleTooltip:tooltipText(countyFeatures[0]),localArchiveState,view:{lat:map.getCenter().lat,lng:map.getCenter().lng},zoom:map.getZoom()}),
      metrics:Object.keys(metrics)
    });
   }catch(err){

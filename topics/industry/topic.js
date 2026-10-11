@@ -450,7 +450,7 @@ async function start(){
   counties:counties.features.length,modernCounties:new Set(counties.features.map(stateKey)).size,major:app.events.filter(e=>e.isMajor).length,
   mappedCounties:app.byCounty.size,pointMarkers:app.eventMarkers.size,
   selectedState:()=>app.selectedState,dossier:()=>!$('industryDossier').hidden,
-  officialCoverage:Object.keys(metric.records||{}).length,view:()=>({center:app.map.getCenter().toJSON(),zoom:app.map.getZoom()})});
+  officialCoverage:Object.keys(metric.records||{}).length,view:()=>({center:{lat:app.map.getCenter().lat,lng:app.map.getCenter().lng},zoom:app.map.getZoom()})});
 }
 start().catch(err=>{console.error(err);$('mapStatus').textContent='工业地图资料加载失败：'+String(err.message||err);
  $('areaMetric').textContent='加载失败；保留错误信息，不以空数据替代。';});
