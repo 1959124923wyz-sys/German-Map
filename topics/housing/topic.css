@@ -127,3 +127,8 @@
 .housing-local-metric-label:before{content:'原始数据维度';color:#95b9c9;font-size:8.5px;letter-spacing:.03em}
 .housing-local-entry-stat b{color:#c5f0df}
 @media(max-width:560px){.housing-local-controls .housing-local-metric-label{grid-column:1/-1}}
+
+
+/* GIS focus should follow polygon boundaries, not black bounding rectangles. */
+.leaflet-interactive:focus,.leaflet-interactive:focus-visible{outline:none!important}
+svg path.leaflet-interactive:focus-visible{stroke:#fff!important;stroke-width:2.5px!important}

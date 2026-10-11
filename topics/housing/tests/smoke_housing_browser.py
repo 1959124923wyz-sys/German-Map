@@ -69,6 +69,7 @@ def run(browser,mobile=False):
         assert needle in page.locator("#yearLabel").inner_text()
         assert page.evaluate("GermanHousingResearch.state().validCount")==400
         assert page.locator("#legend .housing-scale i").count()==7
+        assert "00000" not in page.evaluate("GermanHousingResearch.state().sampleTooltip")
     page.locator("#housingMetric").select_option("asking_rent_2025_eur_m2")
     # Previously each source only appeared after selecting one particular county;
     # all 192 independently scoped rows now have a searchable state-level entrance.
