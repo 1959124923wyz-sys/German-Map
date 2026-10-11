@@ -39,22 +39,22 @@ def verify(browser, phone=False):
         response=page.goto(BASE+path,wait_until="domcontentloaded",timeout=60000)
         assert response and response.ok, (slug,"load",response.status if response else None)
         page.wait_for_function("""() => {
-           const nav=document.querySelector('header nav');
-           return nav&&nav.querySelectorAll('a.modebtn').length===10 &&
+           const nav=document.querySelector('header .modebar, header .toplinks');
+           return nav&&nav.querySelectorAll('.modebtn').length===10 &&
               !!document.querySelector('link[href*="atlas-shared-shell.css"]');
         }""",timeout=20000)
         # The property view updates its mode via main app initialization.
         if slug=="property":
             page.wait_for_function("""() => {
-              const items=[...document.querySelectorAll('header nav a.modebtn')];
+              const items=[...document.querySelectorAll('header .modebar .modebtn')];
               return items.some(x=>x.textContent.trim()==='财产犯罪'&&x.classList.contains('active'));
             }""",timeout=25000)
         data=page.evaluate("""() => {
-          const nav=document.querySelector('header nav');
-          const anchors=[...nav.querySelectorAll('a.modebtn')];
+          const nav=document.querySelector('header .modebar, header .toplinks');
+          const anchors=[...nav.querySelectorAll('.modebtn')];
           const active=anchors.filter(a=>a.classList.contains('active'));
           const style=active.length?getComputedStyle(active[0]):null;
-          const first=nav.querySelector('a.modebtn');
+          const first=nav.querySelector('.modebtn');
           const ns=getComputedStyle(nav);
           const rect=nav.getBoundingClientRect();
           return {
@@ -78,8 +78,8 @@ def verify(browser, phone=False):
         assert data["firstHeight"]>=30,(slug,"too-small tap target",data)
         if phone:
             assert data["fullWidth"]<=400,(slug,"horizontal page overflow",data)
-            page.locator("header nav a.modebtn").last.scroll_into_view_if_needed()
-            assert page.locator("header nav a.modebtn").last.is_visible()
+            page.locator("header .modebar .modebtn, header .toplinks .modebtn").last.scroll_into_view_if_needed()
+            assert page.locator("header .modebar .modebtn, header .toplinks .modebtn").last.is_visible()
         key=(data["radius"],data["activeBg"])
         if baseline is None:baseline=key
         assert key==baseline,(slug,"inconsistent header",data)
