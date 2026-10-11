@@ -412,14 +412,20 @@ async function start(){
  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
    {maxZoom:19,attribution:'© OpenStreetMap contributors'}).addTo(app.map);
  app.map.createPane('countyPane');app.map.getPane('countyPane').style.zIndex='350';
+ // A higher Canvas can swallow county pointer events across the whole map.
+ // SVG leaves transparent map areas genuinely clickable.
+ app.map.createPane('industryStatePane');app.map.getPane('industryStatePane').style.zIndex='440';
+ app.map.createPane('industryEventPane');app.map.getPane('industryEventPane').style.zIndex='470';
+ const stateSvg=L.svg({pane:'industryStatePane',padding:.2});
+ const eventSvg=L.svg({pane:'industryEventPane',padding:.2});
  app.counties=L.geoJSON(counties,{pane:'countyPane',style:countyStyle,onEachFeature:(f,l)=>{
   l.on('click',()=>selectCounty(f));
   l.on('mouseover',()=>l.setStyle({weight:1.75,color:'#3b627d'}));
   l.on('mouseout',()=>app.counties.resetStyle(l));
   l.bindTooltip((app.agsRemap[f.id]?'历史县界 · 已并入现行区域：':'')+nameZh(f.properties.name),{sticky:true,direction:'auto',className:'industry-tip'});
  }}).addTo(app.map);
- app.stateOverlay=L.geoJSON(states,{interactive:true,
-  style:{weight:1.3,color:'#43596b',fillColor:'#ffffff',fillOpacity:.015},
+ app.stateOverlay=L.geoJSON(states,{pane:'industryStatePane',renderer:stateSvg,interactive:true,
+  style:{pane:'industryStatePane',weight:1.3,color:'#43596b',fillColor:'#ffffff',fillOpacity:.015},
   onEachFeature:(feature,layer)=>layer.on('click',()=>selectState(feature.properties?.id))
  }).addTo(app.map);
  app.markers=L.layerGroup();
@@ -433,7 +439,8 @@ async function start(){
   }
   e.point=getMapPoint(e,county,geocache);
   if(!e.isMajor||!e.point)continue;
-  const mk=L.circleMarker([e.point.lat,e.point.lon],markerStyle(e,false))
+  const mk=L.circleMarker([e.point.lat,e.point.lon],{
+   ...markerStyle(e,false),pane:'industryEventPane',renderer:eventSvg})
     .bindTooltip(esc(e.company)+' · '+esc(e.city)+' · '+esc(e.point.precision),
       {className:'industry-tip'});
   mk.on('click',()=>{selectEvent(e);detail(e);});
@@ -449,7 +456,9 @@ async function start(){
  window.GermanIndustryQA=Object.freeze({records:app.events.length,states:states.features.length,
   counties:counties.features.length,modernCounties:new Set(counties.features.map(stateKey)).size,major:app.events.filter(e=>e.isMajor).length,
   mappedCounties:app.byCounty.size,pointMarkers:app.eventMarkers.size,
-  selectedState:()=>app.selectedState,dossier:()=>!$('industryDossier').hidden,
+  selectedState:()=>app.selectedState,selectedCounty:()=>app.selectedCounty,
+  getMap:()=>app.map,getCounties:()=>app.counties,getStateOverlay:()=>app.stateOverlay,
+  dossier:()=>!$('industryDossier').hidden,
   officialCoverage:Object.keys(metric.records||{}).length,view:()=>({center:{lat:app.map.getCenter().lat,lng:app.map.getCenter().lng},zoom:app.map.getZoom()})});
 }
 start().catch(err=>{console.error(err);$('mapStatus').textContent='工业地图资料加载失败：'+String(err.message||err);

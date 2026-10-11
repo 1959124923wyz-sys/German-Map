@@ -19,6 +19,7 @@ function layer(){
 const L={
  map(){return fakeMap;},
  tileLayer(){return layer();},
+ svg(){return {type:'svg-test-renderer'};},
  geoJSON(obj,cfg){
   if(obj.features&&cfg&&cfg.onEachFeature)for(const feat of obj.features)cfg.onEachFeature(feat,layer());
   return layer();
