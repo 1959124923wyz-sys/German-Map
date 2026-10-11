@@ -8,7 +8,7 @@
     violenceLayers:$('violenceLayers'),propertyLayers:$('propertyLayers'),
     viewGermany:$('viewGermany'),focusBerlin:$('focusBerlin'),mapStatus:$('mapStatus'),
     legend:$('legend'),layerInfo:$('layerInfo'),
-    stateDrawer:$('stateDrawer'),stateDragHandle:$('stateDragHandle'),stateName:$('stateName'),stateClose:$('stateClose'),stateMetric:$('stateMetric'),
+    stateDrawer:$('stateDrawer'),stateDragHandle:$('stateDragHandle'),stateName:$('stateName'),stateClose:$('stateClose'),stateMetric:$('stateMetric'),stateJump:$('stateJump'),
     stateRate:$('stateRate'),stateCases:$('stateCases'),stateRank:$('stateRank'),stateRecent:$('stateRecent'),
     stateTopCounties:$('stateTopCounties'),stateNews:$('stateNews'),stateNewsCount:$('stateNewsCount'),
     safetyPanel:$('safetyPanel'),areaName:$('areaName'),riskBadge:$('riskBadge'),areaMetric:$('areaMetric'),
@@ -270,7 +270,7 @@
 
   statePanel=window.CrimeStatePanel.create({
     elements:{
-      stateDrawer:el.stateDrawer,stateName:el.stateName,stateMetric:el.stateMetric,
+      stateDrawer:el.stateDrawer,stateName:el.stateName,stateMetric:el.stateMetric,stateJump:el.stateJump,
       stateRate:el.stateRate,stateCases:el.stateCases,stateRank:el.stateRank,stateRecent:el.stateRecent,
       stateTopCounties:el.stateTopCounties,stateNews:el.stateNews,stateNewsCount:el.stateNewsCount
     },
@@ -297,6 +297,20 @@
   el.modeViolence.onclick=()=>{mode='violence';pinnedArea=null;hoverArea=null;statePanel.reset();render();showArea(null);};
   el.modeProperty.onclick=()=>{mode='property';pinnedArea=null;hoverArea=null;statePanel.reset();render();showArea(null);};
   el.stateClose.onclick=e=>{e.stopPropagation();statePanel.close({restore:true});buildStateLayer();};
+  // A source-backed state picker: the change is explicit navigation; clicking
+  // state polygons themselves still opens their drawer WITHOUT auto-zoom.
+  el.stateJump?.addEventListener('change',event=>{
+    const feature=stateFeatureByName(event.target.value);
+    if(!feature)return;
+    statePanel.select(feature);
+    buildStateLayer();
+    const bounds=L.geoJSON(feature).getBounds();
+    if(bounds.isValid()){
+      map.stop();
+      map.fitBounds(bounds,{padding:[44,44],maxZoom:6,animate:false});
+    }
+    el.stateDrawer.scrollTop=0;
+  });
   el.stateClose.onpointerdown=e=>e.stopPropagation();
   el.stateDragHandle.addEventListener('pointerdown',stateDrawerDrag.begin);
   el.stateDragHandle.addEventListener('pointermove',stateDrawerDrag.move);
@@ -347,6 +361,15 @@
     fetch('data/berlin_heatmap.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('heat '+r.status);return r.json()})
   ]).then(([cases,counties,states,pks,propertyPks,heat])=>{
     caseData=cases;countyGeo=counties;stateGeo=states;pksData=pks;propertyData=propertyPks;heatData=heat;
+    // Populate only real German federal states from the same geometry that
+    // owns map clicks, never a manually maintained list that can drift.
+    if(el.stateJump){
+      const options=[...stateGeo.features].filter(f=>f.properties?.name).map(f=>({
+        name:f.properties.name,
+        label:window.GermanPlaceNames?.translate(f.properties.name)||f.properties.name
+      })).sort((a,b)=>a.label.localeCompare(b.label,'zh-CN'));
+      el.stateJump.replaceChildren(new Option('选择联邦州',''),...options.map(o=>new Option(o.label,o.name)));
+    }
     const t=caseData.meta?.generated_at?new Date(caseData.meta.generated_at):null;
     el.updated.textContent=t&&!Number.isNaN(+t)?'通报更新 '+t.toLocaleString():'通报更新时间未知';
     render();showArea(null);ensureBerlinData();

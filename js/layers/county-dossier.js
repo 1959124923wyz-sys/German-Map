@@ -55,6 +55,8 @@ function source(target,rec){
 }
 function hide(){
  if(!root.hidden)tabs.show(false);
+ const disclosure=el('crimeCountyExpand');
+ if(disclosure)disclosure.open=false;
  selected=null;
 }
 function render(detail){
@@ -69,6 +71,8 @@ function render(detail){
  const key=ags+'|'+mode;
  if(selected===key&&!root.hidden)return;
  selected=key;renderCount++;
+ const disclosure=el('crimeCountyExpand');
+ if(disclosure)disclosure.open=false;
  const name=window.GermanPlaceNames?.byAGS(ags,v?.name||p?.name) ||v?.name||p?.name||ags;
  el('crimeCountyTitle').textContent=name+' · 2025年县级犯罪档案';
  metricRows(el('crimeCountyViolence'),v,'violence');

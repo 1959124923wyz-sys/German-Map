@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="css/map.css?v=county2">
 <link rel="stylesheet" href="css/region-dossier.css?v=1">
+<link rel="stylesheet" href="css/visual-refinement.css?v=state1">
 </head>
 <body>
 <header>
@@ -34,15 +35,17 @@
 <main>
   <section class="mapwrap">
     <div id="map"></div>
+    <div class="map-guide" id="mainMapGuide" aria-hidden="true"><span class="map-guide-kicker">德国 · 全国概览</span><strong>选择联邦州，逐层发现细节</strong><small>点击州或县市 · 已选县市可查看完整档案</small></div>
     <div id="mapStatus" class="mapstatus">底图加载中…</div>
     <div id="legend" class="legend"></div>
     <div id="layerInfo" class="layerinfo"></div>
     <aside class="state-drawer" id="stateDrawer" aria-live="polite">
       <div class="state-head" id="stateDragHandle" title="拖动窗口">
-        <div><small>州概览 · 可拖动</small><h3 id="stateName">—</h3></div>
+        <div><small>联邦州资料 · 2025年</small><h3 id="stateName">—</h3></div>
         <button class="state-close" id="stateClose" type="button" aria-label="关闭州详情">×</button>
       </div>
       <div class="state-metric" id="stateMetric">—</div>
+      <div class="state-jump"><label for="stateJump">快速切换州</label><select id="stateJump" aria-label="直接选择其他联邦州"><option value="">选择联邦州</option></select></div>
       <div class="state-stats">
         <div class="state-stat"><b id="stateRate">—</b><small>每10万人·年</small></div>
         <div class="state-stat"><b id="stateCases">—</b><small>2025登记案件</small></div>
@@ -54,14 +57,14 @@
         <div id="stateCityList" class="state-city-list" aria-label="已核实的城市街区统计图层"></div>
         <p class="state-city-caveat">城市街区官方统计的范围和指标并不完全一致：部分为每10万人犯罪率，部分为登记案件绝对数。进入后以该城市单独的图例和来源为准，不能跨口径排名。</p>
       </details>
-      <div class="state-section">
-        <div class="state-section-head"><strong>州内高值县/市</strong><span>每10万人</span></div>
+      <details class="state-section state-disclosure" id="stateCountyDisclosure">
+        <summary><strong>州内高值县／市</strong><span>按当前指标 · 每10万人</span></summary>
         <div id="stateTopCounties"></div>
-      </div>
-      <div class="state-section">
-        <div class="state-section-head"><strong>近90天相关通报</strong><span id="stateNewsCount"></span></div>
+      </details>
+      <details class="state-section state-disclosure" id="stateNewsDisclosure">
+        <summary><strong>近期相关通报</strong><span id="stateNewsCount"></span></summary>
         <div id="stateNews"></div>
-      </div>
+      </details>
     </aside>
   </section>
 
@@ -119,6 +122,8 @@
       <div class="area-note" id="areaNote">全国概览会显示当前指标的真实分布统计；悬停或点击地图后切换为该县/市的实际数据。</div>
       <section id="crimeCountyDossier" class="region-dossier crime-county-dossier" hidden aria-label="县市全部犯罪指标资料室">
        <div class="dossier-heading"><strong id="crimeCountyTitle">县市完整犯罪档案</strong><small>2025 · PKS</small></div>
+       <details id="crimeCountyExpand" class="crime-county-expand">
+        <summary>完整查看暴力、财产共10项指标 <span>案件数 · 犯罪率 · 同比</span></summary>
        <div class="dossier-tabs">
         <button data-dossier-tab="violence" type="button">暴力与人身犯罪</button>
         <button data-dossier-tab="property" type="button">盗窃与财产犯罪</button>
@@ -132,6 +137,7 @@
         <a id="crimeCountyPropertySource" target="_blank" rel="noopener noreferrer">本县市BKA来源关联统计 ↗</a>
        </div>
        <p class="dossier-note">每个类别独立对应2025年警方登记案件数与每10万人案件率；类别有包含与重叠关系，不能把10项相加。同比数据按原始来源显示。源数据来自BKA PKS县级统计的注明出处镜像，未报案犯罪不在PKS中。</p>
+       </details>
       </section>
       <div class="rank-section">
         <div class="rank-head"><strong>高值地区</strong><span>每10万人</span></div>

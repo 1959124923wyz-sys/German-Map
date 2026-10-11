@@ -22,6 +22,7 @@
       const label = getMetricLabel(s.key);
 
       elements.stateName.textContent = window.GermanPlaceNames?.translate(s.name)||s.name;
+      if (elements.stateJump) elements.stateJump.value = s.name;
       elements.stateMetric.textContent = 'BKA PKS 2025 · ' + label;
       elements.stateRate.textContent = formatNumber(Math.round(s.rate));
       elements.stateCases.textContent = formatNumber(s.cases);
@@ -79,7 +80,16 @@
       if (!elements.stateDrawer.classList.contains('open')) {
         returnView = { center: map.getCenter(), zoom: map.getZoom() };
       }
-      selectedName = feature?.properties?.name || null;
+      const nextName=feature?.properties?.name || null;
+      if (selectedName!==nextName) {
+        // Each new state begins with quiet local lists. A source-backed city
+        // archive can still open by default via its own state-scoped handler.
+        for (const id of ['stateCountyDisclosure','stateNewsDisclosure']) {
+          const section=document.getElementById(id);
+          if(section)section.open=false;
+        }
+      }
+      selectedName = nextName;
       filterName = selectedName;
       render(feature);
       onStateChanged?.();
@@ -89,6 +99,7 @@
       selectedName = null;
       filterName = null;
       elements.stateDrawer.classList.remove('open');
+      if(elements.stateJump)elements.stateJump.value='';
 
       const view = returnView;
       returnView = null;
@@ -110,6 +121,7 @@
       filterName = null;
       returnView = null;
       elements.stateDrawer.classList.remove('open');
+      if(elements.stateJump)elements.stateJump.value='';
       onStateChanged?.();
     }
 

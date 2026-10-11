@@ -100,6 +100,17 @@ with sync_playwright() as playwright:
     assert states["ok"], states
     assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
     assert page.locator("#stateName").inner_text() == page.evaluate("name=>window.GermanPlaceNames.translate(name)", states["first"])
+    assert page.locator('#stateJump option').count() == 17, "The picker must be driven by all 16 actual state geometry records"
+    assert page.locator('#stateJump').input_value()==states["first"]
+    assert page.locator('#stateCountyDisclosure').get_attribute('open') is None
+    assert page.locator('#stateNewsDisclosure').get_attribute('open') is None
+    page.locator('#stateCountyDisclosure > summary').click()
+    assert page.locator('#stateCountyDisclosure').get_attribute('open') is not None
+    page.locator('#stateJump').select_option('Sachsen')
+    assert page.locator('#stateJump').input_value()=='Sachsen'
+    assert page.locator('#stateName').inner_text()==page.evaluate("window.GermanPlaceNames.translate('Sachsen')")
+    assert page.locator('#stateCountyDisclosure').get_attribute('open') is None
+    assert page.evaluate('window.__CRIME_MAP__.map.getZoom()')<=6.01
     page.click("#stateClose")
     page.wait_for_timeout(350)
     assert not page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
