@@ -318,9 +318,9 @@
     formatNumber:fmt,formatDate:pd,escapeHtml:esc
   });
 
-  el.modeViolence.onclick=()=>{mode='violence';pinnedArea=null;hoverArea=null;statePanel.reset();render();showArea(null);};
-  el.modeProperty.onclick=()=>{mode='property';pinnedArea=null;hoverArea=null;statePanel.reset();render();showArea(null);};
-  el.stateClose.onclick=e=>{e.stopPropagation();setCountyBrowse(false);statePanel.close({restore:true});buildStateLayer();};
+  el.modeViolence.onclick=()=>{setCountyBrowse(false);mode='violence';pinnedArea=null;hoverArea=null;statePanel.reset();render();showArea(null);};
+  el.modeProperty.onclick=()=>{setCountyBrowse(false);mode='property';pinnedArea=null;hoverArea=null;statePanel.reset();render();showArea(null);};
+  el.stateClose.onclick=e=>{e.stopPropagation();setCountyBrowse(false);statePanel.close({restore:false});buildStateLayer();};
   // A source-backed state picker: the change is explicit navigation; clicking
   // state polygons themselves still opens their drawer WITHOUT auto-zoom.
   el.stateJump?.addEventListener('change',event=>{
@@ -347,7 +347,7 @@
   el.stateDragHandle.addEventListener('pointermove',stateDrawerDrag.move);
   el.stateDragHandle.addEventListener('pointerup',stateDrawerDrag.end);
   el.stateDragHandle.addEventListener('pointercancel',stateDrawerDrag.end);
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&statePanel.isOpen){setCountyBrowse(false);statePanel.close({restore:true});buildStateLayer();}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&statePanel.isOpen){setCountyBrowse(false);statePanel.close({restore:false});buildStateLayer();}});
   el.toggleViolenceNews.onclick=()=>{showViolenceNews=!showViolenceNews;render();};
   el.togglePropertyNews.onclick=()=>{showPropertyNews=!showPropertyNews;render();};
   el.violenceMetric.addEventListener('change',()=>{pinnedArea=null;hoverArea=null;render();showArea(null);});
