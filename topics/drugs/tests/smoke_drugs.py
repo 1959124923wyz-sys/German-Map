@@ -208,12 +208,23 @@ def main():
             page.locator('#wastewater-rank button').first.click()
             assert page.locator('#wastewater-flyout').is_visible()
             assert page.locator('#wastewater-value').inner_text() not in ['—','0']
+            assert page.evaluate('() => window.__DRUGS_WASTEWATER_TEST__.sourceSites') == 13
+            assert page.evaluate('() => window.__DRUGS_WASTEWATER_TEST__.siteRecordRows') == 6
+            assert page.locator('#wastewater-site-dossier').get_attribute('open') is None
+            page.locator('#wastewater-site-dossier > summary').click()
+            assert page.locator('#wastewater-site-records .wastewater-site-record').count() == 6
+            assert page.locator('#wastewater-site-records .wastewater-site-record.current').count() == 1
+            assert '2024同站' in page.locator('#wastewater-site-records').inner_text()
+            assert '工作日' in page.locator('#wastewater-site-records').inner_text()
+            assert '周末' in page.locator('#wastewater-site-records').inner_text()
             assert '较2024年：' in page.locator('#wastewater-change').inner_text()
             # Data coverage differs by substance; cannabis lacks valid prior-year
             # values and must never show a fabricated percent change.
             page.locator('#wastewater-substance').select_option('cannabis')
             page.locator('#wastewater-rank button').first.click()
             assert '无法计算可比变化' in page.locator('#wastewater-change').inner_text()
+            assert page.locator('#wastewater-site-dossier').get_attribute('open') is None
+            assert page.locator('#wastewater-site-records .wastewater-site-record').count()==6
             page.locator('#wastewater-substance').select_option('cocaine')
             page.locator('#wastewater-rank button').first.click()
             assert '较2024年：' in page.locator('#wastewater-change').inner_text()
