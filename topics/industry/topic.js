@@ -46,6 +46,34 @@ const STOP_TYPES=new Set(['plant_closure','production_cessation','production_lin
  'production_suspension','manufacturing_exit','plant_closure_domestic_relocation']);
 const STATUS_COMPLETE=new Set(['reported_closed','reported_completed','reported_implemented',
 'confirmed_closed_activity','confirmed_by_subsequent_report']);
+
+const EVENT_LABELS={plant_closure:'工厂关闭相关',job_cuts:'人员削减相关',production_cessation:'生产终止相关',production_relocation:'生产转移',
+production_line_closure:'生产线停产相关',workforce_reduction:'人员缩减相关',capacity_reduction:'产能缩减',
+engineering_workforce_reduction:'工程技术岗位调整',production_unit_closure:'生产单元停产相关',
+multi_site_group_memo:'集团多厂区备忘（非单厂事件）',insolvency_only:'破产程序（非停产证明）',
+production_winddown:'生产逐步退出',site_downsizing:'厂区缩减',production_suspension:'生产暂停',
+vehicle_production_cessation:'整车生产结束相关',manufacturing_exit:'制造业务退出',site_consolidation:'厂区整合',
+service_offshoring:'服务业务外迁（非工厂停产）',corporate_job_restructuring:'集团人员重组',
+closure_under_review:'关闭方案研究中',insolvency_at_risk:'破产风险（非已关闭）',
+corporate_job_cuts:'集团层面减员',corporate_site_closures:'集团多厂区关闭相关',company_winddown:'企业逐步退出'};
+const STATUS_LABELS={announced:'已公告（实施待核）',under_implementation:'执行过程中',reported_completed:'有完成报道',
+reported_closed:'有关闭报道',confirmed_by_subsequent_report:'有后续报道佐证',confirmed_closed_activity:'有生产活动终止证据',
+reported_closing:'有关闭进程报道（尚未证实完成）',confirmed_by_regulatory_filing:'有监管文件佐证',
+company_investor_plan:'企业或投资者提出计划',reported_implemented:'有实施报道',
+insolvency_proceedings:'进入破产程序（非停产证明）',reported_plan:'有计划报道',
+announced_with_repurposing:'已公告调整并涉及改用途',confirmed_temporary_or_indeterminate:'暂时停产或后续未定',
+under_consideration:'研究或协商中',investor_search_uncertain:'寻找投资者，结果尚未确定',
+announced_agreed:'已公告并达成协议（实施待核）'};
+const SOURCE_LABELS={eurofound_erm:'Eurofound ERM重组事件资料',company:'企业披露',company_primary:'企业原始公告',
+company_primary_and_2024_annual_report:'企业公告及2024年报',prior_project_v2:'旧版研究档案',
+prior_research:'既有研究资料',public_broadcaster:'公共广播媒体',regulatory:'监管文件',union:'工会披露',
+government:'政府披露',state_government_primary:'州政府原始公告',press:'媒体报道',local_press:'地方媒体',
+news_agency:'新闻通讯社',local_media_later_execution:'地方媒体后续报道',traceable_candidate:'可追溯研究候选'};
+const kindLabel=s=>EVENT_LABELS[s]||'其他事件类别（详见原始字段）';
+const statusLabel=s=>STATUS_LABELS[s]||(/[\u3400-\u9fff]/.test(String(s||''))?String(s):'进展待核对（详见原始字段）');
+const sourceLabel=s=>SOURCE_LABELS[s]||'其他归档来源（详见原始字段）';
+const evidenceItem=(k,v)=>v===undefined||v===null||v===''?'':'<div><dt>'+esc(k)+'</dt><dd>'+esc(v)+'</dd></div>';
+
 const POLYGON_BOUNDS=[[47.05,5.45],[55.15,15.65]];
 const app={map:null,events:[],countyGeo:null,features:[],featureLookup:new Map(),byCounty:new Map(),
  selectedCounty:null,selectedState:null,selectedEvent:null,eventMarkers:new Map(),markers:null,counties:null,metric:null,agsRemap:{},
@@ -180,12 +208,25 @@ function detail(e){
  $('eventDetail').hidden=false;
  $('eventDetail').innerHTML='<h3>'+esc(e.title)+'</h3>'
   +'<div class="meta">'+esc(e.company)+' · '+esc(e.city)+' · '+esc(STATE_ZH[e.state_iso]||e.state_iso)+' · '+esc(e.event_date||'日期待核')+'</div>'
-  +'<p>事件：'+esc(e.event_type)+'<br>状态：'+esc(e.implementation_status)+'<br>涉及岗位：'+(e.jobs===null?'未取得可单独归属数字':esc(e.jobs)+'（'+esc(e.jobs_basis||'报告值')+'）')+'</p>'
+  +'<p>事件类型：'+esc(kindLabel(e.event_type))+'<br>实施进展：'+esc(statusLabel(e.implementation_status))+'<br>涉及岗位：'+(e.jobs===null?'未取得可单独归属数字':esc(e.jobs)+'（'+'详见原始岗位口径'+'）')+'</p>'
   +(e.relocation_destination?'<p>转移去向：'+esc(e.relocation_destination)+'</p>':'')
   +(e.note?'<p>'+esc(e.note)+'</p>':'')
   +(e.confirmation_source_url?'<p><a target="_blank" rel="noopener noreferrer" href="'+esc(e.confirmation_source_url)+'">查看后续执行确认资料 ↗</a></p>':'')
   +'<p>'+openSource(e)+'</p>'
   +'<div class="disclaimer">'+esc(e.point?.precision||'位置未核实，不在地图标点')+'；计划影响人数≠已经失业人数。'+(e.shared_program_id?' 关联计划：'+esc(e.shared_program_id):'')+'</div>';
+  // The existing source fields remain intact and accessible only after selecting an event.
+  const originalFields=[
+   evidenceItem('事件原始类别',e.event_type),evidenceItem('实施进展原文',e.implementation_status),
+   evidenceItem('人数或岗位口径',e.jobs_basis),evidenceItem('数量归属范围',e.numerical_scope),
+   evidenceItem('来源类别原文',e.source_kind),evidenceItem('来源核验记录',e.verification),
+   evidenceItem('原始地点精度',e.location_precision),evidenceItem('县市AGS',e.county_ags),
+   evidenceItem('资料注明的预期时间',e.expected_implementation),evidenceItem('行业原始分类',e.sector),
+   evidenceItem('跨厂共同计划编号',e.shared_program_id)
+  ].filter(Boolean).join('');
+  $('eventDetail').insertAdjacentHTML('beforeend',
+   '<p>资料来源类型：'+esc(sourceLabel(e.source_kind))+'</p>'+
+   '<details class="industry-provenance"><summary>原始统计口径与核验字段</summary><dl>'+originalFields+'</dl>'+
+   '<p>来源类别仅表明资料出处；原始字段的核验记录不等于逐厂实地确认。</p></details>');
  // Same company across sites or independently sourced updates can provide a
  // chronological evidence chain. Never sum shared program job counts.
  const linked=app.events.filter(x=>x.id!==e.id&&
@@ -241,8 +282,8 @@ function renderStatus(rows){
  $('industryStatusList').innerHTML='<p class="dossier-note">状态为已整理证据的阶段性判断，不是所有岗位已经失业，也不是工厂统计普查。展示前30项近期实施与复核记录。</p>'+
  [...rows].sort((a,b)=>String(b.event_date).localeCompare(String(a.event_date))).slice(0,30).map(e=>
   '<button class="dossier-entry" type="button" data-id="'+esc(e.id)+'"><strong>'+esc(e.company)+' · '+esc(e.city)+
-  '</strong><small>'+(e.isPlan?'公告/执行待核':'已有实施证据')+' · '+esc(e.event_type)+
-  ' · '+esc(e.implementation_status||'')+'</small></button>').join('');
+  '</strong><small>'+(e.isPlan?'公告/执行待核':'已有实施证据')+' · '+esc(kindLabel(e.event_type))+
+  ' · '+esc(statusLabel(e.implementation_status))+'</small></button>').join('');
  wireEventButtons($('industryStatusList'));
 }
 function renderTimeline(rows){
@@ -260,7 +301,7 @@ function renderTimeline(rows){
    '年 · '+events.length+'条已登记来源记录</summary><div class="industry-timeline-entries">'+
    events.map(e=>'<button type="button" class="dossier-entry" data-id="'+esc(e.id)+'"><strong>'+
     esc(e.company)+' · '+esc(e.city)+'</strong><small>'+esc(e.event_date||'日期未核')+
-    ' · '+esc(e.event_type)+' · '+(e.isPlan?'公告/未核实':'有后续实施证据')+'</small></button>').join('')+
+    ' · '+esc(kindLabel(e.event_type))+' · '+(e.isPlan?'公告/未核实':'有后续实施证据')+'</small></button>').join('')+
    '</div></details>';
  }).join('')||'<p class="dossier-note">此地区尚未收录可核实年份的工业事件，不等于没有工业调整。</p>';
  wireEventButtons($('industryEventTimeline'));

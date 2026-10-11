@@ -40,6 +40,11 @@ def verify(browser,mobile=False):
     page.locator("#industryEventTimeline [data-id]").first.click()
     assert page.locator("#eventDetail").is_visible()
     assert page.locator("#eventDetail a[href^='https://']").count()>0
+    assert "事件类型：" in page.locator("#eventDetail").inner_text()
+    assert "资料来源类型：" in page.locator("#eventDetail").inner_text()
+    assert page.locator("#eventDetail details.industry-provenance").count()==1
+    page.locator("#eventDetail details.industry-provenance summary").click()
+    assert page.locator("#eventDetail details.industry-provenance dt").count()>=4
     # Chronology click may enter a specific county; return to entire state
     # before testing the state-wide UPM source search.
     if page.locator("#industryBackState").is_visible():
