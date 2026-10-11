@@ -6,7 +6,8 @@
 <title>德国犯罪态势地图 · Germany Crime Situation Monitor</title>
 <meta name="description" content="德国犯罪态势可视化：BKA官方年度统计底图、近90天警方公开通报点、柏林高覆盖局部数据叠加。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="css/map.css?v=city1">
+<link rel="stylesheet" href="css/map.css?v=county2">
+<link rel="stylesheet" href="css/region-dossier.css?v=1">
 </head>
 <body>
 <header>
@@ -116,6 +117,22 @@
         <div class="area-stat"><b id="areaRecent">—</b><small id="areaRecentLabel">较2024变化</small></div>
       </div>
       <div class="area-note" id="areaNote">全国概览会显示当前指标的真实分布统计；悬停或点击地图后切换为该县/市的实际数据。</div>
+      <section id="crimeCountyDossier" class="region-dossier crime-county-dossier" hidden aria-label="县市全部犯罪指标资料室">
+       <div class="dossier-heading"><strong id="crimeCountyTitle">县市完整犯罪档案</strong><small>2025 · PKS</small></div>
+       <div class="dossier-tabs">
+        <button data-dossier-tab="violence" type="button">暴力与人身犯罪</button>
+        <button data-dossier-tab="property" type="button">盗窃与财产犯罪</button>
+       </div>
+       <div data-dossier-pane="violence" class="dossier-pane">
+        <div id="crimeCountyViolence" class="crime-county-metrics"></div>
+        <a id="crimeCountyViolenceSource" target="_blank" rel="noopener noreferrer">本县市BKA来源关联统计 ↗</a>
+       </div>
+       <div data-dossier-pane="property" class="dossier-pane" hidden>
+        <div id="crimeCountyProperty" class="crime-county-metrics"></div>
+        <a id="crimeCountyPropertySource" target="_blank" rel="noopener noreferrer">本县市BKA来源关联统计 ↗</a>
+       </div>
+       <p class="dossier-note">每个类别独立对应2025年警方登记案件数与每10万人案件率；类别有包含与重叠关系，不能把10项相加。同比数据按原始来源显示。源数据来自BKA PKS县级统计的注明出处镜像，未报案犯罪不在PKS中。</p>
+      </section>
       <div class="rank-section">
         <div class="rank-head"><strong>高值地区</strong><span>每10万人</span></div>
         <div class="rank-list" id="rankList"></div>
@@ -159,5 +176,7 @@
 <script src="js/layers/duesseldorf-bv6-detail.js?v=clean1"></script>
 <script src="js/layers/duesseldorf-other-stadtteile.js?v=clean1"></script>
 <script src="js/layers/state-city-catalog.js?v=city1"></script>
+<script src="js/core/region-dossier.js?v=1"></script>
+<script src="js/layers/county-dossier.js?v=1"></script>
 </body>
 </html>
