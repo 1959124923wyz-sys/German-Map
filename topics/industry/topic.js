@@ -414,8 +414,8 @@ async function start(){
  app.map.createPane('countyPane');app.map.getPane('countyPane').style.zIndex='350';
  // A higher Canvas can swallow county pointer events across the whole map.
  // SVG leaves transparent map areas genuinely clickable.
- app.map.createPane('industryStatePane').style.zIndex='440';
- app.map.createPane('industryEventPane').style.zIndex='470';
+ app.map.createPane('industryStatePane');app.map.getPane('industryStatePane').style.zIndex='440';
+ app.map.createPane('industryEventPane');app.map.getPane('industryEventPane').style.zIndex='470';
  const stateSvg=L.svg({pane:'industryStatePane',padding:.2});
  const eventSvg=L.svg({pane:'industryEventPane',padding:.2});
  app.counties=L.geoJSON(counties,{pane:'countyPane',style:countyStyle,onEachFeature:(f,l)=>{
