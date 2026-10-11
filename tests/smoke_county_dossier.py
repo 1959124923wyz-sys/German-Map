@@ -38,6 +38,13 @@ def verify(browser,mobile=False):
     # numbers, while preserving the complete county dossier on the right.
     assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
     assert page.locator("#stateCountyBrowse").is_visible()
+    state_targets=page.evaluate("""() => (__CRIME_MAP__.getStateLayer()
+      ?.getLayers()||[]).map(l=>({name:l.feature?.properties?.name,
+        interactive:l.options.interactive!==false}))""")
+    assert len(state_targets)==16,state_targets
+    assert [s for s in state_targets if s["name"]=="Saarland"]==[
+        {"name":"Saarland","interactive":False}],state_targets
+    assert sum(s["interactive"] for s in state_targets)==15,state_targets
     page.locator("#stateCountyDirectory > summary").click()
     assert page.locator("#stateCountyList .state-county-row").count()>0
     page.locator("#stateCountySearch").fill("10041")
@@ -49,9 +56,15 @@ def verify(browser,mobile=False):
     assert page.evaluate("__CRIME_COUNTY_DOSSIER__.selected()")=="10041|violence"
     page.locator("#stateCountyBrowse").click()
     assert page.evaluate("__CRIME_MAP__.isCountyBrowse()") is True
-    assert page.evaluate("__CRIME_MAP__.getStateLayer()") is None
+    assert page.evaluate("""() => {
+      const layer=__CRIME_MAP__.getStateLayer();
+      return layer && layer.getLayers().length===16 &&
+        layer.getLayers().every(l=>l.options.interactive===false);
+    }""")
     page.locator("#stateCountyBrowse").click()
     assert page.evaluate("__CRIME_MAP__.isCountyBrowse()") is False
+    assert page.evaluate("""() => __CRIME_MAP__.getStateLayer()
+      .getLayers().filter(l=>l.options.interactive!==false).length===15""")
     assert page.locator("#crimeCountyExpand").get_attribute("open") is None
     assert page.locator("#crimeCountyExpand > summary").is_visible()
     page.locator("#crimeCountyExpand > summary").click()
@@ -106,6 +119,54 @@ def verify(browser,mobile=False):
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.selected()")=="10041|property"
     assert "2,919 /10万人" in page.locator("[data-metric='property_total']").inner_text()
     assert "4 %" in page.locator("[data-metric='property_total']").inner_text()
+    # Actual pointer regression (not synthetic layer.fire): selected-state SVG
+    # must allow a real mouse click to reach the underlying county polygon.
+    if not mobile:
+        page.locator("#viewGermany").click()
+        page.evaluate("""() => {
+          const state=__CRIME_MAP__.getStateLayer().getLayers()
+            .find(l=>l.feature?.properties?.name==='Saarland');
+          state.fire('click');
+          return true;
+        }""")
+        # Force a deliberate user selection (not a no-op same-value select).
+        page.locator("#stateJump").select_option("Berlin")
+        page.locator("#stateJump").select_option("Saarland")
+        pointer=page.evaluate("""() => {
+          const model=__CRIME_MAP__, map=model.map;
+          const candidates=model.getCountyLayer().getLayers().filter(l=>
+            String(l.feature?.id||l.feature?.properties?.AGS).startsWith('10'));
+          const r=map.getContainer().getBoundingClientRect();
+          const inside=window.CrimeMapUtils.pointInGeometry;
+          const diag={zoom:map.getZoom(),map:[r.width,r.height],counties:candidates.length,
+            center:[map.getCenter().lat,map.getCenter().lng],inside:0,within:0,samples:[]};
+          for(const county of candidates){
+            const b=county.getBounds();
+            for(let yi=1;yi<=19;yi++)for(let xi=1;xi<=19;xi++){
+              const lat=b.getSouth()+(b.getNorth()-b.getSouth())*yi/20;
+              const lng=b.getWest()+(b.getEast()-b.getWest())*xi/20;
+              if(!inside(lng,lat,county.feature.geometry))continue;
+              diag.inside++;
+              const pt=map.latLngToContainerPoint([lat,lng]);
+              const x=r.left+pt.x,y=r.top+pt.y;
+              const node=document.elementFromPoint(x,y);
+              if(diag.samples.length<8)diag.samples.push({
+                id:String(county.feature.id),pt:[pt.x,pt.y],
+                node:node?.tagName,cls:node?.className?.baseVal||node?.className,
+                blocked:!!node?.closest('#stateDrawer,.legend,.leaflet-control')});
+              if(pt.x<15||pt.x>r.width-20||pt.y<25||pt.y>r.height-50)continue;
+              diag.within++;
+              if(!node||node.closest('#stateDrawer,.legend,.leaflet-control'))continue;
+              return {x,y,id:String(county.feature.id),hit:node.tagName};
+            }
+          }
+          return {debug:diag};
+        }""")
+        assert pointer and "x" in pointer, pointer
+        page.mouse.click(pointer["x"],pointer["y"])
+        assert page.evaluate("__CRIME_MAP__.getPinnedArea()?.ags")==pointer["id"],pointer
+        assert page.locator("#crimeCountyDossier").is_visible()
+        assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
     assert page.evaluate("document.documentElement.scrollWidth<=innerWidth+4")
     assert not errors,errors
     print("PASS source-specific county archive 5+5 categories", "mobile" if mobile else "desktop",flush=True)

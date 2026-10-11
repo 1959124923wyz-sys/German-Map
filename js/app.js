@@ -29,7 +29,7 @@
     countyBrowse=Boolean(next);
     if(countyBrowseButton){
       countyBrowseButton.setAttribute('aria-pressed',String(countyBrowse));
-      countyBrowseButton.textContent=countyBrowse?'返回州边界选择':'在地图上选县市';
+      countyBrowseButton.textContent=countyBrowse?'恢复按州选择':'跨州自由选县市';
     }
     if(stateController)buildStateLayer();
   }
@@ -313,6 +313,7 @@
          pinnedArea=null;hoverArea=null;countyController?.clearSelection();
          showArea(null);
        }
+       if(change?.changed&&stateController)buildStateLayer();
        renderNews();
      },
     formatNumber:fmt,formatDate:pd,escapeHtml:esc
@@ -338,6 +339,7 @@
   countyBrowseButton?.addEventListener('click',()=>setCountyBrowse(!countyBrowse));
    $('crimeCountyBackState')?.addEventListener('click',()=>{
      const stateName=statePanel?.selectedName||pinnedArea?.state;
+     setCountyBrowse(false);
      pinnedArea=null;hoverArea=null;countyController.clearSelection();showArea(null);
      const f=stateFeatureByName(stateName);
      if(f&&!statePanel.isOpen)statePanel.select(f);
