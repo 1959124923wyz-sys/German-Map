@@ -119,6 +119,37 @@ def verify(browser,mobile=False):
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.selected()")=="10041|property"
     assert "2,919 /10万人" in page.locator("[data-metric='property_total']").inner_text()
     assert "4 %" in page.locator("[data-metric='property_total']").inner_text()
+    # Actual pointer regression (not synthetic layer.fire): selected-state SVG
+    # must allow a real mouse click to reach the underlying county polygon.
+    if not mobile:
+        page.locator("#viewGermany").click()
+        page.evaluate("""() => __CRIME_MAP__.getStateLayer().getLayers()
+          .find(l=>l.feature?.properties?.name==='Saarland').fire('click')""")
+        page.locator("#stateJump").select_option("Saarland")
+        pointer=page.evaluate("""() => {
+          const model=__CRIME_MAP__, map=model.map;
+          const county=model.getCountyLayer().getLayers().find(
+            l=>String(l.feature?.id||l.feature?.properties?.AGS)==='10041');
+          const b=county.getBounds(), r=map.getContainer().getBoundingClientRect();
+          const inside=window.CrimeMapUtils.pointInGeometry;
+          for(let yi=1;yi<=19;yi++)for(let xi=1;xi<=19;xi++){
+            const lat=b.getSouth()+(b.getNorth()-b.getSouth())*yi/20;
+            const lng=b.getWest()+(b.getEast()-b.getWest())*xi/20;
+            if(!inside(lng,lat,county.feature.geometry))continue;
+            const pt=map.latLngToContainerPoint([lat,lng]);
+            const x=r.left+pt.x,y=r.top+pt.y;
+            if(pt.x<425||pt.x>r.width-20||pt.y<25||pt.y>r.height-50)continue;
+            const node=document.elementFromPoint(x,y);
+            if(!node||node.closest('#stateDrawer,.legend,.leaflet-control'))continue;
+            return {x,y,hit:node.tagName};
+          }
+          return null;
+        }""")
+        assert pointer, "no unblocked point found inside Saarbrücken county"
+        page.mouse.click(pointer["x"],pointer["y"])
+        assert page.evaluate("__CRIME_MAP__.getPinnedArea()?.ags")=="10041",pointer
+        assert page.locator("#crimeCountyDossier").is_visible()
+        assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
     assert page.evaluate("document.documentElement.scrollWidth<=innerWidth+4")
     assert not errors,errors
     print("PASS source-specific county archive 5+5 categories", "mobile" if mobile else "desktop",flush=True)
