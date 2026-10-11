@@ -123,8 +123,12 @@ def verify(browser,mobile=False):
     # must allow a real mouse click to reach the underlying county polygon.
     if not mobile:
         page.locator("#viewGermany").click()
-        page.evaluate("""() => __CRIME_MAP__.getStateLayer().getLayers()
-          .find(l=>l.feature?.properties?.name==='Saarland').fire('click')""")
+        page.evaluate("""() => {
+          const state=__CRIME_MAP__.getStateLayer().getLayers()
+            .find(l=>l.feature?.properties?.name==='Saarland');
+          state.fire('click');
+          return true;
+        }""")
         page.locator("#stateJump").select_option("Saarland")
         pointer=page.evaluate("""() => {
           const model=__CRIME_MAP__, map=model.map;
