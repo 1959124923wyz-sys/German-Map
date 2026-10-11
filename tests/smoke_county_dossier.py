@@ -129,29 +129,34 @@ def verify(browser,mobile=False):
           state.fire('click');
           return true;
         }""")
+        # Force a deliberate user selection (not a no-op same-value select).
+        page.locator("#stateJump").select_option("Berlin")
         page.locator("#stateJump").select_option("Saarland")
         pointer=page.evaluate("""() => {
           const model=__CRIME_MAP__, map=model.map;
-          const county=model.getCountyLayer().getLayers().find(
-            l=>String(l.feature?.id||l.feature?.properties?.AGS)==='10041');
-          const b=county.getBounds(), r=map.getContainer().getBoundingClientRect();
+          const candidates=model.getCountyLayer().getLayers().filter(l=>
+            String(l.feature?.id||l.feature?.properties?.AGS).startsWith('10'));
+          const r=map.getContainer().getBoundingClientRect();
           const inside=window.CrimeMapUtils.pointInGeometry;
-          for(let yi=1;yi<=19;yi++)for(let xi=1;xi<=19;xi++){
-            const lat=b.getSouth()+(b.getNorth()-b.getSouth())*yi/20;
-            const lng=b.getWest()+(b.getEast()-b.getWest())*xi/20;
-            if(!inside(lng,lat,county.feature.geometry))continue;
-            const pt=map.latLngToContainerPoint([lat,lng]);
-            const x=r.left+pt.x,y=r.top+pt.y;
-            if(pt.x<425||pt.x>r.width-20||pt.y<25||pt.y>r.height-50)continue;
-            const node=document.elementFromPoint(x,y);
-            if(!node||node.closest('#stateDrawer,.legend,.leaflet-control'))continue;
-            return {x,y,hit:node.tagName};
+          for(const county of candidates){
+            const b=county.getBounds();
+            for(let yi=1;yi<=19;yi++)for(let xi=1;xi<=19;xi++){
+              const lat=b.getSouth()+(b.getNorth()-b.getSouth())*yi/20;
+              const lng=b.getWest()+(b.getEast()-b.getWest())*xi/20;
+              if(!inside(lng,lat,county.feature.geometry))continue;
+              const pt=map.latLngToContainerPoint([lat,lng]);
+              const x=r.left+pt.x,y=r.top+pt.y;
+              if(pt.x<430||pt.x>r.width-20||pt.y<25||pt.y>r.height-50)continue;
+              const node=document.elementFromPoint(x,y);
+              if(!node||node.closest('#stateDrawer,.legend,.leaflet-control'))continue;
+              return {x,y,id:String(county.feature.id),hit:node.tagName};
+            }
           }
           return null;
         }""")
-        assert pointer, "no unblocked point found inside Saarbrücken county"
+        assert pointer, "no unblocked county point after explicit Saarland view"
         page.mouse.click(pointer["x"],pointer["y"])
-        assert page.evaluate("__CRIME_MAP__.getPinnedArea()?.ags")=="10041",pointer
+        assert page.evaluate("__CRIME_MAP__.getPinnedArea()?.ags")==pointer["id"],pointer
         assert page.locator("#crimeCountyDossier").is_visible()
         assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
     assert page.evaluate("document.documentElement.scrollWidth<=innerWidth+4")
