@@ -60,6 +60,8 @@ with sync_playwright() as playwright:
     assert initial["counties"] >= 395, initial
     assert initial["mapHeight"] >= 480, initial
     assert initial["area"] and initial["legend"], initial
+    assert page.locator("#cityQuickJump").get_attribute("open") is None
+    assert page.locator("#stateCityArchive").is_hidden()
     SCREENSHOT.parent.mkdir(parents=True, exist_ok=True)
     page.screenshot(path=str(SCREENSHOT), full_page=True)
 
@@ -183,33 +185,6 @@ with sync_playwright() as playwright:
         assert not page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
         assert abs(page.evaluate("window.__CRIME_MAP__.map.getZoom()")-6)<.01
     print("[state-pointer-regression] PASS: repeated real mouse state clicks and close/reopen",flush=True)
-
-    # The existing FIVE city rate atlases and FOUR independent count atlases
-    # must be discoverable from their officially registered German state,
-    # without automatically downloading their large neighborhood GeoJSON.
-    page.wait_for_function("window.__CRIME_CITY_CATALOG__?.getCount()===9",timeout=20000)
-    assert page.locator("#cityQuickJump").get_attribute("open") is None
-    assert page.locator("#stateCityArchive").is_hidden()
-    listing=page.evaluate("window.__CRIME_CITY_CATALOG__.getEntries()")
-    assert len(listing)==9 and len(set(x["id"] for x in listing))==9
-    page.evaluate("""() => {
-       const a=window.__CRIME_MAP__;
-       a.map.setView([51.05,13.73],6,{animate:false});
-       a.map.eachLayer(l=>{
-        if(l instanceof L.GeoJSON && l.options?.pane==='statePane'){
-         l.getLayers().find(x=>x.feature?.properties?.name==='Sachsen')?.fire('click')
-        }
-       });
-    }""")
-    assert page.locator("#stateCityArchive").is_visible()
-    assert page.locator("#stateCityArchive").get_attribute("open") is not None
-    assert page.locator("#stateCityList .state-city-row").count()==3
-    assert "德累斯顿" in page.locator("#stateCityList").inner_text()
-    assert "只覆盖已公布" in page.locator("#stateCityList").inner_text()
-    page.locator("#stateCityList .state-city-row").first.click()
-    assert not page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
-    assert page.evaluate("window.__CRIME_CITY_CATALOG__.getState()")=="Sachsen"
-    page.click("#viewGermany")
 
     # Berlin's official annual violence layer and rolling 90-day property layer.
     page.evaluate("() => { window.__CRIME_MAP__.map.stop(); }")
@@ -590,6 +565,36 @@ with sync_playwright() as playwright:
     assert page.evaluate("window.__DUESSELDORF_COUNT_MAP__.getActive()") is False
     page.click('#stuttgartViolenceClose')
     print("[duesseldorf-count-regression] PASS: BV6 4x8; BV7 5x8, BV9 8x2 accurate counts; all return/popup/state/city layers",flush=True)
+
+    # The existing FIVE city rate atlases and FOUR independent count atlases
+    # must be discoverable from their officially registered German state,
+    # without automatically downloading their large neighborhood GeoJSON.
+    page.wait_for_function("window.__CRIME_CITY_CATALOG__?.getCount()===9",timeout=20000)
+    if page.locator("#cityQuickJump").get_attribute("open") is not None:
+        page.locator("#cityQuickJump > summary").click()
+    assert page.locator("#cityQuickJump").get_attribute("open") is None
+    assert page.locator("#stateCityArchive").is_hidden()
+    listing=page.evaluate("window.__CRIME_CITY_CATALOG__.getEntries()")
+    assert len(listing)==9 and len(set(x["id"] for x in listing))==9
+    page.evaluate("""() => {
+       const a=window.__CRIME_MAP__;
+       a.map.setView([51.05,13.73],6,{animate:false});
+       a.map.eachLayer(l=>{
+        if(l instanceof L.GeoJSON && l.options?.pane==='statePane'){
+         l.getLayers().find(x=>x.feature?.properties?.name==='Sachsen')?.fire('click')
+        }
+       });
+    }""")
+    assert page.locator("#stateCityArchive").is_visible()
+    assert page.locator("#stateCityArchive").get_attribute("open") is not None
+    assert page.locator("#stateCityList .state-city-row").count()==3
+    assert "德累斯顿" in page.locator("#stateCityList").inner_text()
+    assert "只覆盖已公布" in page.locator("#stateCityList").inner_text()
+    page.locator("#stateCityList .state-city-row").first.click()
+    assert not page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
+    assert page.evaluate("window.__CRIME_CITY_CATALOG__.getState()")=="Sachsen"
+    page.click("#viewGermany")
+
 
     assert not errors, errors
     print(json.dumps({
