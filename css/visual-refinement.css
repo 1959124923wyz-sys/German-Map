@@ -150,3 +150,25 @@ footer{font-size:10px;color:#97adbd}
 .crime-county-dossier .dossier-heading{gap:8px;flex-wrap:wrap}
 .crime-county-dossier #crimeCountyBackState{flex:0 0 auto}
 @media(max-width:640px){.state-county-head{align-items:flex-start}.state-county-head button{min-width:115px}.state-county-list{max-height:160px}}
+
+/* State camera and compact mobile dossier: source records remain scrollable. */
+.state-head-actions{display:flex;align-items:center;gap:5px;flex:0 0 auto}
+.state-locate,.state-expand{border:1px solid #476176;border-radius:7px;
+ background:#203748;color:#d5e6ef;font-size:10px;padding:7px 9px;min-height:34px;cursor:pointer}
+.state-locate:hover,.state-expand:hover{background:#31536a}
+.state-expand{display:none}
+.state-locate:focus-visible,.state-expand:focus-visible{outline:2px solid #b1dbf1;outline-offset:2px}
+@media(max-width:920px){
+  .mapwrap .state-drawer{left:8px;right:8px;top:8px;width:auto;
+    max-height:min(28vh,185px);overflow:auto;overscroll-behavior:contain}
+  .mapwrap .state-drawer.is-expanded{max-height:min(55vh,460px)}
+  .state-drawer .state-head{position:sticky;top:0;z-index:2;
+    background:rgba(17,33,45,.985);cursor:default;touch-action:pan-y}
+  .state-expand{display:inline-flex;align-items:center;justify-content:center}
+  .mapwrap:has(.state-drawer.open) .mapstatus{display:none}
+}
+@media(max-width:560px){
+  .state-head-actions{gap:4px}
+  .state-head-actions .state-locate,.state-head-actions .state-expand{padding:6px 7px}
+  .state-drawer .state-head h3{font-size:18px}
+}

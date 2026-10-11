@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="css/map.css?v=county2">
 <link rel="stylesheet" href="css/region-dossier.css?v=1">
-<link rel="stylesheet" href="css/visual-refinement.css?v=county2">
+<link rel="stylesheet" href="css/visual-refinement.css?v=focus-sheet1">
 </head>
 <body>
 <header>
@@ -42,7 +42,11 @@
     <aside class="state-drawer" id="stateDrawer" aria-live="polite">
       <div class="state-head" id="stateDragHandle" title="拖动窗口">
         <div><small>联邦州资料 · 2025年</small><h3 id="stateName">—</h3></div>
-        <button class="state-close" id="stateClose" type="button" aria-label="关闭州详情">×</button>
+        <div class="state-head-actions">
+          <button class="state-locate" id="stateLocate" type="button" title="将本州定位到地图可见区域" aria-label="在地图上定位当前州">定位</button>
+          <button class="state-expand" id="stateDrawerExpand" type="button" aria-expanded="false" aria-controls="stateDrawer" aria-label="展开州资料室">展开</button>
+          <button class="state-close" id="stateClose" type="button" aria-label="关闭州详情">×</button>
+        </div>
       </div>
       <div class="state-metric" id="stateMetric">—</div>
       <div class="state-jump"><label for="stateJump">快速切换州</label><select id="stateJump" aria-label="直接选择其他联邦州"><option value="">选择联邦州</option></select></div>
@@ -173,7 +177,7 @@
 <script src="js/core/geo-stats.js"></script>
 <script src="js/core/config.js"></script>
 <script src="js/core/data-model.js"></script>
-<script src="js/panels/drawer-drag.js"></script>
+<script src="js/panels/drawer-drag.js?v=mobile-sheet1"></script>
 <script src="js/panels/state-panel.js?v=county2"></script>
 <script src="js/panels/area-panel.js?v=clean1"></script>
 <script src="js/layers/recent-events.js?v=clean1"></script>
@@ -182,7 +186,7 @@
 <script src="js/layers/state-layer.js?v=county2"></script>
 <script src="js/core/place-names-zh.js?v=clean1"></script>
 <script src="js/layers/city-labels.js?v=clean1"></script>
-<script src="js/app.js?v=county2"></script>
+<script src="js/app.js?v=focus-sheet1"></script>
 <script src="js/layers/city-detail.js?v=city1"></script>
 <script src="js/layers/city-count-detail.js?v=clean1"></script>
 <script src="js/layers/bremen-category-detail.js?v=clean1"></script>

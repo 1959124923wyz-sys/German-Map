@@ -9,6 +9,7 @@
     viewGermany:$('viewGermany'),focusBerlin:$('focusBerlin'),mapStatus:$('mapStatus'),
     legend:$('legend'),layerInfo:$('layerInfo'),
     stateDrawer:$('stateDrawer'),stateDragHandle:$('stateDragHandle'),stateName:$('stateName'),stateClose:$('stateClose'),stateMetric:$('stateMetric'),stateJump:$('stateJump'),
+    stateLocate:$('stateLocate'),stateDrawerExpand:$('stateDrawerExpand'),
     stateRate:$('stateRate'),stateCases:$('stateCases'),stateRank:$('stateRank'),stateRecent:$('stateRecent'),
     stateTopCounties:$('stateTopCounties'),stateNews:$('stateNews'),stateNewsCount:$('stateNewsCount'),
     safetyPanel:$('safetyPanel'),areaName:$('areaName'),riskBadge:$('riskBadge'),areaMetric:$('areaMetric'),
@@ -321,7 +322,49 @@
 
   el.modeViolence.onclick=()=>{setCountyBrowse(false);mode='violence';pinnedArea=null;hoverArea=null;statePanel.reset();render();showArea(null);};
   el.modeProperty.onclick=()=>{setCountyBrowse(false);mode='property';pinnedArea=null;hoverArea=null;statePanel.reset();render();showArea(null);};
-  el.stateClose.onclick=e=>{e.stopPropagation();setCountyBrowse(false);statePanel.close({restore:false});buildStateLayer();};
+
+  // Ordinary map clicks only navigate evidence. Camera motion is explicitly
+  // requested by the state locator or state picker.
+  function focusStateFeature(feature){
+    if(!feature)return;
+    const bounds=L.geoJSON(feature).getBounds();
+    if(!bounds.isValid())return;
+    const mobile=window.matchMedia('(max-width:920px)').matches;
+    const size=map.getSize();
+    const drawer=el.stateDrawer.getBoundingClientRect();
+    // Reserve the overlay's occupied side; focus inside the visible map area.
+    // Pixel padding, unlike manual longitude offsets, works at any latitude.
+    const leftPad=mobile?20:Math.min(Math.round(size.x*.46),Math.round(drawer.width+70));
+    const topPad=mobile?Math.min(Math.round(size.y*.44),Math.round(drawer.height+28)):26;
+    map.stop();
+    map.fitBounds(bounds,{
+      paddingTopLeft:[leftPad,topPad],
+      paddingBottomRight:[24,24],
+      maxZoom:7,animate:false
+    });
+  }
+  function setStateDrawerExpanded(next){
+    const expanded=Boolean(next);
+    el.stateDrawer.classList.toggle('is-expanded',expanded);
+    if(el.stateDrawerExpand){
+      el.stateDrawerExpand.setAttribute('aria-expanded',String(expanded));
+      el.stateDrawerExpand.setAttribute('aria-label',expanded?'收起州资料室':'展开州资料室');
+      el.stateDrawerExpand.textContent=expanded?'收起':'展开';
+    }
+    if(!expanded)el.stateDrawer.scrollTop=0;
+  }
+  el.stateDrawerExpand?.addEventListener('click',e=>{
+    e.stopPropagation();
+    setStateDrawerExpanded(!el.stateDrawer.classList.contains('is-expanded'));
+  });
+  el.stateLocate?.addEventListener('click',e=>{
+    e.stopPropagation();
+    focusStateFeature(stateFeatureByName(statePanel?.selectedName));
+  });
+  el.stateClose.onclick=e=>{
+    e.stopPropagation();setCountyBrowse(false);setStateDrawerExpanded(false);
+    statePanel.close({restore:false});buildStateLayer();
+  };
   // A source-backed state picker: the change is explicit navigation; clicking
   // state polygons themselves still opens their drawer WITHOUT auto-zoom.
   el.stateJump?.addEventListener('change',event=>{
@@ -329,11 +372,7 @@
     if(!feature)return;
     statePanel.select(feature);
     buildStateLayer();
-    const bounds=L.geoJSON(feature).getBounds();
-    if(bounds.isValid()){
-      map.stop();
-      map.fitBounds(bounds,{padding:[44,44],maxZoom:6,animate:false});
-    }
+    focusStateFeature(feature);
     el.stateDrawer.scrollTop=0;
   });
   countyBrowseButton?.addEventListener('click',()=>setCountyBrowse(!countyBrowse));
@@ -349,7 +388,10 @@
   el.stateDragHandle.addEventListener('pointermove',stateDrawerDrag.move);
   el.stateDragHandle.addEventListener('pointerup',stateDrawerDrag.end);
   el.stateDragHandle.addEventListener('pointercancel',stateDrawerDrag.end);
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&statePanel.isOpen){setCountyBrowse(false);statePanel.close({restore:false});buildStateLayer();}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&statePanel.isOpen){
+    setCountyBrowse(false);setStateDrawerExpanded(false);
+    statePanel.close({restore:false});buildStateLayer();
+  }});
   el.toggleViolenceNews.onclick=()=>{showViolenceNews=!showViolenceNews;render();};
   el.togglePropertyNews.onclick=()=>{showPropertyNews=!showPropertyNews;render();};
   el.violenceMetric.addEventListener('change',()=>{pinnedArea=null;hoverArea=null;render();showArea(null);});
@@ -384,7 +426,10 @@
   map.on('zoomend',()=>{buildStateLayer();berlinDetail.render();ensureBerlinData();renderLegend();});
   map.on('moveend',()=>{if(!stateLayer)buildStateLayer();if(el.stateDrawer.classList.contains('open'))stateDrawerDrag.keepInside();ensureBerlinData();});
 
-  window.addEventListener('resize',()=>{if(el.stateDrawer.classList.contains('open'))stateDrawerDrag.keepInside();});
+  window.addEventListener('resize',()=>{
+    if(el.stateDrawer.classList.contains('open'))stateDrawerDrag.keepInside();
+    map.invalidateSize({pan:false});
+  });
   Promise.all([
     fetch('data/cases.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('cases '+r.status);return r.json()}),
     fetch('data/germany-counties-display.geojson',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('counties '+r.status);return r.json()}),
