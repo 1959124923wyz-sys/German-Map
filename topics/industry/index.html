@@ -19,8 +19,8 @@
   <a class="modebtn" href="../railway/">铁路运行</a>
   <a class="modebtn" href="../finance/">地方财政</a>
   <a class="modebtn active" href="./" aria-current="page">工业衰退</a>
-    <a class="modebtn" href="../infrastructure/">基础设施</a>
-   <a class="modebtn" href="../housing/">住房危机</a>
+  <a class="modebtn" href="../infrastructure/">基础设施</a>
+  <a class="modebtn" href="../housing/">住房危机</a>
  </nav>
 </div></header>
 <main class="industry-workspace">
@@ -48,6 +48,7 @@
     <div class="area-stat"><b id="areaPlans">—</b><small>计划/未核实完成</small></div>
    </div>
    <div id="methodNote" class="area-note">地区颜色目前反映已收录重大工业收缩事件数量，尚非官方工业就业降幅；未收录不代表未发生。</div>
+   <div id="eventDetail" class="industry-detail" hidden></div>
    <p id="industryNationalHint" class="dossier-intro">点击地图中的县域先进入所属联邦州，查看更多企业、实施状态和来源资料。再次点击县市查看本地事件。</p>
    <div id="industryDossier" class="region-dossier" hidden>
     <div class="dossier-heading"><strong id="industryDossierName">地区工业资料室</strong><button id="industryBackState" type="button" hidden>返回联邦州</button></div>
@@ -64,7 +65,6 @@
     <div data-dossier-pane="cases" class="dossier-pane" hidden>
      <p class="dossier-note">点击企业查看其公告、执行状态、岗位口径、来源及地点精度；多数标点不是精确厂门地址。</p>
      <input id="industryEventSearch" class="dossier-search" type="search" placeholder="按企业、城市或事件查找" aria-label="查找工业事件">
-     <div id="eventDetail" class="industry-detail" hidden></div>
      <div class="rank-head"><strong>企业事件</strong><span id="listCount">—</span></div>
      <div class="industry-list dossier-scroll" id="eventList"></div>
     </div>
