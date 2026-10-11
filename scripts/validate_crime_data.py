@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 import json,re
 from collections import Counter
-from datetime import date,timedelta
+from datetime import date,datetime,timedelta
 from pathlib import Path
 
 root=Path(__file__).resolve().parents[1]
 data=json.loads((root/"data/cases.json").read_text(encoding="utf-8"))
 cases=data["cases"]
+# An immutable 90-day snapshot must be checked against the day it was
+# generated. Using the CI runner's current date makes valid daily snapshots
+# expire overnight; instead, separately enforce freshness of the snapshot.
 today=date.today()
-cut=today-timedelta(days=90)
+asof=datetime.fromisoformat(data["meta"]["generated_at"].replace("Z","+00:00")).date()
+assert asof<=today+timedelta(days=1), ("snapshot from future",asof,today)
+assert today-asof<=timedelta(days=14), ("crime snapshot too stale",asof,today)
+cut=asof-timedelta(days=data["meta"]["window_days"])
 allowed={"homicide","violence","robbery","sexual","property"}
 
 assert data["meta"].get("window_days")==90, data["meta"]
@@ -24,7 +30,7 @@ assert counts["property"]>=30, counts
 
 for c in cases:
     d=date.fromisoformat(c["event_date"])
-    assert cut<=d<=today, (c["id"],c["event_date"])
+    assert cut<=d<=asof, (c["id"],c["event_date"],asof.isoformat())
     assert c.get("source_url","").startswith("https://"), c.get("id")
     city=c.get("city","")
     assert 1<len(city)<=65, (c.get("id"),city)
