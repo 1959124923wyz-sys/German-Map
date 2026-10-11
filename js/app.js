@@ -307,7 +307,7 @@
     const bounds=L.geoJSON(feature).getBounds();
     if(bounds.isValid()){
       map.stop();
-      map.fitBounds(bounds,{padding:[44,44],maxZoom:6.8,animate:false});
+      map.fitBounds(bounds,{padding:[44,44],maxZoom:6,animate:false});
     }
     el.stateDrawer.scrollTop=0;
   });
