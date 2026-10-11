@@ -16,7 +16,7 @@ for(const [topic,rows] of Object.entries(S.registry))
       assert.equal(S.palette(topic,key).length,7);
   }
 const src=fs.readFileSync('topics/housing/topic.js','utf8');
-const block=src.match(/const metrics = \{([\s\S]*?)\n  \};/);
+const block=src.match(/const metrics = \{([\s\S]*?)\n \};/);
 assert.ok(block,'Cannot parse housing indicator list');
 const all=[...block[1].matchAll(/^\s+([a-z][a-z0-9_]+):\{label:/gm)].map(x=>x[1]);
 assert.equal(all.length,15);
