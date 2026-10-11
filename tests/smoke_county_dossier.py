@@ -174,6 +174,10 @@ def verify(browser,mobile=False):
               const lng=b.getWest()+(b.getEast()-b.getWest())*xi/20;
               if(!inside(lng,lat,county.feature.geometry))continue;
               diag.inside++;
+              // Source geometry and Canvas' simplified hit path can differ
+              // near boundaries at larger zoom. Check the actual hit path.
+              const layerPoint=map.latLngToLayerPoint([lat,lng]);
+              if(!county._containsPoint(layerPoint))continue;
               const pt=map.latLngToContainerPoint([lat,lng]);
               const x=r.left+pt.x,y=r.top+pt.y;
               const node=document.elementFromPoint(x,y);
@@ -184,7 +188,8 @@ def verify(browser,mobile=False):
               if(pt.x<15||pt.x>r.width-20||pt.y<25||pt.y>r.height-50)continue;
               diag.within++;
               if(!node||node.closest('#stateDrawer,.legend,.leaflet-control'))continue;
-              return {x,y,id:String(county.feature.id),hit:node.tagName};
+              return {x,y,id:String(county.feature.id),hit:node.tagName,
+                hitPane:node.closest('.leaflet-pane')?.className||'none'};
             }
           }
           return {debug:diag};
