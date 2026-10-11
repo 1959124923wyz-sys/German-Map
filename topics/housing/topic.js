@@ -279,36 +279,62 @@
   }
   return null;
  }
+ function localSourceMetrics(src){
+  // Each row stays inside its own state, year, statistical population and unit.
+  // Never offer all-measures data under the 'new residential buildings' label.
+  if(focusState==='05')return [
+   {key:'dwellings',label:'新建住宅建筑中竣工住房 · 套',unit:'套',value:(r,y)=>r.values_by_year?.[y]?.new_dwellings_in_residential_buildings},
+   {key:'buildings',label:'新建竣工住宅建筑 · 栋',unit:'栋',value:(r,y)=>r.values_by_year?.[y]?.new_residential_buildings},
+   {key:'rooms',label:'新建竣工住宅建筑的居室 · 间',unit:'间',value:(r,y)=>r.values_by_year?.[y]?.rooms_in_new_residential_buildings},
+   {key:'area',label:'新建竣工住宅建筑居住面积 · ㎡',unit:'㎡',value:(r,y)=>r.values_by_year?.[y]?.floor_area_new_residential_sqm}
+  ];
+  if(focusState==='09')return [
+   {key:'dwellings',label:'新建住宅建筑中竣工住房 · 套',unit:'套',value:r=>r.completed_dwellings_new_residential_buildings_2025},
+   {key:'buildings',label:'新建竣工住宅建筑 · 栋',unit:'栋',value:r=>r.completed_new_residential_buildings_2025},
+   {key:'all',label:'全部建筑措施竣工住房 · 套',unit:'套',value:r=>r.completed_dwellings_all_measures_2025}
+  ];
+  if(focusState==='12')return [
+   {key:'dwellings',label:'全部建筑措施竣工住房 · 套',unit:'套',value:(r,y)=>r['completed_dwellings_all_measures_'+y]},
+   {key:'new_all',label:'新建各类建筑中的住房 · 套',unit:'套',value:(r,y)=>r['completed_new_build_all_types_'+y]}
+  ];
+  if(focusState==='11')return [
+   {key:'dwellings',label:'全部建筑措施竣工住房 · 套',unit:'套',value:(r,y)=>r['completed_dwellings_all_measures_'+y]},
+   {key:'new_all',label:'新建各类建筑中的住房 · 套',unit:'套',value:(r,y)=>r['completed_dwellings_new_build_all_types_'+y]}
+  ];
+  return [{key:'homeless',label:'1月31日获安置无住房人员 · 人',unit:'人',value:(r,y)=>r.annual_counts?.[y]}];
+ }
  function renderLocalRows(){
   const src=localStateSource();
   if(!src)return;
   const year=$('housingLocalYear').value,sort=$('housingLocalSort').value;
+  const field=localSourceMetrics(src).find(m=>m.key===$('housingLocalMetric').value)||localSourceMetrics(src)[0];
+  const value=(row,yr)=>field.value(row,yr);
   const q=$('housingLocalSearch').value.trim().toLocaleLowerCase();
   const matches=src.rows.filter(r=>!q||[r.name,r.id||'',
     window.GermanPlaceNames?.byAGS(r.id||'',r.name)||''].some(x=>String(x||'').toLocaleLowerCase().includes(q)));
-  const ordered=matches.map(r=>({row:r,v:src.value(r,year)})).sort((a,b)=>{
+  const ordered=matches.map(r=>({row:r,v:value(r,year)})).sort((a,b)=>{
    if(sort==='name')return a.row.name.localeCompare(b.row.name,'de');
    const v=Number.isFinite(a.v)?a.v:-Infinity,w=Number.isFinite(b.v)?b.v:-Infinity;
    return w-v||a.row.name.localeCompare(b.row.name,'de');
   });
-  const nums=src.rows.map(r=>src.value(r,year)).filter(isNum).sort((a,b)=>a-b);
+  const nums=src.rows.map(r=>value(r,year)).filter(isNum).sort((a,b)=>a-b);
   const top=nums.length?nums.at(-1):0,median=med(nums);
   $('housingLocalSummary').innerHTML=[
    ['完整样本',src.rows.length+'个地区'],
    ['有效数值',nums.length+'/'+src.rows.length],
-   ['本年地区简单中位数',isNum(median)?fmt(median,0)+src.unit:'无数值']
+   ['本年地区简单中位数',isNum(median)?fmt(median,0)+field.unit:'无数值']
   ].map(([name,n])=>'<div><small>'+safe(name)+'</small><b>'+safe(n)+'</b></div>').join('');
   $('housingLocalRows').innerHTML=ordered.map(({row,v})=>{
    const priorYear=String(Number(year)-1);
-   const prev=src.years.includes(priorYear)?src.value(row,priorYear):null;
+   const prev=src.years.includes(priorYear)?value(row,priorYear):null;
    const name=window.GermanPlaceNames?.byAGS(row.id||'',row.name)||row.name;
    const pct=top>0&&isNum(v)?Math.max(0,Math.min(100,100*v/top)):0;
    const id=row.id&&countyShapes.has(row.id)&&row.id.startsWith(focusState)?row.id:null;
-   const text=(isNum(v)?fmt(v,0)+src.unit:'数据缺失');
+   const text=(isNum(v)?fmt(v,0)+field.unit:'数据缺失');
    return '<div class="housing-local-entry"><div class="housing-local-entry-head"><strong>'+safe(name)+'</strong>'+
     (id?'<button type="button" data-local-county="'+safe(id)+'" aria-label="查看'+safe(name)+'县级详情">查看县市 ↗</button>':'<small>柏林区级</small>')+'</div>'+
     '<div class="housing-local-entry-stat"><b>'+safe(text)+'</b>'+
-    (isNum(prev)?'<small>上一年 '+safe(fmt(prev,0))+src.unit+'</small>':'')+
+    (isNum(prev)?'<small>上一年 '+safe(fmt(prev,0))+field.unit+'</small>':'')+
     '<small>'+safe(row.id?'AGS '+row.id:'2025更正官方区级表')+'</small></div>'+
     '<div class="housing-local-bar" role="img" aria-label="'+safe(name)+' '+safe(year)+'年 '+safe(text)+'"><i style="width:'+pct.toFixed(2)+'%"></i></div></div>';
   }).join('')||'<p class="dossier-note">没有匹配的地区；缺失值不是0。</p>';
@@ -321,7 +347,7 @@
     $('housingStateArchive').open=true;
    });
   }
-  $('housingLocalCaveat').textContent=src.caveat+' 柱条仅表示本州同一年同一口径样本内的相对大小；绝对人数／套数会受各县市规模影响，不能理解成人均住房风险。';
+  $('housingLocalCaveat').textContent='当前指标：'+field.label+'。'+src.caveat+' 不同字段属于独立统计维度，不可将“建筑栋数”“房间数”“住宅套数”和“居住面积”相加。柱条仅表示本州同一年同一口径样本内的相对大小；绝对人数／套数会受各县市规模影响，不能理解成人均住房风险。';
  }
  function renderLocalStateArchive(){
   const src=localStateSource(),panel=$('housingStateArchive');
@@ -332,6 +358,10 @@
    const year=$('housingLocalYear');
    year.replaceChildren(...src.years.map(y=>new Option(y+'年',y)));
    year.value=src.years.at(-1);
+   const metrics=localSourceMetrics(src);
+   const picker=$('housingLocalMetric');
+   picker.replaceChildren(...metrics.map(m=>new Option(m.label,m.key)));
+   picker.value=metrics[0].key;
    $('housingLocalSearch').value='';
    $('housingLocalSort').value='value';
   }
@@ -496,6 +526,7 @@
   $('housingBackState').addEventListener('click',()=>{if(focusState)selectState(focusState)});
   $('housingCountySearch').addEventListener('input',renderCountySearch);
   $('greixCity').addEventListener('change',renderGreixCity);
+  $('housingLocalMetric').addEventListener('change',renderLocalRows);
   $('housingLocalYear').addEventListener('change',renderLocalRows);
   $('housingLocalSort').addEventListener('change',renderLocalRows);
   $('housingLocalSearch').addEventListener('input',renderLocalRows);
