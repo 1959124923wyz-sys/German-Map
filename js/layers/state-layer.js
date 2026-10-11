@@ -21,18 +21,23 @@
     function render() {
       if (layer) { map.removeLayer(layer); layer = null; }
       const geo = getStateGeo();
-      if (!geo || map.getZoom() >= 7.5 || getCountyBrowse?.()) return null;
+      if (!geo || map.getZoom() >= 7.5) return null;
       // If the state outlines are visible, state selection must remain
       // interactive. The old <=7.15 threshold produced dead polygons at
       // zoom 7.15–7.5, especially after fitBounds/close cycles.
-      const interactive = true;
+      const freeBrowse=Boolean(getCountyBrowse?.());
+      const selectedState=getStatePanel()?.selectedName;
+      const interactive=!freeBrowse;
       // Leaflet's default preferCanvas renderer missed genuine pointer clicks
       // on nearly transparent state fills. A dedicated SVG renderer gives
       // every state's interior its own browser hit target.
       layer = L.geoJSON(geo,{
         pane:'statePane',renderer:stateRenderer,style,interactive,
         onEachFeature:(feature,target)=>{
-          if (!interactive) return;
+          if(freeBrowse || feature.properties?.name===selectedState){
+            target.options.interactive=false;
+            return;
+          }
           target.bindTooltip(()=>tooltipHtml(feature),{sticky:true,direction:'top',className:'state-tip'});
           target.on('mouseover',()=>{
             if(feature.properties?.name!==getStatePanel()?.selectedName)
@@ -41,8 +46,7 @@
           target.on('mouseout',()=>layer?.resetStyle(target));
           target.on('click',()=>{
             getStatePanel().select(feature);
-            layer.eachLayer(item=>layer.resetStyle(item));
-            target.setStyle(style(feature));
+            // The state selection callback rebuilds the layer for county hit testing.
             onChange?.(feature);
             // Never auto-zoom on state click: it used to place the map near the
             // interaction cutoff and trap users after closing the overview.
