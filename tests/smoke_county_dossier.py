@@ -39,6 +39,12 @@ def verify(browser,mobile=False):
     assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
     assert page.locator("#stateCountyBrowse").is_visible()
     assert page.locator("#stateLocate").is_visible()
+    page.evaluate("""() => {
+       const state=__CRIME_MAP__.getStateLayer().getLayers()
+         .find(l=>l.feature.properties.name==='Saarland');
+       window.__QA_STATE_CENTER__=state.getBounds().getCenter();
+       return true;
+    }""")
     if mobile:
         # Compact, scrollable overlay leaves room for the actual map.
         drawer=page.locator("#stateDrawer").bounding_box()
@@ -160,7 +166,10 @@ def verify(browser,mobile=False):
             center:[map.getCenter().lat,map.getCenter().lng],inside:0,within:0,samples:[]};
           for(const county of candidates){
             const b=county.getBounds();
-            for(let yi=1;yi<=19;yi++)for(let xi=1;xi<=19;xi++){
+            // Test interior points before boundary-adjacent grid cells:
+            // Leaflet Canvas click targets may be simplified at high zoom.
+            const order=[10,9,11,8,12,7,13,6,14,5,15,4,16,3,17,2,18,1,19];
+            for(const yi of order)for(const xi of order){
               const lat=b.getSouth()+(b.getNorth()-b.getSouth())*yi/20;
               const lng=b.getWest()+(b.getEast()-b.getWest())*xi/20;
               if(!inside(lng,lat,county.feature.geometry))continue;
@@ -182,16 +191,12 @@ def verify(browser,mobile=False):
         }""")
         assert pointer and "x" in pointer, pointer
         page.mouse.click(pointer["x"],pointer["y"])
-        assert page.evaluate("__CRIME_MAP__.getPinnedArea()?.ags")==pointer["id"],pointer
+        assert page.evaluate("__CRIME_MAP__.getPinnedArea()?.ags")==pointer["id"], {"target":pointer,"pinned":page.evaluate("__CRIME_MAP__.getPinnedArea()?.ags"),"zoom":page.evaluate("__CRIME_MAP__.map.getZoom()")}
         assert page.locator("#crimeCountyDossier").is_visible()
         assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
     # A deliberate state locator may move the camera; a normal county click never does.
     # Check actual screen visibility, accounting for maxBounds at the western edge.
-    page.evaluate("""() => {
-      const sl=__CRIME_MAP__.getStateLayer();
-      const state=sl.getLayers().find(l=>l.feature.properties.name==='Saarland');
-      window.__QA_STATE_CENTER__=state.getBounds().getCenter();
-    }""")
+    assert page.evaluate("Boolean(window.__QA_STATE_CENTER__)")
     page.locator("#stateLocate").click()
     focus=page.evaluate("""() => {
        const m=__CRIME_MAP__.map;
