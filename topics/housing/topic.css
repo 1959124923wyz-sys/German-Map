@@ -119,3 +119,11 @@
 .housing-local-caveat{padding:2px 12px;font-size:9.5px;line-height:1.7;color:#b2c4cf}
 #housingLocalSource{display:block;margin:0 12px 10px;font-size:10px;color:#a5d6f1}
 @media(max-width:560px){.housing-local-summary b{font-size:12px}.housing-local-entry-head strong{font-size:10.5px}}
+
+/* Source-specific statistical categories, not a blended housing index. */
+.housing-local-controls{grid-template-columns:repeat(2,minmax(0,1fr));align-items:end}
+.housing-local-controls .housing-local-metric-label{grid-column:1/-1}
+.housing-local-metric-label select{color:#f0f8fb;font-weight:650;border-color:#6490a3;background:#264554}
+.housing-local-metric-label:before{content:'原始数据维度';color:#95b9c9;font-size:8.5px;letter-spacing:.03em}
+.housing-local-entry-stat b{color:#c5f0df}
+@media(max-width:560px){.housing-local-controls .housing-local-metric-label{grid-column:1/-1}}
