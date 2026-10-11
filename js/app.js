@@ -340,7 +340,7 @@
     map.fitBounds(bounds,{
       paddingTopLeft:[leftPad,topPad],
       paddingBottomRight:[24,24],
-      maxZoom:7,animate:false
+      maxZoom:mobile?7:8,animate:false
     });
   }
   function setStateDrawerExpanded(next){

@@ -56,24 +56,6 @@ def verify(browser,mobile=False):
         assert page.locator("#stateDrawerExpand").get_attribute("aria-expanded")=="false"
     else:
         assert page.locator("#stateDrawerExpand").is_hidden()
-    # A deliberate focus must position the selected state's geographical center
-    # in the visible map, rather than under its floating data room.
-    page.locator("#stateLocate").click()
-    focus=page.evaluate("""() => {
-       const m=__CRIME_MAP__.map, pane=__CRIME_MAP__.getStateLayer();
-       const st=pane.getLayers().find(l=>l.feature.properties.name==='Saarland');
-       const at=m.latLngToContainerPoint(st.getBounds().getCenter());
-       const mr=m.getContainer().getBoundingClientRect();
-       const dr=document.querySelector('#stateDrawer').getBoundingClientRect();
-       const x=mr.left+at.x,y=mr.top+at.y;
-       return {x,y,zoom:m.getZoom(),map:{left:mr.left,top:mr.top,right:mr.right,bottom:mr.bottom},
-         blocked:x>=dr.left&&x<=dr.right&&y>=dr.top&&y<=dr.bottom};
-    }""")
-    assert focus["zoom"]<=7.01, focus
-    assert not focus["blocked"], focus
-    assert focus["map"]["left"]<=focus["x"]<=focus["map"]["right"], focus
-    assert focus["map"]["top"]<=focus["y"]<=focus["map"]["bottom"], focus
-
     state_targets=page.evaluate("""() => (__CRIME_MAP__.getStateLayer()
       ?.getLayers()||[]).map(l=>({name:l.feature?.properties?.name,
         interactive:l.options.interactive!==false}))""")
@@ -203,6 +185,27 @@ def verify(browser,mobile=False):
         assert page.evaluate("__CRIME_MAP__.getPinnedArea()?.ags")==pointer["id"],pointer
         assert page.locator("#crimeCountyDossier").is_visible()
         assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
+    # A deliberate state locator may move the camera; a normal county click never does.
+    # Check actual screen visibility, accounting for maxBounds at the western edge.
+    page.evaluate("""() => {
+      const sl=__CRIME_MAP__.getStateLayer();
+      const state=sl.getLayers().find(l=>l.feature.properties.name==='Saarland');
+      window.__QA_STATE_CENTER__=state.getBounds().getCenter();
+    }""")
+    page.locator("#stateLocate").click()
+    focus=page.evaluate("""() => {
+       const m=__CRIME_MAP__.map;
+       const at=m.latLngToContainerPoint(window.__QA_STATE_CENTER__);
+       const mr=m.getContainer().getBoundingClientRect();
+       const dr=document.querySelector('#stateDrawer').getBoundingClientRect();
+       const x=mr.left+at.x,y=mr.top+at.y;
+       return {x,y,zoom:m.getZoom(),map:{left:mr.left,top:mr.top,right:mr.right,bottom:mr.bottom},
+         blocked:x>=dr.left&&x<=dr.right&&y>=dr.top&&y<=dr.bottom};
+    }""")
+    assert focus["zoom"]<=8.01, focus
+    assert not focus["blocked"], focus
+    assert focus["map"]["left"]<=focus["x"]<=focus["map"]["right"], focus
+    assert focus["map"]["top"]<=focus["y"]<=focus["map"]["bottom"], focus
     assert page.evaluate("document.documentElement.scrollWidth<=innerWidth+4")
     assert not errors,errors
     print("PASS source-specific county archive 5+5 categories", "mobile" if mobile else "desktop",flush=True)

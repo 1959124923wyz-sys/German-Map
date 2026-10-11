@@ -110,7 +110,7 @@ with sync_playwright() as playwright:
     assert page.locator('#stateJump').input_value()=='Sachsen'
     assert page.locator('#stateName').inner_text()==page.evaluate("window.GermanPlaceNames.translate('Sachsen')")
     assert page.locator('#stateCountyDisclosure').get_attribute('open') is None
-    assert page.evaluate('window.__CRIME_MAP__.map.getZoom()')<=7.01
+    assert page.evaluate('window.__CRIME_MAP__.map.getZoom()')<=8.01
     page.click("#stateClose")
     page.wait_for_timeout(350)
     assert not page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
