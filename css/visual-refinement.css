@@ -1,0 +1,128 @@
+/* Main crime atlas visual system: national silence, progressively revealed detail.
+   Color and spacing refinements do not change thematic scales or data semantics. */
+:root{--atlas-ink:#0f1720;--atlas-glass:rgba(16,26,36,.95);--atlas-line:#334758;--atlas-blue:#8dc1e0}
+header{background:linear-gradient(115deg,#0c151d 0%,#122332 65%,#12202c 100%);border-color:#2b4252;padding:10px 16px}
+.header-main{gap:14px}
+.title{font-size:clamp(18px,1.45vw,24px);font-weight:750;letter-spacing:.015em}
+.header-meta{font-size:10px;color:#9eb7c8}
+.modebar{gap:5px;scrollbar-width:thin;scrollbar-color:#435e70 transparent}
+.header-main .modebar .modebtn{font-size:10.5px;padding:7px 11px;border-radius:7px;border-color:#3b5060;background:rgba(22,37,49,.78);transition:background .15s ease,border-color .15s ease}
+.header-main .modebar .modebtn.active{background:#345c73;border-color:#80b5d3;box-shadow:inset 0 0 0 1px #50758f}
+.header-main .modebar .modebtn:hover{background:#294558;border-color:#658ca3}
+.header-main .modebar .modebtn:focus-visible{outline:2px solid #b2daef;outline-offset:2px}
+main{grid-template-columns:minmax(0,1fr) minmax(365px,31.5vw)}
+.controls{padding:12px 13px 10px;border-bottom:1px solid #334656;background:linear-gradient(180deg,#182631,#15212b)}
+.control-row{gap:8px;margin-bottom:8px}
+.control-row strong{font-size:10.5px;color:#b2c3ce}
+.control-row select,.control-row button{min-height:32px;border-color:#435667;background:#11202a;color:#e4eff5;border-radius:7px;padding:6px 10px;font-size:11px}
+.control-row button:hover{background:#274052}
+.control-row button:focus-visible,.control-row select:focus-visible{outline:2px solid #a5d3eb;outline-offset:2px}
+.safety-panel{background:linear-gradient(180deg,#131f29,#111b24 260px)}
+.safety-head{margin-bottom:11px}
+.safety-head strong{color:#ebf3f8;font-size:12.5px}
+.safety-hint{font-size:10px;color:#92aaba}
+.area-title{align-items:flex-start;margin-bottom:9px}
+.area-name{font-size:clamp(17px,1.35vw,20px);line-height:1.3}
+.area-metric{font-size:11px;color:#bad0dc;line-height:1.5;margin-bottom:7px}
+.area-stat{background:#1b2c39;border:1px solid #334b5d;padding:12px 9px;border-radius:9px;min-height:70px}
+.area-stat:first-child{background:linear-gradient(135deg,#223c4c,#1c303d);border-color:#42667a}
+.area-stat b{font-size:clamp(15px,1.4vw,21px);font-weight:780;color:#f0f7fb;letter-spacing:-.02em}
+.area-stat small{font-size:9.5px;line-height:1.4;margin-top:5px}
+.area-note{font-size:10px;line-height:1.7;color:#a2b5c3;margin-top:12px}
+.rank-section{margin-top:18px;padding-top:12px}
+.rank-head strong{font-size:11.5px}
+.rank-row{min-height:33px;padding:7px 8px;gap:8px;border-radius:6px}
+.rank-row:hover{background:#213746}
+.rank-place{font-size:10.5px}
+.rank-value{font-size:11px;font-weight:680;color:#d8e6ee}
+.legend{border-color:#3c5869;border-radius:9px;box-shadow:0 6px 22px #0c182044;background:rgba(17,30,42,.94);backdrop-filter:blur(10px)}
+.legend-title{color:#ebf4fa;font-size:10.5px;line-height:1.45}
+.mapstatus{font-size:9.5px;max-width:42%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.map-guide{position:absolute;z-index:610;left:56px;top:12px;max-width:min(290px,calc(100% - 230px));padding:10px 13px;border:1px solid #415b6c;border-radius:9px;background:rgba(14,28,39,.93);box-shadow:0 6px 24px #091b2944;color:#eaf5fb;pointer-events:none}
+.map-guide-kicker{display:block;font-size:9px;color:#9fc1d4;letter-spacing:.075em;margin-bottom:3px}
+.map-guide strong{display:block;font-size:12px;line-height:1.45;font-weight:730}
+.map-guide small{display:block;margin-top:4px;font-size:9.5px;color:#a9c0cf;line-height:1.45}
+.mapwrap:has(.state-drawer.open) .map-guide,.mapwrap:has(.supp-city-focus) .map-guide{display:none}
+.state-drawer{width:min(370px,calc(100% - 82px));background:rgba(14,25,35,.975);border:1px solid #577184;border-radius:12px;box-shadow:0 15px 44px #050c16aa}
+.state-head{padding:14px 15px 9px;border-color:#304858}
+.state-head small{font-size:9.5px;color:#97b5c7;margin-bottom:5px}
+.state-head h3{font-size:21px;letter-spacing:.015em;line-height:1.28}
+.state-close{border:1px solid #476176;border-radius:7px;padding:4px 9px;font-size:19px;color:#c5d8e5;min-width:34px;min-height:34px}
+.state-close:hover{background:#273f51}
+.state-metric{padding:8px 15px 4px;color:#b1cbd8;font-size:10.5px}
+.state-jump{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 15px 5px}
+.state-jump label{font-size:10px;color:#a1b7c6;white-space:nowrap}
+.state-jump select{display:block;flex:1 1 160px;min-width:0;max-width:230px;border:1px solid #4b6779;background:#1d3040;border-radius:7px;color:#f0f6fa;padding:7px 9px;font-size:11px}
+.state-jump select:focus-visible,.state-close:focus-visible,.state-disclosure summary:focus-visible,.crime-county-expand summary:focus-visible{outline:2px solid #b1dbf1;outline-offset:2px}
+.state-stats{gap:7px;padding:9px 15px 12px}
+.state-stat{border:1px solid #344c5d;background:#192d3b;border-radius:8px;padding:10px 11px}
+.state-stat:first-child{background:linear-gradient(120deg,#284c61,#203d50);border-color:#50788e}
+.state-stat b{font-size:20px;font-weight:780;color:#f4f8fb;line-height:1.25}
+.state-stat small{font-size:9.5px;color:#aac0cf;line-height:1.4;margin-top:5px}
+.state-section{padding:11px 15px;border-color:#344857}
+.state-city-archive>summary{font-size:12px;color:#ecf6fb;padding:2px 0 10px}
+.state-city-list{gap:7px}
+.state-city-row{border:1px solid #47697e;border-radius:8px;padding:11px 12px;background:linear-gradient(110deg,#224051,#1b3443)}
+.state-city-row:hover{background:#31566b;border-color:#91bad0}
+.state-city-row strong{font-size:11.5px}
+.state-city-row small{font-size:10px;line-height:1.6}
+.state-city-caveat{font-size:9.5px;margin-top:10px;line-height:1.7}
+.state-disclosure>summary{display:flex;gap:9px;align-items:center;justify-content:space-between;list-style:none;cursor:pointer}
+.state-disclosure>summary::-webkit-details-marker{display:none}
+.state-disclosure>summary strong{font-size:11.5px;color:#dce9f1;font-weight:670}
+.state-disclosure>summary span{margin-left:auto;color:#99afbf;font-size:9.5px}
+.state-disclosure>summary:after{content:'›';color:#99c1d4;font-size:19px;line-height:1}
+.state-disclosure[open]>summary:after{content:'⌄'}
+.state-disclosure[open]>#stateTopCounties,.state-disclosure[open]>#stateNews{margin-top:9px;padding-top:6px;border-top:1px solid #304350}
+.state-county-row,.state-news-row{min-height:34px;padding:8px 6px}
+.state-county-row span,.state-news-row span{font-size:10px}
+.state-county-row b{font-size:11px}
+.state-news-row small{font-size:9px}
+.city-quick-jump{border-color:#425a6b;background:#182935;border-radius:8px}
+.city-quick-jump>summary{padding:11px 12px;font-size:11px;color:#d0e5ee}
+.city-quick-actions button{font-size:10.5px;min-height:32px}
+.crime-county-dossier{margin-top:15px;padding-top:13px;border-top:1px solid #385161}
+.crime-county-dossier .dossier-heading{margin-bottom:8px}
+.crime-county-dossier .dossier-heading strong{font-size:12.5px;line-height:1.5}
+.crime-county-expand{border:1px solid #456477;background:rgba(28,46,60,.6);border-radius:9px}
+.crime-county-expand>summary{list-style:none;display:flex;flex-direction:column;gap:4px;cursor:pointer;padding:13px 14px;font-size:11px;color:#dfeef6;font-weight:700}
+.crime-county-expand>summary::-webkit-details-marker{display:none}
+.crime-county-expand>summary:before{content:'查看档案  ›';font-size:9.5px;letter-spacing:.035em;color:#8dc5e5;font-weight:600}
+.crime-county-expand[open]>summary:before{content:'收起档案  ⌄'}
+.crime-county-expand>summary span{font-size:9.5px;color:#a8c5d5;font-weight:400}
+.crime-county-expand[open]{padding-bottom:12px}
+.crime-county-expand[open] .dossier-tabs,.crime-county-expand[open] .dossier-pane,.crime-county-expand[open] .dossier-note{margin-left:12px;margin-right:12px}
+.crime-county-metric{border-color:#3c5262;border-radius:8px;padding:10px 11px;background:#213746}
+.crime-county-metric>strong{font-size:11px}
+.crime-county-facts b{font-size:14px}
+.crime-county-metric>small{font-size:9.5px;line-height:1.5}
+.incident-drawer>summary,.site-method>summary{padding:10px 13px;font-size:11px}
+footer{font-size:10px;color:#97adbd}
+@media(max-width:1100px){main{grid-template-columns:minmax(0,1fr) minmax(340px,35vw)}}
+@media(max-width:920px){
+ main{display:block}
+ .mapwrap{height:57vh;min-height:430px}
+ .map-guide{top:9px;left:54px;max-width:min(260px,calc(100% - 120px));padding:9px 11px}
+ .mapstatus{right:9px;top:58px;max-width:47%;font-size:8.5px}
+ .state-drawer{left:8px;right:8px;top:9px;width:auto;max-height:56vh}
+ .safety-panel{padding:13px 14px}
+ .area-stat{min-height:70px}
+}
+@media(max-width:560px){
+ .title{font-size:19px}
+ header{padding:9px 10px}
+ .header-main .modebar .modebtn{padding:7px 10px;font-size:10.5px}
+ .map-guide{max-width:calc(100% - 116px);padding:8px 10px}
+ .map-guide strong{font-size:10.5px}
+ .map-guide small{font-size:8.5px}
+ .state-stat b{font-size:19px}
+ .state-jump select{max-width:220px}
+ .state-drawer{max-height:53vh}
+ .area-grid{gap:6px}
+ .area-stat{padding:10px 7px}
+ .area-stat b{font-size:16px}
+ .area-stat small{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+ .header-main .modebar .modebtn{transition:none}
+}
