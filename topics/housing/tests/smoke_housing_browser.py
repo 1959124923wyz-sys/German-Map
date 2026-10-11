@@ -57,6 +57,10 @@ def run(browser,mobile=False):
         assert d["lo"]==d["colors"][0] and d["hi"]==d["colors"][-1]
         assert note in page.locator("#legend").inner_text(),(key,note)
         if direction=="pressure-low":
+            assert "低值" in page.locator("#rankBox .housing-rank-head").inner_text()
+        elif direction=="neutral":
+            assert "非住房问题排名" in page.locator("#rankBox .housing-rank-head").inner_text()
+        if direction=="pressure-low":
             assert d["lo"]=="#a52d37" and d["hi"]=="#f5ead9",(key,d)
         elif direction=="pressure-high":
             assert d["lo"]=="#f5ead9" and d["hi"]=="#a52d37",(key,d)

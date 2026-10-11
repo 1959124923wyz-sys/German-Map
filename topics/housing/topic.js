@@ -230,7 +230,15 @@
   }).join('');
  }
  function updateRanks(ids){
-  const ranked=ids.map(id=>({id,v:metricValue(id)})).filter(row=>isNum(row.v)).sort((a,b)=>b.v-a.v);
+  const direction=semantics.get('housing',metric);
+  const lowIsMoreConcerning=direction===semantics.kinds.LOW;
+  const ranked=ids.map(id=>({id,v:metricValue(id)})).filter(row=>isNum(row.v))
+    .sort((a,b)=>lowIsMoreConcerning?a.v-b.v:b.v-a.v);
+  const heading=direction===semantics.kinds.NEUTRAL?'原始数值较高的八县市':
+    lowIsMoreConcerning?'本指标低值 · 优先关注八县市':'本指标高值 · 优先关注八县市';
+  $('rankBox').querySelector('.housing-rank-head strong').textContent=heading;
+  $('rankBox').querySelector('.housing-rank-head small').textContent=
+    direction===semantics.kinds.NEUTRAL?'原始数值排序，非住房问题排名':'同年份、同口径，仅本指标';
   const top=ranked.slice(0,8);
   $('topRank').innerHTML=top.map(row=>'<button type="button" class="housing-rank-row" data-id="'+safe(row.id)+'"><span>'+
    safe(byid.get(row.id)?.name||row.id)+'</span><b>'+safe(displayVal(row.v))+'</b></button>').join('') ||
