@@ -49,6 +49,19 @@ def verify(browser, phone=False):
               const items=[...document.querySelectorAll('header .modebar .modebtn')];
               return items.some(x=>x.textContent.trim()==='财产犯罪'&&x.classList.contains('active'));
             }""",timeout=25000)
+        # Wait for genuinely loaded cartography before taking the audit image.
+        if slug=="housing":
+            page.wait_for_function("window.GermanHousingResearch?.state()?.validCount===400",timeout=35000)
+        if slug=="railway":
+            page.wait_for_function("window.__RAILWAY_OVERVIEW__?.getNetworkReady()",timeout=35000)
+        if phone:
+            page.wait_for_function("""() => {
+               const bar=document.querySelector('header .modebar,header .toplinks');
+               const active=bar?.querySelector('.modebtn.active');
+               if(!active)return false;
+               const a=active.getBoundingClientRect(),b=bar.getBoundingClientRect();
+               return a.left>=b.left-1 && a.right<=b.right+1;
+            }""",timeout=10000)
         data=page.evaluate("""() => {
           const nav=document.querySelector('header .modebar, header .toplinks');
           const anchors=[...nav.querySelectorAll('.modebtn')];
@@ -78,12 +91,14 @@ def verify(browser, phone=False):
         assert data["firstHeight"]>=30,(slug,"too-small tap target",data)
         if phone:
             assert data["fullWidth"]<=400,(slug,"horizontal page overflow",data)
-            page.locator("header .modebar .modebtn, header .toplinks .modebtn").last.scroll_into_view_if_needed()
-            assert page.locator("header .modebar .modebtn, header .toplinks .modebtn").last.is_visible()
         key=(data["radius"],data["activeBg"])
         if baseline is None:baseline=key
         assert key==baseline,(slug,"inconsistent header",data)
         page.screenshot(path=str(SCREENSHOTS/(slug+("-390" if phone else "-1440")+".png")),animations="disabled")
+        if phone:
+            # The strip must remain user-scrollable after revealing current mode.
+            page.locator("header .modebar .modebtn, header .toplinks .modebtn").last.scroll_into_view_if_needed()
+            assert page.locator("header .modebar .modebtn, header .toplinks .modebtn").last.is_visible()
         print("PASS",slug,"mobile" if phone else "desktop","active",data["activeBg"],flush=True)
         page.close()
     context.close()
