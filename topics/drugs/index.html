@@ -7,7 +7,7 @@
 <title>德国毒品问题地图｜German-Map</title>
 <meta name="description" content="2025德国县级毒品犯罪登记案件地图。数据来自BKA PKS县级统计的公开镜像，明确区分警方记录与毒品消费。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="topic.css?v=clean2">
+<link rel="stylesheet" href="topic.css?v=site3">
 </head>
 <body>
 <header class="topbar">
@@ -38,6 +38,11 @@
       <div class="state-values"><div><b id="wastewater-value">—</b><small>2025检测值 · mg/千人/天</small></div><div><b id="wastewater-previous">—</b><small>2024检测值 · 同站点</small></div></div>
       <p id="wastewater-change" class="compare-line" aria-live="polite">年度变化：待查看</p>
       <p class="note" id="wastewater-note"></p>
+      <details id="wastewater-site-dossier" class="wastewater-site-dossier">
+       <summary>展开本站6种物质的检测档案</summary>
+       <p class="note">以下仅代表本污水处理站（或组合设施）的取样结果。不同物质的残留标志物和代谢／排泄率不同，数字大小不能据此排名真实消费量；未公布的2024值保留缺失。</p>
+       <div id="wastewater-site-records" class="wastewater-site-records"></div>
+      </details>
       <div class="source-links"><a href="https://www.euda.europa.eu/publications/pods/waste-water-analysis_de" target="_blank" rel="noopener noreferrer">EUDA原始数据和方法 ↗</a></div>
     </section>
   </section>
@@ -214,7 +219,7 @@
 <script src="../../js/core/place-names-zh.js?v=clean1"></script>
 <script src="../../js/layers/city-labels.js?v=clean1"></script>
 <script src="state-evidence.js?v=clean1"></script>
-<script src="wastewater.js?v=clean1"></script>
+<script src="wastewater.js?v=site3"></script>
 <script src="news.js?v=clean1"></script>
 <script src="topic.js?v=clean1"></script>
 </body>
