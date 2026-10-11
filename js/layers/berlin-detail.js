@@ -24,6 +24,12 @@
   }) {
     let violenceLayer = null;
     let propertyLayer = null;
+    // Polygon overlays are relevant ONLY near Berlin. At zoom 8+ the
+    // prior full-screen Canvas in berlinPane swallowed county clicks in Saarland.
+    // SVG limits hit targets to actual local polygons, even on the edge of view.
+    const berlinBounds=L.latLngBounds([[52.29,13.0],[52.74,13.86]]);
+    const berlinInView=()=>map.getBounds().intersects(berlinBounds);
+    const berlinRenderer=L.svg({pane:'berlinPane',padding:.2});
 
     function propertyField(metric) {
       const key = metric || 'property_total';
@@ -38,7 +44,7 @@
     }
 
     function isActive() {
-      if (map.getZoom() < 7.5) return false;
+      if (map.getZoom() < 7.5 || !berlinInView()) return false;
       if (getMode() === 'violence') {
         return getViolenceMetric() === 'violence' && !!getViolenceData();
       }
@@ -158,7 +164,8 @@
         getMode() !== 'violence' ||
         getViolenceMetric() !== 'violence' ||
         !getViolenceData() ||
-        map.getZoom() < 7.5
+        map.getZoom() < 7.5 ||
+        !berlinInView()
       ) {
         return;
       }
@@ -166,6 +173,7 @@
       const breaks = quantileBreaks(violenceRates());
       violenceLayer = L.geoJSON(getViolenceData(), {
         pane: 'berlinPane',
+        renderer: berlinRenderer,
         style: (feature) => {
           const value = Number(feature?.properties?.combined_rate || 0);
           return {
@@ -211,7 +219,7 @@
       const points = getPropertyData();
       const field = currentPropertyField();
 
-      if (getMode() !== 'property' || !points || !data || map.getZoom() < 7.5 || !field) {
+      if (getMode() !== 'property' || !points || !data || map.getZoom() < 7.5 || !field || !berlinInView()) {
         return;
       }
 
@@ -220,6 +228,7 @@
 
       propertyLayer = L.geoJSON(data, {
         pane: 'berlinPane',
+        renderer: berlinRenderer,
         filter: (feature) => byPlr.has(normalizePlr(feature?.properties?.plr)),
         style: (feature) => {
           const point = byPlr.get(normalizePlr(feature?.properties?.plr));

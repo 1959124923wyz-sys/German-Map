@@ -156,6 +156,9 @@ def verify(browser,mobile=False):
         # Force a deliberate user selection (not a no-op same-value select).
         page.locator("#stateJump").select_option("Berlin")
         page.locator("#stateJump").select_option("Saarland")
+        assert page.evaluate("""() => !__CRIME_MAP__.getBerlinLayer() &&
+           !__CRIME_MAP__.getHeatLayer() &&
+           document.querySelectorAll('.leaflet-berlin-pane canvas').length===0""")
         pointer=page.evaluate("""() => {
           const model=__CRIME_MAP__, map=model.map;
           const candidates=model.getCountyLayer().getLayers().filter(l=>
