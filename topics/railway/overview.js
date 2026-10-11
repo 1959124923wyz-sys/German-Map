@@ -18,10 +18,66 @@ const {REF_ZOOM,WORLD,officialPart,observedParts,actualBounds,currentViewport,vi
 // Fixed 100-observation inclusion threshold (not a user-facing filter).
 const view={service:'REGIONAL',metric:'both',minimum:100,selected:null,links:[],
   rendered:[],groups:[],riskIndexes:null,hiddenCorridors:0,physicalEdges:0,ticket:0,networkReady:false,statesReady:false,countiesReady:false,tiles:false,map:null,backbone:new window.Railway07Continuity.Backbone(),drawnObserved:[],
-  observedLayer:null,picker:new window.Railway07Picker.RailwayPicker(),repaints:0};
+  observedLayer:null,picker:new window.Railway07Picker.RailwayPicker(),repaints:0,
+  infrastructureState:null,stateShapes:new Map()};
 const cache=new Map();
 const fmt=n=>Number(n).toLocaleString('zh-CN');
 const pct=n=>n===null||!Number.isFinite(n)?'—':n.toFixed(1)+'%';
+const km=n=>Number.isFinite(n)?Number(n).toLocaleString('zh-CN',{maximumFractionDigits:1})+' km':'—';
+const stationStat=n=>Number.isFinite(n)?fmt(n):'—';
+let stateDossier=null;
+function putStateStat(id,metrics){
+ const target=$('#'+id);target.replaceChildren();
+ for(const [label,value] of metrics){
+  const tile=document.createElement('div'),small=document.createElement('small'),strong=document.createElement('b');
+  small.textContent=label;strong.textContent=value;tile.append(small,strong);target.append(tile);
+ }
+}
+function showInfrastructureState(id,{zoom=true}={}){
+ const record=DATA.states?.[id];
+ if(!record)return;
+ view.infrastructureState=id;
+ $('#railStateJump').value=id;
+ stateDossier.show(true);
+ $('#railStateTitle').textContent=record.name+' · 铁路设施';
+ putStateStat('railStateNetwork',[
+  ['源轨道分段记录',stationStat(record.segments)+' 条'],
+  ['源轨道分段累计长度',km(record.length)],
+  ['登记电气化轨道分段长度',km(record.elec_len)],
+  ['高速轨道分段长度',km(record.highspeed_len)]
+ ]);
+ putStateStat('railStateTrack',[
+  ['源轨道分段总长度',km(record.length)],
+  ['登记单线长度',km(record.single_len)],
+  ['登记双线长度',km(record.double_len)],
+  ['电气化分段长度',km(record.elec_len)],
+  ['高速轨道分段长度',km(record.highspeed_len)],
+  ['速度信息未明长度',km(record.unknown_speed_len)]
+ ]);
+ putStateStat('railStateStructures',[
+  ['源字段桥梁累计记录',stationStat(record.bridges)],
+  ['源字段隧道累计记录',stationStat(record.tunnels)],
+  ['源字段平交道口累计记录',stationStat(record.crossings)],
+  ['源字段运营地点累计记录',stationStat(record.ops)]
+ ]);
+ const polygon=view.stateShapes.get(id);
+ if(zoom&&polygon&&view.map)view.map.fitBounds(polygon.getBounds(),{padding:[22,22],maxZoom:8,animate:false});
+}
+function resetInfrastructureState(){
+ view.infrastructureState=null;
+ $('#railStateJump').value='';
+ if(stateDossier)stateDossier.show(false);
+}
+function setupInfrastructureState(){
+ if(!DATA?.states||Object.keys(DATA.states).length!==16||
+   DATA.qa?.track_section_km_not_unique_route_km!==true)
+  throw Error('16州路网元数据缺失或长度统计契约失效');
+ stateDossier=window.GermanRegionDossier.mount('railStateDossier');
+ const select=$('#railStateJump');
+ Object.entries(DATA.states).sort((a,b)=>a[1].name.localeCompare(b[1].name,'zh'))
+  .forEach(([id,record])=>select.add(new Option(record.name,id)));
+ select.addEventListener('change',()=>select.value?showInfrastructureState(select.value):resetInfrastructureState());
+}
 function status(s){$('#status').textContent=s;}
 const CanvasLayer=L.Layer.extend({
  initialize(kind){this.kind=kind;this._frame=null;},
@@ -123,6 +179,12 @@ function makeMap(){
   const layer=L.geoJSON(data,{pane:'rail-state-pane',interactive:false,
    style:()=>({color:'#657f8c',weight:.85,opacity:.36,dashArray:'3 5',fill:false})}).addTo(m);
   view.statesReady=layer.getLayers().length===16;
+  for(const lyr of layer.getLayers()){
+   const id=lyr.feature?.properties?.id;
+   if(id)view.stateShapes.set(id,lyr);
+  }
+  if(view.infrastructureState)showInfrastructureState(view.infrastructureState);
+
  }).catch(e=>console.warn('State boundaries unavailable',e));
  fetch('../../data/germany-counties.geojson',{cache:'force-cache'}).then(r=>{
   if(!r.ok)throw Error('县界 HTTP '+r.status);return r.json();
@@ -135,7 +197,7 @@ function makeMap(){
  window.CrimeCityLabels?.create(m,{paneName:'rail-major-cities',zIndex:470});
  view.observedLayer=new CanvasLayer('observed').addTo(m);
  m.on('click',e=>pickAt(e.latlng));
- $('#home').onclick=()=>m.fitBounds(NATION,{padding:[12,12],animate:false});
+ $('#home').onclick=()=>{resetInfrastructureState();m.fitBounds(NATION,{padding:[12,12],animate:false});};
  return m;
 }
 // Batch initialisation: all official sections are deliberately retained.
@@ -494,6 +556,7 @@ function bindControls(){
 }
 try{
  makeMap();
+ setupInfrastructureState();
  bindControls();
  fillLegend();placeLegend();showDetail();
  // The extra sixth topic otherwise appears off-screen in the mobile nav.
@@ -502,6 +565,9 @@ try{
  window.__RAILWAY_OVERVIEW__=Object.freeze({
   getService:()=>view.service,getMetric:()=>view.metric,getMinimum:()=>view.minimum,
   getVisible:()=>view.rendered.length,getMergedLinks:()=>view.links.length,
+  getInfrastructureState:()=>view.infrastructureState,
+  getInfrastructureSample:id=>DATA.states?.[id]||null,
+  selectInfrastructureState:showInfrastructureState,
   getSelected:()=>view.selected,getMap:()=>view.map,getNetworkReady:()=>view.networkReady,
   getStatesReady:()=>view.statesReady,getCountiesReady:()=>view.countiesReady,
   getRendered:()=>view.rendered,getCorridors:()=>view.groups,
