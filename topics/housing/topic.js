@@ -299,7 +299,8 @@
    ['本年地区简单中位数',isNum(median)?fmt(median,0)+src.unit:'无数值']
   ].map(([name,n])=>'<div><small>'+safe(name)+'</small><b>'+safe(n)+'</b></div>').join('');
   $('housingLocalRows').innerHTML=ordered.map(({row,v})=>{
-   const prev=src.value(row,String(Number(year)-1));
+   const priorYear=String(Number(year)-1);
+   const prev=src.years.includes(priorYear)?src.value(row,priorYear):null;
    const name=window.GermanPlaceNames?.byAGS(row.id||'',row.name)||row.name;
    const pct=top>0&&isNum(v)?Math.max(0,Math.min(100,100*v/top)):0;
    const id=row.id&&countyShapes.has(row.id)&&row.id.startsWith(focusState)?row.id:null;
