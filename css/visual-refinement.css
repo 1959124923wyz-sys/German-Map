@@ -126,3 +126,27 @@ footer{font-size:10px;color:#97adbd}
 @media(prefers-reduced-motion:reduce){
  .header-main .modebar .modebtn{transition:none}
 }
+
+
+/* State → county is explicit. The state dossier stays visible while the
+   county's 10 sourced PKS categories live in the right-hand archive. */
+.state-county-browser{border-top:1px solid #365064;padding:10px 0}
+.state-county-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.state-county-head strong{font-size:11.5px;color:#e0edf5}
+.state-county-head button,.crime-county-dossier #crimeCountyBackState{border:1px solid #5c8197;color:#e0f3ff;background:#284454;border-radius:7px;padding:6px 9px;cursor:pointer;font-size:10px}
+.state-county-head button[aria-pressed="true"]{background:#426b81;border-color:#9bcce5}
+.state-county-head button:focus-visible,.state-county-row:focus-visible,#stateCountyDirectory input:focus-visible{outline:2px solid #bee6ff;outline-offset:2px}
+.state-county-note{font-size:10px;color:#a7c0d0;line-height:1.55;margin:7px 0 5px}
+#stateCountyDirectory{border:1px solid #375569;border-radius:8px;background:#142632;margin-top:8px}
+#stateCountyDirectory>summary{cursor:pointer;padding:9px;color:#d5e8f4;font-size:10.5px}
+#stateCountyDirectory>summary span{color:#98b5c9;margin-left:6px}
+#stateCountySearch{display:block;width:calc(100% - 16px);margin:2px 8px 8px;padding:8px;border:1px solid #486778;border-radius:6px;background:#0e1c27;color:#e8f4fa;font-size:11px}
+.state-county-list{max-height:min(230px,32vh);overflow:auto;padding:2px 7px 7px;overscroll-behavior:contain}
+.state-county-row{display:flex;width:100%;justify-content:space-between;text-align:left;align-items:center;gap:8px;background:transparent;border:0;border-bottom:1px solid #294254;color:#e1eef5;cursor:pointer;padding:8px 5px}
+.state-county-row:hover{background:#294356}
+.state-county-row span{font-size:10.5px;min-width:0;overflow-wrap:anywhere}
+.state-county-row small{display:block;color:#8facc0;font-size:9px;margin-top:2px}
+.state-county-row b{font-size:10px;white-space:nowrap;font-weight:600;color:#bce1fa}
+.crime-county-dossier .dossier-heading{gap:8px;flex-wrap:wrap}
+.crime-county-dossier #crimeCountyBackState{flex:0 0 auto}
+@media(max-width:640px){.state-county-head{align-items:flex-start}.state-county-head button{min-width:115px}.state-county-list{max-height:160px}}
