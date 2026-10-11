@@ -8,7 +8,7 @@
 <meta name="description" content="德国2025年地方财政收支地图，州级涂色、莱法州12座非县辖市数据与核实过的财政紧缩事件。">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css?v=clean1">
-<link rel="stylesheet" href="topic.css?v=f9">
+<link rel="stylesheet" href="topic.css?v=f10">
 </head>
 <body>
 <header>
@@ -65,6 +65,26 @@
    <div class="area-title"><div class="area-name" id="areaName">德国 · 全国</div></div>
    <div class="area-metric" id="metricValue">选择联邦州查看财政数据</div>
    <div class="finance-coverage" id="coverageNote">13个非城市州具备同口径数据</div>
+   <details class="finance-loan-drawer finance-state-municipal" id="stateMunicipalDrawer" hidden>
+    <summary>2024年本州市镇债务与税收能力 <span id="stateMunicipalCount">按需查看</span></summary>
+    <div class="finance-state-muni-body">
+     <p>来自2024年市镇综合债务与税收能力原表；按市镇逐行查看，不与2025年州财政收支或2023年县域核心预算债务混算。这里只展示样本内简单中位数，并非人口加权州平均。</p>
+     <div class="finance-state-muni-stats" id="stateMunicipalStats"></div>
+     <div class="finance-state-muni-filters">
+      <label for="stateMunicipalSearch">查找市镇或8位AGS</label>
+      <input id="stateMunicipalSearch" type="search" placeholder="市镇名称或编码" autocomplete="off">
+      <label for="stateMunicipalSort">排列方式</label>
+      <select id="stateMunicipalSort">
+       <option value="name">按市镇名称</option>
+       <option value="debt">按已公布人均综合债务降序</option>
+       <option value="tax">按已公布人均税收能力降序</option>
+      </select>
+     </div>
+     <div id="stateMunicipalList" class="finance-state-muni-list" aria-live="polite"></div>
+     <p class="finance-state-muni-note">记录属于2024年的市镇统计层级。高人均债务不直接等于财政危机；税收能力也不等于当年实际税收。市镇AGS与2026县界不能强行一一对应。</p>
+     <a href="https://www.statistikportal.de/sites/default/files/2025-12/Integrierte_Schulden_der_Gemeinden_und_Gemeindeverbaende_2024_Tabellenband_0.xlsx" target="_blank" rel="noopener noreferrer">2024年市镇官方原表 ↗</a>
+    </div>
+   </details>
    <details class="finance-loan-drawer" id="loanDrawer" hidden>
     <summary>该州债务与借款明细 <span id="loanScope">所选州</span></summary>
     <div id="loanHistory" class="finance-loan-history"></div>
@@ -145,6 +165,6 @@
 <script src="data/finance-history.js?v=h1"></script>
 <script src="data/finance-integrated.js?v=r10"></script>
 <script src="data/finance-regional-evidence.js?v=r24"></script>
-<script src="topic.js?v=f8"></script>
+<script src="topic.js?v=f10"></script>
 </body>
 </html>
