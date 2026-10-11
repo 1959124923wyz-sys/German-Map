@@ -17,7 +17,8 @@
  const independentCityDebtRows=new Map((R?.cities||[]).map(x=>[x.id,x]));
  const municipalByState=new Map();
  const municipalPending=new Map();
- let activeMunicipalRows=[];
+ let activeMunicipalRows=[],activeStateMunicipalRows=[];
+ let stateMunicipalRequest=0;
  const eligibleMunicipalStates=new Set(['01','03','05','06','07','08','09','10','12','13','14','15','16']);
  const historicalPalette=['#dce9e5','#c1dad1','#a0c7b9','#7cafa2','#569385','#357a70','#205d5e'];
  const numericForCounty=id=>view.metric==='core-2023'?(countyDebtRows.get(id)?.value??null):
@@ -148,6 +149,84 @@
   }
   return municipalPending.get(prefix);
  }
+ function stateMunicipalMedian(rows,index){
+  const values=rows.map(r=>r[index]).filter(Number.isFinite).sort((a,b)=>a-b);
+  if(!values.length)return null;
+  const m=values.length>>1;
+  return {value:values.length%2?values[m]:(values[m-1]+values[m])/2,count:values.length};
+ }
+ function renderStateMunicipalRows(){
+  const target=$('stateMunicipalList');
+  const query=$('stateMunicipalSearch').value.trim().toLocaleLowerCase();
+  const order=$('stateMunicipalSort').value;
+  const rows=activeStateMunicipalRows.filter(r=>!query||
+   r[0].includes(query)||r[1].toLocaleLowerCase().includes(query)||
+   String(window.GermanPlaceNames?.byAGS(r[0],r[1])||'').toLocaleLowerCase().includes(query));
+  rows.sort((a,b)=>{
+   if(order==='name')return a[1].localeCompare(b[1],'de')||a[0].localeCompare(b[0]);
+   const k=order==='tax'?3:2;
+   const va=Number.isFinite(a[k])?a[k]:-Infinity,vb=Number.isFinite(b[k])?b[k]:-Infinity;
+   return vb-va||a[0].localeCompare(b[0]);
+  });
+  const show=rows.slice(0,80);
+  target.innerHTML=show.map(r=>{
+   const name=window.GermanPlaceNames?.byAGS(r[0],r[1])||r[1];
+   const county=r[0].slice(0,5);
+   const canDrill=allCountyShapes.has(county)&&county.startsWith(AGS[view.focusState]||'!!');
+   return '<div class="finance-state-muni-row"><div class="finance-state-muni-title"><strong>'+
+    escapeHTML(name)+'</strong><small>AGS '+escapeHTML(r[0])+'</small></div>'+
+    '<div class="finance-state-muni-pair"><b>'+number(r[2])+' €/人</b><small>综合债务</small>'+
+    '<b>'+(Number.isFinite(r[3])?number(r[3])+' €/人':'未公布')+'</b><small>税收能力</small></div>'+
+    (canDrill?'<button type="button" data-fin-county="'+escapeHTML(county)+'">查看县域</button>':'')+'</div>';
+  }).join('')||'<p class="finance-state-muni-note">没有匹配的市镇；缺失不代表零。</p>';
+  if(rows.length>show.length)target.insertAdjacentHTML('beforeend',
+   '<p class="finance-state-muni-note">只显示前80条（匹配'+rows.length+'条），请输入名称或AGS缩小范围。</p>');
+  target.querySelectorAll('[data-fin-county]').forEach(b=>b.addEventListener('click',()=>{
+   const l=allCountyShapes.get(b.dataset.finCounty);
+   if(!l||!view.focusState||!b.dataset.finCounty.startsWith(AGS[view.focusState]))return;
+   $('stateMunicipalDrawer').open=false;
+   showCounty(l.feature);
+  }));
+ }
+ function setStateMunicipalArchive(id,forceClose=false){
+  const drawer=$('stateMunicipalDrawer'),valid=eligibleMunicipalStates.has(AGS[id]);
+  if(forceClose||!valid){drawer.open=false;drawer.hidden=true;activeStateMunicipalRows=[];return;}
+  drawer.hidden=false;
+  drawer.open=false;
+  $('stateMunicipalCount').textContent='按需查阅';
+  $('stateMunicipalStats').replaceChildren();
+  $('stateMunicipalList').replaceChildren();
+  $('stateMunicipalSearch').value='';
+  $('stateMunicipalSort').value='name';
+  activeStateMunicipalRows=[];
+ }
+ async function revealStateMunicipalArchive(){
+  const drawer=$('stateMunicipalDrawer'),id=view.focusState;
+  if(!id||drawer.hidden||!drawer.open||!eligibleMunicipalStates.has(AGS[id]))return;
+  const serial=++stateMunicipalRequest;
+  const prefix=AGS[id];
+  $('stateMunicipalCount').textContent='正在读取…';
+  $('stateMunicipalList').textContent='正在读取该州2024年市镇档案…';
+  try{
+   const byCounty=await loadMunicipalState(prefix);
+   if(serial!==stateMunicipalRequest||view.focusState!==id||!drawer.open)return;
+   activeStateMunicipalRows=[...byCounty.values()].flat();
+   const debt=stateMunicipalMedian(activeStateMunicipalRows,2);
+   const tax=stateMunicipalMedian(activeStateMunicipalRows,3);
+   $('stateMunicipalCount').textContent=activeStateMunicipalRows.length+'个已收录市镇';
+   $('stateMunicipalStats').innerHTML=
+    '<div><small>2024年市镇记录</small><b>'+activeStateMunicipalRows.length+'条</b></div>'+
+    '<div><small>综合债务人均 · 市镇中位数</small><b>'+(debt?number(debt.value)+' €/人':'未公布')+'</b>'+
+    '<small>'+(debt?.count||0)+'条有效值</small></div>'+
+    '<div><small>税收能力人均 · 市镇中位数</small><b>'+(tax?number(tax.value)+' €/人':'未公布')+'</b>'+
+    '<small>'+(tax?.count||0)+'条有效值</small></div>';
+   renderStateMunicipalRows();
+  }catch(err){
+   if(serial!==stateMunicipalRequest||view.focusState!==id)return;
+   $('stateMunicipalCount').textContent='读取失败';
+   $('stateMunicipalList').textContent='本州市镇档案暂不可读取：'+err.message;
+  }
+ }
  function renderMunicipalities(code){
   const drawer=$('municipalDrawer'),prefix=String(code).slice(0,2);
   drawer.open=false;
@@ -191,6 +270,8 @@
   $('regionalDebtDrawer').hidden=true;
   $('regionalDebtDrawer').open=false;
   $('loanDrawer').hidden=true;
+  stateMunicipalRequest++;
+  setStateMunicipalArchive(null,true);
   $('municipalDrawer').hidden=true;
   $('municipalDrawer').open=false;
   $('sectionTitle').textContent=currentMetricLabel();
@@ -337,6 +418,8 @@
   // Preserve national colour, event visibility and current archive settings;
   // switching states is a one-click operation, not a reset-to-Germany flow.
   displaySelectedState(id,name||layer.feature?.properties?.name);
+  stateMunicipalRequest++;
+  setStateMunicipalArchive(id);
   $('sectionTitle').textContent=currentMetricLabel();
   $('districtPanel').hidden=id!=='DE-RP'||view.metric!=='balance-2025';
   $('districtHint').textContent='点击县市边界查看地方数据；仅已公开的统计地区有数值。';
@@ -368,6 +451,7 @@
    $('districtPanel').hidden=true;
   }
   view.currentCounty=id;
+  if(!$('stateMunicipalDrawer').hidden)$('stateMunicipalDrawer').open=false;
   const row=view.focusState==='DE-RP'?regionalRow(feature.id):null;
   const name=feature.properties?.name||'县级地区';
   if(view.metric!=='balance-2025'){
@@ -454,6 +538,11 @@
   });
   $('resetView').addEventListener('click',resetView);
   $('municipalSearch').addEventListener('input',showMunicipalRows);
+  $('stateMunicipalDrawer').addEventListener('toggle',()=>{
+   if($('stateMunicipalDrawer').open)revealStateMunicipalArchive();
+  });
+  $('stateMunicipalSearch').addEventListener('input',renderStateMunicipalRows);
+  $('stateMunicipalSort').addEventListener('change',renderStateMunicipalRows);
   $('metricLayer').addEventListener('change',()=>{
    view.metric=$('metricLayer').value;
    view.currentCounty=null;
@@ -520,6 +609,8 @@
    getMode:()=>view.metric,
    coloredCountyCount:()=>countiesLayer?.getLayers().filter(l=>Number.isFinite(numericForCounty(String(l.feature?.id||'')))).length||0,
    municipalStateLoaded:st=>municipalByState.has(st),
+   stateArchiveVisible:()=>!$('stateMunicipalDrawer').hidden,
+   stateArchiveRows:()=>activeStateMunicipalRows.length,
    eventCount:()=>bubblesLayer.getLayers().length,
    hasStateLayer:()=>map.hasLayer(statesLayer),
    hasCountyDetail:()=>map.hasLayer(countiesLayer),

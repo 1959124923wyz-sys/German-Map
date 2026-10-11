@@ -236,3 +236,28 @@ footer{display:none}
 .finance-muni-values b{display:block;color:#bee3da;font-size:11px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .finance-muni-source a{display:block;margin-top:10px;font-size:10px;overflow-wrap:anywhere}
 @media(max-width:560px){.finance-layer-picker{grid-template-columns:62px minmax(0,1fr);gap:7px}.finance-muni-values{flex-basis:132px}}
+
+/* Opt-in 2024 municipal microdata: display only after a state has been chosen.
+   Never turn 2024 debt/tax rows into the national 2025 balance choropleth. */
+.finance-state-municipal{min-width:0;margin-bottom:11px}
+.finance-state-municipal[open]{max-height:min(63vh,650px)}
+.finance-state-muni-body{padding:4px 10px 10px;min-width:0}
+.finance-state-muni-body>p{font-size:10px;line-height:1.55;color:#aabfcc;margin:5px 0 11px}
+.finance-state-muni-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:6px 0 12px}
+.finance-state-muni-stats>div{padding:8px;border:1px solid #364e5e;border-radius:6px;background:#1a2d3a;min-width:0}
+.finance-state-muni-stats small{display:block;font-size:9px;color:#a4baca;line-height:1.4}
+.finance-state-muni-stats b{display:block;color:#e7f4f6;font-size:14px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.finance-state-muni-filters{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:5px 8px;margin:0 0 10px}
+.finance-state-muni-filters label{font-size:9px;color:#bed0da;line-height:1.4}
+.finance-state-muni-filters input,.finance-state-muni-filters select{width:100%;min-width:0;box-sizing:border-box;background:#132532;border:1px solid #456174;color:#e4edf4;border-radius:5px;padding:7px;font-size:10.5px}
+.finance-state-muni-list{max-height:350px;overflow-y:auto;overscroll-behavior:contain}
+.finance-state-muni-row{display:grid;grid-template-columns:minmax(0,1fr) 104px;gap:5px 10px;align-items:center;border-bottom:1px solid #304958;padding:8px 2px}
+.finance-state-muni-title strong{display:block;font-size:11px;overflow-wrap:anywhere;color:#eff5f8}
+.finance-state-muni-title small,.finance-state-muni-pair small{display:block;color:#a3b9c7;font-size:9px}
+.finance-state-muni-pair{text-align:right}
+.finance-state-muni-pair b{display:block;color:#d8eee8;font-size:10.5px;font-variant-numeric:tabular-nums}
+.finance-state-muni-row button{grid-column:1/-1;justify-self:start;background:#253e4d;border:1px solid #536f80;border-radius:5px;padding:5px 9px;color:#d9eaf3;font-size:9px;cursor:pointer}
+.finance-state-muni-row button:hover{background:#325265}
+.finance-state-muni-note{font-size:9px!important;line-height:1.65}
+.finance-state-muni-body>a{color:#91c6e0;font-size:9.5px;display:block;overflow-wrap:anywhere}
+@media(max-width:960px){.finance-state-municipal[open]{max-height:none}}
