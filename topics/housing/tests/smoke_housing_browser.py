@@ -49,9 +49,9 @@ def run(browser,mobile=False):
     ]:
         page.locator("#housingMetric").select_option(key)
         d=page.evaluate("""() => {
-          const q=GermanHousingResearch.state();
-          return {direction:q.colorDirection,lo:q.colorFor(-1e12),
-             hi:q.colorFor(1e12),colors:q.palette};
+          const q=GermanHousingResearch;
+          return {direction:q.colorDirection(),lo:q.colorFor(-1e12),
+             hi:q.colorFor(1e12),colors:q.palette()};
         }""")
         assert d["direction"]==direction,(key,d)
         assert d["lo"]==d["colors"][0] and d["hi"]==d["colors"][-1]
