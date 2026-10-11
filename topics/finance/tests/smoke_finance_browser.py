@@ -53,6 +53,23 @@ def verify(browser,mobile=False):
     assert page.evaluate("window.__FINANCE_MAP__.getZoom()")>original_zoom
     assert page.locator("#districtPanel").is_visible()
     assert page.locator("#loanDrawer").is_visible()
+    # The source archive is not fetched in the nationwide first screen.
+    assert page.locator("#stateMunicipalDrawer").is_visible()
+    assert page.locator("#stateMunicipalDrawer").get_attribute("open") is None
+    assert page.evaluate(f"{api}.stateArchiveRows()")==0
+    page.locator("#stateMunicipalDrawer > summary").click()
+    page.wait_for_function("window.__FINANCE_UI__.stateArchiveRows()>100",timeout=30000)
+    assert "中位数" in page.locator("#stateMunicipalStats").inner_text()
+    page.locator("#stateMunicipalSearch").fill("Mainz")
+    assert page.locator("#stateMunicipalList .finance-state-muni-row").count()>=1
+    page.locator("#stateMunicipalSort").select_option("debt")
+    assert "综合债务" in page.locator("#stateMunicipalList").inner_text()
+    page.locator("#stateMunicipalSearch").fill("does-not-exist-1234")
+    assert "没有匹配" in page.locator("#stateMunicipalList").inner_text()
+    page.locator("#stateMunicipalSearch").fill("")
+    assert page.locator("#stateMunicipalList .finance-state-muni-row").count()==80
+    assert page.locator("#stateMunicipalDrawer a[href^='https://']").count()==1
+    page.locator("#stateMunicipalDrawer > summary").click()
     assert page.evaluate(f"{api}.stateFill('DE-RP')")==national_style
     assert page.evaluate(f"{api}.getMode()")=="balance-2025"
     assert page.evaluate(f"{api}.hasStateLayer()")
@@ -95,6 +112,9 @@ def verify(browser,mobile=False):
         assert page.evaluate(f"{api}.getFocusState()")=="DE-HE","Hessen direct click must work while RP counties are visible"
         assert page.locator("#stateJump").input_value()=="DE-HE"
         assert page.locator("#districtPanel").is_hidden()
+        assert page.locator("#stateMunicipalDrawer").is_visible()
+        assert page.locator("#stateMunicipalDrawer").get_attribute("open") is None
+        assert page.evaluate(f"{api}.stateArchiveRows()")==0
         assert page.evaluate(f"{api}.selectedCounties().every(x=>String(x).startsWith('06'))")
         assert page.evaluate(f"{api}.stateFill('DE-RP')")==national_style
         assert page.evaluate(f"{api}.hasStateLayer()")
@@ -214,6 +234,8 @@ def verify(browser,mobile=False):
     assert page.evaluate(f"{api}.getFocusState()") is None
     assert page.locator("#districtPanel").is_hidden()
     assert page.locator("#loanDrawer").is_hidden()
+    assert page.locator("#stateMunicipalDrawer").is_hidden()
+    assert page.evaluate(f"{api}.stateArchiveRows()")==0
     assert page.evaluate("window.__FINANCE_MAP__.getBounds().contains(L.latLngBounds([[47.15,5.4],[55.1,15.6]]))")
     assert page.evaluate("document.documentElement.scrollWidth<=innerWidth+4")
     page.screenshot(path="/tmp/finance08-"+("mobile" if mobile else "desktop")+".png",full_page=True)
