@@ -70,6 +70,64 @@ def run(browser,mobile=False):
         assert page.evaluate("GermanHousingResearch.state().validCount")==400
         assert page.locator("#legend .housing-scale i").count()==7
     page.locator("#housingMetric").select_option("asking_rent_2025_eur_m2")
+    # Previously each source only appeared after selecting one particular county;
+    # all 192 independently scoped rows now have a searchable state-level entrance.
+    assert page.locator("#housingStateArchive").is_hidden()
+    page.locator("#stateJump").select_option("05")
+    assert page.evaluate("GermanHousingResearch.state().localArchiveRows")==53
+    page.locator('[data-dossier-tab="archive"]').click()
+    assert page.locator("#housingStateArchive").is_visible()
+    assert page.locator("#housingStateArchive").get_attribute("open") is None
+    page.locator("#housingStateArchive > summary").click()
+    assert page.locator("#housingLocalRows .housing-local-entry").count()==53
+    assert page.locator("#housingLocalYear option").count()==11
+    assert page.locator("#housingLocalYear").input_value()=="2025"
+    assert "53个地区" in page.locator("#housingLocalSummary").inner_text()
+    page.locator("#housingLocalSearch").fill("05111")
+    assert page.locator("#housingLocalRows .housing-local-entry").count()==1
+    assert "1,525" in page.locator("#housingLocalRows").inner_text()
+    page.locator("#housingLocalRows [data-local-county]").first.click()
+    assert page.evaluate("GermanHousingResearch.state().selectedCounty")=="05111"
+    assert page.locator("#nrwCompletions").is_visible()
+    assert page.locator("#housingStateArchive").get_attribute("open") is not None
+    page.locator("#stateJump").select_option("09")
+    assert page.evaluate("GermanHousingResearch.state().localArchiveRows")==96
+    page.locator('[data-dossier-tab="archive"]').click()
+    page.locator("#housingStateArchive > summary").click()
+    assert page.locator("#housingLocalYear option").count()==1
+    page.locator("#housingLocalSearch").fill("München")
+    assert "3,960" in page.locator("#housingLocalRows").inner_text()
+    page.locator("#stateJump").select_option("12")
+    assert page.evaluate("GermanHousingResearch.state().localArchiveRows")==18
+    page.locator('[data-dossier-tab="archive"]').click()
+    page.locator("#housingStateArchive > summary").click()
+    assert page.locator("#housingLocalYear option").count()==2
+    page.locator("#housingLocalSearch").fill("Potsdam, Stadt")
+    assert "933" in page.locator("#housingLocalRows").inner_text()
+    assert "全部建筑措施" in page.locator("#housingStateArchiveScope").inner_text()
+    page.locator("#housingLocalYear").select_option("2024")
+    assert "1,039" in page.locator("#housingLocalRows").inner_text()
+    page.locator("#stateJump").select_option("11")
+    assert page.evaluate("GermanHousingResearch.state().localArchiveRows")==12
+    page.locator('[data-dossier-tab="archive"]').click()
+    page.locator("#housingStateArchive > summary").click()
+    page.locator("#housingLocalSearch").fill("Mitte")
+    assert "1,049" in page.locator("#housingLocalRows").inner_text()
+    assert page.locator("#housingLocalRows [data-local-county]").count()==0
+    assert "Bezirke" in page.locator("#housingStateArchiveScope").inner_text()
+    page.locator("#stateJump").select_option("14")
+    assert page.evaluate("GermanHousingResearch.state().localArchiveRows")==13
+    page.locator('[data-dossier-tab="archive"]').click()
+    page.locator("#housingStateArchive > summary").click()
+    assert page.locator("#housingLocalYear option").count()==5
+    page.locator("#housingLocalSearch").fill("Leipzig, Stadt")
+    assert "2,735" in page.locator("#housingLocalRows").inner_text()
+    assert "不包括全部露宿者" in page.locator("#housingLocalCaveat").inner_text()
+    page.locator("#stateJump").select_option("07")
+    assert page.evaluate("GermanHousingResearch.state().localArchiveRows")==0
+    page.locator('[data-dossier-tab="archive"]').click()
+    assert page.locator("#housingStateArchive").is_hidden()
+    page.locator("#housingMetric").select_option("asking_rent_2025_eur_m2")
     page.locator("#stateJump").select_option("07")
     assert page.evaluate("GermanHousingResearch.state().focusState")=="07"
     assert page.locator("#stateJump").input_value()=="07"
