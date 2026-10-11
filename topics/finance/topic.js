@@ -20,7 +20,11 @@
  let activeMunicipalRows=[],activeStateMunicipalRows=[];
  let stateMunicipalRequest=0;
  const eligibleMunicipalStates=new Set(['01','03','05','06','07','08','09','10','12','13','14','15','16']);
- const historicalPalette=['#dce9e5','#c1dad1','#a0c7b9','#7cafa2','#569385','#357a70','#205d5e'];
+ const semantics=window.AtlasColorSemantics;
+ if(!semantics)throw new Error('全站配色语义规则未加载');
+ // The two historical map metrics are official debt amounts per resident;
+ // high debt cannot look like a positive outcome.
+ const historicalPalette=semantics.palette('finance','core-2023');
  const numericForCounty=id=>view.metric==='core-2023'?(countyDebtRows.get(id)?.value??null):
   view.metric==='city-2024'?(independentCityDebtRows.get(id)?.integrated2024??null):null;
  const historicalValues=key=>key==='core-2023'?[...countyDebtRows.values()].map(x=>x.value).filter(Number.isFinite):
@@ -33,7 +37,7 @@
  function historicFill(value,metric){
   if(!Number.isFinite(value))return '#82909a';
   let idx=0;const br=breaksByMetric[metric];while(idx<br.length&&value>br[idx])idx++;
-  return historicalPalette[idx];
+  return semantics.palette('finance',metric)[idx];
  }
  function currentMetricLabel(){
   return view.metric==='core-2023'?'2023年县域核心预算债务':
@@ -283,13 +287,14 @@
    $('legend').innerHTML='<div class="legend-title">'+title+' · 欧元/人</div>'+
     '<div class="finance-legend-scale">'+historicalPalette.map(c=>'<span style="background:'+c+'"></span>').join('')+'</div>'+
     '<div class="finance-legend-labels"><span>≤ '+number(breaks[0])+'</span><span>'+number(breaks[2])+'</span><span>'+number(breaks[4])+'</span><span>＞ '+number(breaks[5])+'</span></div>'+
-    '<div class="finance-legend-note">仅按同口径2023县级或2024城市样本着色；灰色为缺失或不适用，不代表零债务。</div>';
+    '<div class="finance-legend-note">'+escapeHTML(semantics.legendText('finance',view.metric))+'；深红仅代表本项债务较高，不能单凭债务认定财政危机。2023县级与2024城市各自独立分位；灰色为缺失或不适用，不代表零债务。</div>';
    return;
   }
   const colors=['#963f41','#ae5957','#c27666','#d3997b','#e0b597','#edd4b4','#6a9f8e'];
   $('legend').innerHTML='<div class="legend-title">2025人均收支差额 · 欧元/人</div>'+
    '<div class="finance-legend-scale">'+colors.map(c=>'<span style="background:'+c+'"></span>').join('')+'</div>'+
-   '<div class="finance-legend-labels"><span>−550以下</span><span>−350</span><span>−150</span><span>盈余≥0</span></div>';
+   '<div class="finance-legend-labels"><span>−550以下 · 高赤字</span><span>−350</span><span>−150</span><span>盈余≥0</span></div>'+
+   '<div class="finance-legend-note">赤字越大颜色越深红；盈余以绿色区别。收支差额不等于完整财政可持续性评估。</div>';
  }
  function preview(text,limit=48){
   const clean=String(text||'').replace(/\s+/g,' ').trim();
