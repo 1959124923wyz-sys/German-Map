@@ -205,3 +205,17 @@ button,select{font:inherit}button{cursor:pointer}a{color:inherit}
  .rail-legend>span{font-size:9px}
  .detail-grid b{font-size:25px}
 }
+
+/* DB InfraGO state-level metadata is an optional secondary archive.
+   Keep train-category controls and clickable passenger corridors unchanged. */
+.rail-state-drawer{margin:10px 0;border:1px solid #354b5a;border-radius:8px;background:#172934;color:#c7d9e2}
+.rail-state-drawer>summary{padding:10px 12px;cursor:pointer;font-size:11px;font-weight:650;color:#deedf3;line-height:1.5}
+.rail-state-drawer[open]>summary{border-bottom:1px solid #354c5a;background:#20323d}
+.rail-state-inner{padding:10px 11px 12px}
+.rail-state-inner>label{font-size:10px;color:#b2c6d3;margin:5px 0;display:block}
+.rail-state-inner>select{width:100%;box-sizing:border-box;border:1px solid #4b6475;border-radius:6px;background:#132632;color:#e9f1f6;padding:8px;font-size:11px;margin-bottom:8px}
+.rail-state-inner .region-dossier{margin:7px 0 10px}
+.rail-state-inner .dossier-tabs button{font-size:10px}
+.rail-state-inner .dossier-metrics b{font-size:14px}
+.rail-state-inner .dossier-note{font-size:9.5px;line-height:1.65;color:#aec2cf;margin:7px 0}
+.rail-state-source{display:block;margin-top:10px;font-size:10px;color:#9dd4ed;text-decoration:underline}

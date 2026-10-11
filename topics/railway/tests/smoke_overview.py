@@ -43,6 +43,31 @@ def run(browser,mobile=False):
     assert page.locator('script[src="data/data-sections-02.js"]').count()==1
     assert page.locator("#minimum").count()==0
     assert page.locator("[data-metric]").count()==0
+    assert page.locator("#railStateDrawer").is_visible()
+    assert page.locator("#railStateDrawer").get_attribute("open") is None
+    assert page.locator("#railStateDossier").is_hidden()
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getInfrastructureState()") is None
+    page.wait_for_function("window.__RAILWAY_OVERVIEW__.getStatesReady()",timeout=25000)
+    page.locator("#railStateDrawer > summary").click()
+    page.locator("#railStateJump").select_option("DE-SH")
+    assert page.locator("#railStateDossier").is_visible()
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getInfrastructureState()")=="DE-SH"
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getInfrastructureSample('DE-SH').segments")==1091
+    assert "1,091" in page.locator("#railStateNetwork").inner_text()
+    assert "不是去重" in page.locator('[data-dossier-pane="network"] .dossier-note').inner_text()
+    page.locator('[data-dossier-tab="track"]').click()
+    assert "510.98" not in page.locator("#railStateTrack").inner_text()
+    assert "510.9" in page.locator("#railStateTrack").inner_text() or "511" in page.locator("#railStateTrack").inner_text()
+    page.locator("#railStateJump").select_option("DE-BY")
+    assert "6,906" in page.locator("#railStateNetwork").inner_text()
+    page.locator('[data-dossier-tab="structures"]').click()
+    assert "5,031" in page.locator("#railStateStructures").inner_text()
+    assert "去重" in page.locator('[data-dossier-pane="structures"] .dossier-note').inner_text()
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getMergedLinks()")>0
+    page.locator("#home").click()
+    assert page.evaluate("window.__RAILWAY_OVERVIEW__.getInfrastructureState()") is None
+    assert page.locator("#railStateDossier").is_hidden()
+    page.locator("#railStateDrawer > summary").click()
 
     audit=page.evaluate("""()=>{
       const api=window.__RAILWAY_OVERVIEW__,groups=api.getCityCorridors();
