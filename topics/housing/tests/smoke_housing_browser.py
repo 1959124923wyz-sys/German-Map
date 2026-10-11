@@ -86,6 +86,16 @@ def run(browser,mobile=False):
     page.locator("#housingLocalSearch").fill("05111")
     assert page.locator("#housingLocalRows .housing-local-entry").count()==1
     assert "1,525" in page.locator("#housingLocalRows").inner_text()
+    assert page.locator("#housingLocalMetric option").count()==4
+    page.locator("#housingLocalMetric").select_option("buildings")
+    assert "136" in page.locator("#housingLocalRows").inner_text()
+    assert "栋" in page.locator("#housingLocalRows").inner_text()
+    page.locator("#housingLocalMetric").select_option("rooms")
+    assert "4,223" in page.locator("#housingLocalRows").inner_text()
+    page.locator("#housingLocalMetric").select_option("area")
+    assert "120,825" in page.locator("#housingLocalRows").inner_text()
+    assert "㎡" in page.locator("#housingLocalRows").inner_text()
+    page.locator("#housingLocalMetric").select_option("dwellings")
     page.locator("#housingLocalRows [data-local-county]").first.click()
     assert page.evaluate("GermanHousingResearch.state().selectedCounty")=="05111"
     assert page.locator("#nrwCompletions").is_visible()
@@ -97,6 +107,11 @@ def run(browser,mobile=False):
     assert page.locator("#housingLocalYear option").count()==1
     page.locator("#housingLocalSearch").fill("München")
     assert "3,960" in page.locator("#housingLocalRows").inner_text()
+    assert page.locator("#housingLocalMetric option").count()==3
+    page.locator("#housingLocalMetric").select_option("buildings")
+    assert "593" in page.locator("#housingLocalRows").inner_text()
+    page.locator("#housingLocalMetric").select_option("all")
+    assert "4,324" in page.locator("#housingLocalRows").inner_text()
     page.locator("#stateJump").select_option("12")
     assert page.evaluate("GermanHousingResearch.state().localArchiveRows")==18
     page.locator('[data-dossier-tab="archive"]').click()
@@ -104,6 +119,11 @@ def run(browser,mobile=False):
     assert page.locator("#housingLocalYear option").count()==2
     page.locator("#housingLocalSearch").fill("Potsdam, Stadt")
     assert "933" in page.locator("#housingLocalRows").inner_text()
+    assert page.locator("#housingLocalMetric option").count()==2
+    page.locator("#housingLocalMetric").select_option("new_all")
+    assert "908" in page.locator("#housingLocalRows").inner_text()
+    assert "新建各类建筑" in page.locator("#housingLocalMetric option:checked").inner_text()
+    page.locator("#housingLocalMetric").select_option("dwellings")
     assert "全部建筑措施" in page.locator("#housingStateArchiveScope").inner_text()
     page.locator("#housingLocalYear").select_option("2024")
     assert "1,039" in page.locator("#housingLocalRows").inner_text()
@@ -113,6 +133,8 @@ def run(browser,mobile=False):
     page.locator("#housingStateArchive > summary").click()
     page.locator("#housingLocalSearch").fill("Mitte")
     assert "1,049" in page.locator("#housingLocalRows").inner_text()
+    page.locator("#housingLocalMetric").select_option("new_all")
+    assert "927" in page.locator("#housingLocalRows").inner_text()
     assert page.locator("#housingLocalRows [data-local-county]").count()==0
     assert "Bezirke" in page.locator("#housingStateArchiveScope").inner_text()
     page.locator("#stateJump").select_option("14")
@@ -122,6 +144,7 @@ def run(browser,mobile=False):
     assert page.locator("#housingLocalYear option").count()==5
     page.locator("#housingLocalSearch").fill("Leipzig, Stadt")
     assert "2,735" in page.locator("#housingLocalRows").inner_text()
+    assert page.locator("#housingLocalMetric option").count()==1
     assert "不包括全部露宿者" in page.locator("#housingLocalCaveat").inner_text()
     page.locator("#stateJump").select_option("07")
     assert page.evaluate("GermanHousingResearch.state().localArchiveRows")==0
