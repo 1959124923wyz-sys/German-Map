@@ -1,0 +1,38 @@
+name: Atlas semantic color governance
+
+on:
+  pull_request:
+    paths:
+      - 'js/core/atlas-color-semantics.js'
+      - 'research/ATLAS_COLOR_SEMANTICS_STANDARD_20261011.md'
+      - 'topics/housing/**'
+      - 'topics/finance/**'
+      - 'tests/validate_atlas_color_semantics.cjs'
+      - '.github/workflows/atlas-color-governance.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'js/core/atlas-color-semantics.js'
+      - 'research/ATLAS_COLOR_SEMANTICS_STANDARD_20261011.md'
+      - 'topics/housing/**'
+      - 'topics/finance/**'
+      - 'tests/validate_atlas_color_semantics.cjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+jobs:
+  validate-semantics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate JS and every indicator meaning
+        run: |
+          node --check js/core/atlas-color-semantics.js
+          node --check topics/housing/topic.js
+          node --check topics/finance/topic.js
+          node tests/validate_atlas_color_semantics.cjs

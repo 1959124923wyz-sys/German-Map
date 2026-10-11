@@ -39,6 +39,34 @@ def run(browser,mobile=False):
     assert page.locator("#housingNationalHint").is_visible()
     assert page.locator("main .housing-rank-row").count()==8
     assert page.locator("#housingMetric option").count()==15
+    assert page.evaluate("Object.keys(AtlasColorSemantics.registry.housing).length")==15
+    for key,direction,note in [
+        ("asking_rent_2025_eur_m2","pressure-high","问题相关指标升高"),
+        ("living_area_2022_m2_person","pressure-low","条件改善"),
+        ("vacancy_2022_pct","neutral","不代表严重程度"),
+        ("sheltered_homeless_2025","neutral","不代表严重程度"),
+        ("renewable_heat_stock_2022_pct","neutral","不代表严重程度"),
+    ]:
+        page.locator("#housingMetric").select_option(key)
+        d=page.evaluate("""() => {
+          const q=GermanHousingResearch;
+          return {direction:q.colorDirection(),lo:q.colorFor(-1e12),
+             hi:q.colorFor(1e12),colors:q.palette()};
+        }""")
+        assert d["direction"]==direction,(key,d)
+        assert d["lo"]==d["colors"][0] and d["hi"]==d["colors"][-1]
+        assert note in page.locator("#legend").inner_text(),(key,note)
+        if direction=="pressure-low":
+            assert "低值" in page.locator("#rankBox .housing-rank-head").inner_text()
+        elif direction=="neutral":
+            assert "非住房问题排名" in page.locator("#rankBox .housing-rank-head").inner_text()
+        if direction=="pressure-low":
+            assert d["lo"]=="#a52d37" and d["hi"]=="#f5ead9",(key,d)
+        elif direction=="pressure-high":
+            assert d["lo"]=="#f5ead9" and d["hi"]=="#a52d37",(key,d)
+        else:
+            assert d["lo"]=="#eff5f9" and d["hi"]=="#1b5278",(key,d)
+    page.locator("#housingMetric").select_option("asking_rent_2025_eur_m2")
     assert page.evaluate("GermanHousingResearch.state().censusReady") is True
     for metric,valueUnit in (
         ("existing_cold_rent_2022_eur_m2","欧元"),
