@@ -176,10 +176,26 @@ async function rebuild(){
   }
 }
 function addButtons(){
-  const anchor=$('focusMunich')||$('focusBerlin');if(!anchor)return;
+  const container=$('cityQuickActions');if(!container)return;
   for(const c of manifest.cities){
     const id='focusCity_'+c.id;if($(id))continue;
-    const b=document.createElement('button');b.id=id;b.type='button';b.textContent=c.name_zh||c.name;b.onclick=()=>{api.clearSelection?.();api.map.fitBounds(cityBounds(c),{padding:[25,25],maxZoom:10});};anchor.before(b)
+    const b=document.createElement('button');
+    b.id=id;b.type='button';b.textContent=c.name_zh||c.name;
+    b.title=(c.source_label||'城市官方数据')+' · '+(c.unit||'按源统计口径展示');
+    b.onclick=()=>{
+      api.clearSelection?.();
+      const key=metricKey();
+      if(!c.metrics?.[key]){
+        const select=api.getMode()==='property'?$('propertyMetric'):$('violenceMetric');
+        const fallback=api.getMode()==='property'?'property_total':'violence';
+        if(select&&c.metrics[fallback]){
+          select.value=fallback;
+          select.dispatchEvent(new Event('change',{bubbles:true}));
+        }
+      }
+      api.map.fitBounds(cityBounds(c),{padding:[25,25],maxZoom:10});
+    };
+    container.append(b)
   }
 }
 async function boot(){
