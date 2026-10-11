@@ -42,8 +42,8 @@ main{grid-template-columns:minmax(0,1fr) minmax(365px,31.5vw)}
 .map-guide-kicker{display:block;font-size:9px;color:#9fc1d4;letter-spacing:.075em;margin-bottom:3px}
 .map-guide strong{display:block;font-size:12px;line-height:1.45;font-weight:730}
 .map-guide small{display:block;margin-top:4px;font-size:9.5px;color:#a9c0cf;line-height:1.45}
-.mapwrap:has(.state-drawer.open) .map-guide,.mapwrap:has(.supp-city-focus) .map-guide{display:none}
-.state-drawer{width:min(370px,calc(100% - 82px));background:rgba(14,25,35,.975);border:1px solid #577184;border-radius:12px;box-shadow:0 15px 44px #050c16aa}
+ .mapwrap:has(.state-drawer.open) .map-guide,.mapwrap.supp-city-focus .map-guide{display:none}
+.state-drawer{height:auto;min-height:0;width:min(370px,calc(100% - 82px));background:rgba(14,25,35,.975);border:1px solid #577184;border-radius:12px;box-shadow:0 15px 44px #050c16aa}
 .state-head{padding:14px 15px 9px;border-color:#304858}
 .state-head small{font-size:9.5px;color:#97b5c7;margin-bottom:5px}
 .state-head h3{font-size:21px;letter-spacing:.015em;line-height:1.28}
