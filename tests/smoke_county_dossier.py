@@ -81,8 +81,12 @@ def verify(browser,mobile=False):
     page.locator("#crimeCountyBackState").click()
     assert page.locator("#crimeCountyDossier").is_hidden()
     assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')"),"state data remains available"
-    page.evaluate("""() => window.__CRIME_MAP__.getCountyLayer().getLayers()
-        .find(l=>String(l.feature?.id||l.feature?.properties?.AGS)==='10041').fire('click')""")
+    page.evaluate("""() => {
+      const layer=window.__CRIME_MAP__.getCountyLayer().getLayers()
+        .find(l=>String(l.feature?.id||l.feature?.properties?.AGS)==='10041');
+      layer.fire('click');
+      return true;
+    }""")
     assert page.locator("#crimeCountyDossier").is_visible()
     page.locator("#viewGermany").click()
     assert page.locator("#crimeCountyDossier").is_hidden()
