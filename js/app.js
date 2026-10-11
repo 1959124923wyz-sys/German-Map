@@ -111,6 +111,15 @@
     if(pin)pinnedArea=area;
     hoverArea=pin?null:area;
     areaPanel.show(area||pinnedArea);
+    // Source-backed county archive responds to explicit pinned selections,
+    // not to hover or an unrelated city/neighbourhood map overlay.
+    document.dispatchEvent(new CustomEvent('crime:area-pinned',{
+      detail:{
+        ags:pinnedArea?.ags||null,
+        kind:pinnedArea?.kind||null,
+        mode
+      }
+    }));
   }
 
   function pksRecord(feature){
