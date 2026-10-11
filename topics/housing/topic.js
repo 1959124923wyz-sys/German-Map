@@ -21,7 +21,11 @@
   renewable_heat_new_2024_pct:{label:'2024年新住宅可再生供暖占比',year:'2024',unit:'%',dec:1,source:'atlas',interpret:'仅对应2024年新建住宅，与既有住房的供暖结构是不同统计对象。'},
   renewable_heat_stock_2022_pct:{label:'2022年存量住宅可再生供暖占比',year:'2022',unit:'%',dec:1,source:'atlas',interpret:'存量住宅的供暖比例，不可与2024年新住宅供暖指标合并成趋势。'}
  };
- const colors=['#f5ead9','#f2d4ad','#eeb888','#e99a64','#df754e','#cb4d3d','#a52d37'];
+ const semantics=window.AtlasColorSemantics;
+ if(!semantics)throw new Error('全站配色语义规则未加载');
+ // Quantile thresholds are always ascending RAW values. Only the
+ // presentation ramp changes; the source data and metrics remain intact.
+ const ramp=()=>semantics.palette('housing',metric);
  const gray='#8d989f';
  let map, countyLayer, stateLayer, cityLabels, sourceMeta;
  let selectedCounty=null, focusState=null, metric='asking_rent_2025_eur_m2';
@@ -75,7 +79,10 @@
  function med(vals){return vals.length?(vals[(vals.length-1)>>1]+vals[vals.length>>1])/2:null}
  function displayVal(v,key=metric){return isNum(v)?fmt(v,metrics[key].dec)+' '+metrics[key].unit:'无可比数据'}
  function quantile(sorted,p){return sorted.length?sorted[Math.min(sorted.length-1,Math.floor((sorted.length-1)*p))]:null}
- function colorOf(v){if(!isNum(v))return gray;for(let i=0;i<breaks.length;i++){if(v<=breaks[i])return colors[i]}return colors[6]}
+ function colorOf(v){
+  const idx=semantics.indexFor(v,breaks);
+  return idx<0?gray:ramp()[idx];
+ }
  function tooltipText(f){
   const id=featureId(f),d=byid.get(id),n=d?.name||f.properties?.name||id,v=metricValue(id);
   return '<strong>'+safe(n)+'</strong><div>'+safe(metrics[metric].label)+': '+safe(displayVal(v))+'</div>'+
@@ -97,11 +104,14 @@
  }
  function updateLegend(){
   const m=metrics[metric],low=sortedAll.length?sortedAll[0]:null,high=sortedAll.at(-1);
+  const colors=ramp(),direction=semantics.get('housing',metric);
   $('legend').innerHTML='<div class="legend-title">'+safe(m.label)+' · '+safe(m.unit)+'</div>'+
    '<div class="housing-scale">'+colors.map(c=>'<i style="background:'+c+'"></i>').join('')+'</div>'+
    '<div class="housing-legend-labels"><span>'+safe(isNum(low)?fmt(low,m.dec):'—')+'</span>'+
-   '<span>由浅至深：数值升高</span><span>'+safe(isNum(high)?fmt(high,m.dec):'—')+'</span></div>'+
-   '<div style="font-size:9px;margin-top:7px;color:#aabac4"><i style="background:'+gray+';display:inline-block;width:10px;height:8px"></i> 灰色：该指标缺失或不可比较</div>';
+   '<span>'+safe(semantics.legendText('housing',metric))+'</span><span>'+safe(isNum(high)?fmt(high,m.dec):'—')+'</span></div>'+
+   '<div style="font-size:9px;margin-top:7px;color:#aabac4"><i style="background:'+gray+';display:inline-block;width:10px;height:8px"></i> 灰色：该指标缺失或不可比较；'+
+    safe(direction===semantics.kinds.LOW?'人均居住面积不等于住房可负担性综合评级。':
+    direction===semantics.kinds.NEUTRAL?'蓝色只表示数据分布，不代表住房问题轻重。':'高值仅说明本项租金压力，不代表综合住房危机。')+'</div>';
  }
  function overview(ids,key){const v=ids.map(id=>metricValue(id,key)).filter(isNum).sort((a,b)=>a-b);return med(v)}
  function renderStructure(region){
@@ -636,7 +646,7 @@
    $('mapStatus').classList.add('ok');
    window.GermanHousingResearch=Object.freeze({
      state:()=>({metric,selectedCounty,focusState,validCount:sortedAll.length,stockReady,homelessReady,completionsReady,censusReady,bavariaReady:bavariaRows.size===96,brandenburgReady:brandenburgRows.size===18,berlinBoroughReady:berlinBoroughRows.length===12,structureReady:structureRows.size===400,dossierOpen:!$('housingDossier').hidden,greixReady:!!greixData,countyShapes:countyShapes.size,localArchiveRows:localStateSource()?.rows.length||0,sampleTooltip:tooltipText(countyFeatures[0]),localArchiveState,view:{lat:map.getCenter().lat,lng:map.getCenter().lng},zoom:map.getZoom()}),
-     metrics:Object.keys(metrics)
+     metrics:Object.keys(metrics),colorDirection:()=>semantics.get('housing',metric),colorFor:v=>colorOf(v),palette:()=>ramp()
    });
   }catch(err){
    $('mapStatus').textContent='住房地图加载失败：'+String(err.message||err);
