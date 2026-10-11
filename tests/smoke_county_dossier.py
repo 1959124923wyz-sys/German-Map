@@ -34,6 +34,24 @@ def verify(browser,mobile=False):
       return true;
     }""")
     assert page.locator("#crimeCountyDossier").is_visible()
+    # Pinning an actual county automatically reveals its parent state's official
+    # numbers, while preserving the complete county dossier on the right.
+    assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
+    assert page.locator("#stateCountyBrowse").is_visible()
+    page.locator("#stateCountyDirectory > summary").click()
+    assert page.locator("#stateCountyList .state-county-row").count()>0
+    page.locator("#stateCountySearch").fill("10041")
+    assert page.locator("#stateCountyList .state-county-row").count()==1
+    before_view=page.evaluate("({z:__CRIME_MAP__.map.getZoom(),lat:__CRIME_MAP__.map.getCenter().lat})")
+    page.locator("#stateCountyList .state-county-row").click()
+    after_view=page.evaluate("({z:__CRIME_MAP__.map.getZoom(),lat:__CRIME_MAP__.map.getCenter().lat})")
+    assert before_view==after_view,"county directory must not auto-pan"
+    assert page.evaluate("__CRIME_COUNTY_DOSSIER__.selected()")=="10041|violence"
+    page.locator("#stateCountyBrowse").click()
+    assert page.evaluate("__CRIME_MAP__.isCountyBrowse()") is True
+    assert page.evaluate("__CRIME_MAP__.getStateLayer()") is None
+    page.locator("#stateCountyBrowse").click()
+    assert page.evaluate("__CRIME_MAP__.isCountyBrowse()") is False
     assert page.locator("#crimeCountyExpand").get_attribute("open") is None
     assert page.locator("#crimeCountyExpand > summary").is_visible()
     page.locator("#crimeCountyExpand > summary").click()
