@@ -38,6 +38,13 @@ def verify(browser,mobile=False):
     # numbers, while preserving the complete county dossier on the right.
     assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
     assert page.locator("#stateCountyBrowse").is_visible()
+    state_targets=page.evaluate("""() => (__CRIME_MAP__.getStateLayer()
+      ?.getLayers()||[]).map(l=>({name:l.feature?.properties?.name,
+        interactive:l.options.interactive!==false}))""")
+    assert len(state_targets)==16,state_targets
+    assert [s for s in state_targets if s["name"]=="Saarland"]==[
+        {"name":"Saarland","interactive":False}],state_targets
+    assert sum(s["interactive"] for s in state_targets)==15,state_targets
     page.locator("#stateCountyDirectory > summary").click()
     assert page.locator("#stateCountyList .state-county-row").count()>0
     page.locator("#stateCountySearch").fill("10041")
@@ -49,9 +56,15 @@ def verify(browser,mobile=False):
     assert page.evaluate("__CRIME_COUNTY_DOSSIER__.selected()")=="10041|violence"
     page.locator("#stateCountyBrowse").click()
     assert page.evaluate("__CRIME_MAP__.isCountyBrowse()") is True
-    assert page.evaluate("__CRIME_MAP__.getStateLayer()") is None
+    assert page.evaluate("""() => {
+      const layer=__CRIME_MAP__.getStateLayer();
+      return layer && layer.getLayers().length===16 &&
+        layer.getLayers().every(l=>l.options.interactive===false);
+    }""")
     page.locator("#stateCountyBrowse").click()
     assert page.evaluate("__CRIME_MAP__.isCountyBrowse()") is False
+    assert page.evaluate("""() => __CRIME_MAP__.getStateLayer()
+      .getLayers().filter(l=>l.options.interactive!==false).length===15""")
     assert page.locator("#crimeCountyExpand").get_attribute("open") is None
     assert page.locator("#crimeCountyExpand > summary").is_visible()
     page.locator("#crimeCountyExpand > summary").click()
