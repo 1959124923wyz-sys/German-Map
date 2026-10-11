@@ -1,7 +1,14 @@
 (()=>{"use strict";
 const {palettes:{national:WARM,property:COOL},violenceMetrics}=window.CrimeMapConfig;
 let api=null,manifest=null,active=null,activeKey=null,layer=null,selected=null,cache=new Map(),activationEpoch=0;
-let cityBackdrop=null,cityBorder=null;
+let cityBackdrop=null,cityBorder=null,cityRenderer=null;
+ // The map prefers Canvas for nationwide polygons. Local city overlays must
+ // use SVG: an empty Canvas in the higher berlinPane otherwise steals pointer
+ // events from distant counties even after the city layer is removed.
+ function renderer(){
+   if(!cityRenderer)cityRenderer=L.svg({pane:'berlinPane',padding:.2});
+   return cityRenderer;
+ }
 const boundaryCache=new Map();
 
 const $=id=>document.getElementById(id);
@@ -144,14 +151,14 @@ async function rebuild(){
       // A single opaque, neutral fill shows the parts of the municipality
       // without police-atlas neighbourhood figures. They are NO DATA, not
       // low- or high-crime districts. Draw before the actual 61 districts.
-      cityBackdrop=L.geoJSON(boundary,{pane:'berlinPane',interactive:false,style:()=>({
+      cityBackdrop=L.geoJSON(boundary,{pane:'berlinPane',renderer:renderer(),interactive:false,style:()=>({
         pane:'berlinPane',color:'transparent',weight:0,opacity:0,
         fillColor:'#e7ecef',fillOpacity:.38
       })}).addTo(api.map);
       document.querySelector('.mapwrap')?.classList.add('city-detail-focus');
     }
     if(!validCityGeometry(data,active))throw new Error(active.id+' invalid CRS/geometry: expected longitude/latitude near configured city bounds');
-    layer=L.geoJSON(data,{pane:'berlinPane',filter:f=>Number.isFinite(Number(f?.properties?.[cfg.field]?.rate)),style:f=>({pane:'berlinPane',color:city.coverage==='partial'?'#78848b':(api.getMode()==='property'?'#486783':'#8a563b'),weight:city.coverage==='partial'?.65:.34,opacity:city.coverage==='partial'?.55:.62,fillColor:scaleColor(Number(f.properties[cfg.field].rate),br,pal),fillOpacity:city.coverage==='partial'?.88:.84}),onEachFeature:(f,l)=>{
+    layer=L.geoJSON(data,{pane:'berlinPane',renderer:renderer(),filter:f=>Number.isFinite(Number(f?.properties?.[cfg.field]?.rate)),style:f=>({pane:'berlinPane',color:city.coverage==='partial'?'#78848b':(api.getMode()==='property'?'#486783':'#8a563b'),weight:city.coverage==='partial'?.65:.34,opacity:city.coverage==='partial'?.55:.62,fillColor:scaleColor(Number(f.properties[cfg.field].rate),br,pal),fillOpacity:city.coverage==='partial'?.88:.84}),onEachFeature:(f,l)=>{
       l.bindTooltip(()=>{const a=areaFor(active,data,f);return '<b>'+esc(a.name)+'</b><br>'+esc(cfg.label)+' '+fmt(Math.round(a.rate))+'/10万人 · '+riskLabel(a.pct).text},{sticky:true});
       l.on('mouseover',()=>{if(l!==selected)l.setStyle({color:'#fff',weight:1.35,opacity:1,fillOpacity:.89});showPanel(areaFor(active,data,f))});
       l.on('mouseout',()=>{if(l!==selected)layer?.resetStyle(l);const p=api.getPinnedArea?.();if(p?.kind==='city-local-generic')showPanel(p,false);else api.showArea(p)});
@@ -161,7 +168,7 @@ async function rebuild(){
     if(city.coverage==='partial'){
       // Draw one continuous municipal border ON TOP of detailed polygons.
       // This conceals hairline rasterisation seams at the outside edge.
-      cityBorder=L.geoJSON(boundary,{pane:'berlinPane',interactive:false,style:()=>({
+      cityBorder=L.geoJSON(boundary,{pane:'berlinPane',renderer:renderer(),interactive:false,style:()=>({
         pane:'berlinPane',color:'#59646c',weight:1.35,opacity:.93,fill:false
       })}).addTo(api.map);
     }
