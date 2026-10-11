@@ -49,7 +49,33 @@
     const overlay = L.layerGroup();
     let enabled = false, source = null, pending = null, markers = [], activeSubstance = 'cannabis';
     function status(value) { $('wastewater-status').textContent = value; }
-    function closeWaterDetail() { waterFlyout.hidden = true; }
+    function closeWaterDetail() {
+      waterFlyout.hidden = true;
+      const archive = $('wastewater-site-dossier');
+      if(archive)archive.open = false;
+    }
+    function renderSiteDossier(site) {
+      const root=$('wastewater-site-records');
+      if(!root)return;
+      root.replaceChildren();
+      for(const [key,label] of Object.entries(LABELS)) {
+        const obs=site.observations?.[key];
+        const row=document.createElement('div');
+        row.className='wastewater-site-record'+(key===activeSubstance?' current':'');
+        const heading=document.createElement('strong');
+        heading.textContent=label;
+        const value=document.createElement('b');
+        // Explicitly distinguish a 0 (below quantification limit) from NA.
+        value.textContent=obs?.daily===0?'低于定量限':
+          Number.isFinite(obs?.daily)?number(obs.daily)+' mg/千人/天':'未发布';
+        const secondary=document.createElement('small');
+        secondary.textContent='工作日 '+(obs?.weekday===0?'低于定量限':number(obs?.weekday))+
+          ' · 周末 '+(obs?.weekend===0?'低于定量限':number(obs?.weekend))+
+          ' · 2024同站 '+(obs?.previous_2024===0?'低于定量限':number(obs?.previous_2024));
+        row.append(heading,value,secondary);
+        root.append(row);
+      }
+    }
     function sourceData(substance) {
       return source.sites.map(site => ({site, obs:site.observations?.[substance]}))
         .filter(x => x.obs && Number.isFinite(x.obs.daily))
@@ -63,6 +89,7 @@
       if (!enabled) return;
       closeWaterDetail();
       waterFlyout.hidden = false;
+      renderSiteDossier(site);
       $('wastewater-city').textContent = site.city;
       $('wastewater-value').textContent = number(obs.daily);
       $('wastewater-previous').textContent = number(obs.previous_2024);
@@ -198,7 +225,9 @@
     window.__DRUGS_WASTEWATER_TEST__ = Object.freeze({
       get isActive(){return enabled;},
       get markers(){return markers.length;},
-      get activeSubstance(){return activeSubstance;}
+      get activeSubstance(){return activeSubstance;},
+      get sourceSites(){return source?.sites?.length||0;},
+      get siteRecordRows(){return $('wastewater-site-records')?.children?.length||0;}
     });
   }
   window.GermanMapDrugWastewater = Object.freeze({init});

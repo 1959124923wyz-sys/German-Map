@@ -337,3 +337,14 @@ button:disabled{cursor:not-allowed}
   .metricbox.wide .metricvalue{font-size:26px}
   .legend{left:9px;bottom:9px}
 }
+
+/* EUDA station deep archive: no extra national map glyphs or mixed-substance index. */
+.wastewater-site-dossier{border-top:1px solid #364b42;margin:12px 0 8px}
+.wastewater-site-dossier>summary{font-size:11px;font-weight:650;cursor:pointer;color:#d8efe3;padding:10px 1px}
+.wastewater-site-dossier>.note{font-size:9.5px;line-height:1.6;margin:2px 0 9px;color:#a9bfb4}
+.wastewater-site-records{display:grid;gap:5px}
+.wastewater-site-record{padding:8px 9px;border-radius:6px;border:1px solid #3d564c;background:#142921;min-width:0}
+.wastewater-site-record.current{border-color:#7eab92;background:#1b382d}
+.wastewater-site-record strong{display:block;color:#eff8f2;font-size:11px;line-height:1.4}
+.wastewater-site-record b{display:block;font-variant-numeric:tabular-nums;font-size:12px;color:#aee1bd;margin:3px 0}
+.wastewater-site-record small{display:block;color:#b0c8ba;font-size:9.5px;line-height:1.55}
