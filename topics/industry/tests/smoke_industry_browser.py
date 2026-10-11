@@ -27,8 +27,8 @@ def verify(browser,mobile=False):
     assert page.evaluate("""() => {
       const q=GermanIndustryQA,layer=q.getStateOverlay();
       return q.getMap().hasLayer(layer)&&layer.getLayers().length===16 &&
-        !!document.querySelector('#industry-map .leaflet-industry-state-pane svg') &&
-        document.querySelectorAll('#industry-map .leaflet-industry-state-pane canvas').length===0;
+        !!q.getMap().getPane('industryStatePane').querySelector('svg') &&
+        q.getMap().getPane('industryStatePane').querySelectorAll('canvas').length===0;
     }""")
 
     assert page.locator("#industryNationalList .industry-row").count()==231
@@ -87,8 +87,8 @@ def verify(browser,mobile=False):
     page.locator("#showMarkers").check()
     assert page.evaluate("""() => {
       const m=document.querySelector('#industry-map');
-      return m.querySelectorAll('.leaflet-industry-event-pane canvas').length===0 &&
-         m.querySelectorAll('.leaflet-industry-event-pane svg path').length>0;
+      return GermanIndustryQA.getMap().getPane('industryEventPane').querySelectorAll('canvas').length===0 &&
+         GermanIndustryQA.getMap().getPane('industryEventPane').querySelectorAll('svg path').length>0;
     }"""),"The industrial markers must be SVG, never a full-screen Canvas"
     page.locator("#industryStateJump").select_option("DE-NW")
     before=page.evaluate("GermanIndustryQA.view()")
@@ -112,7 +112,7 @@ def verify(browser,mobile=False):
                 if(pt.x<15||pt.y<20||pt.x>rect.width-15||pt.y>rect.height-20)continue;
                 const x=rect.left+pt.x,y=rect.top+pt.y;
                 const node=document.elementFromPoint(x,y);
-                if(!node?.closest('.leaflet-county-pane'))continue;
+                if(node?.closest('.leaflet-pane')!==map.getPane('countyPane'))continue;
                 return {x,y,id:String(layer.feature.id),tag:node.tagName};
              }
           }
