@@ -69,6 +69,7 @@ def run(browser,mobile=False):
         assert needle in page.locator("#yearLabel").inner_text()
         assert page.evaluate("GermanHousingResearch.state().validCount")==400
         assert page.locator("#legend .housing-scale i").count()==7
+        assert "00000" not in page.evaluate("GermanHousingResearch.state().sampleTooltip")
     page.locator("#housingMetric").select_option("asking_rent_2025_eur_m2")
     # Previously each source only appeared after selecting one particular county;
     # all 192 independently scoped rows now have a searchable state-level entrance.
@@ -96,8 +97,12 @@ def run(browser,mobile=False):
     assert "120,825" in page.locator("#housingLocalRows").inner_text()
     assert "㎡" in page.locator("#housingLocalRows").inner_text()
     page.locator("#housingLocalMetric").select_option("dwellings")
+    oldview=page.evaluate("GermanHousingResearch.state()")
     page.locator("#housingLocalRows [data-local-county]").first.click()
     assert page.evaluate("GermanHousingResearch.state().selectedCounty")=="05111"
+    newview=page.evaluate("GermanHousingResearch.state()")
+    assert newview["zoom"]==oldview["zoom"]
+    assert abs(newview["view"]["lat"]-oldview["view"]["lat"])<1e-5
     assert page.locator("#nrwCompletions").is_visible()
     assert page.locator("#housingStateArchive").get_attribute("open") is not None
     page.locator("#stateJump").select_option("09")

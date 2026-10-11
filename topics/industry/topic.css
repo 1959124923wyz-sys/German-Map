@@ -70,3 +70,14 @@
 .industry-detail .industry-provenance dd{margin:0;color:#d3e1ea;font-size:10px;overflow-wrap:anywhere}
 .industry-detail .industry-provenance>p{margin:6px 10px 10px;color:#9fb5c3}
 @media(max-width:420px){.industry-detail .industry-provenance dl>div{grid-template-columns:1fr;gap:2px}}
+
+
+/* GIS focus should follow polygon boundaries, not black bounding rectangles. */
+.leaflet-interactive:focus,.leaflet-interactive:focus-visible{outline:none!important}
+svg path.leaflet-interactive:focus-visible{stroke:#fff!important;stroke-width:2.5px!important}
+
+/* Legend text contrast on the dark atlas backdrop. */
+.industry-legend{color:#d9e5ee}
+.industry-legend strong{color:#f2f7fa}
+.industry-legend .mini-note{color:#bed0dc}
+.industry-legend .industry-swatch{border-color:#8ba0ac}

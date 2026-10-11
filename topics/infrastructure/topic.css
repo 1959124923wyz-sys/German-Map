@@ -61,3 +61,8 @@
 .infra-sidebar #bridgeCountyList .dossier-entry{cursor:default}
 .infra-sidebar .dossier-pane>a{display:block;margin:8px 0;color:#91c8e7;font-size:10px}
 .infra-sidebar .dossier-national{margin:9px 0 3px}
+
+
+/* GIS focus should follow polygon boundaries, not black bounding rectangles. */
+.leaflet-interactive:focus,.leaflet-interactive:focus-visible{outline:none!important}
+svg path.leaflet-interactive:focus-visible{stroke:#fff!important;stroke-width:2.5px!important}

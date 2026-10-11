@@ -29,6 +29,7 @@ def verify(browser,mobile=False):
     assert page.locator(".modebar a.modebtn").count()==10
     assert page.locator(".modebar .active").inner_text()=="工业衰退"
     page.locator("#industryStateJump").select_option("DE-NW")
+    oldview=page.evaluate("GermanIndustryQA.view()")
     assert page.locator("#industryDossier").is_visible()
     assert page.evaluate("GermanIndustryQA.selectedState()")=="DE-NW"
     assert "本范围可溯源" in page.locator("#industryStateMetrics").inner_text()
@@ -38,6 +39,7 @@ def verify(browser,mobile=False):
     assert page.locator("#industryEventTimeline .industry-timeline-year").count()>0
     assert page.locator("#industryEventTimeline .industry-timeline-year").first.get_attribute("open") is not None
     page.locator("#industryEventTimeline [data-id]").first.click()
+    assert page.evaluate("GermanIndustryQA.view().zoom")==oldview["zoom"]
     assert page.locator("#eventDetail").is_visible()
     assert page.locator("#eventDetail a[href^='https://']").count()>0
     assert "事件类型：" in page.locator("#eventDetail").inner_text()
