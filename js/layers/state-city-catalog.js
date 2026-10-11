@@ -104,7 +104,7 @@
    box.hidden=true;
   }
  }
- box.addEventListener('crime:state-rendered',event=>{
+ byId('stateDrawer').addEventListener('crime:state-rendered',event=>{
   activeState=event.detail?.state||null;
   render();
  });
