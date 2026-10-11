@@ -277,7 +277,7 @@ function fillLegend(){
  const box=$('#railLegend');
  box.replaceChildren();
  const title=document.createElement('b');title.textContent=thresholds[0];box.appendChild(title);
- for(const [col,s] of [[COLORS.green,'铁路／暂无高风险观测'],[COLORS.orange,thresholds[2]],[COLORS.red,thresholds[3]]]){
+ for(const [col,s] of [[COLORS.green,'铁路基础线／无橙红着色不代表运行正常'],[COLORS.orange,thresholds[2]],[COLORS.red,thresholds[3]]]){
   const row=document.createElement('span'),dot=document.createElement('i');
   dot.style.background=col;row.append(dot,document.createTextNode(s));box.append(row);
  }
