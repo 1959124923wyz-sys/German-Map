@@ -342,6 +342,8 @@
       paddingBottomRight:[24,24],
       maxZoom:mobile?7:8,animate:false
     });
+    // Some clamped same-zoom pans do not fire zoomend.
+    berlinDetail?.syncViewport();
   }
   function setStateDrawerExpanded(next){
     const expanded=Boolean(next);
