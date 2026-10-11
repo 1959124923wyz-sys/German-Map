@@ -8,7 +8,7 @@
 <title>德国住房危机地图 · German-Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="../../css/map.css">
-<link rel="stylesheet" href="topic.css?v=h4">
+<link rel="stylesheet" href="topic.css?v=h5">
 <link rel="stylesheet" href="../../css/region-dossier.css?v=1">
 </head>
 <body>
@@ -100,6 +100,9 @@
       <summary id="housingStateArchiveTitle">本州官方县市明细档案</summary>
       <p id="housingStateArchiveScope" class="housing-local-scope"></p>
       <div class="housing-local-controls">
+       <label for="housingLocalMetric" class="housing-local-metric-label">官方统计分类
+        <select id="housingLocalMetric"></select>
+       </label>
        <label for="housingLocalYear">来源年份
         <select id="housingLocalYear"></select>
        </label>
@@ -158,6 +161,6 @@
 <script src="../../js/core/place-names-zh.js"></script>
 <script src="../../js/layers/city-labels.js"></script>
 <script src="../../js/core/region-dossier.js?v=1"></script>
-<script src="topic.js?v=h4"></script>
+<script src="topic.js?v=h5"></script>
 </body>
 </html>
