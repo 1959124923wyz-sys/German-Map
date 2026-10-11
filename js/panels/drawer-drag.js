@@ -28,7 +28,8 @@
 
     function begin(event) {
       if (event.button != null && event.button !== 0) return;
-      if (event.target.closest('.state-close')) return;
+      if (window.matchMedia('(max-width:920px)').matches) return;
+      if (event.target.closest('button,select,input,a')) return;
       const host = hostRect();
       const box = drawer.getBoundingClientRect();
       if (!host) return;
@@ -64,6 +65,14 @@
     }
 
     function keepInside() {
+      // Desktop dragging writes inline left/top/right. Once stacked on mobile,
+      // CSS must own the drawer position, even after viewport rotation.
+      if (window.matchMedia('(max-width:920px)').matches) {
+        drawer.style.removeProperty('left');
+        drawer.style.removeProperty('right');
+        drawer.style.removeProperty('top');
+        return;
+      }
       const host = hostRect();
       if (!host) return;
       const box = drawer.getBoundingClientRect();

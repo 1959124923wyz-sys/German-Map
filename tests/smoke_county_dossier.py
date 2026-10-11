@@ -38,6 +38,30 @@ def verify(browser,mobile=False):
     # numbers, while preserving the complete county dossier on the right.
     assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
     assert page.locator("#stateCountyBrowse").is_visible()
+    assert page.locator("#stateLocate").is_visible()
+    page.evaluate("""() => {
+       const state=__CRIME_MAP__.getStateLayer().getLayers()
+         .find(l=>l.feature.properties.name==='Saarland');
+       window.__QA_STATE_CENTER__=state.getBounds().getCenter();
+       return true;
+    }""")
+    if mobile:
+        # Compact, scrollable overlay leaves room for the actual map.
+        drawer=page.locator("#stateDrawer").bounding_box()
+        map_box=page.locator("#map").bounding_box()
+        assert drawer and map_box
+        assert drawer["height"]<=188, drawer
+        assert drawer["width"]<=map_box["width"]-10
+        assert page.locator("#stateDrawerExpand").is_visible()
+        assert page.locator("#stateDrawerExpand").get_attribute("aria-expanded")=="false"
+        page.locator("#stateDrawerExpand").click()
+        expanded=page.locator("#stateDrawer").bounding_box()
+        assert expanded["height"]>drawer["height"]+50, (drawer,expanded)
+        assert page.locator("#stateDrawerExpand").get_attribute("aria-expanded")=="true"
+        page.locator("#stateDrawerExpand").click()
+        assert page.locator("#stateDrawerExpand").get_attribute("aria-expanded")=="false"
+    else:
+        assert page.locator("#stateDrawerExpand").is_hidden()
     state_targets=page.evaluate("""() => (__CRIME_MAP__.getStateLayer()
       ?.getLayers()||[]).map(l=>({name:l.feature?.properties?.name,
         interactive:l.options.interactive!==false}))""")
@@ -132,6 +156,13 @@ def verify(browser,mobile=False):
         # Force a deliberate user selection (not a no-op same-value select).
         page.locator("#stateJump").select_option("Berlin")
         page.locator("#stateJump").select_option("Saarland")
+        berlin_diagnostic=page.evaluate("""() => {
+          const m=__CRIME_MAP__.map,b=m.getBounds(),center=m.getCenter();
+          return {zoom:m.getZoom(),bounds:b.toBBoxString(),center:{lat:center.lat,lng:center.lng},
+          violence:!!__CRIME_MAP__.getBerlinLayer(),property:!!__CRIME_MAP__.getHeatLayer(),
+          canvas:document.querySelectorAll('.leaflet-berlin-pane canvas').length};
+        }""")
+        assert not berlin_diagnostic["violence"] and not berlin_diagnostic["property"] and berlin_diagnostic["canvas"]==0, berlin_diagnostic
         pointer=page.evaluate("""() => {
           const model=__CRIME_MAP__, map=model.map;
           const candidates=model.getCountyLayer().getLayers().filter(l=>
@@ -142,11 +173,18 @@ def verify(browser,mobile=False):
             center:[map.getCenter().lat,map.getCenter().lng],inside:0,within:0,samples:[]};
           for(const county of candidates){
             const b=county.getBounds();
-            for(let yi=1;yi<=19;yi++)for(let xi=1;xi<=19;xi++){
+            // Test interior points before boundary-adjacent grid cells:
+            // Leaflet Canvas click targets may be simplified at high zoom.
+            const order=[10,9,11,8,12,7,13,6,14,5,15,4,16,3,17,2,18,1,19];
+            for(const yi of order)for(const xi of order){
               const lat=b.getSouth()+(b.getNorth()-b.getSouth())*yi/20;
               const lng=b.getWest()+(b.getEast()-b.getWest())*xi/20;
               if(!inside(lng,lat,county.feature.geometry))continue;
               diag.inside++;
+              // Source geometry and Canvas' simplified hit path can differ
+              // near boundaries at larger zoom. Check the actual hit path.
+              const layerPoint=map.latLngToLayerPoint([lat,lng]);
+              if(!county._containsPoint(layerPoint))continue;
               const pt=map.latLngToContainerPoint([lat,lng]);
               const x=r.left+pt.x,y=r.top+pt.y;
               const node=document.elementFromPoint(x,y);
@@ -157,16 +195,34 @@ def verify(browser,mobile=False):
               if(pt.x<15||pt.x>r.width-20||pt.y<25||pt.y>r.height-50)continue;
               diag.within++;
               if(!node||node.closest('#stateDrawer,.legend,.leaflet-control'))continue;
-              return {x,y,id:String(county.feature.id),hit:node.tagName};
+              return {x,y,id:String(county.feature.id),hit:node.tagName,
+                hitPane:node.closest('.leaflet-pane')?.className||'none'};
             }
           }
           return {debug:diag};
         }""")
         assert pointer and "x" in pointer, pointer
         page.mouse.click(pointer["x"],pointer["y"])
-        assert page.evaluate("__CRIME_MAP__.getPinnedArea()?.ags")==pointer["id"],pointer
+        assert page.evaluate("__CRIME_MAP__.getPinnedArea()?.ags")==pointer["id"], {"target":pointer,"pinned":page.evaluate("__CRIME_MAP__.getPinnedArea()?.ags"),"zoom":page.evaluate("__CRIME_MAP__.map.getZoom()")}
         assert page.locator("#crimeCountyDossier").is_visible()
         assert page.locator("#stateDrawer").evaluate("(e)=>e.classList.contains('open')")
+    # A deliberate state locator may move the camera; a normal county click never does.
+    # Check actual screen visibility, accounting for maxBounds at the western edge.
+    assert page.evaluate("Boolean(window.__QA_STATE_CENTER__)")
+    page.locator("#stateLocate").click()
+    focus=page.evaluate("""() => {
+       const m=__CRIME_MAP__.map;
+       const at=m.latLngToContainerPoint(window.__QA_STATE_CENTER__);
+       const mr=m.getContainer().getBoundingClientRect();
+       const dr=document.querySelector('#stateDrawer').getBoundingClientRect();
+       const x=mr.left+at.x,y=mr.top+at.y;
+       return {x,y,zoom:m.getZoom(),map:{left:mr.left,top:mr.top,right:mr.right,bottom:mr.bottom},
+         blocked:x>=dr.left&&x<=dr.right&&y>=dr.top&&y<=dr.bottom};
+    }""")
+    assert focus["zoom"]<=8.01, focus
+    assert not focus["blocked"], focus
+    assert focus["map"]["left"]<=focus["x"]<=focus["map"]["right"], focus
+    assert focus["map"]["top"]<=focus["y"]<=focus["map"]["bottom"], focus
     assert page.evaluate("document.documentElement.scrollWidth<=innerWidth+4")
     assert not errors,errors
     print("PASS source-specific county archive 5+5 categories", "mobile" if mobile else "desktop",flush=True)
