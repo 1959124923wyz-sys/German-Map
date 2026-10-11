@@ -89,3 +89,33 @@
 .housing-greix-chart svg{display:block;width:100%;height:auto;min-height:160px}
 #greixSummary b{font-size:14px}
 #greixCity{font-family:inherit;cursor:pointer}
+
+/* Five independently sourced local archives: reveal only inside the chosen state. */
+.housing-state-archive{border-color:#466278;background:linear-gradient(145deg,#203544,#152835);overflow:hidden}
+.housing-state-archive[hidden]{display:none!important}
+.housing-state-archive>summary{font-size:11.5px;color:#e6f3fa;padding:12px;line-height:1.45}
+.housing-local-scope{margin:4px 12px 11px!important;color:#b4d0df!important;line-height:1.65}
+.housing-local-controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin:4px 12px 10px}
+.housing-local-controls label,.housing-local-search-label{display:grid;gap:4px;font-size:9.5px!important;color:#a8bfcc}
+.housing-local-controls select{width:100%;max-width:100%;min-width:0;padding:8px 6px;border-radius:6px;background:#142837;border:1px solid #476478;color:#e6f1f8;font-size:11px}
+.housing-local-search-label{margin:0 12px 5px}
+#housingLocalSearch{margin:0 12px 9px;width:calc(100% - 24px);box-sizing:border-box}
+.housing-local-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin:0 12px 10px}
+.housing-local-summary>div{background:#213747;border:1px solid #405a6b;border-radius:7px;padding:8px 6px;min-width:0}
+.housing-local-summary small{display:block;color:#a9c1cf;font-size:8.5px;line-height:1.4}
+.housing-local-summary b{display:block;color:#eff7fb;font-size:13px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;margin-top:4px}
+.housing-local-rows{padding:1px 10px;max-height:385px;overflow:auto;overscroll-behavior:contain}
+.housing-local-entry{background:#1a2d3b;border:1px solid #3a5365;border-radius:7px;padding:9px 10px;margin:5px 1px 8px;min-width:0}
+.housing-local-entry-head{display:flex;gap:8px;align-items:center;justify-content:space-between}
+.housing-local-entry-head strong{font-size:11px;color:#f0f6fa;overflow-wrap:anywhere;line-height:1.45}
+.housing-local-entry-head button{font-size:9px;cursor:pointer;white-space:nowrap;border:1px solid #527c94;border-radius:5px;background:#26465a;color:#e0f2fa;padding:5px 8px}
+.housing-local-entry-head button:focus-visible,.housing-local-controls select:focus-visible,#housingLocalSearch:focus-visible{outline:2px solid #a5d6ed;outline-offset:2px}
+.housing-local-entry-head small{font-size:9px;color:#adc4cf}
+.housing-local-entry-stat{display:flex;flex-wrap:wrap;align-items:baseline;gap:5px 10px;margin-top:5px}
+.housing-local-entry-stat b{font-size:14px;font-variant-numeric:tabular-nums;color:#d1ede4}
+.housing-local-entry-stat small{font-size:9px;color:#aac1cd}
+.housing-local-bar{height:5px;border-radius:5px;overflow:hidden;background:#304757;margin-top:8px}
+.housing-local-bar i{display:block;height:100%;min-width:0;background:linear-gradient(90deg,#5eaaac,#85c9b9);border-radius:5px}
+.housing-local-caveat{padding:2px 12px;font-size:9.5px;line-height:1.7;color:#b2c4cf}
+#housingLocalSource{display:block;margin:0 12px 10px;font-size:10px;color:#a5d6f1}
+@media(max-width:560px){.housing-local-summary b{font-size:12px}.housing-local-entry-head strong{font-size:10.5px}}
