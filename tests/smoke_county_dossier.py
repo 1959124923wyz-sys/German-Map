@@ -34,6 +34,10 @@ def verify(browser,mobile=False):
       return true;
     }""")
     assert page.locator("#crimeCountyDossier").is_visible()
+    assert page.locator("#crimeCountyExpand").get_attribute("open") is None
+    assert page.locator("#crimeCountyExpand > summary").is_visible()
+    page.locator("#crimeCountyExpand > summary").click()
+    assert page.locator("#crimeCountyExpand").get_attribute("open") is not None
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.selected()")== "10041|violence"
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.active()")=="violence"
     assert page.locator("#crimeCountyViolence .crime-county-metric").count()==5
@@ -58,6 +62,7 @@ def verify(browser,mobile=False):
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.renders()")==before,"hover should not reset tabs"
     page.locator("#viewGermany").click()
     assert page.locator("#crimeCountyDossier").is_hidden()
+    assert page.locator("#crimeCountyExpand").get_attribute("open") is None
     page.locator("#modeProperty").click()
     page.wait_for_function("window.__CRIME_MAP__.getMode()==='property'")
     page.evaluate("""() => {
@@ -67,6 +72,8 @@ def verify(browser,mobile=False):
       return true;
     }""")
     assert page.locator("#crimeCountyDossier").is_visible()
+    assert page.locator("#crimeCountyExpand").get_attribute("open") is None
+    page.locator("#crimeCountyExpand > summary").click()
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.active()")=="property"
     assert page.evaluate("window.__CRIME_COUNTY_DOSSIER__.selected()")=="10041|property"
     assert "2,919 /10万人" in page.locator("[data-metric='property_total']").inner_text()
