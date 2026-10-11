@@ -559,8 +559,7 @@ try{
  setupInfrastructureState();
  bindControls();
  fillLegend();placeLegend();showDetail();
- // The extra sixth topic otherwise appears off-screen in the mobile nav.
- const nav=$('.toplinks');if(nav)nav.scrollLeft=nav.scrollWidth;
+ // Shared navigation now reveals the active topic consistently.
  buildNetwork();
  window.__RAILWAY_OVERVIEW__=Object.freeze({
   getService:()=>view.service,getMetric:()=>view.metric,getMinimum:()=>view.minimum,
