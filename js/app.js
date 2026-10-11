@@ -270,7 +270,7 @@
 
   statePanel=window.CrimeStatePanel.create({
     elements:{
-      stateDrawer:el.stateDrawer,stateName:el.stateName,stateMetric:el.stateMetric,
+      stateDrawer:el.stateDrawer,stateName:el.stateName,stateMetric:el.stateMetric,stateJump:el.stateJump,
       stateRate:el.stateRate,stateCases:el.stateCases,stateRank:el.stateRank,stateRecent:el.stateRecent,
       stateTopCounties:el.stateTopCounties,stateNews:el.stateNews,stateNewsCount:el.stateNewsCount
     },
