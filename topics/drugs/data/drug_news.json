@@ -1,13 +1,13 @@
 {
   "meta": {
-    "as_of": "2026-10-10",
+    "as_of": "2026-10-11",
     "window_days": 90,
     "source": "Presseportal original police/prosecutor press releases, plus attributed national government health updates",
     "source_url": "https://www.presseportal.de/blaulicht/st/Drogenhandel",
-    "count": 128,
-    "with_coordinates": 118,
+    "count": 126,
+    "with_coordinates": 116,
     "counts": {
-      "trade": 87,
+      "trade": 85,
       "seizure": 37,
       "health": 1,
       "death": 2,
@@ -1893,36 +1893,6 @@
       "lon": 9.189515,
       "precision": "city-approx",
       "state": "Baden-Württemberg"
-    },
-    {
-      "id": "police-3ff89fb00a1da270",
-      "publication_date": "2026-07-12",
-      "category": "trade",
-      "title": "POL-F: 260712- 0887 Frankfurt- Innenstadt: Dealer festgenommen",
-      "summary": "Frankfurt (ots) - (ma) Am Samstagabend (11. Juli 2026) kontrollierte die Polizei einen mutmaßlichen Drogendealer und stellte mehrere Beweismittel sicher. Gegen 19:30 Uhr kontrollierte eine aufmerksame Streife in der Klingerstraße einen Mann. Im Rahmen der ansc",
-      "city": "Frankfurt am Main",
-      "source_agency": "警方公开通报（Presseportal转发）",
-      "source_url": "https://www.presseportal.de/blaulicht/pm/4970/6312779",
-      "kind": "police_release",
-      "lat": 50.1109,
-      "lon": 8.6821,
-      "precision": "city-centre",
-      "state": "Hessen"
-    },
-    {
-      "id": "police-d6df90c9c98208b6",
-      "publication_date": "2026-07-12",
-      "category": "trade",
-      "title": "LPI-EF: Parkverstoß führt zu Festnahme",
-      "summary": "Erfurt (ots) - Erfurt - In der Nacht von Freitag auf Samstag haben Einsatzkräfte der Erfurter Polizei im Norden der Stadt einen mutmaßlichen Drogendealer vorläufig festgenommen. Der Mann befindet sich mittlerweile in einer Justizvollzugsanstalt. Polizeibeamten",
-      "city": "Erfurt",
-      "source_agency": "警方公开通报（Presseportal转发）",
-      "source_url": "https://www.presseportal.de/blaulicht/pm/126719/6312911",
-      "kind": "police_release",
-      "lat": 50.9848,
-      "lon": 11.0299,
-      "precision": "city-centre",
-      "state": "Thüringen"
     },
     {
       "id": "national-deaths-2025-2026",
