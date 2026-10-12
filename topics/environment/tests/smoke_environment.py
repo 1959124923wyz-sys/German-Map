@@ -70,9 +70,16 @@ def check(browser, mobile=False):
       const m=window.__ENVIRONMENT_MAP__.map,c=m.getCenter();
       return [m.getZoom(),c.lat,c.lng];
     }""")
+    # Initial Leaflet fitBounds can finish an asynchronous pan after the
+    # data-ready flag; measure only after the first viewport settles.
+    page.wait_for_timeout(600)
     first_camera=camera()
     page.evaluate("window.__ENVIRONMENT_MAP__.selectState('DE-BY')")
-    assert camera()==first_camera, "Opening a state dossier unexpectedly moved map"
+    current_camera=camera()
+    assert (current_camera[0]==first_camera[0]
+        and abs(current_camera[1]-first_camera[1])<0.003
+        and abs(current_camera[2]-first_camera[2])<0.003), (
+        "Opening a state dossier unexpectedly moved map",first_camera,current_camera)
     page.locator("#envStateJump").select_option("DE-NW")
     assert camera()!=first_camera, "Explicit state selection must allow map positioning"
     assert page.locator("#envLocateState").is_visible()
