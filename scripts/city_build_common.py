@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 import tempfile
 from pathlib import Path
 from typing import Any
@@ -18,9 +19,26 @@ HEADERS = {
     "User-Agent": "GermanyCrimeMonitor/1.0 (+https://github.com/1959124923wyz-sys/German-Map)"
 }
 
+# EX_TEMPFAIL (sysexits.h): the city builder cannot currently reach an official
+# source. The orchestration layer may preserve an independently validated,
+# previously published snapshot. Parse/schema errors must NEVER use this exit.
+TEMPORARY_SOURCE_EXIT = 75
+TEMPORARY_HTTP_STATUSES = frozenset((429, 500, 502, 503, 504))
+
 
 def download_bytes(url: str, params: dict | None = None, timeout: int = 120) -> bytes:
-    response = requests.get(url, params=params, headers=HEADERS, timeout=timeout)
+    try:
+        response = requests.get(url, params=params, headers=HEADERS, timeout=timeout)
+    except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as exc:
+        print(f"[official-source] temporary transport failure: {url}: {type(exc).__name__}", file=sys.stderr)
+        raise SystemExit(TEMPORARY_SOURCE_EXIT) from exc
+
+    if response.status_code in TEMPORARY_HTTP_STATUSES:
+        print(f"[official-source] temporary HTTP {response.status_code}: {url}", file=sys.stderr)
+        raise SystemExit(TEMPORARY_SOURCE_EXIT)
+
+    # Unknown statuses (e.g. 400/401/403/404) are NOT classified as transient:
+    # a changed source URL or permission failure must be inspected, not hidden.
     response.raise_for_status()
     return response.content
 
