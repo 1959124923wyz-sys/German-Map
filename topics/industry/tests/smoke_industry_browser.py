@@ -33,6 +33,18 @@ def verify(browser,mobile=False):
     }""")
 
     assert page.locator("#industryNationalList .industry-row").count()==231
+    # Opening a documented major event highlights one mapped factory.
+    # Switching regions must immediately clear the old marker emphasis.
+    first_marker_id=page.evaluate("GermanIndustryQA.getFirstMarkerId()")
+    assert first_marker_id
+    page.locator("#industryNationalArchive > summary").click()
+    page.locator(f'#industryNationalList .industry-row[data-id="{first_marker_id}"]').click()
+    assert page.evaluate("GermanIndustryQA.highlightedMarkers()")==1
+    page.locator("#industryStateJump").select_option("DE-NW")
+    assert page.evaluate("GermanIndustryQA.highlightedMarkers()")==0, (
+        "A marker remains selected after changing the state dossier")
+    page.locator("#viewGermany").click()
+    assert page.evaluate("GermanIndustryQA.highlightedMarkers()")==0
     assert page.locator("#methodNote").count()==0, "Lengthy cautions should stay in collapsed research details"
     assert "底色只表示" in page.locator("#researchDetails .industry-method").text_content()
     assert page.locator(".modebar a.modebtn").count()==10

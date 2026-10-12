@@ -206,7 +206,7 @@ function selectEvent(e){
  app.selectedCounty=county?stateKey(county):null;
  renderSummary();
  if(app.selectedState)app.dossier.choose('cases');
- app.eventMarkers.forEach((mk,id)=>mk.setStyle(markerStyle(app.events.find(r=>r.id===id),id===e.id)));
+ // Marker emphasis follows the dossier selection in renderSummary().
  // An event record is evidence, not a map-pan instruction.
 }
 function openSource(e){
@@ -323,6 +323,9 @@ function stateOverview(rows){
   '<div><small>待实施／待确认</small><b>'+rows.filter(e=>e.isPlan).length+'条</b></div>';
 }
 function renderSummary(){
+ // Region changes clear selectedEvent; marker emphasis must clear as well.
+ app.eventMarkers.forEach((mk,id)=>mk.setStyle(
+  markerStyle(app.events.find(e=>e.id===id),id===app.selectedEvent)));
  const records=activeRecords();
  let area='德国全国',official=null;
  if(app.selectedCounty){
@@ -375,7 +378,6 @@ function reset(){
  app.map.fitBounds(POLYGON_BOUNDS,{animate:false});
  syncStateOverlay();
  renderSummary();
- app.eventMarkers.forEach((mk,id)=>mk.setStyle(markerStyle(app.events.find(x=>x.id===id),false)));
 }
 async function start(){
  const sources=['data/bkg_vg250_counties_2025_candidate.geojson','../../data/germany-states.geojson',
@@ -466,6 +468,8 @@ async function start(){
  window.GermanIndustryQA=Object.freeze({records:app.events.length,states:states.features.length,
   counties:counties.features.length,modernCounties:new Set(counties.features.map(stateKey)).size,major:app.events.filter(e=>e.isMajor).length,
   mappedCounties:app.byCounty.size,pointMarkers:app.eventMarkers.size,
+  getFirstMarkerId:()=>app.eventMarkers.keys().next().value,
+  highlightedMarkers:()=>[...app.eventMarkers.values()].filter(m=>m.options?.fillColor==='#82262c').length,
   selectedState:()=>app.selectedState,selectedCounty:()=>app.selectedCounty,
   getMap:()=>app.map,getCounties:()=>app.counties,getStateOverlay:()=>app.stateOverlay,
   dossier:()=>!$('industryDossier').hidden,
