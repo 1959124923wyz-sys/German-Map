@@ -171,7 +171,9 @@
   }
   function selectEvent(id) {
     const e=archive.events.find(v=>v.id===id);if(!e)return;
-    state.selectedState=e.state_iso;state.selectedEvent=id;state.showEvents=true;$('showEvents').checked=true;
+    // Opening a project record never overrides the explicit event-layer
+    // visibility preference. The checkbox alone controls map markers.
+    state.selectedState=e.state_iso;state.selectedEvent=id;
     $('infraStateJump').value=e.state_iso;
     $('filterWrap').hidden=false;
     dossier.show(true);
