@@ -142,15 +142,22 @@ function selectState(iso){
  $('map-guide').textContent=app.stateByIso.get(iso).name_de+' · 点击其他联邦州可以切换';
 }
 function reset(){clearCounties();app.selected=null;refreshAll();if(map)map.fitBounds(BOUNDS,{padding:[18,18],animate:false});$('map-guide').textContent='点击联邦州查看人数、趋势与已核实的县级资料。';}
+function locateSelectedState(){
+ if(!map||!app.selected)return;
+ const feature=chosenStateFeature(app.selected);
+ if(feature)map.fitBounds(L.geoJSON(feature).getBounds(),{padding:[35,35],maxZoom:8,animate:false});
+}
 function selectCounty(ags){
  const c=app.countyByAgs.get(ags);if(!c||c.state_iso!==app.selected||!isCountyAvailable(app.selected))return;
  app.countySelected=ags;$('county-name').textContent=window.GermanPlaceNames?.byAGS(c.ags,c.name_de)||c.name_de;$('county-value').textContent=format(c.value);$('county-detail').hidden=false;
  renderState();$('county-detail').hidden=false;
- if(app.countyLayer){app.countyLayer.eachLayer(l=>{const id=String(l.feature?.id??l.feature?.properties?.AGS??'').padStart(5,'0');if(id===ags){l.setStyle(countyStyle(l.feature));map.fitBounds(l.getBounds(),{padding:[35,35],maxZoom:10,animate:false});}else l.setStyle(countyStyle(l.feature));});}
+ // Reading a county record only changes selection styling and data. Do not
+ // move the camera: even a list click must not unexpectedly hide another area.
+ if(app.countyLayer)app.countyLayer.eachLayer(l=>l.setStyle(countyStyle(l.feature)));
 }
 async function showCounties(){
  if(!isCountyAvailable(app.selected))return;
- if(app.mode==='counties'){clearCounties();renderState();const f=chosenStateFeature(app.selected);if(f)map.fitBounds(L.geoJSON(f).getBounds(),{padding:[35,35],maxZoom:7,animate:false});return;}
+ if(app.mode==='counties'){clearCounties();renderState();return;}
  if(app.countyBusy)return;app.countyBusy=true;
  $('show-counties').disabled=true;$('show-counties').textContent='正在加载县界…';
  try{
@@ -174,7 +181,8 @@ async function showCounties(){
   }).addTo(map);
   // State polygons must not intercept clicks on the county layer.
   if(app.stateLayer)app.stateLayer.eachLayer(l=>{l.options.interactive=false; if(l._path)l._path.style.pointerEvents='none';});
-  map.fitBounds(app.countyLayer.getBounds(),{padding:[38,38],maxZoom:9,animate:false});
+  // Switching the county polygon layer is not a map-location command.
+  // The separate explicit '定位本州' button handles intentional camera moves.
   renderState();$('map-status').textContent='官方县级行政边界 · '+found.length+'个县市';
  }catch(e){console.error(e);$('map-status').textContent='县级边界未匹配：'+e.message;clearCounties();}
  finally{app.countyBusy=false;$('show-counties').disabled=false;renderState();}
@@ -200,6 +208,7 @@ async function start(){
  $('population-year').addEventListener('change',e=>setYear(e.target.value));
  $('reset-map').addEventListener('click',reset);$('back-country').addEventListener('click',reset);
  $('show-counties').addEventListener('click',showCounties);
+ $('locate-state').addEventListener('click',locateSelectedState);
  refreshAll();
  try{
   const geo=await loadJson(GEO_STATES);

@@ -72,13 +72,26 @@ def check(browser, mobile=False):
     page.locator("#back-country").click()
     page.locator("#state-list").get_by_text("石勒苏益格－荷尔斯泰因州").click()
     assert page.locator("#county-list button").count()==15
+    # Reading records and toggling geometry may not unexpectedly move the map.
+    camera=lambda:page.evaluate("""() => {
+        const m=window.__IMMIGRATION_MAP_V13__,c=m.getCenter();
+        return [m.getZoom(),c.lat,c.lng];
+    }""")
+    original_camera=camera()
     page.locator("#show-counties").click()
     page.wait_for_function("()=>window.GermanMapTopics.immigration.getViewState().countyMode==='counties'",timeout=45000)
+    assert camera()==original_camera,"County mode changed map position without a locate command"
     assert page.evaluate("()=>window.__IMMIGRATION_MAP_V13__.getPane('immigrationCountyPane').querySelectorAll('path').length")>=15
     page.locator("#county-list").get_by_text("弗伦斯堡", exact=True).click()
     assert page.locator("#county-value").inner_text()=="17,910"
+    assert camera()==original_camera,"Clicking a county record forced map navigation"
     page.locator("#show-counties").click()
     assert page.evaluate("()=>window.GermanMapTopics.immigration.getViewState().countyMode")=="states"
+    assert camera()==original_camera,"Returning to state layer forced map navigation"
+    # Explicit user-initiated location must still work.
+    assert page.locator("#locate-state").is_visible()
+    page.locator("#locate-state").click()
+    assert camera()!=original_camera,"State locate button failed to move the map"
     assert page.evaluate("()=>getComputedStyle(window.__IMMIGRATION_MAP_V13__.getPane('immigrationStatePane').querySelector('path')).pointerEvents")!="none"
     page.locator("#back-country").click()
     page.locator("#state-list").get_by_text("巴伐利亚州").click()
