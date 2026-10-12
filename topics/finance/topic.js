@@ -524,7 +524,9 @@
  }
  function updateFilters(){
   view.category=$('category').value;view.status=$('status').value;
-  view.county=null;view.limit=8;view.selected=null;
+  // The category/status controls refine the chosen county's event list.
+  // They must not silently return the reader to a nationwide search.
+  view.limit=8;view.selected=null;
   renderList();renderMarkers();
  }
  function setupUI(){
@@ -625,6 +627,7 @@
    hasCountyDetail:()=>map.hasLayer(countiesLayer),
    stateLayer:()=>statesLayer,
    eventMarkers:()=>bubblesLayer.getLayers(),
+   getEventCounty:()=>view.county,
    selectedCounties:()=>countiesLayer?.getLayers().map(l=>l.feature?.id)||[],
    countyRenderer:()=>countiesLayer?.getLayers()[0]?.getElement()?.tagName||null,
    historicalCore:id=>countyDebtRows.get(id)?.value??null,
