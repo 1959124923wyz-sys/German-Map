@@ -229,7 +229,7 @@
     map.createPane('infraStatePane').style.zIndex=340;
     map.createPane('infraEventPane').style.zIndex=530;
     markerGroup=L.layerGroup().addTo(map);
-    $('showEvents').addEventListener('change',e=>{state.showEvents=e.target.checked;$('filterWrap').hidden=!state.showEvents;if(state.selectedState&&state.showEvents)dossier.choose('projects');renderEvents();});
+    $('showEvents').addEventListener('change',e=>{state.showEvents=e.target.checked;$('filterWrap').hidden=!state.showEvents;renderEvents();});
     $('eventCategory').addEventListener('change',e=>{state.category=e.target.value;state.selectedEvent=null;renderEventDetail();renderEvents();});
     $('resetView').addEventListener('click',reset);
     $('infraStateJump').addEventListener('change',e=>e.target.value?selectState(e.target.value,{locate:true}):reset());
