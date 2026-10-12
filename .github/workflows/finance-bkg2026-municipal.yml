@@ -1,0 +1,59 @@
+name: Finance 08 - BKG 2026 Municipality AGS (Research Only)
+on:
+  push:
+    branches: [research/finance-regional-expansion-20261010]
+    paths:
+      - 'research/finance/regional-expansion/build_bkg2026_municipality_ags.py'
+      - '.github/workflows/finance-bkg2026-municipal.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: finance08-bkg2026-municipal
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit official BKG municipality AGS and 2024 fiscal reporting units
+        id: audit
+        continue-on-error: true
+        run: |
+          set +e
+          python research/finance/regional-expansion/build_bkg2026_municipality_ags.py > /tmp/finance08_bkg_muni.log 2>&1
+          result=$?
+          cat /tmp/finance08_bkg_muni.log
+          mkdir -p research/finance/regional-expansion/derived/bkg2026
+          EXIT_CODE=$result python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path('research/finance/regional-expansion/derived/bkg2026/municipality_last_run_status.json')
+          rc=int(os.environ['EXIT_CODE'])
+          log=Path('/tmp/finance08_bkg_muni.log').read_text(encoding='utf-8',errors='replace')
+          p.write_text(json.dumps({'exit_code':rc,'verified':rc==0,
+            'status':'2026_municipal_ags_compared' if rc==0 else 'failed_no_map',
+            'notes':log[-3300:]},indent=2)+'\n',encoding='utf-8')
+          PY
+          exit $result
+      - name: Commit municipality AGS and mismatch audit, research only
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/finance/regional-expansion/derived/bkg2026/
+          if ! git diff --cached --quiet; then
+            git commit -m "data(finance): audit official 2026 municipality polygons against 2024/25 source codes"
+            git pull --rebase origin research/finance-regional-expansion-20261010
+            git push origin HEAD:research/finance-regional-expansion-20261010
+          fi
+      - name: Require official municipality verification
+        if: always()
+        run: test "${{ steps.audit.outcome }}" = success

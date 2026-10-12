@@ -1,0 +1,28 @@
+{
+  "build_version": "2026-10-10-r11",
+  "district_candidates_2025_total": 58,
+  "district_candidates_numeric_percap": 42,
+  "district_candidates_nonnumeric": 16,
+  "district_candidates_by_state": {
+    "DE-TH": 22,
+    "DE-SH": 15,
+    "DE-RP": 21
+  },
+  "ungocoded_local_debt_rows": 32,
+  "bavaria_planning_regions": 18,
+  "rp_city_debt_balance_join": 12,
+  "rp_areas_2025H1_2026H1_comparison": 36,
+  "major_city_metrics": 20,
+  "major_city_unique_entities": 8,
+  "independent_city_entities": 7,
+  "county_region_entities": 1,
+  "official_bulk_source_registry": 11,
+  "numeric_records_eligible_for_nationwide_choropleth": 0,
+  "notes": [
+    "No national county harmonization. Counts are dataset records, not independent cities or full coverage.",
+    "AGS roster is a 2025 derived QA index, NOT certified current geometry.",
+    "The 32 un-geocoded records are NOT plotted.",
+    "Bavarian planning region figures are NOT county aggregates.",
+    "The nationwide 2024 integrated XLSX remains un-ingested."
+  ]
+}

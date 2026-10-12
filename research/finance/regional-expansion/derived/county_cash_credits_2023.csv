@@ -1,0 +1,401 @@
+ags5,name_de,state_code,year,cash_credits_eur_per_capita,value_status,geography_reference,source_id
+01001,"Flensburg, Stadt",01,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+01002,"Kiel, Landeshauptstadt",01,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+01003,"Lübeck, Hansestadt",01,2023,293,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+01004,"Neumünster, Stadt",01,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+01051,Dithmarschen,01,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+01053,Herzogtum Lauenburg,01,2023,22,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+01054,Nordfriesland,01,2023,28,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+01055,Ostholstein,01,2023,12,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+01056,Pinneberg,01,2023,175,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+01057,Plön,01,2023,79,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+01058,Rendsburg-Eckernförde,01,2023,10,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+01059,Schleswig-Flensburg,01,2023,17,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+01060,Segeberg,01,2023,12,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+01061,Steinburg,01,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+01062,Stormarn,01,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+02000,"Hamburg, Freie und Hansestadt",02,2023,,not_applicable_city_state,KRS1222,DE_ATLAS_HA26_KRS_2023
+03101,"Braunschweig, Stadt",03,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+03102,"Salzgitter, Stadt",03,2023,1427,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03103,"Wolfsburg, Stadt",03,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+03151,Gifhorn,03,2023,36,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03153,Goslar,03,2023,81,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03154,Helmstedt,03,2023,746,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03155,Northeim,03,2023,8,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03157,Peine,03,2023,75,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03158,Wolfenbüttel,03,2023,153,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03159,Göttingen,03,2023,98,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03241,Region Hannover,03,2023,92,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03251,Diepholz,03,2023,10,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03252,Hameln-Pyrmont,03,2023,239,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03254,Hildesheim,03,2023,94,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03255,Holzminden,03,2023,714,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03256,Nienburg (Weser),03,2023,42,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03257,Schaumburg,03,2023,166,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03351,Celle,03,2023,349,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03352,Cuxhaven,03,2023,366,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03353,Harburg,03,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+03354,Lüchow-Dannenberg,03,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+03355,Lüneburg,03,2023,458,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03356,Osterholz,03,2023,281,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03357,Rotenburg (Wümme),03,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+03358,Heidekreis,03,2023,29,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03359,Stade,03,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+03360,Uelzen,03,2023,1,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03361,Verden,03,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+03401,"Delmenhorst, Stadt",03,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+03402,"Emden, Stadt",03,2023,252,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03403,"Oldenburg (Oldenburg), Stadt",03,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+03404,"Osnabrück, Stadt",03,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+03405,"Wilhelmshaven, Stadt",03,2023,329,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03451,Ammerland,03,2023,13,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03452,Aurich,03,2023,289,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03453,Cloppenburg,03,2023,42,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03454,Emsland,03,2023,36,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03455,Friesland,03,2023,70,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03456,Grafschaft Bentheim,03,2023,7,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03457,Leer,03,2023,77,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03458,Oldenburg,03,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+03459,Osnabrück,03,2023,75,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03460,Vechta,03,2023,3,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03461,Wesermarsch,03,2023,166,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+03462,Wittmund,03,2023,55,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+04011,"Bremen, Stadt",04,2023,,not_applicable_city_state,KRS1222,DE_ATLAS_HA26_KRS_2023
+04012,"Bremerhaven, Stadt",04,2023,,not_applicable_city_state,KRS1222,DE_ATLAS_HA26_KRS_2023
+05111,"Düsseldorf, Stadt",05,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+05112,"Duisburg, Stadt",05,2023,1496,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05113,"Essen, Stadt",05,2023,1613,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05114,"Krefeld, Stadt",05,2023,1233,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05116,"Mönchengladbach, Stadt",05,2023,1660,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05117,"Mülheim an der Ruhr, Stadt",05,2023,5176,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05119,"Oberhausen, Stadt",05,2023,7217,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05120,"Remscheid, Stadt",05,2023,3774,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05122,"Solingen, Klingenstadt",05,2023,2484,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05124,"Wuppertal, Stadt",05,2023,2198,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05154,Kleve,05,2023,77,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05158,Mettmann,05,2023,960,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05162,Rhein-Kreis Neuss,05,2023,616,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05166,Viersen,05,2023,183,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05170,Wesel,05,2023,885,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05314,"Bonn, Stadt",05,2023,1997,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05315,"Köln, Stadt",05,2023,545,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05316,"Leverkusen, Stadt",05,2023,2448,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05334,Städteregion Aachen,05,2023,1027,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05358,Düren,05,2023,1132,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05362,Rhein-Erft-Kreis,05,2023,434,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05366,Euskirchen,05,2023,215,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05370,Heinsberg,05,2023,84,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05374,Oberbergischer Kreis,05,2023,1268,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05378,Rheinisch-Bergischer Kreis,05,2023,362,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05382,Rhein-Sieg-Kreis,05,2023,846,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05512,"Bottrop, Stadt",05,2023,1235,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05513,"Gelsenkirchen, Stadt",05,2023,1526,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05515,"Münster, Stadt",05,2023,155,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05554,Borken,05,2023,18,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05558,Coesfeld,05,2023,51,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05562,Recklinghausen,05,2023,1862,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05566,Steinfurt,05,2023,105,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05570,Warendorf,05,2023,72,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05711,"Bielefeld, Stadt",05,2023,173,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05754,Gütersloh,05,2023,20,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05758,Herford,05,2023,390,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05762,Höxter,05,2023,327,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05766,Lippe,05,2023,292,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05770,Minden-Lübbecke,05,2023,34,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05774,Paderborn,05,2023,138,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05911,"Bochum, Stadt",05,2023,825,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05913,"Dortmund, Stadt",05,2023,1717,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05914,"Hagen, Stadt der FernUniversität",05,2023,3860,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05915,"Hamm, Stadt",05,2023,442,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05916,"Herne, Stadt",05,2023,2231,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05954,Ennepe-Ruhr-Kreis,05,2023,1681,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05958,Hochsauerlandkreis,05,2023,480,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05962,Märkischer Kreis,05,2023,925,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05966,Olpe,05,2023,23,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05970,Siegen-Wittgenstein,05,2023,906,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05974,Soest,05,2023,241,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+05978,Unna,05,2023,1062,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06411,"Darmstadt, Wissenschaftsstadt",06,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+06412,"Frankfurt am Main, Stadt",06,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+06413,"Offenbach am Main, Stadt",06,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+06414,"Wiesbaden, Landeshauptstadt",06,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+06431,Bergstraße,06,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+06432,Darmstadt-Dieburg,06,2023,1,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06433,Groß-Gerau,06,2023,46,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06434,Hochtaunuskreis,06,2023,23,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06435,Main-Kinzig-Kreis,06,2023,3,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06436,Main-Taunus-Kreis,06,2023,13,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06437,Odenwaldkreis,06,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+06438,Offenbach,06,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+06439,Rheingau-Taunus-Kreis,06,2023,2,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06440,Wetteraukreis,06,2023,10,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06531,Gießen,06,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+06532,Lahn-Dill-Kreis,06,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+06533,Limburg-Weilburg,06,2023,11,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06534,Marburg-Biedenkopf,06,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+06535,Vogelsbergkreis,06,2023,5,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06611,"Kassel, documenta-Stadt",06,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+06631,Fulda,06,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+06632,Hersfeld-Rotenburg,06,2023,2,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06633,Kassel,06,2023,15,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06634,Schwalm-Eder-Kreis,06,2023,1,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06635,Waldeck-Frankenberg,06,2023,1,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+06636,Werra-Meißner-Kreis,06,2023,15,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07111,"Koblenz, kreisfreie Stadt",07,2023,353,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07131,Ahrweiler,07,2023,405,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07132,Altenkirchen (Westerwald),07,2023,422,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07133,Bad Kreuznach,07,2023,833,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07134,Birkenfeld,07,2023,1729,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07135,Cochem-Zell,07,2023,304,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07137,Mayen-Koblenz,07,2023,584,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07138,Neuwied,07,2023,660,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07140,Rhein-Hunsrück-Kreis,07,2023,28,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07141,Rhein-Lahn-Kreis,07,2023,323,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07143,Westerwaldkreis,07,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+07211,"Trier, kreisfreie Stadt",07,2023,3678,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07231,Bernkastel-Wittlich,07,2023,159,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07232,Eifelkreis Bitburg-Prüm,07,2023,574,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07233,Vulkaneifel,07,2023,453,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07235,Trier-Saarburg,07,2023,299,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07311,"Frankenthal (Pfalz), kreisfreie Stadt",07,2023,4038,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07312,"Kaiserslautern, kreisfreie Stadt",07,2023,5262,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07313,"Landau in der Pfalz, kreisfreie Stadt",07,2023,234,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07314,"Ludwigshafen am Rhein, kreisfreie Stadt",07,2023,3028,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07315,"Mainz, kreisfreie Stadt",07,2023,670,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07316,"Neustadt an der Weinstraße, kreisfreie Stadt",07,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+07317,"Pirmasens, kreisfreie Stadt",07,2023,8578,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07318,"Speyer, kreisfreie Stadt",07,2023,1117,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07319,"Worms, kreisfreie Stadt",07,2023,3009,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07320,"Zweibrücken, kreisfreie Stadt",07,2023,5097,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07331,Alzey-Worms,07,2023,415,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07332,Bad Dürkheim,07,2023,1021,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07333,Donnersbergkreis,07,2023,2438,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07334,Germersheim,07,2023,565,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07335,Kaiserslautern,07,2023,2465,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07336,Kusel,07,2023,4176,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07337,Südliche Weinstraße,07,2023,129,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07338,Rhein-Pfalz-Kreis,07,2023,32,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07339,Mainz-Bingen,07,2023,52,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+07340,Südwestpfalz,07,2023,137,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08111,"Stuttgart, Stadtkreis",08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08115,Böblingen,08,2023,5,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08116,Esslingen,08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08117,Göppingen,08,2023,87,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08118,Ludwigsburg,08,2023,12,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08119,Rems-Murr-Kreis,08,2023,20,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08121,"Heilbronn, Stadtkreis",08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08125,Heilbronn,08,2023,5,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08126,Hohenlohekreis,08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08127,Schwäbisch Hall,08,2023,33,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08128,Main-Tauber-Kreis,08,2023,1,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08135,Heidenheim,08,2023,6,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08136,Ostalbkreis,08,2023,376,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08211,"Baden-Baden, Stadtkreis",08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08212,"Karlsruhe, Stadtkreis",08,2023,201,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08215,Karlsruhe,08,2023,16,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08216,Rastatt,08,2023,3,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08221,"Heidelberg, Stadtkreis",08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08222,"Mannheim, Stadtkreis",08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08225,Neckar-Odenwald-Kreis,08,2023,7,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08226,Rhein-Neckar-Kreis,08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08231,"Pforzheim, Stadtkreis",08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08235,Calw,08,2023,71,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08236,Enzkreis,08,2023,15,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08237,Freudenstadt,08,2023,7,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08311,"Freiburg im Breisgau, Stadtkreis",08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08315,Breisgau-Hochschwarzwald,08,2023,15,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08316,Emmendingen,08,2023,22,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08317,Ortenaukreis,08,2023,7,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08325,Rottweil,08,2023,11,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08326,Schwarzwald-Baar-Kreis,08,2023,12,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08327,Tuttlingen,08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08335,Konstanz,08,2023,3,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08336,Lörrach,08,2023,24,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08337,Waldshut,08,2023,25,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08415,Reutlingen,08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08416,Tübingen,08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08417,Zollernalbkreis,08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08421,"Ulm, Stadtkreis",08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08425,Alb-Donau-Kreis,08,2023,5,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08426,Biberach,08,2023,1,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08435,Bodenseekreis,08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+08436,Ravensburg,08,2023,172,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+08437,Sigmaringen,08,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09161,Ingolstadt,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09162,"München, Landeshauptstadt",09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09163,Rosenheim,09,2023,109,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09171,Altötting,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09172,Berchtesgadener Land,09,2023,6,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09173,Bad Tölz-Wolfratshausen,09,2023,12,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09174,Dachau,09,2023,47,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09175,Ebersberg,09,2023,167,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09176,Eichstätt,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09177,Erding,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09178,Freising,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09179,Fürstenfeldbruck,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09180,Garmisch-Partenkirchen,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09181,Landsberg am Lech,09,2023,2,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09182,Miesbach,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09183,Mühldorf a.Inn,09,2023,3,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09184,München,09,2023,227,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09185,Neuburg-Schrobenhausen,09,2023,3,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09186,Pfaffenhofen a.d.Ilm,09,2023,44,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09187,Rosenheim,09,2023,10,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09188,Starnberg,09,2023,83,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09189,Traunstein,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09190,Weilheim-Schongau,09,2023,65,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09261,Landshut,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09262,Passau,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09263,Straubing,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09271,Deggendorf,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09272,Freyung-Grafenau,09,2023,169,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09273,Kelheim,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09274,Landshut,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09275,Passau,09,2023,9,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09276,Regen,09,2023,21,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09277,Rottal-Inn,09,2023,36,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09278,Straubing-Bogen,09,2023,1,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09279,Dingolfing-Landau,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09361,Amberg,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09362,Regensburg,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09363,Weiden i.d.OPf.,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09371,Amberg-Sulzbach,09,2023,2,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09372,Cham,09,2023,18,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09373,Neumarkt i.d.OPf.,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09374,Neustadt a.d.Waldnaab,09,2023,18,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09375,Regensburg,09,2023,3,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09376,Schwandorf,09,2023,18,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09377,Tirschenreuth,09,2023,34,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09461,Bamberg,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09462,Bayreuth,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09463,Coburg,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09464,Hof,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09471,Bamberg,09,2023,30,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09472,Bayreuth,09,2023,27,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09473,Coburg,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09474,Forchheim,09,2023,38,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09475,Hof,09,2023,33,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09476,Kronach,09,2023,50,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09477,Kulmbach,09,2023,73,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09478,Lichtenfels,09,2023,182,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09479,Wunsiedel i.Fichtelgebirge,09,2023,129,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09561,Ansbach,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09562,Erlangen,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09563,Fürth,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09564,Nürnberg,09,2023,6,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09565,Schwabach,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09571,Ansbach,09,2023,6,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09572,Erlangen-Höchstadt,09,2023,8,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09573,Fürth,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09574,Nürnberger Land,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09575,Neustadt a.d.Aisch-Bad Windsheim,09,2023,6,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09576,Roth,09,2023,11,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09577,Weißenburg-Gunzenhausen,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09661,Aschaffenburg,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09662,Schweinfurt,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09663,Würzburg,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09671,Aschaffenburg,09,2023,34,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09672,Bad Kissingen,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09673,Rhön-Grabfeld,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09674,Haßberge,09,2023,22,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09675,Kitzingen,09,2023,6,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09676,Miltenberg,09,2023,7,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09677,Main-Spessart,09,2023,32,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09678,Schweinfurt,09,2023,1,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09679,Würzburg,09,2023,20,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09761,Augsburg,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09762,Kaufbeuren,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09763,Kempten (Allgäu),09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09764,Memmingen,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09771,Aichach-Friedberg,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09772,Augsburg,09,2023,10,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09773,Dillingen a.d.Donau,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09774,Günzburg,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09775,Neu-Ulm,09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09776,Lindau (Bodensee),09,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+09777,Ostallgäu,09,2023,17,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09778,Unterallgäu,09,2023,2,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09779,Donau-Ries,09,2023,14,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+09780,Oberallgäu,09,2023,15,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+10041,Regionalverband Saarbrücken,10,2023,1334,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+10042,Merzig-Wadern,10,2023,381,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+10043,Neunkirchen,10,2023,568,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+10044,Saarlouis,10,2023,376,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+10045,Saarpfalz-Kreis,10,2023,658,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+10046,St. Wendel,10,2023,962,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+11000,"Berlin, Stadt",11,2023,,not_applicable_city_state,KRS1222,DE_ATLAS_HA26_KRS_2023
+12051,"Brandenburg an der Havel, Stadt",12,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+12052,"Cottbus, Stadt",12,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+12053,"Frankfurt (Oder), Stadt",12,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+12054,"Potsdam, Stadt",12,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+12060,Barnim,12,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+12061,Dahme-Spreewald,12,2023,20,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+12062,Elbe-Elster,12,2023,52,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+12063,Havelland,12,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+12064,Märkisch-Oderland,12,2023,2,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+12065,Oberhavel,12,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+12066,Oberspreewald-Lausitz,12,2023,61,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+12067,Oder-Spree,12,2023,32,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+12068,Ostprignitz-Ruppin,12,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+12069,Potsdam-Mittelmark,12,2023,46,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+12070,Prignitz,12,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+12071,Spree-Neiße,12,2023,314,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+12072,Teltow-Fläming,12,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+12073,Uckermark,12,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+13003,Rostock,13,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+13004,Schwerin,13,2023,599,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+13071,Mecklenburgische Seenplatte,13,2023,15,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+13072,Landkreis Rostock,13,2023,4,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+13073,Vorpommern-Rügen,13,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+13074,Nordwestmecklenburg,13,2023,4,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+13075,Vorpommern-Greifswald,13,2023,312,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+13076,Ludwigslust-Parchim,13,2023,105,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+14511,"Chemnitz, Stadt",14,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+14521,Erzgebirgskreis,14,2023,10,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+14522,Mittelsachsen,14,2023,5,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+14523,Vogtlandkreis,14,2023,5,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+14524,Zwickau,14,2023,18,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+14612,"Dresden, Stadt",14,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+14625,Bautzen,14,2023,4,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+14626,Görlitz,14,2023,235,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+14627,Meißen,14,2023,5,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+14628,Sächsische Schweiz-Osterzgebirge,14,2023,1,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+14713,"Leipzig, Stadt",14,2023,400,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+14729,Leipzig,14,2023,13,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+14730,Nordsachsen,14,2023,338,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+15001,"Dessau-Roßlau, Stadt",15,2023,89,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+15002,"Halle (Saale), Stadt",15,2023,1586,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+15003,"Magdeburg, Landeshauptstadt",15,2023,105,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+15081,Altmarkkreis Salzwedel,15,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+15082,Anhalt-Bitterfeld,15,2023,456,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+15083,Börde,15,2023,44,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+15084,Burgenlandkreis,15,2023,190,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+15085,Harz,15,2023,762,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+15086,Jerichower Land,15,2023,170,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+15087,Mansfeld-Südharz,15,2023,1156,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+15088,Saalekreis,15,2023,58,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+15089,Salzlandkreis,15,2023,747,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+15090,Stendal,15,2023,789,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+15091,Wittenberg,15,2023,771,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16051,"Erfurt, Stadt",16,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+16052,"Gera, Stadt",16,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+16053,"Jena, Stadt",16,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+16054,"Suhl, Stadt",16,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+16055,"Weimar, Stadt",16,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+16061,Eichsfeld,16,2023,1,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16062,Nordhausen,16,2023,2,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16063,Wartburgkreis,16,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+16064,Unstrut-Hainich-Kreis,16,2023,9,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16065,Kyffhäuserkreis,16,2023,29,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16066,Schmalkalden-Meiningen,16,2023,1,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16067,Gotha,16,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+16068,Sömmerda,16,2023,3,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16069,Hildburghausen,16,2023,193,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16070,Ilm-Kreis,16,2023,11,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16071,Weimarer Land,16,2023,4,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16072,Sonneberg,16,2023,179,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16073,Saalfeld-Rudolstadt,16,2023,15,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16074,Saale-Holzland-Kreis,16,2023,39,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16075,Saale-Orla-Kreis,16,2023,20,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023
+16076,Greiz,16,2023,0,published_zero,KRS1222,DE_ATLAS_HA26_KRS_2023
+16077,Altenburger Land,16,2023,1,published_numeric,KRS1222,DE_ATLAS_HA26_KRS_2023

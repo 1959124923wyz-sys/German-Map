@@ -1,0 +1,6 @@
+{
+  "verified": true,
+  "exit_code": 0,
+  "status": "validated_10939_municipalities",
+  "notes": "/home/runner/work/German-Map/German-Map/research/finance/regional-expansion/build_bkg2026_municipality_geometry.py:78: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.\n  p=transform(tr.transform,sg)\nPASS official 2026 municipality geometry 10939 states 16 bytes 28993287\n"
+}

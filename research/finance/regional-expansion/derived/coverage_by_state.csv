@@ -1,0 +1,17 @@
+state_iso,district_rows,district_rows_with_numeric_percap,additional_ungocoded_local_rows,big_city_primary_metrics,direct_production_choropleth,reason
+DE-SH,15,0,0,0,false,different_scopes_and_partial_coverage
+DE-HH,0,0,0,0,false,different_scopes_and_partial_coverage
+DE-NI,0,0,6,2,false,different_scopes_and_partial_coverage
+DE-HB,0,0,0,0,false,different_scopes_and_partial_coverage
+DE-NW,0,0,7,9,false,different_scopes_and_partial_coverage
+DE-HE,0,0,19,5,false,different_scopes_and_partial_coverage
+DE-RP,21,21,0,0,false,different_scopes_and_partial_coverage
+DE-BW,0,0,0,2,false,different_scopes_and_partial_coverage
+DE-BY,0,0,0,2,false,different_scopes_and_partial_coverage
+DE-SL,0,0,0,0,false,different_scopes_and_partial_coverage
+DE-BE,0,0,0,0,false,different_scopes_and_partial_coverage
+DE-BB,0,0,0,0,false,different_scopes_and_partial_coverage
+DE-MV,0,0,0,0,false,different_scopes_and_partial_coverage
+DE-SN,0,0,0,0,false,different_scopes_and_partial_coverage
+DE-ST,0,0,0,0,false,different_scopes_and_partial_coverage
+DE-TH,22,21,0,0,false,different_scopes_and_partial_coverage

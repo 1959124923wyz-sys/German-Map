@@ -1,0 +1,53 @@
+ags8,county_ags5,name_de,state_code,year,tax_capacity_eur_per_capita,value_status,source_id
+10041100,10041,"Saarbrücken, Landeshauptstadt",10,2024,808.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+10041511,10041,"Friedrichsthal, Stadt",10,2024,887.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+10041512,10041,Großrosseln,10,2024,694.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+10041513,10041,Heusweiler,10,2024,883.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+10041514,10041,Kleinblittersdorf,10,2024,1170.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+10041515,10041,"Püttlingen, Stadt",10,2024,954.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+10041516,10041,Quierschied,10,2024,838,published_numeric,DE_ATLAS_HA26_GEM_2024
+10041517,10041,Riegelsberg,10,2024,936.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+10041518,10041,"Sulzbach/ Saar, Stadt",10,2024,1678.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+10041519,10041,"Völklingen, Stadt",10,2024,192.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+10042111,10042,Beckingen,10,2024,703.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+10042112,10042,Losheim am See,10,2024,1273.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+10042113,10042,"Merzig, Kreisstadt",10,2024,1168.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+10042114,10042,Mettlach,10,2024,696.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+10042115,10042,Perl,10,2024,674.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+10042116,10042,"Wadern, Stadt",10,2024,979.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+10042117,10042,Weiskirchen,10,2024,1011,published_numeric,DE_ATLAS_HA26_GEM_2024
+10043111,10043,Eppelborn,10,2024,901.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+10043112,10043,Illingen,10,2024,1252.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+10043113,10043,Merchweiler,10,2024,841.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+10043114,10043,"Neunkirchen, Kreisstadt",10,2024,1089.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+10043115,10043,"Ottweiler, Stadt",10,2024,847.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+10043116,10043,Schiffweiler,10,2024,997.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+10043117,10043,Spiesen-Elversberg,10,2024,918.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+10044111,10044,"Dillingen/ Saar, Stadt",10,2024,2135.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+10044112,10044,"Lebach, Stadt",10,2024,912.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+10044113,10044,Nalbach,10,2024,844.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+10044114,10044,Rehlingen-Siersburg,10,2024,945.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+10044115,10044,"Saarlouis, Kreisstadt",10,2024,1619.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+10044116,10044,Saarwellingen,10,2024,1424.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+10044117,10044,Schmelz,10,2024,1176.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+10044118,10044,Schwalbach,10,2024,792.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+10044119,10044,Überherrn,10,2024,1375,published_numeric,DE_ATLAS_HA26_GEM_2024
+10044120,10044,Wadgassen,10,2024,781.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+10044121,10044,Wallerfangen,10,2024,745.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+10044122,10044,Bous,10,2024,1054.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+10044123,10044,Ensdorf,10,2024,1073.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+10045111,10045,"Bexbach, Stadt",10,2024,1431.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+10045112,10045,"Blieskastel, Stadt",10,2024,1592.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+10045113,10045,Gersheim,10,2024,774.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+10045114,10045,"Homburg, Kreisstadt",10,2024,1204,published_numeric,DE_ATLAS_HA26_GEM_2024
+10045115,10045,Kirkel,10,2024,1594,published_numeric,DE_ATLAS_HA26_GEM_2024
+10045116,10045,Mandelbachtal,10,2024,860.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+10045117,10045,"St. Ingbert, Stadt",10,2024,1718,published_numeric,DE_ATLAS_HA26_GEM_2024
+10046111,10046,Freisen,10,2024,3235.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+10046112,10046,Marpingen,10,2024,771.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+10046113,10046,Namborn,10,2024,683.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+10046114,10046,Nohfelden,10,2024,962.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+10046115,10046,Nonnweiler,10,2024,2284.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+10046116,10046,Oberthal,10,2024,813.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+10046117,10046,"St. Wendel, Kreisstadt",10,2024,1386.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+10046118,10046,Tholey,10,2024,3.1,published_numeric,DE_ATLAS_HA26_GEM_2024

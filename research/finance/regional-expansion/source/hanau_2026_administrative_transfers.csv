@@ -1,0 +1,3 @@
+record_id,date,area,recipient_ags5,recipient_name_de,amount_eur,amount_precision,transfer_type,source_url,agency,verified_status,comparison_scope_note
+DE-HE-TRANS-2026-001,2026-04-21,HE,06415,"Hanau, Brüder-Grimm-Stadt",20000000,official_exact_reference_amount,Landesausgleichsstock_grant,https://innen.hessen.de/presse/stadt-hanau-erhaelt-20-millionen-euro,"Hessisches Ministerium des Innern",official_press_release,"财务转移用于独立成市新增职权；不代表2026财政盈余或赤字"
+DE-HE-TRANS-2026-002,2026-05-18,HE,06435,Main-Kinzig-Kreis,18000000,official_approximate_amount,Landesausgleichsstock_grant,https://innen.hessen.de/presse/main-kinzig-kreis-erhaelt-18-millionen-euro,"Hessisches Ministerium des Innern",official_press_release,"约1800万欧元用于行政调整增量成本及Hessenkasse剩余债务；不和哈瑙转移款作为同一受益主体"

@@ -1,0 +1,13 @@
+{
+  "municipality_rows": 10956,
+  "municipality_numeric": 10752,
+  "municipality_missing": 204,
+  "municipality_negative": 3,
+  "county_rows": 400,
+  "county_numeric": 396,
+  "county_city_state_not_applicable": 4,
+  "county_genuine_zero": 120,
+  "source": "Deutschlandatlas HA26 2026",
+  "municipal_year": 2024,
+  "county_year": 2023
+}

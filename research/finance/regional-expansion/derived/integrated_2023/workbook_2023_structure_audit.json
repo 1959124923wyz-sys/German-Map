@@ -1,0 +1,2882 @@
+{
+  "reference_year": 2023,
+  "sheet_count": 19,
+  "shared_strings": 36979,
+  "populated_sheets": 13,
+  "source_url": "https://www.statistikportal.de/sites/default/files/2024-11/Integrierte_Schulden_der_Gemeinden_und_Gemeindeverbaende_2023_Tabellenband_0.xlsx",
+  "report_units_candidate_total": 11896,
+  "candidate_unit_types": {
+    "county_administration": 294,
+    "joint_administration": 831,
+    "municipality": 10771
+  },
+  "status": "workbook_columns_inspected_not_harmonized",
+  "warning": "Do not copy 2024 workbook column mapping into 2023 until sheet headers and denominator separately verified",
+  "sheet_inspection": [
+    {
+      "sheet": "xl/worksheets/sheet1.xml",
+      "report_units": 0,
+      "numeric_E_rows": 0,
+      "by_type_state": [],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zum Impressum",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": "Zum Inhalt"
+        }
+      ],
+      "first_report_units": []
+    },
+    {
+      "sheet": "xl/worksheets/sheet2.xml",
+      "report_units": 0,
+      "numeric_E_rows": 0,
+      "by_type_state": [],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "3",
+          "A": "Impressum",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "Herausgeber:",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "9",
+          "A": "Statistische Ämter des Bundes und der Länder",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "12",
+          "A": "Herstellung und Redaktion:",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "13",
+          "A": "Statistisches Bundesamt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "14",
+          "A": "65180 Wiesbaden ",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        }
+      ],
+      "first_report_units": []
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "report_units": 0,
+      "numeric_E_rows": 0,
+      "by_type_state": [],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zum Titelblatt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "3",
+          "A": "Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "Titelblatt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "7",
+          "A": "Impressum",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "9",
+          "A": "Abkürzungen",
+          "B": "Abkürzungen und Zeichenerklärungen",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "11",
+          "A": "Erläuterungen",
+          "B": "Methodische Erläuterungen zur Modellrechnung",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "13",
+          "A": "SH",
+          "B": "Tabelle 1:   Schulden der kommunalen Ebene beim nicht-öffentlichen ",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        }
+      ],
+      "first_report_units": []
+    },
+    {
+      "sheet": "xl/worksheets/sheet4.xml",
+      "report_units": 0,
+      "numeric_E_rows": 0,
+      "by_type_state": [],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Abkürzungen",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "BW    ",
+          "B": "Baden-Württemberg",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "7",
+          "A": "BY     ",
+          "B": "Bayern",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "BB     ",
+          "B": "Brandenburg",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "9",
+          "A": "HE    ",
+          "B": "Hessen ",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "MV    ",
+          "B": "Mecklenburg-Vorpommern ",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        }
+      ],
+      "first_report_units": []
+    },
+    {
+      "sheet": "xl/worksheets/sheet5.xml",
+      "report_units": 0,
+      "numeric_E_rows": 0,
+      "by_type_state": [],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        }
+      ],
+      "first_report_units": []
+    },
+    {
+      "sheet": "xl/worksheets/sheet6.xml",
+      "report_units": 1198,
+      "numeric_E_rows": 1198,
+      "by_type_state": [
+        {
+          "type": "county_administration",
+          "state": "01",
+          "count": 11
+        },
+        {
+          "type": "joint_administration",
+          "state": "01",
+          "count": 83
+        },
+        {
+          "type": "municipality",
+          "state": "01",
+          "count": 1104
+        }
+      ],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Tabelle 1:    Schulden der kommunalen Ebene beim nicht-öffentlichen Bereich am 31.12.2023 ",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "nach Höhe der Beteiligung des Kernhaushalts an öffentlichen Fonds, Einrichtungen und Unter",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "Regional-\nschlüssel",
+          "B": "Gemeinde/Gemeindeverband",
+          "C": "Verwaltungsform",
+          "D": "Bevölkerung\nam\n30.06.20231",
+          "E": "Schulden des öffentlichen Bereichs insge",
+          "G": "Schulden pro \nKopf"
+        },
+        {
+          "row": "7",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "EUR",
+          "G": "EUR"
+        }
+      ],
+      "first_report_units": [
+        {
+          "row": "12",
+          "key": "010010000000",
+          "name": "Flensburg, Stadt                                                                                    ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "92323",
+          "total_field": "437050633.50999987",
+          "per_person_field": "4733.93"
+        },
+        {
+          "row": "13",
+          "key": "010020000000",
+          "name": "Kiel, Landeshauptstadt                                                                              ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "248034",
+          "total_field": "1102397047.8899996",
+          "per_person_field": "4444.54"
+        },
+        {
+          "row": "14",
+          "key": "010030000000",
+          "name": "Lübeck, Hansestadt                                                                                  ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "218062",
+          "total_field": "1123041995.98",
+          "per_person_field": "5150.1000000000004"
+        },
+        {
+          "row": "15",
+          "key": "010040000000",
+          "name": "Neumünster, Stadt                                                                                   ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "79711",
+          "total_field": "460718488.15999991",
+          "per_person_field": "5779.86"
+        },
+        {
+          "row": "16",
+          "key": "01051",
+          "name": "Kreisverwaltung Dithmarschen                                                                        ",
+          "legal_form": "Kreisverwaltung                                                       ",
+          "population_field": "{135 462}",
+          "total_field": "63235989.909999996",
+          "per_person_field": "466.82"
+        },
+        {
+          "row": "17",
+          "key": "010510011011",
+          "name": "Brunsbüttel, Stadt                                                                                  ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "12594",
+          "total_field": "63155054.509999983",
+          "per_person_field": "5014.6899999999996"
+        },
+        {
+          "row": "18",
+          "key": "010510044044",
+          "name": "Heide, Stadt                                                                                        ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "22252",
+          "total_field": "53835429.419999972",
+          "per_person_field": "2419.35"
+        },
+        {
+          "row": "19",
+          "key": "010515163",
+          "name": "Amtsverwaltung Burg-St. Michaelisdonn                                                               ",
+          "legal_form": "Amtsverwaltung                                                        ",
+          "population_field": "{15 806}",
+          "total_field": "786603.17",
+          "per_person_field": "49.77"
+        },
+        {
+          "row": "20",
+          "key": "010515163003",
+          "name": "Averlak                                                                                             ",
+          "legal_form": "amtsangehörige Gemeinde                                               ",
+          "population_field": "587",
+          "total_field": "2379636.3199999994",
+          "per_person_field": "4053.89"
+        },
+        {
+          "row": "21",
+          "key": "010515163010",
+          "name": "Brickeln                                                                                            ",
+          "legal_form": "amtsangehörige Gemeinde                                               ",
+          "population_field": "195",
+          "total_field": "1635054.0999999999",
+          "per_person_field": "8384.89"
+        },
+        {
+          "row": "22",
+          "key": "010515163012",
+          "name": "Buchholz                                                                                            ",
+          "legal_form": "amtsangehörige Gemeinde                                               ",
+          "population_field": "1003",
+          "total_field": "3827671.0999999996",
+          "per_person_field": "3816.22"
+        },
+        {
+          "row": "23",
+          "key": "010515163016",
+          "name": "Burg (Dithmarschen)                                                                                 ",
+          "legal_form": "amtsangehörige Gemeinde                                               ",
+          "population_field": "4204",
+          "total_field": "14462184.790000003",
+          "per_person_field": "3440.1"
+        }
+      ]
+    },
+    {
+      "sheet": "xl/worksheets/sheet7.xml",
+      "report_units": 1092,
+      "numeric_E_rows": 1092,
+      "by_type_state": [
+        {
+          "type": "county_administration",
+          "state": "03",
+          "count": 37
+        },
+        {
+          "type": "joint_administration",
+          "state": "03",
+          "count": 114
+        },
+        {
+          "type": "municipality",
+          "state": "03",
+          "count": 941
+        }
+      ],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Tabelle 2:    Schulden der kommunalen Ebene beim nicht-öffentlichen Bereich am 31.12.2023 ",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "nach Höhe der Beteiligung des Kernhaushalts an öffentlichen Fonds, Einrichtungen und Unter",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "Regional-\nschlüssel",
+          "B": "Gemeinde/Gemeindeverband",
+          "C": "Verwaltungsform",
+          "D": "Bevölkerung\nam\n30.06.20231",
+          "E": "Schulden des öffentlichen Bereichs insge",
+          "G": "Schulden pro \nKopf"
+        },
+        {
+          "row": "7",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "EUR",
+          "G": "EUR"
+        }
+      ],
+      "first_report_units": [
+        {
+          "row": "12",
+          "key": "031010000000",
+          "name": "Braunschweig, Stadt                                                                                 ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "251836",
+          "total_field": "1002379607.85",
+          "per_person_field": "3980.29"
+        },
+        {
+          "row": "13",
+          "key": "031020000000",
+          "name": "Salzgitter, Stadt                                                                                   ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "104822",
+          "total_field": "453994124.76999998",
+          "per_person_field": "4331.1000000000004"
+        },
+        {
+          "row": "14",
+          "key": "031030000000",
+          "name": "Wolfsburg, Stadt                                                                                    ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "126213",
+          "total_field": "925590987.42999959",
+          "per_person_field": "7333.56"
+        },
+        {
+          "row": "15",
+          "key": "03151",
+          "name": "LK Gifhorn                                                                                          ",
+          "legal_form": "Landkreis/Region                                                      ",
+          "population_field": "{180 369}",
+          "total_field": "108033468.28999999",
+          "per_person_field": "598.96"
+        },
+        {
+          "row": "16",
+          "key": "031510009009",
+          "name": "Gifhorn, Stadt                                                                                      ",
+          "legal_form": "selbständige Gemeinde                                                 ",
+          "population_field": "43733",
+          "total_field": "77892080.659999996",
+          "per_person_field": "1781.08"
+        },
+        {
+          "row": "17",
+          "key": "031510025025",
+          "name": "Sassenburg                                                                                          ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "12083",
+          "total_field": "29603409.600000001",
+          "per_person_field": "2450"
+        },
+        {
+          "row": "18",
+          "key": "031510040040",
+          "name": "Wittingen, Stadt                                                                                    ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "11427",
+          "total_field": "43173383.670000002",
+          "per_person_field": "3778.19"
+        },
+        {
+          "row": "19",
+          "key": "031515401",
+          "name": "SG Boldecker Land                                                                                   ",
+          "legal_form": "Samtgemeinde                                                          ",
+          "population_field": "{10 809}",
+          "total_field": "22082080.77",
+          "per_person_field": "2042.93"
+        },
+        {
+          "row": "20",
+          "key": "031515401002",
+          "name": "Barwedel                                                                                            ",
+          "legal_form": "Mitgliedsgemeinde                                                     ",
+          "population_field": "1012",
+          "total_field": "0",
+          "per_person_field": "0"
+        },
+        {
+          "row": "21",
+          "key": "031515401004",
+          "name": "Bokensdorf                                                                                          ",
+          "legal_form": "Mitgliedsgemeinde                                                     ",
+          "population_field": "1270",
+          "total_field": "0",
+          "per_person_field": "0"
+        },
+        {
+          "row": "22",
+          "key": "031515401014",
+          "name": "Jembke                                                                                              ",
+          "legal_form": "Mitgliedsgemeinde                                                     ",
+          "population_field": "2140",
+          "total_field": "0",
+          "per_person_field": "0"
+        },
+        {
+          "row": "23",
+          "key": "031515401020",
+          "name": "Osloß                                                                                               ",
+          "legal_form": "Mitgliedsgemeinde                                                     ",
+          "population_field": "2066",
+          "total_field": "0",
+          "per_person_field": "0"
+        }
+      ]
+    },
+    {
+      "sheet": "xl/worksheets/sheet8.xml",
+      "report_units": 427,
+      "numeric_E_rows": 427,
+      "by_type_state": [
+        {
+          "type": "county_administration",
+          "state": "05",
+          "count": 31
+        },
+        {
+          "type": "municipality",
+          "state": "05",
+          "count": 396
+        }
+      ],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Tabelle 3:    Schulden der kommunalen Ebene beim nicht-öffentlichen Bereich am 31.12.2023 ",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "nach Höhe der Beteiligung des Kernhaushalts an öffentlichen Fonds, Einrichtungen und Unter",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "Regional-\nschlüssel",
+          "B": "Gemeinde/Gemeindeverband",
+          "C": "Verwaltungsform",
+          "D": "Bevölkerung\nam\n30.06.20231",
+          "E": "Schulden des öffentlichen Bereichs insge",
+          "G": "Schulden pro \nKopf"
+        },
+        {
+          "row": "7",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "EUR",
+          "G": "EUR"
+        }
+      ],
+      "first_report_units": [
+        {
+          "row": "12",
+          "key": "051110000000",
+          "name": "Düsseldorf                                                                                          ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "629567",
+          "total_field": "2056233268.5900002",
+          "per_person_field": "3266.11"
+        },
+        {
+          "row": "13",
+          "key": "051120000000",
+          "name": "Duisburg                                                                                            ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "502738",
+          "total_field": "3062771385.9100003",
+          "per_person_field": "6092.18"
+        },
+        {
+          "row": "14",
+          "key": "051130000000",
+          "name": "Essen                                                                                               ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "586344",
+          "total_field": "3998215132.3299999",
+          "per_person_field": "6818.89"
+        },
+        {
+          "row": "15",
+          "key": "051140000000",
+          "name": "Krefeld                                                                                             ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "228286",
+          "total_field": "961621562.93999994",
+          "per_person_field": "4212.3500000000004"
+        },
+        {
+          "row": "16",
+          "key": "051160000000",
+          "name": "Mönchengladbach                                                                                     ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "269368",
+          "total_field": "1168738698.0500007",
+          "per_person_field": "4338.82"
+        },
+        {
+          "row": "17",
+          "key": "051170000000",
+          "name": "Mülheim an der Ruhr                                                                                 ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "172732",
+          "total_field": "1845056640.5699999",
+          "per_person_field": "10681.61"
+        },
+        {
+          "row": "18",
+          "key": "051190000000",
+          "name": "Oberhausen                                                                                          ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "210818",
+          "total_field": "2129391345.55",
+          "per_person_field": "10100.61"
+        },
+        {
+          "row": "19",
+          "key": "051200000000",
+          "name": "Remscheid                                                                                           ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "112633",
+          "total_field": "959992897.4799999",
+          "per_person_field": "8523.19"
+        },
+        {
+          "row": "20",
+          "key": "051220000000",
+          "name": "Solingen                                                                                            ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "161029",
+          "total_field": "1233130671.4199996",
+          "per_person_field": "7657.82"
+        },
+        {
+          "row": "21",
+          "key": "051240000000",
+          "name": "Wuppertal                                                                                           ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "358754",
+          "total_field": "2051777856.6500001",
+          "per_person_field": "5719.18"
+        },
+        {
+          "row": "22",
+          "key": "05154",
+          "name": "Kleve, Kreisverwaltung                                                                              ",
+          "legal_form": "Kreisverwaltung                                                       ",
+          "population_field": "{320 372}",
+          "total_field": "192416737.51999998",
+          "per_person_field": "600.6"
+        },
+        {
+          "row": "23",
+          "key": "051540004004",
+          "name": "Bedburg-Hau                                                                                         ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "13404",
+          "total_field": "8106028.5899999999",
+          "per_person_field": "604.75"
+        }
+      ]
+    },
+    {
+      "sheet": "xl/worksheets/sheet9.xml",
+      "report_units": 442,
+      "numeric_E_rows": 442,
+      "by_type_state": [
+        {
+          "type": "county_administration",
+          "state": "06",
+          "count": 21
+        },
+        {
+          "type": "municipality",
+          "state": "06",
+          "count": 421
+        }
+      ],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Tabelle 4:    Schulden der kommunalen Ebene beim nicht-öffentlichen Bereich am 31.12.2023 ",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "nach Höhe der Beteiligung des Kernhaushalts an öffentlichen Fonds, Einrichtungen und Unter",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "Regional-\nschlüssel",
+          "B": "Gemeinde/Gemeindeverband",
+          "C": "Verwaltungsform",
+          "D": "Bevölkerung\nam\n30.06.20231",
+          "E": "Schulden des öffentlichen Bereichs insge",
+          "G": "Schulden pro \nKopf"
+        },
+        {
+          "row": "7",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "EUR",
+          "G": "EUR"
+        }
+      ],
+      "first_report_units": [
+        {
+          "row": "12",
+          "key": "064110000000",
+          "name": "Darmstadt, Wissenschaftsstadt                                                                       ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "163294",
+          "total_field": "2887167087.8399992",
+          "per_person_field": "17680.79"
+        },
+        {
+          "row": "13",
+          "key": "064120000000",
+          "name": "Frankfurt am Main, Stadt                                                                            ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "773117",
+          "total_field": "9228826832.0699959",
+          "per_person_field": "11937.17"
+        },
+        {
+          "row": "14",
+          "key": "064130000000",
+          "name": "Offenbach am Main, Stadt                                                                            ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "134829",
+          "total_field": "766785043.80999935",
+          "per_person_field": "5687.09"
+        },
+        {
+          "row": "15",
+          "key": "064140000000",
+          "name": "Wiesbaden, Landeshauptstadt                                                                         ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "283778",
+          "total_field": "2186975123.9499989",
+          "per_person_field": "7706.64"
+        },
+        {
+          "row": "16",
+          "key": "06431",
+          "name": "Landkreis Bergstraße, Kreisverwaltung                                                               ",
+          "legal_form": "Landkreis (Haushalt u. Verwaltung)                                    ",
+          "population_field": "{275 793}",
+          "total_field": "175143117.91999999",
+          "per_person_field": "635.04999999999995"
+        },
+        {
+          "row": "17",
+          "key": "064310001001",
+          "name": "Abtsteinach                                                                                         ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "2471",
+          "total_field": "11230470.219999995",
+          "per_person_field": "4544.91"
+        },
+        {
+          "row": "18",
+          "key": "064310002002",
+          "name": "Bensheim, Stadt                                                                                     ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "41777",
+          "total_field": "247825168.77000019",
+          "per_person_field": "5932.1"
+        },
+        {
+          "row": "19",
+          "key": "064310003003",
+          "name": "Biblis                                                                                              ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "9215",
+          "total_field": "13117589.799999997",
+          "per_person_field": "1423.5"
+        },
+        {
+          "row": "20",
+          "key": "064310004004",
+          "name": "Birkenau                                                                                            ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "9928",
+          "total_field": "32499320.819999997",
+          "per_person_field": "3273.5"
+        },
+        {
+          "row": "21",
+          "key": "064310005005",
+          "name": "Bürstadt, Stadt                                                                                     ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "16781",
+          "total_field": "34877563.750000015",
+          "per_person_field": "2078.4"
+        },
+        {
+          "row": "22",
+          "key": "064310006006",
+          "name": "Einhausen                                                                                           ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "6626",
+          "total_field": "29013168.980000004",
+          "per_person_field": "4378.6899999999996"
+        },
+        {
+          "row": "23",
+          "key": "064310007007",
+          "name": "Fürth                                                                                               ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "10788",
+          "total_field": "33160629.959999997",
+          "per_person_field": "3073.84"
+        }
+      ]
+    },
+    {
+      "sheet": "xl/worksheets/sheet10.xml",
+      "report_units": 2454,
+      "numeric_E_rows": 2454,
+      "by_type_state": [
+        {
+          "type": "county_administration",
+          "state": "07",
+          "count": 24
+        },
+        {
+          "type": "joint_administration",
+          "state": "07",
+          "count": 129
+        },
+        {
+          "type": "municipality",
+          "state": "07",
+          "count": 2301
+        }
+      ],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Tabelle 5:    Schulden der kommunalen Ebene beim nicht-öffentlichen Bereich am 31.12.2023 ",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "nach Höhe der Beteiligung des Kernhaushalts an öffentlichen Fonds, Einrichtungen und Unter",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "Regional-\nschlüssel",
+          "B": "Gemeinde/Gemeindeverband",
+          "C": "Verwaltungsform",
+          "D": "Bevölkerung\nam\n30.06.20231",
+          "E": "Schulden des öffentlichen Bereichs insge",
+          "G": "Schulden pro \nKopf"
+        },
+        {
+          "row": "7",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "EUR",
+          "G": "EUR"
+        }
+      ],
+      "first_report_units": [
+        {
+          "row": "12",
+          "key": "071110000000",
+          "name": "Koblenz, Stadt                                                                                      ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "115184",
+          "total_field": "683396654.71999979",
+          "per_person_field": "5933.09"
+        },
+        {
+          "row": "13",
+          "key": "07131",
+          "name": "Landkreis Ahrweiler                                                                                 ",
+          "legal_form": "Landkreis                                                             ",
+          "population_field": "{128 255}",
+          "total_field": "156151416.53999996",
+          "per_person_field": "1217.51"
+        },
+        {
+          "row": "14",
+          "key": "071310007007",
+          "name": "Bad Neuenahr-Ahrweiler, Stadt                                                                       ",
+          "legal_form": "verbandsfreie Gemeinde                                                ",
+          "population_field": "27096",
+          "total_field": "99735739.829999998",
+          "per_person_field": "3680.83"
+        },
+        {
+          "row": "15",
+          "key": "071310070070",
+          "name": "Remagen, Stadt                                                                                      ",
+          "legal_form": "verbandsfreie Gemeinde                                                ",
+          "population_field": "17444",
+          "total_field": "26339095.259999998",
+          "per_person_field": "1509.92"
+        },
+        {
+          "row": "16",
+          "key": "071310077077",
+          "name": "Sinzig, Stadt                                                                                       ",
+          "legal_form": "verbandsfreie Gemeinde                                                ",
+          "population_field": "17291",
+          "total_field": "22644176.82",
+          "per_person_field": "1309.5899999999999"
+        },
+        {
+          "row": "17",
+          "key": "071310090090",
+          "name": "Grafschaft                                                                                          ",
+          "legal_form": "verbandsfreie Gemeinde                                                ",
+          "population_field": "10950",
+          "total_field": "28093654.280000001",
+          "per_person_field": "2565.63"
+        },
+        {
+          "row": "18",
+          "key": "071315001",
+          "name": "Verbandsgemeinde Adenau                                                                             ",
+          "legal_form": "Verbandsgemeinde                                                      ",
+          "population_field": "{12 956}",
+          "total_field": "24172553.129999999",
+          "per_person_field": "1865.74"
+        },
+        {
+          "row": "19",
+          "key": "071315001001",
+          "name": "Adenau, Stadt                                                                                       ",
+          "legal_form": "Ortsgemeinde                                                          ",
+          "population_field": "2946",
+          "total_field": "4045183",
+          "per_person_field": "1373.11"
+        },
+        {
+          "row": "20",
+          "key": "071315001004",
+          "name": "Antweiler                                                                                           ",
+          "legal_form": "Ortsgemeinde                                                          ",
+          "population_field": "484",
+          "total_field": "324167",
+          "per_person_field": "669.77"
+        },
+        {
+          "row": "21",
+          "key": "071315001005",
+          "name": "Aremberg                                                                                            ",
+          "legal_form": "Ortsgemeinde                                                          ",
+          "population_field": "211",
+          "total_field": "0",
+          "per_person_field": "0"
+        },
+        {
+          "row": "22",
+          "key": "071315001008",
+          "name": "Barweiler                                                                                           ",
+          "legal_form": "Ortsgemeinde                                                          ",
+          "population_field": "391",
+          "total_field": "0",
+          "per_person_field": "0"
+        },
+        {
+          "row": "23",
+          "key": "071315001009",
+          "name": "Bauler                                                                                              ",
+          "legal_form": "Ortsgemeinde                                                          ",
+          "population_field": "50",
+          "total_field": "0",
+          "per_person_field": "0"
+        }
+      ]
+    },
+    {
+      "sheet": "xl/worksheets/sheet11.xml",
+      "report_units": 1136,
+      "numeric_E_rows": 1136,
+      "by_type_state": [
+        {
+          "type": "county_administration",
+          "state": "08",
+          "count": 35
+        },
+        {
+          "type": "municipality",
+          "state": "08",
+          "count": 1101
+        }
+      ],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Tabelle 6:    Schulden der kommunalen Ebene beim nicht-öffentlichen Bereich am 31.12.2023 ",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "nach Höhe der Beteiligung des Kernhaushalts an öffentlichen Fonds, Einrichtungen und Unter",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "Regional-\nschlüssel",
+          "B": "Gemeinde/Gemeindeverband",
+          "C": "Verwaltungsform",
+          "D": "Bevölkerung\nam\n30.06.20231",
+          "E": "Schulden des öffentlichen Bereichs insge",
+          "G": "Schulden pro \nKopf"
+        },
+        {
+          "row": "7",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "EUR",
+          "G": "EUR"
+        }
+      ],
+      "first_report_units": [
+        {
+          "row": "13",
+          "key": "081110000000",
+          "name": "Landeshauptstadt Stuttgart                                                                          ",
+          "legal_form": "Stadtkreis                                                            ",
+          "population_field": "633475",
+          "total_field": "1834354343.51",
+          "per_person_field": "2895.7"
+        },
+        {
+          "row": "14",
+          "key": "08115",
+          "name": "Landratsamt Böblingen                                                                               ",
+          "legal_form": "Landkreis                                                             ",
+          "population_field": "{400 216}",
+          "total_field": "602477841.0199995",
+          "per_person_field": "1505.38"
+        },
+        {
+          "row": "15",
+          "key": "081150003003",
+          "name": "Große Kreisstadt Böblingen                                                                          ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "51658",
+          "total_field": "188083943.9800002",
+          "per_person_field": "3640.95"
+        },
+        {
+          "row": "16",
+          "key": "081150028028",
+          "name": "Große Kreisstadt Leonberg                                                                           ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "49725",
+          "total_field": "82382868.529999942",
+          "per_person_field": "1656.77"
+        },
+        {
+          "row": "17",
+          "key": "081150029029",
+          "name": "Gemeinde Magstadt                                                                                   ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "9765",
+          "total_field": "1512665.81",
+          "per_person_field": "154.91"
+        },
+        {
+          "row": "18",
+          "key": "081150041041",
+          "name": "Stadt Renningen                                                                                     ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "18649",
+          "total_field": "2465712.7199999997",
+          "per_person_field": "132.22"
+        },
+        {
+          "row": "19",
+          "key": "081150042042",
+          "name": "Stadt Rutesheim                                                                                     ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "11126",
+          "total_field": "1046936.04",
+          "per_person_field": "94.1"
+        },
+        {
+          "row": "20",
+          "key": "081150044044",
+          "name": "Gemeinde Schönaich                                                                                  ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "10982",
+          "total_field": "14152855.34",
+          "per_person_field": "1288.73"
+        },
+        {
+          "row": "21",
+          "key": "081150045045",
+          "name": "Große Kreisstadt Sindelfingen                                                                       ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "65419",
+          "total_field": "190502953.34999999",
+          "per_person_field": "2912.04"
+        },
+        {
+          "row": "22",
+          "key": "081150050050",
+          "name": "Stadt Weil der Stadt                                                                                ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "19366",
+          "total_field": "23115534.66",
+          "per_person_field": "1193.6099999999999"
+        },
+        {
+          "row": "23",
+          "key": "081150051051",
+          "name": "Gemeinde Weil im Schönbuch                                                                          ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "10179",
+          "total_field": "17813861.02",
+          "per_person_field": "1750.06"
+        },
+        {
+          "row": "24",
+          "key": "081150052052",
+          "name": "Gemeinde Weissach                                                                                   ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "7742",
+          "total_field": "6145853.5600000005",
+          "per_person_field": "793.83"
+        }
+      ]
+    },
+    {
+      "sheet": "xl/worksheets/sheet12.xml",
+      "report_units": 2438,
+      "numeric_E_rows": 2438,
+      "by_type_state": [
+        {
+          "type": "county_administration",
+          "state": "09",
+          "count": 71
+        },
+        {
+          "type": "joint_administration",
+          "state": "09",
+          "count": 311
+        },
+        {
+          "type": "municipality",
+          "state": "09",
+          "count": 2056
+        }
+      ],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Tabelle 7:    Schulden der kommunalen Ebene beim nicht-öffentlichen Bereich am 31.12.2023 ",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "nach Höhe der Beteiligung des Kernhaushalts an öffentlichen Fonds, Einrichtungen und Unter",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "Regional-\nschlüssel",
+          "B": "Gemeinde/Gemeindeverband",
+          "C": "Verwaltungsform",
+          "D": "Bevölkerung\nam\n30.06.20231",
+          "E": "Schulden des öffentlichen Bereichs insge",
+          "G": "Schulden pro \nKopf"
+        },
+        {
+          "row": "7",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "EUR",
+          "G": "EUR"
+        }
+      ],
+      "first_report_units": [
+        {
+          "row": "13",
+          "key": "091610000000",
+          "name": "Ingolstadt, kreisfreie Stadt                                                                        ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "141900",
+          "total_field": "747319936.77000046",
+          "per_person_field": "5266.53"
+        },
+        {
+          "row": "14",
+          "key": "091620000000",
+          "name": "München, Landeshauptstadt                                                                           ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "1502969",
+          "total_field": "10351172777.020002",
+          "per_person_field": "6887.15"
+        },
+        {
+          "row": "15",
+          "key": "091630000000",
+          "name": "Rosenheim, kreisfreie Stadt                                                                         ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "64734",
+          "total_field": "396554577.92999971",
+          "per_person_field": "6125.91"
+        },
+        {
+          "row": "16",
+          "key": "09171",
+          "name": "Landkreis Altötting                                                                                 ",
+          "legal_form": "Landkreis (Haushalt bzw. Verwaltung)                                  ",
+          "population_field": "{114 083}",
+          "total_field": "106184930.93000001",
+          "per_person_field": "930.77"
+        },
+        {
+          "row": "17",
+          "key": "091710111111",
+          "name": "Altötting, Stadt                                                                                    ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "13163",
+          "total_field": "27805411.879999999",
+          "per_person_field": "2112.39"
+        },
+        {
+          "row": "18",
+          "key": "091710112112",
+          "name": "Burghausen, Stadt                                                                                   ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "19362",
+          "total_field": "66733349.910000004",
+          "per_person_field": "3446.61"
+        },
+        {
+          "row": "19",
+          "key": "091710113113",
+          "name": "Burgkirchen a.d.Alz                                                                                 ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "10924",
+          "total_field": "18244736.02",
+          "per_person_field": "1670.15"
+        },
+        {
+          "row": "20",
+          "key": "091710117117",
+          "name": "Garching a.d.Alz                                                                                    ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "8819",
+          "total_field": "1955193.87",
+          "per_person_field": "221.7"
+        },
+        {
+          "row": "21",
+          "key": "091710118118",
+          "name": "Haiming                                                                                             ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "2533",
+          "total_field": "39968.449999999997",
+          "per_person_field": "15.78"
+        },
+        {
+          "row": "22",
+          "key": "091710125125",
+          "name": "Neuötting, Stadt                                                                                    ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "9096",
+          "total_field": "11639800.819999998",
+          "per_person_field": "1279.6600000000001"
+        },
+        {
+          "row": "23",
+          "key": "091710127127",
+          "name": "Pleiskirchen                                                                                        ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "2467",
+          "total_field": "427933.69",
+          "per_person_field": "173.46"
+        },
+        {
+          "row": "24",
+          "key": "091710131131",
+          "name": "Teising                                                                                             ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "1809",
+          "total_field": "20880.05",
+          "per_person_field": "11.54"
+        }
+      ]
+    },
+    {
+      "sheet": "xl/worksheets/sheet13.xml",
+      "report_units": 58,
+      "numeric_E_rows": 58,
+      "by_type_state": [
+        {
+          "type": "county_administration",
+          "state": "10",
+          "count": 6
+        },
+        {
+          "type": "municipality",
+          "state": "10",
+          "count": 52
+        }
+      ],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Tabelle 8:    Schulden der kommunalen Ebene beim nicht-öffentlichen Bereich am 31.12.2023 ",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "nach Höhe der Beteiligung des Kernhaushalts an öffentlichen Fonds, Einrichtungen und Unter",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "Regional-\nschlüssel",
+          "B": "Gemeinde/Gemeindeverband",
+          "C": "Verwaltungsform",
+          "D": "Bevölkerung\nam\n30.06.20231",
+          "E": "Schulden des öffentlichen Bereichs insge",
+          "G": "Schulden pro \nKopf"
+        },
+        {
+          "row": "7",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "EUR",
+          "G": "EUR"
+        }
+      ],
+      "first_report_units": [
+        {
+          "row": "12",
+          "key": "10041",
+          "name": "Regionalverband Saarbrücken                                                                         ",
+          "legal_form": "Regionalverband                                                       ",
+          "population_field": "{331 032}",
+          "total_field": "159476391.00999999",
+          "per_person_field": "481.76"
+        },
+        {
+          "row": "13",
+          "key": "100410100100",
+          "name": "Saarbrücken                                                                                         ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "182163",
+          "total_field": "1697889852.4099998",
+          "per_person_field": "9320.7199999999993"
+        },
+        {
+          "row": "14",
+          "key": "100410511511",
+          "name": "Friedrichsthal                                                                                      ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "9930",
+          "total_field": "52646583.310000002",
+          "per_person_field": "5301.77"
+        },
+        {
+          "row": "15",
+          "key": "100410512512",
+          "name": "Großrosseln                                                                                         ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "7904",
+          "total_field": "54664157.170000002",
+          "per_person_field": "6916.01"
+        },
+        {
+          "row": "16",
+          "key": "100410513513",
+          "name": "Heusweiler                                                                                          ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "18127",
+          "total_field": "45490851.960000001",
+          "per_person_field": "2509.56"
+        },
+        {
+          "row": "17",
+          "key": "100410514514",
+          "name": "Kleinblittersdorf                                                                                   ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "10740",
+          "total_field": "52742377.430000007",
+          "per_person_field": "4910.84"
+        },
+        {
+          "row": "18",
+          "key": "100410515515",
+          "name": "Püttlingen                                                                                          ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "18172",
+          "total_field": "100537305.25",
+          "per_person_field": "5532.54"
+        },
+        {
+          "row": "19",
+          "key": "100410516516",
+          "name": "Quierschied                                                                                         ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "12867",
+          "total_field": "63816454.480000004",
+          "per_person_field": "4959.7"
+        },
+        {
+          "row": "20",
+          "key": "100410517517",
+          "name": "Riegelsberg                                                                                         ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "14416",
+          "total_field": "41984509.25",
+          "per_person_field": "2912.35"
+        },
+        {
+          "row": "21",
+          "key": "100410518518",
+          "name": "Sulzbach                                                                                            ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "16322",
+          "total_field": "57692030.759999998",
+          "per_person_field": "3534.62"
+        },
+        {
+          "row": "22",
+          "key": "100410519519",
+          "name": "Völklingen                                                                                          ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "40391",
+          "total_field": "306096615.34000003",
+          "per_person_field": "7578.34"
+        },
+        {
+          "row": "24",
+          "key": "10042",
+          "name": "Landkreis Merzig-Wadern                                                                             ",
+          "legal_form": "Landkreis                                                             ",
+          "population_field": "{104 393}",
+          "total_field": "38072122.43",
+          "per_person_field": "364.7"
+        }
+      ]
+    },
+    {
+      "sheet": "xl/worksheets/sheet14.xml",
+      "report_units": 478,
+      "numeric_E_rows": 478,
+      "by_type_state": [
+        {
+          "type": "county_administration",
+          "state": "12",
+          "count": 14
+        },
+        {
+          "type": "joint_administration",
+          "state": "12",
+          "count": 51
+        },
+        {
+          "type": "municipality",
+          "state": "12",
+          "count": 413
+        }
+      ],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Tabelle 9:    Schulden der kommunalen Ebene beim nicht-öffentlichen Bereich am 31.12.2023 ",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "nach Höhe der Beteiligung des Kernhaushalts an öffentlichen Fonds, Einrichtungen und Unter",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "Regional-\nschlüssel",
+          "B": "Gemeinde/Gemeindeverband",
+          "C": "Verwaltungsform",
+          "D": "Bevölkerung\nam\n30.06.20231",
+          "E": "Schulden des öffentlichen Bereichs insge",
+          "G": "Schulden pro \nKopf"
+        },
+        {
+          "row": "7",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "EUR",
+          "G": "EUR"
+        }
+      ],
+      "first_report_units": [
+        {
+          "row": "12",
+          "key": "120510000000",
+          "name": "Brandenburg an der Havel                                                                            ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "73625",
+          "total_field": "149540407.97",
+          "per_person_field": "2031.11"
+        },
+        {
+          "row": "13",
+          "key": "120520000000",
+          "name": "Cottbus                                                                                             ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "99560",
+          "total_field": "388968877.20000017",
+          "per_person_field": "3906.88"
+        },
+        {
+          "row": "14",
+          "key": "120530000000",
+          "name": "Frankfurt (Oder)                                                                                    ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "58524",
+          "total_field": "268227507.06000003",
+          "per_person_field": "4583.21"
+        },
+        {
+          "row": "15",
+          "key": "120540000000",
+          "name": "Potsdam                                                                                             ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "186358",
+          "total_field": "1075544576.2699997",
+          "per_person_field": "5771.39"
+        },
+        {
+          "row": "16",
+          "key": "12060",
+          "name": "Landkreis Barnim                                                                                    ",
+          "legal_form": "Landkreis                                                             ",
+          "population_field": "{192 362}",
+          "total_field": "46447553.849999994",
+          "per_person_field": "241.46"
+        },
+        {
+          "row": "17",
+          "key": "120600005005",
+          "name": "Ahrensfelde                                                                                         ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "14034",
+          "total_field": "497974.84",
+          "per_person_field": "35.479999999999997"
+        },
+        {
+          "row": "18",
+          "key": "120600020020",
+          "name": "Bernau bei Berlin                                                                                   ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "44100",
+          "total_field": "152213913.56999999",
+          "per_person_field": "3451.56"
+        },
+        {
+          "row": "19",
+          "key": "120600052052",
+          "name": "Eberswalde                                                                                          ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "41474",
+          "total_field": "148824290.32999998",
+          "per_person_field": "3588.38"
+        },
+        {
+          "row": "20",
+          "key": "120600181181",
+          "name": "Panketal                                                                                            ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "20865",
+          "total_field": "410994.65",
+          "per_person_field": "19.7"
+        },
+        {
+          "row": "21",
+          "key": "120600198198",
+          "name": "Schorfheide                                                                                         ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "10245",
+          "total_field": "10197086.799999999",
+          "per_person_field": "995.32"
+        },
+        {
+          "row": "22",
+          "key": "120600269269",
+          "name": "Wandlitz                                                                                            ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "24262",
+          "total_field": "17215812.199999999",
+          "per_person_field": "709.58"
+        },
+        {
+          "row": "23",
+          "key": "120600280280",
+          "name": "Werneuchen                                                                                          ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "9414",
+          "total_field": "29447776.210000001",
+          "per_person_field": "3128.08"
+        }
+      ]
+    },
+    {
+      "sheet": "xl/worksheets/sheet15.xml",
+      "report_units": 808,
+      "numeric_E_rows": 808,
+      "by_type_state": [
+        {
+          "type": "county_administration",
+          "state": "13",
+          "count": 6
+        },
+        {
+          "type": "joint_administration",
+          "state": "13",
+          "count": 76
+        },
+        {
+          "type": "municipality",
+          "state": "13",
+          "count": 726
+        }
+      ],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Tabelle 10:  Schulden der kommunalen Ebene beim nicht-öffentlichen Bereich am 31.12.2023 i",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "nach Höhe der Beteiligung des Kernhaushalts an öffentlichen Fonds, Einrichtungen und Unter",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "Regional-\nschlüssel",
+          "B": "Gemeinde/Gemeindeverband",
+          "C": "Verwaltungsform",
+          "D": "Bevölkerung\nam\n30.06.20231",
+          "E": "Schulden des öffentlichen Bereichs insge",
+          "G": "Schulden pro \nKopf"
+        },
+        {
+          "row": "7",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "EUR",
+          "G": "EUR"
+        }
+      ],
+      "first_report_units": [
+        {
+          "row": "12",
+          "key": "130030000000",
+          "name": "Rostock, Hanse- und Universitätsstadt                                                               ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "209839",
+          "total_field": "1537334713.2099996",
+          "per_person_field": "7326.26"
+        },
+        {
+          "row": "13",
+          "key": "130040000000",
+          "name": "Schwerin, Landeshauptstadt                                                                          ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "98546",
+          "total_field": "714120314.9199996",
+          "per_person_field": "7246.57"
+        },
+        {
+          "row": "14",
+          "key": "13071",
+          "name": "Landratsamt Mecklenburgische Seenplatte                                                             ",
+          "legal_form": "Landratsamt                                                           ",
+          "population_field": "{259 481}",
+          "total_field": "132476761.50999998",
+          "per_person_field": "510.55"
+        },
+        {
+          "row": "15",
+          "key": "130710027027",
+          "name": "Dargun, Stadt                                                                                       ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "4362",
+          "total_field": "199359.01",
+          "per_person_field": "45.7"
+        },
+        {
+          "row": "16",
+          "key": "130710029029",
+          "name": "Demmin, Hansestadt                                                                                  ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "10345",
+          "total_field": "19388872.390000001",
+          "per_person_field": "1874.23"
+        },
+        {
+          "row": "17",
+          "key": "130710033033",
+          "name": "Feldberger Seenlandschaft                                                                           ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "4484",
+          "total_field": "3835894.6900000004",
+          "per_person_field": "855.46"
+        },
+        {
+          "row": "18",
+          "key": "130710107107",
+          "name": "Neubrandenburg, Vier-Tore-Stadt                                                                     ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "64230",
+          "total_field": "438685181.53999978",
+          "per_person_field": "6829.91"
+        },
+        {
+          "row": "19",
+          "key": "130710110110",
+          "name": "Neustrelitz, Residenzstadt                                                                          ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "20395",
+          "total_field": "75305671.950000003",
+          "per_person_field": "3692.36"
+        },
+        {
+          "row": "20",
+          "key": "130710156156",
+          "name": "Waren (Müritz), Stadt                                                                               ",
+          "legal_form": "amtsfreie Gemeinde                                                    ",
+          "population_field": "21265",
+          "total_field": "21601522.440000001",
+          "per_person_field": "1015.83"
+        },
+        {
+          "row": "21",
+          "key": "130715151",
+          "name": "Amtsverwaltung Demmin-Land                                                                          ",
+          "legal_form": "Amtsverwaltung                                                        ",
+          "population_field": "{6 911}",
+          "total_field": "0",
+          "per_person_field": "0"
+        },
+        {
+          "row": "22",
+          "key": "130715151008",
+          "name": "Beggerow                                                                                            ",
+          "legal_form": "amtsangehörige Gemeinde                                               ",
+          "population_field": "493",
+          "total_field": "2617364.23",
+          "per_person_field": "5309.06"
+        },
+        {
+          "row": "23",
+          "key": "130715151014",
+          "name": "Borrentin                                                                                           ",
+          "legal_form": "amtsangehörige Gemeinde                                               ",
+          "population_field": "784",
+          "total_field": "2021801.1400000001",
+          "per_person_field": "2578.83"
+        }
+      ]
+    },
+    {
+      "sheet": "xl/worksheets/sheet16.xml",
+      "report_units": 434,
+      "numeric_E_rows": 434,
+      "by_type_state": [
+        {
+          "type": "county_administration",
+          "state": "14",
+          "count": 10
+        },
+        {
+          "type": "joint_administration",
+          "state": "14",
+          "count": 6
+        },
+        {
+          "type": "municipality",
+          "state": "14",
+          "count": 418
+        }
+      ],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Tabelle 11:  Schulden der kommunalen Ebene beim nicht-öffentlichen Bereich am 31.12.2023 i",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "nach Höhe der Beteiligung des Kernhaushalts an öffentlichen Fonds, Einrichtungen und Unter",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "Regional-\nschlüssel",
+          "B": "Gemeinde/Gemeindeverband",
+          "C": "Verwaltungsform",
+          "D": "Bevölkerung\nam\n30.06.20231",
+          "E": "Schulden des öffentlichen Bereichs insge",
+          "G": "Schulden pro \nKopf"
+        },
+        {
+          "row": "7",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "EUR",
+          "G": "EUR"
+        }
+      ],
+      "first_report_units": [
+        {
+          "row": "13",
+          "key": "145110000000",
+          "name": "Chemnitz, Stadt                                                                                     ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "249461",
+          "total_field": "994516815.64999998",
+          "per_person_field": "3986.66"
+        },
+        {
+          "row": "14",
+          "key": "14521",
+          "name": "LK Erzgebirgskreis                                                                                  ",
+          "legal_form": "Landratsamt                                                           ",
+          "population_field": "{327 739}",
+          "total_field": "131835085.74999999",
+          "per_person_field": "402.26"
+        },
+        {
+          "row": "15",
+          "key": "145210010010",
+          "name": "Amtsberg                                                                                            ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "3628",
+          "total_field": "8093937.0800000001",
+          "per_person_field": "2230.96"
+        },
+        {
+          "row": "16",
+          "key": "145210020020",
+          "name": "Annaberg-Buchholz, Stadt                                                                            ",
+          "legal_form": "große Kreisstadt                                                      ",
+          "population_field": "19401",
+          "total_field": "52543966.100000001",
+          "per_person_field": "2708.31"
+        },
+        {
+          "row": "17",
+          "key": "145210035035",
+          "name": "Aue-Bad Schlema, Stadt                                                                              ",
+          "legal_form": "große Kreisstadt                                                      ",
+          "population_field": "19764",
+          "total_field": "37824122.669999994",
+          "per_person_field": "1913.79"
+        },
+        {
+          "row": "18",
+          "key": "145210110110",
+          "name": "Breitenbrunn/Erzgeb.                                                                                ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "5089",
+          "total_field": "9320906.7899999991",
+          "per_person_field": "1831.58"
+        },
+        {
+          "row": "19",
+          "key": "145210130130",
+          "name": "Crottendorf                                                                                         ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "3955",
+          "total_field": "5565524.6800000006",
+          "per_person_field": "1407.21"
+        },
+        {
+          "row": "20",
+          "key": "145210150150",
+          "name": "Drebach                                                                                             ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "5065",
+          "total_field": "5187096.2999999989",
+          "per_person_field": "1024.1099999999999"
+        },
+        {
+          "row": "21",
+          "key": "145210160160",
+          "name": "Ehrenfriedersdorf, Stadt                                                                            ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "4519",
+          "total_field": "7685839.1100000003",
+          "per_person_field": "1700.78"
+        },
+        {
+          "row": "22",
+          "key": "145210170170",
+          "name": "Eibenstock, Stadt                                                                                   ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "7021",
+          "total_field": "14664744.320000002",
+          "per_person_field": "2088.6999999999998"
+        },
+        {
+          "row": "23",
+          "key": "145210200200",
+          "name": "Gelenau/Erzgeb.                                                                                     ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "4115",
+          "total_field": "4854593.99",
+          "per_person_field": "1179.73"
+        },
+        {
+          "row": "24",
+          "key": "145210240240",
+          "name": "Großolbersdorf                                                                                      ",
+          "legal_form": "kreisangehörige Gemeinde                                              ",
+          "population_field": "2730",
+          "total_field": "5537477.7200000007",
+          "per_person_field": "2028.38"
+        }
+      ]
+    },
+    {
+      "sheet": "xl/worksheets/sheet17.xml",
+      "report_units": 247,
+      "numeric_E_rows": 247,
+      "by_type_state": [
+        {
+          "type": "county_administration",
+          "state": "15",
+          "count": 11
+        },
+        {
+          "type": "joint_administration",
+          "state": "15",
+          "count": 18
+        },
+        {
+          "type": "municipality",
+          "state": "15",
+          "count": 218
+        }
+      ],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Tabelle 12:  Schulden der kommunalen Ebene beim nicht-öffentlichen Bereich am 31.12.2023 i",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "nach Höhe der Beteiligung des Kernhaushalts an öffentlichen Fonds, Einrichtungen und Unter",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "Regional-\nschlüssel",
+          "B": "Gemeinde/Gemeindeverband",
+          "C": "Verwaltungsform",
+          "D": "Bevölkerung\nam\n30.06.20231",
+          "E": "Schulden des öffentlichen Bereichs insge",
+          "G": "Schulden pro \nKopf"
+        },
+        {
+          "row": "7",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "EUR",
+          "G": "EUR"
+        }
+      ],
+      "first_report_units": [
+        {
+          "row": "12",
+          "key": "150010000000",
+          "name": "Dessau-Roßlau, Stadt                                                                                ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "79616",
+          "total_field": "240393051.11999997",
+          "per_person_field": "3019.41"
+        },
+        {
+          "row": "13",
+          "key": "150020000000",
+          "name": "Halle (Saale), Stadt                                                                                ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "241484",
+          "total_field": "1655597981.3800001",
+          "per_person_field": "6855.93"
+        },
+        {
+          "row": "14",
+          "key": "150030000000",
+          "name": "Magdeburg, Landeshauptstadt                                                                         ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "238647",
+          "total_field": "1205289347.7300005",
+          "per_person_field": "5050.51"
+        },
+        {
+          "row": "15",
+          "key": "15081",
+          "name": "Altmarkkreis Salzwedel                                                                              ",
+          "legal_form": "Landkreishaushalt                                                     ",
+          "population_field": "{82 222}",
+          "total_field": "53609266.449999981",
+          "per_person_field": "652.01"
+        },
+        {
+          "row": "16",
+          "key": "150810030030",
+          "name": "Arendsee (Altmark), Stadt                                                                           ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "6729",
+          "total_field": "13201296.109999999",
+          "per_person_field": "1961.85"
+        },
+        {
+          "row": "17",
+          "key": "150810135135",
+          "name": "Gardelegen, Hansestadt                                                                              ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "21986",
+          "total_field": "6313633.6499999994",
+          "per_person_field": "287.17"
+        },
+        {
+          "row": "18",
+          "key": "150810240240",
+          "name": "Kalbe (Milde), Stadt                                                                                ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "7408",
+          "total_field": "7583647.7199999997",
+          "per_person_field": "1023.71"
+        },
+        {
+          "row": "19",
+          "key": "150810280280",
+          "name": "Klötze, Stadt                                                                                       ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "9671",
+          "total_field": "10580990.940000001",
+          "per_person_field": "1094.0899999999999"
+        },
+        {
+          "row": "20",
+          "key": "150810455455",
+          "name": "Salzwedel, Hansestadt                                                                               ",
+          "legal_form": "Einheitsgemeinde                                                      ",
+          "population_field": "23479",
+          "total_field": "40840792.560000002",
+          "per_person_field": "1739.46"
+        },
+        {
+          "row": "21",
+          "key": "150815051",
+          "name": "Verbandsgemeinde Beetzendorf-Diesdorf                                                               ",
+          "legal_form": "Amt (VG/TG)                                                           ",
+          "population_field": "{12 949}",
+          "total_field": "12328632.52",
+          "per_person_field": "952.09"
+        },
+        {
+          "row": "22",
+          "key": "150815051026",
+          "name": "Apenburg-Winterfeld, Flecken                                                                        ",
+          "legal_form": "Mitgliedsgemeinde                                                     ",
+          "population_field": "1701",
+          "total_field": "1395113.96",
+          "per_person_field": "820.17"
+        },
+        {
+          "row": "23",
+          "key": "150815051045",
+          "name": "Beetzendorf                                                                                         ",
+          "legal_form": "Mitgliedsgemeinde                                                     ",
+          "population_field": "3042",
+          "total_field": "1456442.7",
+          "per_person_field": "478.78"
+        }
+      ]
+    },
+    {
+      "sheet": "xl/worksheets/sheet18.xml",
+      "report_units": 684,
+      "numeric_E_rows": 684,
+      "by_type_state": [
+        {
+          "type": "county_administration",
+          "state": "16",
+          "count": 17
+        },
+        {
+          "type": "joint_administration",
+          "state": "16",
+          "count": 43
+        },
+        {
+          "type": "municipality",
+          "state": "16",
+          "count": 624
+        }
+      ],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "4",
+          "A": "Tabelle 13:  Schulden der kommunalen Ebene beim nicht-öffentlichen Bereich am 31.12.2023 i",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "nach Höhe der Beteiligung des Kernhaushalts an öffentlichen Fonds, Einrichtungen und Unter",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "6",
+          "A": "Regional-\nschlüssel",
+          "B": "Gemeinde/Gemeindeverband",
+          "C": "Verwaltungsform",
+          "D": "Bevölkerung\nam\n30.06.20231",
+          "E": "Schulden des öffentlichen Bereichs insge",
+          "G": "Schulden pro \nKopf"
+        },
+        {
+          "row": "7",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "EUR",
+          "G": "EUR"
+        }
+      ],
+      "first_report_units": [
+        {
+          "row": "12",
+          "key": "160510000000",
+          "name": "Erfurt, Stadt                                                                                       ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "214773",
+          "total_field": "426748496.75",
+          "per_person_field": "1986.97"
+        },
+        {
+          "row": "13",
+          "key": "160520000000",
+          "name": "Gera, Stadt                                                                                         ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "94326",
+          "total_field": "199835239.45999998",
+          "per_person_field": "2118.56"
+        },
+        {
+          "row": "14",
+          "key": "160530000000",
+          "name": "Jena, Stadt                                                                                         ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "110760",
+          "total_field": "418287775.61999983",
+          "per_person_field": "3776.52"
+        },
+        {
+          "row": "15",
+          "key": "160540000000",
+          "name": "Suhl, Stadt                                                                                         ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "36465",
+          "total_field": "133994248.46000002",
+          "per_person_field": "3674.6"
+        },
+        {
+          "row": "16",
+          "key": "160550000000",
+          "name": "Weimar, Stadt                                                                                       ",
+          "legal_form": "kreisfreie Stadt                                                      ",
+          "population_field": "65436",
+          "total_field": "240322214.41000006",
+          "per_person_field": "3672.63"
+        },
+        {
+          "row": "17",
+          "key": "16061",
+          "name": "LKV Eichsfeld                                                                                       ",
+          "legal_form": "Landkreisverwaltung                                                   ",
+          "population_field": "{103 820}",
+          "total_field": "95104293.240000084",
+          "per_person_field": "916.05"
+        },
+        {
+          "row": "18",
+          "key": "160610045045",
+          "name": "Heilbad Heiligenstadt, Stadt                                                                        ",
+          "legal_form": "gemeinschaftsfreie Gemeinde                                           ",
+          "population_field": "17282",
+          "total_field": "54167047.630000003",
+          "per_person_field": "3134.3"
+        },
+        {
+          "row": "19",
+          "key": "160610074074",
+          "name": "Niederorschel                                                                                       ",
+          "legal_form": "gemeinschaftsfreie Gemeinde                                           ",
+          "population_field": "5483",
+          "total_field": "13653923.909999995",
+          "per_person_field": "2490.23"
+        },
+        {
+          "row": "20",
+          "key": "160610115115",
+          "name": "Leinefelde-Worbis, Stadt                                                                            ",
+          "legal_form": "gemeinschaftsfreie Gemeinde                                           ",
+          "population_field": "20103",
+          "total_field": "98202185.800000027",
+          "per_person_field": "4884.95"
+        },
+        {
+          "row": "21",
+          "key": "160610116116",
+          "name": "Am Ohmberg                                                                                          ",
+          "legal_form": "gemeinschaftsfreie Gemeinde                                           ",
+          "population_field": "3638",
+          "total_field": "6877911.4699999988",
+          "per_person_field": "1890.57"
+        },
+        {
+          "row": "22",
+          "key": "160610117117",
+          "name": "Sonnenstein                                                                                         ",
+          "legal_form": "gemeinschaftsfreie Gemeinde                                           ",
+          "population_field": "4360",
+          "total_field": "7432512.5700000012",
+          "per_person_field": "1704.7"
+        },
+        {
+          "row": "23",
+          "key": "160610118118",
+          "name": "Dingelstädt, Stadt                                                                                  ",
+          "legal_form": "gemeinschaftsfreie Gemeinde                                           ",
+          "population_field": "10821",
+          "total_field": "15835604.270000009",
+          "per_person_field": "1463.41"
+        }
+      ]
+    },
+    {
+      "sheet": "xl/worksheets/sheet19.xml",
+      "report_units": 0,
+      "numeric_E_rows": 0,
+      "by_type_state": [],
+      "top_nonempty_rows": [
+        {
+          "row": "1",
+          "A": "Zurück zum Inhalt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "3",
+          "A": "Anschriften der Statistischen Ämter des Bundes und der Länder",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "5",
+          "A": "Statistisches Bundesamt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "7",
+          "A": "Statistisches Bundesamt",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "8",
+          "A": "Gustav-Stresemann-Ring 11",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "9",
+          "A": "65189 Wiesbaden",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        },
+        {
+          "row": "10",
+          "A": "www.destatis.de",
+          "B": "",
+          "C": "",
+          "D": "",
+          "E": "",
+          "G": ""
+        }
+      ],
+      "first_report_units": []
+    }
+  ]
+}

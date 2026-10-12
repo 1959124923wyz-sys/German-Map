@@ -1,0 +1,4 @@
+entity,official_feed_type,coverage,format,url,download_status,scope_warning
+Bremen,city_and_land_actual_budget_2025,2025,csv_xls,https://www.transparenz.bremen.de/daten/daten-46453?_article_id=1467&fulltext=&id=46453&max=20&order=desc&sort=datum&zeitlicheabdeckung%5B0%5D=Jahr,source_catalog_verified_not_downloaded,Separate Stadt Bremen from Land Bremen
+Leipzig,city_statistical_taxes_api,historical_to_2026,csv_json,https://statistik.leipzig.de/statserv/servod.aspx,API_documentation_verified,Series only compare same tax definitions
+Leipzig,city_budget_2025_2026,2025_2026,xlsx,https://opendata.leipzig.de/dataset/finanzhaushalt-2025-2026,source_catalog_verified_not_downloaded,Budget plans are not actuals

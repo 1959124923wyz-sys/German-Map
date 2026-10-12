@@ -1,0 +1,17 @@
+{
+  "source_url": "https://www.statistikportal.de/sites/default/files/2025-12/Integrierte_Schulden_der_Gemeinden_und_Gemeindeverbaende_2024_Tabellenband_0.xlsx",
+  "source_sha256": "8712ff40e0a2dba71bc43c6a6fa720cdc847dd913e077c876aef5bc79e25198f",
+  "reporting_rows": 11874,
+  "municipalities": 10750,
+  "county_administrations_not_full_county_totals": 294,
+  "joint_administrations": 830,
+  "municipal_ags_matched_other_official_2024_atlas": 10750,
+  "municipal_missing_from_atlas": 0,
+  "atlas_2024_tax_ags_without_debt_row": 206,
+  "atlas_2024_outside_integrated_city_states": 4,
+  "atlas_2024_outside_integrated_tax_missing_other": 202,
+  "cities_not_in_scope": "Berlin,Hamburg,Bremen",
+  "status": "research_only_not_national_choropleth",
+  "official_publication_discrepancy": "published national 342761 million EUR vs 13 state totals sum 343762 million EUR (1001 million) unresolved",
+  "caution": "Do not add county government / joint administrations / municipalities; different scopes can overlap. No missing values converted to zero."
+}

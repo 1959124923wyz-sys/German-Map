@@ -1,0 +1,75 @@
+{
+  "as_of": "2026-10-10",
+  "source_2024": "Deutschlandatlas HA26 GEM1224",
+  "source_2025": "Deutschlandatlas HA26 GEM1225",
+  "old_2024_unique_ags": 10956,
+  "new_2025_unique_ags": 10949,
+  "unchanged": 10948,
+  "only_in_2025": [
+    {
+      "ags8": "07232503",
+      "name_de": "Obergeckler",
+      "state": "07"
+    }
+  ],
+  "only_in_2024": [
+    {
+      "ags8": "07232089",
+      "name_de": "Niedergeckler",
+      "state": "07",
+      "finance_2024_value_status": "published_missing_sentinel"
+    },
+    {
+      "ags8": "07232096",
+      "name_de": "Obergeckler",
+      "state": "07",
+      "finance_2024_value_status": "published_missing_sentinel"
+    },
+    {
+      "ags8": "09473453",
+      "name_de": "Gellnhausen",
+      "state": "09",
+      "finance_2024_value_status": "published_missing_sentinel"
+    },
+    {
+      "ags8": "09475452",
+      "name_de": "Gerlaser Forst",
+      "state": "09",
+      "finance_2024_value_status": "published_missing_sentinel"
+    },
+    {
+      "ags8": "09479453",
+      "name_de": "Kaiserhammer Forst-Ost",
+      "state": "09",
+      "finance_2024_value_status": "published_missing_sentinel"
+    },
+    {
+      "ags8": "09479456",
+      "name_de": "Meierhöfer Seite",
+      "state": "09",
+      "finance_2024_value_status": "published_missing_sentinel"
+    },
+    {
+      "ags8": "09479462",
+      "name_de": "Weißenstadter Forst-Nord",
+      "state": "09",
+      "finance_2024_value_status": "published_missing_sentinel"
+    },
+    {
+      "ags8": "09479463",
+      "name_de": "Weißenstadter Forst-Süd",
+      "state": "09",
+      "finance_2024_value_status": "published_missing_sentinel"
+    }
+  ],
+  "new": 1,
+  "missing": 8,
+  "net_change": -7,
+  "notes": [
+    "Difference is administrative code inventory only; it is not fiscal debt or tax-capacity loss.",
+    "All eight 2024-only units had missing tax-capacity values (-9999), not true zero.",
+    "Do not assume official legal merger history from codes alone; verify BKG/GV-ISys boundary files.",
+    "2025 districts inferred from code prefix total 400, but actual 2025 polygons not yet verified."
+  ],
+  "map_boundary_approved": false
+}

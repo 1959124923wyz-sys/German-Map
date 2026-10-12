@@ -1,0 +1,45 @@
+name: Finance 08 - Nationwide raw data to research branch
+on:
+  push:
+    branches: [research/finance-regional-expansion-20261010]
+    paths:
+      - '.github/workflows/finance-national-data.yml'
+      - 'research/finance/regional-expansion/build_official_national_pipeline.py'
+permissions:
+  contents: write
+concurrency:
+  group: finance08-national-data-research
+  cancel-in-progress: false
+jobs:
+  normalize-and-stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download checksum-verified original government XLSX and CSV and normalize
+        run: |
+          python research/finance/regional-expansion/build_official_national_pipeline.py
+          python research/finance/regional-expansion/tests/validate.py
+      - name: Commit only derived normalized CSV and audit, never website or main
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/finance/regional-expansion/derived/
+          if git diff --cached --quiet; then
+            echo "Validated files unchanged"
+          else
+            git commit -m "data(finance): 2024 nationwide 10750 city/town debt records and 10956 tax capacity records"
+            git push origin HEAD:research/finance-regional-expansion-20261010
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: finance08-national-data-source-audit
+          path: /tmp/finance08-national-raw/
+          retention-days: 30

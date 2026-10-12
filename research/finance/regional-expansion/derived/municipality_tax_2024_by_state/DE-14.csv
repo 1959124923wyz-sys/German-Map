@@ -1,0 +1,419 @@
+ags8,county_ags5,name_de,state_code,year,tax_capacity_eur_per_capita,value_status,source_id
+14511000,14511,"Chemnitz, Stadt",14,2024,1125.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521010,14521,Amtsberg,14,2024,681.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521020,14521,"Annaberg-Buchholz, Stadt",14,2024,1090.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521035,14521,"Aue-Bad Schlema, Stadt",14,2024,1049.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521040,14521,Auerbach,14,2024,543.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521060,14521,Bärenstein,14,2024,726.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521080,14521,Bockau,14,2024,572.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521090,14521,Börnichen/Erzgeb.,14,2024,609.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521110,14521,Breitenbrunn/Erzgeb.,14,2024,762.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521120,14521,Burkhardtsdorf,14,2024,875,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521130,14521,Crottendorf,14,2024,827.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521140,14521,Deutschneudorf,14,2024,3756.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521150,14521,Drebach,14,2024,1158.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521160,14521,"Ehrenfriedersdorf, Stadt",14,2024,1110.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521170,14521,"Eibenstock, Stadt",14,2024,888.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521180,14521,"Elterlein, Stadt",14,2024,985.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521200,14521,Gelenau/Erzgeb.,14,2024,810.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521210,14521,"Geyer, Stadt",14,2024,805.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521220,14521,Gornau/Erzgeb.,14,2024,888.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521230,14521,Gornsdorf,14,2024,791.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521240,14521,Großolbersdorf,14,2024,616.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521250,14521,Großrückerswalde,14,2024,692.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521260,14521,"Grünhain-Beierfeld, Stadt",14,2024,898.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521270,14521,Grünhainichen,14,2024,1007.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521280,14521,Heidersdorf,14,2024,874.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521290,14521,Hohndorf,14,2024,639,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521310,14521,Jahnsdorf/Erzgeb.,14,2024,930.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521320,14521,"Johanngeorgenstadt, Stadt",14,2024,779.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521330,14521,"Jöhstadt, Stadt",14,2024,687.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521340,14521,Königswalde,14,2024,596.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521355,14521,"Lauter-Bernsbach, Stadt",14,2024,768.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521370,14521,"Lößnitz, Stadt",14,2024,819.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521380,14521,"Lugau/Erzgeb., Stadt",14,2024,911,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521390,14521,"Marienberg, Stadt",14,2024,1020.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521400,14521,Mildenau,14,2024,782,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521410,14521,Neukirchen/Erzgeb.,14,2024,1268.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521420,14521,Niederdorf,14,2024,2003.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521430,14521,Niederwürschnitz,14,2024,945.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521440,14521,"Oberwiesenthal, Kurort, Stadt",14,2024,1037.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521450,14521,"Oelsnitz/Erzgeb., Stadt",14,2024,885.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521460,14521,"Olbernhau, Stadt",14,2024,1102.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521495,14521,"Pockau-Lengefeld, Stadt",14,2024,990.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521500,14521,Raschau-Markersbach,14,2024,803.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521510,14521,"Scheibenberg, Stadt",14,2024,908.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521520,14521,"Schlettau, Stadt",14,2024,813.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521530,14521,"Schneeberg, Stadt",14,2024,719.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521540,14521,Schönheide,14,2024,567.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521550,14521,"Schwarzenberg/Erzgeb., Stadt",14,2024,913.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521560,14521,Sehmatal,14,2024,772.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521570,14521,"Seiffen/Erzgeb., Kurort",14,2024,1000,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521590,14521,"Stollberg/Erzgeb., Stadt",14,2024,1967.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521600,14521,Stützengrün,14,2024,980.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521610,14521,Tannenberg,14,2024,700.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521620,14521,"Thalheim/Erzgeb., Stadt",14,2024,992.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521630,14521,Thermalbad Wiesenbad,14,2024,796.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521640,14521,"Thum, Stadt",14,2024,786.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521670,14521,"Wolkenstein, Stadt",14,2024,1061.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521690,14521,"Zschopau, Stadt, Motorradstadt",14,2024,967.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521700,14521,Zschorlau,14,2024,674.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14521710,14521,"Zwönitz, Stadt",14,2024,1079,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522010,14522,Altmittweida,14,2024,1172.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522020,14522,"Augustusburg, Stadt",14,2024,832.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522035,14522,Bobritzsch-Hilbersdorf,14,2024,1518.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522050,14522,"Brand-Erbisdorf, Stadt",14,2024,1028,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522060,14522,"Burgstädt, Stadt",14,2024,940.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522070,14522,Claußnitz,14,2024,1310.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522080,14522,"Döbeln, Stadt",14,2024,976.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522090,14522,Dorfchemnitz,14,2024,1209.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522110,14522,Eppendorf,14,2024,750.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522120,14522,Erlau,14,2024,739.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522140,14522,"Flöha, Stadt",14,2024,837.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522150,14522,"Frankenberg/Sa., Stadt, Garnisonsstadt",14,2024,871,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522170,14522,"Frauenstein, Stadt",14,2024,879.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522180,14522,"Freiberg, Stadt, Universitätsstadt",14,2024,1138.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522190,14522,"Geringswalde, Stadt",14,2024,892.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522200,14522,Großhartmannsdorf,14,2024,544.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522210,14522,"Großschirma, Stadt",14,2024,1148.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522220,14522,Großweitzschen,14,2024,999.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522230,14522,"Hainichen, Stadt",14,2024,1054.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522240,14522,Halsbrücke,14,2024,1421.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522250,14522,"Hartha, Stadt",14,2024,1126.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522260,14522,Hartmannsdorf,14,2024,2030.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522275,14522,Jahnatal,14,2024,883.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522280,14522,Königsfeld,14,2024,860.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522290,14522,Königshain-Wiederau,14,2024,662.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522300,14522,Kriebstein,14,2024,901.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522310,14522,"Leisnig, Stadt",14,2024,959.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522320,14522,Leubsdorf,14,2024,878.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522330,14522,Lichtenau,14,2024,1345.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522340,14522,Lichtenberg/Erzgeb.,14,2024,982.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522350,14522,"Lunzenau, Stadt",14,2024,633.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522360,14522,"Mittweida, Stadt, Hochschulstadt",14,2024,1717.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522380,14522,Mühlau,14,2024,1222.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522390,14522,Mulda/Sa.,14,2024,1232.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522400,14522,Neuhausen/Erzgeb.,14,2024,791,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522420,14522,Niederwiesa,14,2024,956.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522430,14522,Oberschöna,14,2024,708.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522440,14522,"Oederan, Stadt",14,2024,1040.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522460,14522,"Penig, Stadt",14,2024,915.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522470,14522,Rechenberg-Bienenmühle,14,2024,956.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522480,14522,Reinsberg,14,2024,755.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522490,14522,"Rochlitz, Stadt, Stadt des Roten Porphyr",14,2024,1087.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522500,14522,Rossau,14,2024,1114,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522510,14522,"Roßwein, Stadt",14,2024,855.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522520,14522,"Sayda, Stadt",14,2024,1161.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522530,14522,Seelitz,14,2024,668.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522540,14522,Striegistal,14,2024,834.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522550,14522,Taura,14,2024,759.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522570,14522,"Waldheim, Stadt",14,2024,1111,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522580,14522,Wechselburg,14,2024,826.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522590,14522,Weißenborn/Erzgeb.,14,2024,2659,published_numeric,DE_ATLAS_HA26_GEM_2024
+14522600,14522,Zettlitz,14,2024,1621.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523010,14523,"Adorf/Vogtl., Stadt",14,2024,1166.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523020,14523,"Auerbach/Vogtl., Stadt",14,2024,1002.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523030,14523,Bad Brambach,14,2024,734,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523040,14523,"Bad Elster, Stadt",14,2024,935.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523050,14523,Bergen,14,2024,570.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523060,14523,Bösenbrunn,14,2024,619,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523080,14523,Eichigt,14,2024,832.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523090,14523,Ellefeld,14,2024,705.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523100,14523,"Elsterberg, Stadt",14,2024,722,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523120,14523,"Falkenstein/Vogtl., Stadt",14,2024,3024.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523130,14523,Grünbach,14,2024,542.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523150,14523,Heinsdorfergrund,14,2024,2651.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523160,14523,"Klingenthal, Stadt",14,2024,907.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523170,14523,"Lengenfeld, Stadt",14,2024,981.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523190,14523,Limbach,14,2024,509.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523200,14523,"Markneukirchen, Stadt",14,2024,926.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523230,14523,Mühlental,14,2024,642.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523245,14523,Muldenhammer,14,2024,701.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523260,14523,"Netzschkau, Stadt",14,2024,778.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523270,14523,Neuensalz,14,2024,1198.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523280,14523,Neumark,14,2024,1663.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523290,14523,Neustadt/Vogtl.,14,2024,796.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523300,14523,"Oelsnitz/Vogtl., Stadt",14,2024,1329.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523310,14523,"Pausa-Mühltroff, Stadt",14,2024,1315.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523320,14523,"Plauen, Stadt",14,2024,975.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523330,14523,Pöhl,14,2024,906.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523340,14523,"Reichenbach im Vogtland, Stadt",14,2024,811.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523360,14523,"Rodewisch, Stadt",14,2024,920.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523365,14523,Rosenbach/Vogtl.,14,2024,807,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523370,14523,"Schöneck/Vogtl., Stadt",14,2024,1373,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523380,14523,Steinberg,14,2024,1101.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523410,14523,Theuma,14,2024,879.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523420,14523,Tirpersdorf,14,2024,878.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523430,14523,"Treuen, Stadt",14,2024,1757.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523440,14523,Triebel/Vogtl.,14,2024,579.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523450,14523,Weischlitz,14,2024,973.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14523460,14523,Werda,14,2024,750.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524010,14524,Bernsdorf,14,2024,1108.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524020,14524,Callenberg,14,2024,845.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524030,14524,"Crimmitschau, Stadt",14,2024,994.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524040,14524,Crinitzberg,14,2024,761.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524050,14524,Dennheritz,14,2024,1501.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524060,14524,Fraureuth,14,2024,785.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524070,14524,Gersdorf,14,2024,834.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524080,14524,"Glauchau, Stadt",14,2024,1033.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524090,14524,"Hartenstein, Stadt",14,2024,1233.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524100,14524,Hartmannsdorf b. Kirchberg,14,2024,612.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524110,14524,Hirschfeld,14,2024,1403.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524120,14524,"Hohenstein-Ernstthal, Stadt",14,2024,876.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524130,14524,"Kirchberg, Stadt",14,2024,914.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524140,14524,Langenbernsdorf,14,2024,722.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524150,14524,Langenweißbach,14,2024,792.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524160,14524,"Lichtenstein/Sa., Stadt",14,2024,730.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524170,14524,Lichtentanne,14,2024,1004.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524180,14524,"Limbach-Oberfrohna, Stadt",14,2024,1058.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524190,14524,"Meerane, Stadt",14,2024,1187.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524200,14524,Mülsen,14,2024,796.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524210,14524,Neukirchen/Pleiße,14,2024,736.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524220,14524,Niederfrohna,14,2024,686.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524230,14524,"Oberlungwitz, Stadt",14,2024,1248.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524240,14524,Oberwiera,14,2024,1016.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524250,14524,Reinsdorf,14,2024,1162.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524260,14524,Remse,14,2024,1430.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524270,14524,Schönberg,14,2024,832.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524280,14524,St. Egidien,14,2024,3500.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524290,14524,"Waldenburg, Stadt",14,2024,700.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524300,14524,"Werdau, Stadt",14,2024,829.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524310,14524,"Wildenfels, Stadt",14,2024,693.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524320,14524,"Wilkau-Haßlau, Stadt",14,2024,906.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14524330,14524,"Zwickau, Stadt, Hochschulstadt",14,2024,1205.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14612000,14612,"Dresden, Stadt",14,2024,1346.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625010,14625,Arnsdorf,14,2024,831.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625020,14625,"Bautzen / Budyšin, Stadt",14,2024,1171.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625030,14625,"Bernsdorf, Stadt",14,2024,1058.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625040,14625,"Bischofswerda, Stadt",14,2024,863.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625060,14625,Burkau / Porchow,14,2024,1020.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625080,14625,Crostwitz / Chrós?icy,14,2024,585.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625090,14625,Cunewalde,14,2024,837.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625100,14625,Demitz-Thumitz,14,2024,853.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625110,14625,Doberschau-Gaußig / Dobruša-Huska,14,2024,824.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625120,14625,Elsterheide / Halštrowska Hola,14,2024,1910.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625130,14625,"Elstra / Halštrow, Stadt",14,2024,891.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625140,14625,Frankenthal,14,2024,615.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625150,14625,Göda / Hod?ij,14,2024,929.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625160,14625,Großdubrau / Wulka Dubrawa,14,2024,920.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625170,14625,Großharthau,14,2024,653,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625180,14625,Großnaundorf,14,2024,663.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625190,14625,Großpostwitz/O.L. / Budestecy,14,2024,1679.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625200,14625,"Großröhrsdorf, Stadt",14,2024,1290.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625220,14625,Haselbachtal,14,2024,703.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625230,14625,Hochkirch / Bukecy,14,2024,679.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625240,14625,"Hoyerswerda / Wojerecy, Stadt",14,2024,875.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625250,14625,"Kamenz / Kamjenc, Stadt",14,2024,1235.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625270,14625,"Königsbrück, Stadt",14,2024,839.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625280,14625,Königswartha / Rakecy,14,2024,726.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625290,14625,Kubschütz / Kubšicy,14,2024,963.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625300,14625,Laußnitz,14,2024,1113.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625310,14625,"Lauta, Stadt",14,2024,980.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625320,14625,Lichtenberg,14,2024,743.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625330,14625,Lohsa / ?az,14,2024,858.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625340,14625,Malschwitz / Malešecy,14,2024,793.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625350,14625,Nebelschütz / Njebjel?icy,14,2024,1145.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625360,14625,Neschwitz / Njeswa?id?o,14,2024,641.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625370,14625,Neukirch,14,2024,600,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625380,14625,Neukirch/Lausitz,14,2024,1023.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625390,14625,Obergurig / Hornja Hórka,14,2024,1520.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625410,14625,Ohorn,14,2024,748.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625420,14625,Oßling / Wóslink,14,2024,1049.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625430,14625,Ottendorf-Okrilla,14,2024,1541,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625440,14625,Panschwitz-Kuckau / Pan?icy-Kukow,14,2024,753.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625450,14625,"Pulsnitz, Stadt",14,2024,929.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625460,14625,Puschwitz / Bóšicy,14,2024,2432,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625470,14625,Räckelwitz / Worklecy,14,2024,864.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625480,14625,"Radeberg, Stadt",14,2024,4450.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625490,14625,Radibor / Radwor,14,2024,849.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625500,14625,Ralbitz-Rosenthal / Ralbicy-Róžant,14,2024,710.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625510,14625,Rammenau,14,2024,705.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625525,14625,"Schirgiswalde-Kirschau, Stadt",14,2024,841.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625530,14625,Schmölln-Putzkau,14,2024,743.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625550,14625,Schwepnitz,14,2024,1687.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625560,14625,Sohland a. d. Spree,14,2024,1043.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625570,14625,Spreetal / Sprjewiny Do?,14,2024,1987.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625580,14625,Steina,14,2024,722.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625590,14625,Steinigtwolmsdorf,14,2024,579,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625600,14625,Wachau,14,2024,2219.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625610,14625,"Weißenberg / Wóspork, Stadt",14,2024,860.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625630,14625,"Wilthen, Stadt",14,2024,618.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14625640,14625,"Wittichenau / Kulow, Stadt",14,2024,907.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626010,14626,"Bad Muskau / Mužakow, Stadt",14,2024,596.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626020,14626,Beiersdorf,14,2024,2203.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626030,14626,"Bernstadt a. d. Eigen, Stadt",14,2024,2224.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626050,14626,Bertsdorf-Hörnitz,14,2024,622.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626060,14626,Boxberg/O.L. / Hamor,14,2024,2020.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626070,14626,Dürrhennersdorf,14,2024,877.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626085,14626,"Ebersbach-Neugersdorf, Stadt",14,2024,918.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626100,14626,Gablenz / Jab?o?c,14,2024,704.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626110,14626,"Görlitz, Stadt, Hochschulstadt",14,2024,917.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626120,14626,Groß Düben / D??win,14,2024,682.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626140,14626,Großschönau,14,2024,710.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626150,14626,Großschweidnitz,14,2024,685.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626160,14626,Hähnichen,14,2024,575.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626170,14626,Hainewalde,14,2024,654.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626180,14626,"Herrnhut, Stadt",14,2024,800.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626190,14626,Hohendubrau / Wysoka Dubrawa,14,2024,553.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626200,14626,Horka,14,2024,655.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626210,14626,"Jonsdorf, Kurort",14,2024,593.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626230,14626,Kodersdorf,14,2024,4060.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626240,14626,Königshain,14,2024,590.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626245,14626,Kottmar,14,2024,776.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626250,14626,Krauschwitz i.d. O.L. / Krušwica,14,2024,771.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626260,14626,Kreba-Neudorf / Chrjebja-Nowa Wjes,14,2024,2307.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626270,14626,Lawalde,14,2024,709.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626280,14626,Leutersdorf,14,2024,884.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626290,14626,"Löbau, Stadt",14,2024,950.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626300,14626,Markersdorf,14,2024,1182.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626310,14626,Mittelherwigsdorf,14,2024,1356.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626320,14626,Mücka / Mikow,14,2024,631.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626330,14626,Neißeaue,14,2024,653.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626350,14626,"Neusalza-Spremberg, Stadt",14,2024,1006.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626370,14626,"Niesky, Stadt",14,2024,1018.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626390,14626,Oderwitz,14,2024,676.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626400,14626,Olbersdorf,14,2024,716.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626410,14626,Oppach,14,2024,741.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626420,14626,"Ostritz, Stadt",14,2024,571.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626430,14626,Oybin,14,2024,720.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626440,14626,Quitzdorf am See / Kwetanecy pri jezoru,14,2024,736.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626450,14626,"Reichenbach/O.L., Stadt",14,2024,783.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626460,14626,Rietschen / R??icy,14,2024,579.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626470,14626,Rosenbach,14,2024,816.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626480,14626,"Rothenburg/O.L., Stadt",14,2024,958.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626490,14626,Schleife / Slepo,14,2024,871.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626500,14626,Schönau-Berzdorf a. d. Eigen,14,2024,745,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626510,14626,Schönbach,14,2024,1550.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626520,14626,Schöpstal,14,2024,1322.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626530,14626,"Seifhennersdorf, Stadt",14,2024,807.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626560,14626,Trebendorf / Trjebin,14,2024,1279.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626570,14626,Vierkirchen,14,2024,698.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626580,14626,Waldhufen,14,2024,767.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626590,14626,Weißkeißel / Wuskid?,14,2024,583.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626600,14626,"Weißwasser/O.L., Stadt / B??a Woda",14,2024,874.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14626610,14626,"Zittau, Stadt, Hochschulstadt",14,2024,1146.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627010,14627,"Coswig, Stadt",14,2024,842.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627020,14627,Diera-Zehren,14,2024,770.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627030,14627,Ebersbach,14,2024,841.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627040,14627,Glaubitz,14,2024,1207,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627050,14627,"Gröditz, Stadt",14,2024,1065.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627060,14627,"Großenhain, Stadt",14,2024,985.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627070,14627,Hirschstein,14,2024,803.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627080,14627,Käbschütztal,14,2024,810.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627100,14627,Klipphausen,14,2024,1982.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627110,14627,Lampertswalde,14,2024,2192.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627130,14627,"Lommatzsch, Stadt",14,2024,1100.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627140,14627,"Meißen, Stadt",14,2024,923.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627150,14627,Moritzburg,14,2024,1262.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627170,14627,Niederau,14,2024,857,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627180,14627,"Nossen, Stadt",14,2024,1095.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627190,14627,Nünchritz,14,2024,1344.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627200,14627,Priestewitz,14,2024,948,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627210,14627,"Radebeul, Stadt",14,2024,1232.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627220,14627,"Radeburg, Stadt",14,2024,1155.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627230,14627,"Riesa, Stadt",14,2024,1044.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627240,14627,Röderaue,14,2024,636.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627250,14627,Schönfeld,14,2024,1237.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627260,14627,Stauchitz,14,2024,672,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627270,14627,"Strehla, Stadt",14,2024,702.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627290,14627,Thiendorf,14,2024,2156.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627310,14627,Weinböhla,14,2024,785.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627340,14627,Wülknitz,14,2024,1325.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14627360,14627,Zeithain,14,2024,1144.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628010,14628,"Altenberg, Stadt",14,2024,825.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628020,14628,"Bad Gottleuba-Berggießhübel, Stadt",14,2024,882.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628030,14628,"Bad Schandau, Stadt",14,2024,1075.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628040,14628,Bahretal,14,2024,900.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628050,14628,Bannewitz,14,2024,984.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628060,14628,"Dippoldiswalde, Stadt",14,2024,1007.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628070,14628,Dohma,14,2024,919.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628080,14628,"Dohna, Stadt",14,2024,985.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628090,14628,Dorfhain,14,2024,766.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628100,14628,Dürrröhrsdorf-Dittersbach,14,2024,775,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628110,14628,"Freital, Stadt",14,2024,913.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628130,14628,"Glashütte, Stadt",14,2024,1463.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628140,14628,Gohrisch,14,2024,671.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628150,14628,Hartmannsdorf-Reichenau,14,2024,695.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628160,14628,"Heidenau, Stadt",14,2024,958.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628170,14628,Hermsdorf/Erzgeb.,14,2024,759.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628190,14628,"Hohnstein, Stadt",14,2024,601.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628205,14628,Klingenberg,14,2024,784.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628210,14628,"Königstein/Sächs. Schw., Stadt",14,2024,1105.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628220,14628,Kreischa,14,2024,1138.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628230,14628,"Liebstadt, Stadt",14,2024,656.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628240,14628,Lohmen,14,2024,722.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628250,14628,Müglitztal,14,2024,705.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628260,14628,"Neustadt in Sachsen, Stadt",14,2024,1199.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628270,14628,"Pirna, Stadt",14,2024,928.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628300,14628,"Rabenau, Stadt",14,2024,732.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628310,14628,"Rathen, Kurort",14,2024,1179.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628320,14628,Rathmannsdorf,14,2024,587.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628330,14628,Reinhardtsdorf-Schöna,14,2024,749.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628340,14628,Rosenthal-Bielatal,14,2024,609.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628360,14628,"Sebnitz, Stadt",14,2024,677.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628370,14628,"Stadt Wehlen, Stadt",14,2024,736,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628380,14628,"Stolpen, Stadt",14,2024,720.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628390,14628,Struppen,14,2024,685.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628400,14628,"Tharandt, Stadt",14,2024,874,published_numeric,DE_ATLAS_HA26_GEM_2024
+14628410,14628,"Wilsdruff, Stadt",14,2024,19.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14713000,14713,"Leipzig, Stadt",14,2024,1476.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729010,14729,"Bad Lausick, Stadt",14,2024,947.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729020,14729,Belgershain,14,2024,776.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729030,14729,Bennewitz,14,2024,863.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729040,14729,"Böhlen, Stadt",14,2024,870.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729050,14729,"Borna, Stadt",14,2024,828.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729060,14729,Borsdorf,14,2024,1065.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729070,14729,"Brandis, Stadt",14,2024,1145.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729080,14729,"Colditz, Stadt",14,2024,976.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729100,14729,Elstertrebnitz,14,2024,1195.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729140,14729,"Frohburg, Stadt",14,2024,800.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729150,14729,"Geithain, Stadt",14,2024,857.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729160,14729,"Grimma, Stadt",14,2024,1137.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729170,14729,"Groitzsch, Stadt",14,2024,1017.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729190,14729,Großpösna,14,2024,1177,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729220,14729,"Kitzscher, Stadt",14,2024,605.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729245,14729,Lossatal,14,2024,969.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729250,14729,Machern,14,2024,1585.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729260,14729,"Markkleeberg, Stadt",14,2024,1221.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729270,14729,"Markranstädt, Stadt",14,2024,1403.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729300,14729,"Naunhof, Stadt",14,2024,985.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729320,14729,Neukieritzsch,14,2024,5282.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729330,14729,Otterwisch,14,2024,865.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729340,14729,Parthenstein,14,2024,1420,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729350,14729,"Pegau, Stadt",14,2024,760,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729360,14729,"Regis-Breitingen, Stadt",14,2024,913.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729370,14729,"Rötha, Stadt",14,2024,1432.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729380,14729,Thallwitz,14,2024,883.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729400,14729,"Trebsen/Mulde, Stadt",14,2024,1200.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729410,14729,"Wurzen, Stadt",14,2024,1207.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14729430,14729,"Zwenkau, Stadt",14,2024,1065.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730010,14730,Arzberg,14,2024,831.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730020,14730,"Bad Düben, Stadt",14,2024,914.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730030,14730,Beilrode,14,2024,794.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730045,14730,"Belgern-Schildau, Stadt",14,2024,709.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730050,14730,Cavertitz,14,2024,861.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730060,14730,"Dahlen, Stadt",14,2024,730.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730070,14730,"Delitzsch, Stadt",14,2024,815.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730080,14730,Doberschütz,14,2024,816.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730090,14730,"Dommitzsch, Stadt",14,2024,746.7,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730100,14730,Dreiheide,14,2024,941.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730110,14730,"Eilenburg, Stadt",14,2024,875.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730120,14730,Elsnig,14,2024,900.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730140,14730,Jesewitz,14,2024,978,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730150,14730,Krostitz,14,2024,1274.8,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730160,14730,Laußig,14,2024,783.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730170,14730,Liebschützberg,14,2024,846.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730180,14730,Löbnitz,14,2024,1293.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730190,14730,Mockrehna,14,2024,1295.6,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730200,14730,"Mügeln, Stadt",14,2024,881.5,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730210,14730,Naundorf,14,2024,996.2,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730230,14730,"Oschatz, Stadt",14,2024,907.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730250,14730,Rackwitz,14,2024,1176.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730270,14730,"Schkeuditz, Stadt",14,2024,2335,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730280,14730,Schönwölkau,14,2024,922.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730300,14730,"Taucha, Stadt",14,2024,1146.4,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730310,14730,"Torgau, Stadt",14,2024,951.1,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730320,14730,Trossin,14,2024,1419.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730330,14730,Wermsdorf,14,2024,873.3,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730340,14730,Wiedemar,14,2024,1529.9,published_numeric,DE_ATLAS_HA26_GEM_2024
+14730360,14730,Zschepplin,14,2024,805,published_numeric,DE_ATLAS_HA26_GEM_2024

@@ -1,0 +1,72 @@
+name: Finance 08 - Official Regional County Core Debt (Research Only)
+on:
+  push:
+    branches: [research/finance-regional-expansion-20261010]
+    paths:
+      - 'research/finance/regional-expansion/inspect_regional_core_county_debt.py'
+      - 'research/finance/regional-expansion/normalize_regional_core_county_debt_2023.py'
+      - 'research/finance/regional-expansion/filter_regional_core_debt_2023.py'
+      - '.github/workflows/finance-regional-core-debt.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: finance08-core-county-source
+  cancel-in-progress: false
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Acquire and audit 71327 official CSV without inventing schema
+        id: audit
+        continue-on-error: true
+        run: |
+          set +e
+          (
+            python research/finance/regional-expansion/inspect_regional_core_county_debt.py &&
+            python research/finance/regional-expansion/normalize_regional_core_county_debt_2023.py &&
+            python research/finance/regional-expansion/filter_regional_core_debt_2023.py
+          ) > /tmp/finance08_71327.log 2>&1
+          code=$?
+          cat /tmp/finance08_71327.log
+          mkdir -p research/finance/regional-expansion/derived/regional_core_debt/
+          EXIT_CODE=$code python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path('research/finance/regional-expansion/derived/regional_core_debt/last_run_status.json')
+          rc=int(os.environ['EXIT_CODE'])
+          log=Path('/tmp/finance08_71327.log').read_text(encoding='utf-8',errors='replace')
+          p.write_text(json.dumps({'verified':rc==0,'exit_code':rc,
+             'status':'2023_county_core_debt_active_and_historical_validated' if rc==0 else 'failed_not_imported',
+             'notes':log[-2500:]},indent=2)+'\n',encoding='utf-8')
+          PY
+          exit $code
+      - name: Preserve source audit and failure diagnosis on research branch only
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/finance/regional-expansion/derived/regional_core_debt/
+          if ! git diff --cached --quiet; then
+            git commit -m "data(finance): archive real regional core debt source schema or failure report"
+            git pull --rebase origin research/finance-regional-expansion-20261010
+            git push origin HEAD:research/finance-regional-expansion-20261010
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: finance08-official-71327-raw-csv
+          path: /tmp/finance08-regional-core/regional_71327-01-05-4_raw.csv
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Require acquisition success after diagnosis preservation
+        if: always()
+        run: test "${{ steps.audit.outcome }}" = success

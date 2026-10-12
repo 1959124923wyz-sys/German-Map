@@ -1,0 +1,59 @@
+name: Finance 08 - Matched 2023-24 Debt Panel (Research Only)
+on:
+  push:
+    branches: [research/finance-regional-expansion-20261010]
+    paths:
+      - 'research/finance/regional-expansion/build_integrated_debt_2023_2024_panel.py'
+      - '.github/workflows/finance-debt-panel-2023-24.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: finance08-debt-panel-research
+  cancel-in-progress: false
+jobs:
+  panel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Join 2023-2024 same legal reporting unit classes with safeguards
+        id: build_panel
+        continue-on-error: true
+        run: |
+          set +e
+          python research/finance/regional-expansion/build_integrated_debt_2023_2024_panel.py > /tmp/finance08_debt_panel.log 2>&1
+          rc=$?
+          cat /tmp/finance08_debt_panel.log
+          mkdir -p research/finance/regional-expansion/derived/integrated_panel_2023_2024/
+          EXIT_CODE=$rc python - <<'PY'
+          import json,os
+          from pathlib import Path
+          dst=Path('research/finance/regional-expansion/derived/integrated_panel_2023_2024/last_run_status.json')
+          result=int(os.environ['EXIT_CODE'])
+          logs=Path('/tmp/finance08_debt_panel.log').read_text(encoding='utf-8',errors='replace')
+          dst.write_text(json.dumps({'verified':result==0,'exit_code':result,
+            'status':'matched_original_unit_panel_validated' if result==0 else 'failed_do_not_publish',
+            'notes':logs[-2800:]},indent=2)+'\n',encoding='utf-8')
+          PY
+          exit $rc
+      - name: Safely commit panel and status on research branch only
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/finance/regional-expansion/derived/integrated_panel_2023_2024/
+          if ! git diff --cached --quiet; then
+            git commit -m "data(finance): 2023-24 nationwide same-fiscal-unit debt panel with per-year definitions"
+            git pull --rebase origin research/finance-regional-expansion-20261010
+            git push origin HEAD:research/finance-regional-expansion-20261010
+          fi
+      - name: Reject unverified panel after archiving diagnostic
+        if: always()
+        run: test "${{ steps.build_panel.outcome }}" = success
