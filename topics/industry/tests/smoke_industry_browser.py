@@ -130,6 +130,39 @@ def verify(browser,mobile=False):
     assert page.evaluate("GermanIndustryQA.selectedState()") is None
     assert page.evaluate("""() => GermanIndustryQA.getMap()
       .hasLayer(GermanIndustryQA.getStateOverlay())""")
+    # NEW: manually zooming into a county while the selection is nationwide
+    # must remove the transparent 16-state SVG hit shield. This is different
+    # from choosing a state through the picker, which already removed it.
+    page.evaluate("""() => GermanIndustryQA.getMap().setView(
+      [50.72,9.1],9,{animate:false})""")
+    page.wait_for_function("""() => {
+      const q=GermanIndustryQA,m=q.getMap();
+      return m.getZoom()>=9 && !m.hasLayer(q.getStateOverlay());
+    }""")
+    probe=page.evaluate("""() => {
+      const qa=GermanIndustryQA,m=qa.getMap();
+      const xy=m.latLngToContainerPoint([50.72,9.1]),r=m.getContainer().getBoundingClientRect();
+      const world=m.latLngToLayerPoint([50.72,9.1]);
+      const matches=qa.getCounties().getLayers().filter(l=>l._containsPoint?.(world));
+      const x=r.left+xy.x,y=r.top+xy.y;
+      const stack=document.elementsFromPoint(x,y).slice(0,7)
+        .map(el=>({tag:el.tagName,pane:el.closest('.leaflet-pane')?.className||''}));
+      return {x,y,matches:matches.map(l=>l.feature?.id),stack};
+    }""")
+    assert probe['matches'],f"No real 400-county polygon under high-zoom pointer: {probe}"
+    assert any('countyPane' in (item['pane'] or '') for item in probe['stack']),(
+        'County renderer not reachable by actual mouse pointer',probe)
+    camera_before=page.evaluate("GermanIndustryQA.view()")
+    page.mouse.click(probe['x'],probe['y'])
+    assert page.evaluate("GermanIndustryQA.selectedCounty()") in probe['matches'],(
+        'Actual county click not dispatched to the expected polygon',probe)
+    assert page.evaluate("GermanIndustryQA.view()")==camera_before,(
+        'County mouse click unexpectedly moved camera')
+    page.locator('#viewGermany').click()
+    assert page.evaluate("GermanIndustryQA.selectedCounty()") is None
+    assert page.evaluate("""() => GermanIndustryQA.getMap()
+      .hasLayer(GermanIndustryQA.getStateOverlay())"""),(
+        'Returning to national view must restore state click targets')
 
     assert not errors,errors
     page.screenshot(path="/tmp/industry-release-"+("mobile" if mobile else "desktop")+".png",full_page=True)
