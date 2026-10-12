@@ -220,7 +220,7 @@
   }
   function selectState(iso,{locate=false}={}){
    if(!iso||!STATE_CODES||!stateNames.has(iso))return;
-   state.selectedState=iso;state.selected=null;
+   state.selectedState=iso;state.selected=null;state.locatedRecord=null;
    $('envStateJump').value=iso;
    $('envStateSearch').value='';
    dossier.show(true);
@@ -229,7 +229,7 @@
    render();
   }
   function resetState(){
-   state.selectedState=null;state.selected=null;
+   state.selectedState=null;state.selected=null;state.locatedRecord=null;
    $('envStateJump').value='';
    dossier.show(false);
    map.fitBounds(GERMANY,{padding:[14,14],animate:false});
@@ -355,7 +355,7 @@
     for (const b of document.querySelectorAll('[data-mode]')) {
       b.onclick=()=>{
         state.mode=b.dataset.mode;
-        state.selected=null;
+        state.selected=null;state.locatedRecord=null;
         state.limit=18;
         render();
       };
