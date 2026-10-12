@@ -581,8 +581,16 @@
   });
   $('category').addEventListener('change',updateFilters);
   $('status').addEventListener('change',updateFilters);
-  $('showMapCases').addEventListener('click',()=>{view.archive=false;view.limit=8;toggleArchive();renderList();renderMarkers()});
-  $('showAllCases').addEventListener('click',()=>{view.archive=true;view.limit=8;toggleArchive();renderList();renderMarkers()});
+  function switchArchive(all){
+   view.archive=all;view.limit=8;
+   // The active report survives only if it belongs to the newly selected
+   // archive. A non-geolocated case must not linger in the map-ready list.
+   if(view.selected&&!relevantCases().some(r=>r.id===view.selected))
+    clearSelectedReport();
+   toggleArchive();renderList();renderMarkers();
+  }
+  $('showMapCases').addEventListener('click',()=>switchArchive(false));
+  $('showAllCases').addEventListener('click',()=>switchArchive(true));
   $('loadMore').addEventListener('click',()=>{view.limit+=20;renderList()});
  }
  function toggleArchive(){for(const [id,yes] of [['showMapCases',!view.archive],['showAllCases',view.archive]]){

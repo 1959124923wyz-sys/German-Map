@@ -298,6 +298,32 @@ def verify(browser,mobile=False):
     assert page.locator("#detail h3").inner_text()==chosen_report, (
         "Toggling fiscal markers discarded an already opened report")
     assert camera()==camera_before_toggle
+    if not mobile:
+        # Switching archives retains a mapped report, but must never leave
+        # a non-mappable report beside the map-only 72-record list.
+        page.locator("#showMapCases").click()
+        assert page.locator("#detail").is_visible()
+        assert page.locator("#detail h3").inner_text()==chosen_report
+        assert "72" in page.locator("#visibleCount").inner_text()
+        page.locator("#showAllCases").click()
+        nonmapped=page.evaluate(
+            "window.GermanFinance08Data.cases.find(r=>!r.map_ready)?.id")
+        assert nonmapped, "The source must include non-geolocated archive cases"
+        target=page.locator('#caseList [data-case="'+nonmapped+'"]')
+        for _ in range(12):
+            if target.count():break
+            page.locator("#loadMore").click()
+        assert target.count()==1, "Cannot reach an unlocated archive report"
+        target.click()
+        assert page.locator("#detail").is_visible()
+        page.locator("#showMapCases").click()
+        assert page.locator("#detail").is_hidden(), (
+            "A non-mappable archive report persisted under the mapped-only list")
+        assert "72" in page.locator("#visibleCount").inner_text()
+        page.locator("#showAllCases").click()
+        assert page.locator("#detail").is_hidden(), (
+            "Switching archives unexpectedly reopened a cleared report")
+        assert camera()==camera_before_toggle
     page.locator("#showEvents").uncheck()
     assert page.locator("#eventPanel").is_hidden()
     assert page.evaluate(f"{api}.eventCount()")==0
