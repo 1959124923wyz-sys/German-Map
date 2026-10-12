@@ -259,8 +259,10 @@ def run(browser,mobile=False):
         assert transition["selected"] is None
         assert transition["hotspots"]==0, (
             "Old regional train hotspots remained during long-distance loading",transition)
-        assert transition["details"]==["—","—"], (
+        assert transition["details"]==[], (
             "Old regional corridor figures remained during long-distance loading",transition)
+        assert page.locator("#detail.empty").count()==1
+        assert "点击任意铁路线" in page.locator("#detail h3").inner_text()
         assert "正在读取" in transition["status"],transition
         loaded(page,"LONG",10)
         assert page.locator(".hot-row").count()>0
