@@ -104,6 +104,36 @@ def verify(browser,mobile=False):
       return GermanIndustryQA.getMap().getPane('industryEventPane').querySelectorAll('canvas').length===0 &&
          GermanIndustryQA.getMap().getPane('industryEventPane').querySelectorAll('svg path').length>0;
     }"""),"The industrial markers must be SVG, never a full-screen Canvas"
+    # The prior smoke clicked company archives, but never a real SVG factory
+    # marker. Verify the browser's actual hit target before clicking it.
+    page.locator("#industry-map").scroll_into_view_if_needed()
+    factory=page.evaluate("""() => {
+      const qa=GermanIndustryQA,map=qa.getMap();
+      const b=map.getContainer().getBoundingClientRect();
+      for(const [id,layer] of qa.getEventMarkers()){
+        const path=layer._path;
+        if(!path)continue;
+        const p=path.getBoundingClientRect();
+        const x=p.x+p.width/2,y=p.y+p.height/2;
+        if(p.width<4||p.height<4||x<b.left+12||x>b.right-12
+          ||y<b.top+15||y>b.bottom-15||y<15||y>innerHeight-15)continue;
+        const node=document.elementFromPoint(x,y);
+        if(node!==path)continue;
+        return {id:String(id),x,y};
+      }
+      return null;
+    }""")
+    assert factory, "No industrial factory SVG marker is reachable with a real mouse"
+    before_factory=page.evaluate("GermanIndustryQA.view()")
+    page.mouse.click(factory['x'],factory['y'])
+    assert page.evaluate("GermanIndustryQA.selectedEvent()")==factory["id"],(
+        "Real factory marker click did not open its dossier",factory)
+    assert page.evaluate("GermanIndustryQA.highlightedMarkers()")==1
+    assert page.locator("#eventDetail").is_visible()
+    assert page.evaluate("GermanIndustryQA.view()")==before_factory,(
+        "Real factory marker click forced camera movement",factory)
+    page.locator("#viewGermany").click()
+    assert page.evaluate("GermanIndustryQA.highlightedMarkers()")==0
     page.locator("#industryStateJump").select_option("DE-NW")
     before=page.evaluate("GermanIndustryQA.view()")
     assert page.evaluate("""() => !GermanIndustryQA.getMap()
