@@ -273,8 +273,19 @@ def main():
             page.locator('#drug-news-type').select_option('trade')
             assert int(page.locator('#drug-news-count').inner_text()) >= 6
             assert int(page.locator('#drug-news-mapped').inner_text()) >= 3
-            page.locator('#drug-news-list .drug-news-card').first.click()
+            # Reading a report follows the source link; only its separate
+            # "定位参考地点" control may pan/zoom to the approximate city.
+            news_card=page.locator('#drug-news-list .drug-news-card').first
+            assert news_card.evaluate("(e)=>e.tagName")=="A"
+            assert news_card.get_attribute('href').startswith('https://')
+            assert news_card.get_attribute('target')=='_blank'
+            assert page.locator('#drug-news-updated').inner_text().startswith('资料截至 ')
+            assert '手动更新' in page.locator('#drug-news-updated').inner_text()
+            assert page.locator('#drug-news-list .drug-news-locate').count() >= 1
+            before_news_locate=camera()
+            page.locator('#drug-news-list .drug-news-locate').first.click()
             page.locator('.leaflet-popup-content a[href^="https://"]').first.wait_for(timeout=15000)
+            assert camera()!=before_news_locate, "An explicit city location must focus the map"
             page.locator('#drug-news-type').select_option('all')
             assert page.locator('#drug-news-state option').count() >= 8
             page.locator('#drug-news-state').select_option('Nordrhein-Westfalen')
