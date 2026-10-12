@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Finance 08: fixed national balance choropleth, zoom-in state drilldown and event checkbox."""
+"""Finance 08: stable state clicks, explicit positioning and evidence-checked drilldown."""
 from __future__ import annotations
 import base64
 from pathlib import Path
@@ -40,17 +40,25 @@ def verify(browser,mobile=False):
     assert switcher["y"]>=toggle["y"]+toggle["height"], (toggle,switcher)
     assert switcher["x"]+switcher["width"]<=controls["x"]+controls["width"]+2
     national_style=page.evaluate(f"{api}.stateFill('DE-RP')")
-    original_zoom=page.evaluate("window.__FINANCE_MAP__.getZoom()")
+    camera=lambda:page.evaluate("""() => {
+      const m=window.__FINANCE_MAP__,c=m.getCenter();
+      return [m.getZoom(),c.lat,c.lng];
+    }""")
+    original_camera=camera()
+    original_zoom=original_camera[0]
 
-    # Click a real state layer to zoom in and reveal detail without changing
-    # the choropleth (no misleading mixed city budget vs state balance map).
+    # Inspecting a state changes the dossier, not the viewport. An explicit
+    # locator remains available to make that state large enough to read.
     page.evaluate("""()=>{
       const layer=window.__FINANCE_UI__.stateLayer().getLayers()
        .find(x=>x.feature?.properties?.id==='DE-RP');
       layer.fire('click');
     }""")
     assert page.evaluate(f"{api}.getFocusState()")=="DE-RP"
-    assert page.evaluate("window.__FINANCE_MAP__.getZoom()")>original_zoom
+    assert camera()==original_camera, "Map state click unexpectedly moved the viewport"
+    assert page.locator("#focusStateMap").is_visible()
+    page.locator("#focusStateMap").click()
+    assert page.evaluate("window.__FINANCE_MAP__.getZoom()")>original_zoom, "Explicit locate failed"
     assert page.locator("#districtPanel").is_visible()
     assert page.locator("#loanDrawer").is_visible()
     # The source archive is not fetched in the nationwide first screen.
@@ -108,7 +116,9 @@ def verify(browser,mobile=False):
         }""")
         assert 0<loc["x"]<loc["w"] and 0<loc["y"]<loc["h"],loc
         rect=page.locator("#finance-map").bounding_box()
+        prior_click_camera=camera()
         page.mouse.click(rect["x"]+loc["x"],rect["y"]+loc["y"])
+        assert camera()==prior_click_camera, "Actual map click moved the camera"
         assert page.evaluate(f"{api}.getFocusState()")=="DE-HE","Hessen direct click must work while RP counties are visible"
         assert page.locator("#stateJump").input_value()=="DE-HE"
         assert page.locator("#districtPanel").is_hidden()

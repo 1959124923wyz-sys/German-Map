@@ -410,7 +410,7 @@
    map.removeLayer(countiesLayer);
   }
  }
- function zoomToState(id,name){
+ function zoomToState(id,name,{locate=false}={}){
   const layer=statesLayer.getLayers().find(x=>x.feature?.properties?.id===id);
   if(!layer)return;
   const changed=view.focusState!==id;
@@ -437,8 +437,9 @@
    countiesLayer.clearLayers();
    countyDisplayedFor=null;
   }
-  map.stop();
-  map.fitBounds(layer.getBounds(),{padding:[32,32],maxZoom:8,animate:false});
+  // Ordinary map clicks inspect data without moving the camera. Explicit
+  // "定位本州" and state dropdown selection are the only focus operations.
+  if(locate){map.stop();map.fitBounds(layer.getBounds(),{padding:[32,32],maxZoom:8,animate:false});}
   renderCountyOutline();
   renderList();
   const sidebar=document.querySelector('.finance-summary');
@@ -517,7 +518,7 @@
   view.limit=8;view.rpPeriod='2025-full-cities';
   $('rpPeriod').value=view.rpPeriod;
   resetArea();renderList();
-  $('mapGuideNote').textContent=view.metric==='balance-2025'?'点击州放大，查看该州财政数据':'点击县市查看对应年份的债务与市镇资料';
+  $('mapGuideNote').textContent=view.metric==='balance-2025'?'点击州查看财政数据；需要缩放请使用定位按钮':'点击县市查看对应年份的债务与市镇资料';
   map?.stop();map?.fitBounds(withinBounds,{padding:[12,12],animate:false});
   renderMap();
  }
@@ -531,7 +532,7 @@
    const id=$('stateJump').value;
    if(!id){resetView();return;}
    const layer=statesLayer?.getLayers().find(x=>x.feature?.properties?.id===id);
-   if(layer)zoomToState(id,layer.feature?.properties?.name);
+   if(layer)zoomToState(id,layer.feature?.properties?.name,{locate:true});
   });
   $('showEvents').addEventListener('change',()=>{
    view.showEvents=$('showEvents').checked;
@@ -540,6 +541,9 @@
    view.county=null;view.selected=null;view.archive=false;view.limit=8;
    toggleArchive();renderList();renderMarkers();
    if(!view.showEvents){$('detail').hidden=true;$('extraControls').open=false;}
+  });
+  $('focusStateMap').addEventListener('click',()=>{
+   if(view.focusState)zoomToState(view.focusState,undefined,{locate:true});
   });
   $('resetView').addEventListener('click',resetView);
   $('municipalSearch').addEventListener('input',showMunicipalRows);
