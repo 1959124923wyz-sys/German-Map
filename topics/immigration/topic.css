@@ -67,3 +67,7 @@ body{overflow:hidden;display:flex;flex-direction:column}a{color:#9fd2f1;text-dec
 .azr-annual-entry small{color:#acc5d1;font-size:9px;text-align:right}
 .azr-annual-drawer>.note{padding:0 9px 10px;font-size:10px;line-height:1.5;color:#aac0cc}
 @media(max-width:530px){.azr-annual-entry{flex-wrap:wrap}.azr-annual-entry small{flex:0 0 100%;text-align:left}}
+
+/* The separate explicit locate action must not squeeze county controls on phones. */
+.county-heading{flex-wrap:wrap;justify-content:flex-start}
+.county-heading .section-title{flex:1 1 auto;min-width:105px}
