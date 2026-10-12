@@ -134,8 +134,10 @@ def verify(browser,mobile=False):
     # NEW: manually zooming into a county while the selection is nationwide
     # must remove the transparent 16-state SVG hit shield. This is different
     # from choosing a state through the picker, which already removed it.
-    page.evaluate("""() => GermanIndustryQA.getMap().setView(
-      [50.72,9.1],9,{animate:false})""")
+    page.evaluate("""() => {
+      GermanIndustryQA.getMap().setView([50.72,9.1],9,{animate:false});
+      return true; // Never serialize a Leaflet map (cyclic DOM references).
+    }""")
     page.wait_for_function("""() => {
       const q=GermanIndustryQA,m=q.getMap();
       return m.getZoom()>=9 && !m.hasLayer(q.getStateOverlay());
