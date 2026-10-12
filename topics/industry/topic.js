@@ -469,6 +469,7 @@ async function start(){
   counties:counties.features.length,modernCounties:new Set(counties.features.map(stateKey)).size,major:app.events.filter(e=>e.isMajor).length,
   mappedCounties:app.byCounty.size,pointMarkers:app.eventMarkers.size,
   getFirstMarkerId:()=>app.eventMarkers.keys().next().value,
+  getEventMarkers:()=>app.eventMarkers,selectedEvent:()=>app.selectedEvent,
   highlightedMarkers:()=>[...app.eventMarkers.values()].filter(m=>m.options?.fillColor==='#82262c').length,
   selectedState:()=>app.selectedState,selectedCounty:()=>app.selectedCounty,
   getMap:()=>app.map,getCounties:()=>app.counties,getStateOverlay:()=>app.stateOverlay,
