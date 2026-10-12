@@ -1,0 +1,41 @@
+# Local editors, operating systems, and temporary files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*.tmp
+*.temp
+*.orig
+*.rej
+*~
+
+# Python and test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.venv/
+venv/
+
+# Node / browser test artifacts
+node_modules/
+coverage/
+test-results/
+playwright-report/
+blob-report/
+
+# Local secrets and runtime scratch files
+.env
+.env.*
+!.env.example
+.cache/
+tmp/
+temp/
+
+# Deliberately DO NOT ignore official GeoJSON/CSV research sources,
+# committed map snapshots, data audit reports, or historical handoffs.
