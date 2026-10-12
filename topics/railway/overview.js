@@ -414,14 +414,24 @@ function updateHotspots(){
   element(main,'strong',stationZh(o.cityFrom)+' → '+stationZh(o.cityTo));
   element(main,'small','准点 '+pct(o.m.onTime)+' · 取消标记 '+pct(o.m.cancel));
   element(row,'span',o.grade===2?'高':'中','hot-grade '+(o.grade===2?'high':'medium'));
+  // Reading a high-attention corridor must preserve the user's map view.
+  // Focus is a second, explicitly named button with its own hit target.
   row.onclick=()=>{
+   selectCorridor(o);
+   $('#detail').scrollIntoView({block:'nearest',behavior:'smooth'});
+  };
+  const locate=document.createElement('button');
+  locate.type='button';locate.className='hot-locate';
+  locate.textContent='定位';
+  locate.setAttribute('aria-label','定位 '+stationZh(o.cityFrom)+' 至 '+stationZh(o.cityTo)+' 区段');
+  locate.onclick=()=>{
    selectCorridor(o);
    const b=o.bounds,ll1=unproject(b.minX,b.minY),ll2=unproject(b.maxX,b.maxY);
    const bounds=L.latLngBounds(ll1,ll2);
    if(bounds.isValid())view.map.fitBounds(bounds.pad(.38),{maxZoom:11,animate:false});
-   $('#detail').scrollIntoView({block:'nearest',behavior:'smooth'});
   };
-  list.append(row);
+  const wrap=document.createElement('div');wrap.className='hot-item';
+  wrap.append(row,locate);list.append(wrap);
  });
 }
 
