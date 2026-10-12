@@ -1,13 +1,6 @@
 name: Drug news collector and Pages publish
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'topics/drugs/scripts/update_drug_news.py'
-      - '.github/workflows/drugs-news-update.yml'
-  schedule:
-    - cron: '27 4 * * *'
 permissions:
   contents: write
   pages: write
