@@ -116,3 +116,11 @@
 .environment-sidebar .env-region-evidence small{display:block;color:#a6b9c7;font-size:9px}
 .environment-sidebar .env-region-evidence a{display:inline-block;margin:5px 0;color:#8dc6e0;font-size:9.5px}
 .environment-sidebar .dossier-metrics b{font-size:14px}
+
+/* Explicit geographic focus must be visually separate from opening evidence. */
+.env-detail-actions{display:inline-flex;flex-wrap:wrap;gap:5px;justify-content:flex-end}
+.env-detail-head{flex-wrap:wrap}
+.env-detail-head #locateRecord{color:#e2eff9;border-color:#668ea7;min-height:28px;padding:5px 8px}
+.env-locate-state{border:1px solid #49677b;background:#1d3444;color:#d9e7f1;border-radius:6px;padding:7px 9px;font-size:10px;cursor:pointer;white-space:nowrap;min-height:32px}
+.env-locate-state:hover,.env-detail-head #locateRecord:hover{background:#31566f}
+.env-locate-state:focus-visible,.env-detail-head #locateRecord:focus-visible{outline:2px solid #a6d6ee;outline-offset:2px}
