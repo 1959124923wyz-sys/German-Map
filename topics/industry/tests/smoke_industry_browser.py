@@ -146,6 +146,39 @@ def verify(browser,mobile=False):
     assert page.evaluate("""() => !GermanIndustryQA.getMap()
       .hasLayer(GermanIndustryQA.getStateOverlay())""")
     if not mobile:
+        # Probe the literal county Canvas just outside a real factory SVG pin.
+        # The overlap test must not confuse intended clicking on a pin itself
+        # with pointer swallowing in the surrounding map.
+        adjacent=page.evaluate("""() => {
+          const qa=GermanIndustryQA,map=qa.getMap(),r=map.getContainer().getBoundingClientRect();
+          for(const [id,marker] of qa.getEventMarkers()){
+            const path=marker._path;
+            if(!path)continue;
+            const rect=path.getBoundingClientRect();
+            const cx=rect.x+rect.width/2,cy=rect.y+rect.height/2;
+            for(const delta of [[15,0],[-15,0],[0,15],[0,-15],[21,0],
+                                 [-21,0],[0,21],[0,-21],[28,0],[0,28]]){
+              const x=cx+delta[0],y=cy+delta[1];
+              if(x<r.left+16||x>r.right-16||y<r.top+18||y>r.bottom-18)continue;
+              const node=document.elementFromPoint(x,y);
+              if(node?.closest('.leaflet-pane')!==map.getPane('countyPane'))continue;
+              const pt=map.containerPointToLayerPoint([x-r.left,y-r.top]);
+              const layer=qa.getCounties().getLayers()
+                  .find(l=>l._containsPoint?.(pt));
+              if(!layer||!String(layer.feature?.id||'').startsWith('05'))continue;
+              return {x,y,eventId:String(id),county:String(layer.feature.id)};
+            }
+          }
+          return null;
+        }""")
+        assert adjacent, "No real county Canvas pixel reachable beside a visible industrial SVG marker"
+        before_adjacent=page.evaluate("GermanIndustryQA.view()")
+        page.mouse.click(adjacent["x"],adjacent["y"])
+        assert page.evaluate("GermanIndustryQA.selectedState()")=="DE-NW"
+        assert page.evaluate("GermanIndustryQA.selectedCounty()") is not None
+        assert page.evaluate("GermanIndustryQA.selectedEvent()") is None, (
+            "Click outside a factory pin incorrectly opened the event",adjacent)
+        assert page.evaluate("GermanIndustryQA.view()")==before_adjacent
         target=page.evaluate("""() => {
           const qa=GermanIndustryQA,map=qa.getMap();
           const rect=map.getContainer().getBoundingClientRect();
