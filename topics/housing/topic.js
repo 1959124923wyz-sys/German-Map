@@ -104,14 +104,13 @@
  }
  function updateLegend(){
   const m=metrics[metric],low=sortedAll.length?sortedAll[0]:null,high=sortedAll.at(-1);
-  const colors=ramp(),direction=semantics.get('housing',metric);
+  const colors=ramp();
   $('legend').innerHTML='<div class="legend-title">'+safe(m.label)+' · '+safe(m.unit)+'</div>'+
    '<div class="housing-scale">'+colors.map(c=>'<i style="background:'+c+'"></i>').join('')+'</div>'+
    '<div class="housing-legend-labels"><span>'+safe(isNum(low)?fmt(low,m.dec):'—')+'</span>'+
    '<span>'+safe(semantics.legendText('housing',metric))+'</span><span>'+safe(isNum(high)?fmt(high,m.dec):'—')+'</span></div>'+
    '<div style="font-size:9px;margin-top:7px;color:#aabac4"><i style="background:'+gray+';display:inline-block;width:10px;height:8px"></i> 灰色：该指标缺失或不可比较；'+
-    safe(direction===semantics.kinds.LOW?'人均居住面积不等于住房可负担性综合评级。':
-    direction===semantics.kinds.NEUTRAL?'蓝色只表示数据分布，不代表住房问题轻重。':'高值仅说明本项租金压力，不代表综合住房危机。')+'</div>';
+    '缺失数据'+'</div>';
  }
  function overview(ids,key){const v=ids.map(id=>metricValue(id,key)).filter(isNum).sort((a,b)=>a-b);return med(v)}
  function renderStructure(region){
@@ -459,9 +458,9 @@
   $('yearLabel').textContent=metric==='sheltered_homeless_2025'?'2025年1月31日':metrics[metric].year+'年';
   $('value').textContent=displayVal(v);
   $('description').textContent=region.scope==='county'?metrics[metric].label:
-   (metrics[metric].label+' · 县市简单中位数（非人口加权全国/全州值）');
+   (metrics[metric].label+' · 县级中位数');
   $('coverage').textContent=region.scope==='county'?'行政区编码 '+region.ids[0]+' · '+(v===null?'缺失':'有统计记录'):
-   '当前范围 '+available+' / '+region.ids.length+' 个县市有数值；按县统计，不代表所有居民的加权平均';
+   available+' / '+region.ids.length+' 县市有数据';
   $('interpretNote').textContent=metrics[metric].interpret;
   const s=sourceInfo();$('sourceLink').href=s.url;
   $('sourceLink').textContent=(metrics[metric].source==='atlas'?'Deutschlandatlas HA26 官网':metrics[metric].source==='homeless'?'Destatis GENESIS 22971-0080 官方县级表':metrics[metric].source==='completions'?'Regionalstatistik 31121-01-02-4 官方县级表':metrics[metric].source==='census'?'Zensus 2022 全国官方住房普查':'第三方县级再发布与来源说明')+' ↗';
