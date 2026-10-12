@@ -2,15 +2,6 @@ name: City expansion source probe
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/city-expansion-research.yml'
-      - 'scripts/probe_kiel_sources.py'
-      - 'scripts/build_kiel_staging.py'
-      - 'scripts/probe_kiel_population.py'
-      - 'scripts/probe_city_batch2_sources.py'
-
 permissions:
   contents: read
 
