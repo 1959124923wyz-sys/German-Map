@@ -179,6 +179,13 @@ def verify(browser,mobile=False):
         assert page.evaluate("GermanIndustryQA.selectedEvent()") is None, (
             "Click outside a factory pin incorrectly opened the event",adjacent)
         assert page.evaluate("GermanIndustryQA.view()")==before_adjacent
+        # A search typed in a previous district must not hide the newly
+        # clicked county's factory archive (real pointer, not layer.fire).
+        page.locator("#industryBackState").click()
+        page.locator('[data-dossier-tab="cases"]').click()
+        page.locator("#industryEventSearch").fill("z-unused-county-query-1234")
+        assert page.locator("#eventList .industry-row").count()==0
+        page.locator("#industry-map").scroll_into_view_if_needed()
         target=page.evaluate("""() => {
           const qa=GermanIndustryQA,map=qa.getMap();
           const rect=map.getContainer().getBoundingClientRect();
@@ -204,6 +211,8 @@ def verify(browser,mobile=False):
         }""")
         assert target, "No county mouse target outside industrial SVG markers"
         page.mouse.click(target["x"],target["y"])
+        assert page.locator("#industryEventSearch").input_value()=="", (
+            "County map selection retained an unrelated company search")
         assert page.evaluate("GermanIndustryQA.selectedCounty()") is not None,target
         assert page.evaluate("GermanIndustryQA.selectedState()")=="DE-NW"
         assert page.evaluate("GermanIndustryQA.view()")==before,"County click moved the map unexpectedly"
