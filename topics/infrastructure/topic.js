@@ -175,7 +175,8 @@
     // visibility preference. The checkbox alone controls map markers.
     state.selectedState=e.state_iso;state.selectedEvent=id;
     $('infraStateJump').value=e.state_iso;
-    $('filterWrap').hidden=false;
+    // A dossier click must not reveal controls for a layer the user hid.
+    $('filterWrap').hidden=!state.showEvents;
     dossier.show(true);
     updateStateStyles();renderPanel();
     dossier.choose('projects');
@@ -254,6 +255,13 @@
       }).addTo(map);
       if(window.CrimeCityLabels?.create)window.CrimeCityLabels.create(map,{paneName:'infra-city-labels',zIndex:440});
       renderRank();renderPanel();
+      // Public read-only diagnostics make genuine mouse-hit regressions
+      // possible without invoking Leaflet's synthetic layer.fire('click').
+      window.GermanInfrastructureQA=Object.freeze({
+        getMap:()=>map,getStateLayer:()=>stateLayer,getMarkerGroup:()=>markerGroup,
+        getSelection:()=>({state:state.selectedState,event:state.selectedEvent,showEvents:state.showEvents,
+          category:state.category,markerCount:markers.size})
+      });
       setStatus('16州地图已就绪 · '+archive.events.length+'条精选工程事件',true);
       setTimeout(()=>{$('mapStatus').hidden=true;},5500);
     }catch(error){
