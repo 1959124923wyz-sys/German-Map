@@ -51,6 +51,24 @@ def verify(browser, mobile: bool) -> None:
     page.locator("#showEvents").check()
     assert page.locator("#eventSection").is_visible()
     assert page.locator("#eventList button").count() == 1
+    assert page.locator("#filterWrap").is_visible()
+    # An actual mouse click on the site's Leaflet marker must reach its event.
+    # The previous suite never clicked a map marker: only list buttons.
+    page.locator("#infra-map").scroll_into_view_if_needed()
+    marker=page.locator("#infra-map .infra-marker-icon").first
+    box=marker.bounding_box()
+    assert box and box["width"]>0 and box["height"]>0
+    camera_before=page.evaluate("""() => {
+      const m=GermanInfrastructureQA.getMap(),c=m.getCenter();
+      return [m.getZoom(),c.lat,c.lng];
+    }""")
+    page.mouse.click(box["x"]+box["width"]/2,box["y"]+box["height"]/2)
+    assert page.evaluate("GermanInfrastructureQA.getSelection().event") is not None, (
+        "Physical marker pointer failed to open project dossier")
+    assert page.evaluate("""() => {
+      const m=GermanInfrastructureQA.getMap(),c=m.getCenter();
+      return [m.getZoom(),c.lat,c.lng];
+    }""")==camera_before, "Clicking infrastructure map marker moved the camera"
     page.locator("#eventList button").first.click()
     assert page.locator("#eventDetail").is_visible()
     assert page.locator("#eventDetail a[href^='https://']").count() >= 1
@@ -63,14 +81,18 @@ def verify(browser, mobile: bool) -> None:
     page.locator("#showEvents").uncheck()
     assert not page.locator("#showEvents").is_checked()
     assert page.locator("#infra-map .infra-marker-icon").count()==0
+    assert page.locator("#filterWrap").is_hidden()
     page.locator("#eventList button").first.click()
     assert page.locator("#eventDetail").is_visible()
     assert not page.locator("#showEvents").is_checked(), (
         "Reading an infrastructure event unexpectedly restored its marker layer")
     assert page.locator("#infra-map .infra-marker-icon").count()==0
+    assert page.locator("#filterWrap").is_hidden(), (
+        "Opening an archive record reopened the hidden marker-filter controls")
     page.locator("#closeEventDetail").click()
     page.locator("#showEvents").check()
     assert page.locator("#showEvents").is_checked()
+    assert page.locator("#filterWrap").is_visible()
     page.locator("#resetView").click()
     assert page.locator("#areaName").inner_text() == "德国全国"
     assert page.locator("#eventList button").count() == 22
