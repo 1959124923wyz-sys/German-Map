@@ -327,7 +327,7 @@ function renderSummary(){
  $('areaMajor').textContent=records.filter(e=>e.isMajor).length;
  $('areaPlans').textContent=records.filter(e=>e.isPlan).length;
  $('areaMetric').textContent=official?'2019至最新同口径制造业就业变化：'+official.change_pct.toFixed(1)+'%':
-  (app.selectedState?'本范围登记工业事件，不是官方就业降幅':'全国重大工业调整研究样本 · 非制造业就业收缩率');
+  (app.selectedState?'本地工业调整事件 · 研究样本':'工业调整事件 · 全国研究样本');
  $('riskBadge').textContent=official?'官方就业变化':'事件样本';
  $('riskBadge').className='risk-badge '+(official&&official.change_pct<=-10?'high':'mid');
  $('industryNationalHint').hidden=!!app.selectedState;
