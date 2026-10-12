@@ -152,7 +152,7 @@
       :e.location_type==='municipality'?'市镇级近似定位，并非精确设备位置'
       :'事件／项目附近的参考位置';
     target.innerHTML='<div class="env-detail-head"><strong>记录详情 · '+esc(cityName(e))
-      +'</strong><button type="button" id="closeDetail" aria-label="关闭详情">关闭 ×</button></div>'
+      +'</strong><span class="env-detail-actions"><button type="button" id="locateRecord">定位地点</button><button type="button" id="closeDetail" aria-label="关闭详情">关闭 ×</button></span></div>'
       +'<div class="env-detail-title">'+esc(e.title)+'</div>'
       +'<div class="env-detail-meta"><span>'+esc(e.date)+'</span><span>'+esc(kind(e))+'</span>'
       +(e.status_label?'<span>'+esc(e.status_label)+'</span>':'')
@@ -162,6 +162,7 @@
       +'<div class="env-limit">位置说明：'+esc(locationDescription)
       +'。组织立场、行动认领、司法认定及实际经济损失均须依据原始证据分别判断。</div>';
     $('closeDetail').onclick=()=>selectRecord(null,false);
+    $('locateRecord').onclick=()=>selectRecord(e.id,true);
   }
   function selectRecord(id,fly) {
     const e=rows.find(v=>v.id===id);
@@ -208,17 +209,17 @@
      '</div>').join('')||
      '<p class="dossier-note">当前没有归属于本州的可审计结果。</p>';
     $('envStateList').querySelectorAll('[data-env-id]').forEach(b=>b.addEventListener('click',()=>{
-     state.mode='all';state.selected=null;render();selectRecord(b.dataset.envId,true);
+     state.mode='all';state.selected=null;render();selectRecord(b.dataset.envId,false);
     }));
   }
-  function selectState(iso){
+  function selectState(iso,{locate=false}={}){
    if(!iso||!STATE_CODES||!stateNames.has(iso))return;
    state.selectedState=iso;state.selected=null;
    $('envStateJump').value=iso;
    $('envStateSearch').value='';
    dossier.show(true);
    const layer=stateShapes.get(iso);
-   if(layer)map.fitBounds(layer.getBounds(),{padding:[22,22],maxZoom:8,animate:false});
+   if(locate&&layer)map.fitBounds(layer.getBounds(),{padding:[22,22],maxZoom:8,animate:false});
    render();
   }
   function resetState(){
@@ -241,7 +242,7 @@
       const button=document.createElement('button');button.type='button';button.className='rank-row';
       button.innerHTML='<span class="rank-no">'+(i+1)+'</span><span class="rank-place">'+esc(row.name)
         +'</span><span class="rank-value">'+row.count+' 条</span>';
-      button.onclick=()=>selectRecord(row.example.id,true);
+      button.onclick=()=>selectRecord(row.example.id,false);
       $('rankList').append(button);
     });
   }
@@ -255,7 +256,7 @@
       item.innerHTML='<i class="swatch" style="background:'+color(e)+'"></i>'
         +'<span><span class="env-entry-title">'+esc(e.title)+'</span><span class="env-entry-meta">'
         +esc(cityName(e))+' · '+esc(e.date)+' · '+esc(e.status_label||kind(e))+'</span></span>';
-      item.onclick=()=>selectRecord(e.id,true);
+      item.onclick=()=>selectRecord(e.id,false);
       $('entries').append(item);
     }
     const more=$('moreRecords');more.hidden=rows.length<=state.limit;
@@ -342,7 +343,8 @@
   function wire() {
     dossier=window.GermanRegionDossier.mount('envStateDossier');
     $('showEnvPoints').addEventListener('change',e=>{state.showPoints=e.target.checked;renderMarkers()});
-    $('envStateJump').addEventListener('change',e=>e.target.value?selectState(e.target.value):resetState());
+    $('envStateJump').addEventListener('change',e=>e.target.value?selectState(e.target.value,{locate:true}):resetState());
+    $('envLocateState').addEventListener('click',()=>{if(state.selectedState)selectState(state.selectedState,{locate:true});});
     $('envStateSearch').addEventListener('input',renderStateDossier);
     for (const b of document.querySelectorAll('[data-mode]')) {
       b.onclick=()=>{
