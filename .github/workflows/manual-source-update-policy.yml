@@ -1,0 +1,28 @@
+name: Guard manual-only external data refresh
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'tests/validate_manual_update_policy.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
+      - 'tests/validate_manual_update_policy.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  no-auto-source-refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Enforce manual-only collectors and preserve static publish/CI
+        run: python tests/validate_manual_update_policy.py
