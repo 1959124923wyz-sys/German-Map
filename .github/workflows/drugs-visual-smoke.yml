@@ -2,6 +2,10 @@ name: Drugs dark-green visual smoke
 
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - 'topics/drugs/**'
+      - '.github/workflows/drugs-visual-smoke.yml'
   push:
     branches: [main]
     paths:

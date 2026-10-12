@@ -69,11 +69,24 @@ def main():
             assert not page.locator('#region-news').get_attribute('open')
             assert '估算州级' in page.locator('#region-rate-label').inner_text()
             assert page.locator('#region-cases').inner_text() not in ['—','0']
+            camera=lambda:page.evaluate("""() => {
+              const m=window.__DRUGS_PREVIEW_MAP__,c=m.getCenter();
+              return [m.getZoom(),c.lat,c.lng];
+            }""")
+            before_state_locate=camera()
             page.locator('#region-drill').click()
             page.wait_for_function('() => window.__DRUGS_PREVIEW_MAP__.getZoom() >= 8')
+            assert camera()!=before_state_locate, 'Explicit state map button must move the viewport'
             page.locator('#region-county-details > summary').click()
+            before_county_read=camera()
             page.locator('#region-county-list button').first.click()
             assert '县市详情' in page.locator('#region-heading').inner_text()
+            assert camera()==before_county_read, (
+                'Reading a county list entry unexpectedly forced map pan or zoom')
+            assert page.locator('#region-drill').inner_text()=='定位当前县市'
+            page.locator('#region-drill').click()
+            assert camera()!=before_county_read, (
+                'The explicit county locator must focus the selected polygon')
             assert page.locator('#region-change').inner_text().startswith('较2024年登记案件：')
             assert '%' in page.locator('#region-change').inner_text()
             page.locator('#region-interpretation > summary').click()
@@ -91,6 +104,14 @@ def main():
             assert not page.locator('#region-navigator').is_visible()
             assert page.locator('#drug-map path[stroke="#ffffff"]').count() == 0, 'National reset must clear selected border'
             assert page.locator('#state-index-list button').count() == 16
+            # The nationwide top-12 list is also an archive-reading control.
+            page.locator('#national-counties > summary').click()
+            before_rank_read=camera()
+            page.locator('#top-list button').first.click()
+            assert '县市详情' in page.locator('#region-heading').inner_text()
+            assert camera()==before_rank_read, (
+                'A nationwide county-ranking click unexpectedly moved the map')
+            page.locator('#region-home').click()
             # Authentic drug offence codes exist in two states; other states
             # are explicitly missing, not assigned synthetic values.
             page.locator('#state-index-list button').filter(has_text='下萨克森州').click()
@@ -295,6 +316,22 @@ def main():
             assert mobile.evaluate("document.documentElement.scrollWidth <= innerWidth + 3"), 'mobile must not scroll horizontally'
             mobile.locator('#national-states > summary').click()
             assert mobile.locator('#state-index-list button').count()==16
+            mobile.locator('#state-index-list button').filter(has_text='巴伐利亚州').click()
+            mobile.locator('#region-drill').click()
+            mobile.locator('#region-county-details > summary').click()
+            before_mobile=mobile.evaluate("""() => {
+              const m=window.__DRUGS_PREVIEW_MAP__,c=m.getCenter();
+              return [m.getZoom(),c.lat,c.lng];
+            }""")
+            mobile.locator('#region-county-list button').first.click()
+            after_mobile=mobile.evaluate("""() => {
+              const m=window.__DRUGS_PREVIEW_MAP__,c=m.getCenter();
+              return [m.getZoom(),c.lat,c.lng];
+            }""")
+            assert before_mobile==after_mobile, (
+                'Mobile county selection must not pan/zoom',before_mobile,after_mobile)
+            assert mobile.locator('#region-drill').inner_text()=='定位当前县市'
+            assert mobile.evaluate("document.documentElement.scrollWidth <= innerWidth + 3")
             mobile.screenshot(path='/tmp/germany-crime-map-drugs-mobile-clean.png',full_page=True)
             assert not mobile_errors,mobile_errors
             mobile.close()
