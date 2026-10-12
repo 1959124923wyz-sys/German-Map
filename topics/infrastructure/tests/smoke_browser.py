@@ -57,6 +57,20 @@ def verify(browser, mobile: bool) -> None:
     assert "埃尔福特" in page.locator("#eventDetail").inner_text()
     page.locator("#closeEventDetail").click()
     assert page.locator("#eventDetail").is_hidden()
+    # User-disabled event markers must stay disabled when opening an event
+    # dossier: the old selectEvent() unconditionally rechecked #showEvents
+    # while leaving the actual marker layer out of sync.
+    page.locator("#showEvents").uncheck()
+    assert not page.locator("#showEvents").is_checked()
+    assert page.locator("#infra-map .infra-marker-icon").count()==0
+    page.locator("#eventList button").first.click()
+    assert page.locator("#eventDetail").is_visible()
+    assert not page.locator("#showEvents").is_checked(), (
+        "Reading an infrastructure event unexpectedly restored its marker layer")
+    assert page.locator("#infra-map .infra-marker-icon").count()==0
+    page.locator("#closeEventDetail").click()
+    page.locator("#showEvents").check()
+    assert page.locator("#showEvents").is_checked()
     page.locator("#resetView").click()
     assert page.locator("#areaName").inner_text() == "德国全国"
     assert page.locator("#eventList button").count() == 22
