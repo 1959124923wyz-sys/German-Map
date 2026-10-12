@@ -27,6 +27,14 @@ def check(browser, mobile=False):
         && window.GermanEnvironment06Data?.length===154
         && window.__ENVIRONMENT_TAXONOMY__?.all===154""",timeout=30000)
     assert page.locator("#showEnvPoints").is_checked() is False
+    # Newly found bug: opening one archived record used to turn on 154
+    # unrelated markers even while the user had disabled the map overlay.
+    first_archive=page.evaluate("window.__ENVIRONMENT_MAP__.getAll()[0].id")
+    page.evaluate("(id)=>window.__ENVIRONMENT_MAP__.selectRecord(id,false)",first_archive)
+    assert page.locator("#detail").is_visible()
+    assert page.locator("#showEnvPoints").is_checked() is False
+    assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==0
+    page.locator("#closeDetail").click()
     assert page.locator("#envStateDossier").is_hidden()
     assert page.locator(".modebar a.modebtn").count()==10
     assert page.locator(".modebar .modebtn.active").inner_text()=="环保争议"
