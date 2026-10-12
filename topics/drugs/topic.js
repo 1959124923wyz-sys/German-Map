@@ -226,11 +226,11 @@
       text('region-list-heading', countyMode ? '州内其他县市 · 按登记率排序' : '州内全部县市 · 按登记率排序');
       text('region-subtitle', stats.rows.length + '个地区');
       text('region-footnote', countyMode
-        ? '该地区数据来自PKS县级指标镜像，警方登记案件不代表实际毒品消费。点击列表可跳转州内其他县市。'
+        ? '该地区数据来自PKS县级指标镜像，警方登记案件不代表实际毒品消费。点击列表可切换县市资料；需要移动地图时请点击“定位当前县市”。'
         : '州案件数由县级记录合计，估算州率由县级四舍五入的登记率反推人口加权得到，并非独立公布的官方州级率；不代表吸毒人数。大麻、可卡因等州级细分类数据尚待官方原表核实。');
       const focus = el('region-drill');
       focus.textContent = countyMode ? '定位当前县市' : '查看县市地图';
-      focus.onclick = () => countyMode ? focusCounty(county) : focusState(name);
+      focus.onclick = () => countyMode ? focusCounty(county,{locate:true}) : focusState(name);
       stateLink.onclick = () => selectState(name);
       const list = el('region-county-list'); list.replaceChildren();
       stats.rows.forEach(row => {
@@ -248,10 +248,12 @@
         li.append(btn);list.append(li);
       });
     }
-    function focusCounty(rec) {
+    function focusCounty(rec,{locate=false}={}) {
       const layer = counties?.getLayers().find(l => l.feature &&
         recordFor(l.feature,data)?.ags === rec.ags);
-      if (layer?.getBounds) {
+      // Reading a listed county is only a dossier selection. The separate
+      // '定位当前县市' button is the user-initiated camera operation.
+      if (locate && layer?.getBounds) {
         map.fitBounds(layer.getBounds(), {maxZoom:10,minZoom:8,padding:[55,55],animate:false});
         if (map.getZoom() < 8) map.setView(layer.getBounds().getCenter(),8,{animate:false});
       }
