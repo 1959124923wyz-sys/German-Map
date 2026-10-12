@@ -219,11 +219,27 @@ def verify(browser,mobile=False):
         assert county_scope and len(county_scope)==5
         assert county_scope in page.locator("#listHeading").inner_text() or (
             page.locator("#listHeading").inner_text()!='已核实的地方事件')
+        page.locator("#caseList button").first.click()
+        assert page.locator("#detail").is_visible()
+        # A click on another county bubble (or even reopening this one)
+        # clears the old report; it cannot remain next to a new result list.
+        page.evaluate(f"()=>{{{api}.eventMarkers()[0].fire('click');return true}}")
+        assert page.locator("#detail").is_hidden(), (
+            "County bubble kept a report from the previous event selection")
+        page.locator("#caseList button").first.click()
+        assert page.locator("#detail").is_visible()
         page.locator("#extraControls > summary").click()
         page.locator("#category").select_option("budget")
+        assert page.locator("#detail").is_hidden(), (
+            "Category filter kept a stale event detail after selection was cleared")
         assert page.evaluate(f"{api}.getEventCounty()")==county_scope, (
             "Category filter unexpectedly cleared the selected event county")
+        page.locator("#category").select_option("all")
+        page.locator("#caseList button").first.click()
+        assert page.locator("#detail").is_visible()
         page.locator("#status").select_option("implemented")
+        assert page.locator("#detail").is_hidden(), (
+            "Status filter kept a stale event detail after selection was cleared")
         assert page.evaluate(f"{api}.getEventCounty()")==county_scope, (
             "Status filter unexpectedly cleared the selected event county")
         page.locator("#category").select_option("all")
