@@ -324,6 +324,35 @@ def verify(browser,mobile=False):
         assert page.locator("#detail").is_hidden(), (
             "Switching archives unexpectedly reopened a cleared report")
         assert camera()==camera_before_toggle
+        # A fiscal event-bubble selection filters county event markers. Reading
+        # another state's finances must clear both the old report and stale
+        # one-county marker scope, without moving the camera on ordinary reads.
+        page.locator("#showMapCases").click()
+        page.evaluate(f"()=>{{{api}.eventMarkers()[0].fire('click');return true}}")
+        scoped_county=page.evaluate(f"{api}.getEventCounty()")
+        assert scoped_county and len(scoped_county)==5
+        page.evaluate("""() => document.getElementById('category')
+            .dispatchEvent(new Event('change',{bubbles:true}))""")
+        assert page.evaluate(f"{api}.eventCount()")==1, (
+            "County-scoped case markers were not restricted to the chosen county")
+        page.locator("#caseList button").first.click()
+        assert page.locator("#detail").is_visible()
+        before_state_read=camera()
+        page.evaluate(f"()=>{api}.zoomToState('DE-BY',undefined,{{locate:false}})")
+        assert camera()==before_state_read
+        assert page.evaluate(f"{api}.getFocusState()")=="DE-BY"
+        assert page.evaluate(f"{api}.getEventCounty()") is None
+        assert page.locator("#detail").is_hidden(), (
+            "An obsolete county event report remained after opening another state's dossier")
+        assert page.evaluate(f"{api}.eventCount()")>=30, (
+            "Nationwide markers failed to return after clearing the event county scope")
+        page.locator("#caseList button").first.click()
+        assert page.locator("#detail").is_visible()
+        page.locator("#resetView").click()
+        assert page.locator("#detail").is_hidden(), (
+            "Returning nationwide left behind a case report that was deselected")
+        assert page.evaluate(f"{api}.getEventCounty()") is None
+        assert page.evaluate(f"{api}.eventCount()")>=30
     page.locator("#showEvents").uncheck()
     assert page.locator("#eventPanel").is_hidden()
     assert page.evaluate(f"{api}.eventCount()")==0
