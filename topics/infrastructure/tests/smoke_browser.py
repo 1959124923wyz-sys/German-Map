@@ -51,9 +51,19 @@ def verify(browser, mobile: bool) -> None:
     page.locator("#infraStateJump").select_option("DE-TH")
     assert page.locator("#eventSection").is_hidden()
     page.locator("#showEvents").check()
-    assert page.locator("#eventSection").is_visible()
+    assert page.locator('[data-dossier-tab="bridges"]').get_attribute("aria-selected")=="true",(
+        "Toggling event markers unexpectedly switched from bridge research to project archive")
+    assert page.locator("#bridgeStateSummary").is_visible()
     assert page.locator("#eventList button").count() == 1
+    assert page.locator("#infra-map .infra-marker-icon").count() >= 1
     assert page.locator("#filterWrap").is_visible()
+    page.locator("#showEvents").uncheck()
+    assert page.locator('[data-dossier-tab="bridges"]').get_attribute("aria-selected")=="true"
+    assert page.locator("#infra-map .infra-marker-icon").count()==0
+    page.locator("#showEvents").check()
+    assert page.locator('[data-dossier-tab="bridges"]').get_attribute("aria-selected")=="true"
+    assert page.locator("#infra-map .infra-marker-icon").count()>=1
+    # Explicitly opening a project is different: it may select the projects tab.
     # An actual mouse click on the site's Leaflet marker must reach its event.
     # The previous suite never clicked a map marker: only list buttons.
     page.locator("#infra-map").scroll_into_view_if_needed()
@@ -72,6 +82,8 @@ def verify(browser, mobile: bool) -> None:
     page.mouse.click(box["x"]+box["width"]/2,box["y"]+box["height"]/2)
     assert page.evaluate("GermanInfrastructureQA.getSelection().event") is not None, (
         "Physical marker pointer failed to open project dossier")
+    assert page.locator('[data-dossier-tab="projects"]').get_attribute("aria-selected")=="true"
+    assert page.locator("#eventSection").is_visible()
     assert page.evaluate("""() => {
       const m=GermanInfrastructureQA.getMap(),c=m.getCenter();
       return [m.getZoom(),c.lat,c.lng];
