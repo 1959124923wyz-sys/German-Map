@@ -85,7 +85,7 @@
       const ratio = ceiling > 0 ? value / ceiling : 0;
       return COLORS[Math.min(6, Math.floor(Math.max(0,ratio) * 7))];
     }
-    function viewPoint(site, obs, marker) {
+    function viewPoint(site, obs) {
       if (!enabled) return;
       closeWaterDetail();
       waterFlyout.hidden = false;
@@ -119,7 +119,7 @@
         '）。工作日均值 ' + number(obs.weekday) + '，周末均值 ' + number(obs.weekend) +
         ' mg/每1000人/每天。' + change +
         ' 污水检测不是该城市的吸毒比例或警方案件数。';
-      if (marker) map.panTo([site.lat,site.lon],{animate:false});
+      // Reading the station's six-substance dossier never changes map view.
     }
     function render(substance) {
       if (!enabled || !source) return;
@@ -139,7 +139,7 @@
         marker.bindTooltip('<strong>'+esc(site.city)+'</strong><br>'+
           esc(LABELS[activeSubstance])+' · '+number(obs.daily)+' mg/1000人/天',
           {sticky:true});
-        marker.on('click',e => {L.DomEvent.stopPropagation(e);viewPoint(site,obs,marker);});
+        marker.on('click',e => {L.DomEvent.stopPropagation(e);viewPoint(site,obs);});
         markers.push(marker);
       }
       $('wastewater-sites').textContent = String(records.length);
@@ -149,15 +149,20 @@
       const list = $('wastewater-rank'); list.replaceChildren();
       records.forEach(({site,obs}) => {
         const li=document.createElement('li'), button=document.createElement('button');
-        button.type='button';
+        button.type='button';button.className='wastewater-rank-record';
         const label=document.createElement('span'), value=document.createElement('span');
         label.textContent=site.city;value.textContent=number(obs.daily);
         button.append(label,value);
-        button.addEventListener('click',()=>{
+        button.addEventListener('click',()=>viewPoint(site,obs));
+        const locate=document.createElement('button');
+        locate.type='button';locate.className='wastewater-rank-locate';
+        locate.textContent='定位';
+        locate.setAttribute('aria-label','定位 '+site.city+' 污水检测参考站点');
+        locate.addEventListener('click',()=>{
           map.setView([site.lat,site.lon],Math.max(map.getZoom(),8),{animate:false});
           viewPoint(site,obs);
         });
-        li.appendChild(button);list.appendChild(li);
+        li.append(button,locate);list.appendChild(li);
       });
       legendTitle.textContent = LABELS[activeSubstance]+' · 污水残留';
       legend.innerHTML = '<div class="legend-gradient">'+COLORS.map(c=>
