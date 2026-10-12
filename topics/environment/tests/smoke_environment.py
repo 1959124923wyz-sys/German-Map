@@ -34,7 +34,19 @@ def check(browser, mobile=False):
     assert page.locator("#detail").is_visible()
     assert page.locator("#showEnvPoints").is_checked() is False
     assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==0
+    if not mobile:
+        # Locating one archived event must show one target, never turn on the
+        # entire 154-event overlay or silently change the user's checkbox.
+        page.locator("#locateRecord").click()
+        assert page.evaluate("window.__ENVIRONMENT_MAP__.map.getZoom()")>=8
+        assert page.locator("#showEnvPoints").is_checked() is False
+        assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==1, (
+            "Locating one archived record displayed unrelated events")
+        assert page.locator("#environment-map .env-marker-icon").count()==1
+        assert page.evaluate("window.__ENVIRONMENT_MAP__.getSelected()")==first_archive
     page.locator("#closeDetail").click()
+    assert page.locator("#showEnvPoints").is_checked() is False
+    assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==0
     assert page.locator("#envStateDossier").is_hidden()
     assert page.locator(".modebar a.modebtn").count()==10
     assert page.locator(".modebar .modebtn.active").inner_text()=="环保争议"
