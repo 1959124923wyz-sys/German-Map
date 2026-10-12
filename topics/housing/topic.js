@@ -109,8 +109,7 @@
    '<div class="housing-scale">'+colors.map(c=>'<i style="background:'+c+'"></i>').join('')+'</div>'+
    '<div class="housing-legend-labels"><span>'+safe(isNum(low)?fmt(low,m.dec):'—')+'</span>'+
    '<span>'+safe(semantics.legendText('housing',metric))+'</span><span>'+safe(isNum(high)?fmt(high,m.dec):'—')+'</span></div>'+
-   '<div style="font-size:9px;margin-top:7px;color:#aabac4"><i style="background:'+gray+';display:inline-block;width:10px;height:8px"></i> 灰色：该指标缺失或不可比较；'+
-    '缺失数据'+'</div>';
+   '<div style="font-size:9px;margin-top:7px;color:#aabac4"><i style="background:'+gray+';display:inline-block;width:10px;height:8px"></i> 灰色 · 无数据</div>';
  }
  function overview(ids,key){const v=ids.map(id=>metricValue(id,key)).filter(isNum).sort((a,b)=>a-b);return med(v)}
  function renderStructure(region){
