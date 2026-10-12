@@ -41,7 +41,9 @@ def verify(browser, mobile: bool) -> None:
     assert page.locator("#bridgeStateSummary").is_visible()
     assert "县市" in page.locator("#bridgeStateSummary").inner_text()
     page.locator("#infraStateJump").select_option("DE-SH")
-    page.locator('[data-dossier-tab="bridges"]').click()
+    assert page.locator('[data-dossier-tab="bridges"]').get_attribute("aria-selected")=="true",(
+        "Switching state reset the active bridge comparison tab")
+    assert page.locator("#bridgeStateSummary").is_visible()
     page.locator("#bridgeCountySearch").fill("01002")
     assert "01002" in page.locator("#bridgeCountyList").inner_text()
     assert "85个" in page.locator("#bridgeCountyList").inner_text()

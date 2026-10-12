@@ -163,6 +163,12 @@ def run(browser,mobile=False):
     assert page.locator("#housingStateArchive").is_hidden()
     page.locator("#stateJump").select_option("05")
     assert page.evaluate("GermanHousingResearch.state().localArchiveRows")==53
+    page.locator('[data-dossier-tab="structure"]').click()
+    page.locator("#stateJump").select_option("09")
+    assert page.locator('[data-dossier-tab="structure"]').get_attribute("aria-selected")=="true"
+    assert page.locator("#housingStructure").is_visible()
+    page.locator("#stateJump").select_option("05")
+    assert page.locator('[data-dossier-tab="structure"]').get_attribute("aria-selected")=="true"
     page.locator('[data-dossier-tab="archive"]').click()
     assert page.locator("#housingStateArchive").is_visible()
     assert page.locator("#housingStateArchive").get_attribute("open") is None
