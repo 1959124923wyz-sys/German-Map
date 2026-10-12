@@ -27,6 +27,14 @@ def check(browser, mobile=False):
         && window.GermanEnvironment06Data?.length===154
         && window.__ENVIRONMENT_TAXONOMY__?.all===154""",timeout=30000)
     assert page.locator("#showEnvPoints").is_checked() is False
+    # Newly found bug: opening one archived record used to turn on 154
+    # unrelated markers even while the user had disabled the map overlay.
+    first_archive=page.evaluate("window.__ENVIRONMENT_MAP__.getAll()[0].id")
+    page.evaluate("(id)=>window.__ENVIRONMENT_MAP__.selectRecord(id,false)",first_archive)
+    assert page.locator("#detail").is_visible()
+    assert page.locator("#showEnvPoints").is_checked() is False
+    assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==0
+    page.locator("#closeDetail").click()
     assert page.locator("#envStateDossier").is_hidden()
     assert page.locator(".modebar a.modebtn").count()==10
     assert page.locator(".modebar .modebtn.active").inner_text()=="环保争议"
@@ -58,7 +66,23 @@ def check(browser, mobile=False):
     assert facts["phases"]=={"retired":32,"awarded":36,"ordered":3,"scheduled":21},facts
     page.wait_for_function("""() => window.__ENVIRONMENT_MAP__.map.getPane('environmentStates')?.querySelectorAll('path').length>=16""",timeout=20000)
     assert page.evaluate("window.__ENVIRONMENT_MAP__.getStateAssigned()")==73
+    camera=lambda:page.evaluate("""() => {
+      const m=window.__ENVIRONMENT_MAP__.map,c=m.getCenter();
+      return [m.getZoom(),c.lat,c.lng];
+    }""")
+    # Initial Leaflet fitBounds can finish an asynchronous pan after the
+    # data-ready flag; measure only after the first viewport settles.
+    page.wait_for_timeout(600)
+    first_camera=camera()
+    page.evaluate("window.__ENVIRONMENT_MAP__.selectState('DE-BY')")
+    current_camera=camera()
+    assert (current_camera[0]==first_camera[0]
+        and abs(current_camera[1]-first_camera[1])<0.003
+        and abs(current_camera[2]-first_camera[2])<0.003), (
+        "Opening a state dossier unexpectedly moved map",first_camera,current_camera)
     page.locator("#envStateJump").select_option("DE-NW")
+    assert camera()!=first_camera, "Explicit state selection must allow map positioning"
+    assert page.locator("#envLocateState").is_visible()
     assert page.locator("#envStateDossier").is_visible()
     assert page.evaluate("window.__ENVIRONMENT_MAP__.getState()")=="DE-NW"
     assert "22条" in page.locator("#envStateStats").inner_text()
@@ -118,8 +142,12 @@ def check(browser, mobile=False):
     assert page.locator("#entries .env-entry").count()==18
     page.locator("#moreRecords").click()
     assert page.locator("#entries .env-entry").count()==41
+    before_reading=camera()
     page.locator("#entries .env-entry").first.click()
     assert page.locator("#detail").is_visible()
+    assert camera()==before_reading, "Reading the event list forced map movement"
+    assert page.locator("#locateRecord").is_visible()
+    page.locator("#locateRecord").click()
     assert page.evaluate("window.__ENVIRONMENT_MAP__.map.getZoom()")>=8
     zoom=page.evaluate("window.__ENVIRONMENT_MAP__.map.getZoom()")
     page.locator("#environment-map .leaflet-control-zoom-out").click()
