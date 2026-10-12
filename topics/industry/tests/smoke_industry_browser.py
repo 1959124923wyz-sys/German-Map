@@ -32,7 +32,8 @@ def verify(browser,mobile=False):
     }""")
 
     assert page.locator("#industryNationalList .industry-row").count()==231
-    assert "不是" in page.locator("#methodNote").inner_text() or "尚非" in page.locator("#methodNote").inner_text()
+    assert page.locator("#methodNote").count()==0, "Lengthy cautions should stay in collapsed research details"
+    assert "底色只表示" in page.locator("#researchDetails .industry-method").inner_text()
     assert page.locator(".modebar a.modebtn").count()==10
     assert page.locator(".modebar .active").inner_text()=="工业衰退"
     page.locator("#industryStateJump").select_option("DE-NW")
