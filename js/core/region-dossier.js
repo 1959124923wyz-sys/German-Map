@@ -46,7 +46,13 @@
   choose(active);
   return Object.freeze({
    choose,
-   show:show=>{root.hidden=!show;if(show)choose(names[0]);},
+   show:show=>{
+    const reopening=root.hidden;
+    root.hidden=!show;
+    // Keep the current comparison tab while the dossier stays open.
+    // Only a deliberate close→reopen starts at its overview.
+    if(show)choose(reopening?names[0]:active);
+   },
    active:()=>active
   });
  };
