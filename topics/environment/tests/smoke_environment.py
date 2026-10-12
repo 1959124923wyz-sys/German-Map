@@ -44,6 +44,21 @@ def check(browser, mobile=False):
             "Locating one archived record displayed unrelated events")
         assert page.locator("#environment-map .env-marker-icon").count()==1
         assert page.evaluate("window.__ENVIRONMENT_MAP__.getSelected()")==first_archive
+        # A stale focus marker must not reappear merely because the reader
+        # revisits the same record after changing state or category.
+        page.evaluate("window.__ENVIRONMENT_MAP__.selectState('DE-BY')")
+        assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==0
+        page.evaluate("(id)=>window.__ENVIRONMENT_MAP__.selectRecord(id,false)",first_archive)
+        assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==0, (
+            "Switching state retained an old temporary location marker")
+        page.locator('[data-mode="archive"]').click()
+        page.locator('[data-mode="all"]').click()
+        page.evaluate("(id)=>window.__ENVIRONMENT_MAP__.selectRecord(id,false)",first_archive)
+        assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==0, (
+            "Switching archive mode resurrected an old located marker")
+        page.evaluate("window.__ENVIRONMENT_MAP__.resetState()")
+        page.evaluate("(id)=>window.__ENVIRONMENT_MAP__.selectRecord(id,false)",first_archive)
+        assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==0
     page.locator("#closeDetail").click()
     assert page.locator("#showEnvPoints").is_checked() is False
     assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==0
