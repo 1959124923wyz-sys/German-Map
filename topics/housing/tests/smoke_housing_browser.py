@@ -6,6 +6,7 @@ and optional stock metrics must not override official rental rates.
 """
 from __future__ import annotations
 import base64
+import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
@@ -38,6 +39,39 @@ def run(browser,mobile=False):
     assert "欧元" in page.locator("#value").inner_text()
     assert page.locator("#housingNationalHint").is_visible()
     assert page.locator("main .housing-rank-row").count()==8
+    # True county polygon hit, including on 390px. Prior tests clicked
+    # only sidebar lists and never detected the overlaid state SVG path.
+    page.locator("#housingMap").scroll_into_view_if_needed()
+    page.evaluate("""() => {
+      GermanHousingResearch.getMap().setView([50.72,9.1],9,{animate:false});
+      return true;
+    }""")
+    page.wait_for_timeout(180)
+    probe=json.loads(page.evaluate("""() => {
+      const q=GermanHousingResearch,m=q.getMap(),ll=[50.72,9.1];
+      const xy=m.latLngToContainerPoint(ll),r=m.getContainer().getBoundingClientRect();
+      const lp=m.latLngToLayerPoint(ll),x=r.left+xy.x,y=r.top+xy.y;
+      const matches=q.getCountyLayer().getLayers()
+        .filter(l=>l._containsPoint?.(lp)).map(l=>String(l.feature?.id||''));
+      const stack=document.elementsFromPoint(x,y).slice(0,7)
+        .map(el=>({tag:String(el.tagName),classes:String(el.getAttribute('class')||'')}));
+      return JSON.stringify({x:Number(x),y:Number(y),matches,stack,
+        stateInteractive:q.getStateLayer().getLayers().some(l=>l.options.interactive)});
+    }"""))
+    assert probe["matches"],("Point is outside GIS county polygons",probe)
+    assert not probe["stateInteractive"],"Decorative state outlines must stay pointer-passive"
+    assert any('leaflet-interactive' in el['classes'] for el in probe['stack']),(
+        "An upper layer may have intercepted the county",probe)
+    before_pointer=page.evaluate("GermanHousingResearch.state()")
+    page.mouse.click(probe['x'],probe['y'])
+    after_pointer=page.evaluate("GermanHousingResearch.state()")
+    assert after_pointer['selectedCounty'] in probe['matches'],(
+        "Actual county mouse click did not open the corresponding dossier",probe,after_pointer)
+    assert after_pointer['zoom']==before_pointer['zoom']
+    assert abs(after_pointer['view']['lat']-before_pointer['view']['lat'])<1e-5
+    assert abs(after_pointer['view']['lng']-before_pointer['view']['lng'])<1e-5
+    page.locator("#resetView").click()
+    assert page.evaluate("GermanHousingResearch.state().selectedCounty") is None
     assert page.locator("#housingMetric option").count()==15
     assert page.evaluate("Object.keys(AtlasColorSemantics.registry.housing).length")==15
     for key,direction,note in [
