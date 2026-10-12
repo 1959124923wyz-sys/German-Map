@@ -166,8 +166,14 @@
       +'<h3>'+escapeHtml(e.title)+'</h3>'
       +'<div class="meta">'+escapeHtml(e.city)+' · '+escapeHtml(dateLabel)+' · '+escapeHtml(categoryNames[e.category]||e.category)+' · '+escapeHtml(statusNames[e.status]||e.status)+'</div>'
       +'<p>'+escapeHtml(e.summary)+'</p><p class="meta">定位精度：'+precision+'。该条为精选档案，不参与地区指数。</p>'
+      +'<button type="button" class="infra-event-locate" id="locateInfraEvent">定位地点</button>'
       +e.sources.filter(v=>isUrl(v.url)).map((s,i)=>anchor(s.url,'阅读来源 '+(i+1))).join(' · ');
     $('closeEventDetail').addEventListener('click',()=>{state.selectedEvent=null;renderEventDetail();renderEvents();});
+    $('locateInfraEvent').addEventListener('click',()=>{
+      // The dossier is a read-only selection. Location requires an explicit
+      // button and never silently enables a disabled event-marker layer.
+      map.setView([e.coordinates.lat,e.coordinates.lon],Math.max(8,map.getZoom()),{animate:false});
+    });
   }
   function selectEvent(id) {
     const e=archive.events.find(v=>v.id===id);if(!e)return;
