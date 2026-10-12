@@ -209,6 +209,30 @@ def verify(browser,mobile=False):
     page.wait_for_function("window.__FINANCE_UI__.eventCount()>=30")
     assert page.locator("#eventPanel").is_visible()
     assert page.locator("#extraControls").is_visible()
+    if not mobile:
+        # Clicking a county event bubble establishes a geographical scope.
+        # Category/status filters must refine this county rather than silently
+        # returning the report list to all of Germany.
+        assert page.evaluate(f"{api}.getEventCounty()") is None
+        page.evaluate(f"()=>{{{api}.eventMarkers()[0].fire('click');return true}}")
+        county_scope=page.evaluate(f"{api}.getEventCounty()")
+        assert county_scope and len(county_scope)==5
+        assert county_scope in page.locator("#listHeading").inner_text() or (
+            page.locator("#listHeading").inner_text()!='已核实的地方事件')
+        page.locator("#extraControls > summary").click()
+        page.locator("#category").select_option("budget")
+        assert page.evaluate(f"{api}.getEventCounty()")==county_scope, (
+            "Category filter unexpectedly cleared the selected event county")
+        page.locator("#status").select_option("implemented")
+        assert page.evaluate(f"{api}.getEventCounty()")==county_scope, (
+            "Status filter unexpectedly cleared the selected event county")
+        page.locator("#category").select_option("all")
+        page.locator("#status").select_option("all")
+        assert page.evaluate(f"{api}.getEventCounty()")==county_scope
+        page.locator("#extraControls > summary").click()
+        page.locator("#resetView").click()
+        assert page.evaluate(f"{api}.getEventCounty()") is None
+        assert page.evaluate(f"{api}.eventCount()")>=30
     # Changing states does NOT turn off the independent event overlay.
     page.locator("#stateJump").select_option("DE-BY")
     assert page.evaluate(f"{api}.getFocusState()")=="DE-BY"
