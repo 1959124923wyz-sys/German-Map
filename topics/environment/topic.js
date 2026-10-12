@@ -166,7 +166,9 @@
   }
   function selectRecord(id,fly) {
     const e=rows.find(v=>v.id===id);
-    if(e&&!state.showPoints){state.showPoints=true;$('showEnvPoints').checked=true;}
+    // Reading archive evidence must not enable all 154 map markers.
+    // Reveal points only when the user explicitly requests location.
+    if(e&&fly&&!state.showPoints){state.showPoints=true;$('showEnvPoints').checked=true;}
     state.selected=e?e.id:null;
     detail(e||null);
     $('summaryPanel').classList.toggle('has-selection',!!e);
