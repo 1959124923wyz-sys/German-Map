@@ -239,6 +239,25 @@ def verify(browser,mobile=False):
     page.locator("#extraControls summary").click()
     page.locator("#showAllCases").click()
     assert "170" in page.locator("#visibleCount").inner_text()
+    chosen_report=page.locator("#detail h3").inner_text()
+    assert page.locator("#showAllCases").get_attribute("aria-pressed")=="true"
+    assert page.locator("#extraControls").get_attribute("open") is not None
+    camera_before_toggle=camera()
+    page.locator("#showEvents").uncheck()
+    assert page.locator("#eventPanel").is_hidden()
+    assert page.evaluate(f"{api}.eventCount()")==0
+    assert camera()==camera_before_toggle, "Hiding fiscal markers moved the map"
+    page.locator("#showEvents").check()
+    assert page.locator("#eventPanel").is_visible()
+    assert page.evaluate(f"{api}.eventCount()")>=30
+    assert "170" in page.locator("#visibleCount").inner_text(), (
+        "Toggling fiscal markers destroyed the selected 170-record archive")
+    assert page.locator("#showAllCases").get_attribute("aria-pressed")=="true"
+    assert page.locator("#extraControls").get_attribute("open") is not None
+    assert page.locator("#detail").is_visible()
+    assert page.locator("#detail h3").inner_text()==chosen_report, (
+        "Toggling fiscal markers discarded an already opened report")
+    assert camera()==camera_before_toggle
     page.locator("#showEvents").uncheck()
     assert page.locator("#eventPanel").is_hidden()
     assert page.evaluate(f"{api}.eventCount()")==0

@@ -536,11 +536,11 @@
   });
   $('showEvents').addEventListener('change',()=>{
    view.showEvents=$('showEvents').checked;
+   // Hiding map bubbles and the event panel must not wipe the user's
+   // selected report, archive mode, county filter or pagination state.
    $('eventPanel').hidden=!view.showEvents;
    $('extraControls').hidden=!view.showEvents;
-   view.county=null;view.selected=null;view.archive=false;view.limit=8;
-   toggleArchive();renderList();renderMarkers();
-   if(!view.showEvents){$('detail').hidden=true;$('extraControls').open=false;}
+   renderMarkers();
   });
   $('focusStateMap').addEventListener('click',()=>{
    if(view.focusState)zoomToState(view.focusState,undefined,{locate:true});
