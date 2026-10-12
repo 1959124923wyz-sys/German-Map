@@ -264,6 +264,30 @@ def run(browser,mobile=False):
         assert page.locator("#detail.empty").count()==1
         assert "点击任意铁路线" in page.locator("#detail h3").inner_text()
         assert "正在读取" in transition["status"],transition
+        # Race regression: multiple service clicks in one JS turn start
+        # overlapping async chunk loads. Only the final selection may repaint
+        # route statistics; delayed chunks must never resurrect old corridors.
+        queued=page.evaluate("""() => {
+          for(const service of ['OTHER','LONG','REGIONAL']){
+            document.querySelector('[data-service="'+service+'"]').click();
+          }
+          const api=window.__RAILWAY_OVERVIEW__;
+          return {service:api.getService(),selected:api.getSelected(),
+            rows:document.querySelectorAll('.hot-row').length};
+        }""")
+        assert queued=={"service":"REGIONAL","selected":None,"rows":0},queued
+        loaded(page,"REGIONAL",500)
+        assert page.locator(".hot-row").count()==10
+        for _ in range(4):
+            page.wait_for_timeout(240)
+            assert page.evaluate("window.__RAILWAY_OVERVIEW__.getService()")=="REGIONAL"
+            assert page.evaluate("window.__RAILWAY_OVERVIEW__.getMergedLinks()")>500
+            assert "区域" in page.locator("#status").inner_text(),(
+                "A late long-distance/other-service load overwrote regional results")
+            assert page.locator(".hot-row").count()==10
+        # Load each delayed service alone afterwards to ensure it was not
+        # cancelled or permanently cached as an incomplete snapshot.
+        page.locator('[data-service="LONG"]').click()
         loaded(page,"LONG",10)
         assert page.locator(".hot-row").count()>0
         page.locator('[data-service="OTHER"]').click()
