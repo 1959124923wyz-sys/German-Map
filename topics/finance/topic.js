@@ -419,7 +419,7 @@
   const layer=statesLayer.getLayers().find(x=>x.feature?.properties?.id===id);
   if(!layer)return;
   const changed=view.focusState!==id;
-  view.county=null;view.currentCounty=null;view.selected=null;view.limit=8;
+  view.county=null;view.currentCounty=null;clearSelectedReport();view.limit=8;
   if(changed)$('loanDrawer').open=false;
   $('regionalDebtDrawer').hidden=true;
   $('regionalDebtDrawer').open=false;
@@ -446,7 +446,7 @@
   // "定位本州" and state dropdown selection are the only focus operations.
   if(locate){map.stop();map.fitBounds(layer.getBounds(),{padding:[32,32],maxZoom:8,animate:false});}
   renderCountyOutline();
-  renderList();
+  renderList();renderMarkers();
   const sidebar=document.querySelector('.finance-summary');
   if(sidebar)sidebar.scrollTop=0;
  }
@@ -516,7 +516,7 @@
   renderLegend();renderMarkers();
  }
  function resetView(){
-  view.focusState=null;view.county=null;view.currentCounty=null;view.selected=null;
+  view.focusState=null;view.county=null;view.currentCounty=null;clearSelectedReport();
   $('stateJump').value='';
   countyDisplayedFor=null;
   if(countiesLayer){if(map?.hasLayer(countiesLayer))map.removeLayer(countiesLayer);countiesLayer.clearLayers();}
