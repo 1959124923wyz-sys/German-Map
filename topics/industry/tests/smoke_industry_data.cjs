@@ -12,7 +12,7 @@ function el(id){
  return elements.get(id);
 }
 const panes={};
-const fakeMap={fitBounds(){return this;},createPane(n){panes[n]={style:{}};},getPane(n){return panes[n];},addLayer(){},removeLayer(){},panTo(){}};
+const fakeMap={fitBounds(){return this;},createPane(n){panes[n]={style:{}};},getPane(n){return panes[n];},addLayer(){},removeLayer(){},panTo(){},on(){return this;},getZoom(){return 6;},hasLayer(){return true;}};
 function layer(){
  return {on(){return this;},bindTooltip(){return this;},setStyle(){return this;},addTo(){return this;},resetStyle(){},getBounds(){return{getCenter:()=>({lat:51.2,lng:9.5})}}};
 }
