@@ -2,13 +2,6 @@ name: Stuttgart and Duesseldorf municipal geometry audit
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/probe_stuttgart_duesseldorf_geometry.py'
-      - 'scripts/build_stuttgart_duesseldorf_geometry.py'
-      - '.github/workflows/stuttgart-duesseldorf-geometry.yml'
-
 permissions:
   contents: read
 
