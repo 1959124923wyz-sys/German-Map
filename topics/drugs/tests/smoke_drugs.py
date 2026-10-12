@@ -217,7 +217,7 @@ def main():
                 timeout=30000)
             assert page.locator('#drugs-wastewater-content').is_visible()
             assert not page.locator('#drugs-crime-content').is_visible()
-            assert page.locator('#wastewater-rank button').count() == 13
+            assert page.locator('#wastewater-rank .wastewater-rank-record').count() == 13
             assert not page.locator('#wastewater-rank-details').get_attribute('open')
             page.locator('#wastewater-rank-details > summary').click()
             assert page.evaluate('() => window.__DRUGS_WASTEWATER_TEST__.markers') == 13
@@ -225,8 +225,8 @@ def main():
             page.screenshot(path='/tmp/germany-crime-map-drugs-euda.png', full_page=True)
             page.locator('#wastewater-substance').select_option('cocaine')
             assert page.locator('#legend-title').inner_text().startswith('可卡因')
-            assert page.locator('#wastewater-rank button').count() == 13
-            page.locator('#wastewater-rank button').first.click()
+            assert page.locator('#wastewater-rank .wastewater-rank-record').count() == 13
+            page.locator('#wastewater-rank .wastewater-rank-record').first.click()
             assert page.locator('#wastewater-flyout').is_visible()
             assert page.locator('#wastewater-value').inner_text() not in ['—','0']
             assert page.evaluate('() => window.__DRUGS_WASTEWATER_TEST__.sourceSites') == 13
@@ -242,12 +242,17 @@ def main():
             # Data coverage differs by substance; cannabis lacks valid prior-year
             # values and must never show a fabricated percent change.
             page.locator('#wastewater-substance').select_option('cannabis')
-            page.locator('#wastewater-rank button').first.click()
+            before_euda_read=camera()
+            assert page.locator('#wastewater-rank .wastewater-rank-locate').count()==13
+            page.locator('#wastewater-rank .wastewater-rank-record').first.click()
+            assert camera()==before_euda_read, "Reading EUDA site data forced camera movement"
+            page.locator('#wastewater-rank .wastewater-rank-locate').first.click()
+            assert camera()!=before_euda_read, "Explicit EUDA site locator did not move the map"
             assert '无法计算可比变化' in page.locator('#wastewater-change').inner_text()
             assert page.locator('#wastewater-site-dossier').get_attribute('open') is None
             assert page.locator('#wastewater-site-records .wastewater-site-record').count()==6
             page.locator('#wastewater-substance').select_option('cocaine')
-            page.locator('#wastewater-rank button').first.click()
+            page.locator('#wastewater-rank .wastewater-rank-record').first.click()
             assert '较2024年：' in page.locator('#wastewater-change').inner_text()
             page.locator('#close-wastewater').click()
             assert not page.locator('#wastewater-flyout').is_visible()
@@ -342,6 +347,21 @@ def main():
             assert before_mobile==after_mobile, (
                 'Mobile county selection must not pan/zoom',before_mobile,after_mobile)
             assert mobile.locator('#region-drill').inner_text()=='定位当前县市'
+            assert mobile.evaluate("document.documentElement.scrollWidth <= innerWidth + 3")
+            mobile.locator('#drugs-tab-wastewater').click()
+            mobile.wait_for_function(
+                "() => document.getElementById('wastewater-sites')?.textContent === '13'",
+                timeout=30000)
+            mobile.locator('#wastewater-rank-details > summary').click()
+            before_mobile_euda=mobile.evaluate("""() => {
+              const m=window.__DRUGS_PREVIEW_MAP__,c=m.getCenter();
+              return [m.getZoom(),c.lat,c.lng];
+            }""")
+            mobile.locator('#wastewater-rank .wastewater-rank-record').first.click()
+            assert mobile.evaluate("""() => {
+              const m=window.__DRUGS_PREVIEW_MAP__,c=m.getCenter();
+              return [m.getZoom(),c.lat,c.lng];
+            }""")==before_mobile_euda, "Mobile EUDA site reading forced map movement"
             assert mobile.evaluate("document.documentElement.scrollWidth <= innerWidth + 3")
             mobile.screenshot(path='/tmp/germany-crime-map-drugs-mobile-clean.png',full_page=True)
             assert not mobile_errors,mobile_errors
