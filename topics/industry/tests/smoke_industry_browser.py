@@ -33,6 +33,18 @@ def verify(browser,mobile=False):
     }""")
 
     assert page.locator("#industryNationalList .industry-row").count()==231
+    # A selected company's red/white marker must stop looking selected
+    # when the user reads another state, even if markers are toggled off.
+    first_marker_id=page.evaluate("GermanIndustryQA.getFirstMarkerId()")
+    assert first_marker_id
+    page.locator("#industryNationalArchive > summary").click()
+    page.locator(f'#industryNationalList .industry-row[data-id="{first_marker_id}"]').click()
+    assert page.evaluate("GermanIndustryQA.highlightedMarkers()")==1
+    page.locator("#industryStateJump").select_option("DE-NW")
+    assert page.evaluate("GermanIndustryQA.highlightedMarkers()")==0, (
+        "Changing state kept an unrelated factory pin highlighted")
+    page.locator("#viewGermany").click()
+    assert page.evaluate("GermanIndustryQA.highlightedMarkers()")==0
     assert "不是" in page.locator("#methodNote").inner_text() or "尚非" in page.locator("#methodNote").inner_text()
     assert page.locator(".modebar a.modebtn").count()==10
     assert page.locator(".modebar .active").inner_text()=="工业衰退"
