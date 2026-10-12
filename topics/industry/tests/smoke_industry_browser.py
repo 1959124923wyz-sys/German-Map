@@ -157,7 +157,7 @@ def verify(browser,mobile=False):
         matches:matches.map(l=>String(l.feature?.id||'')),stack});
     }"""))
     assert probe['matches'],f"No real 400-county polygon under high-zoom pointer: {probe}"
-    assert any('countyPane' in (item['pane'] or '') for item in probe['stack']),(
+    assert any('leaflet-county-pane' in (item['pane'] or '') for item in probe['stack']),(
         'County renderer not reachable by actual mouse pointer',probe)
     camera_before=page.evaluate("GermanIndustryQA.view()")
     page.mouse.click(probe['x'],probe['y'])
