@@ -229,8 +229,19 @@ def run(browser,mobile=False):
 
     page.locator("#hotspots>summary").click()
     assert page.locator(".hot-row").count()==10
+    assert page.locator(".hot-locate").count()==10
+    camera=lambda:page.evaluate("""() => {
+      const m=window.__RAILWAY_OVERVIEW__.getMap(),c=m.getCenter();
+      return [m.getZoom(),c.lat,c.lng];
+    }""")
+    before_record_read=camera()
     page.locator(".hot-row").first.click()
     assert page.evaluate("window.__RAILWAY_OVERVIEW__.getSelected()?.observedEdges>=1")
+    assert camera()==before_record_read, (
+        "Clicking a railway hotspot record moved the camera")
+    page.locator(".hot-locate").first.click()
+    assert camera()!=before_record_read, (
+        "Explicit railway hotspot locate button did not move map")
     if not mobile:
         page.locator('[data-service="LONG"]').click()
         loaded(page,"LONG",10)
