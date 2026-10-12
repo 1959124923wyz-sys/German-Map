@@ -112,6 +112,25 @@ def verify(browser, mobile: bool) -> None:
     assert page.locator("#eventDetail").is_visible()
     assert page.locator("#eventDetail a[href^='https://']").count() >= 1
     assert "埃尔福特" in page.locator("#eventDetail").inner_text()
+    assert page.locator("#locateInfraEvent").is_visible()
+    if not mobile:
+        # The event-list click only opened its dossier. Explicit location
+        # is a separate command and must not toggle any map overlay.
+        before_locate=page.evaluate("""() => {
+          const m=GermanInfrastructureQA.getMap(),c=m.getCenter();
+          return [m.getZoom(),c.lat,c.lng];
+        }""")
+        before_selection=page.evaluate("GermanInfrastructureQA.getSelection()")
+        page.locator("#locateInfraEvent").click()
+        after_locate=page.evaluate("""() => {
+          const m=GermanInfrastructureQA.getMap(),c=m.getCenter();
+          return [m.getZoom(),c.lat,c.lng];
+        }""")
+        assert after_locate!=before_locate, (
+            "Explicit location did not move the map to project reference point")
+        assert after_locate[0]>=8
+        assert page.evaluate("GermanInfrastructureQA.getSelection()")==before_selection, (
+            "Location changed the project or event-overlay selection")
     page.locator("#closeEventDetail").click()
     assert page.locator("#eventDetail").is_hidden()
     # User-disabled event markers must stay disabled when opening an event
