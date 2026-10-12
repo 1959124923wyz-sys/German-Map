@@ -2,6 +2,7 @@
 """09 Industry release smoke: all sourced events + official county polygons."""
 from pathlib import Path
 import base64
+import json
 from playwright.sync_api import sync_playwright
 
 BASE="http://127.0.0.1:8765/topics/industry/"
@@ -139,16 +140,20 @@ def verify(browser,mobile=False):
       const q=GermanIndustryQA,m=q.getMap();
       return m.getZoom()>=9 && !m.hasLayer(q.getStateOverlay());
     }""")
-    probe=page.evaluate("""() => {
+    probe=json.loads(page.evaluate("""() => {
       const qa=GermanIndustryQA,m=qa.getMap();
       const xy=m.latLngToContainerPoint([50.72,9.1]),r=m.getContainer().getBoundingClientRect();
       const world=m.latLngToLayerPoint([50.72,9.1]);
       const matches=qa.getCounties().getLayers().filter(l=>l._containsPoint?.(world));
       const x=r.left+xy.x,y=r.top+xy.y;
       const stack=document.elementsFromPoint(x,y).slice(0,7)
-        .map(el=>({tag:el.tagName,pane:el.closest('.leaflet-pane')?.className||''}));
-      return {x,y,matches:matches.map(l=>l.feature?.id),stack};
-    }""")
+        .map(el=>({tag:String(el.tagName),pane:String(
+          el.closest('.leaflet-pane')?.getAttribute('class')||'')}));
+      // Playwright's serializer cannot safely transfer SVG className objects.
+      // Flatten all diagnostics to ordinary JSON primitives.
+      return JSON.stringify({x:Number(x),y:Number(y),
+        matches:matches.map(l=>String(l.feature?.id||'')),stack});
+    }"""))
     assert probe['matches'],f"No real 400-county polygon under high-zoom pointer: {probe}"
     assert any('countyPane' in (item['pane'] or '') for item in probe['stack']),(
         'County renderer not reachable by actual mouse pointer',probe)
