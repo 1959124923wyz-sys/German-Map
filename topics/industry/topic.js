@@ -187,12 +187,20 @@ function markerStyle(e,active){
  return {radius:active?7:5,color:active?'#ffffff':'#f8e8e2',weight:active?2.5:1.2,
  fillColor:active?'#82262c':'#b94b42',fillOpacity:0.94};
 }
+function syncStateOverlay(){
+ if(!app.map||!app.stateOverlay)return;
+ // Nationwide view: choose a state. At county zoom the state polygon's
+ // almost-transparent SVG fill would intercept every county Canvas click.
+ const visible=!app.selectedState&&app.map.getZoom()<7.5;
+ if(visible&&!app.map.hasLayer(app.stateOverlay))app.stateOverlay.addTo(app.map);
+ if(!visible&&app.map.hasLayer(app.stateOverlay))app.map.removeLayer(app.stateOverlay);
+}
 function selectEvent(e){
  app.selectedEvent=e.id;
  if(e.state_iso&&STATE_ZH[e.state_iso]){
   app.selectedState=e.state_iso;$('industryStateJump').value=e.state_iso;
   app.dossier.show(true);
-  if(app.stateOverlay&&app.map.hasLayer(app.stateOverlay))app.map.removeLayer(app.stateOverlay);
+  syncStateOverlay();
  }
  const county=app.featureLookup.get(e.id);
  app.selectedCounty=county?stateKey(county):null;
@@ -345,7 +353,7 @@ function selectState(iso,{locate=false}={}){
  $('industryEventSearch').value='';
  $('industryStateJump').value=iso;
  app.dossier.show(true);
- if(app.stateOverlay&&app.map.hasLayer(app.stateOverlay))app.map.removeLayer(app.stateOverlay);
+ syncStateOverlay();
  const f=app.stateFeatures.find(f=>f.properties?.id===iso);
  if(locate&&f)app.map.fitBounds(L.geoJSON(f).getBounds(),{padding:[26,26],maxZoom:8,animate:false});
  renderSummary();
@@ -364,8 +372,8 @@ function reset(){
  $('industryStateJump').value='';
  $('industryEventSearch').value='';
  app.dossier.show(false);
- if(app.stateOverlay&&!app.map.hasLayer(app.stateOverlay))app.stateOverlay.addTo(app.map);
  app.map.fitBounds(POLYGON_BOUNDS,{animate:false});
+ syncStateOverlay();
  renderSummary();
  app.eventMarkers.forEach((mk,id)=>mk.setStyle(markerStyle(app.events.find(x=>x.id===id),false)));
 }
@@ -428,6 +436,8 @@ async function start(){
   style:{pane:'industryStatePane',weight:1.3,color:'#43596b',fillColor:'#ffffff',fillOpacity:.015},
   onEachFeature:(feature,layer)=>layer.on('click',()=>selectState(feature.properties?.id))
  }).addTo(app.map);
+ app.map.on('zoomend',syncStateOverlay);
+ syncStateOverlay();
  app.markers=L.layerGroup();
  for(const e of app.events){
   const county=getCounty(e);
