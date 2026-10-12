@@ -71,6 +71,10 @@ button,select{font:inherit}button{cursor:pointer}a{color:inherit}
 .detail-grid span{font-size:9px}
 .hotspots{border-top:1px solid #2b3d4b;margin:16px 0 0;padding:12px 0 3px}
 .hot-list{display:grid;gap:2px}
+.hot-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px;align-items:stretch;border-bottom:1px solid #263747}
+.hot-item .hot-row{border-bottom:0;min-width:0}
+.hot-locate{align-self:center;color:#c7e4f3;background:#1c3444;border:1px solid #42657b;border-radius:6px;font-size:10px;padding:7px 9px;min-height:32px;cursor:pointer;white-space:nowrap}
+.hot-locate:hover,.hot-locate:focus-visible{background:#2b5067;outline-offset:2px}
 .hot-row{
  display:grid;grid-template-columns:16px minmax(0,1fr) 23px;gap:7px;align-items:center;
  width:100%;padding:8px 4px;color:#dce8ef;background:transparent;
