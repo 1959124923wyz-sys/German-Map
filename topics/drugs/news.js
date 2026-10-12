@@ -126,8 +126,12 @@
       }
       const fragment=document.createDocumentFragment();
       for (const item of rows.slice(0,shown)) {
-        const li=document.createElement('li'),button=document.createElement('button');
-        button.type='button';button.className='drug-news-card';
+        const li=document.createElement('li'),button=document.createElement('a');
+        // Reading original police reports is distinct from locating an
+        // approximate city-centre marker on this map.
+        button.className='drug-news-card';
+        button.href=cleanUrl(item.source_url);
+        button.target='_blank';button.rel='noopener noreferrer';
         const top=document.createElement('div');top.className='drug-news-top';
         const label=safe('span',palette[item.category]?.label || item.category);
         label.className='drug-news-badge '+item.category;
@@ -139,8 +143,18 @@
           button.append(safe('small',item.summary.slice(0,130)));
         if(item.kind==='statistical_report')
           button.append(safe('small','全国年度背景资料 · 无地理点位'));
-        button.onclick=()=>openReport(item);
-        li.append(button);fragment.append(li);
+        button.append(safe('small','阅读原始通报 ↗'));
+        li.append(button);
+        const pointKey=item.city+'|'+Number(item.lat).toFixed(3)+'|'+Number(item.lon).toFixed(3);
+        if(Number.isFinite(item.lat)&&Number.isFinite(item.lon)&&markers.has(pointKey)){
+          const locate=document.createElement('button');
+          locate.type='button';locate.className='drug-news-locate';
+          locate.textContent='定位参考地点';
+          locate.setAttribute('aria-label','定位 '+item.city+' 相关通报的城市参考位置');
+          locate.onclick=()=>openReport(item);
+          li.append(locate);
+        }
+        fragment.append(li);
       }
       list.replaceChildren(fragment);
       if (!rows.length) {
@@ -148,9 +162,10 @@
         li.className='note';list.append(li);
       }
       more.hidden=rows.length<=shown;
-      status.textContent='近90天警方公告与全国专题资料 · 城市定位仅为示意 · '+n(cityPoints.size)+'个地点';
+      status.textContent='公开通报资料快照 · 统计窗口截至'+dataset.meta.as_of+
+        '（此前'+dataset.meta.window_days+'天） · 城市位置仅作参考 · '+n(cityPoints.size)+'个地点';
       const updated=$('drug-news-updated');
-      if(updated)updated.textContent='截至 '+dataset.meta.as_of;
+      if(updated)updated.textContent='资料截至 '+dataset.meta.as_of+' · 手动更新';
     }
     async function showNews(){
       // Shut down potential wastewater site markers before drawing news markers.
@@ -179,7 +194,7 @@
         render();
       }catch(err){
         status.textContent='通报暂时无法加载：'+err.message;
-        list.replaceChildren(safe('li','数据源更新中，请稍后刷新。'));
+        list.replaceChildren(safe('li','已保存通报数据暂时无法读取；请检查站内资料快照。'));
         total.textContent='—';mapped.textContent='—';
         console.error('drug news',err);
       }

@@ -196,7 +196,9 @@ button:disabled{cursor:not-allowed}
 .drug-news-list{list-style:none;padding:0;margin:10px 0}
 .drug-news-list li{border-bottom:1px solid #293642}
 .drug-news-card{display:block;width:100%;border:0;text-align:left;background:none;color:#e7edf2;padding:10px 4px;cursor:pointer}
-.drug-news-card:hover{background:#1d312e}
+.drug-news-card:hover{background:#1d312e;text-decoration:none;color:#effbf3}
+.drug-news-locate{display:block;margin:0 4px 9px auto;border:1px solid #527766;background:#1c342a;color:#ccf4dd;border-radius:6px;padding:6px 10px;font-size:10px;min-height:32px;cursor:pointer}
+.drug-news-locate:hover,.drug-news-locate:focus-visible{background:#305a44;outline-offset:2px}
 .drug-news-card b{display:block;font-size:11px;font-weight:690;line-height:1.45;margin:5px 0;white-space:normal}
 .drug-news-card small{font-size:10px;display:block;color:#91a7b8;line-height:1.45}
 .drug-news-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:10px;color:#a8bbc4}
