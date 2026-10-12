@@ -58,6 +58,11 @@ def verify(browser, mobile: bool) -> None:
     # The previous suite never clicked a map marker: only list buttons.
     page.locator("#infra-map").scroll_into_view_if_needed()
     marker=page.locator("#infra-map .infra-marker-icon").first
+    assert page.evaluate("""() => {
+      const qa=GermanInfrastructureQA,m=qa.getMap();
+      return m.getPane('infraEventPane').querySelectorAll('.infra-marker-icon').length>0
+        && m.getPane('markerPane').querySelectorAll('.infra-marker-icon').length===0;
+    }"""), "Infrastructure markers escaped their dedicated z-index 530 event pane"
     box=marker.bounding_box()
     assert box and box["width"]>0 and box["height"]>0
     camera_before=page.evaluate("""() => {
@@ -71,6 +76,38 @@ def verify(browser, mobile: bool) -> None:
       const m=GermanInfrastructureQA.getMap(),c=m.getCenter();
       return [m.getZoom(),c.lat,c.lng];
     }""")==camera_before, "Clicking infrastructure map marker moved the camera"
+    if not mobile:
+        # Verify the state's genuine SVG click target beside (but not on) the
+        # project pin. This is the hit-boundary issue that list-click tests miss.
+        state_target=page.evaluate("""() => {
+          const qa=GermanInfrastructureQA,m=qa.getMap();
+          const r=m.getContainer().getBoundingClientRect();
+          const marker=m.getPane('infraEventPane').querySelector('.infra-marker-icon');
+          if(!marker)return null;
+          const rect=marker.getBoundingClientRect();
+          const cx=rect.x+rect.width/2,cy=rect.y+rect.height/2;
+          for(const d of [[24,0],[-24,0],[0,24],[0,-24],[33,12],[-33,-12],
+                            [45,0],[0,45],[-45,0],[0,-45]]){
+            const x=cx+d[0],y=cy+d[1];
+            if(x<r.left+14||x>r.right-14||y<r.top+16||y>r.bottom-16)continue;
+            const node=document.elementFromPoint(x,y);
+            if(node?.closest('.leaflet-pane')!==m.getPane('infraStatePane'))continue;
+            const pt=m.containerPointToLayerPoint([x-r.left,y-r.top]);
+            const layer=qa.getStateLayer().getLayers()
+               .find(l=>l._containsPoint?.(pt));
+            if(layer)return {x,y,iso:String(layer.feature?.properties?.id)};
+          }
+          return null;
+        }""")
+        assert state_target, "No state SVG pixel reachable next to the displayed project marker"
+        page.mouse.click(state_target["x"],state_target["y"])
+        assert page.evaluate("GermanInfrastructureQA.getSelection().state")==state_target["iso"],(
+            "Mouse click beside marker did not open the real underlying state",state_target)
+        assert page.evaluate("GermanInfrastructureQA.getSelection().event") is None
+        assert page.evaluate("""() => {
+          const m=GermanInfrastructureQA.getMap(),c=m.getCenter();
+          return [m.getZoom(),c.lat,c.lng];
+        }""")==camera_before, "Clicking near a marker unexpectedly moved the viewport"
     page.locator("#eventList button").first.click()
     assert page.locator("#eventDetail").is_visible()
     assert page.locator("#eventDetail a[href^='https://']").count() >= 1
