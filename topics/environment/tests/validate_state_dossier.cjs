@@ -16,7 +16,9 @@ const app=fs.readFileSync(path.join(root,'topic.js'),'utf8');
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 for(const state of Object.keys(counts))assert.ok(app.includes("'"+state+"'"),'unmapped sourced state: '+state);
 assert.ok(app.includes('archivedInState=iso=>ALL.filter(e=>STATE_CODES[e.state]===iso)'));
-assert.ok(app.includes('if(!state.showPoints)return;'));
+assert.ok(app.includes('const shown=state.showPoints?rows:rows.filter(e=>'));
+assert.ok(app.includes('e.id===state.locatedRecord&&e.id===state.selected'));
+assert.ok(app.includes('state.locatedRecord=null;renderMarkers()'));
 for(const id of ['showEnvPoints','envStateJump','envStateDossier','envStateEvidence'])
  assert.ok(html.includes('id="'+id+'"'),id);
 assert.ok(html.includes('region-dossier.js'));
