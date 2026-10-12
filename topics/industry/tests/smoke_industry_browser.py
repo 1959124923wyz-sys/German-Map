@@ -56,6 +56,13 @@ def verify(browser,mobile=False):
     assert "本范围可溯源" in page.locator("#industryStateMetrics").inner_text()
     page.locator('[data-dossier-tab="status"]').click()
     assert page.locator("#industryStatusSummary").is_visible()
+    # A cross-state comparison should retain the selected status tab.
+    page.locator("#industryStateJump").select_option("DE-HE")
+    assert page.locator('[data-dossier-tab="status"]').get_attribute("aria-selected")=="true"
+    assert page.locator("#industryStatusSummary").is_visible()
+    page.locator("#industryStateJump").select_option("DE-NW")
+    assert page.locator('[data-dossier-tab="status"]').get_attribute("aria-selected")=="true"
+    oldview=page.evaluate("GermanIndustryQA.view()")
     page.locator('[data-dossier-tab="timeline"]').click()
     assert page.locator("#industryEventTimeline .industry-timeline-year").count()>0
     assert page.locator("#industryEventTimeline .industry-timeline-year").first.get_attribute("open") is not None
