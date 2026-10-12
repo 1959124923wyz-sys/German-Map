@@ -26,7 +26,7 @@
   const PHASE_LABELS = {retired:'历史退役',awarded:'招标中标',ordered:'监管命令',scheduled:'未来退出计划'};
   const ACTION_LABELS = {traffic:'交通干扰',energy:'能源干扰',sabotage:'设施破坏',culture:'文化设施',construction:'工程冲击'};
   const GERMANY = L.latLngBounds([[47.05,5.45],[55.15,15.65]]);
-  const state = {mode:'all',selected:null,selectedState:null,showPoints:false,limit:18};
+  const state = {mode:'all',selected:null,selectedState:null,showPoints:false,locatedRecord:null,limit:18};
   let group=null, map=null, rows=[], activeMarkers=new Map(), tilesLoaded=false;
   let dossier=null,stateShapes=new Map(),stateNames=new Map();
   // The 73 independently state-identified records are not the complete
@@ -107,14 +107,18 @@
   function renderMarkers() {
     if(!map) return;
     group.clearLayers(); activeMarkers=new Map();
-    if(!state.showPoints)return;
+    // Locating one archived record must not enable every archive marker.
+    // When the overlay is off, display only the explicitly located pin.
+    const shown=state.showPoints?rows:rows.filter(e=>
+      e.id===state.locatedRecord&&e.id===state.selected);
+    if(!shown.length)return;
     const coLoc=new Map();
-    for(const e of rows) {
+    for(const e of shown) {
       const p=e.coordinates;
       const key=p.lat.toFixed(2)+','+p.lon.toFixed(2);
       const a=coLoc.get(key)||[];a.push(e.id);coLoc.set(key,a);
     }
-    for(const e of rows) {
+    for(const e of shown) {
       const p=e.coordinates;
       const same=coLoc.get(p.lat.toFixed(2)+','+p.lon.toFixed(2));
       const icon=L.divIcon({className:'env-marker-icon',html:markerHtml(e,same.indexOf(e.id),same.length),
@@ -166,9 +170,9 @@
   }
   function selectRecord(id,fly) {
     const e=rows.find(v=>v.id===id);
-    // Reading archive evidence must not enable all 154 map markers.
-    // Reveal points only when the user explicitly requests location.
-    if(e&&fly&&!state.showPoints){state.showPoints=true;$('showEnvPoints').checked=true;}
+    // An explicit locate highlights only this record if the full overlay is
+    // off. The checkbox remains the sole controller for all archive markers.
+    state.locatedRecord=e&&!state.showPoints&&(fly||state.locatedRecord===e.id)?e.id:null;
     state.selected=e?e.id:null;
     detail(e||null);
     $('summaryPanel').classList.toggle('has-selection',!!e);
@@ -344,7 +348,7 @@
   }
   function wire() {
     dossier=window.GermanRegionDossier.mount('envStateDossier');
-    $('showEnvPoints').addEventListener('change',e=>{state.showPoints=e.target.checked;renderMarkers()});
+    $('showEnvPoints').addEventListener('change',e=>{state.showPoints=e.target.checked;state.locatedRecord=null;renderMarkers()});
     $('envStateJump').addEventListener('change',e=>e.target.value?selectState(e.target.value,{locate:true}):resetState());
     $('envLocateState').addEventListener('click',()=>{if(state.selectedState)selectState(state.selectedState,{locate:true});});
     $('envStateSearch').addEventListener('input',renderStateDossier);
