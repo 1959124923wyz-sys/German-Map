@@ -196,14 +196,20 @@ function syncStateOverlay(){
  if(!visible&&app.map.hasLayer(app.stateOverlay))app.map.removeLayer(app.stateOverlay);
 }
 function selectEvent(e){
+ const county=app.featureLookup.get(e.id);
+ const nextCounty=county?stateKey(county):null;
+ // Linked company evidence may lead to a different factory, district, or
+ // state. A search for the previous region must not hide the chosen record.
+ if((nextCounty&&nextCounty!==app.selectedCounty)||
+    (e.state_iso&&e.state_iso!==app.selectedState))
+  $('industryEventSearch').value='';
  app.selectedEvent=e.id;
  if(e.state_iso&&STATE_ZH[e.state_iso]){
   app.selectedState=e.state_iso;$('industryStateJump').value=e.state_iso;
   app.dossier.show(true);
   syncStateOverlay();
  }
- const county=app.featureLookup.get(e.id);
- app.selectedCounty=county?stateKey(county):null;
+ app.selectedCounty=nextCounty;
  renderSummary();
  if(app.selectedState)app.dossier.choose('cases');
  // Marker emphasis follows the dossier selection in renderSummary().
@@ -476,6 +482,8 @@ async function start(){
   getEventMarkers:()=>app.eventMarkers,selectedEvent:()=>app.selectedEvent,
   highlightedMarkers:()=>[...app.eventMarkers.values()].filter(m=>m.options?.fillColor==='#82262c').length,
   selectedState:()=>app.selectedState,selectedCounty:()=>app.selectedCounty,
+  eventRegion:id=>({state:app.events.find(e=>e.id===id)?.state_iso||null,
+    county:app.featureLookup.get(id)?stateKey(app.featureLookup.get(id)):null}),
   getMap:()=>app.map,getCounties:()=>app.counties,getStateOverlay:()=>app.stateOverlay,
   dossier:()=>!$('industryDossier').hidden,
   officialCoverage:Object.keys(metric.records||{}).length,view:()=>({center:{lat:app.map.getCenter().lat,lng:app.map.getCenter().lng},zoom:app.map.getZoom()})});

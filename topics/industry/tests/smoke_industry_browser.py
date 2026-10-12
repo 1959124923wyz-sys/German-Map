@@ -95,7 +95,28 @@ def verify(browser,mobile=False):
     page.locator("#eventList .industry-row").first.click()
     assert page.locator(".industry-linked-events [data-id]").count()>=2
     assert "岗位数字不能直接相加" in page.locator(".industry-linked-events").inner_text()
-    page.locator(".industry-linked-events [data-id]").first.click()
+    # Linked evidence can jump to another factory/district. A search from
+    # the original factory must not filter the destination archive to zero.
+    cross=page.evaluate("""() => {
+      const qa=GermanIndustryQA,old={state:qa.selectedState(),county:qa.selectedCounty()};
+      const nodes=[...document.querySelectorAll('.industry-linked-events [data-id]')];
+      for(const n of nodes){
+        const region=qa.eventRegion(n.dataset.id);
+        if(region.state!==old.state||region.county!==old.county)
+          return {id:n.dataset.id,region};
+      }
+      return null;
+    }""")
+    assert cross, "Expected a linked Putzmeister record in another factory district"
+    page.locator("#industryEventSearch").fill("unmatched-old-county-company-query")
+    assert page.locator("#eventList .industry-row").count()==0
+    old_camera=page.evaluate("GermanIndustryQA.view()")
+    page.locator(f'.industry-linked-events [data-id="{cross["id"]}"]').click()
+    assert page.locator("#industryEventSearch").input_value()=="", (
+        "Linked plant change retained the previous county company search",cross)
+    assert page.evaluate("GermanIndustryQA.selectedEvent()")==cross["id"]
+    assert page.evaluate("GermanIndustryQA.selectedCounty()")==cross["region"]["county"]
+    assert page.evaluate("GermanIndustryQA.view()")==old_camera
     assert page.locator("#eventDetail").is_visible()
     assert page.locator("#eventDetail a[href^='https://']").count()>0
     assert page.locator("#eventDetail a[href^='https://']").count()>0
