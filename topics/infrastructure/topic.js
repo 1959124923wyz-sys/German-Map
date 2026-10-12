@@ -33,7 +33,7 @@
     $('legend').innerHTML='<div class="legend-title">基础设施试验指数 · 越低越需要关注</div>'
       +'<div class="scale">'+palette.map(x=>'<span style="background:'+x+'"></span>').join('')+'</div>'
       +'<div style="display:flex;justify-content:space-between;color:#b6c7d2;font-size:9px"><span>高分 · 相对较好</span><span>低分 · 相对较差</span></div>'
-      +'<div style="margin-top:4px;color:#a8b9c6;font-size:9px">非官方综合评级；未纳入全国桥梁和路面</div>';
+      +'<div style="margin-top:4px;color:#a8b9c6;font-size:9px">非官方试验指标 · 不含桥梁、路面</div>';
   }
   function selectState(iso,{locate=false}={}) {
     if(!rowByIso.has(iso))return;
@@ -144,8 +144,8 @@
     $('metricValue').textContent=r?fmt(r.score,2)+' / 100':'16个联邦州';
     $('coverageBadge').textContent=r?'旧版试验值':'试验评分';
     $('metricNote').textContent=r
-      ? '本州在旧试验模型中排第'+r.rank+'，四种权重方案下排名为第'+r.sensitivity_rank_min+'—'+r.sensitivity_rank_max+'；没有桥梁及道路分数。'
-      : '铁路线路35% + 车站15% + 光纤30% + 电力20%，不是官方基建安全排名。颜色越深仅表示这一组指标的试验得分越低。';
+      ? '试验指数排名第'+r.rank+' / 16'
+      : '铁路 · 车站 · 光纤 · 供电四项试验指标';
     kpi(r?'第'+r.rank+'名':'16 / 16',r?'16州旧指数名次':'可比较州数量',
       r?fmt(r.rail_track_grade_2025,2):'4项',r?'铁路设施评分':'试验组成指标',
       r?archive.events.filter(e=>e.state_iso===r.iso).length:archive.events.length,
