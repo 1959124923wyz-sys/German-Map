@@ -35,7 +35,7 @@
   <div id="finance-map"></div>
   <div class="finance-map-caption">
    <strong id="mapGuideTitle">地方财政收支 · 2025</strong>
-   <small id="mapGuideNote">点击州放大，查看该州财政数据</small>
+   <small id="mapGuideNote">点击州查看该州财政资料；地图不会自动移动</small>
   </div>
   <div id="mapStatus" class="mapstatus" role="status">正在加载财政数据…</div>
   <div id="legend" class="legend" aria-label="财政收支颜色说明"></div>
@@ -48,10 +48,11 @@
     <small>勾选查看 · 悬停预览</small>
    </label>
    <div class="finance-state-actions">
-    <label for="stateJump" class="finance-state-label">直接切换州</label>
+    <label for="stateJump" class="finance-state-label">定位州</label>
     <select id="stateJump" class="finance-state-jump" aria-label="直接选择要查看的联邦州，无需返回全国">
      <option value="">选择联邦州…</option>
     </select>
+    <button type="button" id="focusStateMap" class="finance-reset" title="主动定位当前选择的联邦州">定位本州</button>
     <button type="button" id="resetView" class="finance-reset" title="缩放至德国全境">全国</button>
    </div>
    <label class="finance-layer-picker" for="metricLayer"><span>地图指标</span>
@@ -63,7 +64,7 @@
    </label>
   </div>
   <section class="safety-panel finance-summary" aria-live="polite">
-   <div class="safety-head"><strong id="sectionTitle">2025年人均地方财政收支</strong><span class="safety-hint">点击州放大查看</span></div>
+   <div class="safety-head"><strong id="sectionTitle">2025年人均地方财政收支</strong><span class="safety-hint">点击州查看</span></div>
    <div class="area-title"><div class="area-name" id="areaName">德国 · 全国</div></div>
    <div class="area-metric" id="metricValue">选择联邦州查看财政数据</div>
    <div class="finance-coverage" id="coverageNote">13个非城市州具备同口径数据</div>
