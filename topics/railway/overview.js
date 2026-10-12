@@ -543,6 +543,9 @@ function recalc(){
 async function chooseService(){
  const id=++view.ticket,service=view.service;
  view.selected=null;view.links=[];view.rendered=[];view.groups=[];view.drawnObserved=[];view.riskIndexes=null;view.hiddenCorridors=0;view.picker.replaceObserved([],[]);
+ // Service switching invalidates the old corridor immediately. The previous
+ // details and top-ten list must not remain clickable during async loading.
+ showDetail();$('#hotList').replaceChildren();
  view.observedLayer.schedule();status('正在读取 '+labels[service]+' 的观测…');
  try{
   const data=await Promise.all(sources[service].map(async k=>[k,await loadData(k)]));

@@ -243,8 +243,29 @@ def run(browser,mobile=False):
     assert camera()!=before_record_read, (
         "Explicit railway hotspot locate button did not move map")
     if not mobile:
-        page.locator('[data-service="LONG"]').click()
+        # Snapshot inside the synchronous service-click callback before
+        # asynchronous JS files load. The old route and top-ten rows must
+        # disappear at once, not remain clickable with the new service label.
+        transition=page.evaluate("""() => {
+          document.querySelector('[data-service="LONG"]').click();
+          const api=window.__RAILWAY_OVERVIEW__;
+          return {service:api.getService(),selected:api.getSelected(),
+            hotspots:document.querySelectorAll('.hot-row').length,
+            details:[...document.querySelectorAll('#detail .detail-grid b')]
+              .map(n=>n.textContent),
+            status:document.querySelector('#status').textContent};
+        }""")
+        assert transition["service"]=="LONG"
+        assert transition["selected"] is None
+        assert transition["hotspots"]==0, (
+            "Old regional train hotspots remained during long-distance loading",transition)
+        assert transition["details"]==[], (
+            "Old regional corridor figures remained during long-distance loading",transition)
+        assert page.locator("#detail.empty").count()==1
+        assert "点击任意铁路线" in page.locator("#detail h3").inner_text()
+        assert "正在读取" in transition["status"],transition
         loaded(page,"LONG",10)
+        assert page.locator(".hot-row").count()>0
         page.locator('[data-service="OTHER"]').click()
         loaded(page,"OTHER",100)
         page.locator('[data-service="REGIONAL"]').click()
