@@ -2,12 +2,6 @@ name: Stuttgart and Duesseldorf district source audit
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/probe_stuttgart_duesseldorf_2025.py'
-      - '.github/workflows/stuttgart-duesseldorf-audit.yml'
-
 permissions:
   contents: read
 
