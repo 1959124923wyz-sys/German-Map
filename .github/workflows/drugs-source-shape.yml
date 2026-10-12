@@ -1,8 +1,5 @@
 name: Drugs source CSV shape probe
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/drugs-source-shape.yml']
   workflow_dispatch:
 permissions:
   contents: read

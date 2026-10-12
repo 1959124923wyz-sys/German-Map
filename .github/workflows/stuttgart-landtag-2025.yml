@@ -1,12 +1,6 @@
 name: Stuttgart 2025 Landtag PKS source verification
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/probe_stuttgart_landtag_2025.py'
-      - 'scripts/build_stuttgart_public_violence_2025.py'
-      - '.github/workflows/stuttgart-landtag-2025.yml'
 permissions:
   contents: read
 jobs:

@@ -1,10 +1,6 @@
 name: Drugs standalone public preview probe
 on:
   workflow_dispatch:
-  push:
-    branches: [feature/drugs-topic]
-    paths:
-      - '.github/workflows/drugs-preview-probe.yml'
 permissions:
   contents: read
 jobs:

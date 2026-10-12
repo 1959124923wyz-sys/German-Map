@@ -1,10 +1,6 @@
 name: Verify live drug topic on Pages
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/drugs-live-probe.yml'
   workflow_dispatch:
 
 permissions:

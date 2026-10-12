@@ -1,12 +1,6 @@
 name: Düsseldorf BV6 2025 neighborhood source QA
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/probe_duesseldorf_bv6_stadtteile.py'
-      - 'scripts/build_duesseldorf_bv6_local.py'
-      - '.github/workflows/duesseldorf-bv6-stadtteile.yml'
 permissions:
   contents: read
 jobs:

@@ -2,14 +2,6 @@ name: Drugs EUDA official wastewater refresh
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'topics/drugs/scripts/build_euda_wastewater.py'
-      - '.github/workflows/drugs-euda-update.yml'
-  schedule:
-    - cron: '42 5 14 * *'
-
 permissions:
   contents: write
 

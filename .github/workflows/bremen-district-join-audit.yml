@@ -2,15 +2,6 @@ name: Bremen district join audit
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/audit_bremen_district_joins.py'
-      - 'scripts/build_bremen_geometry_staging.py'
-      - 'scripts/extract_bremen_offenses.py'
-      - 'scripts/build_bremen_category_layer.py'
-      - '.github/workflows/bremen-district-join-audit.yml'
-
 permissions:
   contents: read
 

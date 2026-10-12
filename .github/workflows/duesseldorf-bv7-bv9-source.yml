@@ -1,12 +1,6 @@
 name: Düsseldorf BV7 and BV9 2025 official PKS source review
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/probe_duesseldorf_bv7_bv9_2025.py'
-      - 'scripts/build_duesseldorf_additional_stadtteile.py'
-      - '.github/workflows/duesseldorf-bv7-bv9-source.yml'
 permissions:
   contents: read
 jobs:
