@@ -57,6 +57,8 @@ def check(browser, mobile=False):
         assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==0, (
             "Switching archive mode resurrected an old located marker")
         page.evaluate("window.__ENVIRONMENT_MAP__.resetState()")
+        page.evaluate("(id)=>window.__ENVIRONMENT_MAP__.selectRecord(id,false)",first_archive)
+        assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==0
     page.locator("#closeDetail").click()
     assert page.locator("#showEnvPoints").is_checked() is False
     assert page.evaluate("window.__ENVIRONMENT_MAP__.getMarkerCount()")==0
