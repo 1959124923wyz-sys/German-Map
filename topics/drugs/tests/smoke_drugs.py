@@ -316,6 +316,22 @@ def main():
             assert mobile.evaluate("document.documentElement.scrollWidth <= innerWidth + 3"), 'mobile must not scroll horizontally'
             mobile.locator('#national-states > summary').click()
             assert mobile.locator('#state-index-list button').count()==16
+            mobile.locator('#state-index-list button').filter(has_text='巴伐利亚州').click()
+            mobile.locator('#region-drill').click()
+            mobile.locator('#region-county-details > summary').click()
+            before_mobile=mobile.evaluate("""() => {
+              const m=window.__DRUGS_PREVIEW_MAP__,c=m.getCenter();
+              return [m.getZoom(),c.lat,c.lng];
+            }""")
+            mobile.locator('#region-county-list button').first.click()
+            after_mobile=mobile.evaluate("""() => {
+              const m=window.__DRUGS_PREVIEW_MAP__,c=m.getCenter();
+              return [m.getZoom(),c.lat,c.lng];
+            }""")
+            assert before_mobile==after_mobile, (
+                'Mobile county selection must not pan/zoom',before_mobile,after_mobile)
+            assert mobile.locator('#region-drill').inner_text()=='定位当前县市'
+            assert mobile.evaluate("document.documentElement.scrollWidth <= innerWidth + 3")
             mobile.screenshot(path='/tmp/germany-crime-map-drugs-mobile-clean.png',full_page=True)
             assert not mobile_errors,mobile_errors
             mobile.close()
