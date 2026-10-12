@@ -70,7 +70,32 @@ def run(browser,mobile=False):
     assert after_pointer['zoom']==before_pointer['zoom']
     assert abs(after_pointer['view']['lat']-before_pointer['view']['lat'])<1e-5
     assert abs(after_pointer['view']['lng']-before_pointer['view']['lng'])<1e-5
+    # A polygon-selected Kreis must remain selected while switching data layers.
+    # Repainting a 400-county map must not silently reset selection, the
+    # camera, or the 7-step legend while changing statistical interpretation.
+    county=after_pointer['selectedCounty']
+    for key in (
+        'living_area_2022_m2_person',
+        'vacancy_2022_pct',
+        'sheltered_homeless_2025',
+        'asking_rent_2025_eur_m2',
+        'completed_dwellings_new_residential_buildings_2023'
+    ):
+        page.locator("#housingMetric").select_option(key)
+        metric_state=page.evaluate("GermanHousingResearch.state()")
+        assert metric_state['selectedCounty']==county, (key,metric_state)
+        assert metric_state['focusState']==county[:2], (key,metric_state)
+        assert metric_state['metric']==key, (key,metric_state)
+        assert metric_state['zoom']==after_pointer['zoom']
+        assert abs(metric_state['view']['lat']-after_pointer['view']['lat'])<1e-5
+        assert abs(metric_state['view']['lng']-after_pointer['view']['lng'])<1e-5
+        assert page.locator("#legend .housing-scale i").count()==7
+        assert page.locator("#sourceLink").get_attribute("href").startswith("https://")
+        assert page.locator("#housingDossier").is_visible()
     page.locator("#resetView").click()
+    assert page.evaluate("GermanHousingResearch.state().metric")=='completed_dwellings_new_residential_buildings_2023', (
+        "Returning national map must preserve the explicitly chosen metric")
+    page.locator("#housingMetric").select_option("asking_rent_2025_eur_m2")
     assert page.evaluate("GermanHousingResearch.state().selectedCounty") is None
     assert page.locator("#housingMetric option").count()==15
     assert page.evaluate("Object.keys(AtlasColorSemantics.registry.housing).length")==15
