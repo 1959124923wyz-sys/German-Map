@@ -365,7 +365,11 @@ function selectCounty(f){
  const iso=countyState(f);
  if(!iso)return;
  if(app.selectedState!==iso)selectState(iso);
- app.selectedCounty=stateKey(f);app.selectedEvent=null;
+ const countyId=stateKey(f);
+ // A company/name query scoped to one Kreis must not silently hide records
+ // in another Kreis when the reader clicks a new county polygon.
+ if(app.selectedCounty!==countyId)$('industryEventSearch').value='';
+ app.selectedCounty=countyId;app.selectedEvent=null;
  app.dossier.show(true);
  // A county dossier retains the current viewport.
  renderSummary();
