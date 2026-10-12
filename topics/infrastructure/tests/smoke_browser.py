@@ -47,6 +47,16 @@ def verify(browser, mobile: bool) -> None:
     page.locator("#bridgeCountySearch").fill("01002")
     assert "01002" in page.locator("#bridgeCountyList").inner_text()
     assert "85个" in page.locator("#bridgeCountyList").inner_text()
+    if not mobile:
+        # A five-digit AGS query belongs to the current state's bridge list,
+        # not every future state. Preserve it only while this state is active.
+        page.locator("#infraStateJump").select_option("DE-TH")
+        assert page.locator("#bridgeCountySearch").input_value()=="", (
+            "Old Schleswig-Holstein AGS search carried into Thuringia")
+        assert page.locator('[data-dossier-tab="bridges"]').get_attribute("aria-selected")=="true"
+        assert page.locator("#bridgeStateSummary").is_visible()
+        page.locator("#infraStateJump").select_option("DE-SH")
+        assert page.locator("#bridgeCountySearch").input_value()==""
     page.locator("#bridgeCountySearch").fill("")
     page.locator("#infraStateJump").select_option("DE-TH")
     assert page.locator("#eventSection").is_hidden()

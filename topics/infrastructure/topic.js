@@ -37,6 +37,9 @@
   }
   function selectState(iso,{locate=false}={}) {
     if(!rowByIso.has(iso))return;
+    // AGS/name search applies to a specific state's bridge archive.
+    // Do not carry a Schleswig-Holstein county code into Bavaria, etc.
+    if(state.selectedState!==iso)$('bridgeCountySearch').value='';
     state.selectedState=iso;
     state.selectedEvent=null;
     $('infraStateJump').value=iso;
@@ -55,6 +58,7 @@
   }
   function reset() {
     state.selectedState=null;
+    $('bridgeCountySearch').value='';
     state.selectedEvent=null;
     $('infraStateJump').value='';
     dossier.show(false);
@@ -179,6 +183,7 @@
     const e=archive.events.find(v=>v.id===id);if(!e)return;
     // Opening a project record never overrides the explicit event-layer
     // visibility preference. The checkbox alone controls map markers.
+    if(state.selectedState!==e.state_iso)$('bridgeCountySearch').value='';
     state.selectedState=e.state_iso;state.selectedEvent=id;
     $('infraStateJump').value=e.state_iso;
     // A dossier click must not reveal controls for a layer the user hid.
