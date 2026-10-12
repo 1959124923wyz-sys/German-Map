@@ -304,6 +304,11 @@
   const a=[['原始来源',row.source],['补充来源',row.source2]].filter(x=>/^https:\/\//.test(x[1]));
   return a.map(([label,url])=>`<a target="_blank" rel="noopener noreferrer" href="${escapeHTML(url)}">${label} ↗ ${escapeHTML(url)}</a>`).join('');
  }
+ function clearSelectedReport(){
+  view.selected=null;
+  $('detail').hidden=true;
+  $('detail').replaceChildren();
+ }
  function chooseRecord(id){
   const r=D.cases.find(x=>x.id===id);if(!r)return;
   view.selected=id;
@@ -350,7 +355,7 @@
    L.marker(p,{icon:L.divIcon({html,className:'finance-bubble',iconSize:[34,34],iconAnchor:[17,17]}),keyboard:true,
      title:`县级AGS ${code} · ${rows.length}条有来源记录（县域示意位置）`})
     .bindTooltip('<strong>'+escapeHTML(rows[0].city)+' · '+rows.length+'条事件</strong><div>'+escapeHTML(preview(rows[0].description,54))+'</div><small>点击查看 · 县域示意位置</small>',{direction:'top',offset:[0,-11],className:'finance-event-tooltip',opacity:1})
-    .on('click',()=>{view.county=code;view.archive=false;view.limit=8;view.selected=null;toggleArchive();renderList();$('caseList').scrollTop=0;
+    .on('click',()=>{view.county=code;view.archive=false;view.limit=8;clearSelectedReport();toggleArchive();renderList();$('caseList').scrollTop=0;
       $('eventPanel').hidden=false;
       $('listHeading').textContent='该县财政事件';
       // Keep state-level financial summary instead of replacing it with an
@@ -526,7 +531,7 @@
   view.category=$('category').value;view.status=$('status').value;
   // The category/status controls refine the chosen county's event list.
   // They must not silently return the reader to a nationwide search.
-  view.limit=8;view.selected=null;
+  view.limit=8;clearSelectedReport();
   renderList();renderMarkers();
  }
  function setupUI(){
