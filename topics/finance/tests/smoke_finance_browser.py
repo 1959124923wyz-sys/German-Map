@@ -249,6 +249,33 @@ def verify(browser,mobile=False):
         page.locator("#resetView").click()
         assert page.evaluate(f"{api}.getEventCounty()") is None
         assert page.evaluate(f"{api}.eventCount()")>=30
+        # Finance has two interactive county dimensions: debt geometry and
+        # case archive. Selecting debt county B must clear a stale case scope
+        # from county A, including its old report and mapped bubble filtering.
+        page.evaluate(f"()=>{api}.zoomToState('DE-RP',undefined,{{locate:false}})")
+        event_scope=page.evaluate(f"""() => {{
+          const m={api}.eventMarkers().find(x=>
+            /县级AGS 07[0-9]{{3}}/.test(x.options.title||''));
+          if(!m)throw Error('Missing geographically mapped RP case');
+          m.fire('click');return {api}.getEventCounty();
+        }}""")
+        assert event_scope and event_scope.startswith("07")
+        assert page.evaluate(f"{api}.getEventCounty()")==event_scope
+        page.locator("#caseList button").first.click()
+        assert page.locator("#detail").is_visible()
+        another_county=page.evaluate(f"""(scope) =>
+          window.GermanFinance08Data.cities.find(x=>x.id.startsWith('07')
+            &&x.id!==scope)?.id""",event_scope)
+        assert another_county and another_county!=event_scope
+        before_county_switch=camera()
+        page.evaluate(f"(id)=>{api}.selectCounty(id)",another_county)
+        assert camera()==before_county_switch
+        assert page.evaluate(f"{api}.getEventCounty()") is None,(
+            "Fiscal debt county B retained the unrelated case county A")
+        assert page.locator("#detail").is_hidden(),(
+            "Fiscal debt county B retained an obsolete case from county A")
+        assert page.evaluate(f"{api}.eventCount()")>=30
+        page.locator("#resetView").click()
     # Changing states does NOT turn off the independent event overlay.
     page.locator("#stateJump").select_option("DE-BY")
     assert page.evaluate(f"{api}.getFocusState()")=="DE-BY"
