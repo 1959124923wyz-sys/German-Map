@@ -1,11 +1,6 @@
 name: Drug topic data build and smoke
 
 on:
-  push:
-    branches: [feature/drugs-topic]
-    paths:
-      - 'topics/drugs/**'
-      - '.github/workflows/drugs-topic-build.yml'
   workflow_dispatch:
 
 permissions:
