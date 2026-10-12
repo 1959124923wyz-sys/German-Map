@@ -462,6 +462,12 @@
    $('districtPanel').hidden=true;
   }
   view.currentCounty=id;
+  // A map selection of a different debt county supersedes the previous
+  // event-county scope. Otherwise the headline shows county B while the
+  // event archive still lists only cases in county A.
+  if(view.county&&view.county!==id){
+   view.county=null;clearSelectedReport();renderList();renderMarkers();
+  }
   if(!$('stateMunicipalDrawer').hidden)$('stateMunicipalDrawer').open=false;
   const row=view.focusState==='DE-RP'?regionalRow(feature.id):null;
   const name=feature.properties?.name||'县级地区';
