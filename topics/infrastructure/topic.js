@@ -193,7 +193,7 @@
       const selected=e.id===state.selectedEvent;
       const symbol='<span class="infra-marker '+escapeHtml(e.status)+(selected?' selected':'')+'"></span>';
       const icon=L.divIcon({className:'infra-marker-icon',html:symbol,iconSize:[16,16],iconAnchor:[8,8]});
-      const marker=L.marker([e.coordinates.lat,e.coordinates.lon],{icon,zIndexOffset:selected?1000:0,title:e.title,riseOnHover:true})
+      const marker=L.marker([e.coordinates.lat,e.coordinates.lon],{icon,pane:'infraEventPane',zIndexOffset:selected?1000:0,title:e.title,riseOnHover:true})
         .bindTooltip(escapeHtml(e.title)+'<br>'+escapeHtml(e.summary.slice(0,31))+'…',{className:'infra-tooltip',direction:'top',sticky:true});
       marker.on('click',()=>selectEvent(e.id));
       if(state.showEvents){marker.addTo(markerGroup);markers.set(e.id,marker);}
