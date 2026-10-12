@@ -2,11 +2,6 @@ name: Düsseldorf 2025 municipal police attachment audit
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/probe_duesseldorf_2025_bv.py'
-      - '.github/workflows/duesseldorf-2025-source-audit.yml'
 permissions:
   contents: read
 jobs:
