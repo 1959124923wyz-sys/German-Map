@@ -77,6 +77,44 @@ def check(browser, mobile=False):
         const m=window.__IMMIGRATION_MAP_V13__,c=m.getCenter();
         return [m.getZoom(),c.lat,c.lng];
     }""")
+    if not mobile:
+        # Regression: while the FIRST county GeoJSON fetch is pending, the
+        # reader may click "全国". The late geometry response must NOT
+        # revive county mode or disable state-polygon mouse interaction.
+        page.evaluate("""() => {
+          const original=window.fetch.bind(window);
+          window.fetch=(url,options)=>{
+            if(String(url).includes('germany-counties.geojson'))
+              return new Promise((resolve,reject)=>{
+                window.__releaseCountyFetch=()=>{
+                  window.fetch=original;
+                  original(url,options).then(resolve,reject);
+                };
+              });
+            return original(url,options);
+          };
+        }""")
+        page.locator("#show-counties").click()
+        page.wait_for_function("() => typeof window.__releaseCountyFetch==='function'")
+        page.locator("#back-country").click()
+        assert page.evaluate("GermanMapTopics.immigration.getViewState().countyMode")=="states"
+        assert page.evaluate("GermanMapTopics.immigration.getViewState().state") is None
+        race_camera=camera()
+        page.evaluate("() => {window.__releaseCountyFetch(); return true;}")
+        page.wait_for_function("() => !document.querySelector('#show-counties').disabled")
+        assert page.evaluate("GermanMapTopics.immigration.getViewState().countyMode")=="states",(
+            "Late county fetch re-enabled counties after an explicit nationwide reset")
+        assert page.evaluate("""() => {
+          const m=window.__IMMIGRATION_MAP_V13__,p=m.getPane('immigrationCountyPane');
+          return p?.querySelectorAll('path').length||0;
+        }""")==0, "Late county load added county paths after the reader returned nationwide"
+        assert page.evaluate("""() => {
+          const m=window.__IMMIGRATION_MAP_V13__;
+          return [...m.getPane('immigrationStatePane').querySelectorAll('path')]
+            .some(el=>getComputedStyle(el).pointerEvents!=='none');
+        }"""),"Late county load made states unclickable"
+        assert camera()==race_camera,"Delayed county fetch changed the user's nationwide map view"
+        page.locator("#state-list").get_by_text("石勒苏益格－荷尔斯泰因州").click()
     original_camera=camera()
     page.locator("#show-counties").click()
     page.wait_for_function("()=>window.GermanMapTopics.immigration.getViewState().countyMode==='counties'",timeout=45000)
