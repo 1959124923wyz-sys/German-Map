@@ -213,6 +213,9 @@ def verify(browser,mobile=False):
         # Unscoped nationwide archive selection is a separate route from a
         # county bubble: an unrelated debt county must also clear that report.
         assert page.evaluate(f"{api}.getEventCounty()") is None
+        # County polygons are selectable nationwide in the 2023 debt view;
+        # in the 2025 state-balance view they intentionally require a state.
+        page.locator("#metricLayer").select_option("core-2023")
         first_case=page.locator("#caseList button").first.get_attribute("data-case")
         case_county=page.evaluate("""(id) => {
           return window.GermanFinance08Data.cases.find(r=>r.id===id)?.county;
@@ -232,6 +235,7 @@ def verify(browser,mobile=False):
         assert page.evaluate(f"{api}.getEventCounty()") is None
         assert camera()==camera_before_other
         page.locator("#resetView").click()
+        page.locator("#metricLayer").select_option("balance-2025")
         # Clicking a county event bubble establishes a geographical scope.
         # Category/status filters must refine this county rather than silently
         # returning the report list to all of Germany.
