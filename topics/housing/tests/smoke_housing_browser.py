@@ -97,6 +97,9 @@ def run(browser,mobile=False):
         "Returning national map must preserve the explicitly chosen metric")
     if not mobile:
         # Atlas official land price is categorical, NOT a point estimate.
+        # The search field lives inside the districts archive tab.
+        page.locator("#stateJump").select_option("01")
+        page.locator('[data-dossier-tab="districts"]').click()
         # Verify all three real German price-band spellings on their Kreis.
         for state_id,ags,expected in [
             ("01","01001","100—不足200"),
