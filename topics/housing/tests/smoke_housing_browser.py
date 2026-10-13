@@ -282,6 +282,18 @@ def run(browser,mobile=False):
     page.locator('[data-dossier-tab="districts"]').click()
     page.locator("#housingCountySearch").fill("07111")
     assert page.locator("#housingCountyResults .dossier-entry").count()>=0
+    if not mobile:
+        # A real ranking-button choice of another county must not keep the
+        # previous district's AGS/name search and show an empty county list.
+        old_camera=page.evaluate("GermanHousingResearch.state()")
+        page.locator('#topRank .housing-rank-row:not([data-id="07111"])').first.click()
+        assert page.locator("#housingCountySearch").input_value()=="", (
+            "Choosing a different housing county kept an unrelated AGS query")
+        assert page.evaluate("GermanHousingResearch.state().selectedCounty")!="07111"
+        assert page.evaluate("GermanHousingResearch.state().zoom")==old_camera["zoom"]
+        assert abs(page.evaluate("GermanHousingResearch.state().view.lat")-old_camera["view"]["lat"])<1e-5
+        assert page.locator("#housingCountyResults .dossier-entry").count()>1, (
+            "The new county still inherited the previous search restriction")
     page.locator("#housingCountySearch").fill("")
     row=page.locator("#topRank .housing-rank-row").first
     row.click()
