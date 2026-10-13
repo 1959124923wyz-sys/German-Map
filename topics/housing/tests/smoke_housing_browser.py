@@ -95,6 +95,21 @@ def run(browser,mobile=False):
     page.locator("#resetView").click()
     assert page.evaluate("GermanHousingResearch.state().metric")=='completed_dwellings_new_residential_buildings_2023', (
         "Returning national map must preserve the explicitly chosen metric")
+    if not mobile:
+        # Atlas official land price is categorical, NOT a point estimate.
+        # Verify all three real German price-band spellings on their Kreis.
+        for state_id,ags,expected in [
+            ("01","01001","100—不足200"),
+            ("01","01003","≥500"),
+            ("03","03354","低于50"),
+        ]:
+            page.locator("#stateJump").select_option(state_id)
+            page.locator("#housingCountySearch").fill(ags)
+            page.locator(f'#housingCountyResults [data-county="{ags}"]').click()
+            band=page.locator("#landPriceBand").inner_text()
+            assert expected in band,(ags,band)
+            assert "欧元/㎡" in band,(ags,band)
+        page.locator("#resetView").click()
     page.locator("#housingMetric").select_option("asking_rent_2025_eur_m2")
     assert page.evaluate("GermanHousingResearch.state().selectedCounty") is None
     assert page.locator("#housingMetric option").count()==15
