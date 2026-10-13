@@ -248,7 +248,7 @@
   const v=region.scope==='county'?byid.get(region.ids[0])?.building_land_price_band_2024:null;
   el.hidden=!v;
   if(!v)return;
-  const nice=String(v).replace(/^(\\d+) bis unter (\\d+)$/,'$1—不足$2').replace(/^(\\d+) und mehr$/,'≥$1').replace(/^unter (\\d+)$/,'低于$1');
+  const nice=String(v).replace(/^(\d+) bis unter (\d+)$/,'$1—不足$2').replace(/^(\d+) und mehr$/,'≥$1').replace(/^bis unter (\d+)$/,'低于$1');
   el.textContent='2024年住宅建筑用地价格等级：'+nice+' 欧元/㎡（用于一、两户型住宅的中等地段；官方县级表仅给区间，非精确价格）';
  }
  // The underlying official county/subcounty files have already been loaded
