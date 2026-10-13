@@ -483,6 +483,9 @@
  function chooseCounty(id){
   const shape=countyShapes.get(id);
   if(!shape)return;
+  // A county-name/AGS query from the previous district must not silently
+  // filter a newly selected Kreis's archive. Repeat-click preserves the query.
+  if(selectedCounty!==id)$('housingCountySearch').value='';
   selectedCounty=id; focusState=id.slice(0,2);
   $('stateJump').value=focusState;
   housingDossier.show(true);
