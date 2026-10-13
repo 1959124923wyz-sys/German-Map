@@ -26,7 +26,7 @@ function validate(src){
  for(const c of county.records){if(!/^\d{5}$/.test(c.ags)||c.quality!=='direct_official_row'||!Number.isSafeInteger(c.value)||c.value<0)throw Error('县级行政编码/数据无效');}
  return {azr,trend,share,county};
 }
-const app={...validate(raw()),metric:'count',year:2025,selected:null,countySelected:null,stateGeo:null,stateLayer:null,countyGeo:null,countyLayer:null,countyBusy:false,mode:'states',stateByIso:new Map(),trendByIso:new Map(),shareByIso:new Map(),countyByAgs:new Map()};
+const app={...validate(raw()),metric:'count',year:2025,selected:null,countySelected:null,stateGeo:null,stateLayer:null,countyGeo:null,countyLayer:null,countyBusy:false,countyRequest:0,mode:'states',stateByIso:new Map(),trendByIso:new Map(),shareByIso:new Map(),countyByAgs:new Map()};
 for(const r of app.azr.records)app.stateByIso.set(r.iso,r);
 for(const r of app.trend.records)app.trendByIso.set(r.iso,r);
 for(const r of app.share.records)app.shareByIso.set(r.iso,r);
@@ -129,6 +129,9 @@ function refreshAll(){refreshLegend();$('guide-year').textContent=app.metric==='
  updateMapStyles();
 }
 function clearCounties(){
+ // Invalidate a county-geometry request that may still be awaiting fetch.
+ // A later completion must not repaint counties after state/year/reset changes.
+ app.countyRequest++;
  if(app.countyLayer){app.countyLayer.remove();app.countyLayer=null;}app.mode='states';app.countySelected=null;
  if(app.stateLayer){
   app.stateLayer.eachLayer(l=>{l.options.interactive=true;if(l._path)l._path.style.pointerEvents='auto';});
@@ -159,9 +162,13 @@ async function showCounties(){
  if(!isCountyAvailable(app.selected))return;
  if(app.mode==='counties'){clearCounties();renderState();return;}
  if(app.countyBusy)return;app.countyBusy=true;
+ const request=++app.countyRequest,region=app.selected,year=app.year,metric=app.metric;
  $('show-counties').disabled=true;$('show-counties').textContent='正在加载县界…';
  try{
   if(!app.countyGeo)app.countyGeo=await loadJson(GEO_COUNTIES);
+  // The reader can return nationwide or change state/metric while fetch is
+  // pending. Ignore the old request instead of drawing phantom county paths.
+  if(request!==app.countyRequest||app.selected!==region||app.metric!==metric||app.year!==year||app.mode!=='states')return;
   if(!Array.isArray(app.countyGeo.features))throw Error('县界不是GeoJSON');
   const rows=app.county.records.filter(c=>c.state_iso===app.selected),ids=new Set(rows.map(c=>c.ags));
   const found=app.countyGeo.features.filter(f=>ids.has(String(f?.id??f?.properties?.AGS??'').padStart(5,'0')));
